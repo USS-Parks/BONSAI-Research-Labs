@@ -9,6 +9,7 @@ use std::error::Error;
 use std::fmt;
 
 pub mod decision;
+pub mod violation;
 
 #[derive(Clone, Debug, Deserialize, Eq, Hash, PartialEq, Serialize)]
 #[serde(deny_unknown_fields)]

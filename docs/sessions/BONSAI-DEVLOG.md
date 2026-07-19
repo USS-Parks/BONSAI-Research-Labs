@@ -692,3 +692,24 @@ This append-only log records executed PSPR prompts. Corrections are added as new
 - Commit SHA: pending; append in BQ-03 under the self-hash convention
 - Risks/blockers/parked scope changed: R-06 remains active for enforcement overshoot; R-08/R-09 remain active for descendants and observer reserves; BQ-02 proves deterministic evidence selection but not process enforcement, runtime terminality, instrument completion, or C0–C5 eligibility; no parked scope revived
 - Next eligible prompt after gate and publication: BQ-03
+
+### BQ-02 closeout note
+
+- Focused implementation commit SHA: `7fd5a9e4e5b0763c8eb5e60d436668a55db495a7`
+- Hosted verification: GitHub Actions run 29700864636, attempt 1, passed Windows x86_64, Linux x86_64, macOS arm64, and macOS Intel at that exact commit
+- Ledger rule: appended by BQ-03 because the BQ-02 commit could not contain its own immutable hash or post-push hosted-run identity
+
+## 2026-07-19 — BQ-03 — Hard/soft violation lifecycle
+
+- Status: passed; closeout entry pending focused commit identity and hosted run
+- Authorization scope: user-authorized remaining M1 STS for this session plus the existing later-gated public source publication addendum
+- Dependencies and source revision: BQ-02 published and hosted-green at `7fd5a9e4e5b0763c8eb5e60d436668a55db495a7`; BR-05 lifecycle semantics already published
+- Objective and exclusions: separate warning, degradation, hard violation, termination, failure recovery, and final verdict with exactly one terminal evidence outcome; do not resume governed work during recovery or claim OS-level enforcement
+- Reuse classification: extend `bonsai-governor` at the BQ-02 evidence seam and mirror the settled BR-05 explicit-edge/terminal/no-resume lifecycle discipline without coupling runtime and governor crates; reuse Serde and checked ordinals
+- Files changed: violation lifecycle/evidence validator/tests, lifecycle architecture contract, README/PSPR status, BQ-02 hosted closeout, DEVLOG, verification log, and retained machine evidence
+- Decisions/addenda: a hard violation must pass through termination and can never remain claim eligible; soft-only completion is degraded; faults from every active boundary append failed/recovered and close evidence without resuming work; terminal states cannot re-enter; bundles validate schema, contiguous ordinals, legal edges, stable reasons, terminal uniqueness, verdict, and eligibility
+- Verification summary: four focused lifecycle tests cover compliant/soft/hard verdicts, invalid transitions, terminal reentry, and fault injection after the initial state and every hard-path transition; each fixture yields one valid terminal bundle; the complete gate passed formatting, strict workspace Clippy, 90 Rust tests, 3 Python tests, schema compatibility, docs, ADR, license, governance-ledger, terminology, and CI-topology checks on Windows x86_64
+- Evidence paths and SHA-256 hashes: machine record `BQ-03-1784489842292267700` with stdout `F4C7199604F7907283B0F85EF0C5531F82AEED96C0DD6794EB98405F259032A5` and stderr `0EE17058BD7D36377238D615C8B0A23145EDF3DC4720E3CE5007A6A12DC4E7A2`; implementation `7EEC9E9792060D046524989FF17020D26DFA04C513F7E54CC40C9CC8B8848572`; contract `E0AC9571F830079536F351A5D487620502C58EEB3650C2585F67547E98FF844D`; `Cargo.lock` unchanged from BQ-02
+- Commit SHA: pending; append in BQ-04 under the self-hash convention
+- Risks/blockers/parked scope changed: R-06 remains active for enforcement overshoot and R-08/R-09 for descendant/observer integration; recovery proves evidence closure rather than process resumption; no backend enforcement, instrument-completion, or C0–C5 claim is made and no parked scope revived
+- Next eligible prompt after gate and publication: BQ-04
