@@ -232,3 +232,24 @@ This append-only log records executed PSPR prompts. Corrections are added as new
 - Commit SHA: pending; append the focused implementation SHA in the next prompt's closeout entry
 - Risks/blockers/parked scope changed: R-15 remains controlled by the versioned schema, pinned validator, canonical hashes, and schema gate; no physical behavior, enforcement, energy fidelity, instrument completion, or C0–C5 result is claimed
 - Next eligible prompt: BC-04
+
+### BC-03 closeout note
+
+- Focused implementation commit SHA: `d31e4a6e8126697357e7f0870f434ee24881e664`
+- Hosted verification: GitHub Actions run 29671499350, attempt 1, passed Windows x86_64, Linux x86_64, macOS arm64, and macOS Intel at that exact commit
+- Ledger rule: appended by BC-04 because the BC-03 commit could not contain its own immutable hash or post-push hosted-run identity
+
+## 2026-07-18 — BC-04 — Platform and dependency inventory
+
+- Status: passed; closeout entry pending focused commit identity
+- Authorization scope: user instruction `Continue to STS`; approved roster in dependency order
+- Dependencies and source revision: BC-01 complete at `a0b4aba07191d8035330bec4f0eeb0bf64bb31e8`; BC-03 published and hosted-green at `d31e4a6e8126697357e7f0870f434ee24881e664`
+- Objective and exclusions: define a strict sanitized inventory for OS/build/architecture, CPU/GPU class, memory, clocks, drivers, runtimes/compilers, dependency locks, privilege, collectors, and thermal/power state plus collector-boundary Rust types; no live host probe, collector installation, secret retention, serial-number retention, physical evidence, or energy-fidelity claim
+- Reuse classification: extend the existing Draft 2020-12 validator/canonical hash seam and `bonsai-contracts`; reuse Serde already locked by BC-03; implement new inventory types and boundary sanitizer at the existing contracts seam; no new external dependency and no Lamprey runtime/source reused
+- Files changed: platform-inventory schema, raw/sanitized fixtures, Rust inventory types/sanitizer/tests, schema gate/docs, Cargo manifests/lock, root/PSPR status, BC-03 hosted closeout, DEVLOG, verification log, and machine evidence
+- Decisions/addenda: sanitized machine identity is an independently assigned opaque UUID, never a hostname/serial hash; forbidden identity/path/credential fields are removed recursively before strict decoding; public structs deny unknown fields; collector status and privilege requirements remain explicit; unavailable thermal state is recorded, never converted to nominal or zero
+- Verification summary: focused Rust tests and strict Clippy passed; raw sensitive input was invalid for public use; exact sanitized output validated through the Rust contract and Draft 2020-12 schema; hostname, Windows/Linux user paths, CPU/GPU serials, registry/collector tokens, and API key were absent while required reproducibility fields remained; full universal/schema/governance gate passed through the byte-identical external verifier copy
+- Evidence paths and SHA-256 hashes: machine record `BC-04-1784431710849423900`; stdout `6236464b9c190f686ab4bda19163caa493fc2f222dd5b69fe34dc94c4aac09f1`; stderr `2d341ac1bc78080ced2b174604a62a4fe54707bf6599f1c81a856d6f9d9763b7`; sanitized inventory canonical SHA-256 `0bb0b95eaa8d0440c417a316b09a3694658036cd48592a8fc21ef7b8ac975514`; schema canonical SHA-256 `f1fd3f59feab9ebbf6c06581d0011371ba8e4a7d68eb10e202bdbe4ad55830b5`; verifier `F81144D316A5EB77F682E13535F20C0DCF53AE723171C82C7FD53FFCC6FB7AEF`; `Cargo.lock` `BA7C806E67A42D80EC8D0D0D9781F937BEDA17B2B2B291C333BFDE5FFE9ABA04`
+- Commit SHA: pending; append the focused implementation SHA in the next prompt's closeout entry
+- Risks/blockers/parked scope changed: R-04/R-05/R-14 remain active for later live backends and privileged collectors; BC-04 records capability/availability contracts only and does not weaken their physical gates
+- Next eligible prompt: BC-05

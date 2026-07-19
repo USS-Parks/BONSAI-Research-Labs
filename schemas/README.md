@@ -79,3 +79,13 @@ The schema contains no `default` keyword. Omission never delegates a mutable cho
 | `missing-seeds.json` | `MANIFEST_SEEDS_REQUIRED` |
 
 BC-05 remains responsible for deriving actual track classification from runtime facts. BC-06 remains responsible for the detailed resource-policy and governor-decision contracts. The manifest records their immutable pre-run declarations without claiming either later contract is already implemented.
+
+## Platform inventory v1
+
+[`platform-inventory-v1.json`](./platform-inventory-v1.json) defines the sanitized platform and dependency inventory created by BC-04. The matching Rust collector-boundary types and sanitizer are in `bonsai_contracts::inventory`.
+
+The public inventory retains reproducibility fields for OS version/build/kernel/architecture, CPU and accelerator class, memory size/page size, named clock kind/resolution, drivers, runtimes, compilers, dependency-lock names and SHA-256 hashes, process privilege state, collector status/capabilities/privilege requirements, and thermal/power state. `machine_identity_id` is an opaque UUID assigned independently of hardware identity.
+
+Collector output is untrusted raw input. Before schema decoding, the boundary sanitizer recursively removes forbidden hostname, user-path, source-path, token, API-key, secret, and device-serial fields. It removes their values outright; it does not publish reversible or guessable hashes of secrets or serials. The strict public Rust type and JSON Schema then reject any remaining unknown field.
+
+The frozen fixture pair under `fixtures/platform-inventory/v1/` proves both sides of the boundary: `raw-sensitive.json` is intentionally invalid for public use, while its sanitized output must exactly equal `sanitized-expected.json`, decode through the Rust contract, validate against Draft 2020-12, contain none of the sensitive fixture values, and retain the enumerated reproducibility fields. These are contract and redaction semantics only; BC-04 does not install collectors, probe the live host, establish physical evidence, or claim energy fidelity.

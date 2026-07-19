@@ -254,6 +254,20 @@ This is an append-only human index. Machine records created by `cargo xtask veri
 - Result: pass
 - Reviewer/attestation: run head SHA, run conclusion, and every matrix-job conclusion inspected through the GitHub API
 
+## VER-BC04-GATE — BC-04 — 2026-07-19T03:28:30Z
+
+- Source revision and dirty state: `d31e4a6e8126697357e7f0870f434ee24881e664`; dirty with BC-04 changes
+- OS/architecture/physical-or-CI: Windows/x86_64; local; physical/virtual status unknown
+- Toolchain/dependency-lock hashes: Rust 1.96.0; Python 3.14.4; checksum-verified official uv 0.11.29; `Cargo.lock` SHA-256 `BA7C806E67A42D80EC8D0D0D9781F937BEDA17B2B2B291C333BFDE5FFE9ABA04`; `uv.lock` SHA-256 `EC18CF61A7A382BECA7F65105B6E427F3FF70F37CF99910E2E63902D7C900E43`
+- Command: machine record `BC-04-1784431710849423900`; `cargo fmt --all --check`; workspace Clippy/tests; frozen Ruff/Pyright/Pytest; `cargo xtask schema-check`; docs, ADR, license, governance-ledger, terminology, and CI-topology checks
+- Start/end/duration: `2026-07-19T03:28:30.8494239Z` / `2026-07-19T03:28:41.8276316Z` / 10.9784885 s
+- Exit code: 0
+- Stdout/stderr artifact hashes: stdout `6236464b9c190f686ab4bda19163caa493fc2f222dd5b69fe34dc94c4aac09f1`; stderr `2d341ac1bc78080ced2b174604a62a4fe54707bf6599f1c81a856d6f9d9763b7`
+- Fixtures/manifests/bundle IDs: `raw-sensitive.json`; `sanitized-expected.json`; sanitized canonical SHA-256 `0bb0b95eaa8d0440c417a316b09a3694658036cd48592a8fc21ef7b8ac975514`; schema canonical SHA-256 `f1fd3f59feab9ebbf6c06581d0011371ba8e4a7d68eb10e202bdbe4ad55830b5`
+- Counter availability and privileges: collector interfaces and states only; no live host enumeration, physical counter, privileged collector, calibration, enforcement, or energy evidence
+- Result: pass
+- Reviewer/attestation: strict raw/sanitized fixture equality, forbidden-value absence, retained reproducibility-field assertions, Rust contract decoding, Draft 2020-12 validation, and full automated local gate; external verifier SHA-256 `F81144D316A5EB77F682E13535F20C0DCF53AE723171C82C7FD53FFCC6FB7AEF` matched the in-tree binary before execution
+
 ## VER-BC03-GATE — BC-03 — 2026-07-19T03:05:32Z
 
 - Source revision and dirty state: `127b20b68957fb1473fba670fe4cd411187c062e`; dirty with BC-03 changes
@@ -267,3 +281,17 @@ This is an append-only human index. Machine records created by `cargo xtask veri
 - Counter availability and privileges: manifest counter expectations are declarations only; no physical counter, resource-enforcement, energy-fidelity, or privileged-collector evidence
 - Result: pass
 - Reviewer/attestation: both recorded local gates passed; the initial record became visible after the first wrapper had returned model control, so a deterministic confirmation was retained rather than discarding either valid record; LF and CRLF canonical bytes were identical; external verifier copy SHA-256 `7D56967E130ED5EFF5372F4B7AE908A126429FDEE170B4E74DA4C80DCCAEB735` matched the in-tree built verifier before execution
+
+## VER-BC03-HOSTED — BC-03 — 2026-07-19T03:16:02Z
+
+- Source revision and dirty state: `d31e4a6e8126697357e7f0870f434ee24881e664`; clean pushed revision
+- OS/architecture/physical-or-CI: Windows/x86_64, Linux/x86_64, macOS/arm64, macOS/x86_64; GitHub hosted CI; ephemeral virtual machines
+- Toolchain/dependency-lock hashes: workflow-pinned Rust 1.96.0, Python 3.12, and uv 0.11.29; source locks at the recorded revision
+- Command: GitHub Actions `BONSAI baseline` push run 29671499350, attempt 1
+- Start/end/duration: `2026-07-19T03:16:02Z` / `2026-07-19T03:18:53Z` / 171 s
+- Exit code: all four jobs concluded `success`
+- Stdout/stderr artifact hashes: retained by GitHub Actions; job IDs 88151233315 (Windows), 88151233342 (macOS Intel), 88151233351 (Linux), and 88151233352 (macOS arm64)
+- Fixtures/manifests/bundle IDs: hosted schema gate exercised canonical JSON, the valid experiment manifest, and all three required-declaration rejection fixtures on every matrix job
+- Counter availability and privileges: no physical counter evidence; workflow classification denies physical, energy, and long-duration claims
+- Result: pass
+- Reviewer/attestation: run head SHA, run conclusion, and every matrix-job conclusion inspected through the GitHub API

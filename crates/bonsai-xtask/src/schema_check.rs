@@ -1,5 +1,6 @@
 //! Frozen schema-compatibility conformance suite.
 
+use bonsai_contracts::inventory::{PlatformInventory, sanitize_inventory_json};
 use serde::Deserialize;
 use serde_json::Value;
 use sha2::{Digest, Sha256};
@@ -164,9 +165,95 @@ pub(crate) fn run() -> Result<(), String> {
     }
 
     run_experiment_manifest_suite(&root)?;
+    run_platform_inventory_suite(&root)?;
 
     println!(
-        "schema compatibility check passed: 1 additive, 4 compatibility rejections, and 3 manifest declaration rejections"
+        "schema check passed: compatibility, experiment manifest, and sanitized platform inventory suites"
+    );
+    Ok(())
+}
+
+fn run_platform_inventory_suite(root: &Path) -> Result<(), String> {
+    let schema_path = root.join("schemas/platform-inventory-v1.json");
+    let schema_raw = fs::read(&schema_path)
+        .map_err(|error| format!("read {}: {error}", schema_path.display()))?;
+    let schema: Value = serde_json::from_slice(&schema_raw)
+        .map_err(|error| format!("parse {}: {error}", schema_path.display()))?;
+    jsonschema::draft202012::meta::validate(&schema)
+        .map_err(|error| format!("platform inventory is not valid Draft 2020-12: {error}"))?;
+    reject_schema_defaults(&schema, "")?;
+    let validator = jsonschema::draft202012::options()
+        .should_validate_formats(true)
+        .build(&schema)
+        .map_err(|error| format!("compile platform inventory schema: {error}"))?;
+
+    let fixture_dir = root.join("fixtures/platform-inventory/v1");
+    let raw_path = fixture_dir.join("raw-sensitive.json");
+    let expected_path = fixture_dir.join("sanitized-expected.json");
+    let raw: Value = serde_json::from_slice(
+        &fs::read(&raw_path).map_err(|error| format!("read {}: {error}", raw_path.display()))?,
+    )
+    .map_err(|error| format!("parse {}: {error}", raw_path.display()))?;
+    let expected_raw = fs::read(&expected_path)
+        .map_err(|error| format!("read {}: {error}", expected_path.display()))?;
+    let expected: Value = serde_json::from_slice(&expected_raw)
+        .map_err(|error| format!("parse {}: {error}", expected_path.display()))?;
+
+    if validator.is_valid(&raw) {
+        return Err("raw sensitive inventory unexpectedly satisfies the public schema".to_owned());
+    }
+    let sanitized = sanitize_inventory_json(&raw);
+    if sanitized != expected {
+        return Err("sanitized inventory does not match the frozen expected fixture".to_owned());
+    }
+    validator
+        .validate(&sanitized)
+        .map_err(|error| format!("sanitized inventory failed schema validation: {error}"))?;
+    serde_json::from_value::<PlatformInventory>(sanitized.clone())
+        .map_err(|error| format!("sanitized inventory failed Rust contract decoding: {error}"))?;
+
+    let rendered = serde_json::to_string(&sanitized)
+        .map_err(|error| format!("serialize sanitized inventory: {error}"))?;
+    for secret in [
+        "private-build-host",
+        "researcher",
+        "CPU-SERIAL-SECRET",
+        "GPU-SERIAL-SECRET",
+        "registry-token-secret",
+        "collector-token-secret",
+        "api-key-secret",
+    ] {
+        if rendered.contains(secret) {
+            return Err(format!(
+                "inventory redaction retained forbidden fixture value: {secret}"
+            ));
+        }
+    }
+    for (pointer, expected_value) in [
+        ("/os/build", "26100"),
+        ("/os/architecture", "x86_64"),
+        ("/cpu/model", "Fixture CPU 8C"),
+        ("/runtimes/0/version", "3.14.4"),
+        ("/compilers/0/version", "1.96.0"),
+        ("/collectors/0/status", "available"),
+    ] {
+        if sanitized.pointer(pointer).and_then(Value::as_str) != Some(expected_value) {
+            return Err(format!(
+                "inventory redaction lost reproducibility field {pointer}"
+            ));
+        }
+    }
+    let lock_hash = sanitized
+        .pointer("/dependency_locks/0/sha256")
+        .and_then(Value::as_str);
+    if lock_hash != Some("f2565497c1c59ebb1c22f88fca096a0d05e1efd9435f99d46c71e4dcfdf17d22") {
+        return Err("inventory redaction lost dependency lock identity".to_owned());
+    }
+
+    println!(
+        "platform inventory redaction: pass canonical_sha256={} schema_canonical_sha256={}",
+        sha256_hex(&canonical_json(&expected_raw)?),
+        sha256_hex(&canonical_json(&schema_raw)?)
     );
     Ok(())
 }

@@ -1,0 +1,111 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://schemas.bonsai.dev/platform-inventory/v1",
+  "title": "BONSAI platform and dependency inventory v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "inventory_id", "machine_identity_id", "os", "cpu", "accelerators", "memory", "clocks", "drivers", "runtimes", "compilers", "dependency_locks", "privilege", "collectors", "thermal_power"],
+  "properties": {
+    "schema_version": {"const": "1.0"},
+    "inventory_id": {"$ref": "#/$defs/uuid"},
+    "machine_identity_id": {"$ref": "#/$defs/uuid"},
+    "os": {"$ref": "#/$defs/os"},
+    "cpu": {"$ref": "#/$defs/cpu"},
+    "accelerators": {"type": "array", "items": {"$ref": "#/$defs/accelerator"}},
+    "memory": {"$ref": "#/$defs/memory"},
+    "clocks": {"type": "array", "minItems": 1, "items": {"$ref": "#/$defs/clock"}},
+    "drivers": {"type": "array", "items": {"$ref": "#/$defs/component"}},
+    "runtimes": {"type": "array", "minItems": 1, "items": {"$ref": "#/$defs/component"}},
+    "compilers": {"type": "array", "minItems": 1, "items": {"$ref": "#/$defs/component"}},
+    "dependency_locks": {"type": "array", "minItems": 1, "items": {"$ref": "#/$defs/dependency_lock"}},
+    "privilege": {"$ref": "#/$defs/privilege"},
+    "collectors": {"type": "array", "minItems": 1, "items": {"$ref": "#/$defs/collector"}},
+    "thermal_power": {"$ref": "#/$defs/thermal_power"}
+  },
+  "$defs": {
+    "uuid": {"type": "string", "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$"},
+    "sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "id": {"type": "string", "pattern": "^[a-z0-9][a-z0-9._-]*$"},
+    "nonempty": {"type": "string", "minLength": 1},
+    "component": {
+      "type": "object", "additionalProperties": false,
+      "required": ["component_id", "version"],
+      "properties": {"component_id": {"$ref": "#/$defs/id"}, "version": {"$ref": "#/$defs/nonempty"}}
+    },
+    "os": {
+      "type": "object", "additionalProperties": false,
+      "required": ["family", "version", "build", "kernel", "architecture"],
+      "properties": {
+        "family": {"enum": ["windows", "macos", "linux", "other"]},
+        "version": {"$ref": "#/$defs/nonempty"}, "build": {"$ref": "#/$defs/nonempty"},
+        "kernel": {"$ref": "#/$defs/nonempty"}, "architecture": {"$ref": "#/$defs/id"}
+      }
+    },
+    "cpu": {
+      "type": "object", "additionalProperties": false,
+      "required": ["vendor", "model", "architecture", "logical_cores"],
+      "properties": {
+        "vendor": {"$ref": "#/$defs/nonempty"}, "model": {"$ref": "#/$defs/nonempty"},
+        "architecture": {"$ref": "#/$defs/id"}, "logical_cores": {"type": "integer", "minimum": 1}
+      }
+    },
+    "accelerator": {
+      "type": "object", "additionalProperties": false,
+      "required": ["accelerator_id", "vendor", "model", "device_class", "memory_bytes", "driver"],
+      "properties": {
+        "accelerator_id": {"$ref": "#/$defs/id"}, "vendor": {"$ref": "#/$defs/nonempty"},
+        "model": {"$ref": "#/$defs/nonempty"}, "device_class": {"enum": ["integrated_gpu", "discrete_gpu", "other"]},
+        "memory_bytes": {"type": ["integer", "null"], "minimum": 0},
+        "driver": {"oneOf": [{"$ref": "#/$defs/component"}, {"type": "null"}]}
+      }
+    },
+    "memory": {
+      "type": "object", "additionalProperties": false,
+      "required": ["physical_total_bytes", "page_size_bytes"],
+      "properties": {"physical_total_bytes": {"type": "integer", "minimum": 1}, "page_size_bytes": {"type": "integer", "minimum": 1}}
+    },
+    "clock": {
+      "type": "object", "additionalProperties": false,
+      "required": ["clock_id", "kind", "resolution_ns", "monotonic"],
+      "properties": {
+        "clock_id": {"$ref": "#/$defs/id"}, "kind": {"enum": ["monotonic", "wall", "process_cpu"]},
+        "resolution_ns": {"type": "integer", "minimum": 1}, "monotonic": {"type": "boolean"}
+      }
+    },
+    "dependency_lock": {
+      "type": "object", "additionalProperties": false,
+      "required": ["ecosystem", "lockfile_name", "sha256"],
+      "properties": {
+        "ecosystem": {"$ref": "#/$defs/id"},
+        "lockfile_name": {"type": "string", "pattern": "^[A-Za-z0-9._-]+$"},
+        "sha256": {"$ref": "#/$defs/sha256"}
+      }
+    },
+    "privilege": {
+      "type": "object", "additionalProperties": false,
+      "required": ["process_level", "elevation_available"],
+      "properties": {
+        "process_level": {"enum": ["standard_user", "elevated", "container_restricted", "unknown"]},
+        "elevation_available": {"type": "boolean"}
+      }
+    },
+    "collector": {
+      "type": "object", "additionalProperties": false,
+      "required": ["collector_id", "version", "status", "privilege_requirement", "capabilities"],
+      "properties": {
+        "collector_id": {"$ref": "#/$defs/id"}, "version": {"$ref": "#/$defs/nonempty"},
+        "status": {"enum": ["available", "unavailable", "unsupported", "permission_denied", "error"]},
+        "privilege_requirement": {"enum": ["none", "optional", "required"]},
+        "capabilities": {"type": "array", "uniqueItems": true, "items": {"$ref": "#/$defs/id"}}
+      }
+    },
+    "thermal_power": {
+      "type": "object", "additionalProperties": false,
+      "required": ["thermal_state", "power_source"],
+      "properties": {
+        "thermal_state": {"enum": ["unavailable", "nominal", "fair", "serious", "critical"]},
+        "power_source": {"enum": ["unknown", "ac", "battery"]}
+      }
+    }
+  }
+}

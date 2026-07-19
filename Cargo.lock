@@ -80,6 +80,8 @@ dependencies = [
  "prost",
  "prost-build",
  "protoc-bin-vendored",
+ "serde",
+ "serde_json",
  "sha2",
 ]
 
@@ -87,6 +89,7 @@ dependencies = [
 name = "bonsai-xtask"
 version = "0.0.0"
 dependencies = [
+ "bonsai-contracts",
  "jsonschema",
  "serde",
  "serde_json",

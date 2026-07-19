@@ -1,0 +1,20 @@
+{
+  "schema_version": "1.0",
+  "inventory_id": "33333333-3333-4333-8333-333333333333",
+  "machine_identity_id": "44444444-4444-4444-8444-444444444444",
+  "hostname": "private-build-host",
+  "user_paths": ["C:\\Users\\researcher\\BONSAI", "/home/researcher/BONSAI"],
+  "os": {"family": "windows", "version": "11", "build": "26100", "kernel": "10.0.26100", "architecture": "x86_64"},
+  "cpu": {"vendor": "FixtureVendor", "model": "Fixture CPU 8C", "architecture": "x86_64", "logical_cores": 16, "serial_number": "CPU-SERIAL-SECRET"},
+  "accelerators": [{"accelerator_id": "gpu0", "vendor": "FixtureGPU", "model": "Fixture 24G", "device_class": "discrete_gpu", "memory_bytes": 25769803776, "driver": {"component_id": "fixture-gpu-driver", "version": "1.2.3"}, "device_serial": "GPU-SERIAL-SECRET"}],
+  "memory": {"physical_total_bytes": 68719476736, "page_size_bytes": 4096},
+  "clocks": [{"clock_id": "performance_counter", "kind": "monotonic", "resolution_ns": 100, "monotonic": true}],
+  "drivers": [{"component_id": "fixture-chipset", "version": "10.2"}],
+  "runtimes": [{"component_id": "python", "version": "3.14.4"}],
+  "compilers": [{"component_id": "rustc", "version": "1.96.0"}],
+  "dependency_locks": [{"ecosystem": "cargo", "lockfile_name": "Cargo.lock", "sha256": "f2565497c1c59ebb1c22f88fca096a0d05e1efd9435f99d46c71e4dcfdf17d22", "source_path": "C:\\Users\\researcher\\BONSAI\\Cargo.lock", "registry_token": "registry-token-secret"}],
+  "privilege": {"process_level": "standard_user", "elevation_available": false},
+  "collectors": [{"collector_id": "portable-process", "version": "1.0", "status": "available", "privilege_requirement": "none", "capabilities": ["cpu_time", "memory"], "token": "collector-token-secret"}],
+  "thermal_power": {"thermal_state": "unavailable", "power_source": "ac"},
+  "api_key": "api-key-secret"
+}
