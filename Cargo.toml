@@ -7,6 +7,7 @@ members = [
     "crates/bonsai-ingest",
     "crates/bonsai-metrics",
     "crates/bonsai-platform",
+    "crates/bonsai-report",
     "crates/bonsai-runtime",
     "crates/bonsai-xtask",
 ]

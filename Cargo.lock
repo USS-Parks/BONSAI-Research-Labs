@@ -243,6 +243,14 @@ dependencies = [
 ]
 
 [[package]]
+name = "bonsai-report"
+version = "0.0.0"
+dependencies = [
+ "serde",
+ "serde_json",
+]
+
+[[package]]
 name = "bonsai-runtime"
 version = "0.0.0"
 dependencies = [

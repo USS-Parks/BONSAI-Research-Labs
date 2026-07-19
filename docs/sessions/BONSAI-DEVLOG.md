@@ -860,3 +860,24 @@ This append-only log records executed PSPR prompts. Corrections are added as new
 - Commit SHA: pending; append in BV-02 under the self-hash convention
 - Risks/blockers/parked scope changed: the skeleton can evaluate supplied evidence but is not itself a C0–C5 result; concrete C0/C1 rules remain BV-04 outside M1 and C2+ work remains parked; no agent-quality, instrument-completion, or claim-ladder pass is asserted
 - Next eligible M1 prompt after gate and publication: BV-02
+
+### BV-01 closeout note
+
+- Focused implementation commit SHA: `8e5b6c0c73de79a97ffb335c5ea1033eaa3fd86f`
+- Hosted verification: GitHub Actions run 29703285273, attempt 1, passed Windows x86_64, Linux x86_64, macOS arm64, and macOS Intel at that exact commit
+- Ledger rule: appended by BV-02 because the BV-01 commit could not contain its own immutable hash or post-push hosted-run identity
+
+## 2026-07-19 — BV-02 — Static report generator
+
+- Status: passed; closeout entry pending focused commit identity and hosted run
+- Authorization scope: user-authorized remaining M1 STS for this session plus the existing later-gated public source publication addendum
+- Dependencies and source revision: BC-12 and BK-01 through BK-03 published; BV-01 published and hosted-green at `8e5b6c0c73de79a97ffb335c5ea1033eaa3fd86f`
+- Objective and exclusions: render a deterministic, self-contained HTML report containing manifest, platform, track, resources, overhead, behavior, failures, claims, limitations, and hashes from the exact machine JSON payload; do not introduce an independent metric or claim calculation path
+- Reuse classification: extend the workspace's Serde/JSON seams and hash vocabulary; implement one new `bonsai-report` crate with inline HTML/CSS and standard-library escaping; add no dependency family beyond already-locked Serde JSON
+- Files changed: report crate and tests, static-report contract, workspace manifest/lock, README/PSPR status, BV-01 hosted closeout, DEVLOG, verification log, and retained machine evidence
+- Decisions/addenda: required sections cannot be null; title, limitations, and hashes cannot be empty; hashes must be 64 hexadecimal characters; the generator serializes machine JSON and parses it back before rendering HTML; all scalar leaves use one deterministic traversal; HTML escapes data and contains no script, link, source, hyperlink, or CSS URL request surface
+- Verification summary: three focused tests cover offline self-containment, HTML escaping, required language/title/main/heading/table accessibility semantics, exact machine-JSON round trip, required-section reconciliation, missing-section rejection, and malformed-hash rejection; the complete gate passed formatting, strict workspace Clippy, 110 Rust tests, Ruff, strict Pyright, 9 Python tests, schema compatibility, docs, ADR, license, governance-ledger, terminology, and CI-topology checks on Windows x86_64
+- Evidence paths and SHA-256 hashes: final machine record `BV-02-1784494954420259900` with stdout `9FEF2844B65829BA1788B13AA0DF33924B8C537F8E8BC1FB90414F66EBDB3259` and stderr `EE6CCF15A1EB9B7A0C80ECEBC382DD1AF89AE1EF4BEC383D7ADEB53212E1A550`; implementation `A60250E1EABEE6342195655F91595C5360E9E7677C43D9488D44EC63C2389FC9`; contract `6336BB3A04FB25BD3731AD86EACF6BB279EE6BD87503B6CDAFF2911491AA8C35`; `Cargo.lock` `322D9DBDD3C82A9630FB90116FB8EDB46A7660B100B281EB49681A520DEE2578`
+- Commit SHA: pending; append in BV-03 under the self-hash convention
+- Risks/blockers/parked scope changed: the report faithfully displays supplied evidence but does not validate a whole bundle or create scientific verdicts; the BV-03 viewer and BE-03 heartbeat remain required for M1; no instrument-completion or C0–C5 claim is made
+- Next eligible M1 prompt after gate and publication: BV-03
