@@ -1,0 +1,23 @@
+    Finished `dev` profile [unoptimized + debuginfo] target(s) in 0.82s
+   Compiling bonsai-contracts v0.0.0 (C:\Users\17076\Documents\Reinforcement Learning Project\crates\bonsai-contracts)
+   Compiling bonsai-xtask v0.0.0 (C:\Users\17076\Documents\Reinforcement Learning Project\crates\bonsai-xtask)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 6.09s
+     Running unittests src\lib.rs (target\debug\deps\bonsai_bundle-958345d79512773a.exe)
+     Running tests\bundle_index_fixtures.rs (target\debug\deps\bundle_index_fixtures-87e9d92b4aa92045.exe)
+     Running tests\bundle_validation_corpus.rs (target\debug\deps\bundle_validation_corpus-90b6a25831c6d309.exe)
+     Running tests\derivation_fixtures.rs (target\debug\deps\derivation_fixtures-7c9339a2cd1b9395.exe)
+     Running tests\segment_fixtures.rs (target\debug\deps\segment_fixtures-962d88c011450d92.exe)
+     Running unittests src\lib.rs (target\debug\deps\bonsai_contracts-9ce9edb21cf9e53b.exe)
+     Running tests\adapter_protocol.rs (target\debug\deps\adapter_protocol-659d5ad6265d0fb3.exe)
+     Running unittests src\lib.rs (target\debug\deps\bonsai_ingest-cdb1fc47aa5b5832.exe)
+     Running tests\ingest_validation.rs (target\debug\deps\ingest_validation-e212dcc4182b7e0e.exe)
+     Running tests\ordering_semantics.rs (target\debug\deps\ordering_semantics-a2c09233af05bf9e.exe)
+     Running unittests src\lib.rs (target\debug\deps\bonsai_runtime-d2262666b61601f0.exe)
+     Running tests\process_transport.rs (target\debug\deps\process_transport-b664c08861ac48ec.exe)
+     Running unittests src\main.rs (target\debug\deps\bonsai_xtask-563dc4c01ae168d5.exe)
+     Running tests\bundle_validator_cli.rs (target\debug\deps\bundle_validator_cli-f1b4563105b669a2.exe)
+     Running tests\verification_fixture.rs (target\debug\deps\verification_fixture-60013abe72e920dd.exe)
+   Doc-tests bonsai_bundle
+   Doc-tests bonsai_contracts
+   Doc-tests bonsai_ingest
+   Doc-tests bonsai_runtime

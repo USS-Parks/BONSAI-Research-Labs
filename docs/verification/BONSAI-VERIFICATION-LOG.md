@@ -603,6 +603,20 @@ This is an append-only human index. Machine records created by `cargo xtask veri
 - Result: pass
 - Reviewer/attestation: run head SHA, run conclusion, and all four matrix-job conclusions inspected through the GitHub API
 
+## VER-BR04-GATE — BR-04 — 2026-07-19T17:01:28Z
+
+- Source revision and dirty state: `e406d26157fc36cff4b9c02e55eeb425ce93bfbc`; dirty with BR-04 changes
+- OS/architecture/physical-or-CI: Windows/x86_64; local; physical/virtual status unknown
+- Toolchain/dependency-lock hashes: Rust 1.96.0; Python 3.14.4; uv 0.11.29; `Cargo.lock` SHA-256 `FF83EB84B00CA8FC4DE402433CA839A8DCDBBE6D817FB3A82832D4B3E1D8587E`
+- Command: machine record `BR-04-1784480488552125000`; full universal/schema/governance gate through external verifier copy SHA-256 `F0889F66D31EA0987A099F036DDB235CC0A0F31474ABF6322B227EE8623A1ED6`
+- Start/end/duration: `2026-07-19T17:01:28.552Z` / `2026-07-19T17:02:01.537Z` / 32.9853869 s
+- Exit code: 0
+- Stdout/stderr artifact hashes: stdout `534afbcea4b6c1fc2c2d64b06d47de6dddb389093fc19b30f0f8f289aedde785`; stderr `81d5e8987a260c7755cbaa481df2f40347b3d2dad7f95d3226886b7faa63bf55`
+- Fixtures/manifests/bundle IDs: `bonsai.event-ordering-outcomes/v1` SHA-256 `065C59C29629C6CEB9F95378FEA5259B17DB67ECA7ADADB8E756B0FF7A2D3DA4`; exact source/causal/late/duplicate/missing/concurrent/regression/conflict/gap/cycle classes and collection-order invariance
+- Counter availability and privileges: deterministic graph fixtures only; wall time explicitly non-authoritative; no run recovery, physical counter, process isolation, privileged input, energy, or long-duration evidence
+- Result: pass
+- Reviewer/attestation: identity-sorted partial-order semantics, bounded graph construction, randomized collection equality, no fabricated wall-time/ambiguous edges, strict workspace/Python/schema/governance gates passed locally
+
 ## VER-BR02-GATE — BR-02 — 2026-07-19T16:31:42Z
 
 - Source revision and dirty state: `f8bc73b158a3a407cd7e252c76cfbeddfcce2654`; dirty with BR-02 changes
@@ -644,3 +658,17 @@ This is an append-only human index. Machine records created by `cargo xtask veri
 - Counter availability and privileges: live local immutable segment writes and observer-arrival rate fixtures with physical/virtual status unknown; no ordering claim, process isolation, physical counter, privileged input, energy, or long-duration evidence
 - Result: pass
 - Reviewer/attestation: validation-before-append, original-byte preservation, stable contract errors, bounded source/schema/size/rate/lifecycle enforcement, bounded rejection evidence, panic-free fuzz corpus, strict workspace/Python/schema/governance gates passed locally
+
+## VER-BR03-HOSTED — BR-03 — 2026-07-19T16:51:15Z
+
+- Source revision and dirty state: `e406d26157fc36cff4b9c02e55eeb425ce93bfbc`; clean pushed revision
+- OS/architecture/physical-or-CI: Windows/x86_64, Linux/x86_64, macOS/arm64, macOS/x86_64; GitHub hosted CI; ephemeral virtual machines
+- Toolchain/dependency-lock hashes: workflow-pinned Rust 1.96.0, Python 3.12, and uv 0.11.29; source locks at the recorded revision
+- Command: GitHub Actions `BONSAI baseline` push run 29695677005, attempt 1
+- Start/end/duration: `2026-07-19T16:51:15Z` / `2026-07-19T16:55:02Z` / 227 s
+- Exit code: all four jobs concluded `success`
+- Stdout/stderr artifact hashes: retained by GitHub Actions; job IDs 88215904321 (macOS arm64), 88215904328 (Linux), 88215904330 (macOS Intel), and 88215904367 (Windows)
+- Fixtures/manifests/bundle IDs: exact ingest acceptance/rejection matrix, bounded observer ledger, and deterministic fuzz corpus ran unchanged on every hosted OS
+- Counter availability and privileges: hosted immutable-segment and validation fixtures only; no physical-host attestation, ordering claim, process isolation, privileged input, energy, or long-duration evidence
+- Result: pass
+- Reviewer/attestation: run head SHA, run conclusion, and all four matrix-job conclusions inspected through the GitHub API

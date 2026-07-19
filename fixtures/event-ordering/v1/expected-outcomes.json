@@ -1,0 +1,17 @@
+{
+  "schema": "bonsai.event-ordering-outcomes/v1",
+  "classes": [
+    "source_sequence",
+    "causal_parent",
+    "late",
+    "duplicate",
+    "missing_parent",
+    "concurrent",
+    "clock_regression",
+    "sequence_conflict",
+    "sequence_gap",
+    "cycle"
+  ],
+  "wall_time_orders_events": false,
+  "collection_order_changes_report": false
+}

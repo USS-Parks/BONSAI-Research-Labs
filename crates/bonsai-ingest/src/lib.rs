@@ -8,6 +8,14 @@ use bonsai_contracts::decode_and_validate_event;
 use serde::Serialize;
 use std::collections::{BTreeMap, BTreeSet, VecDeque};
 
+mod ordering;
+
+pub use ordering::{
+    EventOrderClass, EventOrderFlag, EventPair, MissingParent, ObservedEvent, OrderEdge,
+    OrderEdgeKind, OrderingError, OrderingLimits, OrderingReport, SequenceConflict, SequenceGap,
+    classify_partial_order,
+};
+
 #[derive(Clone, Copy, Debug, Eq, PartialEq)]
 pub enum IngestLifecycle {
     Created,

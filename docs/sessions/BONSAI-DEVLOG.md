@@ -487,3 +487,24 @@ This append-only log records executed PSPR prompts. Corrections are added as new
 - Commit SHA: pending; append in BR-04 under the self-hash convention
 - Risks/blockers/parked scope changed: R-08 is controlled at the ingest seam by envelope/payload/parent/rate bounds, validate-before-append, deterministic failure codes, and bounded rejection retention but remains active for later descendant/platform controls; R-09 remains active for observer-volume/reserve integration; R-07 remains active for BR-06/BR-09; R-16 remains controlled by the publication addendum and no-slop gate; no parked scope revived and no ordering, physical-host, instrument-completion, or C0–C5 claim is made
 - Next eligible prompt after gate and publication: BR-04
+
+### BR-03 closeout note
+
+- Focused implementation commit SHA: `e406d26157fc36cff4b9c02e55eeb425ce93bfbc`
+- Hosted verification: GitHub Actions run 29695677005, attempt 1, passed Windows x86_64, Linux x86_64, macOS arm64, and macOS Intel at that exact commit
+- Ledger rule: appended by BR-04 because the BR-03 commit could not contain its own immutable hash or post-push hosted-run identity
+
+## 2026-07-19 — BR-04 — Event partial-order semantics
+
+- Status: passed; closeout entry pending focused commit identity and hosted run
+- Authorization scope: user instruction `Commence STS of BR-01–BR-06 with my full authorization for this entire session.` plus the existing later-gated public source publication addendum
+- Dependencies and source revision: BR-03 published and hosted-green at `e406d26157fc36cff4b9c02e55eeb425ce93bfbc`
+- Objective and exclusions: deterministically derive per-source and causal partial-order edges and classify late, duplicate, missing-parent, concurrent, clock-regression, sequence-conflict, sequence-gap, and cycle facts under explicit graph bounds; no wall-time total order, synthetic parent, ambiguity repair, event rejection, lifecycle recovery, or scientific causality inference
+- Reuse classification: extend `bonsai-ingest` at the post-validation seam using the existing BC-02 envelope identities/sequences/parents/times and standard `BTreeMap`/`BTreeSet` graph structures; add no dependency, storage authority, or alternate event contract
+- Files changed: ordering engine/types and deterministic integration fixtures/tests, committed outcome matrix, ordering specification, BR-03 hosted closeout, PSPR/root status, DEVLOG, verification log, and retained machine evidence
+- Decisions/addenda: caller-supplied immutable arrival indices preserve arrival-relative late semantics while making collection iteration order irrelevant; unique contiguous source sequences and present causal parents are the only edge authorities; conflicts/gaps/missing parents/cycles remain explicit instead of being repaired; concurrency means no reachability in either direction and is unaffected by shared ancestors, arrival proximity, Unix wall time, or identity order; all report collections are identity-sorted and resource bounds apply before graph construction
+- Verification summary: four focused tests passed for the committed matrix, exact class/edge/concurrency results, conflict/gap/cycle refusal to fabricate edges, wall-time non-authority, and exact report equality across every rotate/reverse collection permutation with preserved arrival indices; the retained full gate passed formatting, strict workspace Clippy, 55 Rust tests, 3 Python tests, schema compatibility, docs, ADR, license, governance-ledger, terminology, and CI-topology checks on Windows x86_64
+- Evidence paths and SHA-256 hashes: passing machine record `BR-04-1784480488552125000` with stdout `534afbcea4b6c1fc2c2d64b06d47de6dddb389093fc19b30f0f8f289aedde785` and stderr `81d5e8987a260c7755cbaa481df2f40347b3d2dad7f95d3226886b7faa63bf55`; outcome matrix `065C59C29629C6CEB9F95378FEA5259B17DB67ECA7ADADB8E756B0FF7A2D3DA4`; implementation `B4AB1F3C5BCD5B2A6148EB1F9979AC51F76AA52005882B5AF16F7DE6E653A94A`; verifier `F0889F66D31EA0987A099F036DDB235CC0A0F31474ABF6322B227EE8623A1ED6`; `Cargo.lock` `FF83EB84B00CA8FC4DE402433CA839A8DCDBBE6D817FB3A82832D4B3E1D8587E`
+- Commit SHA: pending; append in BR-05 under the self-hash convention
+- Risks/blockers/parked scope changed: R-10 remains active for later numeric/semantic cross-platform equivalence and is controlled here by integer/identity-only sorted semantics plus hosted exact equality; R-07/R-08/R-09 remain unchanged for isolation, controls, and observer-volume integration; R-16 remains controlled by the publication addendum and no-slop gate; no parked scope revived and no total-order, scientific-causality, instrument-completion, or C0–C5 claim is made
+- Next eligible prompt after gate and publication: BR-05
