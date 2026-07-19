@@ -755,3 +755,24 @@ This append-only log records executed PSPR prompts. Corrections are added as new
 - Commit SHA: pending; append in BK-02 under the self-hash convention
 - Risks/blockers/parked scope changed: R-10 remains active for later semantic/numeric cross-platform audit; exact rationals control current golden derivations but do not establish scientific metric validity; no behavior/resource conclusions, report verdict, instrument-completion, or C0–C5 claim is made and no parked scope revived
 - Next eligible prompts after gate and publication: BK-02 and BK-03
+
+### BK-01 closeout note
+
+- Focused implementation commit SHA: `eaa8f6d9d5ac32374e73b97575246cd9df38a84f`
+- Hosted verification: GitHub Actions run 29701573420, attempt 1, passed Windows x86_64, Linux x86_64, macOS arm64, and macOS Intel at that exact commit
+- Ledger rule: appended by BK-02 because the BK-01 commit could not contain its own immutable hash or post-push hosted-run identity
+
+## 2026-07-19 — BK-02 — Primary behavior metrics
+
+- Status: passed; closeout entry pending focused commit identity and hosted run
+- Authorization scope: user-authorized remaining M1 STS for this session plus the existing later-gated public source publication addendum
+- Dependencies and source revision: BK-01 published and hosted-green at `eaa8f6d9d5ac32374e73b97575246cd9df38a84f`
+- Objective and exclusions: derive cumulative reward/rate, comparator-qualified regret, lifelong performance AUC, competency time, recovery, worst-window reward rate, and age-conditioned behavior with exact units/windows; never emit regret without complete comparator evidence
+- Reuse classification: replace the BK-01 behavior placeholder at the registered metric seam; reuse `MetricKey`, normalized rational arithmetic, ordered maps, Serde, and explicit missingness; add no dependency
+- Files changed: behavior trace/table implementation and analytical tests, metric contract, README/PSPR status, BK-01 hosted closeout, DEVLOG, verification log, and retained machine evidence
+- Decisions/addenda: traces are nonempty and step-contiguous; AUC is exact trapezoidal performance-by-step area; regret requires a comparator at every step; recovery requires every declared change point to regain competency; worst windows store their exact step width; exact-age buckets are sorted; unavailable results carry reason codes instead of zero
+- Verification summary: three focused tests cover an exact four-point analytical curve, all metric values/units/windows, comparator-unavailable regret, unrecovered change points, exact age conditioning, malformed trace, and invalid windows; initial strict compilation required the iterator parameter to be mutable and strict Clippy required helper extraction plus target-safe step traversal; the complete gate passed formatting, strict workspace Clippy, 100 Rust tests, 3 Python tests, schema compatibility, docs, ADR, license, governance-ledger, terminology, and CI-topology checks on Windows x86_64
+- Evidence paths and SHA-256 hashes: machine record `BK-02-1784491266234590700` with stdout `3C50EB13E29988519BF1BEA8B427762AE63C6D2AB6AD3096F0591290E26F5A1B` and stderr `FA90D08747A3D7C60BC053CAAB97258E9D2883A978EB402E8EEB34C3A87B04B1`; implementation `8EA684BAE0601E81FAEF91D6EAA744C2CD2FEE618A5B9710E1793AED223E9160`; contract `D5A15883B51530964DFD2C672F5FF13DE0C26B48671E121494D58D7D31E81EE7`; `Cargo.lock` unchanged from BK-01
+- Commit SHA: pending; append in BK-03 under the self-hash convention
+- Risks/blockers/parked scope changed: R-10 remains active for later multi-platform numeric audit; exact toy curves prove the implementation contract rather than scientific adequacy; no regret is produced without a comparator and no adaptation, report, instrument-completion, or C0–C5 claim is made
+- Next eligible prompt after gate and publication: BK-03

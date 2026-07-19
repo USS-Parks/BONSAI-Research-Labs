@@ -1106,3 +1106,31 @@ This is an append-only human index. Machine records created by `cargo xtask veri
 - Counter availability and privileges: deterministic analytical fixtures only; no platform or privileged counter claim
 - Result: pass
 - Reviewer/attestation: complete registry metadata, dependency DAG, cycle/version rejection, rational golden output, missingness propagation, and strict workspace/Python/schema/governance gates passed locally; hosted closure remains attached to the focused commit
+
+## VER-BK01-HOSTED — BK-01 — 2026-07-19T19:56:55Z
+
+- Source revision and dirty state: `eaa8f6d9d5ac32374e73b97575246cd9df38a84f`; clean pushed revision
+- OS/architecture/physical-or-CI: Windows/x86_64, Linux/x86_64, macOS/arm64, macOS/x86_64; GitHub hosted CI; ephemeral virtual machines
+- Toolchain/dependency-lock hashes: workflow-pinned Rust 1.96.0, Python 3.12, and uv 0.11.29; source locks at the recorded revision
+- Command: GitHub Actions `BONSAI baseline` push run 29701573420, attempt 1
+- Start/end/duration: `2026-07-19T19:56:55Z` / `2026-07-19T20:01:51Z` / 296 s
+- Exit code: all four jobs concluded `success`; job IDs 88231381820 (macOS Intel), 88231381826 (Linux), 88231381828 (Windows), and 88231381832 (macOS arm64)
+- Stdout/stderr artifact hashes: retained by GitHub Actions
+- Fixtures/manifests/bundle IDs: registry DAG/version/missingness golden fixtures and complete existing corpus on every hosted runner
+- Counter availability and privileges: deterministic analytical fixtures only; no platform or privileged counter claim
+- Result: pass
+- Reviewer/attestation: exact run head SHA, run conclusion, and all four matrix-job conclusions inspected through public GitHub metadata; BK-01 cross-OS gate is closed
+
+## VER-BK02-GATE — BK-02 — 2026-07-19
+
+- Source revision and dirty state: `eaa8f6d9d5ac32374e73b97575246cd9df38a84f`; dirty only with BK-02 implementation, governance, and evidence
+- OS/architecture/physical-or-CI: Windows/x86_64; local; physical/virtual status unknown
+- Toolchain/dependency-lock hashes: Rust 1.96.0; locked repository Python environment; `Cargo.lock` unchanged from BK-01
+- Command: machine record `BK-02-1784491266234590700`; full universal/schema/governance gate through an external verifier copy
+- Start/end/duration: machine-record Unix UTC nanoseconds `1784491266234590700` / `1784491297379179700` / 31.1454313 s
+- Exit code: 0
+- Stdout/stderr artifact hashes: stdout `3C50EB13E29988519BF1BEA8B427762AE63C6D2AB6AD3096F0591290E26F5A1B`; stderr `FA90D08747A3D7C60BC053CAAB97258E9D2883A978EB402E8EEB34C3A87B04B1`
+- Fixtures/manifests/bundle IDs: analytical curve, comparator missingness, unrecovered change, malformed trace/window, and complete existing repository corpus
+- Counter availability and privileges: deterministic analytical fixtures only; no platform or privileged counter claim
+- Result: pass
+- Reviewer/attestation: exact primary behavior values/units/windows, comparator-gated regret, recovery missingness, worst-window/age conditioning, and strict workspace/Python/schema/governance gates passed locally; hosted closure remains attached to the focused commit
