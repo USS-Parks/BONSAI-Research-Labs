@@ -1,0 +1,195 @@
+=target/uv-cache : The term '=target/uv-cache' is not recognized as the name of a cmdlet, function, script file, or 
+operable program. Check the spelling of the name, or if a path was included, verify that the path is correct and try 
+again.
+At line:1 char:1
++ ='target/uv-cache'; cargo fmt --all --check; if ( -ne 0) { exit  }; c ...
++ ~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : ObjectNotFound: (=target/uv-cache:String) [], CommandNotFoundException
+    + FullyQualifiedErrorId : CommandNotFoundException
+ 
+-ne : The term '-ne' is not recognized as the name of a cmdlet, function, script file, or operable program. Check the 
+spelling of the name, or if a path was included, verify that the path is correct and try again.
+At line:1 char:51
++ ='target/uv-cache'; cargo fmt --all --check; if ( -ne 0) { exit  }; c ...
++                                                   ~~~
+    + CategoryInfo          : ObjectNotFound: (-ne:String) [], CommandNotFoundException
+    + FullyQualifiedErrorId : CommandNotFoundException
+ 
+   Compiling bonsai-contracts v0.0.0 (C:\Users\17076\Documents\Reinforcement Learning Project\crates\bonsai-contracts)
+    Checking bonsai-platform v0.0.0 (C:\Users\17076\Documents\Reinforcement Learning Project\crates\bonsai-platform)
+    Checking bonsai-bundle v0.0.0 (C:\Users\17076\Documents\Reinforcement Learning Project\crates\bonsai-bundle)
+    Checking bonsai-ingest v0.0.0 (C:\Users\17076\Documents\Reinforcement Learning Project\crates\bonsai-ingest)
+    Checking bonsai-runtime v0.0.0 (C:\Users\17076\Documents\Reinforcement Learning Project\crates\bonsai-runtime)
+    Checking bonsai-xtask v0.0.0 (C:\Users\17076\Documents\Reinforcement Learning Project\crates\bonsai-xtask)
+    Finished `dev` profile [unoptimized + debuginfo] target(s) in 5.65s
+-ne : The term '-ne' is not recognized as the name of a cmdlet, function, script file, or operable program. Check the 
+spelling of the name, or if a path was included, verify that the path is correct and try again.
+At line:1 char:144
++ ... rkspace --all-targets --all-features -- -D warnings; if ( -ne 0) { ex ...
++                                                               ~~~
+    + CategoryInfo          : ObjectNotFound: (-ne:String) [], CommandNotFoundException
+    + FullyQualifiedErrorId : CommandNotFoundException
+ 
+   Compiling bonsai-platform v0.0.0 (C:\Users\17076\Documents\Reinforcement Learning Project\crates\bonsai-platform)
+   Compiling bonsai-contracts v0.0.0 (C:\Users\17076\Documents\Reinforcement Learning Project\crates\bonsai-contracts)
+   Compiling bonsai-xtask v0.0.0 (C:\Users\17076\Documents\Reinforcement Learning Project\crates\bonsai-xtask)
+error: failed to remove file `C:\Users\17076\Documents\Reinforcement Learning Project\target\debug\bonsai-xtask.exe`
+
+Caused by:
+  Access is denied. (os error 5)
+-ne : The term '-ne' is not recognized as the name of a cmdlet, function, script file, or operable program. Check the 
+spelling of the name, or if a path was included, verify that the path is correct and try again.
+At line:1 char:206
++ ... 0) { exit  }; cargo test --workspace --all-features; if ( -ne 0) { ex ...
++                                                               ~~~
+    + CategoryInfo          : ObjectNotFound: (-ne:String) [], CommandNotFoundException
+    + FullyQualifiedErrorId : CommandNotFoundException
+ 
+error: failed to remove file `C:\Users\17076\Documents\Reinforcement Learning Project\target\debug\bonsai-xtask.exe`
+
+Caused by:
+  Access is denied. (os error 5)
+-ne : The term '-ne' is not recognized as the name of a cmdlet, function, script file, or operable program. Check the 
+spelling of the name, or if a path was included, verify that the path is correct and try again.
+At line:1 char:255
++ ... es; if ( -ne 0) { exit  }; cargo xtask schema-check; if ( -ne 0) { ex ...
++                                                               ~~~
+    + CategoryInfo          : ObjectNotFound: (-ne:String) [], CommandNotFoundException
+    + FullyQualifiedErrorId : CommandNotFoundException
+ 
+uv : The term 'uv' is not recognized as the name of a cmdlet, function, script file, or operable program. Check the 
+spelling of the name, or if a path was included, verify that the path is correct and try again.
+At line:1 char:273
++ ...  exit  }; cargo xtask schema-check; if ( -ne 0) { exit  }; uv run --f ...
++                                                                ~~
+    + CategoryInfo          : ObjectNotFound: (uv:String) [], CommandNotFoundException
+    + FullyQualifiedErrorId : CommandNotFoundException
+ 
+-ne : The term '-ne' is not recognized as the name of a cmdlet, function, script file, or operable program. Check the 
+spelling of the name, or if a path was included, verify that the path is correct and try again.
+At line:1 char:308
++ ... if ( -ne 0) { exit  }; uv run --frozen ruff check .; if ( -ne 0) { ex ...
++                                                               ~~~
+    + CategoryInfo          : ObjectNotFound: (-ne:String) [], CommandNotFoundException
+    + FullyQualifiedErrorId : CommandNotFoundException
+ 
+uv : The term 'uv' is not recognized as the name of a cmdlet, function, script file, or operable program. Check the 
+spelling of the name, or if a path was included, verify that the path is correct and try again.
+At line:1 char:326
++ ... t  }; uv run --frozen ruff check .; if ( -ne 0) { exit  }; uv run --f ...
++                                                                ~~
+    + CategoryInfo          : ObjectNotFound: (uv:String) [], CommandNotFoundException
+    + FullyQualifiedErrorId : CommandNotFoundException
+ 
+-ne : The term '-ne' is not recognized as the name of a cmdlet, function, script file, or operable program. Check the 
+spelling of the name, or if a path was included, verify that the path is correct and try again.
+At line:1 char:356
++ ... k .; if ( -ne 0) { exit  }; uv run --frozen pyright; if ( -ne 0) { ex ...
++                                                               ~~~
+    + CategoryInfo          : ObjectNotFound: (-ne:String) [], CommandNotFoundException
+    + FullyQualifiedErrorId : CommandNotFoundException
+ 
+uv : The term 'uv' is not recognized as the name of a cmdlet, function, script file, or operable program. Check the 
+spelling of the name, or if a path was included, verify that the path is correct and try again.
+At line:1 char:374
++ ... { exit  }; uv run --frozen pyright; if ( -ne 0) { exit  }; uv run --f ...
++                                                                ~~
+    + CategoryInfo          : ObjectNotFound: (uv:String) [], CommandNotFoundException
+    + FullyQualifiedErrorId : CommandNotFoundException
+ 
+-ne : The term '-ne' is not recognized as the name of a cmdlet, function, script file, or operable program. Check the 
+spelling of the name, or if a path was included, verify that the path is correct and try again.
+At line:1 char:403
++ ... ight; if ( -ne 0) { exit  }; uv run --frozen pytest; if ( -ne 0) { ex ...
++                                                               ~~~
+    + CategoryInfo          : ObjectNotFound: (-ne:String) [], CommandNotFoundException
+    + FullyQualifiedErrorId : CommandNotFoundException
+ 
+uv : The term 'uv' is not recognized as the name of a cmdlet, function, script file, or operable program. Check the 
+spelling of the name, or if a path was included, verify that the path is correct and try again.
+At line:1 char:421
++ ...  { exit  }; uv run --frozen pytest; if ( -ne 0) { exit  }; uv run --f ...
++                                                                ~~
+    + CategoryInfo          : ObjectNotFound: (uv:String) [], CommandNotFoundException
+    + FullyQualifiedErrorId : CommandNotFoundException
+ 
+-ne : The term '-ne' is not recognized as the name of a cmdlet, function, script file, or operable program. Check the 
+spelling of the name, or if a path was included, verify that the path is correct and try again.
+At line:1 char:475
++ ...  }; uv run --frozen python -B scripts/check_docs.py; if ( -ne 0) { ex ...
++                                                               ~~~
+    + CategoryInfo          : ObjectNotFound: (-ne:String) [], CommandNotFoundException
+    + FullyQualifiedErrorId : CommandNotFoundException
+ 
+uv : The term 'uv' is not recognized as the name of a cmdlet, function, script file, or operable program. Check the 
+spelling of the name, or if a path was included, verify that the path is correct and try again.
+At line:1 char:493
++ ... en python -B scripts/check_docs.py; if ( -ne 0) { exit  }; uv run --f ...
++                                                                ~~
+    + CategoryInfo          : ObjectNotFound: (uv:String) [], CommandNotFoundException
+    + FullyQualifiedErrorId : CommandNotFoundException
+ 
+-ne : The term '-ne' is not recognized as the name of a cmdlet, function, script file, or operable program. Check the 
+spelling of the name, or if a path was included, verify that the path is correct and try again.
+At line:1 char:547
++ ...  }; uv run --frozen python -B scripts/check_adrs.py; if ( -ne 0) { ex ...
++                                                               ~~~
+    + CategoryInfo          : ObjectNotFound: (-ne:String) [], CommandNotFoundException
+    + FullyQualifiedErrorId : CommandNotFoundException
+ 
+uv : The term 'uv' is not recognized as the name of a cmdlet, function, script file, or operable program. Check the 
+spelling of the name, or if a path was included, verify that the path is correct and try again.
+At line:1 char:565
++ ... en python -B scripts/check_adrs.py; if ( -ne 0) { exit  }; uv run --f ...
++                                                                ~~
+    + CategoryInfo          : ObjectNotFound: (uv:String) [], CommandNotFoundException
+    + FullyQualifiedErrorId : CommandNotFoundException
+ 
+-ne : The term '-ne' is not recognized as the name of a cmdlet, function, script file, or operable program. Check the 
+spelling of the name, or if a path was included, verify that the path is correct and try again.
+At line:1 char:622
++ ...  uv run --frozen python -B scripts/check_license.py; if ( -ne 0) { ex ...
++                                                               ~~~
+    + CategoryInfo          : ObjectNotFound: (-ne:String) [], CommandNotFoundException
+    + FullyQualifiedErrorId : CommandNotFoundException
+ 
+uv : The term 'uv' is not recognized as the name of a cmdlet, function, script file, or operable program. Check the 
+spelling of the name, or if a path was included, verify that the path is correct and try again.
+At line:1 char:640
++ ... python -B scripts/check_license.py; if ( -ne 0) { exit  }; uv run --f ...
++                                                                ~~
+    + CategoryInfo          : ObjectNotFound: (uv:String) [], CommandNotFoundException
+    + FullyQualifiedErrorId : CommandNotFoundException
+ 
+-ne : The term '-ne' is not recognized as the name of a cmdlet, function, script file, or operable program. Check the 
+spelling of the name, or if a path was included, verify that the path is correct and try again.
+At line:1 char:708
++ ... rozen python -B scripts/check_governance_ledgers.py; if ( -ne 0) { ex ...
++                                                               ~~~
+    + CategoryInfo          : ObjectNotFound: (-ne:String) [], CommandNotFoundException
+    + FullyQualifiedErrorId : CommandNotFoundException
+ 
+uv : The term 'uv' is not recognized as the name of a cmdlet, function, script file, or operable program. Check the 
+spelling of the name, or if a path was included, verify that the path is correct and try again.
+At line:1 char:726
++ ... cripts/check_governance_ledgers.py; if ( -ne 0) { exit  }; uv run --f ...
++                                                                ~~
+    + CategoryInfo          : ObjectNotFound: (uv:String) [], CommandNotFoundException
+    + FullyQualifiedErrorId : CommandNotFoundException
+ 
+-ne : The term '-ne' is not recognized as the name of a cmdlet, function, script file, or operable program. Check the 
+spelling of the name, or if a path was included, verify that the path is correct and try again.
+At line:1 char:787
++ ... run --frozen python -B scripts/check_terminology.py; if ( -ne 0) { ex ...
++                                                               ~~~
+    + CategoryInfo          : ObjectNotFound: (-ne:String) [], CommandNotFoundException
+    + FullyQualifiedErrorId : CommandNotFoundException
+ 
+uv : The term 'uv' is not recognized as the name of a cmdlet, function, script file, or operable program. Check the 
+spelling of the name, or if a path was included, verify that the path is correct and try again.
+At line:1 char:805
++ ... on -B scripts/check_terminology.py; if ( -ne 0) { exit  }; uv run --f ...
++                                                                ~~
+    + CategoryInfo          : ObjectNotFound: (uv:String) [], CommandNotFoundException
+    + FullyQualifiedErrorId : CommandNotFoundException
+ 

@@ -840,3 +840,45 @@ This is an append-only human index. Machine records created by `cargo xtask veri
 - Counter availability and privileges: real local environment-cleared Python child enumerating only configured BONSAI roots and explicit grants; no native-code OS sandbox, physical-host attestation, privileged input, energy, or long-duration evidence
 - Result: pass
 - Reviewer/attestation: deterministic non-symlink discovery, strict Ruff/Pyright, diagnostic child-exit evidence, strict workspace/schema/governance gates pass; hosted rerun remains required
+
+## VER-BR06-CORRECTION2-HOSTED — BR-06 — 2026-07-19T18:15:08Z
+
+- Source revision and dirty state: `65c1d3e778790a4c679c904242d397af675dbcbb`; clean pushed revision
+- OS/architecture/physical-or-CI: Windows/x86_64, Linux/x86_64, macOS/arm64, macOS/x86_64; GitHub hosted CI; ephemeral virtual machines
+- Toolchain/dependency-lock hashes: workflow-pinned Rust 1.96.0, Python 3.12, and uv 0.11.29; source locks at the recorded revision
+- Command: GitHub Actions `BONSAI baseline` push run 29698386866, attempt 1
+- Start/end/duration: `2026-07-19T18:15:08Z` / `2026-07-19T18:19:22Z` / 254 s
+- Exit code: all four jobs concluded `success`; job IDs 88222990574 (Linux), 88222990580 (Windows), 88222990585 (macOS arm64), and 88222990601 (macOS Intel)
+- Stdout/stderr artifact hashes: retained by GitHub Actions
+- Fixtures/manifests/bundle IDs: unchanged BR-06 agent-isolation outcome matrix, including the real inspection child constrained to granted roots
+- Counter availability and privileges: hosted child-process/interface fixture only; no physical-host or OS sandbox claim
+- Result: pass
+- Reviewer/attestation: exact head SHA, workflow conclusion, and all four matrix-job conclusions inspected through the GitHub API; BR-06 cross-OS gate is closed
+
+## VER-BM01-INVOKE-FAILURE — BM-01 — 2026-07-19T18:32:13Z
+
+- Source revision and dirty state: `65c1d3e778790a4c679c904242d397af675dbcbb`; dirty with BM-01 changes
+- OS/architecture/physical-or-CI: Windows/x86_64; local; physical/virtual status unknown
+- Toolchain/dependency-lock hashes: Rust 1.96.0; Python environment locked by `uv.lock`; source locks at the working revision
+- Command: machine record `BM-01-1784485933992330400`; initial nested PowerShell full-gate invocation
+- Start/end/duration: machine-record Unix UTC nanoseconds `1784485933992330400` / `1784485953676180200` / 19.6843757 s
+- Exit code: 1
+- Stdout/stderr artifact hashes: stdout `E3B0C44298FC1C149AFBF4C8996FB92427AE41E4649B934CA495991B7852B855`; stderr `7EBB726B623BC68350167F994133B78A21BF36A42D231D7B3D97759B9F049ECF`
+- Fixtures/manifests/bundle IDs: no product fixture failure; outer PowerShell stripped nested command variables, and the in-use verifier binary could not be replaced by Cargo
+- Counter availability and privileges: not applicable
+- Result: fail; invocation defect retained
+- Reviewer/attestation: rerun below uses an external verifier copy, quoted nested command, and explicit locked-environment executables
+
+## VER-BM01-GATE — BM-01 — 2026-07-19T18:33:49Z
+
+- Source revision and dirty state: `65c1d3e778790a4c679c904242d397af675dbcbb`; dirty only with BM-01 implementation, governance, and evidence
+- OS/architecture/physical-or-CI: Windows/x86_64; local; physical/virtual status unknown
+- Toolchain/dependency-lock hashes: Rust 1.96.0; locked repository Python environment; `Cargo.lock` SHA-256 `9D7BEB095C99C48C375F96F2E5016304B3837523C494EFEE07BF24B16E2E28AF`
+- Command: machine record `BM-01-FINAL-1784486029814026000`; full universal/schema/governance gate through an external verifier copy
+- Start/end/duration: machine-record Unix UTC nanoseconds `1784486029814026000` / `1784486057501489800` / 27.6882134 s
+- Exit code: 0
+- Stdout/stderr artifact hashes: stdout `28121038F27417CA14642343E27E5289D70404FB0E4AC21F23B5620EFA932887`; stderr `49405EF5633A683E91813A5D1D61C39361AA95648F2EE9461A8AD7BFF2CF02F3`
+- Fixtures/manifests/bundle IDs: four BM-01 focused tests plus complete existing repository corpus
+- Counter availability and privileges: contract fixtures only; no live platform collector, physical-host, privileged counter, energy, or enforcement claim
+- Result: pass
+- Reviewer/attestation: measured/estimated/unavailable/error invariants, zero-versus-missingness, exact advertised-counter coverage, strict workspace/Python/schema/governance gates passed locally; hosted closure remains attached to the focused commit

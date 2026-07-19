@@ -566,3 +566,24 @@ This append-only log records executed PSPR prompts. Corrections are added as new
 - Root cause and correction: the inspection fixture traversed every ambient environment value visible to Python, including OS-injected macOS values outside BONSAI's configured launch surface; it now enumerates only the three BONSAI roots and explicit input/work arguments, uses deterministic non-symlink `os.walk`, and retains child exit/stderr diagnostics if no frame arrives
 - Local correction verification: Ruff and strict Pyright pass, the real inspection child passed 10/10 focused repetitions, strict focused Clippy passed, and machine record `BR-06-CORRECTION2-1784484638059258600` passed the complete universal gate with stdout `b4b15c60f795f9eacef5ec9aa31774341639dec0381b5da4d2d5e3d5a940698f` and stderr `7225ea5c2a4114ebfef5d397c042d30d8064247661154e6f490e4ba7d7e6a87c`; Rust fixture SHA-256 `3653E7E20D59D7D67748B4B20868FED9A37F615F10138071306E0CEC432B53A4`; Python fixture `7B51E16DEE44A9B6A76AD9B543F9386FAB7441670BF02E32AD93EC9A38FD2235`; verifier `46B4426A145BB2E84C2A9694A4A0BB493CC105460A3D8031E6751F880A6CADA4`
 - Final status: refined correction commit and hosted four-OS rerun pending; no product isolation or classification semantics changed, and BR-07 remains outside this session's authorization
+
+### BR-06 final hosted closeout
+
+- Refined correction commit SHA: `65c1d3e778790a4c679c904242d397af675dbcbb`
+- Hosted verification: GitHub Actions run 29698386866, attempt 1, passed the complete gate on Windows x86_64, Linux x86_64, macOS arm64, and macOS Intel at that exact commit
+- Final status: BR-06 passed; the two earlier macOS failures and both corrective commits remain recorded as historical evidence
+
+## 2026-07-19 — BM-01 — Resource sample interface and availability model
+
+- Status: passed; closeout entry pending focused commit identity and hosted run
+- Authorization scope: user instruction `Continue STS of the remaining M1 in its entirety, fully authorized for this session duration.` plus the existing later-gated public source publication addendum
+- Dependencies and source revision: BC-04, BC-06, and BR-05 published; BR-06 final hosted correction green at `65c1d3e778790a4c679c904242d397af675dbcbb`
+- Objective and exclusions: define one platform-neutral typed resource-sample boundary for wall/monotonic time, CPU, memory, storage, I/O, process trees, accelerators, operations, and energy; do not claim portable availability, platform backend completion, enforcement, calibration, energy tier, physical-host evidence, or C0–C5 eligibility
+- Reuse classification: reuse BC-04 inventory, BC-06 resource vocabulary, BG-08 canonical units/missingness, Rust traits, and Serde at the existing workspace seam; introduce no platform API dependency
+- Files changed: new `bonsai-platform` workspace crate and tests, resource-sample architecture contract, workspace manifest/lock, README status/index, PSPR status, BR-06 hosted closeout, DEVLOG, verification log, and retained machine evidence
+- Decisions/addenda: measured and estimated samples require unit-bearing values and resolution; estimates also require a named estimator and uncertainty; unavailable/error outcomes prohibit values and require stable detail codes; measured zero remains distinct from missingness; collector conformance requires exactly one validated outcome per advertised counter with invariant kind/scope/unit/provenance
+- Verification summary: four focused tests cover all four outcomes, measured zero, contradictory missingness, duplicate counters, and exact advertised-counter coverage; the final complete gate passed formatting, strict workspace Clippy, 69 Rust tests, 3 Python tests, schema compatibility, docs, ADR, license, governance-ledger, terminology, and CI-topology checks on Windows x86_64; an initial verifier invocation failed because outer PowerShell expanded nested command variables and kept the in-use verifier executable locked, and is retained without weakening any gate
+- Evidence paths and SHA-256 hashes: final machine record `BM-01-FINAL-1784486029814026000` with stdout `28121038F27417CA14642343E27E5289D70404FB0E4AC21F23B5620EFA932887` and stderr `49405EF5633A683E91813A5D1D61C39361AA95648F2EE9461A8AD7BFF2CF02F3`; implementation `638861231D343626F1021292C40B6727A20AF61869D2C871B4DBDA79BDC02E60`; contract `EFFB294AB912144316F2520837F6CB148ED97FAC3699A86B3F7D273FA21C618F`; `Cargo.lock` `9D7BEB095C99C48C375F96F2E5016304B3837523C494EFEE07BF24B16E2E28AF`
+- Commit SHA: pending; append in BM-02 under the self-hash convention
+- Risks/blockers/parked scope changed: R-05 remains active for calibrated platform collectors; R-09 remains active for observer-volume reserve; R-10 remains active for later numeric cross-platform equivalence; R-16 remains controlled by the publication addendum and no-slop gate; no parked scope revived
+- Next eligible prompts after gate and publication: BM-02, BM-03, and BQ-01

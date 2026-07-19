@@ -208,6 +208,13 @@ dependencies = [
 ]
 
 [[package]]
+name = "bonsai-platform"
+version = "0.0.0"
+dependencies = [
+ "serde",
+]
+
+[[package]]
 name = "bonsai-runtime"
 version = "0.0.0"
 dependencies = [
