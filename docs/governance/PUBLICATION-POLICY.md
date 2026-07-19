@@ -5,9 +5,13 @@ Effective: 2026-07-18
 Owner: BONSAI maintainers  
 Decision: D-09 / ADR 0001
 
-## Default state
+## Current source-repository exception
 
-BONSAI remains private through the final evidence audit. Local development and local commits are permitted only within authorized STS prompts. None of the following is implied by plan approval, execution authorization, a passing gate, a local commit, a CI run, or instrument completion:
+The [2026-07-18 public-repository addendum](addenda/2026-07-18-public-repository-target.md) authorizes the charter history and gated M0 source/documents to be published to `USS-Parks/BONSAI-Research-Labs` branch `main` after a clean secret/privacy scan. The exception is target- and artifact-specific; it does not authorize later milestones, releases, packages, evidence bundles, datasets, or other destinations.
+
+## Default state for all other publication
+
+Except for the approved public source-repository scope above, BONSAI artifacts remain local/private through the final evidence audit. Local development and local commits are permitted only within authorized STS prompts. None of the following is implied by plan approval, execution authorization, a passing gate, a local commit, a CI run, or instrument completion:
 
 - changing repository visibility;
 - pushing to a new or public remote;

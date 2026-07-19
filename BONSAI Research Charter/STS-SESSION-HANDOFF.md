@@ -1,5 +1,7 @@
 # BONSAI Fresh-Session STS Handoff
 
+> **Supersession notice (2026-07-18):** the user subsequently authorized M0 STS and designated the public `USS-Parks/BONSAI-Research-Labs` repository `main` as the publication target. See `docs/governance/addenda/2026-07-18-public-repository-target.md`. The original pre-STS state below is retained as historical evidence.
+
 Date: 2026-07-18  
 Status: Charter and PSPR v0.1 approved; implementation not started; STS execution not yet authorized  
 Authoritative repository: `https://github.com/USS-Parks/BONSAI`  
@@ -45,4 +47,3 @@ Suggested fresh-session instruction:
 - Missing measurements remain unavailable, never zero.
 - External publication, public visibility, privileged collector installation, credentials, and destructive actions require their own explicit authority.
 - The repository remains private through the final evidence audit unless the user explicitly changes D-09 through an approved addendum.
-

@@ -42,7 +42,8 @@ def main() -> int:
         "explicit user authorization",
         "secret and privacy scan",
         "Redaction review",
-        "remains private",
+        "public source-repository scope",
+        "BONSAI-Research-Labs",
     )
     if not all(marker in publication for marker in required_policy):
         errors.append("publication policy lacks authorization or secret/redaction controls")

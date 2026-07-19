@@ -1,6 +1,6 @@
 # Contributing to BONSAI
 
-BONSAI is currently developed in a private repository. An invitation to review or contribute does not authorize public disclosure, external upload, or execution beyond an approved STS scope.
+BONSAI's source repository is public under a narrowly scoped publication addendum. Public visibility does not authorize external upload of evidence or releases, disclosure of non-public material, or execution beyond an approved STS scope.
 
 ## License
 

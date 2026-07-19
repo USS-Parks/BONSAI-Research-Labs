@@ -10,14 +10,14 @@ BONSAI is an independent, algorithm-neutral measurement and external resource-go
 - PSPR: approved v0.1 on 2026-07-18.
 - Current execution authorization: M0 (BG-01 through BG-10) only.
 - Implementation claims: none. M0 creates the governed foundation, not a functioning instrument.
-- Repository visibility: private unless a separately approved publication action changes it.
+- Repository visibility: public under the approved 2026-07-18 repository-target addendum.
 - License: `MIT OR Apache-2.0` at the recipient's option.
 
 The approved PSPR is the execution roster, but approving or editing it is not authorization to execute work. Implementation may begin only after the user says `run it STS`, `run M0 STS`, or explicitly authorizes named prompts. External publication, visibility changes, privileged collectors, credentials, and destructive actions require their own authority.
 
 ## Repository identity
 
-- Authoritative repository: `https://github.com/USS-Parks/BONSAI`
+- Authoritative repository: `https://github.com/USS-Parks/BONSAI-Research-Labs`
 - Authoritative local root: `C:\Users\17076\Documents\Reinforcement Learning Project`
 - Default branch: `main`
 - M0 STS branch: `codex/m0-governed-foundation`
@@ -27,7 +27,7 @@ The M0 session runs in an isolated Git worktree. The authoritative checkout and 
 
 ## Sources of truth
 
-Start with the [source-of-truth governance](./docs/governance/SOURCE-OF-TRUTH.md) and the [BONSAI Research Charter package](./BONSAI%20Research%20Charter/README.md), including the [research charter](./BONSAI%20Research%20Charter/BONSAI-RESEARCH-CHARTER.md), [OaK evidence register](./BONSAI%20Research%20Charter/OAK-EVIDENCE-AND-TRACEABILITY.md), and [approved PSPR](./BONSAI%20Research%20Charter/BONSAI-CANONICAL-PLAN-SEQUENTIAL-PROMPT-ROSTER.md).
+Start with the [source-of-truth governance](./docs/governance/SOURCE-OF-TRUTH.md), [public-repository addendum](./docs/governance/addenda/2026-07-18-public-repository-target.md), and the [BONSAI Research Charter package](./BONSAI%20Research%20Charter/README.md), including the [research charter](./BONSAI%20Research%20Charter/BONSAI-RESEARCH-CHARTER.md), [OaK evidence register](./BONSAI%20Research%20Charter/OAK-EVIDENCE-AND-TRACEABILITY.md), and [approved PSPR](./BONSAI%20Research%20Charter/BONSAI-CANONICAL-PLAN-SEQUENTIAL-PROMPT-ROSTER.md).
 
 ## Baseline identity record
 

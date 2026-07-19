@@ -11,6 +11,7 @@ ROOT = Path(__file__).resolve().parents[1]
 LINK = re.compile(r"(?<!!)\[[^]]*]\(([^)]+)\)")
 EXTERNAL_SCHEMES = ("http://", "https://", "mailto:")
 STS_MARKERS = ("run it STS", "run M0 STS")
+EXCLUDED_DIRECTORIES = {".git", ".venv", "target"}
 
 
 def local_link_errors(markdown: Path) -> list[str]:
@@ -30,7 +31,11 @@ def local_link_errors(markdown: Path) -> list[str]:
 
 def main() -> int:
     errors: list[str] = []
-    markdown_files = sorted(ROOT.rglob("*.md"))
+    markdown_files = sorted(
+        path
+        for path in ROOT.rglob("*.md")
+        if not EXCLUDED_DIRECTORIES.intersection(path.relative_to(ROOT).parts)
+    )
     for markdown in markdown_files:
         errors.extend(local_link_errors(markdown))
 

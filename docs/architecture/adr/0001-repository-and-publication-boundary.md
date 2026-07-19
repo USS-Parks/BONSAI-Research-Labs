@@ -5,6 +5,8 @@
 - Owner: BONSAI maintainers
 - Source: approved PSPR v0.1
 
+> Amendment: the approved [2026-07-18 public-repository addendum](../../governance/addenda/2026-07-18-public-repository-target.md) supersedes the repository URL and private-visibility portion of D-09 for gated charter and M0 source publication. The decision text below is retained as PSPR v0.1 history.
+
 ## D-01 — Independent repository
 
 Decision: BONSAI uses an independent repository rooted at `C:\Users\17076\Documents\Reinforcement Learning Project`. It does not attach to, import, or share history with any parent repository.
