@@ -784,3 +784,31 @@ This is an append-only human index. Machine records created by `cargo xtask veri
 - Counter availability and privileges: real local environment-cleared Python child with granted standard streams and filesystem roots; physical/virtual status unknown; no native-code OS sandbox, physical-host attestation, privileged input, energy, or long-duration evidence
 - Result: pass
 - Reviewer/attestation: manifest-SHA-256-bound read-only input copying, agent work root, argument/environment/handle/protocol audit, real inspection child, observer canary non-discovery through granted interfaces, mismatch cleanup, explicit denial evidence, BC-05 non-Track-A derivation, strict workspace/Python/schema/governance gates passed locally; hosted Windows/macOS/Linux closure remains attached to the focused commit
+
+## VER-BR06-HOSTED-FAILURE — BR-06 — 2026-07-19T17:56:30Z
+
+- Source revision and dirty state: `e878be07653c524a08997c78a583ff2457fbcfd4`; clean pushed revision
+- OS/architecture/physical-or-CI: Windows/x86_64, Linux/x86_64, macOS/arm64, macOS/x86_64; GitHub hosted CI; ephemeral virtual machines
+- Toolchain/dependency-lock hashes: workflow-pinned Rust 1.96.0, Python 3.12, and uv 0.11.29; source locks at the recorded revision
+- Command: GitHub Actions `BONSAI baseline` push run 29697809624, attempt 1
+- Start/end/duration: `2026-07-19T17:56:30Z` / `2026-07-19T18:01:02Z` / 272 s
+- Exit code: Windows job 88221478201 and Linux job 88221478217 concluded `success`; macOS arm64 job 88221478199 and macOS Intel job 88221478194 concluded `failure`
+- Stdout/stderr artifact hashes: retained by GitHub Actions; both macOS jobs passed the first four BR-06 tests, then the real inspection adapter exceeded the test-only 5-second receive allowance and returned `TRANSPORT_READ_TIMEOUT`
+- Fixtures/manifests/bundle IDs: all non-inspection isolation outcomes passed on every hosted OS; the inspection outcome passed Windows/Linux and timed out before returning a result on both macOS architectures
+- Counter availability and privileges: hosted child-process/interface fixture only; no physical-host or OS sandbox claim
+- Result: fail; exact cross-platform timeout retained
+- Reviewer/attestation: failure is isolated to a too-short test process-start/response allowance, not an observer exposure or classification mismatch; correction retains a finite 20-second bound and changes no product semantics
+
+## VER-BR06-CORRECTION-GATE — BR-06 — 2026-07-19T18:01:31Z
+
+- Source revision and dirty state: `e878be07653c524a08997c78a583ff2457fbcfd4`; dirty only with the BR-06 portability correction and its evidence
+- OS/architecture/physical-or-CI: Windows/x86_64; local; physical/virtual status unknown
+- Toolchain/dependency-lock hashes: Rust 1.96.0; Python 3.14.4; uv 0.11.29; `Cargo.lock` SHA-256 `AFE32A618E77FEE0405535C2087B46FF05E31AA00D8BAC7C6369BE4C6CC9BF00`
+- Command: machine record `BR-06-CORRECTION-1784484091887149900`; full universal/schema/governance gate through external verifier copy SHA-256 `D77C29AB079F91BF171AB5C7FC806DAAEB7ABD09FB603865E34DA54AF0D20169`
+- Start/end/duration: `2026-07-19T18:01:31.887Z` / `2026-07-19T18:02:07.574Z` / 35.6886645 s
+- Exit code: 0
+- Stdout/stderr artifact hashes: stdout `e20e66bd15f95fe030f107d22487f1d412d1c2cb0b79a91c1186bc1650c93a0a`; stderr `a40921d505217f44905546ecb50f23f753b50743d9b9b1981fee74ec2155f75a`
+- Fixtures/manifests/bundle IDs: unchanged `bonsai.agent-isolation-outcomes/v1`; real inspection child passed 10/10 focused repetitions before the full gate
+- Counter availability and privileges: real local environment-cleared Python child with a finite 20-second process allowance; no native-code OS sandbox, physical-host attestation, privileged input, energy, or long-duration evidence
+- Result: pass
+- Reviewer/attestation: correction changes only the test receive/shutdown allowance from 5 to 20 seconds; strict workspace/Python/schema/governance gates pass and hosted rerun remains required

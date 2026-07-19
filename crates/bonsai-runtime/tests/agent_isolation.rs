@@ -12,6 +12,8 @@ use std::path::{Path, PathBuf};
 use std::process::Command;
 use std::time::Duration;
 
+const INSPECTION_PROCESS_TIMEOUT: Duration = Duration::from_secs(20);
+
 fn workspace_root() -> PathBuf {
     Path::new(env!("CARGO_MANIFEST_DIR"))
         .join("../..")
@@ -109,7 +111,7 @@ fn inspection_adapter_sees_only_granted_inputs_and_agent_owned_storage() {
     let mut child = ChildTransport::spawn(&launch.command, TransportLimits::default())
         .expect("spawn inspection adapter");
     let frame = child
-        .receive(Duration::from_secs(5))
+        .receive(INSPECTION_PROCESS_TIMEOUT)
         .expect("receive inspection")
         .expect("inspection frame");
     let result: Value = serde_json::from_slice(&frame).expect("inspection JSON");
@@ -126,7 +128,7 @@ fn inspection_adapter_sees_only_granted_inputs_and_agent_owned_storage() {
         layout.agent_root()
     );
     let outcome = child
-        .shutdown(Duration::from_secs(5))
+        .shutdown(INSPECTION_PROCESS_TIMEOUT)
         .expect("inspection shutdown");
     assert_eq!(outcome.exit_code, Some(0));
     assert!(outcome.failures.is_empty());

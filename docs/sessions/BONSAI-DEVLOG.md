@@ -550,3 +550,11 @@ This append-only log records executed PSPR prompts. Corrections are added as new
 - Commit SHA: pending; report the focused commit and hosted run directly because the authorized BR-01–BR-06 prompt set ends here under the self-hash convention
 - Risks/blockers/parked scope changed: R-07 is controlled at the BR-06 granted-interface seam but remains active for BR-09/BQ-06 and any adversarial filesystem claim; R-08/R-09 remain active for later descendant controls and observer-volume reserve; R-16 remains controlled by the publication addendum and no-slop gate; no parked scope revived and no hostile-code sandbox, physical-host, instrument-completion, or C0–C5 claim is made
 - Next eligible prompt after gate and publication: BR-07, outside this session's named BR-01–BR-06 authorization
+
+### BR-06 hosted portability correction
+
+- Initial implementation commit SHA: `e878be07653c524a08997c78a583ff2457fbcfd4`
+- Initial hosted verification: GitHub Actions run 29697809624, attempt 1, passed the complete gate on Windows x86_64 and Linux x86_64 but failed the real inspection-adapter test on macOS arm64 and macOS Intel with `TRANSPORT_READ_TIMEOUT` after the test-only 5-second process receive allowance; the other four BR-06 isolation tests passed on both macOS jobs
+- Correction: the inspection process receive/shutdown allowance is now 20 seconds, still bounded and separate from protocol deadlines; no product isolation, grant, audit, denial, track, or transport semantics changed
+- Local correction verification: the real inspection child passed 10/10 focused repetitions, strict focused Clippy passed, and machine record `BR-06-CORRECTION-1784484091887149900` passed the complete universal gate with stdout `e20e66bd15f95fe030f107d22487f1d412d1c2cb0b79a91c1186bc1650c93a0a` and stderr `a40921d505217f44905546ecb50f23f753b50743d9b9b1981fee74ec2155f75a`; corrected Rust fixture SHA-256 `49B6CD6F3474AE9B642164D3CDC88875AF8D5E14FBA272E2485800A2F94DE1A3`; verifier `D77C29AB079F91BF171AB5C7FC806DAAEB7ABD09FB603865E34DA54AF0D20169`; `Cargo.lock` unchanged at `AFE32A618E77FEE0405535C2087B46FF05E31AA00D8BAC7C6369BE4C6CC9BF00`
+- Final status: correction commit and hosted four-OS rerun pending; BR-07 remains outside this session's authorization
