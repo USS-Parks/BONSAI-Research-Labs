@@ -1,0 +1,60 @@
+{
+  "schema": "bonsai.terminology-registry/v1",
+  "epoch": 1,
+  "status": "frozen",
+  "terms": [
+    {"name": "run", "category": "execution", "aliases": [], "definition": "One governed execution of an immutable experiment manifest."},
+    {"name": "stream", "category": "execution", "aliases": ["experience_stream"], "definition": "The source-ordered authorized transition and event sequence within a run."},
+    {"name": "transition", "category": "execution", "aliases": [], "definition": "One environment interaction made available under the track contract."},
+    {"name": "event", "category": "execution", "aliases": ["telemetry_event"], "definition": "A versioned immutable telemetry envelope."},
+    {"name": "work_item", "category": "governance", "aliases": [], "definition": "One externally governable bounded request for work."},
+    {"name": "artifact", "category": "lineage", "aliases": ["cognitive_artifact"], "definition": "A stable-identity object with provenance and lifecycle."},
+    {"name": "lineage", "category": "lineage", "aliases": ["provenance_graph"], "definition": "Directed provenance relationships among artifact identities or revisions."},
+    {"name": "consumer", "category": "lineage", "aliases": [], "definition": "An identified component or artifact with a measurable dependency on another artifact."},
+    {"name": "track", "category": "evaluation", "aliases": ["evaluation_track"], "definition": "A mutually exclusive evaluation class derived from runtime facts."},
+    {"name": "bundle", "category": "evidence", "aliases": ["result_bundle"], "definition": "An immutable independently verifiable run evidence package."},
+    {"name": "feature", "category": "artifact_type", "aliases": [], "definition": "A state representation component with identity, consumers, cost, utility, and lifecycle."},
+    {"name": "subproblem", "category": "artifact_type", "aliases": ["auxiliary_problem"], "definition": "A declared auxiliary control or prediction problem."},
+    {"name": "option", "category": "artifact_type", "aliases": [], "definition": "A temporally extended policy plus stopping rule."},
+    {"name": "model", "category": "artifact_type", "aliases": ["knowledge_model"], "definition": "A versioned predictor of primitive or option consequences."},
+    {"name": "planner", "category": "artifact_type", "aliases": [], "definition": "A component allocating planning work over models and candidate actions or options."},
+    {"name": "policy", "category": "artifact_type", "aliases": [], "definition": "A versioned action or option distribution or selection rule."},
+    {"name": "value_function", "category": "artifact_type", "aliases": ["value_estimate"], "definition": "A versioned predictive value estimate with declared semantics."}
+  ],
+  "identifiers": [
+    {"name": "run_id", "scope": "repository", "stability": "immutable", "representation": "uuid128"},
+    {"name": "stream_id", "scope": "run", "stability": "immutable", "representation": "uuid128"},
+    {"name": "source_id", "scope": "run", "stability": "immutable", "representation": "uuid128"},
+    {"name": "event_id", "scope": "run", "stability": "immutable", "representation": "uuid128"},
+    {"name": "work_item_id", "scope": "run", "stability": "immutable", "representation": "uuid128"},
+    {"name": "artifact_id", "scope": "run", "stability": "lifecycle", "representation": "uuid128"},
+    {"name": "artifact_revision_id", "scope": "artifact", "stability": "immutable", "representation": "uuid128"},
+    {"name": "bundle_id", "scope": "repository", "stability": "content_addressed", "representation": "sha256_lower_hex"}
+  ],
+  "enums": {
+    "tracks": ["A", "B", "C", "D"],
+    "track_failure": ["INDETERMINATE_TRACK"],
+    "budget_scopes": ["per_event", "per_step", "rolling_window", "lifetime"],
+    "governor_decisions": ["admit", "defer", "throttle", "reject", "terminate"],
+    "work_classes": ["acting", "learning", "feature_generation", "option_learning", "model_learning", "planning", "curation", "environment", "observer"],
+    "claim_states": ["pass", "fail", "indeterminate", "not_run"],
+    "availability_states": ["measured", "estimated", "unavailable", "excluded"],
+    "artifact_types": ["feature", "subproblem", "option", "model", "planner", "policy", "value_function"]
+  },
+  "numeric_fields": [
+    {"name": "monotonic_time_ns", "unit": "ns", "representation": "uint64", "missingness": "required"},
+    {"name": "clock_resolution_ns", "unit": "ns", "representation": "uint64", "missingness": "required"},
+    {"name": "duration_ns", "unit": "ns", "representation": "uint64", "missingness": "availability_state"},
+    {"name": "cpu_time_ns", "unit": "ns", "representation": "uint64", "missingness": "availability_state"},
+    {"name": "action_latency_ns", "unit": "ns", "representation": "uint64", "missingness": "availability_state"},
+    {"name": "memory_bytes", "unit": "B", "representation": "uint64", "missingness": "availability_state"},
+    {"name": "storage_bytes", "unit": "B", "representation": "uint64", "missingness": "availability_state"},
+    {"name": "observer_output_bytes", "unit": "B", "representation": "uint64", "missingness": "availability_state"},
+    {"name": "count", "unit": "1", "representation": "uint64", "missingness": "availability_state"},
+    {"name": "energy_uj", "unit": "uJ", "representation": "uint64", "missingness": "availability_state"},
+    {"name": "power_uw", "unit": "uW", "representation": "uint64", "missingness": "availability_state"},
+    {"name": "ratio", "unit": "1", "representation": "finite_binary64", "missingness": "availability_state"},
+    {"name": "reward", "unit": "reward_unit_id", "representation": "finite_binary64", "missingness": "availability_state"},
+    {"name": "estimated_operations", "unit": "1", "representation": "uint64_with_estimator_id", "missingness": "availability_state"}
+  ]
+}

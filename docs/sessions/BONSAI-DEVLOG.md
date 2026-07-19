@@ -126,3 +126,23 @@ This append-only log records executed PSPR prompts. Corrections are added as new
 - Commit SHA: pending; append the focused implementation SHA in the next prompt's closeout entry
 - Risks/blockers/parked scope changed: statuses reconciled as stated; no parked item revived
 - Next eligible prompt: BG-08
+
+### BG-07 closeout note
+
+- Focused implementation commit SHA: `98ed62cd393f9c4cf6927ec8ce0efaa85a732c3a`
+- Ledger rule: appended by BG-08 because the BG-07 commit could not contain its own immutable hash
+
+## 2026-07-18 — BG-08 — Canonical terminology, identifiers, and units
+
+- Status: passed; closeout entry pending focused commit identity
+- Authorization scope: user-authorized M0 STS
+- Dependencies and source revision: BG-03 and BG-07 at `98ed62cd393f9c4cf6927ec8ce0efaa85a732c3a`
+- Objective and exclusions: freeze epoch-1 names, IDs, tracks, budgets, claim/availability states, units, missingness, precision, and clock semantics; no metric formulas
+- Reuse classification: reuse SI/IEC units, UUID/SHA-256 representations, charter/PSPR terms, and explicit availability rules
+- Files changed: terminology/units document, JSON registry, registry validator, DEVLOG, verification log, PSPR status
+- Decisions/addenda: numeric canonical storage uses integer ns/B/uJ/uW/count where applicable; ratios/rewards use finite binary64; missing is never zero; identifiers are opaque
+- Verification summary: 17 terms, eight identifiers, and 14 numeric fields passed; duplicate-name and unitless-numeric negative fixtures failed as required; universal and governance gates passed
+- Evidence paths and SHA-256 hashes: `schemas/registry/terminology-v1.json`; `docs/verification/BONSAI-VERIFICATION-LOG.md`
+- Commit SHA: pending; append the focused implementation SHA in the next prompt's closeout entry
+- Risks/blockers/parked scope changed: none
+- Next eligible prompt: BG-09

@@ -99,3 +99,17 @@ This is an append-only human index. Machine records created by `cargo xtask veri
 - Counter availability and privileges: not applicable
 - Result: pass
 - Reviewer/attestation: automated schema/coverage checks and universal gates
+
+## VER-BG08-GATE — BG-08 — 2026-07-19T01:39:52Z
+
+- Source revision and dirty state: `98ed62cd393f9c4cf6927ec8ce0efaa85a732c3a`; dirty with BG-08 changes
+- OS/architecture/physical-or-CI: Windows/x86_64; local; physical/virtual status unknown
+- Toolchain/dependency-lock hashes: unchanged from VER-BG06-GATE
+- Command: universal Cargo and uv gates; docs, ADR, license, governance-ledger, and terminology checkers
+- Start/end/duration: universal `2026-07-19T01:39:52.1909184Z` / `2026-07-19T01:40:01.4419485Z` / 9.2510301 s; governance `2026-07-19T01:40:10.9836642Z` / `2026-07-19T01:40:11.9531874Z` / 0.9695232 s
+- Exit code: 0 for every gate command
+- Stdout/stderr artifact hashes: command output retained in the STS session transcript; registry is a committed source artifact
+- Fixtures/manifests/bundle IDs: duplicate-term and unitless-numeric negative fixtures; terminology registry epoch 1
+- Counter availability and privileges: not applicable
+- Result: pass
+- Reviewer/attestation: automated registry/schema, documentation, and universal gates
