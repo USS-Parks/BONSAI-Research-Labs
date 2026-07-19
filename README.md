@@ -11,6 +11,7 @@ BONSAI is an independent, algorithm-neutral measurement and external resource-go
 - Current execution authorization: M0 (BG-01 through BG-10) only.
 - Implementation claims: none. M0 creates the governed foundation, not a functioning instrument.
 - Repository visibility: private unless a separately approved publication action changes it.
+- License: `MIT OR Apache-2.0` at the recipient's option.
 
 The approved PSPR is the execution roster, but approving or editing it is not authorization to execute work. Implementation may begin only after the user says `run it STS`, `run M0 STS`, or explicitly authorizes named prompts. External publication, visibility changes, privileged collectors, credentials, and destructive actions require their own authority.
 
