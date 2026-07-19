@@ -8,8 +8,8 @@ BONSAI is an independent, algorithm-neutral measurement and external resource-go
 
 - Research charter: approved v0.1 on 2026-07-18.
 - PSPR: approved v0.1 on 2026-07-18.
-- Current execution authorization: M0 (BG-01 through BG-10) only.
-- Implementation claims: none. M0 creates the governed foundation, not a functioning instrument.
+- Current execution authorization: remaining approved PSPR roster in dependency order, expanded by `Continue to STS` on 2026-07-18.
+- Implementation claims: M0 governed foundation and BC-01 schema-compatibility policy are complete; no instrument-completion or C0–C5 claim.
 - Repository visibility: public under the approved 2026-07-18 repository-target addendum.
 - License: `MIT OR Apache-2.0` at the recipient's option.
 
@@ -23,7 +23,7 @@ The approved PSPR is the execution roster, but approving or editing it is not au
 - M0 STS branch: `codex/m0-governed-foundation`
 - Parent repository history: excluded
 
-The M0 session runs in an isolated Git worktree. The authoritative checkout and the isolated worktree share this repository's object database but never share a Git index.
+The continuing STS session runs in an isolated Git worktree. The authoritative checkout and the isolated worktree share this repository's object database but never share a Git index.
 
 ## Sources of truth
 
@@ -51,9 +51,10 @@ The foundation pins Rust 1.96.0 and supports Python 3.12 through 3.14 with depen
 cargo fmt --all --check
 cargo clippy --workspace --all-targets --all-features -- -D warnings
 cargo test --workspace --all-features
+cargo xtask schema-check
 uv run ruff check .
 uv run pyright
 uv run pytest
 ```
 
-These are scaffold checks only; passing them is not evidence that BONSAI instrument behavior exists.
+These are repository gates. Passing them is not evidence of physical behavior, instrument completion, or an evaluated-agent claim.

@@ -1,0 +1,11 @@
+   Compiling syn v3.0.0
+   Compiling serde_derive v1.0.229
+    Checking serde v1.0.229
+    Checking bonsai-xtask v0.0.0 (C:\tmp\bonsai-m0-sts\crates\bonsai-xtask)
+    Finished `dev` profile [unoptimized + debuginfo] target(s) in 7.95s
+   Compiling serde v1.0.229
+   Compiling bonsai-xtask v0.0.0 (C:\tmp\bonsai-m0-sts\crates\bonsai-xtask)
+error: failed to remove file `C:\tmp\bonsai-m0-sts\target\debug\bonsai-xtask.exe`
+
+Caused by:
+  Access is denied. (os error 5)

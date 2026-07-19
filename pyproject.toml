@@ -1,11 +1,13 @@
 [project]
 name = "bonsai-reference"
 version = "0.0.0"
-description = "BONSAI reference-science and adapter package (M0 scaffold only)"
+description = "BONSAI reference-science, adapter, and contract-conformance package"
 readme = "README.md"
 requires-python = ">=3.12,<3.15"
 license = "MIT OR Apache-2.0"
-dependencies = []
+dependencies = [
+    "protobuf==7.35.1",
+]
 
 [dependency-groups]
 dev = [

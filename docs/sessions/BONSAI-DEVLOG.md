@@ -196,3 +196,18 @@ This append-only log records executed PSPR prompts. Corrections are added as new
 - Commit SHA: pending this prompt's immutable implementation commit; the next closeout entry will append it under the log's self-hash rule
 - Risks/blockers/parked scope changed: no new blocker; compatibility catalog is test tooling, not a domain schema; physical-system claims remain out of scope
 - Next eligible prompts: BC-02, BC-03, and BC-04; dependency order selects BC-02
+
+## 2026-07-18 — BC-02 — Universal event envelope
+
+- Status: passed
+- Authorization scope: user instruction `Continue to STS`; approved roster in dependency order
+- Dependencies and source revision: BC-01 implementation and closeout at `a0b4aba07191d8035330bec4f0eeb0bf64bb31e8`; hosted run 29670167856 passed Windows x86_64, Linux x86_64, macOS arm64, and macOS Intel
+- Objective and exclusions: define and validate the universal epoch-1 event envelope and cross-language relay; wall time is never treated as global order
+- Reuse classification: implement at the existing `bonsai-contracts` seam using official Protobuf semantics, Prost 0.14.4, vendored protoc 3.2.0, SHA-256, and Python protobuf 7.35.1; one generated descriptor is shared across Rust and Python; no Lamprey runtime/source reused
+- Files changed: epoch-1 envelope proto, contracts build/code/examples/tests, Python cross-language conformance test and dependency lock, Rust lock, Protobuf/root/source-of-truth docs, CI schema step, PSPR status, machine verification evidence, DEVLOG, verification log
+- Decisions/addenda: IDs are nonzero 16-byte UUID representations; source sequence and monotonic time are source/clock-domain facts; causal parents form partial order; payload bytes are bound to SHA-256; the supported unknown-field relay validates known fields then returns original binary bytes unchanged
+- Verification summary: focused Rust/Python gate passed; two recorded attempts retained Windows self-lock failures caused by running `bonsai-xtask.exe` while its integration test rebuilt that same executable; an identical temporary verifier copy then passed the full universal/governance gate; Python → Rust → Python preserved appended field 99 byte-for-byte; invalid ID, zero monotonic time, negative wall time, and hash mismatch fixtures failed closed
+- Evidence paths and SHA-256 hashes: `evidence/verification/records.jsonl`; pass stdout `1a318078e6b2ff263443932379c4d30f16d4448d4101b816b38271503131a081`; pass stderr `764edc6682fe3a2cc67bdbedbc6c3353e3ec768ef2dfb7892df148c4551f3c9b`; envelope `A515C37F366EE16C58DC82608493F58FDFE6C66E251F384318EB40E610B8FAA1`
+- Commit SHA: pending this prompt's immutable implementation commit; the next closeout entry will append it under the log's self-hash rule
+- Risks/blockers/parked scope changed: R-15 remains controlled by generated bindings, pinned locks, and schema gate; Protobuf serialization is not claimed canonical; opaque relay is the only unknown-field-preserving Rust path
+- Next eligible prompts: BC-03 and BC-04; dependency order selects BC-03

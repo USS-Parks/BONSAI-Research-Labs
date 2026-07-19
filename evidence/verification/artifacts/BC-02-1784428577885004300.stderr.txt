@@ -1,0 +1,6 @@
+    Finished `dev` profile [unoptimized + debuginfo] target(s) in 0.23s
+   Compiling bonsai-xtask v0.0.0 (C:\tmp\bonsai-m0-sts\crates\bonsai-xtask)
+error: failed to remove file `C:\tmp\bonsai-m0-sts\target\debug\bonsai-xtask.exe`
+
+Caused by:
+  Access is denied. (os error 5)

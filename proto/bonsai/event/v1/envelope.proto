@@ -1,0 +1,35 @@
+syntax = "proto3";
+
+package bonsai.event.v1;
+
+// An immutable event plus the metadata needed to order it within one source.
+// Wall time is observational metadata and never establishes global ordering.
+message EventEnvelope {
+  bytes run_id = 1;
+  bytes source_id = 2;
+  bytes event_id = 3;
+  uint64 source_sequence = 4;
+  repeated bytes causal_parent_event_ids = 5;
+  uint64 monotonic_time_ns = 6;
+  optional int64 wall_time_unix_ns = 7;
+  string event_type = 8;
+  uint32 payload_schema_epoch = 9;
+  uint32 payload_schema_minor = 10;
+  bytes payload_sha256 = 11;
+  Availability availability = 12;
+  Precision precision = 13;
+  bytes payload = 14;
+}
+
+enum Availability {
+  AVAILABILITY_UNSPECIFIED = 0;
+  AVAILABILITY_MEASURED = 1;
+  AVAILABILITY_ESTIMATED = 2;
+  AVAILABILITY_UNAVAILABLE = 3;
+  AVAILABILITY_EXCLUDED = 4;
+}
+
+message Precision {
+  string representation = 1;
+  optional uint32 significant_bits = 2;
+}

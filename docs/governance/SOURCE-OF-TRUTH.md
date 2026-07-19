@@ -31,7 +31,7 @@ Authorization is bounded by the named prompts and their dependencies. It does no
 - credentials, secrets, privileged collectors, or external services;
 - destructive actions or revived parked scope.
 
-When work reaches the end of its authorized prompt set, stop at the approval gate. M0 authorization ends after BG-10 and does not authorize BC-01.
+When work reaches the end of its authorized prompt set, stop at the approval gate. M0 authorization ended after BG-10 and did not itself authorize BC-01. On 2026-07-18 the user then instructed `Continue to STS`; the current expanded scope and prompt status are recorded in the PSPR execution history and DEVLOG.
 
 ## Prompt status semantics
 

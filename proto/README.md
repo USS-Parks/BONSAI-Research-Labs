@@ -2,7 +2,7 @@
 
 Status: frozen for schema epoch 1 by BC-01.
 
-This directory will contain BONSAI's portable wire contracts. BC-01 defines how those contracts may evolve; it does not introduce a domain message.
+This directory contains BONSAI's portable wire contracts. BC-01 defines how they evolve; BC-02 introduces the first epoch-1 message.
 
 ## Version model
 
@@ -33,3 +33,13 @@ cargo xtask schema-check
 The command compares the frozen epoch-1 baseline with one additive fixture and four prohibited-change fixtures. It succeeds only when the additive case is compatible and field renumbering, reserved-field reuse, silent unit change, and unversioned JSON are rejected with their named error codes. The fixture catalog is a checker input format, not a BONSAI domain contract.
 
 Fixtures live in [`../fixtures/schema-compatibility/v1`](../fixtures/schema-compatibility/v1). The companion JSON and migration rules are in [`../schemas/README.md`](../schemas/README.md).
+
+## Universal event envelope
+
+[`bonsai/event/v1/envelope.proto`](bonsai/event/v1/envelope.proto) is the epoch-1 envelope authority. Identifiers are nonzero 16-byte UUID representations. `source_sequence` orders events only within one source; causal-parent IDs express a partial order. `monotonic_time_ns` is required and local to its clock domain. Optional Unix wall time is observational metadata and never establishes global order.
+
+The envelope carries an event-type identifier, payload schema epoch/minor, raw payload, and SHA-256 payload digest. Availability uses the frozen measured/estimated/unavailable/excluded states. Precision declares the payload representation and, when meaningful, significant bits. Validation rejects malformed or zero IDs, a self-parent, zero monotonic time, nonpositive present wall time, invalid event type/version/availability/precision, and payload hash mismatch.
+
+Rust bindings and the descriptor set are generated at build time from the same `.proto` using a vendored cross-platform `protoc`. Python conformance tests load that descriptor dynamically; no second hand-maintained binding exists.
+
+The supported unknown-field relay is deliberately byte-preserving: it decodes and validates known fields, then forwards the original binary bytes. Prost decode/re-encode and ProtoJSON are not relay paths because they cannot prove retention of unknown fields. Tests append an unknown field 99 and require byte-for-byte survival through Python → Rust → Python.

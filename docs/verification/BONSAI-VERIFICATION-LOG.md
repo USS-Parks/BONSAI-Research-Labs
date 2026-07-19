@@ -197,3 +197,45 @@ This is an append-only human index. Machine records created by `cargo xtask veri
 - Counter availability and privileges: not applicable; no physical, energy, enforcement, or integration claim
 - Result: pass
 - Reviewer/attestation: machine verification record plus exact frozen compatibility outcomes
+
+## VER-BC01-HOSTED — BC-01 — 2026-07-19T02:25:23Z
+
+- Source revision and dirty state: `a0b4aba07191d8035330bec4f0eeb0bf64bb31e8`; clean pushed revision
+- OS/architecture/physical-or-CI: Windows/x86_64, Linux/x86_64, macOS/arm64, macOS/x86_64; GitHub hosted CI; ephemeral virtual machines
+- Toolchain/dependency-lock hashes: workflow-pinned Rust 1.96.0, Python 3.12, and uv 0.11.29; source locks at the recorded revision
+- Command: GitHub Actions `BONSAI baseline` push run 29670167856, attempt 1
+- Start/end/duration: `2026-07-19T02:25:23Z` / `2026-07-19T02:26:38Z` / 75 s
+- Exit code: all four jobs concluded `success`
+- Stdout/stderr artifact hashes: retained by GitHub Actions; job IDs 88147590507, 88147590514, 88147590517, and 88147590520
+- Fixtures/manifests/bundle IDs: hosted classification artifacts generated per matrix job
+- Counter availability and privileges: no physical counter evidence; workflow classification denies physical, energy, and long-duration claims
+- Result: pass
+- Reviewer/attestation: GitHub job conclusions inspected for every matrix entry
+
+## VER-BC02-WINDOWS-LOCK — BC-02 — 2026-07-19T02:35:11Z
+
+- Source revision and dirty state: `a0b4aba07191d8035330bec4f0eeb0bf64bb31e8`; dirty with BC-02 changes
+- OS/architecture/physical-or-CI: Windows/x86_64; local; physical/virtual status unknown
+- Toolchain/dependency-lock hashes: Rust 1.96.0; final BC-02 locks were present
+- Command: machine records `BC-02-1784428511706744200` and `BC-02-1784428577885004300`; full gate invoked by the in-tree verifier
+- Start/end/duration: first `2026-07-19T02:35:11.706Z` / `2026-07-19T02:35:23.197Z`; retry `2026-07-19T02:36:17.885Z` / `2026-07-19T02:36:19.936Z`
+- Exit code: 101 for both
+- Stdout/stderr artifact hashes: first stdout `e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855`, stderr `3b3fd939dc66290d6ec62000fbbbf6242754b6725924415e6cbbad6ab961cb08`; retry stdout identical, stderr `9be1a4ca8cf6a84ffa824411891a896a090d047fdecefcfa4e8ef66d08647580`
+- Fixtures/manifests/bundle IDs: no product fixture failure; focused event tests had passed before these records
+- Counter availability and privileges: not applicable
+- Result: fail; Windows denied replacement of the running `target/debug/bonsai-xtask.exe` when the workspace integration test rebuilt it
+- Reviewer/attestation: exact Cargo error retained; gate rerun unchanged using a temporary copy outside Cargo target
+
+## VER-BC02-GATE — BC-02 — 2026-07-19T02:37:06Z
+
+- Source revision and dirty state: `a0b4aba07191d8035330bec4f0eeb0bf64bb31e8`; dirty with BC-02 changes
+- OS/architecture/physical-or-CI: Windows/x86_64; local; physical/virtual status unknown
+- Toolchain/dependency-lock hashes: Rust 1.96.0; Python 3.14.4; uv 0.11.29; `Cargo.lock` SHA-256 `0A84D63445D25C6CBCA6FE74AA68EA656CB35EE13A09B576A41A568A7E644268`; `uv.lock` SHA-256 `EC18CF61A7A382BECA7F65105B6E427F3FF70F37CF99910E2E63902D7C900E43`
+- Command: machine record `BC-02-1784428626815212000`; unchanged universal/governance gate run through a byte-identical temporary copy of the built repository verifier
+- Start/end/duration: `2026-07-19T02:37:06.815Z` / `2026-07-19T02:37:16.087Z` / 9.2723955 s
+- Exit code: 0
+- Stdout/stderr artifact hashes: stdout `1a318078e6b2ff263443932379c4d30f16d4448d4101b816b38271503131a081`; stderr `764edc6682fe3a2cc67bdbedbc6c3353e3ec768ef2dfb7892df148c4551f3c9b`
+- Fixtures/manifests/bundle IDs: event envelope schema SHA-256 `A515C37F366EE16C58DC82608493F58FDFE6C66E251F384318EB40E610B8FAA1`; Python/Rust unknown-field 99 relay fixture; Rust invalid-ID/time/hash fixtures
+- Counter availability and privileges: no physical, clock-synchronization, or global-order claim
+- Result: pass
+- Reviewer/attestation: full automated gate plus exact binary-preservation assertion
