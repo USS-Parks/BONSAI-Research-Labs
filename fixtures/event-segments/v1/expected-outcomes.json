@@ -1,0 +1,16 @@
+{
+  "format": "bonsai.event-segment/v1",
+  "cases": [
+    { "name": "valid", "expected": "SEGMENT_VALID" },
+    { "name": "truncated_header", "expected": "SEGMENT_HEADER_TRUNCATED" },
+    { "name": "truncated_frame", "expected": "SEGMENT_FRAME_TRUNCATED" },
+    { "name": "checksum_corruption", "expected": "SEGMENT_FRAME_CHECKSUM_MISMATCH" },
+    { "name": "segment_checksum_corruption", "expected": "SEGMENT_CHECKSUM_MISMATCH" },
+    { "name": "oversized_frame", "expected": "SEGMENT_FRAME_TOO_LARGE" },
+    { "name": "duplicate_sequence", "expected": "BUNDLE_SEGMENT_SEQUENCE_DUPLICATE" },
+    { "name": "non_monotonic_sequence", "expected": "BUNDLE_SEGMENT_SEQUENCE_NON_MONOTONIC" },
+    { "name": "recover_complete_open", "expected": "SEGMENT_RECOVERED" },
+    { "name": "recover_finalized_open", "expected": "SEGMENT_ALREADY_FINALIZED" },
+    { "name": "recover_partial_open", "expected": "SEGMENT_FRAME_TRUNCATED" }
+  ]
+}

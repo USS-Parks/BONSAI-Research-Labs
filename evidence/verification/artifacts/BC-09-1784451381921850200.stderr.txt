@@ -1,0 +1,19 @@
+   Compiling bonsai-contracts v0.0.0 (C:\Users\17076\Documents\Reinforcement Learning Project\crates\bonsai-contracts)
+    Checking ahash v0.8.12
+    Checking bonsai-bundle v0.0.0 (C:\Users\17076\Documents\Reinforcement Learning Project\crates\bonsai-bundle)
+    Checking referencing v0.48.1
+    Checking jsonschema v0.48.1
+    Checking bonsai-xtask v0.0.0 (C:\Users\17076\Documents\Reinforcement Learning Project\crates\bonsai-xtask)
+    Finished `dev` profile [unoptimized + debuginfo] target(s) in 6.52s
+   Compiling tempfile v3.27.0
+   Compiling ahash v0.8.12
+   Compiling bonsai-bundle v0.0.0 (C:\Users\17076\Documents\Reinforcement Learning Project\crates\bonsai-bundle)
+   Compiling referencing v0.48.1
+   Compiling prost-build v0.14.4
+   Compiling jsonschema v0.48.1
+   Compiling bonsai-contracts v0.0.0 (C:\Users\17076\Documents\Reinforcement Learning Project\crates\bonsai-contracts)
+   Compiling bonsai-xtask v0.0.0 (C:\Users\17076\Documents\Reinforcement Learning Project\crates\bonsai-xtask)
+error: failed to remove file `C:\Users\17076\Documents\Reinforcement Learning Project\target\debug\bonsai-xtask.exe`
+
+Caused by:
+  Access is denied. (os error 5)

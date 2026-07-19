@@ -406,3 +406,45 @@ This is an append-only human index. Machine records created by `cargo xtask veri
 - Counter availability and privileges: all values are schema fixtures; no live metric computation, counter evidence, claim adjudication, privileged collector, or physical-host evidence
 - Result: pass
 - Reviewer/attestation: exact BC-08 scalar/provenance/criterion/evidence gate plus formula/version/unit/direction/population/window/estimator/missingness/precision/uncertainty/input/reason coverage and full automated local gate
+
+## VER-BC08-HOSTED — BC-08 — 2026-07-19T08:36:33Z
+
+- Source revision and dirty state: `1fd36aec8c4379ef594cb8cf18ea9be035af7870`; clean pushed revision
+- OS/architecture/physical-or-CI: Windows/x86_64, Linux/x86_64, macOS/arm64, macOS/x86_64; GitHub hosted CI; ephemeral virtual machines
+- Toolchain/dependency-lock hashes: workflow-pinned Rust 1.96.0, Python 3.12, and uv 0.11.29; source locks at the recorded revision
+- Command: GitHub Actions `BONSAI baseline` push run 29680114105, attempt 1
+- Start/end/duration: `2026-07-19T08:36:33Z` / `2026-07-19T08:39:03Z` / 150 s
+- Exit code: all four jobs concluded `success`
+- Stdout/stderr artifact hashes: retained by GitHub Actions; job IDs 88174618112 (Linux), 88174618127 (macOS Intel), 88174618150 (Windows), and 88174618151 (macOS arm64)
+- Fixtures/manifests/bundle IDs: hosted schema gate exercised all four valid metric/uncertainty/claim records, every rejection fixture, and all four explicit claim states on every matrix job
+- Counter availability and privileges: no metric computation, claim adjudication, physical counter, privileged collector, energy, or long-duration evidence
+- Result: pass
+- Reviewer/attestation: run head SHA, run conclusion, and every matrix-job conclusion inspected through the GitHub API
+
+## VER-BC09-ENV-FAIL — BC-09 — 2026-07-19T08:56:21Z
+
+- Source revision and dirty state: `1fd36aec8c4379ef594cb8cf18ea9be035af7870`; dirty with BC-09 changes
+- OS/architecture/physical-or-CI: Windows/x86_64; local sandbox; physical/virtual status unknown
+- Toolchain/dependency-lock hashes: Rust 1.96.0; source locks included the BC-09 workspace update
+- Command: machine record `BC-09-1784451381921850200`; full gate launched through the in-tree `cargo xtask verify` executable
+- Start/end/duration: `2026-07-19T08:56:21.921Z` / `2026-07-19T08:56:41.595Z` / 19.6742214 s
+- Exit code: 101
+- Stdout/stderr artifact hashes: empty stdout `e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855`; stderr `3d41c471b558a533d892d35b698f389a026bded8199be1255933b82a461efb74`
+- Fixtures/manifests/bundle IDs: format and strict workspace Clippy completed; workspace tests did not start because Cargo could not replace the still-running `target/debug/bonsai-xtask.exe`
+- Counter availability and privileges: not applicable; no elevation or persistent policy change requested
+- Result: environment/tooling failure; BC-09 corruption/recovery results did not fail
+- Reviewer/attestation: exact Windows access-denied self-lock retained; resolved by building and checksum-matching an external verifier copy before rerunning the unchanged full gate
+
+## VER-BC09-GATE — BC-09 — 2026-07-19T08:57:38Z
+
+- Source revision and dirty state: `1fd36aec8c4379ef594cb8cf18ea9be035af7870`; dirty with BC-09 changes
+- OS/architecture/physical-or-CI: Windows/x86_64; local; physical/virtual status unknown
+- Toolchain/dependency-lock hashes: Rust 1.96.0; Python 3.14.4; uv 0.11.29; `Cargo.lock` SHA-256 `2B8C7C3C5687B4717246AB688EC6700C22FE42CA190053A4248ACFBCC7B302A9`
+- Command: machine record `BC-09-1784451458102382400`; unchanged full universal/schema/governance gate through external verifier copy SHA-256 `BD1174BB50222583463195CEA005EA5B9A411AF56C5DE05CDF84DF2676CDB5A6`
+- Start/end/duration: `2026-07-19T08:57:38.102Z` / `2026-07-19T08:57:53.183Z` / 15.0816955 s
+- Exit code: 0
+- Stdout/stderr artifact hashes: stdout `ce492dcd4830a385675cc9a9f83211a03a3c2e6bdfb2ffecce8b4be4158f1f5f`; stderr `248e453649141d134e331cf7315a372ee49cf95cfa6b7723f00c3cbf8e3d0413`
+- Fixtures/manifests/bundle IDs: `bonsai.event-segment/v1` matrix SHA-256 `6D4E776A41E0F13817F6EB91E5D7AAA218CD672BDF88FF41CFAC285331520AEB`; exact outcomes `SEGMENT_HEADER_TRUNCATED`, `SEGMENT_FRAME_TRUNCATED`, `SEGMENT_FRAME_CHECKSUM_MISMATCH`, `SEGMENT_CHECKSUM_MISMATCH`, `SEGMENT_FRAME_TOO_LARGE`, `BUNDLE_SEGMENT_SEQUENCE_DUPLICATE`, `BUNDLE_SEGMENT_SEQUENCE_NON_MONOTONIC`, `SEGMENT_RECOVERED`, and `SEGMENT_ALREADY_FINALIZED`
+- Counter availability and privileges: no live event ingest, counter, agent, privileged collector, physical-host, energy, or long-duration evidence; format/recovery fixtures only
+- Result: pass
+- Reviewer/attestation: exact BC-09 truncation/corruption/size/sequence/recovery gate, strict workspace lint/tests, Python gates, schema compatibility, and all governance checks passed
