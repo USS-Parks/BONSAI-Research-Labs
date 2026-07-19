@@ -127,3 +127,17 @@ This is an append-only human index. Machine records created by `cargo xtask veri
 - Counter availability and privileges: hosted runner evidence not yet available; no physical counters claimed
 - Result: pass locally; live hosted gate pending
 - Reviewer/attestation: automated topology, evidence-boundary, and universal gates
+
+## VER-BG09-LIVE — BG-09 — 2026-07-19T01:47:34Z
+
+- Source revision and dirty state: `59e474a8a3eeddbc071b02c0152d8d7925b9af27`; clean pushed revision
+- OS/architecture/physical-or-CI: Windows/x86_64, Linux/x86_64, macOS/arm64, macOS/x86_64; GitHub hosted CI; ephemeral virtual machines
+- Toolchain/dependency-lock hashes: workflow-pinned Rust 1.96.0, Python 3.12, uv 0.11.29; source lockfiles at the recorded revision
+- Command: GitHub Actions `BONSAI baseline` push run 29669146969, attempt 1
+- Start/end/duration: run `2026-07-19T01:47:34Z` through `2026-07-19T01:48:56Z`; per-job timestamps retained by GitHub
+- Exit code: all four jobs concluded `success`
+- Stdout/stderr artifact hashes: Linux `7139746343B454756FD8F293ACD77BAC453F9DC6FA13DBA71BAD8BB2E9BA1F88`; macOS arm64 `EFC562205BE6FFB843B38EECD909E6F673AFD595F1DEEDEC33EB813064601FFF`; macOS x86_64 `A65D4768622F798061BB0DEB61BC4201A45C14A03907FCAE133BCE72BD4AB97B`; Windows `5D31F7F1C40216C26F0FC07B3561FDA302AA6D3549F875630D94F872C4E8E909`
+- Fixtures/manifests/bundle IDs: artifact names `baseline-linux-x86_64`, `baseline-macos-arm64`, `baseline-macos-x86_64`, `baseline-windows-x86_64`
+- Counter availability and privileges: no physical counter evidence; artifacts set `physical_acceptance=false`, `energy_claim=false`, and `long_duration_claim=false`
+- Result: pass
+- Reviewer/attestation: GitHub job conclusions plus downloaded artifact content/hash inspection

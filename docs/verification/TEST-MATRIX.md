@@ -15,10 +15,10 @@ Rule: hosted CI proves portable semantics and catches regressions; it does not p
 
 | OS family | Runner label | Architecture | Evidence class | Checks | Physical acceptance | Energy/long-duration claim | Status |
 |---|---|---|---|---|---|---|---|
-| Windows | `windows-2025` | x86_64 | hosted-ci | Rust/Python universal gates plus governance | no | no | workflow-defined; live run required |
-| macOS | `macos-15` | arm64 | hosted-ci | Rust/Python universal gates plus governance | no | no | workflow-defined; live run required |
-| macOS | `macos-15-intel` | x86_64 | hosted-ci | Rust/Python universal gates plus governance | no | no | workflow-defined; live run required |
-| Linux | `ubuntu-24.04` | x86_64 | hosted-ci | Rust/Python universal gates plus governance | no | no | workflow-defined; live run required |
+| Windows | `windows-2025` | x86_64 | hosted-ci | Rust/Python universal gates plus governance | no | no | passed at `59e474a` / run 29669146969 |
+| macOS | `macos-15` | arm64 | hosted-ci | Rust/Python universal gates plus governance | no | no | passed at `59e474a` / run 29669146969 |
+| macOS | `macos-15-intel` | x86_64 | hosted-ci | Rust/Python universal gates plus governance | no | no | passed at `59e474a` / run 29669146969 |
+| Linux | `ubuntu-24.04` | x86_64 | hosted-ci | Rust/Python universal gates plus governance | no | no | passed at `59e474a` / run 29669146969 |
 
 The workflow pins action commits, uv 0.11.29, Python 3.12, and Rust 1.96.0. Every successful matrix job uploads a JSON classification artifact that explicitly says `hosted-ci`, `github-hosted-ephemeral-vm`, `physical_acceptance=false`, `energy_claim=false`, and `long_duration_claim=false`.
 
