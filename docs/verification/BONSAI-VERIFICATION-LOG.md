@@ -1050,3 +1050,31 @@ This is an append-only human index. Machine records created by `cargo xtask veri
 - Counter availability and privileges: deterministic lifecycle fixtures only; no OS enforcement or privileged counter claim
 - Result: pass
 - Reviewer/attestation: explicit lifecycle edges, one terminal outcome, valid failure evidence, hard-violation ineligibility, no-resume recovery, and strict workspace/Python/schema/governance gates passed locally; hosted closure remains attached to the focused commit
+
+## VER-BQ03-HOSTED — BQ-03 — 2026-07-19T19:41:33Z
+
+- Source revision and dirty state: `64c1f6d6d992f67859da8189e4c77132d65cf34c`; clean pushed revision
+- OS/architecture/physical-or-CI: Windows/x86_64, Linux/x86_64, macOS/arm64, macOS/x86_64; GitHub hosted CI; ephemeral virtual machines
+- Toolchain/dependency-lock hashes: workflow-pinned Rust 1.96.0, Python 3.12, and uv 0.11.29; source locks at the recorded revision
+- Command: GitHub Actions `BONSAI baseline` push run 29701098985, attempt 1
+- Start/end/duration: `2026-07-19T19:41:33Z` / `2026-07-19T19:45:50Z` / 257 s
+- Exit code: all four jobs concluded `success`; job IDs 88230181740 (Linux), 88230181751 (macOS arm64), 88230181755 (macOS Intel), and 88230181760 (Windows)
+- Stdout/stderr artifact hashes: retained by GitHub Actions
+- Fixtures/manifests/bundle IDs: compliant/soft/hard paths, invalid transitions, every-transition recovery, and complete existing corpus on every hosted runner
+- Counter availability and privileges: deterministic lifecycle fixtures only; no OS enforcement or privileged counter claim
+- Result: pass
+- Reviewer/attestation: exact run head SHA, run conclusion, and all four matrix-job conclusions inspected through public GitHub metadata; BQ-03 cross-OS gate is closed
+
+## VER-BQ04-GATE — BQ-04 — 2026-07-19
+
+- Source revision and dirty state: `64c1f6d6d992f67859da8189e4c77132d65cf34c`; dirty only with BQ-04 implementation, governance, and evidence
+- OS/architecture/physical-or-CI: Windows/x86_64; local; physical/virtual status unknown
+- Toolchain/dependency-lock hashes: Rust 1.96.0; locked repository Python environment; `Cargo.lock` unchanged from BQ-03
+- Command: machine record `BQ-04-1784490255254044900`; full universal/schema/governance gate through an external verifier copy
+- Start/end/duration: machine-record Unix UTC nanoseconds `1784490255254044900` / `1784490292513148300` / 37.2601049 s
+- Exit code: 0
+- Stdout/stderr artifact hashes: stdout `EC2D2F035876CEF9C5F2AC90A0494DE576FBD5EC85A257E3A340B06FFAEB48F2`; stderr `372D496CADBCACBCF88F59630FB68D36870DACDD41FF92C568BAF25B4FC0B423`
+- Fixtures/manifests/bundle IDs: two-step under-budget run, preflight work denial, missing-counter denial, five post-step overages, retained prior evidence, and complete existing repository corpus
+- Counter availability and privileges: deterministic portable supervisor fixtures only; no OS hard-cap or privileged counter claim
+- Result: pass
+- Reviewer/attestation: all five required counters, no-call preflight rejection, checked lifetime accounting, post-step termination, evidence preservation, budget-eligibility qualification, and strict workspace/Python/schema/governance gates passed locally; hosted closure remains attached to the focused commit

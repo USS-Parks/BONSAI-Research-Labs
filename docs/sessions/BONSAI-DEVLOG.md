@@ -713,3 +713,24 @@ This append-only log records executed PSPR prompts. Corrections are added as new
 - Commit SHA: pending; append in BQ-04 under the self-hash convention
 - Risks/blockers/parked scope changed: R-06 remains active for enforcement overshoot and R-08/R-09 for descendant/observer integration; recovery proves evidence closure rather than process resumption; no backend enforcement, instrument-completion, or C0–C5 claim is made and no parked scope revived
 - Next eligible prompt after gate and publication: BQ-04
+
+### BQ-03 closeout note
+
+- Focused implementation commit SHA: `64c1f6d6d992f67859da8189e4c77132d65cf34c`
+- Hosted verification: GitHub Actions run 29701098985, attempt 1, passed Windows x86_64, Linux x86_64, macOS arm64, and macOS Intel at that exact commit
+- Ledger rule: appended by BQ-04 because the BQ-03 commit could not contain its own immutable hash or post-push hosted-run identity
+
+## 2026-07-19 — BQ-04 — Basic supervised budget loop
+
+- Status: passed; closeout entry pending focused commit identity and hosted run
+- Authorization scope: user-authorized remaining M1 STS for this session plus the existing later-gated public source publication addendum
+- Dependencies and source revision: BQ-03 published and hosted-green at `64c1f6d6d992f67859da8189e4c77132d65cf34c`; BM-03 portable accounting semantics already published
+- Objective and exclusions: govern one primitive step loop with per-step/lifetime CPU-time, memory, storage, latency, and work-item charges; do not claim platform kernel hard caps, bounded physical overshoot, or a final C1 verdict
+- Reuse classification: extend `bonsai-governor` at the BQ-01/BQ-02/BQ-03 seams; reuse typed counters, canonical decision outcomes, checked arithmetic, ordered evidence maps, and the terminal lifecycle; add no dependency or alternate process runtime
+- Files changed: basic supervisor/report/tests, supervisor architecture contract, README/PSPR status, BQ-03 hosted closeout, DEVLOG, verification log, and retained machine evidence
+- Decisions/addenda: exactly five portable counters are mandatory; unavailable input and work-item overage reject before invoking the agent closure; all post-step totals are checked before state mutation; any measured per-step/lifetime overage terminates, preserves prior admitted evidence, and blocks further steps; `c1_budget_eligible` is explicitly a BV-04 input rather than a claim verdict
+- Verification summary: four focused tests cover two-step under-budget eligibility, preflight denial without agent execution, missing-counter rejection without agent execution, and individual CPU/memory/storage/latency/work-item overages after an admitted step; every overage retains ten ordered counter events and a terminal hard-violation bundle; the complete gate passed formatting, strict workspace Clippy, 94 Rust tests, 3 Python tests, schema compatibility, docs, ADR, license, governance-ledger, terminology, and CI-topology checks on Windows x86_64
+- Evidence paths and SHA-256 hashes: machine record `BQ-04-1784490255254044900` with stdout `EC2D2F035876CEF9C5F2AC90A0494DE576FBD5EC85A257E3A340B06FFAEB48F2` and stderr `372D496CADBCACBCF88F59630FB68D36870DACDD41FF92C568BAF25B4FC0B423`; implementation `7D114B9A9DF81FA89A95DCE1178B2C03300ECC0843F8C33AC70A08CCB8130AB5`; contract `48CFEA8F7E325276C0B233A93CF7487214E35DDB0EA4179734721461BB4F64B6`; `Cargo.lock` unchanged from BQ-03
+- Commit SHA: pending; append in the next M1 prompt under the self-hash convention
+- Risks/blockers/parked scope changed: R-06 remains active for physical enforcement overshoot; R-08/R-09 remain active for descendant/observer reserves; the basic portable loop closes M1 governance semantics but not later platform enforcement; no instrument-completion or C0–C5 claim is made and no parked scope revived
+- Next eligible M1 prompts after gate and publication: BK-01 and BE-01
