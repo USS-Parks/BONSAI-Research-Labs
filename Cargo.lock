@@ -183,6 +183,13 @@ dependencies = [
 ]
 
 [[package]]
+name = "bonsai-claims"
+version = "0.0.0"
+dependencies = [
+ "serde",
+]
+
+[[package]]
 name = "bonsai-contracts"
 version = "0.0.0"
 dependencies = [

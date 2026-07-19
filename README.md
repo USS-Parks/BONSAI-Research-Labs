@@ -9,7 +9,7 @@ BONSAI is an independent, algorithm-neutral measurement and external resource-go
 - Research charter: approved v0.1 on 2026-07-18.
 - PSPR: approved v0.1 on 2026-07-18.
 - Current execution authorization: remaining approved PSPR roster in dependency order, expanded by `Continue to STS` on 2026-07-18.
-- Implementation claims: M0 governed foundation, BC-01 through BC-12, BR-01 through BR-06, BM-01 through BM-04, BQ-01 through BQ-04, BK-01 through BK-03, and BE-01 through BE-02 are complete; no instrument-completion or C0–C5 claim.
+- Implementation claims: M0 governed foundation, BC-01 through BC-12, BR-01 through BR-06, BM-01 through BM-04, BQ-01 through BQ-04, BK-01 through BK-03, BE-01 through BE-02, and BV-01 are complete; no instrument-completion or C0–C5 claim.
 - Repository visibility: public under the approved 2026-07-18 repository-target addendum.
 - License: `MIT OR Apache-2.0` at the recipient's option.
 

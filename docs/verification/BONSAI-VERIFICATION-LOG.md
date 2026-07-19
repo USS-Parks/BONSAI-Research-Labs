@@ -1218,3 +1218,31 @@ This is an append-only human index. Machine records created by `cargo xtask veri
 - Counter availability and privileges: deterministic reference-agent fixtures only; no privileged input or platform counter claim
 - Result: pass
 - Reviewer/attestation: primitive-only/no-replay behavior, deterministic learning curve, exact work accounting, strict protocol order, Track A facts, and repository-wide gates passed locally; hosted closure remains attached to the focused commit
+
+## VER-BE02-HOSTED — BE-02 — 2026-07-19T20:29:19Z
+
+- Source revision and dirty state: `219386207a6e5bd015d3874869a218908e23d6ef`; clean pushed revision
+- OS/architecture/physical-or-CI: Windows/x86_64, Linux/x86_64, macOS/arm64, macOS/x86_64; GitHub hosted CI; ephemeral virtual machines
+- Toolchain/dependency-lock hashes: workflow-pinned Rust 1.96.0, Python 3.12, and uv 0.11.29; source locks at the recorded revision
+- Command: GitHub Actions `BONSAI baseline` push run 29702605825, attempts 1–2; attempt 2 reran only the failed macOS Intel job
+- Start/end/duration: `2026-07-19T20:29:19Z` / `2026-07-19T20:45:33Z` / 974 s including retry
+- Exit code: all four jobs concluded `success`; job IDs 88235101819 (Windows), 88235091963 (Linux), 88235100210 (macOS arm64), and 88235091603 (macOS Intel)
+- Stdout/stderr artifact hashes: retained by GitHub Actions; attempt 1 macOS Intel completed every repository gate and evidence generation, then its artifact upload failed with transient GitHub-service `ENOTFOUND`; attempt 2 uploaded successfully
+- Fixtures/manifests/bundle IDs: frozen primitive-control learning curves, Track A certification, exact work accounting, and complete existing corpus on every hosted runner
+- Counter availability and privileges: deterministic reference-agent fixtures only; no privileged input or physical-host counter claim
+- Result: pass
+- Reviewer/attestation: exact source SHA, both attempts, the original artifact-service failure log, and final all-green matrix were inspected through authenticated GitHub metadata; no source portability correction was warranted
+
+## VER-BV01-GATE — BV-01 — 2026-07-19
+
+- Source revision and dirty state: `219386207a6e5bd015d3874869a218908e23d6ef`; dirty only with BV-01 implementation, governance, and evidence
+- OS/architecture/physical-or-CI: Windows/x86_64; local; physical/virtual status unknown
+- Toolchain/dependency-lock hashes: Rust 1.96.0; locked repository Python environment; `Cargo.lock` SHA-256 `3DD00857088C2DA95FE3D7937C62219D64E71A625BB45379CD4183EDA08CD9A5`
+- Command: final machine record `BV-01-1784494131262268500`; full universal/schema/governance gate through an external verifier copy after governance closeout edits
+- Start/end/duration: machine-record Unix UTC nanoseconds `1784494131262268500` / `1784494157210895100` / 25.9493249 s
+- Exit code: 0
+- Stdout/stderr artifact hashes: stdout `711F265EAB8D7DD746AA27A9D18CECE211D52403FBEA0BC4196DFF61BE81635F`; stderr `B02DA9175FDE2D49F5B5EFBAF6B3EFEC2E07D1AEF09032B6683A6BE931A6833D`
+- Fixtures/manifests/bundle IDs: complete C0–C5 evidence, missing/failed/contradictory C0 evidence, failed C1 evidence, prerequisite propagation, stored rule version, and complete existing repository corpus
+- Counter availability and privileges: deterministic claim-rule fixtures only; no physical-host evidence or actual agent claim
+- Result: pass
+- Reviewer/attestation: ternary evidence folding, prerequisite enforcement, evidence tiers, reason graphs, exact C0–C5 coverage, version storage, and strict workspace/Python/schema/governance gates passed locally; hosted closure remains attached to the focused commit

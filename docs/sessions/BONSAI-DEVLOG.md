@@ -839,3 +839,24 @@ This append-only log records executed PSPR prompts. Corrections are added as new
 - Commit SHA: pending; append in the next M1 prompt under the self-hash convention
 - Risks/blockers/parked scope changed: this closes the M1 primitive controller only; R-10 remains active for hosted semantic equivalence and later agents/comparators remain parked; no continual-adaptation, abstraction, planning, instrument-completion, or C0–C5 claim is made
 - Next eligible M1 prompt after gate and publication: BV-01
+
+### BE-02 closeout note
+
+- Focused implementation commit SHA: `219386207a6e5bd015d3874869a218908e23d6ef`
+- Hosted verification: GitHub Actions run 29702605825 passed Windows x86_64, Linux x86_64, macOS arm64, and macOS Intel at that exact commit; attempt 1's macOS Intel artifact upload encountered transient `ENOTFOUND`, while all code and governance gates passed, and attempt 2 reran that failed job successfully
+- Ledger rule: appended by BV-01 because the BE-02 commit could not contain its own immutable hash or post-push hosted-run identity
+
+## 2026-07-19 — BV-01 — Claim-ladder rule engine skeleton
+
+- Status: passed; closeout entry pending focused commit identity and hosted run
+- Authorization scope: user-authorized remaining M1 STS for this session plus the existing later-gated public source publication addendum
+- Dependencies and source revision: BC-08 and BK-01 published; BE-02 published and hosted-green at `219386207a6e5bd015d3874869a218908e23d6ef`
+- Objective and exclusions: encode an agent-neutral, versioned C0–C5 rule skeleton with prerequisites, evidence tiers, ternary verdicts, and machine-readable reason graphs; do not hard-code a pass for a reference agent or implement the later concrete BV-04–BV-06 adjudication rules
+- Reuse classification: extend the existing Serde/workspace crate seams and BC-08 claim-result vocabulary; implement the smallest new `bonsai-claims` crate with deterministic ordered maps/sets and no dependency beyond the already-locked Serde family
+- Files changed: claims crate and tests, rule-engine contract, workspace manifest/lock, README/PSPR status, BE-02 hosted closeout, DEVLOG, verification log, and retained machine evidence
+- Decisions/addenda: the rule set must cover C0 through C5 exactly once; every rule has criteria; prerequisites must be lower claim levels; duplicate criteria/facts and malformed versions fail closed; explicit failed evidence yields fail, missing or contradictory evidence yields indeterminate, and prerequisites propagate their verdict to all dependent levels; results and each claim store rule version `1.0.0`
+- Verification summary: three focused tests cover complete evidence, missing/failed/contradictory evidence, prerequisite propagation, sorted reason graphs, and stored rule versions; the complete gate passed formatting, strict workspace Clippy, 107 Rust tests, Ruff, strict Pyright, 9 Python tests, schema compatibility, docs, ADR, license, governance-ledger, terminology, and CI-topology checks on Windows x86_64
+- Evidence paths and SHA-256 hashes: final machine record `BV-01-1784494131262268500` with stdout `711F265EAB8D7DD746AA27A9D18CECE211D52403FBEA0BC4196DFF61BE81635F` and stderr `B02DA9175FDE2D49F5B5EFBAF6B3EFEC2E07D1AEF09032B6683A6BE931A6833D`; implementation `37FA33758B87DDB997FD580C656EAAC970E64DD52F16006964D9BF46F5372B01`; contract `558D506527BE2DE13E6938B5C68834A94A68A7AE1F7577CCA8DB3279F8380EFD`; `Cargo.lock` `3DD00857088C2DA95FE3D7937C62219D64E71A625BB45379CD4183EDA08CD9A5`
+- Commit SHA: pending; append in BV-02 under the self-hash convention
+- Risks/blockers/parked scope changed: the skeleton can evaluate supplied evidence but is not itself a C0–C5 result; concrete C0/C1 rules remain BV-04 outside M1 and C2+ work remains parked; no agent-quality, instrument-completion, or claim-ladder pass is asserted
+- Next eligible M1 prompt after gate and publication: BV-02
