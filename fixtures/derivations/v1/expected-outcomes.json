@@ -1,0 +1,21 @@
+{
+  "format": "bonsai.derivation/v1",
+  "cases": [
+    {
+      "name": "all_table_contracts",
+      "expected": "DERIVATION_TABLES_VALID"
+    },
+    {
+      "name": "identical_regeneration",
+      "expected": "DERIVATION_SEMANTICALLY_IDENTICAL"
+    },
+    {
+      "name": "wrong_source_hash",
+      "expected": "DERIVATION_INPUT_MISMATCH"
+    },
+    {
+      "name": "stale_producer",
+      "expected": "DERIVATION_STALE"
+    }
+  ]
+}

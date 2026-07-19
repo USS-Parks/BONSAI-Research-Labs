@@ -21,6 +21,10 @@ static TEMPORARY_SEQUENCE: AtomicU64 = AtomicU64::new(0);
 pub struct BlobId([u8; 32]);
 
 impl BlobId {
+    pub(crate) const fn from_bytes(bytes: [u8; 32]) -> Self {
+        Self(bytes)
+    }
+
     /// Parse the canonical lowercase 64-character hexadecimal representation.
     ///
     /// # Errors

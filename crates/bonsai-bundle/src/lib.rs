@@ -10,8 +10,14 @@ use std::fs::{self, File, OpenOptions};
 use std::io::{self, BufReader, BufWriter, Read, Write};
 use std::path::{Path, PathBuf};
 
+mod derivation;
 mod index;
 
+pub use derivation::{
+    AnalyticalTable, DecisionRow, DerivationError, DerivationExpectation, DerivationSpec,
+    DerivedTableSummary, EventRow, LineageRow, MetricRow, TableKind, materialize_derivation,
+    validate_derivation,
+};
 pub use index::{
     BlobId, BlobSummary, BundleIndex, BundleIndexError, IndexSummary, IndexedArtifact,
     IndexedSegment, put_blob, put_blob_verified, rebuild_index, validate_blob,

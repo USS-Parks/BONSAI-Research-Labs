@@ -476,3 +476,31 @@ This is an append-only human index. Machine records created by `cargo xtask veri
 - Counter availability and privileges: portable storage and simulated fixture evidence only; no network database, agent access, live ingest, physical counter, privileged collector, energy, or long-duration evidence
 - Result: pass
 - Reviewer/attestation: exact BC-10 rebuild/hash/collision/traversal/read-only gate, strict workspace lint/tests, Python gates, schema compatibility, and all governance checks passed locally; hosted three-family evidence remains pending the focused published commit
+
+## VER-BC10-HOSTED — BC-10 — 2026-07-19T14:14:10Z
+
+- Source revision and dirty state: `5b64c01413abc4f7c6ae189e14e3e94d88380bb7`; clean pushed revision
+- OS/architecture/physical-or-CI: Windows/x86_64, Linux/x86_64, macOS/arm64, macOS/x86_64; GitHub hosted CI; ephemeral virtual machines
+- Toolchain/dependency-lock hashes: workflow-pinned Rust 1.96.0, Python 3.12, and uv 0.11.29; source locks at the recorded revision
+- Command: GitHub Actions `BONSAI baseline` push run 29690432057, attempt 1
+- Start/end/duration: `2026-07-19T14:14:10Z` / `2026-07-19T14:17:11Z` / 181 s
+- Exit code: all four jobs concluded `success`
+- Stdout/stderr artifact hashes: retained by GitHub Actions; job IDs 88202053692 (macOS arm64), 88202053694 (macOS Intel), 88202053695 (Linux), and 88202053715 (Windows)
+- Fixtures/manifests/bundle IDs: hosted Rust gate exercised `bonsai.bundle-index/v1` rebuild, hash/collision/traversal refusal, repeated row equivalence, and SQLite read-only enforcement on every OS family
+- Counter availability and privileges: portable storage fixture evidence only; no network database, agent, physical counter, privileged collector, energy, or long-duration evidence
+- Result: pass
+- Reviewer/attestation: run head SHA, run conclusion, and every matrix-job conclusion inspected through the GitHub API
+
+## VER-BC11-GATE — BC-11 — 2026-07-19T14:34:09Z
+
+- Source revision and dirty state: `5b64c01413abc4f7c6ae189e14e3e94d88380bb7`; dirty with BC-11 changes
+- OS/architecture/physical-or-CI: Windows/x86_64; local; physical/virtual status unknown
+- Toolchain/dependency-lock hashes: Rust 1.96.0; Python 3.14.4; uv 0.11.29; `Cargo.lock` SHA-256 `282632B786D3D1972A6B92379A47A658EBFBC97AFBB992C1B40C86B9F4C4FB0D`
+- Command: machine record `BC-11-1784471649324168400`; full universal/schema/governance gate through external verifier copy SHA-256 `C021A501CFB1B84689457F8820866666A75B0C0726F5E0BBFA5FF5E8D942027E`
+- Start/end/duration: `2026-07-19T14:34:09.324Z` / `2026-07-19T14:35:16.400Z` / 67.0774066 s
+- Exit code: 0
+- Stdout/stderr artifact hashes: stdout `2612baef9494fab59c60ec5d92cc88d7514546bbdc963d2c6143c911afe73b09`; stderr `2ab885413b1a6ca9d0d624a9af41d2b9a25fab6fc2e7367985dea0fe034672c0`
+- Fixtures/manifests/bundle IDs: `bonsai.derivation/v1` matrix SHA-256 `E0E03D4B39C7CA746C275F83A3B6919A174F5900910861CD5C2A2805FE371BE7`; exact outcomes `DERIVATION_TABLES_VALID`, `DERIVATION_SEMANTICALLY_IDENTICAL`, `DERIVATION_INPUT_MISMATCH`, and `DERIVATION_STALE`; all event/metric/lineage/decision tables round-tripped
+- Counter availability and privileges: analytical fixture evidence only; no raw-evidence authority, metric computation, claim adjudication, live ingest, physical counter, privileged collector, energy, or long-duration evidence
+- Result: pass
+- Reviewer/attestation: exact BC-11 schema/provenance/semantic-regeneration/wrong-input/stale gate, strict workspace lint/tests, Python gates, schema compatibility, and all governance checks passed locally; hosted three-family evidence remains pending the focused published commit

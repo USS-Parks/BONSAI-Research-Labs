@@ -1,0 +1,61 @@
+   Compiling num-traits v0.2.19
+   Compiling zerocopy-derive v0.8.54
+    Checking prost v0.14.4
+    Checking bonsai-contracts v0.0.0 (C:\Users\17076\Documents\Reinforcement Learning Project\crates\bonsai-contracts)
+    Checking zerocopy v0.8.54
+    Checking num-integer v0.1.46
+    Checking num-complex v0.4.6
+    Checking chrono v0.4.45
+    Checking num-bigint v0.4.8
+    Checking num-iter v0.1.46
+    Checking num-rational v0.4.2
+    Checking num v0.4.3
+    Checking fraction v0.15.4
+    Checking ahash v0.8.12
+    Checking half v2.7.1
+    Checking referencing v0.48.1
+    Checking arrow-buffer v59.1.0
+    Checking arrow-data v59.1.0
+    Checking jsonschema v0.48.1
+    Checking arrow-array v59.1.0
+    Checking arrow-select v59.1.0
+    Checking bonsai-xtask v0.0.0 (C:\Users\17076\Documents\Reinforcement Learning Project\crates\bonsai-xtask)
+    Checking arrow-ipc v59.1.0
+    Checking parquet v59.1.0
+    Checking bonsai-bundle v0.0.0 (C:\Users\17076\Documents\Reinforcement Learning Project\crates\bonsai-bundle)
+    Finished `dev` profile [unoptimized + debuginfo] target(s) in 17.88s
+   Compiling num-traits v0.2.19
+   Compiling zerocopy v0.8.54
+   Compiling prost v0.14.4
+   Compiling prost-build v0.14.4
+   Compiling num-integer v0.1.46
+   Compiling num-complex v0.4.6
+   Compiling chrono v0.4.45
+   Compiling num-bigint v0.4.8
+   Compiling num-iter v0.1.46
+   Compiling bonsai-contracts v0.0.0 (C:\Users\17076\Documents\Reinforcement Learning Project\crates\bonsai-contracts)
+   Compiling num-rational v0.4.2
+   Compiling num v0.4.3
+   Compiling fraction v0.15.4
+   Compiling ahash v0.8.12
+   Compiling half v2.7.1
+   Compiling referencing v0.48.1
+   Compiling arrow-buffer v59.1.0
+   Compiling jsonschema v0.48.1
+   Compiling arrow-data v59.1.0
+   Compiling arrow-array v59.1.0
+   Compiling arrow-select v59.1.0
+   Compiling bonsai-xtask v0.0.0 (C:\Users\17076\Documents\Reinforcement Learning Project\crates\bonsai-xtask)
+   Compiling arrow-ipc v59.1.0
+   Compiling parquet v59.1.0
+   Compiling bonsai-bundle v0.0.0 (C:\Users\17076\Documents\Reinforcement Learning Project\crates\bonsai-bundle)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 30.40s
+     Running unittests src\lib.rs (target\debug\deps\bonsai_bundle-759c5482d06ae0e6.exe)
+     Running tests\bundle_index_fixtures.rs (target\debug\deps\bundle_index_fixtures-10090d90831136be.exe)
+     Running tests\derivation_fixtures.rs (target\debug\deps\derivation_fixtures-4807433bd955e99b.exe)
+     Running tests\segment_fixtures.rs (target\debug\deps\segment_fixtures-e3c242cdc2280ea2.exe)
+     Running unittests src\lib.rs (target\debug\deps\bonsai_contracts-9ce9edb21cf9e53b.exe)
+     Running unittests src\main.rs (target\debug\deps\bonsai_xtask-12fa8a6e7bf1ec7d.exe)
+     Running tests\verification_fixture.rs (target\debug\deps\verification_fixture-b141c4fd6e631b41.exe)
+   Doc-tests bonsai_bundle
+   Doc-tests bonsai_contracts
