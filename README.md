@@ -26,7 +26,7 @@ The M0 session runs in an isolated Git worktree. The authoritative checkout and 
 
 ## Sources of truth
 
-Start with the [BONSAI Research Charter package](./BONSAI%20Research%20Charter/README.md), including the [research charter](./BONSAI%20Research%20Charter/BONSAI-RESEARCH-CHARTER.md), [OaK evidence register](./BONSAI%20Research%20Charter/OAK-EVIDENCE-AND-TRACEABILITY.md), and [approved PSPR](./BONSAI%20Research%20Charter/BONSAI-CANONICAL-PLAN-SEQUENTIAL-PROMPT-ROSTER.md).
+Start with the [source-of-truth governance](./docs/governance/SOURCE-OF-TRUTH.md) and the [BONSAI Research Charter package](./BONSAI%20Research%20Charter/README.md), including the [research charter](./BONSAI%20Research%20Charter/BONSAI-RESEARCH-CHARTER.md), [OaK evidence register](./BONSAI%20Research%20Charter/OAK-EVIDENCE-AND-TRACEABILITY.md), and [approved PSPR](./BONSAI%20Research%20Charter/BONSAI-CANONICAL-PLAN-SEQUENTIAL-PROMPT-ROSTER.md).
 
 ## Baseline identity record
 
