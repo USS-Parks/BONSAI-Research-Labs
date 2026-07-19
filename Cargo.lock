@@ -221,6 +221,7 @@ dependencies = [
 name = "bonsai-metrics"
 version = "0.0.0"
 dependencies = [
+ "bonsai-platform",
  "serde",
  "serde_json",
 ]

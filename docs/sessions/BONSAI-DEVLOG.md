@@ -776,3 +776,24 @@ This append-only log records executed PSPR prompts. Corrections are added as new
 - Commit SHA: pending; append in BK-03 under the self-hash convention
 - Risks/blockers/parked scope changed: R-10 remains active for later multi-platform numeric audit; exact toy curves prove the implementation contract rather than scientific adequacy; no regret is produced without a comparator and no adaptation, report, instrument-completion, or C0–C5 claim is made
 - Next eligible prompt after gate and publication: BK-03
+
+### BK-02 closeout note
+
+- Focused implementation commit SHA: `2bc73566cc2ba66c8eec0e3a4a7d6dad08b46b61`
+- Hosted verification: GitHub Actions run 29701818896, attempt 1, passed Windows x86_64, Linux x86_64, macOS arm64, and macOS Intel at that exact commit
+- Ledger rule: appended by BK-03 because the BK-02 commit could not contain its own immutable hash or post-push hosted-run identity
+
+## 2026-07-19 — BK-03 — Resource and overhead metrics
+
+- Status: passed; closeout entry pending focused commit identity and hosted run
+- Authorization scope: user-authorized remaining M1 STS for this session plus the existing later-gated public source publication addendum
+- Dependencies and source revision: BK-01 and BM-04 published; BK-02 published and hosted-green at `2bc73566cc2ba66c8eec0e3a4a7d6dad08b46b61`
+- Objective and exclusions: summarize CPU/wall/accelerator/memory/storage/I/O/work/energy totals, headroom, violations, calibration error, and paired overhead while refusing cross-platform aggregation of semantically incomparable fields
+- Reuse classification: replace the BK-01 resource placeholder; reuse BM-04 `CounterCalibration`, ordered rows, checked integer PPM arithmetic, Serde, and D-11's settled ceilings; add a path dependency on the existing `bonsai-platform` crate only
+- Files changed: resource/overhead table implementation and tests, metrics dependency/lock, metric contract, README/PSPR status, BK-02 hosted closeout, DEVLOG, verification log, and retained machine evidence
+- Decisions/addenda: every row retains platform/unit/semantic scope and is never aggregated; missing totals require a reason; claim readiness requires measured in-tolerance calibration, no violation, and headroom; point overhead derives from raw paired throughput/p95 values; confidence bounds below their point estimates are rejected; D-11 applies 50,000/100,000 PPM upper-bound ceilings
+- Verification summary: four focused tests cover calibrated CPU/storage/work known totals and exact headroom, unavailable energy, separate RSS/virtual semantics, D-11 pass/fail at the exact upper-bound threshold, mismatched calibration, and contradictory confidence bounds; initial compilation tightened the duplicate-counter tracker to an owned prior identity; the complete gate passed formatting, strict workspace Clippy, 104 Rust tests, 3 Python tests, schema compatibility, docs, ADR, license, governance-ledger, terminology, and CI-topology checks on Windows x86_64
+- Evidence paths and SHA-256 hashes: machine record `BK-03-1784491651197673300` with stdout `026790852A784EC659A8746E79831C30842C49888EC1C5817B6AAB0C1B4C6EF3` and stderr `1D5621A9E41C7199CF46B674A607BBD1C5C99CE2726A03FFE9985AA1BE12B4F2`; implementation `0D5BCD0187AA8218BE98F2EA33060E81FFAB49FD953C80065DCC5651ED4CCFE9`; contract `701CC501E6E999982ED9C7F6D796A6F1B00FBA2ACF96D5D2170F788277A656EA`; `Cargo.lock` `E21B60A804C096CCF7FED0D3A3A58DFBD4CCF5294DFB64C5E04FA2D81B7EBDE8`
+- Commit SHA: pending; append in the next M1 prompt under the self-hash convention
+- Risks/blockers/parked scope changed: R-06 remains active until BV-10 paired acceptance and R-10 for broader equivalence; D-11 is enforced on supplied paired evidence but no physical-host or final overhead acceptance is claimed; no instrument-completion or C0–C5 claim is made
+- Next eligible M1 prompts after gate and publication: BE-01 and BV-01

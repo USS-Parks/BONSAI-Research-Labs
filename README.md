@@ -9,7 +9,7 @@ BONSAI is an independent, algorithm-neutral measurement and external resource-go
 - Research charter: approved v0.1 on 2026-07-18.
 - PSPR: approved v0.1 on 2026-07-18.
 - Current execution authorization: remaining approved PSPR roster in dependency order, expanded by `Continue to STS` on 2026-07-18.
-- Implementation claims: M0 governed foundation, BC-01 through BC-12, BR-01 through BR-06, BM-01 through BM-04, BQ-01 through BQ-04, and BK-01 through BK-02 are complete; no instrument-completion or C0–C5 claim.
+- Implementation claims: M0 governed foundation, BC-01 through BC-12, BR-01 through BR-06, BM-01 through BM-04, BQ-01 through BQ-04, and BK-01 through BK-03 are complete; no instrument-completion or C0–C5 claim.
 - Repository visibility: public under the approved 2026-07-18 repository-target addendum.
 - License: `MIT OR Apache-2.0` at the recipient's option.
 
@@ -63,4 +63,4 @@ The versioned storage layout is specified in the [event segment format](./docs/a
 
 The runtime boundary is specified in the [adapter protocol](./docs/architecture/ADAPTER-PROTOCOL.md), [bounded process transport](./docs/architecture/PROCESS-TRANSPORT.md), [event ingestion validation](./docs/architecture/EVENT-INGESTION-VALIDATION.md), [event partial-order semantics](./docs/architecture/EVENT-ORDERING.md), [run lifecycle and recovery contract](./docs/architecture/RUN-LIFECYCLE-AND-RECOVERY.md), and [agent/observer isolation contract](./docs/architecture/AGENT-OBSERVER-ISOLATION.md). Platform-neutral measurement begins with the [resource sample interface](./docs/architecture/RESOURCE-SAMPLE-INTERFACE.md), [clock calibration/deadline basis](./docs/architecture/CLOCK-CALIBRATION-AND-DEADLINES.md), [portable resource accounting](./docs/architecture/PORTABLE-RESOURCE-ACCOUNTING.md), and [measurement calibration harness](./docs/architecture/MEASUREMENT-CALIBRATION.md). External governance begins with [typed budget arithmetic and scopes](./docs/architecture/BUDGET-ARITHMETIC-AND-SCOPES.md), [deterministic admission decisions](./docs/architecture/GOVERNOR-ADMISSION-DECISIONS.md), the [violation lifecycle](./docs/architecture/GOVERNOR-VIOLATION-LIFECYCLE.md), and the [basic supervised budget loop](./docs/architecture/BASIC-SUPERVISED-BUDGET-LOOP.md).
 
-Analysis begins with the [versioned metric registry](./docs/metrics/REGISTRY.md) and [primary behavior metrics](./docs/metrics/PRIMARY-BEHAVIOR-METRICS.md); derived report values must originate in deterministic metric tables.
+Analysis begins with the [versioned metric registry](./docs/metrics/REGISTRY.md), [primary behavior metrics](./docs/metrics/PRIMARY-BEHAVIOR-METRICS.md), and [resource/overhead metrics](./docs/metrics/RESOURCE-AND-OVERHEAD-METRICS.md); derived report values must originate in deterministic metric tables.
