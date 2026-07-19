@@ -671,3 +671,24 @@ This append-only log records executed PSPR prompts. Corrections are added as new
 - Commit SHA: pending; append in BQ-02 under the self-hash convention
 - Risks/blockers/parked scope changed: R-06 remains active for enforcement overshoot; R-08/R-09 remain active for descendant and observer reserves; unavailable hard measurements fail closed here but actual decision mapping is BQ-02; no parked scope revived and no backend enforcement, physical-host, energy, instrument-completion, or C0–C5 claim is made
 - Next eligible prompt after gate and publication: BQ-02
+
+### BQ-01 closeout note
+
+- Focused implementation commit SHA: `5cbd77e664f01a6f07f972e78967d5b6b05d6246`
+- Hosted verification: GitHub Actions run 29700476523, attempt 1, passed Windows x86_64, Linux x86_64, macOS arm64, and macOS Intel at that exact commit
+- Ledger rule: appended by BQ-02 because the BQ-01 commit could not contain its own immutable hash or post-push hosted-run identity
+
+## 2026-07-19 — BQ-02 — Deterministic admission decisions
+
+- Status: passed; closeout entry pending focused commit identity and hosted run
+- Authorization scope: user-authorized remaining M1 STS for this session plus the existing later-gated public source publication addendum
+- Dependencies and source revision: BQ-01 published and hosted-green at `5cbd77e664f01a6f07f972e78967d5b6b05d6246`
+- Objective and exclusions: deterministically derive admit, defer, throttle, or reject from an immutable policy reference, typed request, and BQ-01 projections with stable reason codes; do not learn policy, mutate accounting, terminate work, or implement the violation lifecycle
+- Reuse classification: extend `bonsai-governor` at the BQ-01 projection seam; reuse canonical contract outcome/work/scope enums, Serde canonical struct serialization, and SHA-256; introduce no scheduler, platform, or runtime authority
+- Files changed: decision engine/tests, projection threshold evidence, governor dependencies/lock, decision architecture contract, README/PSPR status, BQ-01 hosted closeout, DEVLOG, verification log, and retained machine evidence
+- Decisions/addenda: precedence is unavailable required measurement, hard exceed, rolling soft defer, non-rolling soft throttle, then admit; caller-supplied projections must match request amounts, thresholds, availability, and derived states; limit projections are identity-sorted; canonical evidence binds the policy hash and all input facts; malformed or contradictory projections fail before any decision evidence is emitted
+- Verification summary: eight governor tests cover all four outcomes, stable reason/action shapes, 100 byte-identical repetitions, missing hard-counter rejection, contradictory projection rejection, BQ-01 arithmetic boundaries, rolling windows, and overflow; the complete gate passed formatting, strict workspace Clippy, 86 Rust tests, 3 Python tests, schema compatibility, docs, ADR, license, governance-ledger, terminology, and CI-topology checks on Windows x86_64
+- Evidence paths and SHA-256 hashes: machine record `BQ-02-1784489349257426500` with stdout `13A9D41E2B6413E972A108CF81531387EB768A5465BD3AF27504527A52B28343` and stderr `2AEC63E277D8D5D34FABC101FE4452F7ACED96C2879B172F22D73525AE24E50A`; implementation `B58719EDC4220C5FD2A3C5FF5BBC21CD36DEED4744992A066FBA133076DA1100`; contract `96FB35D934E0904DB233C7EA0EA7DAD9B074F4F3799F21649A4D812707C3E9EC`; `Cargo.lock` `5D5E304EA40DB8C267DCDF1F926959DF290BE0A10BBE1322341E4A18FDB6CA3E`
+- Commit SHA: pending; append in BQ-03 under the self-hash convention
+- Risks/blockers/parked scope changed: R-06 remains active for enforcement overshoot; R-08/R-09 remain active for descendants and observer reserves; BQ-02 proves deterministic evidence selection but not process enforcement, runtime terminality, instrument completion, or C0–C5 eligibility; no parked scope revived
+- Next eligible prompt after gate and publication: BQ-03

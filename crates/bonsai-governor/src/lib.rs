@@ -8,6 +8,8 @@ use std::collections::{HashMap, VecDeque};
 use std::error::Error;
 use std::fmt;
 
+pub mod decision;
+
 #[derive(Clone, Debug, Deserialize, Eq, Hash, PartialEq, Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct CounterKey {
@@ -50,6 +52,8 @@ pub struct ScopeProjection {
     pub scope: BudgetScope,
     pub consumed_before: Option<u64>,
     pub requested: u64,
+    pub soft_limit: u64,
+    pub hard_limit: u64,
     pub projected: Option<u64>,
     pub state: LimitProjection,
 }
@@ -179,6 +183,8 @@ impl BudgetAccounts {
                         scope: limit.scope,
                         consumed_before: None,
                         requested: request.amount,
+                        soft_limit: limit.soft_limit,
+                        hard_limit: limit.hard_limit,
                         projected: None,
                         state: LimitProjection::MeasurementUnavailable,
                     });
@@ -204,6 +210,8 @@ impl BudgetAccounts {
                     scope: limit.scope,
                     consumed_before: Some(consumed),
                     requested: request.amount,
+                    soft_limit: limit.soft_limit,
+                    hard_limit: limit.hard_limit,
                     projected: Some(projected),
                     state,
                 })

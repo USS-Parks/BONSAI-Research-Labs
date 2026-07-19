@@ -14,3 +14,5 @@ workspace = true
 [dependencies]
 bonsai-contracts = { path = "../bonsai-contracts" }
 serde = { version = "1.0.229", features = ["derive"] }
+serde_json = "1.0.150"
+sha2 = "0.11.0"
