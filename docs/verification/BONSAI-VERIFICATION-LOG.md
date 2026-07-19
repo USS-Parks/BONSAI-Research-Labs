@@ -1328,5 +1328,33 @@ This is an append-only human index. Machine records created by `cargo xtask veri
 - Stdout/stderr artifact hashes: stdout `CFEF637E2639754650BE4C54FBB5676699E6968C31686EA87398A0BCFDC1C0DC`; stderr `3C00669DEFCCDE78C01E59089E62677D0BC9FE258A2668840A36CA703C85600F`
 - Fixtures/manifests/bundle IDs: bundle `90000000-0000-4000-8000-000000000003`; frozen 32-step summary; Windows/Linux/macOS arm64/macOS Intel platform rows; four local validator verdicts `VALID`; semantic SHA-256 `f70c2261126be9a064d5d6d856e4c286beafba393cb2cb96e3c59b79beb9f999`
 - Counter availability and privileges: exact semantic work counts and E0 only; hardware inventory explicitly unattested where collectors are absent; no physical energy, thermal, hard process-enforcement, or long-duration evidence
-- Result: pass locally; hosted BE-03/M1 acceptance pending focused commit
+- Result: pass locally; subsequently closed by `VER-BE03-HOSTED`
 - Reviewer/attestation: primitive-control result, exact external budget decision/headroom, schema/hash/track/inventory/policy/failure/metric provenance, static report, platform qualification, semantic equivalence, honest overhead and claim limitations, and strict repository-wide gates passed locally
+
+## VER-BE03-HOSTED — BE-03 / M1 — 2026-07-19T21:39:35Z
+
+- Source revision and dirty state: `26d693247064bf66eadf454bff646f4a5855b5eb`; clean pushed focused implementation revision
+- OS/architecture/physical-or-CI: Windows/x86_64, Linux/x86_64, macOS/arm64, macOS/x86_64; GitHub hosted CI; ephemeral virtual machines
+- Toolchain/dependency-lock hashes: workflow-pinned Rust 1.96.0, Python 3.12, and uv 0.11.29; source locks at the recorded revision
+- Command: GitHub Actions `BONSAI baseline` push run 29704755467, attempt 1
+- Start/end/duration: `2026-07-19T21:39:35Z` / `2026-07-19T21:44:55Z` / 320 s
+- Exit code: run conclusion `success`; baseline job IDs 88239748767 (Windows x86_64), 88239748768 (Linux x86_64), 88239748766 (macOS arm64), and 88239748753 (macOS Intel); aggregate job 88240145129
+- Stdout/stderr artifact hashes: retained by GitHub Actions; uploaded heartbeat artifact digests were `a82c3142823642be0b25c5fd2cd7c8bd59ac6e3d270ba205bedf7e47172e9417` (Windows), `7043446cff1734e27e1fbce3fbf6fcda965db4e442727c24e01196fe3f6f8d0c` (Linux), `e132879e0a171a069ebdc4506569c502fe1386ba0425f7dbfdf71ccbf1f3ff11` (macOS arm64), and `b6dfe1e93d3eab5ef58b6b593d6bb92ce8b42195c137aeabc32a75d2f6d51572` (macOS Intel)
+- Fixtures/manifests/bundle IDs: each baseline job generated, rendered, validated, and uploaded bundle `90000000-0000-4000-8000-000000000003`; aggregate job downloaded all four bundles and passed semantic SHA-256 `f70c2261126be9a064d5d6d856e4c286beafba393cb2cb96e3c59b79beb9f999`
+- Counter availability and privileges: exact semantic work counts and E0 only; hardware fields are unattested where collectors are absent; no physical energy, thermal, hard process-enforcement, or long-duration evidence
+- Result: pass; BE-03 and the M1 auditable-heartbeat milestone gate are closed
+- Reviewer/attestation: authenticated GitHub metadata and the successful aggregate job log establish the exact head SHA, four valid hosted platform bundles, and exact cross-platform semantic equality; C0/C1 remain `not_adjudicated`, and no instrument-completion or C0–C5 pass claim is made
+
+## VER-M1-CLOSEOUT-LOCAL — M1-CLOSEOUT — 2026-07-19
+
+- Source revision and dirty state: `26d693247064bf66eadf454bff646f4a5855b5eb`; dirty only with M1 governance closeout and retained verification evidence
+- OS/architecture/physical-or-CI: Windows/x86_64; local; physical/virtual status unknown
+- Toolchain/dependency-lock hashes: Rust 1.96.0; locked repository Python environment; byte-identical external verifier SHA-256 `BFB57A295CC709C0CCB75A5802CED2EBA25D5C0214FD59BC5672A231545874E9`
+- Command: machine record `M1-CLOSEOUT-1784497794956972200`; full universal/schema/governance gate through an external verifier copy
+- Start/end/duration: machine-record Unix UTC nanoseconds `1784497794956972200` / `1784497840656029800` / 45.7003026 s
+- Exit code: 0
+- Stdout/stderr artifact hashes: stdout `2C2F6F910FC6FEADA4E61FF53E97A1EA7F295C7059BE5CC9A4222710D527DE31`; stderr `79250592540DD277D3209352FA08A7F450E0C6A9FECD14C428AFEC3C11852CD7`
+- Fixtures/manifests/bundle IDs: complete existing repository corpus, M1 prompt-state reconciliation, BE-03 hosted ledger evidence, and governance closeout text
+- Counter availability and privileges: deterministic local checks and prior hosted semantic evidence only; no physical energy, thermal, hard process-enforcement, or long-duration evidence
+- Result: pass
+- Reviewer/attestation: M1 closeout preserves the canonical milestone gate, immutable BE-03 hosted evidence, and explicit scientific limitations; strict workspace/Python/schema/governance gates passed locally
