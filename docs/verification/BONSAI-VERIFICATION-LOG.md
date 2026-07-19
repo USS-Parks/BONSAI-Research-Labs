@@ -141,3 +141,17 @@ This is an append-only human index. Machine records created by `cargo xtask veri
 - Counter availability and privileges: no physical counter evidence; artifacts set `physical_acceptance=false`, `energy_claim=false`, and `long_duration_claim=false`
 - Result: pass
 - Reviewer/attestation: GitHub job conclusions plus downloaded artifact content/hash inspection
+
+## VER-BG10-PRECOMMIT — BG-10 — 2026-07-19T01:54:31Z
+
+- Source revision and dirty state: `d2774154931f91a3205ac415aed7c791cddd5035`; dirty with BG-10 checkpoint changes
+- OS/architecture/physical-or-CI: Windows/x86_64; local; physical/virtual status unknown
+- Toolchain/dependency-lock hashes: unchanged from VER-BG06-GATE
+- Command: universal Cargo and uv gates; every component governance checker; `py -3 -B scripts/check_m0.py --allow-dirty`
+- Start/end/duration: `2026-07-19T01:54:31.9333946Z` / `2026-07-19T01:54:42.0358375Z` / 10.1024429 s
+- Exit code: 0 for every gate command
+- Stdout/stderr artifact hashes: command output retained in the STS session transcript; M0 checkpoint is a committed source artifact after the next commit
+- Fixtures/manifests/bundle IDs: M0 required-file and prompt-status audit
+- Counter availability and privileges: no physical counter or capability evidence; none claimed
+- Result: pass pre-commit; clean checkpoint pending
+- Reviewer/attestation: automated universal and source-of-truth audit

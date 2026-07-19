@@ -166,3 +166,18 @@ This append-only log records executed PSPR prompts. Corrections are added as new
 - Commit SHA: `59e474a8a3eeddbc071b02c0152d8d7925b9af27` (workflow checkpoint); this closeout note follows after live evidence
 - Risks/blockers/parked scope changed: hosted evidence explicitly cannot resolve R-04, R-05, R-13, or R-14
 - Next eligible prompt: BG-10
+
+## 2026-07-18 — BG-10 — M0 baseline and governance checkpoint
+
+- Status: executing; pre-commit gate passed, clean implementation checkpoint pending
+- Authorization scope: user-authorized M0 STS; BC-01 remains unauthorized
+- Dependencies and source revision: BG-01 through BG-09; BG-09 closeout at `d2774154931f91a3205ac415aed7c791cddd5035`
+- Objective and exclusions: reconcile files, decisions, risks, gates, logs, milestone cuts, publication, and claim boundaries before contract code; no BC implementation
+- Reuse classification: reuse every M0 checker and ledger through one source-of-truth checkpoint
+- Files changed: M0 checkpoint, M0 validator, DEVLOG, verification log, PSPR executing status
+- Decisions/addenda: M0 ends with a governed foundation and explicit stop before BC-01; C0–C5 and instrument completion remain not-run
+- Verification summary: pre-commit universal/governance/M0 gate passed; clean-commit gate, all-history secret scan, remote equality, and final hosted CI remain pending
+- Evidence paths and SHA-256 hashes: `docs/verification/M0-CHECKPOINT.md`; final identities pending
+- Commit SHA: pending implementation checkpoint
+- Risks/blockers/parked scope changed: no parked scope revived; R-16 remains active through final public push
+- Next eligible prompt: none within current authorization after BG-10
