@@ -1,0 +1,38 @@
+[project]
+name = "bonsai-reference"
+version = "0.0.0"
+description = "BONSAI reference-science and adapter package (M0 scaffold only)"
+readme = "README.md"
+requires-python = ">=3.12,<3.15"
+license = "MIT OR Apache-2.0"
+dependencies = []
+
+[dependency-groups]
+dev = [
+    "pyright==1.1.411",
+    "pytest==9.1.1",
+    "ruff==0.15.22",
+]
+
+[tool.uv]
+package = false
+
+[tool.ruff]
+target-version = "py312"
+line-length = 120
+extend-exclude = [".venv"]
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B", "SIM", "RUF"]
+
+[tool.pyright]
+pythonVersion = "3.12"
+typeCheckingMode = "strict"
+include = ["python/bonsai-reference/src", "python/bonsai-reference/tests", "scripts"]
+exclude = [".venv"]
+extraPaths = ["python/bonsai-reference/src"]
+
+[tool.pytest.ini_options]
+testpaths = ["python/bonsai-reference/tests"]
+pythonpath = ["python/bonsai-reference/src"]
+addopts = ["--strict-config", "--strict-markers"]

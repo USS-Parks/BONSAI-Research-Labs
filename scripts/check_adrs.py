@@ -21,7 +21,9 @@ def main() -> int:
     counts = Counter(indexed)
 
     if set(indexed) != EXPECTED:
-        errors.append(f"index coverage mismatch: missing={sorted(EXPECTED - set(indexed))}, extra={sorted(set(indexed) - EXPECTED)}")
+        missing = sorted(EXPECTED - set(indexed))
+        extra = sorted(set(indexed) - EXPECTED)
+        errors.append(f"index coverage mismatch: missing={missing}, extra={extra}")
     duplicates = sorted(decision for decision, count in counts.items() if count != 1)
     if duplicates:
         errors.append(f"index decisions not mapped exactly once: {duplicates}")
@@ -35,7 +37,9 @@ def main() -> int:
             body_locations.setdefault(decision, []).append(adr.name)
 
     if set(body_locations) != EXPECTED:
-        errors.append(f"ADR body coverage mismatch: missing={sorted(EXPECTED - set(body_locations))}, extra={sorted(set(body_locations) - EXPECTED)}")
+        missing = sorted(EXPECTED - set(body_locations))
+        extra = sorted(set(body_locations) - EXPECTED)
+        errors.append(f"ADR body coverage mismatch: missing={missing}, extra={extra}")
     duplicates = sorted(decision for decision, locations in body_locations.items() if len(locations) != 1)
     if duplicates:
         errors.append(f"ADR body decisions not defined exactly once: {duplicates}")
@@ -46,7 +50,10 @@ def main() -> int:
             print(f"- {error}", file=sys.stderr)
         return 1
 
-    print(f"ADR check passed: {len(EXPECTED)} accepted decisions mapped exactly once across {len(body_locations)} headings")
+    print(
+        f"ADR check passed: {len(EXPECTED)} accepted decisions mapped exactly once "
+        f"across {len(body_locations)} headings"
+    )
     return 0
 
 

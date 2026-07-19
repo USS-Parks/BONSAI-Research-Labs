@@ -42,3 +42,18 @@ The pre-STS reconciliation on 2026-07-18 established:
 - the isolated M0 worktree was created from that exact revision.
 
 Prompt-level commands and results are retained in the verification log once BG-06 establishes it.
+
+## Development checks
+
+The foundation pins Rust 1.96.0 and supports Python 3.12 through 3.14 with dependencies locked by uv 0.11.29. From the repository root, run:
+
+```text
+cargo fmt --all --check
+cargo clippy --workspace --all-targets --all-features -- -D warnings
+cargo test --workspace --all-features
+uv run ruff check .
+uv run pyright
+uv run pytest
+```
+
+These are scaffold checks only; passing them is not evidence that BONSAI instrument behavior exists.

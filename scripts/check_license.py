@@ -47,7 +47,8 @@ def main() -> int:
     if not all(marker in publication for marker in required_policy):
         errors.append("publication policy lacks authorization or secret/redaction controls")
 
-    unexpected = sorted(path.name for path in ROOT.glob("LICENSE*") if path.name not in {"LICENSE-APACHE", "LICENSE-MIT"})
+    expected_license_files = {"LICENSE-APACHE", "LICENSE-MIT"}
+    unexpected = sorted(path.name for path in ROOT.glob("LICENSE*") if path.name not in expected_license_files)
     if unexpected:
         errors.append(f"unexpected license files: {unexpected}")
 
@@ -57,7 +58,10 @@ def main() -> int:
             print(f"- {error}", file=sys.stderr)
         return 1
 
-    print("license policy check passed: MIT OR Apache-2.0 only; publication authorization and secret/redaction review required")
+    print(
+        "license policy check passed: MIT OR Apache-2.0 only; "
+        "publication authorization and secret/redaction review required"
+    )
     return 0
 
 
