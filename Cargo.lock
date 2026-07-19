@@ -212,6 +212,7 @@ name = "bonsai-runtime"
 version = "0.0.0"
 dependencies = [
  "bonsai-bundle",
+ "bonsai-contracts",
  "prost",
  "serde",
  "serde_json",

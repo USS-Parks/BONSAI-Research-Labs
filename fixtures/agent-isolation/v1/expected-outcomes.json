@@ -1,0 +1,43 @@
+{
+  "schema": "bonsai.agent-isolation-outcomes/v1",
+  "inspection_adapter": {
+    "environment_cleared": true,
+    "granted_environment_keys": [
+      "BONSAI_AGENT_ROOT",
+      "BONSAI_INPUT_ROOT",
+      "BONSAI_WORK_ROOT"
+    ],
+    "granted_handles": [
+      "stdin:protocol",
+      "stdout:protocol",
+      "stderr:bounded-diagnostic"
+    ],
+    "authorized_input_readable": true,
+    "authorized_input_read_only": true,
+    "authorized_input_manifest_hash_verified": true,
+    "agent_work_area_writable": true,
+    "observer_path_in_arguments": false,
+    "observer_path_in_environment": false,
+    "observer_canary_discovered": false
+  },
+  "observer_path_argument": {
+    "accepted": false,
+    "code": "ISOLATION_OBSERVER_PATH_EXPOSURE"
+  },
+  "manifest_input_hash_mismatch": {
+    "accepted": false,
+    "rejected_copy_retained": false,
+    "code": "ISOLATION_INPUT_HASH_MISMATCH"
+  },
+  "observer_path_protocol_payload": {
+    "accepted": false,
+    "code": "ISOLATION_OBSERVER_PATH_EXPOSURE"
+  },
+  "observer_access_request": {
+    "allowed": false,
+    "code": "OBSERVER_ACCESS_DENIED",
+    "derived_track": "INDETERMINATE_TRACK",
+    "reason_code": "OBSERVER_DATA_BOUNDARY_VIOLATION"
+  },
+  "adversarial_os_sandbox_claim": false
+}

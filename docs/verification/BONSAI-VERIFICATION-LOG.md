@@ -714,3 +714,73 @@ This is an append-only human index. Machine records created by `cargo xtask veri
 - Counter availability and privileges: local synchronized-filesystem recovery fixtures only; no adapter restart, observer replay, physical-host attestation, resource enforcement, privileged input, energy, or long-duration evidence
 - Result: pass
 - Reviewer/attestation: legal lifecycle graph, synchronized journal and complete pending frame, copy-and-publish segment recovery, immutable transition settlement, exact once-only segment counts, strict workspace/Python/schema/governance gates passed locally; hosted Windows/macOS/Linux closure remains attached to the focused commit
+
+## VER-BR05-HOSTED — BR-05 — 2026-07-19T17:30:01Z
+
+- Source revision and dirty state: `fa7096a238ed96889a0156aea45e3a69f7dab807`; clean pushed revision
+- OS/architecture/physical-or-CI: Windows/x86_64, Linux/x86_64, macOS/arm64, macOS/x86_64; GitHub hosted CI; ephemeral virtual machines
+- Toolchain/dependency-lock hashes: workflow-pinned Rust 1.96.0, Python 3.12, and uv 0.11.29; source locks at the recorded revision
+- Command: GitHub Actions `BONSAI baseline` push run 29696943312, attempt 1
+- Start/end/duration: `2026-07-19T17:30:01Z` / `2026-07-19T17:34:44Z` / 283 s
+- Exit code: all four jobs concluded `success`
+- Stdout/stderr artifact hashes: retained by GitHub Actions; job IDs 88219222167 (macOS arm64), 88219222191 (Windows), 88219222192 (Linux), and 88219222200 (macOS Intel)
+- Fixtures/manifests/bundle IDs: exact lifecycle and durable transition-commit crash boundaries, synchronized staged-frame recovery, terminal evidence, and once-only segment counts ran unchanged on every hosted OS
+- Counter availability and privileges: hosted synchronized-filesystem recovery fixtures only; no adapter restart, observer replay, physical-host attestation, resource enforcement, privileged input, energy, or long-duration evidence
+- Result: pass
+- Reviewer/attestation: run head SHA, run conclusion, and all four matrix-job conclusions inspected through the GitHub API; BR-05 cross-OS gate is closed
+
+## VER-BR06-TYPE-FAILURE — BR-06 — 2026-07-19T17:41:07Z
+
+- Source revision and dirty state: `fa7096a238ed96889a0156aea45e3a69f7dab807`; dirty with BR-06 changes
+- OS/architecture/physical-or-CI: Windows/x86_64; local; physical/virtual status unknown
+- Toolchain/dependency-lock hashes: Rust 1.96.0; Python 3.14.4; uv 0.11.29; source locks at the working revision
+- Command: machine record `BR-06-1784482867979810300`; full universal/schema/governance gate through an external verifier copy
+- Start/end/duration: `2026-07-19T17:41:07.979Z` / `2026-07-19T17:41:27.753Z` / 19.7742117 s
+- Exit code: 1
+- Stdout/stderr artifact hashes: stdout `2e2d79ff49611eaf9648fee987a8ec3ea2d6f4a6607383eff8cdd8bbdd863cb8`; stderr `bdb6f7b2fbb39f4fbc3db3d4701c0852992f69c20ae1aa78732c86f8a0b23811`
+- Fixtures/manifests/bundle IDs: product isolation tests and all preceding repository gates passed; Pyright rejected the inspection adapter result as partially unknown
+- Counter availability and privileges: local child-process/interface fixture only; no physical-host attestation or OS sandbox claim
+- Result: fail; exact strict-type failure retained
+- Reviewer/attestation: the heterogeneous result dictionary lacked an explicit structural type; fixed with a precise `TypedDict` and rerun below without relaxing Pyright
+
+## VER-BR06-PRE-HASH-TIGHTENING — BR-06 — 2026-07-19T17:42:19Z
+
+- Source revision and dirty state: `fa7096a238ed96889a0156aea45e3a69f7dab807`; dirty with final BR-06 changes
+- OS/architecture/physical-or-CI: Windows/x86_64; local; physical/virtual status unknown
+- Toolchain/dependency-lock hashes: Rust 1.96.0; Python 3.14.4; uv 0.11.29; `Cargo.lock` SHA-256 `AFE32A618E77FEE0405535C2087B46FF05E31AA00D8BAC7C6369BE4C6CC9BF00`
+- Command: machine record `BR-06-FINAL-1784482939010080200`; full universal/schema/governance gate through external verifier copy SHA-256 `08FED2EB1B517AB584F2D2A427A91D25C1BCD086314EFC0480B4A0AB151DA2A6`
+- Start/end/duration: `2026-07-19T17:42:19.010Z` / `2026-07-19T17:42:38.848Z` / 19.8388921 s
+- Exit code: 0
+- Stdout/stderr artifact hashes: stdout `4d5e8109ba6a0c14043d11c9f93834dbf29e76a3eb58acfca55f9b68e4285620`; stderr `3cd4bedd5dce611d741a340354ba4d78cd4c3a28055628ea91b438c3ba5174bd`
+- Fixtures/manifests/bundle IDs: `bonsai.agent-isolation-outcomes/v1` SHA-256 `56600753C15618042E4192A0A8DBDD6253AD238948EB330228967E88AE4780D1`; exact cleared-environment, granted-input/work/handle, observer-path rejection, denial, and derived-track outcomes
+- Counter availability and privileges: real local environment-cleared Python child with granted standard streams and filesystem roots; physical/virtual status unknown; no native-code OS sandbox, physical-host attestation, privileged input, energy, or long-duration evidence
+- Result: pass; superseded as final acceptance evidence
+- Reviewer/attestation: all checks passed, but post-gate review strengthened the caller-authorized copy into an exact manifest-SHA-256-bound grant; this record remains historical and the final record below verifies the tighter contract
+
+## VER-BR06-PRE-READONLY-TIGHTENING — BR-06 — 2026-07-19T17:46:40Z
+
+- Source revision and dirty state: `fa7096a238ed96889a0156aea45e3a69f7dab807`; dirty with final BR-06 changes
+- OS/architecture/physical-or-CI: Windows/x86_64; local; physical/virtual status unknown
+- Toolchain/dependency-lock hashes: Rust 1.96.0; Python 3.14.4; uv 0.11.29; `Cargo.lock` SHA-256 `AFE32A618E77FEE0405535C2087B46FF05E31AA00D8BAC7C6369BE4C6CC9BF00`
+- Command: machine record `BR-06-FINAL2-1784483200000031500`; full universal/schema/governance gate through external verifier copy SHA-256 `F0D5A190C1F99681023C91362CB37FFAB9D39F51E14C65989588A5DF8C8AEFFB`
+- Start/end/duration: `2026-07-19T17:46:40.000Z` / `2026-07-19T17:47:14.666Z` / 34.6671599 s
+- Exit code: 0
+- Stdout/stderr artifact hashes: stdout `fb0e4b66276e8ac878e341413abef3446ff9e2279906ca7e119cfeb4cd062511`; stderr `c94e18b124b1b0768e3c979bf85e9c8e64b87c693c8a8b16984cebe36ad1c224`
+- Fixtures/manifests/bundle IDs: `bonsai.agent-isolation-outcomes/v1` SHA-256 `2111D422DB6A95455C0E2C9BE62F5EF94BA63BF51F92D89EC1FBFD0B238C9DF0`; exact cleared-environment, manifest-hash-bound input, rejected-copy cleanup, agent-work/handle, observer-path rejection, denial, and derived-track outcomes
+- Counter availability and privileges: real local environment-cleared Python child with granted standard streams and filesystem roots; physical/virtual status unknown; no native-code OS sandbox, physical-host attestation, privileged input, energy, or long-duration evidence
+- Result: pass; superseded as final acceptance evidence
+- Reviewer/attestation: all checks passed, but final review aligned the filesystem mode with the declared input/work split by marking accepted input copies read-only; this record remains historical and the final record below verifies that mode
+
+## VER-BR06-GATE — BR-06 — 2026-07-19T17:50:46Z
+
+- Source revision and dirty state: `fa7096a238ed96889a0156aea45e3a69f7dab807`; dirty with final BR-06 changes
+- OS/architecture/physical-or-CI: Windows/x86_64; local; physical/virtual status unknown
+- Toolchain/dependency-lock hashes: Rust 1.96.0; Python 3.14.4; uv 0.11.29; `Cargo.lock` SHA-256 `AFE32A618E77FEE0405535C2087B46FF05E31AA00D8BAC7C6369BE4C6CC9BF00`
+- Command: machine record `BR-06-FINAL3-1784483446064476700`; full universal/schema/governance gate through external verifier copy SHA-256 `912E199D28394696E858A152DBCB691EC42995F087B5B8EE4D1BF24060C9DEFA`
+- Start/end/duration: `2026-07-19T17:50:46.064Z` / `2026-07-19T17:51:06.278Z` / 20.2144321 s
+- Exit code: 0
+- Stdout/stderr artifact hashes: stdout `f895275a4154a5be8042014f849e8499d8f00d68c0b30b89c79de0c1cad8626f`; stderr `a468062dcee70af1f7cc40ced027f1a10abcc28fbd7baad3135a7318a3ab1041`
+- Fixtures/manifests/bundle IDs: `bonsai.agent-isolation-outcomes/v1` SHA-256 `D6C45C991A8F88C0D44AB2CE81C010CA6B39DF47E94ABE256EC8F646C382CC5C`; exact cleared-environment, manifest-hash-bound read-only input, rejected-copy cleanup, agent-work/handle, observer-path rejection, denial, and derived-track outcomes
+- Counter availability and privileges: real local environment-cleared Python child with granted standard streams and filesystem roots; physical/virtual status unknown; no native-code OS sandbox, physical-host attestation, privileged input, energy, or long-duration evidence
+- Result: pass
+- Reviewer/attestation: manifest-SHA-256-bound read-only input copying, agent work root, argument/environment/handle/protocol audit, real inspection child, observer canary non-discovery through granted interfaces, mismatch cleanup, explicit denial evidence, BC-05 non-Track-A derivation, strict workspace/Python/schema/governance gates passed locally; hosted Windows/macOS/Linux closure remains attached to the focused commit

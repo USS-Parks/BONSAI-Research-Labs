@@ -2,8 +2,13 @@
 
 #![forbid(unsafe_code)]
 
+mod isolation;
 mod lifecycle;
 
+pub use isolation::{
+    AgentCapabilityAudit, AgentLaunchPolicy, GrantedInput, IsolatedLaunch, IsolatedRunLayout,
+    IsolationError, ObserverAccessDenial, ObserverArtifactClass,
+};
 pub use lifecycle::{
     LifecycleError, LifecycleRecord, LifecycleState, RecoveredTransition, RecoveryReport,
     RunSupervisor, TransitionOutcome,
@@ -149,6 +154,7 @@ pub struct ProcessCommand {
     pub arguments: Vec<OsString>,
     pub current_directory: Option<PathBuf>,
     pub environment: Vec<(OsString, OsString)>,
+    pub clear_environment: bool,
 }
 
 impl ProcessCommand {
@@ -159,6 +165,7 @@ impl ProcessCommand {
             arguments: Vec::new(),
             current_directory: None,
             environment: Vec::new(),
+            clear_environment: false,
         }
     }
 
@@ -177,6 +184,12 @@ impl ProcessCommand {
     #[must_use]
     pub fn environment(mut self, key: impl Into<OsString>, value: impl Into<OsString>) -> Self {
         self.environment.push((key.into(), value.into()));
+        self
+    }
+
+    #[must_use]
+    pub const fn clear_environment(mut self) -> Self {
+        self.clear_environment = true;
         self
     }
 }
@@ -212,6 +225,9 @@ impl ChildTransport {
     ) -> Result<Self, TransportError> {
         let limits = limits.validate()?;
         let mut command = Command::new(&specification.program);
+        if specification.clear_environment {
+            command.env_clear();
+        }
         command
             .args(&specification.arguments)
             .envs(specification.environment.iter().cloned())
