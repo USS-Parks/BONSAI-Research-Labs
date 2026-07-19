@@ -50,3 +50,32 @@ Expected outcomes:
 | `unversioned-json.json` | `JSON_VERSION_MISSING` |
 
 The Protobuf JSON format itself does not preserve unknown fields, so it is not an unknown-field relay format. See the official [ProtoJSON format guidance](https://protobuf.dev/programming-guides/json/).
+
+## Experiment manifest v1
+
+[`experiment-manifest-v1.json`](./experiment-manifest-v1.json) is the immutable pre-run contract created by BC-03. It is a JSON Schema Draft 2020-12 document with stable URI `https://schemas.bonsai.dev/experiment-manifest/v1` and contract version `1.0`.
+
+Every manifest contains fully resolved values for:
+
+- source repository, revision, and dirty state;
+- adapter and environment entrypoints plus configuration objects;
+- a non-empty explicit seed set;
+- declared track facts, including an explicit replay declaration;
+- resource limits, latency deadlines, and energy tier/budget state;
+- selected metric versions and parameters;
+- scenario identity, version, reward unit, variant, and configuration;
+- expected counters, their units, acceptable basis, and run requirement;
+- pre-run publication eligibility.
+
+The schema contains no `default` keyword. Omission never delegates a mutable choice to runtime code: a producer must write every required declaration, even when its explicit value is an empty configuration object, `false`, zero replay capacity, or an E0 `null` energy budget. Publication eligibility is not publication authorization.
+
+`cargo xtask schema-check` validates the schema against the Draft 2020-12 meta-schema, rejects any future `default` keyword, validates the canonical fixture, compares LF and CRLF canonical bytes, and exercises the following required-declaration failures:
+
+| Fixture | Expected result |
+|---|---|
+| `fixtures/experiment-manifest/v1/valid.json` | valid with stable canonical SHA-256 |
+| `missing-replay.json` | `MANIFEST_REPLAY_REQUIRED` |
+| `missing-resource.json` | `MANIFEST_RESOURCE_REQUIRED` |
+| `missing-seeds.json` | `MANIFEST_SEEDS_REQUIRED` |
+
+BC-05 remains responsible for deriving actual track classification from runtime facts. BC-06 remains responsible for the detailed resource-policy and governor-decision contracts. The manifest records their immutable pre-run declarations without claiming either later contract is already implemented.

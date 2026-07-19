@@ -74,6 +74,14 @@ struct FixtureCase {
     expected_error: Option<&'static str>,
 }
 
+#[derive(Debug, Deserialize)]
+#[serde(deny_unknown_fields)]
+struct ManifestRejectionFixture {
+    fixture_base: String,
+    remove: String,
+    expected_error: String,
+}
+
 pub(crate) fn run() -> Result<(), String> {
     let root = workspace_root();
     let fixture_dir = root.join("fixtures/schema-compatibility/v1");
@@ -155,7 +163,141 @@ pub(crate) fn run() -> Result<(), String> {
         );
     }
 
-    println!("schema compatibility check passed: 1 additive and 4 rejection fixtures");
+    run_experiment_manifest_suite(&root)?;
+
+    println!(
+        "schema compatibility check passed: 1 additive, 4 compatibility rejections, and 3 manifest declaration rejections"
+    );
+    Ok(())
+}
+
+fn run_experiment_manifest_suite(root: &Path) -> Result<(), String> {
+    let schema_path = root.join("schemas/experiment-manifest-v1.json");
+    let schema_raw = fs::read(&schema_path)
+        .map_err(|error| format!("read {}: {error}", schema_path.display()))?;
+    let schema: Value = serde_json::from_slice(&schema_raw)
+        .map_err(|error| format!("parse {}: {error}", schema_path.display()))?;
+    jsonschema::draft202012::meta::validate(&schema)
+        .map_err(|error| format!("experiment manifest is not valid Draft 2020-12: {error}"))?;
+    reject_schema_defaults(&schema, "")?;
+    let validator = jsonschema::draft202012::options()
+        .should_validate_formats(true)
+        .build(&schema)
+        .map_err(|error| format!("compile experiment manifest schema: {error}"))?;
+
+    let fixture_dir = root.join("fixtures/experiment-manifest/v1");
+    let valid_path = fixture_dir.join("valid.json");
+    let valid_raw =
+        fs::read(&valid_path).map_err(|error| format!("read {}: {error}", valid_path.display()))?;
+    let valid: Value = serde_json::from_slice(&valid_raw)
+        .map_err(|error| format!("parse {}: {error}", valid_path.display()))?;
+    validator
+        .validate(&valid)
+        .map_err(|error| format!("valid experiment manifest fixture failed: {error}"))?;
+
+    let canonical = canonical_json(&valid_raw)?;
+    let windows_text = String::from_utf8(valid_raw.clone())
+        .map_err(|_| "valid experiment manifest fixture is not UTF-8".to_owned())?
+        .replace('\n', "\r\n");
+    let windows_canonical = canonical_json(windows_text.as_bytes())?;
+    if canonical != windows_canonical {
+        return Err("experiment manifest canonical bytes differ for LF and CRLF input".to_owned());
+    }
+    let manifest_digest = sha256_hex(&canonical);
+    let schema_digest = sha256_hex(&canonical_json(&schema_raw)?);
+    println!(
+        "experiment manifest valid.json: valid canonical_sha256={manifest_digest} schema_canonical_sha256={schema_digest}"
+    );
+
+    let cases = [
+        ("missing-replay.json", "MANIFEST_REPLAY_REQUIRED"),
+        ("missing-resource.json", "MANIFEST_RESOURCE_REQUIRED"),
+        ("missing-seeds.json", "MANIFEST_SEEDS_REQUIRED"),
+    ];
+    for (file, code) in cases {
+        let path = fixture_dir.join(file);
+        let raw = fs::read(&path).map_err(|error| format!("read {}: {error}", path.display()))?;
+        let fixture: ManifestRejectionFixture = serde_json::from_slice(&raw)
+            .map_err(|error| format!("parse {}: {error}", path.display()))?;
+        if fixture.fixture_base != "valid.json" || fixture.expected_error != "required" {
+            return Err(format!(
+                "{file} must derive from valid.json and expect a required-property failure"
+            ));
+        }
+        let mut candidate = valid.clone();
+        remove_json_pointer(&mut candidate, &fixture.remove)
+            .map_err(|error| format!("apply {file}: {error}"))?;
+        let observed_errors = validator
+            .iter_errors(&candidate)
+            .map(|error| error.to_string())
+            .collect::<Vec<_>>();
+        if observed_errors.is_empty() {
+            return Err(format!(
+                "{file} expected {code} but the manifest remained valid"
+            ));
+        }
+        if !observed_errors
+            .iter()
+            .any(|error| error.to_ascii_lowercase().contains(&fixture.expected_error))
+        {
+            return Err(format!(
+                "{file} expected validator error containing {:?}, observed: {}",
+                fixture.expected_error,
+                observed_errors.join("; ")
+            ));
+        }
+        println!("experiment manifest fixture {file}: {code}");
+    }
+    Ok(())
+}
+
+fn reject_schema_defaults(value: &Value, path: &str) -> Result<(), String> {
+    match value {
+        Value::Object(properties) => {
+            if properties.contains_key("default") {
+                return Err(format!(
+                    "experiment manifest schema contains prohibited mutable default at {path}"
+                ));
+            }
+            for (key, child) in properties {
+                let child_path = format!("{path}/{key}");
+                reject_schema_defaults(child, &child_path)?;
+            }
+        }
+        Value::Array(items) => {
+            for (index, child) in items.iter().enumerate() {
+                let child_path = format!("{path}/{index}");
+                reject_schema_defaults(child, &child_path)?;
+            }
+        }
+        Value::Null | Value::Bool(_) | Value::Number(_) | Value::String(_) => {}
+    }
+    Ok(())
+}
+
+fn remove_json_pointer(value: &mut Value, pointer: &str) -> Result<(), String> {
+    let segments = pointer
+        .strip_prefix('/')
+        .ok_or_else(|| format!("JSON pointer must begin with '/': {pointer}"))?
+        .split('/')
+        .map(|segment| segment.replace("~1", "/").replace("~0", "~"))
+        .collect::<Vec<_>>();
+    let (last, parents) = segments
+        .split_last()
+        .ok_or_else(|| "cannot remove the document root".to_owned())?;
+    let mut parent = value;
+    for segment in parents {
+        parent = parent
+            .as_object_mut()
+            .and_then(|object| object.get_mut(segment))
+            .ok_or_else(|| format!("JSON pointer parent does not exist: {pointer}"))?;
+    }
+    let removed = parent
+        .as_object_mut()
+        .and_then(|object| object.remove(last));
+    if removed.is_none() {
+        return Err(format!("JSON pointer target does not exist: {pointer}"));
+    }
     Ok(())
 }
 
@@ -558,6 +700,15 @@ fn canonical_json(raw: &[u8]) -> Result<Vec<u8>, String> {
     let mut output = Vec::new();
     write_canonical(&value, &mut output)?;
     Ok(output)
+}
+
+fn sha256_hex(bytes: &[u8]) -> String {
+    let digest = Sha256::digest(bytes);
+    let mut encoded = String::with_capacity(64);
+    for byte in digest {
+        let _ = write!(encoded, "{byte:02x}");
+    }
+    encoded
 }
 
 fn write_canonical(value: &Value, output: &mut Vec<u8>) -> Result<(), String> {

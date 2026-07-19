@@ -1,0 +1,60 @@
+
+running 4 tests
+test tests::payload_hash_is_verified ... ok
+test tests::invalid_ids_and_times_fail_closed ... ok
+test tests::valid_envelope_round_trips_through_supported_relay ... ok
+test tests::supported_relay_preserves_unknown_fields_byte_for_byte ... ok
+
+test result: ok. 4 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+
+running 4 tests
+test schema_check::tests::canonical_json_sorts_object_keys_without_reordering_arrays ... ok
+test tests::redacts_every_literal_occurrence ... ok
+test tests::creates_portable_record_ids ... ok
+test schema_check::tests::frozen_compatibility_suite_has_expected_outcomes ... ok
+
+test result: ok. 4 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.05s
+
+
+running 1 test
+verification record BG-06-PASS-1784430388615881100: pass (exit 0)
+verification record BG-06-FAIL-1784430388939709900: fail (exit 1)
+test passing_and_failing_commands_produce_distinct_sanitized_records ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 1.47s
+
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+All checks passed!
+0 errors, 0 warnings, 0 informations
+============================= test session starts =============================
+platform win32 -- Python 3.14.4, pytest-9.1.1, pluggy-1.6.0
+rootdir: C:\tmp\bonsai-m0-sts
+configfile: pyproject.toml
+testpaths: python/bonsai-reference/tests
+collected 2 items
+
+python\bonsai-reference\tests\test_event_envelope_roundtrip.py .         [ 50%]
+python\bonsai-reference\tests\test_scaffold.py .                         [100%]
+
+============================== 2 passed in 2.13s ==============================
+schema fixture additive.json: compatible canonical_sha256=c60bb5796a2155ae8a4d927774b4628d272b8ccf48488dcfc552d426eb4bda6e
+schema fixture field-renumbering.json: FIELD_RENUMBERED canonical_sha256=cfeae795f23182a0484d38d146f51dda13a1c917d91c68a0aba2e2ffcfb84efc
+schema fixture field-reuse.json: FIELD_REUSE canonical_sha256=67ae90cd06bdeca0ee9bcdd990ee964fdcb4ae3d06f8eee114d4289046c221c6
+schema fixture silent-unit-change.json: UNIT_CHANGED canonical_sha256=95064247a3f1e35286fde747c94ee755416e6e9623b5ed4e99006a57fd8f9f53
+schema fixture unversioned-json.json: JSON_VERSION_MISSING canonical_sha256=1a2c5c47689c66d7eb47186ba7ee1ea1b375edad09f80eefcac909e8067a660d
+experiment manifest valid.json: valid canonical_sha256=dc596b67136ae83046831e381cf0a5deab0719d54e874c5c26facc95ce140f57 schema_canonical_sha256=e4942f9d6a254cb31c574c8899b4d0814b6e421c38a0c9f889b1c1f61dd4a523
+experiment manifest fixture missing-replay.json: MANIFEST_REPLAY_REQUIRED
+experiment manifest fixture missing-resource.json: MANIFEST_RESOURCE_REQUIRED
+experiment manifest fixture missing-seeds.json: MANIFEST_SEEDS_REQUIRED
+schema compatibility check passed: 1 additive, 4 compatibility rejections, and 3 manifest declaration rejections
+documentation governance check passed: 32 Markdown files; local links resolve; STS warnings present
+ADR check passed: 21 accepted decisions mapped exactly once across 21 headings
+license policy check passed: MIT OR Apache-2.0 only; publication authorization and secret/redaction review required
+governance ledger check passed: R-01..R-16 and P-01..P-09 complete; negative fixtures rejected
+terminology registry check passed: 17 terms, 8 identifiers, 14 numeric fields; negative fixtures rejected
+CI topology check passed: Windows, macOS arm64/Intel, and Linux hosted jobs; physical claims remain false

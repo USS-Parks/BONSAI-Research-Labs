@@ -1,0 +1,5 @@
+{
+  "fixture_base": "valid.json",
+  "remove": "/seeds",
+  "expected_error": "required"
+}

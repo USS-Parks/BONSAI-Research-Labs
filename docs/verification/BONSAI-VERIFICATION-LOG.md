@@ -239,3 +239,31 @@ This is an append-only human index. Machine records created by `cargo xtask veri
 - Counter availability and privileges: no physical, clock-synchronization, or global-order claim
 - Result: pass
 - Reviewer/attestation: full automated gate plus exact binary-preservation assertion
+
+## VER-BC02-HOSTED — BC-02 — 2026-07-19T02:41:34Z
+
+- Source revision and dirty state: `127b20b68957fb1473fba670fe4cd411187c062e`; clean pushed revision
+- OS/architecture/physical-or-CI: Windows/x86_64, Linux/x86_64, macOS/arm64, macOS/x86_64; GitHub hosted CI; ephemeral virtual machines
+- Toolchain/dependency-lock hashes: workflow-pinned Rust 1.96.0, Python 3.12, and uv 0.11.29; source locks at the recorded revision
+- Command: GitHub Actions `BONSAI baseline` push run 29670584785, attempt 1
+- Start/end/duration: `2026-07-19T02:41:34Z` / `2026-07-19T02:43:44Z` / 130 s
+- Exit code: all four jobs concluded `success`
+- Stdout/stderr artifact hashes: retained by GitHub Actions; job IDs 88148698568 (macOS Intel), 88148698569 (Windows), 88148698584 (Linux), and 88148698595 (macOS arm64)
+- Fixtures/manifests/bundle IDs: hosted classification artifacts generated per matrix job; event-envelope and cross-language conformance gates ran from the recorded source revision
+- Counter availability and privileges: no physical counter evidence; workflow classification denies physical, energy, and long-duration claims
+- Result: pass
+- Reviewer/attestation: run head SHA, run conclusion, and every matrix-job conclusion inspected through the GitHub API
+
+## VER-BC03-GATE — BC-03 — 2026-07-19T03:05:32Z
+
+- Source revision and dirty state: `127b20b68957fb1473fba670fe4cd411187c062e`; dirty with BC-03 changes
+- OS/architecture/physical-or-CI: Windows/x86_64; local; physical/virtual status unknown
+- Toolchain/dependency-lock hashes: Rust 1.96.0; Python 3.14.4; checksum-verified official uv 0.11.29; `Cargo.lock` SHA-256 `F2565497C1C59EBB1C22F88FCA096A0D05E1EFD9435F99D46C71E4DCFDF17D22`; `uv.lock` SHA-256 `EC18CF61A7A382BECA7F65105B6E427F3FF70F37CF99910E2E63902D7C900E43`
+- Command: machine records `BC-03-1784430332012813700` and `BC-03-1784430432949968400`; each ran `cargo fmt --all --check`, workspace Clippy/tests, frozen Ruff/Pyright/Pytest, `cargo xtask schema-check`, and docs/ADR/license/governance-ledger/terminology/CI-topology checks
+- Start/end/duration: initial `2026-07-19T03:05:32.0128137Z` / `2026-07-19T03:06:43.2602239Z` / 71.2493667 s; confirmation `2026-07-19T03:07:12.9499684Z` / `2026-07-19T03:07:29.4159038Z` / 16.4663853 s
+- Exit code: 0 for both recorded invocations
+- Stdout/stderr artifact hashes: initial stdout `44068a1b16625c008f56bf0793a650c797fa30781bbcfef9cba31156a8004518`, stderr `f3f69f47d929d3395e12716ade68822210a2e922c6cf58ee723ecd0664ccfc0a`; confirmation stdout `c217a429e089398bd0d7d4e02dd4993dbfa4e6fb283bb4b36b424620eabce721`, stderr `d07e8f3303112a7a301dfe1e290bcac2c67666a972a65ee56479fb9df68d599a`
+- Fixtures/manifests/bundle IDs: valid manifest canonical SHA-256 `dc596b67136ae83046831e381cf0a5deab0719d54e874c5c26facc95ce140f57`; schema canonical SHA-256 `e4942f9d6a254cb31c574c8899b4d0814b6e421c38a0c9f889b1c1f61dd4a523`; `MANIFEST_REPLAY_REQUIRED`, `MANIFEST_RESOURCE_REQUIRED`, and `MANIFEST_SEEDS_REQUIRED` rejection fixtures
+- Counter availability and privileges: manifest counter expectations are declarations only; no physical counter, resource-enforcement, energy-fidelity, or privileged-collector evidence
+- Result: pass
+- Reviewer/attestation: both recorded local gates passed; the initial record became visible after the first wrapper had returned model control, so a deterministic confirmation was retained rather than discarding either valid record; LF and CRLF canonical bytes were identical; external verifier copy SHA-256 `7D56967E130ED5EFF5372F4B7AE908A126429FDEE170B4E74DA4C80DCCAEB735` matched the in-tree built verifier before execution

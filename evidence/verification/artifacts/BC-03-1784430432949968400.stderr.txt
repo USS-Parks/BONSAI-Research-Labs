@@ -1,0 +1,8 @@
+    Finished `dev` profile [unoptimized + debuginfo] target(s) in 0.40s
+   Compiling bonsai-contracts v0.0.0 (C:\tmp\bonsai-m0-sts\crates\bonsai-contracts)
+   Compiling bonsai-xtask v0.0.0 (C:\tmp\bonsai-m0-sts\crates\bonsai-xtask)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 2.44s
+     Running unittests src\lib.rs (target\debug\deps\bonsai_contracts-d37a0337d69b65d3.exe)
+     Running unittests src\main.rs (target\debug\deps\bonsai_xtask-5a898baff1ac293b.exe)
+     Running tests\verification_fixture.rs (target\debug\deps\verification_fixture-1026fed9f8d17edd.exe)
+   Doc-tests bonsai_contracts

@@ -1,0 +1,5 @@
+{
+  "fixture_base": "valid.json",
+  "remove": "/resource_profile",
+  "expected_error": "required"
+}

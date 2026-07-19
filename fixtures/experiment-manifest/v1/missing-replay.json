@@ -1,0 +1,5 @@
+{
+  "fixture_base": "valid.json",
+  "remove": "/track/replay",
+  "expected_error": "required"
+}

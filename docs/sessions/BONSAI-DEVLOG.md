@@ -211,3 +211,24 @@ This append-only log records executed PSPR prompts. Corrections are added as new
 - Commit SHA: pending this prompt's immutable implementation commit; the next closeout entry will append it under the log's self-hash rule
 - Risks/blockers/parked scope changed: R-15 remains controlled by generated bindings, pinned locks, and schema gate; Protobuf serialization is not claimed canonical; opaque relay is the only unknown-field-preserving Rust path
 - Next eligible prompts: BC-03 and BC-04; dependency order selects BC-03
+
+### BC-02 closeout note
+
+- Focused implementation commit SHA: `127b20b68957fb1473fba670fe4cd411187c062e`
+- Hosted verification: GitHub Actions run 29670584785, attempt 1, passed Windows x86_64, Linux x86_64, macOS arm64, and macOS Intel at that exact commit
+- Ledger rule: appended by BC-03 because the BC-02 commit could not contain its own immutable hash or post-push hosted-run identity
+
+## 2026-07-18 — BC-03 — Experiment manifest schema
+
+- Status: passed; closeout entry pending focused commit identity
+- Authorization scope: user instruction `Continue to STS`; approved roster in dependency order
+- Dependencies and source revision: BC-01 at `a0b4aba07191d8035330bec4f0eeb0bf64bb31e8`, BG-08 at `85e408def2e4e74ef472aa46d29ce4d44f8b677d`, and BC-02 closeout at `127b20b68957fb1473fba670fe4cd411187c062e`
+- Objective and exclusions: define one immutable, fully resolved experiment-manifest contract for source identity/dirty state, adapter/environment configuration, explicit seeds, declared track/replay facts, resource profile, metrics, scenario, expected counters, and pre-run publication eligibility; no mutable runtime defaults and no actual track/resource-policy derivation
+- Reuse classification: extend the existing canonical JSON/SHA-256 and Cargo xtask seam; reuse the standards-conformant `jsonschema` 0.48.1 Draft 2020-12 validator with network/file resolution disabled; implement the BONSAI manifest schema and fixtures as new domain contracts; no Lamprey runtime/source reused
+- Files changed: experiment-manifest schema and four fixtures, schema checker/docs, pinned Rust dependency lock, root status, PSPR status, DEVLOG, verification log, and retained machine evidence
+- Decisions/addenda: seed values are explicit canonical decimal strings; adapter/environment configuration objects are always present and fully resolved; replay is always declared; E0 requires a null energy budget while E1–E3 require a positive budget; dirty sources require a patch hash and are publication-ineligible; eligibility never authorizes publication; BC-05 still derives track and BC-06 still defines detailed policy/decisions
+- Verification summary: Draft 2020-12 meta-schema validation, no-default audit, valid fixture, LF/CRLF canonical equivalence, and three required-declaration rejections passed; two recorded universal Cargo/uv/schema/governance invocations passed through a byte-identical external verifier copy to avoid the known Windows target self-lock, and the final ledger/status tree passed the full gate again without recording a third machine entry
+- Evidence paths and SHA-256 hashes: machine records `BC-03-1784430332012813700` and `BC-03-1784430432949968400`; initial stdout/stderr `44068a1b16625c008f56bf0793a650c797fa30781bbcfef9cba31156a8004518` / `f3f69f47d929d3395e12716ade68822210a2e922c6cf58ee723ecd0664ccfc0a`; confirmation stdout/stderr `c217a429e089398bd0d7d4e02dd4993dbfa4e6fb283bb4b36b424620eabce721` / `d07e8f3303112a7a301dfe1e290bcac2c67666a972a65ee56479fb9df68d599a`; canonical manifest `dc596b67136ae83046831e381cf0a5deab0719d54e874c5c26facc95ce140f57`; canonical schema `e4942f9d6a254cb31c574c8899b4d0814b6e421c38a0c9f889b1c1f61dd4a523`; verifier `7D56967E130ED5EFF5372F4B7AE908A126429FDEE170B4E74DA4C80DCCAEB735`; `Cargo.lock` `F2565497C1C59EBB1C22F88FCA096A0D05E1EFD9435F99D46C71E4DCFDF17D22`
+- Commit SHA: pending; append the focused implementation SHA in the next prompt's closeout entry
+- Risks/blockers/parked scope changed: R-15 remains controlled by the versioned schema, pinned validator, canonical hashes, and schema gate; no physical behavior, enforcement, energy fidelity, instrument completion, or C0–C5 result is claimed
+- Next eligible prompt: BC-04
