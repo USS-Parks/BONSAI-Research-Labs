@@ -43,3 +43,11 @@ The envelope carries an event-type identifier, payload schema epoch/minor, raw p
 Rust bindings and the descriptor set are generated at build time from the same `.proto` using a vendored cross-platform `protoc`. Python conformance tests load that descriptor dynamically; no second hand-maintained binding exists.
 
 The supported unknown-field relay is deliberately byte-preserving: it decodes and validates known fields, then forwards the original binary bytes. Prost decode/re-encode and ProtoJSON are not relay paths because they cannot prove retention of unknown fields. Tests append an unknown field 99 and require byte-for-byte survival through Python → Rust → Python.
+
+## Governor decision event
+
+[`bonsai/governor/v1/decision.proto`](bonsai/governor/v1/decision.proto) is the BC-06 wire authority for immutable external-governor decisions. Every event binds a nonzero decision/run identity to an exact resource-policy identity, version, and canonical SHA-256 hash. It records monotonic decision time, the complete requested work vector, the observed budget state used by the decision, measured, estimated, or unavailable basis, affected limit IDs, a stable reason code, and exactly one `admit`, `defer`, `throttle`, `reject`, or `terminate` outcome.
+
+Rolling-window observations carry their start and duration; per-event observations require a triggering event identity. Measured and estimated observations require an explicitly present numeric value, estimated observations additionally require estimator identity/version, and unavailable observations prohibit a numeric value and require an availability reason. Deferred decisions require a future monotonic retry time, throttled decisions require nonzero allocations strictly below the corresponding request, and the other outcomes prohibit action parameters. `bonsai_contracts::resource::reconstruct_governor_decision` validates these invariants and returns the four evidence surfaces needed to reconstruct the decision input: exact policy reference, observed state, requested work, and reason code.
+
+This is an evidence contract, not a governor implementation. BC-06 neither measures counters nor enforces a backend limit.

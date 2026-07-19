@@ -1,0 +1,10 @@
+    Finished `dev` profile [unoptimized + debuginfo] target(s) in 0.31s
+   Compiling bonsai-contracts v0.0.0 (C:\Users\17076\Documents\Reinforcement Learning Project\crates\bonsai-contracts)
+   Compiling bonsai-xtask v0.0.0 (C:\Users\17076\Documents\Reinforcement Learning Project\crates\bonsai-xtask)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 3.49s
+     Running unittests src\lib.rs (target\debug\deps\bonsai_contracts-9f02f24a8cf56522.exe)
+     Running unittests src\main.rs (target\debug\deps\bonsai_xtask-8837920c794f4324.exe)
+     Running tests\verification_fixture.rs (target\debug\deps\verification_fixture-cf66407b7913cae8.exe)
+   Doc-tests bonsai_contracts
+error: Failed to initialize cache at `C:\Users\17076\AppData\Local\uv\cache`
+  Caused by: failed to open file `C:\Users\17076\AppData\Local\uv\cache\sdists-v9\.git`: Access is denied. (os error 5)

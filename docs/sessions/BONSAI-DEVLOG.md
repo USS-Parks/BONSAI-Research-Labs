@@ -274,3 +274,24 @@ This append-only log records executed PSPR prompts. Corrections are added as new
 - Commit SHA: pending; append in the next prompt under the self-hash convention
 - Risks/blockers/parked scope changed: R-07 remains controlled by later runtime isolation; this prompt defines classification only
 - Next eligible prompt: BC-06
+
+### BC-05 closeout note
+
+- Focused implementation commit SHA: `eaa0e52ec5a6dc78ab1a360f2a11c2201c7a5e9d`
+- Hosted verification: GitHub Actions run 29672261289, attempt 1, passed Windows x86_64, Linux x86_64, macOS arm64, and macOS Intel at that exact commit
+- Ledger rule: appended by BC-06 because the BC-05 commit could not contain its own immutable hash or post-push hosted-run identity
+
+## 2026-07-18 — BC-06 — Resource policy and governor decisions
+
+- Status: passed; closeout entry pending focused commit identity
+- Authorization scope: user instruction `Continue BONSAI PSPR execution BC-06`; approved roster prompt BC-06
+- Dependencies and source revision: BC-03 and BG-08 complete; BC-05 published and hosted-green at `eaa0e52ec5a6dc78ab1a360f2a11c2201c7a5e9d`
+- Objective and exclusions: define immutable resource-policy JSON and governor-decision Protobuf contracts for all four budget scopes, nine work classes, distinct soft/hard limits, measured/estimated basis, and admit/defer/throttle/reject/terminate outcomes; no counter collection, scheduler, budget arithmetic, or backend enforcement
+- Reuse classification: extend the existing Draft 2020-12, canonical JSON, generated Protobuf, and `bonsai-contracts` validation seams; no new dependency and no Lamprey runtime/source reused
+- Files changed: resource-policy schema/fixture and semantic validator, governor decision Protobuf and reconstruction validator/tests, generated-contract build input, schema gate/docs, BC-05 hosted closeout, PSPR/root status, DEVLOG, verification log, and retained machine evidence
+- Decisions/addenda: policy identity/version plus canonical SHA-256 binds exact policy bytes; every canonical work class has an explicit allocation and every limit is allocated exactly once; rolling-window evidence carries start/duration; measured/estimated observations require a present numeric value, estimated observations require estimator identity/version, and unavailable observations require a reason while prohibiting a numeric value; outcome-specific action fields fail closed; reason-code semantics live in the versioned policy; no enforcement is claimed
+- Verification summary: focused tests and schema gate passed; the first recorded universal attempt retained a sandbox denial for uv's user-profile cache after Rust/contract success; redirecting the unchanged uv 0.11.29 cache to ignored repository `target` storage produced full passes across format, Clippy, 12 Rust contract tests, Python lint/types/tests, schema compatibility, docs, ADR, license, governance-ledger, terminology, and CI-topology checks; the final recorded pass includes the unavailable-without-zero hardening; all five decision outcomes preserved exact policy/observed/request/reason reconstruction inputs
+- Evidence paths and SHA-256 hashes: final machine pass `BC-06-1784434736275348400`; pass stdout `fd7fb2cbddb47a2b64f862baf0665b1b9b62e63182e80a6ccf638b0cb9fd9a45`; pass stderr `7c992754329533ffa7fd6c392ea75036966df312bbcf39be27e6a8158698d8b2`; policy fixture canonical `5053b8c5b78e46d1bf45b542815598f5fd127981ed61f1311938879badc77b49`; policy schema canonical `d2bc586d01c69ee7f1202ef3d8f324692661b6ecc8266c514ba0f25b2f32e877`; decision proto raw `9DF0DC65708FEABB81818F7237CEA86DD97C7E9422370A9EBEAB58062B96AB12`; verifier `87A82D2A9C0C663BF63FF634C118AAAB2DA7AA17D322A66B496707A1CC4CF733`
+- Commit SHA: pending; append in the next prompt under the self-hash convention
+- Risks/blockers/parked scope changed: no parked scope revived; R-04/R-05/R-14 remain active for later live measurement/enforcement; the retained uv cache denial is an environment record and was resolved without weakening a gate
+- Next eligible prompt: BC-07

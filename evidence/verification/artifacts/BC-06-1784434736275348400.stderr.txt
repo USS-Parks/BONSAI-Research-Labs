@@ -1,0 +1,6 @@
+    Finished `dev` profile [unoptimized + debuginfo] target(s) in 0.69s
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.30s
+     Running unittests src\lib.rs (target\debug\deps\bonsai_contracts-9f02f24a8cf56522.exe)
+     Running unittests src\main.rs (target\debug\deps\bonsai_xtask-8837920c794f4324.exe)
+     Running tests\verification_fixture.rs (target\debug\deps\verification_fixture-cf66407b7913cae8.exe)
+   Doc-tests bonsai_contracts

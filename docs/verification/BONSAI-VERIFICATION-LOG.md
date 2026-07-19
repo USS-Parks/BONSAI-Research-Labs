@@ -254,6 +254,34 @@ This is an append-only human index. Machine records created by `cargo xtask veri
 - Result: pass
 - Reviewer/attestation: run head SHA, run conclusion, and every matrix-job conclusion inspected through the GitHub API
 
+## VER-BC06-GATE — BC-06 — 2026-07-19T04:18:56Z
+
+- Source revision and dirty state: `eaa0e52ec5a6dc78ab1a360f2a11c2201c7a5e9d`; dirty with BC-06 changes
+- OS/architecture/physical-or-CI: Windows/x86_64; local; physical/virtual status unknown
+- Toolchain/dependency-lock hashes: Rust 1.96.0; Python 3.14.4; uv 0.11.29; `Cargo.lock` SHA-256 `BA7C806E67A42D80EC8D0D0D9781F937BEDA17B2B2B291C333BFDE5FFE9ABA04`
+- Command: final machine record `BC-06-1784434736275348400`; full universal/schema/governance gate with uv cache redirected to ignored repository `target` storage
+- Start/end/duration: `2026-07-19T04:18:56.275348400Z` / `2026-07-19T04:19:07.475306200Z` / 11.2002545 s
+- Exit code: 0
+- Stdout/stderr artifact hashes: stdout `fd7fb2cbddb47a2b64f862baf0665b1b9b62e63182e80a6ccf638b0cb9fd9a45`; stderr `7c992754329533ffa7fd6c392ea75036966df312bbcf39be27e6a8158698d8b2`
+- Fixtures/manifests/bundle IDs: policy canonical SHA-256 `5053b8c5b78e46d1bf45b542815598f5fd127981ed61f1311938879badc77b49`; policy schema canonical SHA-256 `d2bc586d01c69ee7f1202ef3d8f324692661b6ecc8266c514ba0f25b2f32e877`; four scopes, nine work classes, five decision outcomes
+- Counter availability and privileges: measured/estimated states are fixture evidence; no live counters, privileges, resource arithmetic, scheduling, or backend enforcement
+- Result: pass
+- Reviewer/attestation: exact Protobuf round-trip reconstruction inputs, unavailable-without-zero and strict outcome-action validation, resource-policy semantic validation, and full automated local gate; external verifier SHA-256 `87A82D2A9C0C663BF63FF634C118AAAB2DA7AA17D322A66B496707A1CC4CF733` matched in-tree before execution
+
+## VER-BC06-ENV-FAIL — BC-06 — 2026-07-19T04:12:56Z
+
+- Source revision and dirty state: `eaa0e52ec5a6dc78ab1a360f2a11c2201c7a5e9d`; dirty with BC-06 changes
+- OS/architecture/physical-or-CI: Windows/x86_64; local sandbox; physical/virtual status unknown
+- Toolchain/dependency-lock hashes: Rust 1.96.0; uv 0.11.29; source locks unchanged
+- Command: machine record `BC-06-1784434376427187100`; initial full universal/schema/governance gate
+- Start/end/duration: `2026-07-19T04:12:56.427187100Z` / `2026-07-19T04:13:05.586119100Z` / 9.1591596 s
+- Exit code: 2
+- Stdout/stderr artifact hashes: stdout `291e8d4ca01a074e8084c6806d88d67763a776aff9712fc9dc4e93e79edb3a32`; stderr `4c1d1214c7d267421865593424cd942da3f6dca51514f771e8e50d134cef117d`
+- Fixtures/manifests/bundle IDs: all 12 Rust contract tests passed before the Python stage
+- Counter availability and privileges: not applicable; uv was denied access to `AppData/Local/uv/cache` by the workspace sandbox
+- Result: fail, environment-only
+- Reviewer/attestation: rerun retained identical gates and uv version with cache redirected to ignored repository `target` storage; no product or verification requirement changed
+
 ## VER-BC05-GATE — BC-05 — 2026-07-19T03:41:06Z
 
 - Source revision and dirty state: `a694e2380b907d04aea41bca321bb091f6c2ba28`; dirty with BC-05 changes
@@ -267,6 +295,20 @@ This is an append-only human index. Machine records created by `cargo xtask veri
 - Counter availability and privileges: runtime facts are fixtures only; no live isolation, privileged input, replay, or enforcement claim
 - Result: pass
 - Reviewer/attestation: exact derived outcomes/reason codes and full automated local gate; external verifier SHA-256 `27F9E6B316D53BA2C379C7CC96176CE670B99440D173D0D7B6BF28FF034C8FC3` matched in-tree
+
+## VER-BC05-HOSTED — BC-05 — 2026-07-19T03:45:52Z
+
+- Source revision and dirty state: `eaa0e52ec5a6dc78ab1a360f2a11c2201c7a5e9d`; clean pushed revision
+- OS/architecture/physical-or-CI: Windows/x86_64, Linux/x86_64, macOS/arm64, macOS/x86_64; GitHub hosted CI; ephemeral virtual machines
+- Toolchain/dependency-lock hashes: workflow-pinned Rust 1.96.0, Python 3.12, and uv 0.11.29; source locks at the recorded revision
+- Command: GitHub Actions `BONSAI baseline` push run 29672261289, attempt 1
+- Start/end/duration: `2026-07-19T03:45:52Z` / `2026-07-19T03:48:18Z` / 146 s
+- Exit code: all four jobs concluded `success`
+- Stdout/stderr artifact hashes: retained by GitHub Actions; job IDs 88153321366 (Linux), 88153321358 (macOS Intel), 88153321357 (Windows), and 88153321363 (macOS arm64)
+- Fixtures/manifests/bundle IDs: hosted schema gate exercised all seven track-classification fixtures on every matrix job
+- Counter availability and privileges: fixture-only contract evidence; no live isolation or privileged-input evidence; workflow classification denies physical, energy, and long-duration claims
+- Result: pass
+- Reviewer/attestation: run head SHA, run conclusion, and every matrix-job conclusion inspected through the GitHub API
 
 ## VER-BC04-GATE — BC-04 — 2026-07-19T03:28:30Z
 

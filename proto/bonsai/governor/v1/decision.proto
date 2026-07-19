@@ -1,0 +1,102 @@
+syntax = "proto3";
+
+package bonsai.governor.v1;
+
+// Immutable evidence of one governor decision. The policy reference, observed
+// state, requested work, and reason code are sufficient to reconstruct the
+// decision input without relying on mutable process state.
+message GovernorDecisionEvent {
+  bytes decision_id = 1;
+  bytes run_id = 2;
+  PolicyReference policy = 3;
+  uint64 monotonic_time_ns = 4;
+  WorkRequest requested_work = 5;
+  ObservedBudgetState observed_state = 6;
+  DecisionOutcome outcome = 7;
+  string reason_code = 8;
+  repeated string affected_limit_ids = 9;
+  optional uint64 defer_until_monotonic_time_ns = 10;
+  repeated ThrottleAllocation throttle_allocations = 11;
+}
+
+message PolicyReference {
+  bytes policy_id = 1;
+  string policy_version = 2;
+  bytes canonical_sha256 = 3;
+}
+
+message WorkRequest {
+  bytes work_item_id = 1;
+  WorkClass work_class = 2;
+  repeated ResourceRequest resources = 3;
+}
+
+message ResourceRequest {
+  string counter_id = 1;
+  string unit = 2;
+  uint64 amount = 3;
+}
+
+message ObservedBudgetState {
+  uint64 step_index = 1;
+  optional bytes triggering_event_id = 2;
+  repeated BudgetObservation observations = 3;
+}
+
+message BudgetObservation {
+  string limit_id = 1;
+  BudgetScope scope = 2;
+  WorkClass work_class = 3;
+  string counter_id = 4;
+  string unit = 5;
+  optional uint64 consumed = 6;
+  ObservationBasis basis = 7;
+  optional string estimator_id = 8;
+  optional string estimator_version = 9;
+  optional uint64 window_start_monotonic_time_ns = 10;
+  optional uint64 window_duration_ns = 11;
+  optional string unavailable_reason = 12;
+}
+
+message ThrottleAllocation {
+  string counter_id = 1;
+  string unit = 2;
+  uint64 admitted_amount = 3;
+}
+
+enum BudgetScope {
+  BUDGET_SCOPE_UNSPECIFIED = 0;
+  BUDGET_SCOPE_PER_EVENT = 1;
+  BUDGET_SCOPE_PER_STEP = 2;
+  BUDGET_SCOPE_ROLLING_WINDOW = 3;
+  BUDGET_SCOPE_LIFETIME = 4;
+}
+
+enum WorkClass {
+  WORK_CLASS_UNSPECIFIED = 0;
+  WORK_CLASS_ACTING = 1;
+  WORK_CLASS_LEARNING = 2;
+  WORK_CLASS_FEATURE_GENERATION = 3;
+  WORK_CLASS_OPTION_LEARNING = 4;
+  WORK_CLASS_MODEL_LEARNING = 5;
+  WORK_CLASS_PLANNING = 6;
+  WORK_CLASS_CURATION = 7;
+  WORK_CLASS_ENVIRONMENT = 8;
+  WORK_CLASS_OBSERVER = 9;
+}
+
+enum ObservationBasis {
+  OBSERVATION_BASIS_UNSPECIFIED = 0;
+  OBSERVATION_BASIS_MEASURED = 1;
+  OBSERVATION_BASIS_ESTIMATED = 2;
+  OBSERVATION_BASIS_UNAVAILABLE = 3;
+}
+
+enum DecisionOutcome {
+  DECISION_OUTCOME_UNSPECIFIED = 0;
+  DECISION_OUTCOME_ADMIT = 1;
+  DECISION_OUTCOME_DEFER = 2;
+  DECISION_OUTCOME_THROTTLE = 3;
+  DECISION_OUTCOME_REJECT = 4;
+  DECISION_OUTCOME_TERMINATE = 5;
+}

@@ -93,3 +93,11 @@ The frozen fixture pair under `fixtures/platform-inventory/v1/` proves both side
 ## Track declaration v1
 
 [`track-declaration-v1.json`](./track-declaration-v1.json) records declared intent and the runtime facts used by `bonsai_contracts::track::derive_track`. Declaration never overrides observation. Complete strict single-pass facts derive A; replay or offline update derives B; dense-every-step scheduling derives C; privileged state, human labels, or domain feature targets derive D; observer-data access, incomplete facts, or contradictions derive `INDETERMINATE_TRACK`. The frozen seven-case corpus covers each outcome and declaration mismatch.
+
+## Resource policy v1
+
+[`resource-policy-v1.json`](./resource-policy-v1.json) is the immutable BC-06 external-governor policy contract. Each limit identifies one canonical work class, budget scope, counter, unit, soft limit, hard limit, acceptable measured/estimated basis, and rolling-window duration when applicable. Soft limits may degrade service; hard limits are a distinct violation boundary. The schema has no defaults.
+
+The frozen fixture under `fixtures/resource-policy/v1/` contains all four scopes (`per_event`, `per_step`, `rolling_window`, and `lifetime`), exactly one explicit allocation for each of the nine canonical work classes, and policy-local reason rules covering `admit`, `defer`, `throttle`, `reject`, and `terminate`. Rust semantic validation additionally requires soft limits not to exceed hard limits, complete scope/class/outcome coverage, unique limit and reason identities, every limit to be allocated exactly once to its own work class, and nonzero rolling windows and allocation weights.
+
+The policy's canonical JSON SHA-256 binds the exact JSON bytes to a Protobuf governor decision. The decision contract is documented in [`../proto/README.md`](../proto/README.md). These contracts make a decision reconstructible from recorded evidence; they do not perform measurement, scheduling, or backend enforcement.

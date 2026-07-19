@@ -1,0 +1,103 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://schemas.bonsai.dev/resource-policy/v1",
+  "title": "BONSAI external resource policy v1",
+  "description": "Immutable resource-governor policy contract. This schema defines decision inputs and limits; it does not claim backend enforcement.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "policy_id", "policy_version", "resource_profile_id", "limits", "work_class_allocations", "decision_rules"],
+  "properties": {
+    "schema_version": {"const": "1.0"},
+    "policy_id": {"$ref": "#/$defs/uuid"},
+    "policy_version": {"$ref": "#/$defs/version"},
+    "resource_profile_id": {"enum": ["S", "C", "A", "L", "custom"]},
+    "limits": {
+      "type": "array",
+      "minItems": 4,
+      "items": {"$ref": "#/$defs/limit"}
+    },
+    "work_class_allocations": {
+      "type": "array",
+      "minItems": 9,
+      "maxItems": 9,
+      "items": {"$ref": "#/$defs/allocation"}
+    },
+    "decision_rules": {
+      "type": "array",
+      "minItems": 5,
+      "items": {"$ref": "#/$defs/decision_rule"}
+    }
+  },
+  "$defs": {
+    "uuid": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$"
+    },
+    "version": {
+      "type": "string",
+      "pattern": "^[0-9]+\\.[0-9]+(?:\\.[0-9]+)?$"
+    },
+    "work_class": {
+      "enum": ["acting", "learning", "feature_generation", "option_learning", "model_learning", "planning", "curation", "environment", "observer"]
+    },
+    "unit": {
+      "enum": ["ns", "B", "1", "uJ", "uW"]
+    },
+    "rolling_window": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["duration_ns"],
+      "properties": {
+        "duration_ns": {"type": "integer", "minimum": 1}
+      }
+    },
+    "limit": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["limit_id", "work_class", "scope", "counter_id", "unit", "soft_limit", "hard_limit", "basis_requirement", "rolling_window"],
+      "properties": {
+        "limit_id": {"type": "string", "pattern": "^[a-z][a-z0-9._-]*$"},
+        "work_class": {"$ref": "#/$defs/work_class"},
+        "scope": {"enum": ["per_event", "per_step", "rolling_window", "lifetime"]},
+        "counter_id": {"type": "string", "pattern": "^[a-z][a-z0-9._-]*$"},
+        "unit": {"$ref": "#/$defs/unit"},
+        "soft_limit": {"type": "integer", "minimum": 0},
+        "hard_limit": {"type": "integer", "minimum": 1},
+        "basis_requirement": {"enum": ["measured", "estimated", "measured_or_estimated"]},
+        "rolling_window": {"oneOf": [{"$ref": "#/$defs/rolling_window"}, {"type": "null"}]}
+      },
+      "allOf": [
+        {
+          "if": {"properties": {"scope": {"const": "rolling_window"}}, "required": ["scope"]},
+          "then": {"properties": {"rolling_window": {"$ref": "#/$defs/rolling_window"}}},
+          "else": {"properties": {"rolling_window": {"type": "null"}}}
+        }
+      ]
+    },
+    "allocation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["work_class", "allocation_weight", "limit_ids"],
+      "properties": {
+        "work_class": {"$ref": "#/$defs/work_class"},
+        "allocation_weight": {"type": "integer", "minimum": 1},
+        "limit_ids": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {"type": "string", "pattern": "^[a-z][a-z0-9._-]*$"}
+        }
+      }
+    },
+    "decision_rule": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["reason_code", "limit_state", "outcome"],
+      "properties": {
+        "reason_code": {"type": "string", "pattern": "^[A-Z][A-Z0-9_]*$"},
+        "limit_state": {"enum": ["within_soft", "soft_exceeded", "hard_exceeded", "basis_unavailable"]},
+        "outcome": {"enum": ["admit", "defer", "throttle", "reject", "terminate"]}
+      }
+    }
+  }
+}

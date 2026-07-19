@@ -1,6 +1,7 @@
 //! Frozen schema-compatibility conformance suite.
 
 use bonsai_contracts::inventory::{PlatformInventory, sanitize_inventory_json};
+use bonsai_contracts::resource::{ResourcePolicy, validate_resource_policy};
 use bonsai_contracts::track::{Track, TrackDeclaration, derive_track};
 use serde::Deserialize;
 use serde_json::Value;
@@ -176,8 +177,63 @@ pub(crate) fn run() -> Result<(), String> {
     run_experiment_manifest_suite(&root)?;
     run_platform_inventory_suite(&root)?;
     run_track_suite(&root)?;
+    run_resource_policy_suite(&root)?;
 
-    println!("schema check passed: compatibility, manifest, inventory, and derived track suites");
+    println!(
+        "schema check passed: compatibility, manifest, inventory, derived track, and resource policy suites"
+    );
+    Ok(())
+}
+
+fn run_resource_policy_suite(root: &Path) -> Result<(), String> {
+    let schema_path = root.join("schemas/resource-policy-v1.json");
+    let schema_raw = fs::read(&schema_path)
+        .map_err(|error| format!("read {}: {error}", schema_path.display()))?;
+    let schema: Value = serde_json::from_slice(&schema_raw)
+        .map_err(|error| format!("parse {}: {error}", schema_path.display()))?;
+    jsonschema::draft202012::meta::validate(&schema)
+        .map_err(|error| format!("resource policy is not valid Draft 2020-12: {error}"))?;
+    reject_schema_defaults(&schema, "")?;
+    let validator = jsonschema::draft202012::new(&schema)
+        .map_err(|error| format!("compile resource policy schema: {error}"))?;
+
+    let fixture_path = root.join("fixtures/resource-policy/v1/valid.json");
+    let fixture_raw = fs::read(&fixture_path)
+        .map_err(|error| format!("read {}: {error}", fixture_path.display()))?;
+    let fixture: Value = serde_json::from_slice(&fixture_raw)
+        .map_err(|error| format!("parse {}: {error}", fixture_path.display()))?;
+    validator
+        .validate(&fixture)
+        .map_err(|error| format!("valid resource policy fixture failed schema: {error}"))?;
+    let policy: ResourcePolicy = serde_json::from_value(fixture.clone())
+        .map_err(|error| format!("decode resource policy fixture: {error}"))?;
+    validate_resource_policy(&policy)
+        .map_err(|error| format!("resource policy semantic validation failed: {error}"))?;
+
+    let canonical = canonical_json(&fixture_raw)?;
+    let windows_text = String::from_utf8(fixture_raw.clone())
+        .map_err(|_| "valid resource policy fixture is not UTF-8".to_owned())?
+        .replace('\n', "\r\n");
+    if canonical != canonical_json(windows_text.as_bytes())? {
+        return Err("resource policy canonical bytes differ for LF and CRLF input".to_owned());
+    }
+
+    let mut invalid_limits = policy.clone();
+    invalid_limits.limits[0].soft_limit = invalid_limits.limits[0].hard_limit + 1;
+    if validate_resource_policy(&invalid_limits).is_ok() {
+        return Err("resource policy accepted a soft limit above its hard limit".to_owned());
+    }
+    let mut incomplete_allocations = policy.clone();
+    incomplete_allocations.work_class_allocations.pop();
+    if validate_resource_policy(&incomplete_allocations).is_ok() {
+        return Err("resource policy accepted incomplete work-class allocation".to_owned());
+    }
+
+    println!(
+        "resource policy valid.json: valid scopes=4 work_classes=9 outcomes=5 canonical_sha256={} schema_canonical_sha256={}",
+        sha256_hex(&canonical),
+        sha256_hex(&canonical_json(&schema_raw)?)
+    );
     Ok(())
 }
 

@@ -1,0 +1,38 @@
+{
+  "schema_version": "1.0",
+  "policy_id": "70000000-0000-4000-8000-000000000001",
+  "policy_version": "1.0.0",
+  "resource_profile_id": "S",
+  "limits": [
+    {"limit_id": "acting.event.bytes", "work_class": "acting", "scope": "per_event", "counter_id": "event_bytes", "unit": "B", "soft_limit": 4096, "hard_limit": 8192, "basis_requirement": "measured", "rolling_window": null},
+    {"limit_id": "acting.step.cpu", "work_class": "acting", "scope": "per_step", "counter_id": "cpu_time_ns", "unit": "ns", "soft_limit": 5000000, "hard_limit": 10000000, "basis_requirement": "measured_or_estimated", "rolling_window": null},
+    {"limit_id": "acting.window.cpu", "work_class": "acting", "scope": "rolling_window", "counter_id": "cpu_time_ns", "unit": "ns", "soft_limit": 50000000, "hard_limit": 100000000, "basis_requirement": "measured_or_estimated", "rolling_window": {"duration_ns": 1000000000}},
+    {"limit_id": "acting.lifetime.cpu", "work_class": "acting", "scope": "lifetime", "counter_id": "cpu_time_ns", "unit": "ns", "soft_limit": 100000000000, "hard_limit": 120000000000, "basis_requirement": "measured_or_estimated", "rolling_window": null},
+    {"limit_id": "learning.lifetime.operations", "work_class": "learning", "scope": "lifetime", "counter_id": "estimated_operations", "unit": "1", "soft_limit": 900000, "hard_limit": 1000000, "basis_requirement": "estimated", "rolling_window": null},
+    {"limit_id": "feature.lifetime.operations", "work_class": "feature_generation", "scope": "lifetime", "counter_id": "estimated_operations", "unit": "1", "soft_limit": 90000, "hard_limit": 100000, "basis_requirement": "estimated", "rolling_window": null},
+    {"limit_id": "option.lifetime.operations", "work_class": "option_learning", "scope": "lifetime", "counter_id": "estimated_operations", "unit": "1", "soft_limit": 90000, "hard_limit": 100000, "basis_requirement": "estimated", "rolling_window": null},
+    {"limit_id": "model.lifetime.operations", "work_class": "model_learning", "scope": "lifetime", "counter_id": "estimated_operations", "unit": "1", "soft_limit": 90000, "hard_limit": 100000, "basis_requirement": "estimated", "rolling_window": null},
+    {"limit_id": "planning.lifetime.backups", "work_class": "planning", "scope": "lifetime", "counter_id": "planning_backups", "unit": "1", "soft_limit": 9000, "hard_limit": 10000, "basis_requirement": "measured", "rolling_window": null},
+    {"limit_id": "curation.lifetime.operations", "work_class": "curation", "scope": "lifetime", "counter_id": "estimated_operations", "unit": "1", "soft_limit": 90000, "hard_limit": 100000, "basis_requirement": "estimated", "rolling_window": null},
+    {"limit_id": "environment.lifetime.cpu", "work_class": "environment", "scope": "lifetime", "counter_id": "cpu_time_ns", "unit": "ns", "soft_limit": 100000000000, "hard_limit": 120000000000, "basis_requirement": "measured_or_estimated", "rolling_window": null},
+    {"limit_id": "observer.lifetime.output", "work_class": "observer", "scope": "lifetime", "counter_id": "observer_output_bytes", "unit": "B", "soft_limit": 483183820, "hard_limit": 536870912, "basis_requirement": "measured", "rolling_window": null}
+  ],
+  "work_class_allocations": [
+    {"work_class": "acting", "allocation_weight": 1, "limit_ids": ["acting.event.bytes", "acting.step.cpu", "acting.window.cpu", "acting.lifetime.cpu"]},
+    {"work_class": "learning", "allocation_weight": 1, "limit_ids": ["learning.lifetime.operations"]},
+    {"work_class": "feature_generation", "allocation_weight": 1, "limit_ids": ["feature.lifetime.operations"]},
+    {"work_class": "option_learning", "allocation_weight": 1, "limit_ids": ["option.lifetime.operations"]},
+    {"work_class": "model_learning", "allocation_weight": 1, "limit_ids": ["model.lifetime.operations"]},
+    {"work_class": "planning", "allocation_weight": 1, "limit_ids": ["planning.lifetime.backups"]},
+    {"work_class": "curation", "allocation_weight": 1, "limit_ids": ["curation.lifetime.operations"]},
+    {"work_class": "environment", "allocation_weight": 1, "limit_ids": ["environment.lifetime.cpu"]},
+    {"work_class": "observer", "allocation_weight": 1, "limit_ids": ["observer.lifetime.output"]}
+  ],
+  "decision_rules": [
+    {"reason_code": "WITHIN_SOFT_LIMITS", "limit_state": "within_soft", "outcome": "admit"},
+    {"reason_code": "ROLLING_WINDOW_RETRY", "limit_state": "soft_exceeded", "outcome": "defer"},
+    {"reason_code": "SOFT_LIMIT_THROTTLE", "limit_state": "soft_exceeded", "outcome": "throttle"},
+    {"reason_code": "HARD_LIMIT_REJECT", "limit_state": "hard_exceeded", "outcome": "reject"},
+    {"reason_code": "MEASUREMENT_BASIS_UNAVAILABLE", "limit_state": "basis_unavailable", "outcome": "terminate"}
+  ]
+}
