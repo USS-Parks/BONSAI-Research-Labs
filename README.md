@@ -9,7 +9,7 @@ BONSAI is an independent, algorithm-neutral measurement and external resource-go
 - Research charter: approved v0.1 on 2026-07-18.
 - PSPR: approved v0.1 on 2026-07-18.
 - Current execution authorization: remaining approved PSPR roster in dependency order, expanded by `Continue to STS` on 2026-07-18.
-- Implementation claims: M0 governed foundation, BC-01 through BC-12, BR-01 through BR-06, BM-01 through BM-04, BQ-01 through BQ-04, BK-01 through BK-03, and BE-01 are complete; no instrument-completion or C0–C5 claim.
+- Implementation claims: M0 governed foundation, BC-01 through BC-12, BR-01 through BR-06, BM-01 through BM-04, BQ-01 through BQ-04, BK-01 through BK-03, and BE-01 through BE-02 are complete; no instrument-completion or C0–C5 claim.
 - Repository visibility: public under the approved 2026-07-18 repository-target addendum.
 - License: `MIT OR Apache-2.0` at the recipient's option.
 
@@ -65,4 +65,4 @@ The runtime boundary is specified in the [adapter protocol](./docs/architecture/
 
 Analysis begins with the [versioned metric registry](./docs/metrics/REGISTRY.md), [primary behavior metrics](./docs/metrics/PRIMARY-BEHAVIOR-METRICS.md), and [resource/overhead metrics](./docs/metrics/RESOURCE-AND-OVERHEAD-METRICS.md); derived report values must originate in deterministic metric tables.
 
-Reference experiments begin with the [scenario protocol](./docs/architecture/SCENARIO-PROTOCOL.md) and its observer-only diagnostic channel.
+Reference experiments begin with the [scenario protocol](./docs/architecture/SCENARIO-PROTOCOL.md), its observer-only diagnostic channel, and the [primitive control adapter](./docs/reference/PRIMITIVE-CONTROL-ADAPTER.md).

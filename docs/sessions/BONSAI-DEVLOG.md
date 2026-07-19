@@ -818,3 +818,24 @@ This append-only log records executed PSPR prompts. Corrections are added as new
 - Commit SHA: pending; append in BE-02 under the self-hash convention
 - Risks/blockers/parked scope changed: R-10 remains active for hosted semantic equivalence and R-07 for later adversarial isolation; frozen integer/JSON streams avoid current numeric drift but do not establish scenario scientific sufficiency; no agent-quality, instrument-completion, or C0–C5 claim is made
 - Next eligible prompt after gate and publication: BE-02
+
+### BE-01 closeout note
+
+- Focused implementation commit SHA: `20c9c7d5f7211dba6bea41f18d9968d4064ac93e`
+- Hosted verification: GitHub Actions run 29702349656, attempt 1, passed Windows x86_64, Linux x86_64, macOS arm64, and macOS Intel at that exact commit
+- Ledger rule: appended by BE-02 because the BE-01 commit could not contain its own immutable hash or post-push hosted-run identity
+
+## 2026-07-19 — BE-02 — Primitive tabular control adapter
+
+- Status: passed; closeout entry pending focused commit identity and hosted run
+- Authorization scope: user-authorized remaining M1 STS for this session plus the existing later-gated public source publication addendum
+- Dependencies and source revision: BE-01 published and hosted-green at `20c9c7d5f7211dba6bea41f18d9968d4064ac93e`; BQ-04 published and hosted-green
+- Objective and exclusions: implement a minimal single-pass primitive-action controller with batch size one, deterministic tabular statistics, no replay, and exact work accounting; exclude learned features, options, and planning
+- Reuse classification: extend the existing Python reference package at the BE-01/BQ-04 seam using standard dataclasses and integer dictionaries; reuse the settled Track A facts and operation-counter vocabulary; add no dependency
+- Files changed: primitive controller/certification/fixture runner, Python tests, reference contract, README/PSPR status, BE-01 hosted closeout, DEVLOG, verification log, and retained machine evidence
+- Decisions/addenda: one `act` must be followed by exactly one `observe`; each pending transition is discarded immediately; initial exploration is lowest-unseen action and greedy comparison uses exact cross-multiplication; certification fixes primitive-only, batch one, replay zero, no features/options/planning/diagnostic input; environment steps, updates, touches, and work items are exact
+- Verification summary: three focused tests cover 100 identical ten-step learning curves, exact action/reward/cumulative sequences, exact accounting, strict Track A certification, and out-of-order call rejection; the complete gate passed formatting, strict workspace Clippy, 104 Rust tests, Ruff, strict Pyright, 9 Python tests, schema compatibility, docs, ADR, license, governance-ledger, terminology, and CI-topology checks on Windows x86_64
+- Evidence paths and SHA-256 hashes: machine record `BE-02-1784492586492721400` with stdout `6E686E1F05F9DAB05526BB98A5A1CE03D3D2F8CFA0ADE477E628522B32F6D583` and stderr `8E8911B6DD0FE47FBD2351A2AB92B9FF7BE49D42E863DF1DB9DCB27316AC6A44`; implementation `7A3D51C7F7ADA31644FD381DD76B06A088D563E4B951F25BCFC5506197535D38`; tests `3A3DD7E064DCF334F690279669078112617EB36D97FF3C2928834E81D480B0F6`; contract `4A47E0D9AC538589B2D92B43F240708D334A5FCEA185F7B301C15A6DD828D559`
+- Commit SHA: pending; append in the next M1 prompt under the self-hash convention
+- Risks/blockers/parked scope changed: this closes the M1 primitive controller only; R-10 remains active for hosted semantic equivalence and later agents/comparators remain parked; no continual-adaptation, abstraction, planning, instrument-completion, or C0–C5 claim is made
+- Next eligible M1 prompt after gate and publication: BV-01
