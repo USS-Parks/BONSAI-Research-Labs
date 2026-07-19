@@ -14,6 +14,8 @@ workspace = true
 [dependencies]
 arrow-array = "59.1.0"
 arrow-schema = "59.1.0"
+bonsai-contracts = { path = "../bonsai-contracts" }
+jsonschema = { version = "0.48.1", default-features = false }
 parquet = { version = "59.1.0", default-features = false, features = ["arrow"] }
 rusqlite = { version = "0.40.1", features = ["bundled"] }
 serde = { version = "1.0.229", features = ["derive"] }

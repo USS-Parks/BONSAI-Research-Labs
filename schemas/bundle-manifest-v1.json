@@ -1,0 +1,46 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://schemas.bonsai.dev/bundle-manifest/v1",
+  "title": "BONSAI result bundle manifest v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["format", "epoch", "minor", "bundle_id", "files", "migration"],
+  "properties": {
+    "format": {"const": "bonsai.bundle/v1"},
+    "epoch": {"const": 1},
+    "minor": {"const": 0},
+    "bundle_id": {"$ref": "#/$defs/uuid"},
+    "files": {
+      "type": "array",
+      "minItems": 7,
+      "items": {"$ref": "#/$defs/file"}
+    },
+    "migration": {"$ref": "#/$defs/migration"}
+  },
+  "$defs": {
+    "uuid": {"type": "string", "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$"},
+    "sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "path": {"type": "string", "pattern": "^(?:[A-Za-z0-9._-]+/)*[A-Za-z0-9._-]+$"},
+    "file": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["path", "sha256", "role", "required"],
+      "properties": {
+        "path": {"$ref": "#/$defs/path"},
+        "sha256": {"$ref": "#/$defs/sha256"},
+        "role": {"enum": ["experiment_manifest", "track_declaration", "platform_inventory", "resource_policy", "failure_log", "metric_estimate", "event_segment"]},
+        "required": {"type": "boolean"}
+      }
+    },
+    "migration": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["status", "source_epoch", "registry_id"],
+      "properties": {
+        "status": {"enum": ["current", "migrated"]},
+        "source_epoch": {"type": "integer", "minimum": 0, "maximum": 1},
+        "registry_id": {"const": "bonsai.bundle-migrations/v1"}
+      }
+    }
+  }
+}

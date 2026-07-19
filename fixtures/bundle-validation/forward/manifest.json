@@ -1,0 +1,10 @@
+{
+  "format": "bonsai.bundle/v2",
+  "epoch": 2,
+  "minor": 0,
+  "bundle_id": "90000000-0000-4000-8000-000000000003",
+  "files": [
+    {"path": "fixtures/event-segments/v1/expected-outcomes.json", "sha256": "6d4e776a41e0f13817f6eb91e5d7aaa218cd672bdf88ff41cfac285331520aeb", "role": "event_segment", "required": true}
+  ],
+  "future_extension": {"intentionally_unknown": true}
+}

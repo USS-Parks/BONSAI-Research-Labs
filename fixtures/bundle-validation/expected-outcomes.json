@@ -1,0 +1,12 @@
+{
+  "format": "bonsai.bundle-validation-corpus/v1",
+  "cases": [
+    {"name": "valid", "manifest": "fixtures/bundle-validation/v1/manifest.json", "expected_verdict": "VALID", "expected_reasons": []},
+    {"name": "old-migratable", "manifest": "fixtures/bundle-validation/v0/manifest.json", "expected_verdict": "MIGRATABLE", "expected_reasons": ["MIGRATION_V0_TO_V1_AVAILABLE"]},
+    {"name": "forward-readable", "manifest": "fixtures/bundle-validation/forward/manifest.json", "expected_verdict": "FORWARD_READABLE", "expected_reasons": ["FUTURE_EPOCH_NOT_INTERPRETED", "FUTURE_EPOCH_READ_ONLY"]},
+    {"name": "corrupt", "manifest": "fixtures/bundle-validation/corrupt/manifest.json", "expected_verdict": "INVALID", "expected_reasons": ["EXPERIMENT_SCHEMA_INVALID"]},
+    {"name": "ambiguous-track", "manifest": "fixtures/bundle-validation/ambiguous-track/manifest.json", "expected_verdict": "INDETERMINATE", "expected_reasons": ["TRACK_FACTS_INCOMPLETE"]},
+    {"name": "unavailable-counter", "manifest": "fixtures/bundle-validation/unavailable-counter/manifest.json", "expected_verdict": "VALID_WITH_LIMITATIONS", "expected_reasons": ["COUNTER_UNAVAILABLE"]},
+    {"name": "tampered", "manifest": "fixtures/bundle-validation/tampered/manifest.json", "expected_verdict": "INVALID", "expected_reasons": ["FILE_HASH_MISMATCH"]}
+  ]
+}

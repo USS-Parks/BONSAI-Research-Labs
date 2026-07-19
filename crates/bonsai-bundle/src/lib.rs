@@ -12,6 +12,7 @@ use std::path::{Path, PathBuf};
 
 mod derivation;
 mod index;
+mod validation;
 
 pub use derivation::{
     AnalyticalTable, DecisionRow, DerivationError, DerivationExpectation, DerivationSpec,
@@ -21,6 +22,10 @@ pub use derivation::{
 pub use index::{
     BlobId, BlobSummary, BundleIndex, BundleIndexError, IndexSummary, IndexedArtifact,
     IndexedSegment, put_blob, put_blob_verified, rebuild_index, validate_blob,
+};
+pub use validation::{
+    AccessMode, BundleSchemas, BundleValidationError, BundleValidationReport, CheckResult,
+    CheckStatus, OverallVerdict, migrate_v0_manifest, validate_result_bundle,
 };
 
 const HEADER_MAGIC: [u8; 8] = *b"BNSSEG01";

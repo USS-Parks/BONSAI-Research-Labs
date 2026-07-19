@@ -172,6 +172,8 @@ version = "0.0.0"
 dependencies = [
  "arrow-array",
  "arrow-schema",
+ "bonsai-contracts",
+ "jsonschema",
  "parquet",
  "rusqlite",
  "serde",
@@ -196,6 +198,7 @@ dependencies = [
 name = "bonsai-xtask"
 version = "0.0.0"
 dependencies = [
+ "bonsai-bundle",
  "bonsai-contracts",
  "jsonschema",
  "serde",

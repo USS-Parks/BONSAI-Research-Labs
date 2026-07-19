@@ -1,0 +1,15 @@
+    Checking bonsai-bundle v0.0.0 (C:\Users\17076\Documents\Reinforcement Learning Project\crates\bonsai-bundle)
+    Checking bonsai-xtask v0.0.0 (C:\Users\17076\Documents\Reinforcement Learning Project\crates\bonsai-xtask)
+error: this argument is passed by value, but not consumed in the function body
+  --> crates\bonsai-xtask\src\main.rs:98:23
+   |
+98 | fn bundle_check(args: Vec<OsString>) -> Result<i32, String> {
+   |                       ^^^^^^^^^^^^^ help: consider changing the type to: `&[OsString]`
+   |
+   = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.96.0/index.html#needless_pass_by_value
+   = note: `-D clippy::needless-pass-by-value` implied by `-D clippy::pedantic`
+   = help: to override `-D clippy::pedantic` add `#[allow(clippy::needless_pass_by_value)]`
+
+error: could not compile `bonsai-xtask` (bin "bonsai-xtask") due to 1 previous error
+warning: build failed, waiting for other jobs to finish...
+error: could not compile `bonsai-xtask` (bin "bonsai-xtask" test) due to 1 previous error

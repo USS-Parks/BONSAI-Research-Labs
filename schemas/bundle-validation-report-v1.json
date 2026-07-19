@@ -1,0 +1,43 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://schemas.bonsai.dev/bundle-validation-report/v1",
+  "title": "BONSAI bundle validation report v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema", "bundle_id", "manifest_epoch", "access_mode", "verdict", "checks", "reason_codes", "migrated_manifest_sha256"],
+  "properties": {
+    "schema": {"const": "bonsai.bundle-validation-report/v1"},
+    "bundle_id": {"type": ["string", "null"], "pattern": "^[0-9a-f-]{36}$"},
+    "manifest_epoch": {"type": ["integer", "null"], "minimum": 0},
+    "access_mode": {"enum": ["read_only", "validation_only"]},
+    "verdict": {"enum": ["VALID", "MIGRATABLE", "FORWARD_READABLE", "INVALID", "INDETERMINATE", "VALID_WITH_LIMITATIONS"]},
+    "checks": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["schema", "hashes", "track", "inventory", "resource_policy", "failures", "metric_provenance", "migrations"],
+      "properties": {
+        "schema": {"$ref": "#/$defs/check"},
+        "hashes": {"$ref": "#/$defs/check"},
+        "track": {"$ref": "#/$defs/check"},
+        "inventory": {"$ref": "#/$defs/check"},
+        "resource_policy": {"$ref": "#/$defs/check"},
+        "failures": {"$ref": "#/$defs/check"},
+        "metric_provenance": {"$ref": "#/$defs/check"},
+        "migrations": {"$ref": "#/$defs/check"}
+      }
+    },
+    "reason_codes": {"type": "array", "uniqueItems": true, "items": {"type": "string", "pattern": "^[A-Z][A-Z0-9_]*$"}},
+    "migrated_manifest_sha256": {"type": ["string", "null"], "pattern": "^[0-9a-f]{64}$"}
+  },
+  "$defs": {
+    "check": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["status", "reason_codes"],
+      "properties": {
+        "status": {"enum": ["pass", "fail", "limited", "not_run"]},
+        "reason_codes": {"type": "array", "uniqueItems": true, "items": {"type": "string", "pattern": "^[A-Z][A-Z0-9_]*$"}}
+      }
+    }
+  }
+}

@@ -188,9 +188,51 @@ pub(crate) fn run() -> Result<(), String> {
     run_track_suite(&root)?;
     run_resource_policy_suite(&root)?;
     run_metric_contract_suite(&root)?;
+    run_bundle_validation_schema_suite(&root)?;
 
     println!(
-        "schema check passed: compatibility, manifest, inventory, derived track, resource policy, metric, uncertainty, and claim-result suites"
+        "schema check passed: compatibility, manifest, inventory, derived track, resource policy, metric, uncertainty, claim-result, and bundle-validation suites"
+    );
+    Ok(())
+}
+
+fn run_bundle_validation_schema_suite(root: &Path) -> Result<(), String> {
+    let manifest_schema_path = root.join("schemas/bundle-manifest-v1.json");
+    let report_schema_path = root.join("schemas/bundle-validation-report-v1.json");
+    let manifest_schema_raw = fs::read(&manifest_schema_path)
+        .map_err(|error| format!("read {}: {error}", manifest_schema_path.display()))?;
+    let report_schema_raw = fs::read(&report_schema_path)
+        .map_err(|error| format!("read {}: {error}", report_schema_path.display()))?;
+    let manifest_schema: Value = serde_json::from_slice(&manifest_schema_raw)
+        .map_err(|error| format!("parse {}: {error}", manifest_schema_path.display()))?;
+    let report_schema: Value = serde_json::from_slice(&report_schema_raw)
+        .map_err(|error| format!("parse {}: {error}", report_schema_path.display()))?;
+    for (name, schema) in [
+        ("bundle manifest", &manifest_schema),
+        ("bundle validation report", &report_schema),
+    ] {
+        jsonschema::draft202012::meta::validate(schema)
+            .map_err(|error| format!("{name} is not valid Draft 2020-12: {error}"))?;
+        reject_schema_defaults(schema, "")?;
+    }
+
+    let manifest_path = root.join("fixtures/bundle-validation/v1/manifest.json");
+    let manifest: Value = serde_json::from_slice(
+        &fs::read(&manifest_path)
+            .map_err(|error| format!("read {}: {error}", manifest_path.display()))?,
+    )
+    .map_err(|error| format!("parse {}: {error}", manifest_path.display()))?;
+    jsonschema::draft202012::new(&manifest_schema)
+        .map_err(|error| format!("compile bundle manifest schema: {error}"))?
+        .validate(&manifest)
+        .map_err(|error| format!("current bundle fixture failed schema: {error}"))?;
+    jsonschema::draft202012::new(&report_schema)
+        .map_err(|error| format!("compile bundle validation report schema: {error}"))?;
+
+    println!(
+        "bundle validation schemas: current manifest valid manifest_schema_canonical_sha256={} report_schema_canonical_sha256={}",
+        sha256_hex(&canonical_json(&manifest_schema_raw)?),
+        sha256_hex(&canonical_json(&report_schema_raw)?)
     );
     Ok(())
 }

@@ -1,0 +1,16 @@
+{
+  "format": "bonsai.bundle/v1",
+  "epoch": 1,
+  "minor": 0,
+  "bundle_id": "90000000-0000-4000-8000-000000000001",
+  "files": [
+    {"path": "fixtures/experiment-manifest/v1/valid.json", "sha256": "e5d60c4d80004ef1fa83315027582e8c566c52ef850674f3b8b040f9e2b17e11", "role": "experiment_manifest", "required": true},
+    {"path": "fixtures/bundle-validation/shared/track-strict-a.json", "sha256": "0778c00c4e0f07377bf413de929eff29d56bebab8bb016b34ad8bf06590b57c9", "role": "track_declaration", "required": true},
+    {"path": "fixtures/platform-inventory/v1/sanitized-expected.json", "sha256": "032fda0f3decdcd91422617a6ee0f73945dfe23f0b69003ef3b22224a5e7898c", "role": "platform_inventory", "required": true},
+    {"path": "fixtures/resource-policy/v1/valid.json", "sha256": "faf2d91b67e84181eda44b87f86309a1518bfe530493341a7d24bce5318533b9", "role": "resource_policy", "required": true},
+    {"path": "fixtures/bundle-validation/shared/failures.json", "sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570", "role": "failure_log", "required": true},
+    {"path": "fixtures/bundle-validation/shared/metric-estimate.json", "sha256": "22ded2fb76d34567bef143aa8a31e3d9aba45fead5dfa1773a8011e0971e2b81", "role": "metric_estimate", "required": true},
+    {"path": "fixtures/event-segments/v1/expected-outcomes.json", "sha256": "6d4e776a41e0f13817f6eb91e5d7aaa218cd672bdf88ff41cfac285331520aeb", "role": "event_segment", "required": true}
+  ],
+  "migration": {"status": "current", "source_epoch": 1, "registry_id": "bonsai.bundle-migrations/v1"}
+}

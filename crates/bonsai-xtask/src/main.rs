@@ -82,6 +82,10 @@ fn run() -> Result<i32, String> {
             schema_check::run()?;
             Ok(0)
         }
+        Some("bundle-check") => {
+            let remaining = args.collect::<Vec<_>>();
+            bundle_check(&remaining)
+        }
         _ => Err(usage()),
     }
 }
@@ -89,8 +93,64 @@ fn run() -> Result<i32, String> {
 fn usage() -> String {
     "usage:\n  cargo xtask verify --prompt <ID> [--record-dir <PATH>] \
      [--evidence-class <CLASS>] [--runner-class <CLASS>] [--redact <TEXT>] -- <COMMAND> [ARGS...]\n  \
-     cargo xtask schema-check"
+     cargo xtask schema-check
+  cargo xtask bundle-check [--root <PATH>] <MANIFEST>"
         .to_owned()
+}
+
+fn bundle_check(args: &[OsString]) -> Result<i32, String> {
+    let mut root = PathBuf::from(".");
+    let manifest;
+    match args {
+        [path] => manifest = PathBuf::from(path),
+        [option, root_path, path] if option == "--root" => {
+            root = PathBuf::from(root_path);
+            manifest = PathBuf::from(path);
+        }
+        _ => return Err(usage()),
+    }
+    let schemas = bonsai_bundle::BundleSchemas {
+        bundle_manifest: embedded_json(include_bytes!(concat!(
+            env!("CARGO_MANIFEST_DIR"),
+            "/../../schemas/bundle-manifest-v1.json"
+        )))?,
+        experiment_manifest: embedded_json(include_bytes!(concat!(
+            env!("CARGO_MANIFEST_DIR"),
+            "/../../schemas/experiment-manifest-v1.json"
+        )))?,
+        track_declaration: embedded_json(include_bytes!(concat!(
+            env!("CARGO_MANIFEST_DIR"),
+            "/../../schemas/track-declaration-v1.json"
+        )))?,
+        platform_inventory: embedded_json(include_bytes!(concat!(
+            env!("CARGO_MANIFEST_DIR"),
+            "/../../schemas/platform-inventory-v1.json"
+        )))?,
+        resource_policy: embedded_json(include_bytes!(concat!(
+            env!("CARGO_MANIFEST_DIR"),
+            "/../../schemas/resource-policy-v1.json"
+        )))?,
+        metric_estimate: embedded_json(include_bytes!(concat!(
+            env!("CARGO_MANIFEST_DIR"),
+            "/../../schemas/metric-estimate-v1.json"
+        )))?,
+    };
+    let report = bonsai_bundle::validate_result_bundle(root, manifest, &schemas)
+        .map_err(|error| error.to_string())?;
+    serde_json::to_writer(io::stdout().lock(), &report)
+        .map_err(|error| format!("serialize bundle validation report: {error}"))?;
+    println!();
+    Ok(match report.verdict {
+        bonsai_bundle::OverallVerdict::Invalid | bonsai_bundle::OverallVerdict::Indeterminate => 2,
+        bonsai_bundle::OverallVerdict::Valid
+        | bonsai_bundle::OverallVerdict::Migratable
+        | bonsai_bundle::OverallVerdict::ForwardReadable
+        | bonsai_bundle::OverallVerdict::ValidWithLimitations => 0,
+    })
+}
+
+fn embedded_json(bytes: &[u8]) -> Result<serde_json::Value, String> {
+    serde_json::from_slice(bytes).map_err(|error| format!("parse embedded schema: {error}"))
 }
 
 fn parse_verify_args(args: &[OsString]) -> Result<VerifyArgs, String> {

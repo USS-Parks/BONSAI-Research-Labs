@@ -504,3 +504,45 @@ This is an append-only human index. Machine records created by `cargo xtask veri
 - Counter availability and privileges: analytical fixture evidence only; no raw-evidence authority, metric computation, claim adjudication, live ingest, physical counter, privileged collector, energy, or long-duration evidence
 - Result: pass
 - Reviewer/attestation: exact BC-11 schema/provenance/semantic-regeneration/wrong-input/stale gate, strict workspace lint/tests, Python gates, schema compatibility, and all governance checks passed locally; hosted three-family evidence remains pending the focused published commit
+
+## VER-BC11-HOSTED — BC-11 — 2026-07-19T14:38:16Z
+
+- Source revision and dirty state: `7c483f3e0024da32163cc461c33d77162fc87156`; clean pushed revision
+- OS/architecture/physical-or-CI: Windows/x86_64, Linux/x86_64, macOS/arm64, macOS/x86_64; GitHub hosted CI; ephemeral virtual machines
+- Toolchain/dependency-lock hashes: workflow-pinned Rust 1.96.0, Python 3.12, and uv 0.11.29; source locks at the recorded revision
+- Command: GitHub Actions `BONSAI baseline` push run 29691229681, attempt 1
+- Start/end/duration: `2026-07-19T14:38:16Z` / `2026-07-19T14:42:34Z` / 258 s
+- Exit code: all four jobs concluded `success`
+- Stdout/stderr artifact hashes: retained by GitHub Actions; job IDs 88204212057 (Linux), 88204212059 (macOS Intel), 88204212063 (Windows), and 88204212083 (macOS arm64)
+- Fixtures/manifests/bundle IDs: hosted Rust gate exercised all four Arrow/Parquet table contracts, provenance validation, semantic regeneration equivalence, wrong-input detection, stale-producer detection, and no-replacement behavior on every OS family
+- Counter availability and privileges: analytical fixture evidence only; no raw-evidence authority, metric computation, claim adjudication, live ingest, physical counter, privileged collector, energy, or long-duration evidence
+- Result: pass
+- Reviewer/attestation: run head SHA, run conclusion, and every matrix-job conclusion inspected through the GitHub API
+
+## VER-BC12-LINT-FAIL — BC-12 — 2026-07-19T15:06:07Z
+
+- Source revision and dirty state: `7c483f3e0024da32163cc461c33d77162fc87156`; dirty with BC-12 changes
+- OS/architecture/physical-or-CI: Windows/x86_64; local; physical/virtual status unknown
+- Toolchain/dependency-lock hashes: Rust 1.96.0; source locks included the BC-12 workspace update
+- Command: machine record `BC-12-1784473567251415900`; full gate launched through external verifier copy
+- Start/end/duration: `2026-07-19T15:06:07.251Z` / `2026-07-19T15:06:10.975Z` / 3.723745 s
+- Exit code: 101
+- Stdout/stderr artifact hashes: stdout `e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855`; stderr `d997c4616ab4a34784f2a7d7e625150b0c4fa8819bd003616a69432eb744b7e8`
+- Fixtures/manifests/bundle IDs: no corpus failure; strict Clippy rejected needless pass-by-value in the CLI argument handoff before tests
+- Counter availability and privileges: no live bundle, physical counter, privileged collector, agent, energy, or long-duration evidence
+- Result: implementation lint failure; corrected before acceptance
+- Reviewer/attestation: retained as an honest failed attempt and not used as BC-12 acceptance evidence
+
+## VER-BC12-GATE — BC-12 — 2026-07-19T15:07:15Z
+
+- Source revision and dirty state: `7c483f3e0024da32163cc461c33d77162fc87156`; dirty with BC-12 changes
+- OS/architecture/physical-or-CI: Windows/x86_64; local; physical/virtual status unknown
+- Toolchain/dependency-lock hashes: Rust 1.96.0; Python 3.14.4; uv 0.11.29; `Cargo.lock` SHA-256 `2C9BA13AF614DB6DF5782166151E2CE0E85D97F72579998322023CB7EBA4B67C`
+- Command: machine record `BC-12-1784473635637114200`; full universal/schema/governance gate through external verifier copy SHA-256 `86D52211F9B077D39A77A6967D970D14A196611ADF23D0CB59DE02A93FCE0659`
+- Start/end/duration: `2026-07-19T15:07:15.637Z` / `2026-07-19T15:07:41.500Z` / 25.8643269 s
+- Exit code: 0
+- Stdout/stderr artifact hashes: stdout `8491f96ae6af4d609c018149cf5f12119a471d98c158fc3ab545dacde4f3a3c3`; stderr `629ea33644568a9227c3d08256534bee21f777241140196153effc59a1f470b2`
+- Fixtures/manifests/bundle IDs: `bonsai.bundle-validation-corpus/v1` matrix SHA-256 `6B55C615BE43BD4AA5B67B3AD83479C573CF923450ABDCC2831C797D51BAB2B6`; exact current, migratable, forward, corrupt, ambiguous-track, unavailable-counter, and tampered verdict/reason arrays; report schema SHA-256 `AA6C9F8A973A58EC1C4710860D3365FFC64EE01DB6FB751060EF56E09984ACC8`
+- Counter availability and privileges: bundle fixture evidence only; unavailable-counter state remained explicit; no scientific claim adjudication, live agent, physical counter, privileged collector, energy, or long-duration evidence
+- Result: pass
+- Reviewer/attestation: exact BC-12 seven-case verdict corpus, deterministic non-mutating migration, forward read-only contract, one-report CLI semantics, strict workspace lint/tests, Python gates, schema compatibility, and all governance checks passed locally; hosted three-family evidence remains pending the focused published commit
