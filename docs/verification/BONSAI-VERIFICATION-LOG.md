@@ -672,3 +672,45 @@ This is an append-only human index. Machine records created by `cargo xtask veri
 - Counter availability and privileges: hosted immutable-segment and validation fixtures only; no physical-host attestation, ordering claim, process isolation, privileged input, energy, or long-duration evidence
 - Result: pass
 - Reviewer/attestation: run head SHA, run conclusion, and all four matrix-job conclusions inspected through the GitHub API
+
+## VER-BR04-HOSTED — BR-04 — 2026-07-19T17:06:15Z
+
+- Source revision and dirty state: `9b02dbe46ea2b82d11f613de38be074c08aff69b`; clean pushed revision
+- OS/architecture/physical-or-CI: Windows/x86_64, Linux/x86_64, macOS/arm64, macOS/x86_64; GitHub hosted CI; ephemeral virtual machines
+- Toolchain/dependency-lock hashes: workflow-pinned Rust 1.96.0, Python 3.12, and uv 0.11.29; source locks at the recorded revision
+- Command: GitHub Actions `BONSAI baseline` push run 29696164878, attempt 1
+- Start/end/duration: `2026-07-19T17:06:15Z` / `2026-07-19T17:10:36Z` / 261 s
+- Exit code: all four jobs concluded `success`
+- Stdout/stderr artifact hashes: retained by GitHub Actions; job IDs 88217197816 (macOS Intel), 88217197818 (macOS arm64), 88217197824 (Linux), and 88217197832 (Windows)
+- Fixtures/manifests/bundle IDs: exact partial-order class/edge/concurrency matrix and collection-order invariance ran unchanged on every hosted OS
+- Counter availability and privileges: hosted deterministic graph fixtures only; wall time explicitly non-authoritative; no run recovery, physical counter, process isolation, privileged input, energy, or long-duration evidence
+- Result: pass
+- Reviewer/attestation: run head SHA, run conclusion, and all four matrix-job conclusions inspected through the GitHub API; BR-04 cross-OS gate is closed
+
+## VER-BR05-PRETIGHTENING — BR-05 — 2026-07-19T17:21:19Z
+
+- Source revision and dirty state: `9b02dbe46ea2b82d11f613de38be074c08aff69b`; dirty with BR-05 changes
+- OS/architecture/physical-or-CI: Windows/x86_64; local; physical/virtual status unknown
+- Toolchain/dependency-lock hashes: Rust 1.96.0; Python 3.14.4; uv 0.11.29; `Cargo.lock` SHA-256 `FA903972D3ECBF809923DE9B6FBD3CB1C3C456307945BC20B10A750321EC74B6`
+- Command: machine record `BR-05-1784481679257337900`; full universal/schema/governance gate through external verifier copy SHA-256 `301B89F7ACED8B7061844EDF7BC6B98A4A3A562D182BB817AB3498A20E1910C8`
+- Start/end/duration: `2026-07-19T17:21:19.257Z` / `2026-07-19T17:21:41.021Z` / 21.7647429 s
+- Exit code: 0
+- Stdout/stderr artifact hashes: stdout `0c9cba70805a60d890fc34e2b7c92cb56b8bc6865f263be91efae71719938239`; stderr `faac86601da06c29960ad2cfb12f6525274e757008ef18c8bc79c97f3b71d985`
+- Fixtures/manifests/bundle IDs: `bonsai.run-lifecycle-outcomes/v1` SHA-256 `89AFD8FE20B527872EA07903133256B6FBD2176DD9B70F1861D77A69BE24098F`; every lifecycle and transition-commit crash boundary, exact segment count, terminal state, and no-agent-resume outcome
+- Counter availability and privileges: local filesystem durability/recovery fixtures only; no adapter restart, observer replay, physical-host attestation, resource enforcement, privileged input, energy, or long-duration evidence
+- Result: pass; superseded as final acceptance evidence
+- Reviewer/attestation: all checks passed, but post-gate review distinguished `BufWriter` append/drop behavior from an explicit durable crash boundary; the record remains historical evidence and the final record below verifies the added flush-and-sync boundary
+
+## VER-BR05-GATE — BR-05 — 2026-07-19T17:26:07Z
+
+- Source revision and dirty state: `9b02dbe46ea2b82d11f613de38be074c08aff69b`; dirty with final BR-05 changes
+- OS/architecture/physical-or-CI: Windows/x86_64; local; physical/virtual status unknown
+- Toolchain/dependency-lock hashes: Rust 1.96.0; Python 3.14.4; uv 0.11.29; `Cargo.lock` SHA-256 `FA903972D3ECBF809923DE9B6FBD3CB1C3C456307945BC20B10A750321EC74B6`
+- Command: machine record `BR-05-FINAL-1784481967656742400`; full universal/schema/governance gate through external verifier copy SHA-256 `9C6D8003759EB555122B87211203A919AC930A8133908AD4DC825BC9772C958F`
+- Start/end/duration: `2026-07-19T17:26:07.656Z` / `2026-07-19T17:26:34.670Z` / 27.0141562 s
+- Exit code: 0
+- Stdout/stderr artifact hashes: stdout `52fe49bf86a736d74e79787d28d86eb3a40d4f1965f86314274506d759e3ffc3`; stderr `7657b7471678f5c4d23a70caab908ecb86b92b892dc4ebb5409746542cd3f596`
+- Fixtures/manifests/bundle IDs: `bonsai.run-lifecycle-outcomes/v1` SHA-256 `89AFD8FE20B527872EA07903133256B6FBD2176DD9B70F1861D77A69BE24098F`; every lifecycle and durable transition-commit crash boundary, exact segment count, terminal state, and no-agent-resume outcome
+- Counter availability and privileges: local synchronized-filesystem recovery fixtures only; no adapter restart, observer replay, physical-host attestation, resource enforcement, privileged input, energy, or long-duration evidence
+- Result: pass
+- Reviewer/attestation: legal lifecycle graph, synchronized journal and complete pending frame, copy-and-publish segment recovery, immutable transition settlement, exact once-only segment counts, strict workspace/Python/schema/governance gates passed locally; hosted Windows/macOS/Linux closure remains attached to the focused commit

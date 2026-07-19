@@ -275,6 +275,22 @@ impl SegmentWriter {
         Ok(())
     }
 
+    /// Flush and synchronize all complete pending frames without finalizing the segment.
+    ///
+    /// This establishes a recoverable crash boundary: recovery may append the
+    /// footer to a separate file, while the synchronized `.open` source remains
+    /// untouched until no-clobber publication succeeds.
+    ///
+    /// # Errors
+    ///
+    /// Returns an I/O or already-finalized writer failure.
+    pub fn sync_pending(&mut self) -> Result<(), SegmentError> {
+        let writer = self.writer.as_mut().ok_or(SegmentError::WriterFinalized)?;
+        writer.flush()?;
+        writer.get_ref().sync_all()?;
+        Ok(())
+    }
+
     /// Durably close and atomically publish the immutable segment.
     ///
     /// The final path is created with a no-clobber hard link. The staging name

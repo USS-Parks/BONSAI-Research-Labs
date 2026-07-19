@@ -211,7 +211,12 @@ dependencies = [
 name = "bonsai-runtime"
 version = "0.0.0"
 dependencies = [
+ "bonsai-bundle",
  "prost",
+ "serde",
+ "serde_json",
+ "sha2",
+ "tempfile",
 ]
 
 [[package]]

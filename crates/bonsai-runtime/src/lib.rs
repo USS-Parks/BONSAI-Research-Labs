@@ -2,6 +2,13 @@
 
 #![forbid(unsafe_code)]
 
+mod lifecycle;
+
+pub use lifecycle::{
+    LifecycleError, LifecycleRecord, LifecycleState, RecoveredTransition, RecoveryReport,
+    RunSupervisor, TransitionOutcome,
+};
+
 use prost::Message;
 use std::error::Error;
 use std::ffi::OsString;

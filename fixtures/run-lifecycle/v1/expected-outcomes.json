@@ -1,0 +1,52 @@
+{
+  "schema": "bonsai.run-lifecycle-outcomes/v1",
+  "lifecycle_crash_boundaries": [
+    { "boundary": "created", "final_state": "recovered" },
+    { "boundary": "running", "final_state": "recovered" },
+    { "boundary": "degraded", "final_state": "recovered" },
+    { "boundary": "terminating", "final_state": "recovered" },
+    { "boundary": "completed", "final_state": "completed" }
+  ],
+  "transition_crash_boundaries": [
+    {
+      "boundary": "intent",
+      "final_state": "recovered",
+      "segment_count": 0,
+      "transition_outcome": "abandoned_before_append",
+      "maximum_transition_consumptions": 1,
+      "agent_learning_resumed": false
+    },
+    {
+      "boundary": "frame_appended",
+      "final_state": "recovered",
+      "segment_count": 1,
+      "transition_outcome": "preserved",
+      "maximum_transition_consumptions": 1,
+      "agent_learning_resumed": false
+    },
+    {
+      "boundary": "segment_finalized",
+      "final_state": "recovered",
+      "segment_count": 1,
+      "transition_outcome": "preserved",
+      "maximum_transition_consumptions": 1,
+      "agent_learning_resumed": false
+    },
+    {
+      "boundary": "receipt_written",
+      "final_state": "recovered",
+      "segment_count": 1,
+      "transition_outcome": "preserved",
+      "maximum_transition_consumptions": 1,
+      "agent_learning_resumed": false
+    },
+    {
+      "boundary": "consumed_written",
+      "final_state": "recovered",
+      "segment_count": 1,
+      "transition_outcome": "preserved",
+      "maximum_transition_consumptions": 1,
+      "agent_learning_resumed": false
+    }
+  ]
+}
