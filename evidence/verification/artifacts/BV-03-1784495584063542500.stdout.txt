@@ -1,0 +1,336 @@
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+
+running 3 tests
+test read_only_sqlite_handle_cannot_mutate_the_index ... ok
+test index_is_rebuilt_only_from_authoritative_segments_and_blobs ... ok
+test committed_fixture_matrix_has_exact_bundle_index_outcomes ... ok
+
+test result: ok. 3 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.34s
+
+
+running 3 tests
+test forward_epoch_is_hash_checked_but_never_interpreted ... ok
+test v0_migration_is_reproducible_and_non_mutating ... ok
+test committed_corpus_has_exact_machine_verdicts ... ok
+
+test result: ok. 3 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.35s
+
+
+running 3 tests
+test materialization_never_replaces_an_existing_derivative ... ok
+test every_table_round_trips_with_exact_schema_and_provenance ... ok
+test committed_fixture_matrix_has_exact_derivation_outcomes ... ok
+
+test result: ok. 3 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.05s
+
+
+running 3 tests
+test recovery_never_salvages_a_partial_frame ... ok
+test append_only_writer_rejects_oversize_before_writing_and_publishes_once ... ok
+test committed_fixture_matrix_has_exact_deterministic_outcomes ... ok
+
+test result: ok. 3 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.13s
+
+
+running 3 tests
+test tests::prerequisite_verdicts_block_higher_claims_with_reason_graphs ... ok
+test tests::version_is_stored_and_complete_evidence_passes ... ok
+test tests::missing_failed_and_contradictory_evidence_never_pass ... ok
+
+test result: ok. 3 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+
+running 18 tests
+test inventory::tests::public_inventory_type_rejects_unknown_fields ... ok
+test inventory::tests::sanitizer_removes_sensitive_fields_without_hashing_values ... ok
+test lineage::tests::property_missing_provenance_is_rejected_at_birth_and_revision ... ok
+test lineage::tests::full_lifecycle_records_consumers_cost_utility_and_revision ... ok
+test lineage::tests::every_registered_artifact_type_has_a_valid_root_lifecycle ... ok
+test lineage::tests::property_orphan_revisions_are_rejected_for_every_wrong_predecessor ... ok
+test lineage::tests::property_terminal_dispositions_require_a_new_artifact_identity ... ok
+test resource::tests::estimated_basis_requires_estimator_provenance ... ok
+test resource::tests::outcome_specific_actions_fail_closed ... ok
+test tests::invalid_ids_and_times_fail_closed ... ok
+test tests::valid_envelope_round_trips_through_supported_relay ... ok
+test tests::payload_hash_is_verified ... ok
+test track::tests::declaration_cannot_override_hidden_replay ... ok
+test tests::supported_relay_preserves_unknown_fields_byte_for_byte ... ok
+test track::tests::observer_access_is_indeterminate_not_track_a ... ok
+test lineage::tests::property_parent_cycles_are_rejected_at_every_cycle_length ... ok
+test resource::tests::all_five_outcomes_retain_exact_reconstruction_inputs ... ok
+test resource::tests::frozen_resource_policy_has_complete_scopes_classes_and_outcomes ... ok
+
+test result: ok. 18 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+
+running 6 tests
+test omitted_replay_or_privilege_flag_is_not_treated_as_false ... ok
+test out_of_order_and_version_mismatch_fail_without_advancing ... ok
+test every_post_stop_frame_is_rejected ... ok
+test changed_capability_fingerprint_is_rejected ... ok
+test valid_handshake_reaches_ready_with_frozen_capabilities ... ok
+test reset_step_work_and_feedback_follow_the_declared_state_machine ... ok
+
+test result: ok. 6 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+
+running 16 tests
+test decision::tests::contradictory_projection_is_rejected ... ok
+test decision::tests::missing_hard_counter_rejects_before_work ... ok
+test tests::nested_scopes_reset_and_rolling_window_expires_exactly ... ok
+test supervisor::tests::preflight_work_overage_is_denied_without_agent_call ... ok
+test violation::tests::hard_violation_cannot_remain_claim_eligible ... ok
+test supervisor::tests::under_budget_primitive_run_is_c1_budget_eligible ... ok
+test decision::tests::each_admission_outcome_has_a_stable_reason_and_shape ... ok
+test supervisor::tests::missing_counter_rejects_before_agent_call ... ok
+test tests::overlapping_rolling_windows_use_their_own_duration ... ok
+test tests::boundary_equality_is_inside_and_next_unit_exceeds ... ok
+test tests::unavailable_measurement_and_overflow_fail_closed ... ok
+test violation::tests::invalid_transition_and_terminal_reentry_fail_closed ... ok
+test violation::tests::fault_after_every_transition_yields_one_valid_terminal_outcome ... ok
+test supervisor::tests::each_measured_overage_terminates_and_preserves_prior_evidence ... ok
+test violation::tests::normal_and_soft_paths_have_exact_verdicts ... ok
+test decision::tests::identical_inputs_produce_byte_identical_decisions ... ok
+
+test result: ok. 16 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.01s
+
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+
+running 4 tests
+test committed_outcome_matrix_names_the_exact_rejection_codes ... ok
+test rate_and_rejection_evidence_remain_bounded ... ok
+test only_fully_validated_events_reach_the_segment_writer ... ok
+test deterministic_fuzz_corpus_never_panics_or_appends_invalid_bytes ... ok
+
+test result: ok. 4 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.05s
+
+
+running 4 tests
+test committed_matrix_freezes_partial_order_not_wall_time ... ok
+test cycles_conflicts_and_gaps_are_explicit_not_silently_ordered ... ok
+test exact_partial_order_classes_are_derived_without_wall_time ... ok
+test randomized_collection_order_preserves_the_exact_report ... ok
+
+test result: ok. 4 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+
+running 10 tests
+test behavior::tests::indefensible_regret_and_unrecovered_change_are_unavailable ... ok
+test behavior::tests::trace_and_window_contracts_fail_closed ... ok
+test behavior::tests::analytical_curve_has_exact_primary_metrics_and_units ... ok
+test resources::tests::calibrated_known_loads_reproduce_totals_and_headroom ... ok
+test resources::tests::contradictory_calibration_and_confidence_bounds_fail_closed ... ok
+test resources::tests::unavailable_and_incomparable_fields_are_never_aggregated ... ok
+test tests::unavailable_inputs_propagate_without_zero ... ok
+test tests::cycles_and_wrong_versions_fail_closed ... ok
+test resources::tests::d11_ceiling_uses_upper_confidence_bounds ... ok
+test tests::golden_registry_is_deterministic_and_version_pinned ... ok
+
+test result: ok. 10 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+
+running 12 tests
+test calibration::tests::exact_operation_and_event_loads_have_zero_error ... ok
+test portable::tests::operation_ledger_is_exact_and_fails_closed_on_overflow ... ok
+test clock::tests::live_system_clock_meets_hosted_ci_safe_bounds ... ok
+test calibration::tests::unavailable_and_unstable_counters_fail_dependent_claims ... ok
+test tests::all_four_backend_outcomes_are_explicit_and_validated ... ok
+test tests::contradictory_missingness_and_duplicate_counters_fail ... ok
+test clock::tests::deterministic_probes_report_resolution_and_overhead ... ok
+test clock::tests::regressions_and_suspend_gaps_are_explicit ... ok
+test tests::collector_coverage_requires_one_explicit_outcome_per_advertised_counter ... ok
+test tests::zero_is_a_measured_value_not_missingness ... ok
+test portable::tests::live_storage_accounting_is_byte_exact_and_scope_separated ... ok
+test calibration::tests::live_workloads_record_error_resolution_coverage_and_observer_cost ... ok
+
+test result: ok. 12 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 1.47s
+
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+
+running 1 test
+test live_parent_and_child_are_both_in_the_scoped_process_total ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.78s
+
+
+running 5 tests
+test tests::incomplete_or_malformed_inputs_fail_closed ... ok
+test tests::report_is_offline_self_contained_and_accessible ... ok
+test tests::every_displayed_leaf_reconciles_with_machine_json ... ok
+test viewer::tests::traversal_absolute_paths_and_report_drift_fail_closed ... ok
+test viewer::tests::browsing_is_read_only_and_report_values_are_identical ... ok
+
+test result: ok. 5 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.02s
+
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+
+running 7 tests
+test lifecycle::tests::committed_outcome_matrix_covers_every_crash_boundary ... ok
+test tests::bounded_frame_round_trip_is_exact ... ok
+test tests::malformed_partial_and_oversized_frames_are_distinct ... ok
+test lifecycle::tests::lifecycle_state_machine_covers_every_declared_state_and_rejects_reentry ... ok
+test lifecycle::tests::normal_transition_is_exactly_once_and_pending_inputs_are_bounded ... ok
+test lifecycle::tests::kill_at_every_lifecycle_boundary_produces_terminal_recovery_evidence ... ok
+test lifecycle::tests::kill_at_every_transition_commit_boundary_never_double_consumes ... ok
+
+test result: ok. 7 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.24s
+
+
+running 5 tests
+test committed_matrix_freezes_the_isolation_and_denial_outcomes ... ok
+test deliberate_observer_access_is_denied_and_forces_non_track_a ... ok
+test manifest_hash_mismatch_never_creates_a_grant ... ok
+test observer_paths_are_rejected_from_args_and_protocol_before_launch ... ok
+test inspection_adapter_sees_only_granted_inputs_and_agent_owned_storage ... ok
+
+test result: ok. 5 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.20s
+
+
+running 3 tests
+test rust_python_transport_separates_protocol_and_stderr_and_shuts_down_cleanly ... ok
+test flood_sender_cannot_exceed_the_pending_queue_bound ... ok
+test malformed_partial_and_stalled_senders_are_contained_and_recorded ... ok
+
+test result: ok. 3 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.69s
+
+
+running 4 tests
+test tests::redacts_every_literal_occurrence ... ok
+test tests::creates_portable_record_ids ... ok
+test schema_check::tests::canonical_json_sorts_object_keys_without_reordering_arrays ... ok
+test schema_check::tests::frozen_compatibility_suite_has_expected_outcomes ... ok
+
+test result: ok. 4 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.13s
+
+
+running 1 test
+test cli_emits_one_report_and_uses_verdict_exit_codes ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 1.11s
+
+
+running 1 test
+verification record BG-06-PASS-1784495598868876400: pass (exit 0)
+verification record BG-06-FAIL-1784495599351103900: fail (exit 1)
+test passing_and_failing_commands_produce_distinct_sanitized_records ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.98s
+
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+schema fixture additive.json: compatible canonical_sha256=c60bb5796a2155ae8a4d927774b4628d272b8ccf48488dcfc552d426eb4bda6e
+schema fixture field-renumbering.json: FIELD_RENUMBERED canonical_sha256=cfeae795f23182a0484d38d146f51dda13a1c917d91c68a0aba2e2ffcfb84efc
+schema fixture field-reuse.json: FIELD_REUSE canonical_sha256=67ae90cd06bdeca0ee9bcdd990ee964fdcb4ae3d06f8eee114d4289046c221c6
+schema fixture silent-unit-change.json: UNIT_CHANGED canonical_sha256=95064247a3f1e35286fde747c94ee755416e6e9623b5ed4e99006a57fd8f9f53
+schema fixture unversioned-json.json: JSON_VERSION_MISSING canonical_sha256=1a2c5c47689c66d7eb47186ba7ee1ea1b375edad09f80eefcac909e8067a660d
+experiment manifest valid.json: valid canonical_sha256=dc596b67136ae83046831e381cf0a5deab0719d54e874c5c26facc95ce140f57 schema_canonical_sha256=e4942f9d6a254cb31c574c8899b4d0814b6e421c38a0c9f889b1c1f61dd4a523
+experiment manifest fixture missing-replay.json: MANIFEST_REPLAY_REQUIRED
+experiment manifest fixture missing-resource.json: MANIFEST_RESOURCE_REQUIRED
+experiment manifest fixture missing-seeds.json: MANIFEST_SEEDS_REQUIRED
+platform inventory redaction: pass canonical_sha256=0bb0b95eaa8d0440c417a316b09a3694658036cd48592a8fc21ef7b8ac975514 schema_canonical_sha256=f1fd3f59feab9ebbf6c06581d0011371ba8e4a7d68eb10e202bdbe4ad55830b5
+track fixture strict-a: A reason=STRICT_EXPERIENTIAL_FACTS
+track fixture hidden-replay: B reason=REPLAY_OR_OFFLINE_UPDATE
+track fixture offline-update: B reason=REPLAY_OR_OFFLINE_UPDATE
+track fixture dense-update: C reason=DENSE_UPDATE_SCHEDULE
+track fixture privileged-state: D reason=PRIVILEGED_DIAGNOSTIC_INPUT
+track fixture observer-data-access: Indeterminate reason=OBSERVER_DATA_BOUNDARY_VIOLATION
+track fixture incomplete-facts: Indeterminate reason=TRACK_FACTS_INCOMPLETE
+track classification: 7 cases schema_canonical_sha256=eefeeba41b7a875c02bb6f5104ad6f02f2d3c16582594c57c4e669c798e6f2fa
+resource policy valid.json: valid scopes=4 work_classes=9 outcomes=5 canonical_sha256=5053b8c5b78e46d1bf45b542815598f5fd127981ed61f1311938879badc77b49 schema_canonical_sha256=d2bc586d01c69ee7f1202ef3d8f324692661b6ecc8266c514ba0f25b2f32e877
+metric-spec valid-metric-spec.json: valid canonical_sha256=c61b496da6e23b4722f1b2cb6097faa30857ec95815bac6120a2564f54351b09 schema_canonical_sha256=bc242866c9afe1bc5e5733a016a8d7b83c2ba440baecd2842a0339cf2cce55f8
+metric-estimate valid-metric-estimate.json: valid canonical_sha256=e184a2f810b46537bb1fe4e313ab2cbba7b145ddeafd1db62d0bc6100277379b schema_canonical_sha256=696303bf3474ea0460f6a09729b685f5e7d23ab37e2d448a315cbd854ebeb87d
+metric-uncertainty valid-metric-uncertainty.json: valid canonical_sha256=73ade7bc3f440ca906a2de691bab968d88d1dd2e7f624cac1ec497a0eeb89d6f schema_canonical_sha256=86bf3d1138f51e739d7fa11eb59da1d0be96f2d5762de0f54230b5367313554b
+claim-result valid-claim-result.json: valid canonical_sha256=15f0cb08e252710f0e762475abbd84dda004a38e71b93d483a430bc9919ef5eb schema_canonical_sha256=cbd4a294664277e4443b733753de455358881fdc533e8a6c03b93c85e26fbf15
+metric/claim fixture missing-scalar-unit.json: METRIC_SCALAR_UNIT_REQUIRED
+metric/claim fixture missing-scalar-provenance.json: METRIC_SCALAR_PROVENANCE_REQUIRED
+metric/claim fixture missing-claim-criterion.json: CLAIM_CRITERION_REQUIRED
+metric/claim fixture missing-claim-evidence.json: CLAIM_EVIDENCE_REQUIRED
+metric/claim fixture missing-claim-reasons.json: CLAIM_REASON_REQUIRED
+bundle validation schemas: current manifest valid manifest_schema_canonical_sha256=55487af4e7f899637e2053e8d237b97204eae6ce5579a9f7fd5e1eca2cb0802e report_schema_canonical_sha256=ecdd507081acabbcf0615397cd548d2e58fc3600887b0eaa35a359ebe5158ef3
+schema check passed: compatibility, manifest, inventory, derived track, resource policy, metric, uncertainty, claim-result, and bundle-validation suites
+All checks passed!
+c:\Users\17076\Documents\Reinforcement Learning Project\python\bonsai-reference\tests\test_event_envelope_roundtrip.py
+  c:\Users\17076\Documents\Reinforcement Learning Project\python\bonsai-reference\tests\test_event_envelope_roundtrip.py:9:6 - warning: Import "google.protobuf" could not be resolved from source (reportMissingModuleSource)
+  c:\Users\17076\Documents\Reinforcement Learning Project\python\bonsai-reference\tests\test_event_envelope_roundtrip.py:9:29 - warning: Import "google.protobuf.descriptor_pb2" could not be resolved from source (reportMissingModuleSource)
+  c:\Users\17076\Documents\Reinforcement Learning Project\python\bonsai-reference\tests\test_event_envelope_roundtrip.py:9:45 - warning: Import "google.protobuf.descriptor_pool" could not be resolved from source (reportMissingModuleSource)
+  c:\Users\17076\Documents\Reinforcement Learning Project\python\bonsai-reference\tests\test_event_envelope_roundtrip.py:9:62 - warning: Import "google.protobuf.message_factory" could not be resolved from source (reportMissingModuleSource)
+0 errors, 4 warnings, 0 informations
+============================= test session starts =============================
+platform win32 -- Python 3.14.4, pytest-9.1.1, pluggy-1.6.0
+rootdir: C:\Users\17076\Documents\Reinforcement Learning Project
+configfile: pyproject.toml
+testpaths: python/bonsai-reference/tests
+collected 9 items
+
+python\bonsai-reference\tests\test_control.py ...                        [ 33%]
+python\bonsai-reference\tests\test_event_envelope_roundtrip.py .         [ 44%]
+python\bonsai-reference\tests\test_scaffold.py .                         [ 55%]
+python\bonsai-reference\tests\test_scenario.py ...                       [ 88%]
+python\bonsai-reference\tests\test_transport.py .                        [100%]
+
+============================== 9 passed in 3.01s ==============================
+documentation governance check passed: 59 Markdown files; local links resolve; STS warnings present
+ADR check passed: 21 accepted decisions mapped exactly once across 21 headings
+license policy check passed: MIT OR Apache-2.0 only; publication authorization and secret/redaction review required
+governance ledger check passed: R-01..R-16 and P-01..P-09 complete; negative fixtures rejected
+terminology registry check passed: 17 terms, 8 identifiers, 17 numeric fields; negative fixtures rejected
+CI topology check passed: Windows, macOS arm64/Intel, and Linux hosted jobs; physical claims remain false

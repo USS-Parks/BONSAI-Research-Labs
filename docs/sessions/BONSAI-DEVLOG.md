@@ -881,3 +881,24 @@ This append-only log records executed PSPR prompts. Corrections are added as new
 - Commit SHA: pending; append in BV-03 under the self-hash convention
 - Risks/blockers/parked scope changed: the report faithfully displays supplied evidence but does not validate a whole bundle or create scientific verdicts; the BV-03 viewer and BE-03 heartbeat remain required for M1; no instrument-completion or C0–C5 claim is made
 - Next eligible M1 prompt after gate and publication: BV-03
+
+### BV-02 closeout note
+
+- Focused implementation commit SHA: `46887eab4f913e72e84a66785f0a436497df2e21`
+- Hosted verification: GitHub Actions run 29703727053, attempt 1, passed Windows x86_64, Linux x86_64, macOS arm64, and macOS Intel at that exact commit
+- Ledger rule: appended by BV-03 because the BV-02 commit could not contain its own immutable hash or post-push hosted-run identity
+
+## 2026-07-19 — BV-03 — Read-only local bundle viewer
+
+- Status: passed; closeout entry pending focused commit identity and hosted run
+- Authorization scope: user-authorized remaining M1 STS for this session plus the existing later-gated public source publication addendum
+- Dependencies and source revision: BV-02 published and hosted-green at `46887eab4f913e72e84a66785f0a436497df2e21`
+- Objective and exclusions: provide a local CLI/library viewer for static reports and named lineage, metric, decision, and comparison files without modifying evidence; exclude a dashboard, listener, write API, browser dependency, or network path
+- Reuse classification: extend the BV-02 crate and exact static-report generator; reuse standard filesystem canonicalization and byte reads; implement one small CLI at the existing report seam with no dependency change
+- Files changed: read-only viewer module/tests, `bonsai-view` CLI, local-viewer contract, README/PSPR status, BV-02 hosted closeout, DEVLOG, verification log, and retained machine evidence
+- Decisions/addenda: roots and requested existing files are canonicalized; only nonempty normal relative path components are accepted; resolved files must remain under the canonical root and be regular files; static report loading requires exact stored machine JSON and HTML regeneration bytes; the CLI writes only to standard output and has no network/server capability
+- Verification summary: two cross-platform focused tests cover exact static-report identity, browsing lineage/metrics/decisions/comparisons, unchanged bytes and modification timestamps, parent traversal, absolute paths, and report drift; an additional Unix test exercises symlink escape rejection; initial strict Clippy requested a borrowed CLI argument slice and passed after that ownership-only correction; the complete gate passed formatting, strict workspace Clippy, 112 Rust tests, Ruff, strict Pyright, 9 Python tests, schema compatibility, docs, ADR, license, governance-ledger, terminology, and CI-topology checks on Windows x86_64
+- Evidence paths and SHA-256 hashes: final machine record `BV-03-1784495736367368700` with stdout `18F19F9259BC3DF49BA207B4516F0C0FC51EDCCD09E29DE3CF814B34A0054E26` and stderr `2211536D679622FA7457F9A3574B8147375AA0B4AB182AFC89495B638E6E1892`; viewer `7AAE85F6781FFCE94D71E263C0CCA20555B697448E1C9DB2D2A363F2EFD6DE13`; CLI `421E0DD3F164F1A4746D2F4E44B45BB95F59F033D24E4F8D5B5CB0FB30050C32`; contract `469C7B6B83D22C49FD982A403434B51616FFA94DA940CB6AAFDFCA5DA93F1EC0`; `Cargo.lock` unchanged from BV-02
+- Commit SHA: pending; append in BE-03 under the self-hash convention
+- Risks/blockers/parked scope changed: the viewer is intentionally a bounded file interface rather than a web dashboard; Windows hosted tests exercise parent/absolute containment while Unix additionally exercises a real symlink escape; BE-03 remains the final M1 prompt; no instrument-completion or C0–C5 claim is made
+- Next eligible M1 prompt after gate and publication: BE-03

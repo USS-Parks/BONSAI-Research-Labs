@@ -1274,3 +1274,31 @@ This is an append-only human index. Machine records created by `cargo xtask veri
 - Counter availability and privileges: deterministic supplied report data only; no physical-host counter or scientific claim
 - Result: pass
 - Reviewer/attestation: one-source rendering, all required sections, offline self-containment, accessibility smoke semantics, HTML escaping, fail-closed validation, and strict workspace/Python/schema/governance gates passed locally; hosted closure remains attached to the focused commit
+
+## VER-BV02-HOSTED — BV-02 — 2026-07-19T21:05:19Z
+
+- Source revision and dirty state: `46887eab4f913e72e84a66785f0a436497df2e21`; clean pushed revision
+- OS/architecture/physical-or-CI: Windows/x86_64, Linux/x86_64, macOS/arm64, macOS/x86_64; GitHub hosted CI; ephemeral virtual machines
+- Toolchain/dependency-lock hashes: workflow-pinned Rust 1.96.0, Python 3.12, and uv 0.11.29; source locks at the recorded revision
+- Command: GitHub Actions `BONSAI baseline` push run 29703727053, attempt 1
+- Start/end/duration: `2026-07-19T21:05:19Z` / `2026-07-19T21:09:58Z` / 279 s
+- Exit code: all four jobs concluded `success`; job IDs 88237053499 (Windows), 88237053486 (Linux), 88237053561 (macOS arm64), and 88237053512 (macOS Intel)
+- Stdout/stderr artifact hashes: retained by GitHub Actions
+- Fixtures/manifests/bundle IDs: offline static report, escaping, accessibility semantics, machine reconciliation, missing section, malformed hash, and complete existing corpus on every hosted runner
+- Counter availability and privileges: deterministic supplied report data only; no physical-host counter or scientific claim
+- Result: pass
+- Reviewer/attestation: exact run head SHA, run conclusion, and all four matrix-job conclusions inspected through authenticated GitHub metadata; BV-02 cross-OS gate is closed
+
+## VER-BV03-GATE — BV-03 — 2026-07-19
+
+- Source revision and dirty state: `46887eab4f913e72e84a66785f0a436497df2e21`; dirty only with BV-03 implementation, governance, and evidence
+- OS/architecture/physical-or-CI: Windows/x86_64; local; physical/virtual status unknown
+- Toolchain/dependency-lock hashes: Rust 1.96.0; locked repository Python environment; `Cargo.lock` SHA-256 `322D9DBDD3C82A9630FB90116FB8EDB46A7660B100B281EB49681A520DEE2578`
+- Command: final machine record `BV-03-1784495736367368700`; full universal/schema/governance gate through an external verifier copy after governance closeout edits
+- Start/end/duration: machine-record Unix UTC nanoseconds `1784495736367368700` / `1784495768686506300` / 32.3200241 s
+- Exit code: 0
+- Stdout/stderr artifact hashes: stdout `18F19F9259BC3DF49BA207B4516F0C0FC51EDCCD09E29DE3CF814B34A0054E26`; stderr `2211536D679622FA7457F9A3574B8147375AA0B4AB182AFC89495B638E6E1892`
+- Fixtures/manifests/bundle IDs: exact report pair, lineage/metric/decision/comparison files, unchanged content/timestamps, parent and absolute traversal, report drift, platform-gated symlink escape, and complete existing repository corpus
+- Counter availability and privileges: deterministic local files only; no network listener, browser, physical-host counter, or scientific claim
+- Result: pass
+- Reviewer/attestation: canonical-root containment, read-only evidence handling, report identity, local file browsing, zero network surface, traversal rejection, and strict workspace/Python/schema/governance gates passed locally; hosted closure remains attached to the focused commit

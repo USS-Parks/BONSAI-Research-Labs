@@ -8,6 +8,8 @@ use std::collections::BTreeMap;
 use std::error::Error;
 use std::fmt;
 
+pub mod viewer;
+
 const REPORT_SCHEMA: &str = "bonsai.static-report/v1";
 
 /// Exact report payload shared by the machine JSON and static HTML views.
