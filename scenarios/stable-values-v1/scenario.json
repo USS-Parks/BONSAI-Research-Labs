@@ -1,0 +1,10 @@
+{
+  "action_count": 3,
+  "big_world_size": 1000003,
+  "change_points": [8, 16, 24],
+  "horizon": 32,
+  "observation_width": 4,
+  "scenario_id": "stable-values-v1",
+  "seed": 42,
+  "version": "1.0"
+}

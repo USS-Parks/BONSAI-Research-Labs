@@ -1162,3 +1162,31 @@ This is an append-only human index. Machine records created by `cargo xtask veri
 - Counter availability and privileges: deterministic calibrated fixtures only; no physical-host or privileged counter claim
 - Result: pass
 - Reviewer/attestation: totals/headroom/violations/error, no incomparable aggregation, upper-confidence D-11 enforcement, missingness, and strict workspace/Python/schema/governance gates passed locally; hosted closure remains attached to the focused commit
+
+## VER-BK03-HOSTED — BK-03 — 2026-07-19T20:12:29Z
+
+- Source revision and dirty state: `ad7e0449a15e8286a117df6a5f7cb080188d0e15`; clean pushed revision
+- OS/architecture/physical-or-CI: Windows/x86_64, Linux/x86_64, macOS/arm64, macOS/x86_64; GitHub hosted CI; ephemeral virtual machines
+- Toolchain/dependency-lock hashes: workflow-pinned Rust 1.96.0, Python 3.12, and uv 0.11.29; source locks at the recorded revision
+- Command: GitHub Actions `BONSAI baseline` push run 29702073784, attempt 1
+- Start/end/duration: `2026-07-19T20:12:29Z` / `2026-07-19T20:17:52Z` / 323 s
+- Exit code: all four jobs concluded `success`; job IDs 88232666357 (Windows), 88232666361 (macOS arm64), 88232666381 (Linux), and 88232666383 (macOS Intel)
+- Stdout/stderr artifact hashes: retained by GitHub Actions
+- Fixtures/manifests/bundle IDs: known resource loads, unavailable/incomparable fields, D-11 bounds, contradictory evidence, and complete existing corpus on every hosted runner
+- Counter availability and privileges: deterministic calibrated fixtures only; no physical-host or privileged counter claim
+- Result: pass
+- Reviewer/attestation: exact run head SHA, run conclusion, and all four matrix-job conclusions inspected through public GitHub metadata; BK-03 cross-OS gate is closed
+
+## VER-BE01-GATE — BE-01 — 2026-07-19
+
+- Source revision and dirty state: `ad7e0449a15e8286a117df6a5f7cb080188d0e15`; dirty only with BE-01 implementation, fixtures, governance, and evidence
+- OS/architecture/physical-or-CI: Windows/x86_64; local; physical/virtual status unknown
+- Toolchain/dependency-lock hashes: Rust 1.96.0; locked repository Python environment; source locks unchanged from BK-03
+- Command: machine record `BE-01-1784492138839264300`; full universal/schema/governance gate through an external verifier copy
+- Start/end/duration: machine-record Unix UTC nanoseconds `1784492138839264300` / `1784492163090058900` / 24.2514493 s
+- Exit code: 0
+- Stdout/stderr artifact hashes: stdout `E68EDEEA6C83C952FBE228F73B3C00F4A705E1450563D9EF9869B6D78321B264`; stderr `2C210386A408695D66B4EA3976A300596278F6C56FDE6E1A66FFDD5AE42D0A39`
+- Fixtures/manifests/bundle IDs: 32-step stable-values fixture, public hash `4be55b7ebb861397b2560c31c3f5c1e62117d7f4eff97913c6c28d1cfb6f16bc`, diagnostic hash `1f288d732aa14b59f69c44690b6428eff317457da703d92435eab49a5828dd38`, invalid schedules/change points, and complete existing corpus
+- Counter availability and privileges: deterministic scenario fixtures only; diagnostic truth remains observer-only
+- Result: pass
+- Reviewer/attestation: same-seed semantic identity, public/diagnostic separation, big-world/change-point protocol, Track D exposure rule, and strict workspace/Python/schema/governance gates passed locally; hosted closure remains attached to the focused commit

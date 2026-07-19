@@ -797,3 +797,24 @@ This append-only log records executed PSPR prompts. Corrections are added as new
 - Commit SHA: pending; append in the next M1 prompt under the self-hash convention
 - Risks/blockers/parked scope changed: R-06 remains active until BV-10 paired acceptance and R-10 for broader equivalence; D-11 is enforced on supplied paired evidence but no physical-host or final overhead acceptance is claimed; no instrument-completion or C0–C5 claim is made
 - Next eligible M1 prompts after gate and publication: BE-01 and BV-01
+
+### BK-03 closeout note
+
+- Focused implementation commit SHA: `ad7e0449a15e8286a117df6a5f7cb080188d0e15`
+- Hosted verification: GitHub Actions run 29702073784, attempt 1, passed Windows x86_64, Linux x86_64, macOS arm64, and macOS Intel at that exact commit
+- Ledger rule: appended by BE-01 because the BK-03 commit could not contain its own immutable hash or post-push hosted-run identity
+
+## 2026-07-19 — BE-01 — Scenario protocol and deterministic fixture framework
+
+- Status: passed; closeout entry pending focused commit identity and hosted run
+- Authorization scope: user-authorized remaining M1 STS for this session plus the existing later-gated public source publication addendum
+- Dependencies and source revision: BR-06 and BC-03 published; BK-03 published and hosted-green at `ad7e0449a15e8286a117df6a5f7cb080188d0e15`
+- Objective and exclusions: define deterministic observations/actions/reward/termination/change points, big-world generation, seeds, stream identity, and a privileged diagnostic channel; prohibit privileged truth from Track A
+- Reuse classification: extend the existing Python reference package at the BR-06 isolated adapter seam; reuse standard dataclasses, SHA-256, canonical JSON, and a repository-owned 64-bit xorshift generator; add no dependency
+- Files changed: scenario protocol/generator/exposure classification, Python tests, committed stable-values scenario manifest, architecture contract, README/PSPR status, BK-03 hosted closeout, DEVLOG, verification log, and retained machine evidence
+- Decisions/addenda: public and diagnostic records share only stream/step identity; latent state, target action, and world token stay observer-only; deterministic generation does not depend on platform random libraries; invalid schedules/actions/change points fail closed; any diagnostic exposure forces Track D
+- Verification summary: three focused tests cover 100 identical 32-step public/diagnostic streams and frozen hashes, field-level privilege separation, Track A/Track D classification, invalid schedule, and duplicate change points; the initial strict Pyright run rejected a dynamically reconstructed dataclass and the fixture was made explicitly typed, then the initially placeholder golden hashes were replaced with the generated canonical values; the complete gate passed formatting, strict workspace Clippy, 104 Rust tests, Ruff, strict Pyright, 6 Python tests, schema compatibility, docs, ADR, license, governance-ledger, terminology, and CI-topology checks on Windows x86_64
+- Evidence paths and SHA-256 hashes: machine record `BE-01-1784492138839264300` with stdout `E68EDEEA6C83C952FBE228F73B3C00F4A705E1450563D9EF9869B6D78321B264` and stderr `2C210386A408695D66B4EA3976A300596278F6C56FDE6E1A66FFDD5AE42D0A39`; scenario implementation `D697C09CC3451F3810B086EBEE0B54AB1C27446A14A624335E1BDB75300DD282`; tests `8BE3A879E2AFF8C56022836EB1149A5ECE77C5A5B81932B49C139CB8EBA00E10`; manifest `462D6823092A0C318F43812B55F57E9C93EB8B80B5C5DA9606D73356E1496243`; contract `03B17D996D155E3BBEE71B44BA76E144831578B64FE443ACC4B229DC608CC661`
+- Commit SHA: pending; append in BE-02 under the self-hash convention
+- Risks/blockers/parked scope changed: R-10 remains active for hosted semantic equivalence and R-07 for later adversarial isolation; frozen integer/JSON streams avoid current numeric drift but do not establish scenario scientific sufficiency; no agent-quality, instrument-completion, or C0–C5 claim is made
+- Next eligible prompt after gate and publication: BE-02
