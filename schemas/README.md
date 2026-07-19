@@ -101,3 +101,9 @@ The frozen fixture pair under `fixtures/platform-inventory/v1/` proves both side
 The frozen fixture under `fixtures/resource-policy/v1/` contains all four scopes (`per_event`, `per_step`, `rolling_window`, and `lifetime`), exactly one explicit allocation for each of the nine canonical work classes, and policy-local reason rules covering `admit`, `defer`, `throttle`, `reject`, and `terminate`. Rust semantic validation additionally requires soft limits not to exceed hard limits, complete scope/class/outcome coverage, unique limit and reason identities, every limit to be allocated exactly once to its own work class, and nonzero rolling windows and allocation weights.
 
 The policy's canonical JSON SHA-256 binds the exact JSON bytes to a Protobuf governor decision. The decision contract is documented in [`../proto/README.md`](../proto/README.md). These contracts make a decision reconstructible from recorded evidence; they do not perform measurement, scheduling, or backend enforcement.
+
+## Cognitive artifact registry entries
+
+BC-07 extends [`registry/terminology-v1.json`](./registry/terminology-v1.json) with exact artifact lifecycle-event, disposition, lineage-relation, and consumer-kind vocabularies plus canonical lifecycle-sequence, resource-cost, and utility-estimate numeric fields. The seven artifact types and stable `artifact_id` / immutable `artifact_revision_id` identities were frozen by BG-08 and are reused unchanged.
+
+The terminology checker now fails if any BC-07 enum set is missing or differs, in addition to its duplicate-term and unitless-numeric rejections. The matching Protobuf contract and lifecycle conformance semantics are documented in [`../proto/README.md`](../proto/README.md). BC-07 does not define metric formulas or claim verdicts and does not implement the BR-07 runtime registry.

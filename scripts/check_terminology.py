@@ -10,6 +10,13 @@ from typing import Any
 
 ROOT = Path(__file__).resolve().parents[1]
 REGISTRY_PATH = ROOT / "schemas" / "registry" / "terminology-v1.json"
+REQUIRED_ARTIFACT_ENUMS = {
+    "artifact_types": {"feature", "subproblem", "option", "model", "planner", "policy", "value_function"},
+    "artifact_lifecycle_events": {"birth", "revision", "consumer_link", "cost", "utility", "disposition"},
+    "artifact_dispositions": {"retained", "deprioritized", "replaced", "retired", "removed"},
+    "lineage_relations": {"derived_from", "constructed_from", "constrained_by"},
+    "consumer_kinds": {"artifact", "component"},
+}
 
 
 def validate_registry(registry: dict[str, Any]) -> list[str]:
@@ -58,6 +65,10 @@ def validate_registry(registry: dict[str, Any]) -> list[str]:
             if value in enum_values:
                 errors.append(f"enum value {value!r} is ambiguous between {enum_values[value]!r} and {enum_name!r}")
             enum_values[value] = enum_name
+    for enum_name, expected in REQUIRED_ARTIFACT_ENUMS.items():
+        observed = set(registry.get("enums", {}).get(enum_name, []))
+        if observed != expected:
+            errors.append(f"{enum_name!r}: expected {sorted(expected)!r}, observed {sorted(observed)!r}")
     return errors
 
 
@@ -72,6 +83,11 @@ def self_test(registry: dict[str, Any]) -> list[str]:
     unitless["numeric_fields"][0]["unit"] = ""
     if not any("missing unit" in error for error in validate_registry(unitless)):
         errors.append("unitless-numeric negative fixture was accepted")
+
+    incomplete_artifacts = copy.deepcopy(registry)
+    incomplete_artifacts["enums"]["artifact_dispositions"].remove("removed")
+    if not any("artifact_dispositions" in error for error in validate_registry(incomplete_artifacts)):
+        errors.append("incomplete-artifact-registry negative fixture was accepted")
     return errors
 
 

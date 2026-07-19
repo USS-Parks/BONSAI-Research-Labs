@@ -365,3 +365,30 @@ This is an append-only human index. Machine records created by `cargo xtask veri
 - Counter availability and privileges: no physical counter evidence; workflow classification denies physical, energy, and long-duration claims
 - Result: pass
 - Reviewer/attestation: run head SHA, run conclusion, and every matrix-job conclusion inspected through the GitHub API
+## VER-BC07-ENV-FAIL — BC-07 — 2026-07-19T08:14:19Z
+
+- Source revision and dirty state: `5542580c2f9870fa5f6d539a402b6577f898ca0e`; dirty with BC-07 changes
+- OS/architecture/physical-or-CI: Windows/x86_64; local sandbox; physical/virtual status unknown
+- Toolchain/dependency-lock hashes: Rust 1.96.0; source locks unchanged
+- Command: redacted machine record `BC-07-1784448859471416000`; full gate script invoked through system PowerShell without an execution-policy override
+- Start/end/duration: `2026-07-19T08:14:19.471Z` / `2026-07-19T08:14:19.824Z` / 0.3528210 s
+- Exit code: 1
+- Stdout/stderr artifact hashes: empty stdout `e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855`; redacted stderr `9d2e0504f9d61e37fdda21eeb6ecb435a7feb8655f30ffb5ed7e82d7a7fced4c`
+- Fixtures/manifests/bundle IDs: none executed; PowerShell blocked the local gate script before its first command
+- Counter availability and privileges: not applicable; no elevation or policy persistence was requested
+- Result: environment failure; contract gate not evaluated
+- Reviewer/attestation: retained exact execution-policy denial; resolved in the following record with a process-local bypass and unchanged gate script
+
+## VER-BC07-GATE — BC-07 — 2026-07-19T08:14:32Z
+
+- Source revision and dirty state: `5542580c2f9870fa5f6d539a402b6577f898ca0e`; dirty with BC-07 changes
+- OS/architecture/physical-or-CI: Windows/x86_64; local; physical/virtual status unknown
+- Toolchain/dependency-lock hashes: Rust 1.96.0; Python 3.14.4; uv 0.11.29; `Cargo.lock` SHA-256 `BA7C806E67A42D80EC8D0D0D9781F937BEDA17B2B2B291C333BFDE5FFE9ABA04`
+- Command: redacted machine record `BC-07-1784448872886496000`; full universal/schema/governance gate with uv cache redirected to ignored repository `target` storage and process-local PowerShell `-ExecutionPolicy Bypass`
+- Start/end/duration: `2026-07-19T08:14:32.886Z` / `2026-07-19T08:14:49.466Z` / 16.5809302 s
+- Exit code: 0
+- Stdout/stderr artifact hashes: redacted stdout `ea1a9a532166f8250d24638690a3661be9b26cc7545cfd67386de2db07c9117b`; redacted stderr `7449e8d77f278cdd99ea805f2a921dccb5ab89a7feeaffdacb1f060f366c0cb8`
+- Fixtures/manifests/bundle IDs: seven artifact types; complete consumer/cost/utility/revision trace; eight wrong-predecessor cases; missing birth/revision provenance; forbidden provenance cycles of lengths two through six; replaced/retired/removed terminal-resurrection cases; terminology registry negative fixture
+- Counter availability and privileges: measured/estimated/unavailable states are contract fixtures only; no live counter, privileged collector, runtime lineage registry, learning internals, or physical evidence
+- Result: pass
+- Reviewer/attestation: strict artifact identity/revision/lifecycle/provenance validation, exact BC-07 property gate, registry coverage, and full automated local gate

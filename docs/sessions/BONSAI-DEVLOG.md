@@ -295,3 +295,24 @@ This append-only log records executed PSPR prompts. Corrections are added as new
 - Commit SHA: pending; append in the next prompt under the self-hash convention
 - Risks/blockers/parked scope changed: no parked scope revived; R-04/R-05/R-14 remain active for later live measurement/enforcement; the retained uv cache denial is an environment record and was resolved without weakening a gate
 - Next eligible prompt: BC-07
+
+### BC-06 closeout note
+
+- Focused implementation commit SHA: `5542580c2f9870fa5f6d539a402b6577f898ca0e`
+- Hosted verification: GitHub Actions run 29673221983, attempt 1, passed Windows x86_64, Linux x86_64, macOS arm64, and macOS Intel at that exact commit
+- Ledger rule: appended by BC-07 because the BC-06 commit could not contain its own immutable hash or post-push hosted-run identity
+
+## 2026-07-19 — BC-07 — Cognitive-artifact and lineage schemas
+
+- Status: passed; closeout entry pending focused commit identity
+- Authorization scope: user instruction `Continue to STS PSPR BC-07`; approved roster prompt BC-07
+- Dependencies and source revision: BC-02 published and hosted-green at `127b20b68957fb1473fba670fe4cd411187c062e`; BG-08 complete at `85e408def2e4e74ef472aa46d29ce4d44f8b677d`; BC-06 published and hosted-green at `5542580c2f9870fa5f6d539a402b6577f898ca0e`
+- Objective and exclusions: define epoch-1 Protobuf and registry contracts for all seven cognitive-artifact types, stable identity, immutable revisions, provenance parents, consumer links, cost/utility history, and nonterminal/terminal dispositions; do not prescribe artifact representations, learning algorithms, metric formulas, claim verdicts, or implement the BR-07 runtime registry
+- Reuse classification: extend the existing generated-Protobuf/event-availability and `bonsai-contracts` validation seams; reuse the BG-08 artifact types and identifiers unchanged; extend the frozen terminology registry with BC-07 lifecycle vocabulary and units; implement a pure conformance state model with no new dependency
+- Files changed: artifact/lineage Protobuf, generated-contract build input, Rust lineage conformance validator/property tests, terminology registry/checker and governance docs, Protobuf/schema docs, BC-06 hosted closeout, PSPR/root status, DEVLOG, verification log, and retained machine evidence
+- Decisions/addenda: parent provenance is an acyclic DAG distinct from the potentially cyclic consumer graph; revision ancestry uses an exact preceding immutable revision ID and does not create a self-parent edge; retained/deprioritized are nonterminal while replaced/retired/removed are terminal; replacement names an already born new identity; delayed cost/utility evidence may be appended after terminal disposition without permitting revision or relinking; unavailable values never become numeric zero; BC-08 remains authoritative for formal metric-result semantics
+- Verification summary: all seven artifact types passed a root lifecycle; a complete trace covered consumer, measured cost, estimated utility, retained disposition, and revision; generated property cases rejected every tested wrong predecessor, birth/revision provenance omission, forbidden parent cycles of lengths two through six, and same-identity revision after replaced/retired/removed while accepting a new identity with terminal-parent provenance; strict Clippy and 18 Rust contract tests passed; the full universal/schema/governance gate passed; the initial retained invocation failed before checks because local PowerShell script execution was disabled, and the unchanged script passed under process-local `-ExecutionPolicy Bypass`
+- Evidence paths and SHA-256 hashes: final redacted machine pass `BC-07-1784448872886496000`; pass stdout `ea1a9a532166f8250d24638690a3661be9b26cc7545cfd67386de2db07c9117b`; pass stderr `7449e8d77f278cdd99ea805f2a921dccb5ab89a7feeaffdacb1f060f366c0cb8`; retained redacted environment failure `BC-07-1784448859471416000` with stderr `9d2e0504f9d61e37fdda21eeb6ecb435a7feb8655f30ffb5ed7e82d7a7fced4c`; lineage Protobuf `CC52D7E4FFDC9888224990C6952BF7729A2072739E4C1AC67C6338E61BC2B553`; terminology registry `C1F9D6BB0DFCD283D8B7116FA04502352FEEFEA907718C89CF30213131485A39`; terminology checker `9E6180C1C5FA53D063EA31FAD3DB97F3E509F5D5AD2CFAE948161B454FD268D0`; unchanged `Cargo.lock` `BA7C806E67A42D80EC8D0D0D9781F937BEDA17B2B2B291C333BFDE5FFE9ABA04`
+- Commit SHA: pending; append in the next prompt under the self-hash convention
+- Risks/blockers/parked scope changed: no parked scope revived; R-08 and R-12 remain active for later runtime ingestion/lineage hardening, and BC-07 makes no agent-utility, physical-host, instrument-completion, or C0–C5 claim
+- Next eligible prompts: BC-08, BC-09, and BR-01; dependency order selects BC-08

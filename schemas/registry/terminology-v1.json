@@ -39,7 +39,11 @@
     "work_classes": ["acting", "learning", "feature_generation", "option_learning", "model_learning", "planning", "curation", "environment", "observer"],
     "claim_states": ["pass", "fail", "indeterminate", "not_run"],
     "availability_states": ["measured", "estimated", "unavailable", "excluded"],
-    "artifact_types": ["feature", "subproblem", "option", "model", "planner", "policy", "value_function"]
+    "artifact_types": ["feature", "subproblem", "option", "model", "planner", "policy", "value_function"],
+    "artifact_lifecycle_events": ["birth", "revision", "consumer_link", "cost", "utility", "disposition"],
+    "artifact_dispositions": ["retained", "deprioritized", "replaced", "retired", "removed"],
+    "lineage_relations": ["derived_from", "constructed_from", "constrained_by"],
+    "consumer_kinds": ["artifact", "component"]
   },
   "numeric_fields": [
     {"name": "monotonic_time_ns", "unit": "ns", "representation": "uint64", "missingness": "required"},
@@ -55,6 +59,9 @@
     {"name": "power_uw", "unit": "uW", "representation": "uint64", "missingness": "availability_state"},
     {"name": "ratio", "unit": "1", "representation": "finite_binary64", "missingness": "availability_state"},
     {"name": "reward", "unit": "reward_unit_id", "representation": "finite_binary64", "missingness": "availability_state"},
-    {"name": "estimated_operations", "unit": "1", "representation": "uint64_with_estimator_id", "missingness": "availability_state"}
+    {"name": "estimated_operations", "unit": "1", "representation": "uint64_with_estimator_id", "missingness": "availability_state"},
+    {"name": "lifecycle_sequence", "unit": "1", "representation": "uint64", "missingness": "required"},
+    {"name": "resource_cost_amount", "unit": "counter_unit_id", "representation": "uint64", "missingness": "availability_state"},
+    {"name": "utility_estimate", "unit": "metric_unit_id", "representation": "finite_binary64", "missingness": "availability_state"}
   ]
 }

@@ -1,0 +1,84 @@
+
+running 18 tests
+test inventory::tests::sanitizer_removes_sensitive_fields_without_hashing_values ... ok
+test lineage::tests::full_lifecycle_records_consumers_cost_utility_and_revision ... ok
+test inventory::tests::public_inventory_type_rejects_unknown_fields ... ok
+test lineage::tests::property_orphan_revisions_are_rejected_for_every_wrong_predecessor ... ok
+test lineage::tests::every_registered_artifact_type_has_a_valid_root_lifecycle ... ok
+test lineage::tests::property_terminal_dispositions_require_a_new_artifact_identity ... ok
+test resource::tests::estimated_basis_requires_estimator_provenance ... ok
+test tests::invalid_ids_and_times_fail_closed ... ok
+test tests::payload_hash_is_verified ... ok
+test lineage::tests::property_parent_cycles_are_rejected_at_every_cycle_length ... ok
+test resource::tests::all_five_outcomes_retain_exact_reconstruction_inputs ... ok
+test resource::tests::frozen_resource_policy_has_complete_scopes_classes_and_outcomes ... ok
+test lineage::tests::property_missing_provenance_is_rejected_at_birth_and_revision ... ok
+test tests::valid_envelope_round_trips_through_supported_relay ... ok
+test track::tests::declaration_cannot_override_hidden_replay ... ok
+test tests::supported_relay_preserves_unknown_fields_byte_for_byte ... ok
+test track::tests::observer_access_is_indeterminate_not_track_a ... ok
+test resource::tests::outcome_specific_actions_fail_closed ... ok
+
+test result: ok. 18 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+
+running 4 tests
+test tests::creates_portable_record_ids ... ok
+test tests::redacts_every_literal_occurrence ... ok
+test schema_check::tests::canonical_json_sorts_object_keys_without_reordering_arrays ... ok
+test schema_check::tests::frozen_compatibility_suite_has_expected_outcomes ... ok
+
+test result: ok. 4 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.06s
+
+
+running 1 test
+verification record BG-06-PASS-1784448876574050600: pass (exit 0)
+verification record BG-06-FAIL-1784448877015249700: fail (exit 1)
+test passing_and_failing_commands_produce_distinct_sanitized_records ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.92s
+
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+All checks passed!
+0 errors, 0 warnings, 0 informations
+============================= test session starts =============================
+platform win32 -- Python 3.14.4, pytest-9.1.1, pluggy-1.6.0
+rootdir: <redacted>\Documents\Reinforcement Learning Project
+configfile: pyproject.toml
+testpaths: python/bonsai-reference/tests
+collected 2 items
+
+python\bonsai-reference\tests\test_event_envelope_roundtrip.py .         [ 50%]
+python\bonsai-reference\tests\test_scaffold.py .                         [100%]
+
+============================== 2 passed in 2.93s ==============================
+schema fixture additive.json: compatible canonical_sha256=c60bb5796a2155ae8a4d927774b4628d272b8ccf48488dcfc552d426eb4bda6e
+schema fixture field-renumbering.json: FIELD_RENUMBERED canonical_sha256=cfeae795f23182a0484d38d146f51dda13a1c917d91c68a0aba2e2ffcfb84efc
+schema fixture field-reuse.json: FIELD_REUSE canonical_sha256=67ae90cd06bdeca0ee9bcdd990ee964fdcb4ae3d06f8eee114d4289046c221c6
+schema fixture silent-unit-change.json: UNIT_CHANGED canonical_sha256=95064247a3f1e35286fde747c94ee755416e6e9623b5ed4e99006a57fd8f9f53
+schema fixture unversioned-json.json: JSON_VERSION_MISSING canonical_sha256=1a2c5c47689c66d7eb47186ba7ee1ea1b375edad09f80eefcac909e8067a660d
+experiment manifest valid.json: valid canonical_sha256=dc596b67136ae83046831e381cf0a5deab0719d54e874c5c26facc95ce140f57 schema_canonical_sha256=e4942f9d6a254cb31c574c8899b4d0814b6e421c38a0c9f889b1c1f61dd4a523
+experiment manifest fixture missing-replay.json: MANIFEST_REPLAY_REQUIRED
+experiment manifest fixture missing-resource.json: MANIFEST_RESOURCE_REQUIRED
+experiment manifest fixture missing-seeds.json: MANIFEST_SEEDS_REQUIRED
+platform inventory redaction: pass canonical_sha256=0bb0b95eaa8d0440c417a316b09a3694658036cd48592a8fc21ef7b8ac975514 schema_canonical_sha256=f1fd3f59feab9ebbf6c06581d0011371ba8e4a7d68eb10e202bdbe4ad55830b5
+track fixture strict-a: A reason=STRICT_EXPERIENTIAL_FACTS
+track fixture hidden-replay: B reason=REPLAY_OR_OFFLINE_UPDATE
+track fixture offline-update: B reason=REPLAY_OR_OFFLINE_UPDATE
+track fixture dense-update: C reason=DENSE_UPDATE_SCHEDULE
+track fixture privileged-state: D reason=PRIVILEGED_DIAGNOSTIC_INPUT
+track fixture observer-data-access: Indeterminate reason=OBSERVER_DATA_BOUNDARY_VIOLATION
+track fixture incomplete-facts: Indeterminate reason=TRACK_FACTS_INCOMPLETE
+track classification: 7 cases schema_canonical_sha256=eefeeba41b7a875c02bb6f5104ad6f02f2d3c16582594c57c4e669c798e6f2fa
+resource policy valid.json: valid scopes=4 work_classes=9 outcomes=5 canonical_sha256=5053b8c5b78e46d1bf45b542815598f5fd127981ed61f1311938879badc77b49 schema_canonical_sha256=d2bc586d01c69ee7f1202ef3d8f324692661b6ecc8266c514ba0f25b2f32e877
+schema check passed: compatibility, manifest, inventory, derived track, and resource policy suites
+documentation governance check passed: 32 Markdown files; local links resolve; STS warnings present
+ADR check passed: 21 accepted decisions mapped exactly once across 21 headings
+license policy check passed: MIT OR Apache-2.0 only; publication authorization and secret/redaction review required
+governance ledger check passed: R-01..R-16 and P-01..P-09 complete; negative fixtures rejected
+terminology registry check passed: 17 terms, 8 identifiers, 17 numeric fields; negative fixtures rejected
+CI topology check passed: Windows, macOS arm64/Intel, and Linux hosted jobs; physical claims remain false

@@ -28,6 +28,8 @@ Exclusion: this document defines names and representations, not metric formulas
 - **policy** — a versioned action/option distribution or selection rule.
 - **value function** — a versioned predictive value estimate tied to its cumulant/reward, discount/termination, policy, and representation semantics.
 
+Artifact lifecycle event kinds are `birth`, `revision`, `consumer_link`, `cost`, `utility`, and `disposition`. Parent provenance relations are `derived_from`, `constructed_from`, and `constrained_by`; unlike consumer links, these relations form a directed acyclic graph. `retained` and `deprioritized` are nonterminal dispositions. `replaced`, `retired`, and `removed` are terminal and require any continuation to use a new `artifact_id`.
+
 ## Evaluation tracks
 
 - **Track A / strict experiential** — batch size one, one authorized encounter per transition, no replay/offline phase/human labels/domain feature targets, and fixed external budgets.
@@ -82,6 +84,9 @@ Every numeric schema field declares a canonical unit and representation. Display
 - Ratios, probabilities, rates normalized by like units, and utilization: finite IEEE-754 binary64 with unit `1`; range and estimator semantics belong to later schemas/metric specifications.
 - Rewards and values: finite IEEE-754 binary64 with declared environment reward unit; `reward_unit_id` is required because no universal physical reward unit exists.
 - Estimated operations: unsigned integer count (`1`) plus estimator identifier/version; never labeled FLOPs without a declared FLOP estimator.
+- Artifact lifecycle sequence: unsigned integer count (`1`), beginning at one and increasing exactly once per artifact event.
+- Artifact resource cost: unsigned integer amount in the named canonical counter unit, with availability and estimator provenance where applicable.
+- Artifact utility estimate: finite binary64 in the named metric unit, with availability, evidence-event provenance, and estimator identity where applicable.
 
 NaN and infinities are invalid in canonical JSON. Precision, resolution, estimator, uncertainty, and availability accompany values where applicable.
 

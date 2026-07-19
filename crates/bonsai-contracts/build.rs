@@ -8,16 +8,21 @@ fn main() -> Result<(), Box<dyn Error>> {
     let proto_root = manifest_dir.join("../../proto");
     let envelope = proto_root.join("bonsai/event/v1/envelope.proto");
     let governor_decision = proto_root.join("bonsai/governor/v1/decision.proto");
+    let artifact_lineage = proto_root.join("bonsai/artifact/v1/lineage.proto");
     let descriptor = PathBuf::from(env::var_os("OUT_DIR").ok_or("missing output dir")?)
         .join("bonsai-descriptor.bin");
 
     println!("cargo:rerun-if-changed={}", envelope.display());
     println!("cargo:rerun-if-changed={}", governor_decision.display());
+    println!("cargo:rerun-if-changed={}", artifact_lineage.display());
     let mut config = prost_build::Config::new();
     config
         .protoc_executable(protoc_bin_vendored::protoc_bin_path()?)
         .file_descriptor_set_path(descriptor)
         .include_file("bonsai.rs")
-        .compile_protos(&[envelope, governor_decision], &[proto_root])?;
+        .compile_protos(
+            &[envelope, governor_decision, artifact_lineage],
+            &[proto_root],
+        )?;
     Ok(())
 }

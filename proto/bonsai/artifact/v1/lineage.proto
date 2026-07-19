@@ -1,0 +1,135 @@
+syntax = "proto3";
+
+package bonsai.artifact.v1;
+
+import "bonsai/event/v1/envelope.proto";
+
+// One immutable artifact-lifecycle payload. It is carried by the universal
+// event envelope, whose event identity and run identity remain authoritative.
+message ArtifactLifecycleEvent {
+  bytes artifact_id = 1;
+  // The revision created by birth/revision, or the revision targeted by any
+  // other lifecycle event.
+  bytes artifact_revision_id = 2;
+  uint64 lifecycle_sequence = 3; // unit: 1
+  oneof detail {
+    ArtifactBirth birth = 4;
+    ArtifactRevision revision = 5;
+    ConsumerLink consumer_link = 6;
+    ArtifactCost cost = 7;
+    ArtifactUtility utility = 8;
+    ArtifactDispositionRecord disposition = 9;
+  }
+}
+
+message ArtifactBirth {
+  ArtifactType artifact_type = 1;
+  bytes representation_sha256 = 2;
+  Provenance provenance = 3;
+  repeated ParentReference parents = 4;
+}
+
+message ArtifactRevision {
+  // The event-level artifact_revision_id is the new immutable revision ID.
+  bytes previous_revision_id = 1;
+  bytes representation_sha256 = 2;
+  Provenance provenance = 3;
+  repeated ParentReference parents = 4;
+}
+
+// Parent relationships are provenance edges and therefore form a DAG. The
+// consumer graph is recorded separately and is not asserted to be acyclic.
+message ParentReference {
+  bytes artifact_id = 1;
+  bytes artifact_revision_id = 2;
+  LineageRelation relation = 3;
+}
+
+message Provenance {
+  string producer_id = 1;
+  string producer_version = 2;
+  repeated bytes source_event_ids = 3;
+  repeated string method_ids = 4;
+}
+
+message ConsumerLink {
+  ConsumerReference consumer = 1;
+  ConsumerAction action = 2;
+  Provenance provenance = 3;
+}
+
+message ConsumerReference {
+  bytes consumer_id = 1;
+  ConsumerKind kind = 2;
+  optional bytes consumer_artifact_revision_id = 3;
+}
+
+message ArtifactCost {
+  bytes cost_entry_id = 1;
+  string counter_id = 2;
+  string unit = 3;
+  optional uint64 amount = 4; // unit: declared by unit
+  bonsai.event.v1.Availability availability = 5;
+  optional string estimator_id = 6;
+  optional string estimator_version = 7;
+  optional string unavailable_reason = 8;
+  Provenance provenance = 9;
+}
+
+message ArtifactUtility {
+  bytes utility_entry_id = 1;
+  string metric_id = 2;
+  string metric_version = 3;
+  string unit = 4;
+  optional double estimate = 5; // unit: declared by unit
+  bonsai.event.v1.Availability availability = 6;
+  optional string estimator_id = 7;
+  optional string estimator_version = 8;
+  optional string unavailable_reason = 9;
+  Provenance provenance = 10;
+}
+
+message ArtifactDispositionRecord {
+  ArtifactDisposition disposition = 1;
+  optional bytes successor_artifact_id = 2;
+  Provenance provenance = 3;
+}
+
+enum ArtifactType {
+  ARTIFACT_TYPE_UNSPECIFIED = 0;
+  ARTIFACT_TYPE_FEATURE = 1;
+  ARTIFACT_TYPE_SUBPROBLEM = 2;
+  ARTIFACT_TYPE_OPTION = 3;
+  ARTIFACT_TYPE_MODEL = 4;
+  ARTIFACT_TYPE_PLANNER = 5;
+  ARTIFACT_TYPE_POLICY = 6;
+  ARTIFACT_TYPE_VALUE_FUNCTION = 7;
+}
+
+enum LineageRelation {
+  LINEAGE_RELATION_UNSPECIFIED = 0;
+  LINEAGE_RELATION_DERIVED_FROM = 1;
+  LINEAGE_RELATION_CONSTRUCTED_FROM = 2;
+  LINEAGE_RELATION_CONSTRAINED_BY = 3;
+}
+
+enum ConsumerKind {
+  CONSUMER_KIND_UNSPECIFIED = 0;
+  CONSUMER_KIND_ARTIFACT = 1;
+  CONSUMER_KIND_COMPONENT = 2;
+}
+
+enum ConsumerAction {
+  CONSUMER_ACTION_UNSPECIFIED = 0;
+  CONSUMER_ACTION_LINK = 1;
+  CONSUMER_ACTION_UNLINK = 2;
+}
+
+enum ArtifactDisposition {
+  ARTIFACT_DISPOSITION_UNSPECIFIED = 0;
+  ARTIFACT_DISPOSITION_RETAINED = 1;
+  ARTIFACT_DISPOSITION_DEPRIORITIZED = 2;
+  ARTIFACT_DISPOSITION_REPLACED = 3;
+  ARTIFACT_DISPOSITION_RETIRED = 4;
+  ARTIFACT_DISPOSITION_REMOVED = 5;
+}
