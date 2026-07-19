@@ -225,6 +225,13 @@ dependencies = [
 ]
 
 [[package]]
+name = "bonsai-lineage"
+version = "0.0.0"
+dependencies = [
+ "bonsai-contracts",
+]
+
+[[package]]
 name = "bonsai-metrics"
 version = "0.0.0"
 dependencies = [

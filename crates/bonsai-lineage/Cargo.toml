@@ -1,0 +1,15 @@
+[package]
+name = "bonsai-lineage"
+description = "Deterministic cognitive-artifact lifecycle registry for BONSAI"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+repository.workspace = true
+publish.workspace = true
+
+[lints]
+workspace = true
+
+[dependencies]
+bonsai-contracts = { path = "../bonsai-contracts" }

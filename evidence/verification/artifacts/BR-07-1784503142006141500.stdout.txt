@@ -1,0 +1,28 @@
+All checks passed!
+c:\Users\17076\Documents\Reinforcement Learning Project\python\bonsai-reference\tests\test_event_envelope_roundtrip.py
+  c:\Users\17076\Documents\Reinforcement Learning Project\python\bonsai-reference\tests\test_event_envelope_roundtrip.py:9:6 - warning: Import "google.protobuf" could not be resolved from source (reportMissingModuleSource)
+  c:\Users\17076\Documents\Reinforcement Learning Project\python\bonsai-reference\tests\test_event_envelope_roundtrip.py:9:29 - warning: Import "google.protobuf.descriptor_pb2" could not be resolved from source (reportMissingModuleSource)
+  c:\Users\17076\Documents\Reinforcement Learning Project\python\bonsai-reference\tests\test_event_envelope_roundtrip.py:9:45 - warning: Import "google.protobuf.descriptor_pool" could not be resolved from source (reportMissingModuleSource)
+  c:\Users\17076\Documents\Reinforcement Learning Project\python\bonsai-reference\tests\test_event_envelope_roundtrip.py:9:62 - warning: Import "google.protobuf.message_factory" could not be resolved from source (reportMissingModuleSource)
+0 errors, 4 warnings, 0 informations
+============================= test session starts =============================
+platform win32 -- Python 3.14.4, pytest-9.1.1, pluggy-1.6.0
+rootdir: C:\Users\17076\Documents\Reinforcement Learning Project
+configfile: pyproject.toml
+testpaths: python/bonsai-reference/tests
+collected 11 items
+
+python\bonsai-reference\tests\test_control.py ...                        [ 27%]
+python\bonsai-reference\tests\test_event_envelope_roundtrip.py .         [ 36%]
+python\bonsai-reference\tests\test_heartbeat.py ..                       [ 54%]
+python\bonsai-reference\tests\test_scaffold.py .                         [ 63%]
+python\bonsai-reference\tests\test_scenario.py ...                       [ 90%]
+python\bonsai-reference\tests\test_transport.py .                        [100%]
+
+============================= 11 passed in 4.42s ==============================
+documentation governance check passed: 61 Markdown files; local links resolve; STS warnings present
+ADR check passed: 21 accepted decisions mapped exactly once across 21 headings
+license policy check passed: MIT OR Apache-2.0 only; publication authorization and secret/redaction review required
+governance ledger check passed: R-01..R-16 and P-01..P-09 complete; negative fixtures rejected
+terminology registry check passed: 17 terms, 8 identifiers, 17 numeric fields; negative fixtures rejected
+CI topology check passed: Windows, macOS arm64/Intel, and Linux hosted jobs; physical claims remain false

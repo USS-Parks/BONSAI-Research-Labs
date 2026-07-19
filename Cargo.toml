@@ -5,6 +5,7 @@ members = [
     "crates/bonsai-contracts",
     "crates/bonsai-governor",
     "crates/bonsai-ingest",
+    "crates/bonsai-lineage",
     "crates/bonsai-metrics",
     "crates/bonsai-platform",
     "crates/bonsai-report",

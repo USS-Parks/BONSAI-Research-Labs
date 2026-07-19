@@ -1,0 +1,119 @@
+-ne : The term '-ne' is not recognized as the name of a cmdlet, function, script file, or operable program. Check the 
+spelling of the name, or if a path was included, verify that the path is correct and try again.
+At line:1 char:31
++ cargo fmt --all --check; if ( -ne 0) { exit  }; cargo clippy --worksp ...
++                               ~~~
+    + CategoryInfo          : ObjectNotFound: (-ne:String) [], CommandNotFoundException
+    + FullyQualifiedErrorId : CommandNotFoundException
+ 
+   Compiling bonsai-contracts v0.0.0 (C:\Users\17076\Documents\Reinforcement Learning Project\crates\bonsai-contracts)
+    Checking bonsai-report v0.0.0 (C:\Users\17076\Documents\Reinforcement Learning Project\crates\bonsai-report)
+    Checking bonsai-claims v0.0.0 (C:\Users\17076\Documents\Reinforcement Learning Project\crates\bonsai-claims)
+    Checking bonsai-platform v0.0.0 (C:\Users\17076\Documents\Reinforcement Learning Project\crates\bonsai-platform)
+    Checking bonsai-metrics v0.0.0 (C:\Users\17076\Documents\Reinforcement Learning Project\crates\bonsai-metrics)
+    Checking bonsai-bundle v0.0.0 (C:\Users\17076\Documents\Reinforcement Learning Project\crates\bonsai-bundle)
+    Checking bonsai-governor v0.0.0 (C:\Users\17076\Documents\Reinforcement Learning Project\crates\bonsai-governor)
+    Checking bonsai-lineage v0.0.0 (C:\Users\17076\Documents\Reinforcement Learning Project\crates\bonsai-lineage)
+    Checking bonsai-ingest v0.0.0 (C:\Users\17076\Documents\Reinforcement Learning Project\crates\bonsai-ingest)
+    Checking bonsai-runtime v0.0.0 (C:\Users\17076\Documents\Reinforcement Learning Project\crates\bonsai-runtime)
+    Checking bonsai-xtask v0.0.0 (C:\Users\17076\Documents\Reinforcement Learning Project\crates\bonsai-xtask)
+    Finished `dev` profile [unoptimized + debuginfo] target(s) in 26.50s
+-ne : The term '-ne' is not recognized as the name of a cmdlet, function, script file, or operable program. Check the 
+spelling of the name, or if a path was included, verify that the path is correct and try again.
+At line:1 char:134
++ ... all-targets --all-features --offline -- -D warnings; if ( -ne 0) { ex ...
++                                                               ~~~
+    + CategoryInfo          : ObjectNotFound: (-ne:String) [], CommandNotFoundException
+    + FullyQualifiedErrorId : CommandNotFoundException
+ 
+   Compiling bonsai-lineage v0.0.0 (C:\Users\17076\Documents\Reinforcement Learning Project\crates\bonsai-lineage)
+   Compiling bonsai-contracts v0.0.0 (C:\Users\17076\Documents\Reinforcement Learning Project\crates\bonsai-contracts)
+   Compiling bonsai-xtask v0.0.0 (C:\Users\17076\Documents\Reinforcement Learning Project\crates\bonsai-xtask)
+error: failed to remove file `C:\Users\17076\Documents\Reinforcement Learning Project\target\debug\bonsai-xtask.exe`
+
+Caused by:
+  Access is denied. (os error 5)
+-ne : The term '-ne' is not recognized as the name of a cmdlet, function, script file, or operable program. Check the 
+spelling of the name, or if a path was included, verify that the path is correct and try again.
+At line:1 char:206
++ ...  }; cargo test --workspace --all-features --offline; if ( -ne 0) { ex ...
++                                                               ~~~
+    + CategoryInfo          : ObjectNotFound: (-ne:String) [], CommandNotFoundException
+    + FullyQualifiedErrorId : CommandNotFoundException
+ 
+error: failed to remove file `C:\Users\17076\Documents\Reinforcement Learning Project\target\debug\bonsai-xtask.exe`
+
+Caused by:
+  Access is denied. (os error 5)
+-ne : The term '-ne' is not recognized as the name of a cmdlet, function, script file, or operable program. Check the 
+spelling of the name, or if a path was included, verify that the path is correct and try again.
+At line:1 char:255
++ ... ne; if ( -ne 0) { exit  }; cargo xtask schema-check; if ( -ne 0) { ex ...
++                                                               ~~~
+    + CategoryInfo          : ObjectNotFound: (-ne:String) [], CommandNotFoundException
+    + FullyQualifiedErrorId : CommandNotFoundException
+ 
+-ne : The term '-ne' is not recognized as the name of a cmdlet, function, script file, or operable program. Check the 
+spelling of the name, or if a path was included, verify that the path is correct and try again.
+At line:1 char:312
++ ...  -ne 0) { exit  }; & .venv\Scripts\ruff.exe check .; if ( -ne 0) { ex ...
++                                                               ~~~
+    + CategoryInfo          : ObjectNotFound: (-ne:String) [], CommandNotFoundException
+    + FullyQualifiedErrorId : CommandNotFoundException
+ 
+-ne : The term '-ne' is not recognized as the name of a cmdlet, function, script file, or operable program. Check the 
+spelling of the name, or if a path was included, verify that the path is correct and try again.
+At line:1 char:364
++ ...  if ( -ne 0) { exit  }; & .venv\Scripts\pyright.exe; if ( -ne 0) { ex ...
++                                                               ~~~
+    + CategoryInfo          : ObjectNotFound: (-ne:String) [], CommandNotFoundException
+    + FullyQualifiedErrorId : CommandNotFoundException
+ 
+-ne : The term '-ne' is not recognized as the name of a cmdlet, function, script file, or operable program. Check the 
+spelling of the name, or if a path was included, verify that the path is correct and try again.
+At line:1 char:415
++ ... ; if ( -ne 0) { exit  }; & .venv\Scripts\pytest.exe; if ( -ne 0) { ex ...
++                                                               ~~~
+    + CategoryInfo          : ObjectNotFound: (-ne:String) [], CommandNotFoundException
+    + FullyQualifiedErrorId : CommandNotFoundException
+ 
+-ne : The term '-ne' is not recognized as the name of a cmdlet, function, script file, or operable program. Check the 
+spelling of the name, or if a path was included, verify that the path is correct and try again.
+At line:1 char:491
++ ... & .venv\Scripts\python.exe -B scripts/check_docs.py; if ( -ne 0) { ex ...
++                                                               ~~~
+    + CategoryInfo          : ObjectNotFound: (-ne:String) [], CommandNotFoundException
+    + FullyQualifiedErrorId : CommandNotFoundException
+ 
+-ne : The term '-ne' is not recognized as the name of a cmdlet, function, script file, or operable program. Check the 
+spelling of the name, or if a path was included, verify that the path is correct and try again.
+At line:1 char:567
++ ... & .venv\Scripts\python.exe -B scripts/check_adrs.py; if ( -ne 0) { ex ...
++                                                               ~~~
+    + CategoryInfo          : ObjectNotFound: (-ne:String) [], CommandNotFoundException
+    + FullyQualifiedErrorId : CommandNotFoundException
+ 
+-ne : The term '-ne' is not recognized as the name of a cmdlet, function, script file, or operable program. Check the 
+spelling of the name, or if a path was included, verify that the path is correct and try again.
+At line:1 char:646
++ ... venv\Scripts\python.exe -B scripts/check_license.py; if ( -ne 0) { ex ...
++                                                               ~~~
+    + CategoryInfo          : ObjectNotFound: (-ne:String) [], CommandNotFoundException
+    + FullyQualifiedErrorId : CommandNotFoundException
+ 
+-ne : The term '-ne' is not recognized as the name of a cmdlet, function, script file, or operable program. Check the 
+spelling of the name, or if a path was included, verify that the path is correct and try again.
+At line:1 char:736
++ ... s\python.exe -B scripts/check_governance_ledgers.py; if ( -ne 0) { ex ...
++                                                               ~~~
+    + CategoryInfo          : ObjectNotFound: (-ne:String) [], CommandNotFoundException
+    + FullyQualifiedErrorId : CommandNotFoundException
+ 
+-ne : The term '-ne' is not recognized as the name of a cmdlet, function, script file, or operable program. Check the 
+spelling of the name, or if a path was included, verify that the path is correct and try again.
+At line:1 char:819
++ ... \Scripts\python.exe -B scripts/check_terminology.py; if ( -ne 0) { ex ...
++                                                               ~~~
+    + CategoryInfo          : ObjectNotFound: (-ne:String) [], CommandNotFoundException
+    + FullyQualifiedErrorId : CommandNotFoundException
+ 

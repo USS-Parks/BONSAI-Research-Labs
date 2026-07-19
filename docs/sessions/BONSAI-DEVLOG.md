@@ -942,3 +942,24 @@ This append-only log records executed PSPR prompts. Corrections are added as new
 - Verification summary: full local closeout gate passed Rust formatting, strict workspace Clippy, 112 Rust tests, schema compatibility, Ruff, strict Pyright, 11 Python tests, documentation, ADR, license, governance-ledger, terminology, and CI-topology checks on Windows x86_64
 - Evidence paths and SHA-256 hashes: machine record `M1-CLOSEOUT-1784497794956972200` with stdout `2C2F6F910FC6FEADA4E61FF53E97A1EA7F295C7059BE5CC9A4222710D527DE31` and stderr `79250592540DD277D3209352FA08A7F450E0C6A9FECD14C428AFEC3C11852CD7`; byte-identical external verifier SHA-256 `BFB57A295CC709C0CCB75A5802CED2EBA25D5C0214FD59BC5672A231545874E9`
 - Commit SHA: pending by self-hash convention; report the final closeout SHA with its post-push hosted verification
+
+### M1 closeout hosted note
+
+- Focused closeout commit SHA: `700586c8ed567cdbc448d472d2e63ed245ac0542`
+- Hosted verification: GitHub Actions run 29705171385, attempt 1, passed Windows x86_64, Linux x86_64, macOS arm64, macOS Intel, and the M1 semantic-equivalence aggregate at that exact commit
+- Ledger rule: appended by BR-07 because the M1 closeout commit could not contain its own immutable hash or post-push hosted-run identity
+
+## 2026-07-19 — BR-07 — Artifact lifecycle registry
+
+- Status: passed; closeout entry pending focused commit identity and hosted run
+- Authorization scope: user instruction `Continue STS of M2 in its entirety, fully authorized for this session duration.` plus the approved later-PSPR source-publication addendum
+- Dependencies and source revision: BC-07, BR-03, and BR-04 published and hosted-green; M1 closeout published and hosted-green at `700586c8ed567cdbc448d472d2e63ed245ac0542`
+- Objective and exclusions: maintain deterministic runtime state for immutable artifact versions, lifecycle transitions, provenance parents, active consumers, cost and utility histories, and disposition; exclude deciding artifact utility, prescribing learning internals, inferring causal edges, or weakening BC-07 validation
+- Reuse classification: implement at the planned `bonsai-lineage` seam while reusing the generated BC-07 Protobuf types and its existing contract validator as the sole transition-legality oracle; use ordered standard-library maps/sets and add no external dependency
+- Files changed: new lineage crate and model tests, workspace manifest/lock, lifecycle-registry contract, README/PSPR status, M1 hosted closeout, DEVLOG, verification log, and retained machine evidence
+- Decisions/addenda: candidate events validate as a complete immutable prefix before mutation; rejected events leave both snapshot and event prefix unchanged; direct and incremental reconstruction share the same event-specific handlers; public snapshots preserve every revision, revision owner, consumer state, cost, utility, disposition, and terminal marker; utility values are retained but never adjudicated
+- Verification summary: five BR-07 model tests cover all seven artifact types; birth, revision, consumer link/unlink, measured cost, estimated utility, retained/deprioritized/replaced/retired/removed disposition; unknown, duplicate, sequence, orphan, and terminal-resurrection rejection; atomic failure; and deterministic reconstruction. The complete gate passed formatting, strict workspace Clippy, 117 Rust tests, Ruff, strict Pyright, 11 Python tests, schema compatibility, docs, ADR, license, governance-ledger, terminology, and CI-topology checks on Windows x86_64. An initial outer-shell quoting error produced malformed guard expressions and an invalid machine `pass` record while Cargo reported the documented Windows verifier lock; that record is explicitly invalidated in the verification log. A byte-identical external verifier then ran the correct guarded command and recorded the final passing gate.
+- Evidence paths and SHA-256 hashes: final machine record `BR-07-1784503540273256700` with stdout `60DB90A06B79C96A2BEDDDF3F946A33B5CCE3A01C3CC0F9D10178C87C52425D4` and stderr `E085DB141D49B0941BD11BC05DAB2966E9418F11B27C8C1B524F1CAC011C8F93`; byte-identical verifier `521EB675B5168CE8FF445F12AD69E6B1FB236B7FC8DAFAD14D523C8BBC0312A3`; registry `DD0B4C4720D2740F6687F7BF8D62E75EC68D3C400C3F77094DD3E4DF73883C12`; contract `47C1A7C330D1E6DC8DED6ADFA558071B9252137B59239BD26F4C5F7C9B623F9C`; `Cargo.lock` `E0440D9EEEEB9B4D94652A27C8698BD9CEAA8A133A0D63C650310677FD68A921`
+- Commit SHA: pending; append in BR-08 under the self-hash convention
+- Risks/blockers/parked scope changed: BR-07 adds no utility verdict and no causal inference; graph queries remain BR-08 and observer-only replay remains BR-09; no M2, instrument-completion, or C0–C5 claim is made
+- Next eligible prompts after gate and publication: BR-08 and BQ-05; dependency order selects BR-08

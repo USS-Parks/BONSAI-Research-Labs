@@ -1358,3 +1358,35 @@ This is an append-only human index. Machine records created by `cargo xtask veri
 - Counter availability and privileges: deterministic local checks and prior hosted semantic evidence only; no physical energy, thermal, hard process-enforcement, or long-duration evidence
 - Result: pass
 - Reviewer/attestation: M1 closeout preserves the canonical milestone gate, immutable BE-03 hosted evidence, and explicit scientific limitations; strict workspace/Python/schema/governance gates passed locally
+
+## VER-M1-CLOSEOUT-HOSTED — M1-CLOSEOUT — 2026-07-19T21:53:48Z
+
+- Source revision and dirty state: `700586c8ed567cdbc448d472d2e63ed245ac0542`; clean pushed closeout revision
+- OS/architecture/physical-or-CI: Windows/x86_64, Linux/x86_64, macOS/arm64, macOS/x86_64; GitHub hosted CI; ephemeral virtual machines
+- Toolchain/dependency-lock hashes: workflow-pinned Rust 1.96.0, Python 3.12, and uv 0.11.29; source locks at the recorded revision
+- Command: GitHub Actions `BONSAI baseline` push run 29705171385, attempt 1
+- Start/end/duration: `2026-07-19T21:53:48Z` / `2026-07-19T21:59:22Z` / 334 s
+- Exit code: run conclusion `success`; job IDs 88240831959 (Windows), 88240831949 (Linux), 88240831954 (macOS arm64), 88240831968 (macOS Intel), and 88241217950 (M1 semantic-equivalence aggregate)
+- Stdout/stderr artifact hashes: retained by GitHub Actions
+- Fixtures/manifests/bundle IDs: complete repository corpus and the frozen M1 heartbeat/equivalence fixture at the closeout revision
+- Counter availability and privileges: hosted deterministic checks only; no physical energy, thermal, hard process-enforcement, or long-duration evidence
+- Result: pass; M1 ledger closeout is hosted-green
+- Reviewer/attestation: authenticated GitHub metadata establishes the exact head SHA and successful four-platform plus aggregate conclusions; scientific limitations remain unchanged
+
+## VER-BR07-LOCAL — BR-07 — 2026-07-19
+
+- Source revision and dirty state: `700586c8ed567cdbc448d472d2e63ed245ac0542`; dirty only with BR-07 implementation, governance, and evidence
+- OS/architecture/physical-or-CI: Windows/x86_64; local; physical/virtual status unknown
+- Toolchain/dependency-lock hashes: Rust 1.96.0; locked repository Python environment; `Cargo.lock` SHA-256 `E0440D9EEEEB9B4D94652A27C8698BD9CEAA8A133A0D63C650310677FD68A921`
+- Command: final machine record `BR-07-1784503540273256700`; full universal/schema/governance gate through a byte-identical verifier copy after governance closeout edits
+- Start/end/duration: machine-record Unix UTC nanoseconds `1784503540273256700` / `1784503578955300200` / 38.6831015 s
+- Exit code: 0
+- Stdout/stderr artifact hashes: stdout `60DB90A06B79C96A2BEDDDF3F946A33B5CCE3A01C3CC0F9D10178C87C52425D4`; stderr `E085DB141D49B0941BD11BC05DAB2966E9418F11B27C8C1B524F1CAC011C8F93`; external verifier `521EB675B5168CE8FF445F12AD69E6B1FB236B7FC8DAFAD14D523C8BBC0312A3`
+- Fixtures/manifests/bundle IDs: all seven artifact types; every lifecycle transition; unknown, duplicate, sequence, orphan, and terminal-resurrection failures; atomic rejection; direct/incremental reconstruction; complete existing repository corpus
+- Counter availability and privileges: deterministic lifecycle events only; no utility adjudication, physical counter, privileged collector, or scientific claim
+- Result: pass locally; hosted closure remains attached to the focused commit
+- Reviewer/attestation: BC-07 legality reuse, immutable-version retention, deterministic ordered state, atomic failure, full transition coverage, and strict workspace/Python/schema/governance gates passed locally
+
+### Invalidated BR-07 launcher record
+
+Machine record `BR-07-1784503142006141500` is not acceptance evidence. The outer PowerShell invocation expanded `$LASTEXITCODE` before passing the command, leaving malformed `if ( -ne 0)` guards; intermediate Cargo failures therefore did not determine the final exit code, and the recorder incorrectly labeled the command `pass`. Its artifacts remain retained for honest history. The correctly quoted, byte-identical external-verifier record `BR-07-1784503540273256700` supersedes it as the authoritative BR-07 local gate.
