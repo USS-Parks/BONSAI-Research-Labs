@@ -1,6 +1,6 @@
 # BONSAI M0 governed-foundation checkpoint
 
-Status: executing BG-10; implementation checkpoint commit pending  
+Status: BG-10 prompt gate passed at implementation commit `1b68656057a6920f5a087e03d1ca181f914b2791`; final public-remote equality and hosted CI are external closeout evidence
 Authorized scope: BG-01 through BG-10 only  
 Source-of-truth basis: approved charter and PSPR v0.1 plus the approved 2026-07-18 public-repository addendum  
 Next implementation prompt after M0: BC-01, not authorized by `run M0 STS`
@@ -28,7 +28,7 @@ Next implementation prompt after M0: BC-01, not authorized by `run M0 STS`
 | BG-07 | risk/blocker/parked ledgers passed | `98ed62c` |
 | BG-08 | terminology/identifier/unit registry passed | `85e408d` |
 | BG-09 | four-job hosted CI gate passed | `59e474a` plus run 29669146969; closeout `d277415` |
-| BG-10 | source-of-truth audit | implementation checkpoint pending |
+| BG-10 | source-of-truth audit passed from a clean tree | `1b68656` plus closeout commit/remote evidence |
 
 ## Settled decisions and records
 

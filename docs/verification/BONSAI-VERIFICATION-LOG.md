@@ -155,3 +155,17 @@ This is an append-only human index. Machine records created by `cargo xtask veri
 - Counter availability and privileges: no physical counter or capability evidence; none claimed
 - Result: pass pre-commit; clean checkpoint pending
 - Reviewer/attestation: automated universal and source-of-truth audit
+
+## VER-BG10-CLEAN — BG-10 — 2026-07-19T01:55:52Z
+
+- Source revision and dirty state: `1b68656057a6920f5a087e03d1ca181f914b2791`; clean before and after
+- OS/architecture/physical-or-CI: Windows/x86_64; local; physical/virtual status unknown
+- Toolchain/dependency-lock hashes: unchanged from VER-BG06-GATE
+- Command: clean-tree assertion; universal Cargo/uv gates; all governance and M0 checkers; `gitleaks git . --log-opts="--all" --redact`
+- Start/end/duration: `2026-07-19T01:55:52.0460274Z` / `2026-07-19T01:56:01.5553664Z` / 9.5093390 s
+- Exit code: 0 for every gate and scan command
+- Stdout/stderr artifact hashes: command output retained in the STS session transcript; Gitleaks scanned 13 commits / approximately 304.63 KB and reported no leaks
+- Fixtures/manifests/bundle IDs: complete M0 required-file/status/claim/scope audit
+- Counter availability and privileges: no physical counter or capability evidence; none claimed
+- Result: pass
+- Reviewer/attestation: clean automated source-of-truth gate and all-history secret scan

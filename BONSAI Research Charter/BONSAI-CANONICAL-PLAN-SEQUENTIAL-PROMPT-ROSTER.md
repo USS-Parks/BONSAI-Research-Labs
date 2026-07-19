@@ -296,7 +296,7 @@ Dependencies shown per prompt override this phase summary. If two prompts are in
 - [x] **BG-07 — Create risk, blocker, and parked-scope ledgers.** **Depends:** BG-02. **Files:** three governance ledgers. **Objective:** seed them from sections 9 and 10, assign review cadence, and link prompt IDs. **Excludes:** reviving parked work. **Gate:** schema validation catches missing owner/status/revival criteria; every initial risk and parked item has an ID.
 - [x] **BG-08 — Freeze canonical terminology, identifiers, and units.** **Depends:** BG-03. **Files:** `docs/governance/TERMINOLOGY-AND-UNITS.md`, machine-readable registry under `schemas/registry/`. **Objective:** define run, stream, transition, event, work item, artifact types, lineage, consumer, track, budget scopes, claim states, SI/IEC units, missingness, precision, and clock semantics. **Excludes:** metric formulas. **Gate:** duplicate or ambiguous names fail registry validation; all numeric fields require unit and representation.
 - [x] **BG-09 — Establish CI topology without claiming physical acceptance.** **Depends:** BG-05, BG-06. **Files:** CI workflows and `docs/verification/TEST-MATRIX.md`. **Objective:** run baseline checks on Windows, macOS, and Linux; label CI evidence separately from physical-host evidence. **Excludes:** treating hosted runners as energy or long-duration proof. **Gate:** no-op change exercises all required jobs; generated evidence identifies runner virtualization and evidence class.
-- [~] **BG-10 — Baseline and governance review checkpoint.** **Depends:** BG-01–BG-09. **Files:** DEVLOG, verification log, ADR index. **Objective:** reconcile current files, decisions, risks, gates, and milestone cuts before contract code. **Excludes:** BC work. **Gate:** M0 checklist passes, clean status and commit identity are recorded, and the user-approved execution scope still covers the next prompt.
+- [x] **BG-10 — Baseline and governance review checkpoint.** **Depends:** BG-01–BG-09. **Files:** DEVLOG, verification log, ADR index. **Objective:** reconcile current files, decisions, risks, gates, and milestone cuts before contract code. **Excludes:** BC work. **Gate:** M0 checklist passes, clean status and commit identity are recorded, and the user-approved execution scope still covers the next prompt.
 
 ### Phase BC — Contracts, schema evolution, and result bundles
 
@@ -622,7 +622,13 @@ Instrument completion does not imply BRDC-1 or any evaluated agent passes C4 or 
 
 ## 13. Approval record
 
-Current state: **PSPR v0.1 approved in its entirety on 2026-07-18; no STS execution authorization recorded.**
+Approval-time state: **PSPR v0.1 approved in its entirety on 2026-07-18; no STS execution authorization had yet been recorded.**
+
+Execution history:
+
+- On 2026-07-18 the user authorized `run M0 STS` from BG-01 in dependency order.
+- BG-01 through BG-10 subsequently passed their gates and are recorded in the DEVLOG and verification log.
+- BC-01 and every later prompt remain unauthorized until a new user instruction expands the execution scope.
 
 To authorize later, the user may say:
 
