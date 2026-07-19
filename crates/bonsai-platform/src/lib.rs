@@ -7,6 +7,7 @@ use std::collections::BTreeSet;
 use std::error::Error;
 use std::fmt;
 
+pub mod calibration;
 pub mod clock;
 pub mod portable;
 

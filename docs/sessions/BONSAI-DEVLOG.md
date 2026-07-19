@@ -629,3 +629,24 @@ This append-only log records executed PSPR prompts. Corrections are added as new
 - Commit SHA: pending; append in BM-04 under the self-hash convention
 - Risks/blockers/parked scope changed: R-05 remains active for calibrated platform-native collectors and enforcement; R-08 remains active for descendant escape prevention; R-09 remains active for observer reserve; R-10 remains active because snapshots label rather than erase OS differences; no parked scope revived and no hard-cap, energy, physical-host, instrument-completion, or C0–C5 claim is made
 - Next eligible prompts after gate and publication: BM-04 and BQ-01
+
+### BM-03 closeout note
+
+- Focused implementation commit SHA: `b3b95618deca53f1938915aa879c10ced3f5ae15`
+- Hosted verification: GitHub Actions run 29699889177, attempt 1, passed the live process-tree/storage/accounting gate on Windows x86_64, Linux x86_64, macOS arm64, and macOS Intel at that exact commit
+- Ledger rule: appended by BM-04 because the BM-03 commit could not contain its own immutable hash or post-push hosted-run identity
+
+## 2026-07-19 — BM-04 — Measurement calibration harness
+
+- Status: passed; closeout entry pending focused commit identity and hosted run
+- Authorization scope: user-authorized remaining M1 STS for this session plus the existing later-gated public source publication addendum
+- Dependencies and source revision: BM-02 and BM-03 published; BM-03 hosted-green at `b3b95618deca53f1938915aa879c10ced3f5ae15`
+- Objective and exclusions: generate known CPU, touched-allocation, synchronized file-I/O, exact storage, and event/work loads; record expected/observed/error/resolution/coverage/qualification and observer wall cost; do not claim scientific-agent quality, portable committed-memory equivalence, or physical-host/energy accuracy
+- Reuse classification: extend `bonsai-platform` at the BM-02/BM-03 seams using live process-tree snapshots, exact operation/storage loads, standard allocation/file synchronization, and checked integer error arithmetic; add no dependency
+- Files changed: calibration adjudicator/workloads/tests, measurement-calibration contract, README index/status, PSPR status, BM-03 hosted closeout, DEVLOG, verification log, and retained machine evidence
+- Decisions/addenda: only measured counters with complete expected/observed/resolution fields and error inside their declared tolerance are dependent-claim-ready; unavailable/unstable/error states prohibit numeric values and fail the report; CPU compares a single busy thread to monotonic elapsed time, allocation reports RSS delta rather than portable committed bytes, and I/O retains OS/cache qualification
+- Verification summary: exact 10,000-step/work-item fixtures yielded zero error; unavailable, unstable, and error fixtures each produced a failed dependent verdict; live 80-ms CPU, 8-MiB touched allocation, and 64-KiB synchronized I/O workloads recorded complete error/resolution/coverage and observer cost without requiring unstable host counters to pass; the initial strict gate exposed an unreadable literal, an oversized call signature, and an incorrect assumption that live CPU calibration must always be inside tolerance, all corrected without widening evidence; the final complete gate passed formatting, strict workspace Clippy, 78 Rust tests, 3 Python tests, schema compatibility, docs, ADR, license, governance-ledger, terminology, and CI-topology checks on Windows x86_64
+- Evidence paths and SHA-256 hashes: machine record `BM-04-1784488230746317100` with stdout `40B5868AA502C4F1C7160BDA390518B90E41E6D16E436182CE242356BB702BDE` and stderr `457EBE66EA764F3312ADD3F835633F4CC0D538CC2CDE51F63DD1CA1EC146096A`; implementation `AC3E41C127E0F2A09ACB720FD7ADE8C5D13CBA75163ABDCEE83C81410EC308B2`; contract `EBA8CCAEB7B3C46422BDDB4551C8B8E65A14E6C51A550B219B0F93EFA715A042`; `Cargo.lock` unchanged from BM-03
+- Commit SHA: pending; append in BQ-01 under the self-hash convention
+- Risks/blockers/parked scope changed: R-05 remains active for platform/physical calibration; R-06 remains active for enforcement overshoot; R-09 remains active for observer reserve; R-10 remains active because platform qualifications are retained; no parked scope revived and no scientific-agent, physical-host, energy, enforcement, instrument-completion, or C0–C5 claim is made
+- Next eligible prompts after gate and publication: BQ-01 and BK-01
