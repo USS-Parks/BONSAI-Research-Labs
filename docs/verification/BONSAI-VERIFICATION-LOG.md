@@ -448,3 +448,31 @@ This is an append-only human index. Machine records created by `cargo xtask veri
 - Counter availability and privileges: no live event ingest, counter, agent, privileged collector, physical-host, energy, or long-duration evidence; format/recovery fixtures only
 - Result: pass
 - Reviewer/attestation: exact BC-09 truncation/corruption/size/sequence/recovery gate, strict workspace lint/tests, Python gates, schema compatibility, and all governance checks passed
+
+## VER-BC09-HOSTED — BC-09 — 2026-07-19T09:05:03Z
+
+- Source revision and dirty state: `26c093df265a3ae96089201140c74149ffd93caf`; clean pushed revision
+- OS/architecture/physical-or-CI: Windows/x86_64, Linux/x86_64, macOS/arm64, macOS/x86_64; GitHub hosted CI; ephemeral virtual machines
+- Toolchain/dependency-lock hashes: workflow-pinned Rust 1.96.0, Python 3.12, and uv 0.11.29; source locks at the recorded revision
+- Command: GitHub Actions `BONSAI baseline` push run 29680948955, attempt 1
+- Start/end/duration: `2026-07-19T09:05:03Z` / `2026-07-19T09:08:33Z` / 210 s
+- Exit code: all four jobs concluded `success`
+- Stdout/stderr artifact hashes: retained by GitHub Actions; job IDs 88176902844 (Windows), 88176902855 (macOS Intel), 88176902856 (Linux), and 88176902879 (macOS arm64)
+- Fixtures/manifests/bundle IDs: hosted Rust gate exercised every `bonsai.event-segment/v1` validation and recovery outcome on each OS family
+- Counter availability and privileges: no live event ingest, physical counter, privileged collector, agent, energy, or long-duration evidence
+- Result: pass
+- Reviewer/attestation: run head SHA, run conclusion, and every matrix-job conclusion inspected through the GitHub API
+
+## VER-BC10-GATE — BC-10 — 2026-07-19T14:08:16Z
+
+- Source revision and dirty state: `26c093df265a3ae96089201140c74149ffd93caf`; dirty with BC-10 changes
+- OS/architecture/physical-or-CI: Windows/x86_64; local; physical/virtual status unknown
+- Toolchain/dependency-lock hashes: Rust 1.96.0; Python 3.14.4; uv 0.11.29; `Cargo.lock` SHA-256 `79715B2EC269F5C5CC3E4B0755D2BB7870DDC6C6A8EB15197BF5252EAC15CAE8`
+- Command: machine record `BC-10-1784470096942208100`; full universal/schema/governance gate through external verifier copy SHA-256 `E8BDEA495B4FDADCB63E16637023CFAC698BFB9C55043755FEBD0ADD65839E8F`
+- Start/end/duration: `2026-07-19T14:08:16.942Z` / `2026-07-19T14:08:46.745Z` / 29.8036662 s
+- Exit code: 0
+- Stdout/stderr artifact hashes: stdout `df787b8c90b703ae89a11c763340abe47227b501eef6c7a5fac9d9230703997a`; stderr `b9760d1c9f45a39f3acb9deba9891470198394138a23e009222d51e0e30387e5`
+- Fixtures/manifests/bundle IDs: `bonsai.bundle-index/v1` matrix SHA-256 `ED9EE03878CE64037321F24523465F121CC5AA37DD7AB37AE7250697CF2000BE`; exact outcomes `BUNDLE_INDEX_REBUILT`, `BLOB_HASH_MISMATCH`, `BLOB_HASH_COLLISION`, `BLOB_ID_INVALID`, `BUNDLE_INDEX_PATH_INVALID`, and `BUNDLE_INDEX_READ_ONLY`; repeated file-only rebuild reproduced exact indexed rows
+- Counter availability and privileges: portable storage and simulated fixture evidence only; no network database, agent access, live ingest, physical counter, privileged collector, energy, or long-duration evidence
+- Result: pass
+- Reviewer/attestation: exact BC-10 rebuild/hash/collision/traversal/read-only gate, strict workspace lint/tests, Python gates, schema compatibility, and all governance checks passed locally; hosted three-family evidence remains pending the focused published commit

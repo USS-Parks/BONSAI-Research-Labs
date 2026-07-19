@@ -10,6 +10,13 @@ use std::fs::{self, File, OpenOptions};
 use std::io::{self, BufReader, BufWriter, Read, Write};
 use std::path::{Path, PathBuf};
 
+mod index;
+
+pub use index::{
+    BlobId, BlobSummary, BundleIndex, BundleIndexError, IndexSummary, IndexedArtifact,
+    IndexedSegment, put_blob, put_blob_verified, rebuild_index, validate_blob,
+};
+
 const HEADER_MAGIC: [u8; 8] = *b"BNSSEG01";
 const FRAME_MAGIC: [u8; 8] = *b"BNSFRM01";
 const FOOTER_MAGIC: [u8; 8] = *b"BNSEND01";

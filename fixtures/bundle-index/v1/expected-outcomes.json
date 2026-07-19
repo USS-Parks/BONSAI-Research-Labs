@@ -1,0 +1,29 @@
+{
+  "format": "bonsai.bundle-index/v1",
+  "cases": [
+    {
+      "name": "rebuild_from_bundle_files",
+      "expected": "BUNDLE_INDEX_REBUILT"
+    },
+    {
+      "name": "blob_hash_mismatch",
+      "expected": "BLOB_HASH_MISMATCH"
+    },
+    {
+      "name": "blob_hash_collision",
+      "expected": "BLOB_HASH_COLLISION"
+    },
+    {
+      "name": "blob_path_traversal",
+      "expected": "BLOB_ID_INVALID"
+    },
+    {
+      "name": "index_path_traversal",
+      "expected": "BUNDLE_INDEX_PATH_INVALID"
+    },
+    {
+      "name": "read_only_open",
+      "expected": "BUNDLE_INDEX_READ_ONLY"
+    }
+  ]
+}

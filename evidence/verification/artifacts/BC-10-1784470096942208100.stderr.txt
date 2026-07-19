@@ -1,0 +1,18 @@
+    Checking hashlink v0.12.1
+    Checking rusqlite v0.40.1
+    Checking bonsai-bundle v0.0.0 (C:\Users\17076\Documents\Reinforcement Learning Project\crates\bonsai-bundle)
+    Finished `dev` profile [unoptimized + debuginfo] target(s) in 2.99s
+   Compiling hashlink v0.12.1
+   Compiling bonsai-contracts v0.0.0 (C:\Users\17076\Documents\Reinforcement Learning Project\crates\bonsai-contracts)
+   Compiling bonsai-xtask v0.0.0 (C:\Users\17076\Documents\Reinforcement Learning Project\crates\bonsai-xtask)
+   Compiling rusqlite v0.40.1
+   Compiling bonsai-bundle v0.0.0 (C:\Users\17076\Documents\Reinforcement Learning Project\crates\bonsai-bundle)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 6.71s
+     Running unittests src\lib.rs (target\debug\deps\bonsai_bundle-f19b9e923f0f54c7.exe)
+     Running tests\bundle_index_fixtures.rs (target\debug\deps\bundle_index_fixtures-32b162de3658c570.exe)
+     Running tests\segment_fixtures.rs (target\debug\deps\segment_fixtures-455c2b7f085d42a0.exe)
+     Running unittests src\lib.rs (target\debug\deps\bonsai_contracts-4f064489d1250e68.exe)
+     Running unittests src\main.rs (target\debug\deps\bonsai_xtask-d609275d734dcd0d.exe)
+     Running tests\verification_fixture.rs (target\debug\deps\verification_fixture-a7bc1d79d57a99ad.exe)
+   Doc-tests bonsai_bundle
+   Doc-tests bonsai_contracts
