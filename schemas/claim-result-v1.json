@@ -1,0 +1,73 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://schemas.bonsai.dev/claim-result/v1",
+  "title": "BONSAI claim result v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "claim_result_id", "run_id", "claim_level", "criterion", "verdict", "reason_codes", "evidence", "prerequisites", "rule_engine"],
+  "properties": {
+    "schema_version": {"const": "1.0"},
+    "claim_result_id": {"$ref": "#/$defs/uuid"},
+    "run_id": {"$ref": "#/$defs/uuid"},
+    "claim_level": {"enum": ["C0", "C1", "C2", "C3", "C4", "C5"]},
+    "criterion": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["criterion_id", "criterion_version", "expression", "canonical_sha256"],
+      "properties": {
+        "criterion_id": {"$ref": "#/$defs/stable_id"},
+        "criterion_version": {"$ref": "#/$defs/version"},
+        "expression": {"type": "string", "minLength": 1},
+        "canonical_sha256": {"$ref": "#/$defs/sha256"}
+      }
+    },
+    "verdict": {"enum": ["pass", "fail", "indeterminate", "not_run"]},
+    "reason_codes": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"$ref": "#/$defs/stable_id"}},
+    "evidence": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["evidence_id", "evidence_type", "sha256", "role"],
+        "properties": {
+          "evidence_id": {"type": "string", "minLength": 1},
+          "evidence_type": {"enum": ["metric_estimate", "metric_uncertainty", "manifest", "event", "governor_decision", "bundle"]},
+          "sha256": {"$ref": "#/$defs/sha256"},
+          "role": {"enum": ["criterion_input", "prerequisite", "contradiction", "missingness"]}
+        }
+      }
+    },
+    "prerequisites": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["criterion_id", "status", "evidence_ids"],
+        "properties": {
+          "criterion_id": {"$ref": "#/$defs/stable_id"},
+          "status": {"enum": ["pass", "fail", "indeterminate", "not_run"]},
+          "evidence_ids": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"type": "string", "minLength": 1}}
+        }
+      }
+    },
+    "rule_engine": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["engine_id", "engine_version", "rules_sha256"],
+      "properties": {
+        "engine_id": {"$ref": "#/$defs/stable_id"},
+        "engine_version": {"$ref": "#/$defs/version"},
+        "rules_sha256": {"$ref": "#/$defs/sha256"}
+      }
+    }
+  },
+  "$defs": {
+    "uuid": {"type": "string", "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$"},
+    "stable_id": {"type": "string", "pattern": "^[a-z][a-z0-9]*(?:[._-][a-z0-9]+)*$"},
+    "version": {"type": "string", "pattern": "^[1-9][0-9]*\\.[0-9]+$"},
+    "sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"}
+  }
+}

@@ -392,3 +392,17 @@ This is an append-only human index. Machine records created by `cargo xtask veri
 - Counter availability and privileges: measured/estimated/unavailable states are contract fixtures only; no live counter, privileged collector, runtime lineage registry, learning internals, or physical evidence
 - Result: pass
 - Reviewer/attestation: strict artifact identity/revision/lifecycle/provenance validation, exact BC-07 property gate, registry coverage, and full automated local gate
+
+## VER-BC08-GATE — BC-08 — 2026-07-19T08:32:33Z
+
+- Source revision and dirty state: `9d0bd38b9a4b1aa1bce1823fd0a2f42a0dd755c4`; dirty with BC-08 changes
+- OS/architecture/physical-or-CI: Windows/x86_64; local; physical/virtual status unknown
+- Toolchain/dependency-lock hashes: Rust 1.96.0; Python 3.14.4; uv 0.11.29; `Cargo.lock` SHA-256 `BA7C806E67A42D80EC8D0D0D9781F937BEDA17B2B2B291C333BFDE5FFE9ABA04`
+- Command: redacted machine record `BC-08-1784449953957691900`; full universal/schema/governance gate with repository-local uv cache and process-local PowerShell execution-policy bypass
+- Start/end/duration: `2026-07-19T08:32:33.957Z` / `2026-07-19T08:32:43.994Z` / 10.0369853 s
+- Exit code: 0
+- Stdout/stderr artifact hashes: redacted stdout `c232171ce1fd1e7401f81b31bd88a61e1d1dd12131920bb1d83a7c058dd7e971`; redacted stderr `32ec1870131da130bcce39794f00a6795438fc632b95f672e93507c91ed9d29e`
+- Fixtures/manifests/bundle IDs: four valid metric/uncertainty/claim fixtures; four explicit verdict states; `METRIC_SCALAR_UNIT_REQUIRED`, `METRIC_SCALAR_PROVENANCE_REQUIRED`, `CLAIM_CRITERION_REQUIRED`, `CLAIM_EVIDENCE_REQUIRED`, and `CLAIM_REASON_REQUIRED`
+- Counter availability and privileges: all values are schema fixtures; no live metric computation, counter evidence, claim adjudication, privileged collector, or physical-host evidence
+- Result: pass
+- Reviewer/attestation: exact BC-08 scalar/provenance/criterion/evidence gate plus formula/version/unit/direction/population/window/estimator/missingness/precision/uncertainty/input/reason coverage and full automated local gate

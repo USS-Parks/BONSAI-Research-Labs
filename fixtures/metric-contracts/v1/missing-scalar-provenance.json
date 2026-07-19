@@ -1,0 +1,1 @@
+{"fixture_base":"valid-metric-estimate.json","remove":"/inputs","expected_error":"required","expected_code":"METRIC_SCALAR_PROVENANCE_REQUIRED"}

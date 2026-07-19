@@ -1,0 +1,57 @@
+{
+  "schema_version": "1.0",
+  "metric_id": "behavior.mean_reward",
+  "metric_version": "1.0",
+  "formula": {
+    "language": "bonsai-expression-v1",
+    "expression": "mean(reward)",
+    "sha256": "0d3cb86399170e1c7de9f38d1b25d21640515b894af3537e9c4bd915e16f519b"
+  },
+  "unit": "reward_unit_id",
+  "direction": "higher_is_better",
+  "population": {
+    "unit_of_analysis": "authorized transition",
+    "inclusion_rule": "include every valid transition in the declared window",
+    "exclusion_rule": "exclude no valid transition; invalid input follows missingness policy",
+    "grouping_keys": ["run_id", "seed_id"]
+  },
+  "window": {
+    "kind": "fixed",
+    "basis": "step_count",
+    "length": 100,
+    "stride": null
+  },
+  "estimator": {
+    "estimator_id": "arithmetic_mean",
+    "estimator_version": "1.0",
+    "parameters_sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+  },
+  "missingness": {
+    "on_unavailable": "indeterminate",
+    "on_invalid": "fail",
+    "allow_partial_population": false,
+    "minimum_coverage_ratio": 1.0
+  },
+  "precision": {
+    "representation": "finite_binary64",
+    "significant_bits": 53,
+    "absolute_tolerance": 0.0,
+    "relative_tolerance": 0.0
+  },
+  "uncertainty": {
+    "method_id": "paired_bootstrap",
+    "method_version": "1.0",
+    "confidence_level": 0.95,
+    "minimum_samples": 3,
+    "on_unavailable": "indeterminate"
+  },
+  "inputs": [
+    {
+      "input_id": "reward",
+      "schema_version": "1.0",
+      "unit": "reward_unit_id",
+      "role": "metric value",
+      "required_availability": ["measured"]
+    }
+  ]
+}

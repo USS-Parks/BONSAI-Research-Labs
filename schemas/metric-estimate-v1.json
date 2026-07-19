@@ -1,0 +1,126 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://schemas.bonsai.dev/metric-estimate/v1",
+  "title": "BONSAI metric estimate v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "estimate_id", "run_id", "metric_spec", "population", "window", "result", "estimator", "missingness", "precision", "uncertainty_ids", "inputs"],
+  "properties": {
+    "schema_version": {"const": "1.0"},
+    "estimate_id": {"$ref": "#/$defs/uuid"},
+    "run_id": {"$ref": "#/$defs/uuid"},
+    "metric_spec": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["metric_id", "metric_version", "canonical_sha256"],
+      "properties": {
+        "metric_id": {"$ref": "#/$defs/stable_id"},
+        "metric_version": {"$ref": "#/$defs/version"},
+        "canonical_sha256": {"$ref": "#/$defs/sha256"}
+      }
+    },
+    "population": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["population_id", "eligible_count", "observed_count", "selection_sha256"],
+      "properties": {
+        "population_id": {"$ref": "#/$defs/stable_id"},
+        "eligible_count": {"type": "integer", "minimum": 0},
+        "observed_count": {"type": "integer", "minimum": 0},
+        "selection_sha256": {"$ref": "#/$defs/sha256"}
+      }
+    },
+    "window": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["basis", "start", "end"],
+      "properties": {
+        "basis": {"enum": ["event_count", "step_count", "monotonic_time_ns", "episode_count"]},
+        "start": {"type": "integer", "minimum": 0},
+        "end": {"type": "integer", "minimum": 0}
+      }
+    },
+    "result": {
+      "oneOf": [
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["kind", "value", "unit", "availability"],
+          "properties": {
+            "kind": {"const": "scalar"},
+            "value": {"type": "number"},
+            "unit": {"type": "string", "minLength": 1},
+            "availability": {"enum": ["measured", "estimated"]}
+          }
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["kind", "availability", "reason_code"],
+          "properties": {
+            "kind": {"const": "unavailable"},
+            "availability": {"enum": ["unavailable", "excluded"]},
+            "reason_code": {"$ref": "#/$defs/stable_id"}
+          }
+        }
+      ]
+    },
+    "estimator": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["estimator_id", "estimator_version", "parameters_sha256"],
+      "properties": {
+        "estimator_id": {"$ref": "#/$defs/stable_id"},
+        "estimator_version": {"$ref": "#/$defs/version"},
+        "parameters_sha256": {"$ref": "#/$defs/sha256"}
+      }
+    },
+    "missingness": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["missing_count", "invalid_count", "coverage_ratio", "disposition", "reason_codes"],
+      "properties": {
+        "missing_count": {"type": "integer", "minimum": 0},
+        "invalid_count": {"type": "integer", "minimum": 0},
+        "coverage_ratio": {"type": "number", "minimum": 0, "maximum": 1},
+        "disposition": {"enum": ["complete", "partial", "unavailable", "invalid"]},
+        "reason_codes": {"type": "array", "uniqueItems": true, "items": {"$ref": "#/$defs/stable_id"}}
+      }
+    },
+    "precision": {"$ref": "#/$defs/precision"},
+    "uncertainty_ids": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"$ref": "#/$defs/uuid"}},
+    "inputs": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["evidence_id", "evidence_type", "sha256", "role"],
+        "properties": {
+          "evidence_id": {"type": "string", "minLength": 1},
+          "evidence_type": {"enum": ["event", "artifact_revision", "governor_decision", "derived_table", "manifest"]},
+          "sha256": {"$ref": "#/$defs/sha256"},
+          "role": {"type": "string", "minLength": 1}
+        }
+      }
+    }
+  },
+  "$defs": {
+    "uuid": {"type": "string", "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$"},
+    "stable_id": {"type": "string", "pattern": "^[a-z][a-z0-9]*(?:[._-][a-z0-9]+)*$"},
+    "version": {"type": "string", "pattern": "^[1-9][0-9]*\\.[0-9]+$"},
+    "sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "precision": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["representation", "significant_bits", "absolute_tolerance", "relative_tolerance"],
+      "properties": {
+        "representation": {"enum": ["uint64", "int64", "finite_binary64", "decimal_string"]},
+        "significant_bits": {"type": ["integer", "null"], "minimum": 1},
+        "absolute_tolerance": {"type": ["number", "null"], "minimum": 0},
+        "relative_tolerance": {"type": ["number", "null"], "minimum": 0}
+      }
+    }
+  }
+}

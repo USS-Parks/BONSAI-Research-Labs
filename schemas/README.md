@@ -107,3 +107,14 @@ The policy's canonical JSON SHA-256 binds the exact JSON bytes to a Protobuf gov
 BC-07 extends [`registry/terminology-v1.json`](./registry/terminology-v1.json) with exact artifact lifecycle-event, disposition, lineage-relation, and consumer-kind vocabularies plus canonical lifecycle-sequence, resource-cost, and utility-estimate numeric fields. The seven artifact types and stable `artifact_id` / immutable `artifact_revision_id` identities were frozen by BG-08 and are reused unchanged.
 
 The terminology checker now fails if any BC-07 enum set is missing or differs, in addition to its duplicate-term and unitless-numeric rejections. The matching Protobuf contract and lifecycle conformance semantics are documented in [`../proto/README.md`](../proto/README.md). BC-07 does not define metric formulas or claim verdicts and does not implement the BR-07 runtime registry.
+
+## Metric, uncertainty, and claim-result contracts v1
+
+BC-08 defines four immutable Draft 2020-12 contracts:
+
+- [`metric-spec-v1.json`](./metric-spec-v1.json) requires metric identity/version, a hashed formula, unit, direction, population, window, estimator, missingness, precision, uncertainty requirement, and typed inputs.
+- [`metric-estimate-v1.json`](./metric-estimate-v1.json) binds one scalar or explicit unavailable result to the exact metric-spec hash, population/window, estimator, missingness, precision, uncertainty identities, and nonempty hashed input provenance.
+- [`metric-uncertainty-v1.json`](./metric-uncertainty-v1.json) binds an interval or explicit unavailable result to one estimate, method/version/parameters, confidence level, sample count, precision, unit, and hashed inputs.
+- [`claim-result-v1.json`](./claim-result-v1.json) records C0–C5, the exact versioned/hashed criterion, pass/fail/indeterminate/not-run verdict, nonempty reason codes, nonempty hashed evidence, prerequisite states, and rule-engine identity.
+
+The frozen corpus under `fixtures/metric-contracts/v1/` validates each schema and its canonical LF/CRLF-invariant hash, then proves cross-record identity/unit bindings. It rejects a scalar with no unit, a scalar with no input provenance, and a verdict with no criterion, evidence, or reason. BC-08 defines representation and validation only; BK-01 remains responsible for metric computation and BV-01 for claim adjudication.

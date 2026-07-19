@@ -1,0 +1,1 @@
+{"fixture_base":"valid-claim-result.json","remove":"/criterion","expected_error":"required","expected_code":"CLAIM_CRITERION_REQUIRED"}

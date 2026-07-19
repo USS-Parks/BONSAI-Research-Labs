@@ -9,6 +9,8 @@ Decision: D-09 / ADR 0001
 
 The [2026-07-18 public-repository addendum](addenda/2026-07-18-public-repository-target.md) authorizes the charter history and gated M0 source/documents to be published to `USS-Parks/BONSAI-Research-Labs` branch `main` after a clean secret/privacy scan. The exception is target- and artifact-specific; it does not authorize later milestones, releases, packages, evidence bundles, datasets, or other destinations.
 
+The [2026-07-19 continuing-source addendum](addenda/2026-07-19-later-pspr-source-publication.md) supersedes the M0-only limit for later gated PSPR source prompts on the same public `main`. It does not authorize non-source releases, datasets, external submissions, or scientific claims.
+
 ## Default state for all other publication
 
 Except for the approved public source-repository scope above, BONSAI artifacts remain local/private through the final evidence audit. Local development and local commits are permitted only within authorized STS prompts. None of the following is implied by plan approval, execution authorization, a passing gate, a local commit, a CI run, or instrument completion:

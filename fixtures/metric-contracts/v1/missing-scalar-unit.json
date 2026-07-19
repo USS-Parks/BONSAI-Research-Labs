@@ -1,0 +1,1 @@
+{"fixture_base":"valid-metric-estimate.json","remove":"/result/unit","expected_error":"not valid under","expected_code":"METRIC_SCALAR_UNIT_REQUIRED"}

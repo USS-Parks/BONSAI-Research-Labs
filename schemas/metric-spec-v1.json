@@ -1,0 +1,128 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://schemas.bonsai.dev/metric-spec/v1",
+  "title": "BONSAI metric specification v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "metric_id", "metric_version", "formula", "unit", "direction", "population", "window", "estimator", "missingness", "precision", "uncertainty", "inputs"],
+  "properties": {
+    "schema_version": {"const": "1.0"},
+    "metric_id": {"$ref": "#/$defs/stable_id"},
+    "metric_version": {"$ref": "#/$defs/version"},
+    "formula": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["language", "expression", "sha256"],
+      "properties": {
+        "language": {"enum": ["bonsai-expression-v1", "natural-language-normative-v1"]},
+        "expression": {"type": "string", "minLength": 1},
+        "sha256": {"$ref": "#/$defs/sha256"}
+      }
+    },
+    "unit": {"type": "string", "minLength": 1},
+    "direction": {"enum": ["higher_is_better", "lower_is_better", "toward_target", "descriptive"]},
+    "population": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["unit_of_analysis", "inclusion_rule", "exclusion_rule", "grouping_keys"],
+      "properties": {
+        "unit_of_analysis": {"type": "string", "minLength": 1},
+        "inclusion_rule": {"type": "string", "minLength": 1},
+        "exclusion_rule": {"type": "string", "minLength": 1},
+        "grouping_keys": {"type": "array", "uniqueItems": true, "items": {"$ref": "#/$defs/stable_id"}}
+      }
+    },
+    "window": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["kind", "basis", "length", "stride"],
+      "properties": {
+        "kind": {"enum": ["point", "fixed", "rolling", "lifetime"]},
+        "basis": {"enum": ["event_count", "step_count", "monotonic_time_ns", "episode_count"]},
+        "length": {"type": ["integer", "null"], "minimum": 1},
+        "stride": {"type": ["integer", "null"], "minimum": 1}
+      },
+      "allOf": [
+        {
+          "if": {"properties": {"kind": {"enum": ["fixed", "rolling"]}}, "required": ["kind"]},
+          "then": {"properties": {"length": {"type": "integer", "minimum": 1}}}
+        },
+        {
+          "if": {"properties": {"kind": {"const": "rolling"}}, "required": ["kind"]},
+          "then": {"properties": {"stride": {"type": "integer", "minimum": 1}}}
+        },
+        {
+          "if": {"properties": {"kind": {"enum": ["point", "lifetime"]}}, "required": ["kind"]},
+          "then": {"properties": {"length": {"const": null}, "stride": {"const": null}}}
+        }
+      ]
+    },
+    "estimator": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["estimator_id", "estimator_version", "parameters_sha256"],
+      "properties": {
+        "estimator_id": {"$ref": "#/$defs/stable_id"},
+        "estimator_version": {"$ref": "#/$defs/version"},
+        "parameters_sha256": {"$ref": "#/$defs/sha256"}
+      }
+    },
+    "missingness": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["on_unavailable", "on_invalid", "allow_partial_population", "minimum_coverage_ratio"],
+      "properties": {
+        "on_unavailable": {"enum": ["fail", "indeterminate", "not_run"]},
+        "on_invalid": {"enum": ["fail", "indeterminate"]},
+        "allow_partial_population": {"type": "boolean"},
+        "minimum_coverage_ratio": {"type": "number", "minimum": 0, "maximum": 1}
+      }
+    },
+    "precision": {"$ref": "#/$defs/precision"},
+    "uncertainty": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["method_id", "method_version", "confidence_level", "minimum_samples", "on_unavailable"],
+      "properties": {
+        "method_id": {"$ref": "#/$defs/stable_id"},
+        "method_version": {"$ref": "#/$defs/version"},
+        "confidence_level": {"type": ["number", "null"], "exclusiveMinimum": 0, "exclusiveMaximum": 1},
+        "minimum_samples": {"type": "integer", "minimum": 1},
+        "on_unavailable": {"enum": ["fail", "indeterminate", "not_run"]}
+      }
+    },
+    "inputs": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["input_id", "schema_version", "unit", "role", "required_availability"],
+        "properties": {
+          "input_id": {"$ref": "#/$defs/stable_id"},
+          "schema_version": {"$ref": "#/$defs/version"},
+          "unit": {"type": "string", "minLength": 1},
+          "role": {"type": "string", "minLength": 1},
+          "required_availability": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"enum": ["measured", "estimated", "unavailable", "excluded"]}}
+        }
+      }
+    }
+  },
+  "$defs": {
+    "stable_id": {"type": "string", "pattern": "^[a-z][a-z0-9]*(?:[._-][a-z0-9]+)*$"},
+    "version": {"type": "string", "pattern": "^[1-9][0-9]*\\.[0-9]+$"},
+    "sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "precision": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["representation", "significant_bits", "absolute_tolerance", "relative_tolerance"],
+      "properties": {
+        "representation": {"enum": ["uint64", "int64", "finite_binary64", "decimal_string"]},
+        "significant_bits": {"type": ["integer", "null"], "minimum": 1},
+        "absolute_tolerance": {"type": ["number", "null"], "minimum": 0},
+        "relative_tolerance": {"type": ["number", "null"], "minimum": 0}
+      }
+    }
+  }
+}

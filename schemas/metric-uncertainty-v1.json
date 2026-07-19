@@ -1,0 +1,82 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://schemas.bonsai.dev/metric-uncertainty/v1",
+  "title": "BONSAI metric uncertainty v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "uncertainty_id", "estimate_id", "method", "confidence_level", "sample_count", "result", "inputs"],
+  "properties": {
+    "schema_version": {"const": "1.0"},
+    "uncertainty_id": {"$ref": "#/$defs/uuid"},
+    "estimate_id": {"$ref": "#/$defs/uuid"},
+    "method": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["method_id", "method_version", "parameters_sha256"],
+      "properties": {
+        "method_id": {"$ref": "#/$defs/stable_id"},
+        "method_version": {"$ref": "#/$defs/version"},
+        "parameters_sha256": {"$ref": "#/$defs/sha256"}
+      }
+    },
+    "confidence_level": {"type": ["number", "null"], "exclusiveMinimum": 0, "exclusiveMaximum": 1},
+    "sample_count": {"type": "integer", "minimum": 0},
+    "result": {
+      "oneOf": [
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["kind", "lower_bound", "upper_bound", "unit", "precision"],
+          "properties": {
+            "kind": {"const": "interval"},
+            "lower_bound": {"type": "number"},
+            "upper_bound": {"type": "number"},
+            "unit": {"type": "string", "minLength": 1},
+            "precision": {"$ref": "#/$defs/precision"}
+          }
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["kind", "reason_code"],
+          "properties": {
+            "kind": {"const": "unavailable"},
+            "reason_code": {"$ref": "#/$defs/stable_id"}
+          }
+        }
+      ]
+    },
+    "inputs": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["evidence_id", "sha256", "role"],
+        "properties": {
+          "evidence_id": {"type": "string", "minLength": 1},
+          "sha256": {"$ref": "#/$defs/sha256"},
+          "role": {"type": "string", "minLength": 1}
+        }
+      }
+    }
+  },
+  "$defs": {
+    "uuid": {"type": "string", "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$"},
+    "stable_id": {"type": "string", "pattern": "^[a-z][a-z0-9]*(?:[._-][a-z0-9]+)*$"},
+    "version": {"type": "string", "pattern": "^[1-9][0-9]*\\.[0-9]+$"},
+    "sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "precision": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["representation", "significant_bits", "absolute_tolerance", "relative_tolerance"],
+      "properties": {
+        "representation": {"enum": ["uint64", "int64", "finite_binary64", "decimal_string"]},
+        "significant_bits": {"type": ["integer", "null"], "minimum": 1},
+        "absolute_tolerance": {"type": ["number", "null"], "minimum": 0},
+        "relative_tolerance": {"type": ["number", "null"], "minimum": 0}
+      }
+    }
+  }
+}

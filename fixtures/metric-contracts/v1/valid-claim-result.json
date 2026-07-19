@@ -1,0 +1,34 @@
+{
+  "schema_version": "1.0",
+  "claim_result_id": "40000000-0000-4000-8000-000000000001",
+  "run_id": "20000000-0000-4000-8000-000000000001",
+  "claim_level": "C0",
+  "criterion": {
+    "criterion_id": "c0.metric_fixture",
+    "criterion_version": "1.0",
+    "expression": "estimate > 0",
+    "canonical_sha256": "2e85f09746d4defc1a3af4b9763a82eafcb25ec8f9da9690bc754344ba9cf08b"
+  },
+  "verdict": "pass",
+  "reason_codes": ["criterion_satisfied"],
+  "evidence": [
+    {
+      "evidence_id": "10000000-0000-4000-8000-000000000001",
+      "evidence_type": "metric_estimate",
+      "sha256": "bef55103e4f26e661ead6fdc6133c512e9e6230d27dc3285f7d990d8bb794110",
+      "role": "criterion_input"
+    },
+    {
+      "evidence_id": "30000000-0000-4000-8000-000000000001",
+      "evidence_type": "metric_uncertainty",
+      "sha256": "bef55103e4f26e661ead6fdc6133c512e9e6230d27dc3285f7d990d8bb794110",
+      "role": "criterion_input"
+    }
+  ],
+  "prerequisites": [],
+  "rule_engine": {
+    "engine_id": "bonsai_claim_fixture",
+    "engine_version": "1.0",
+    "rules_sha256": "bef55103e4f26e661ead6fdc6133c512e9e6230d27dc3285f7d990d8bb794110"
+  }
+}

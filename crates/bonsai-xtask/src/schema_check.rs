@@ -87,6 +87,15 @@ struct ManifestRejectionFixture {
 
 #[derive(Debug, Deserialize)]
 #[serde(deny_unknown_fields)]
+struct ContractRejectionFixture {
+    fixture_base: String,
+    remove: String,
+    expected_error: String,
+    expected_code: String,
+}
+
+#[derive(Debug, Deserialize)]
+#[serde(deny_unknown_fields)]
 struct TrackFixture {
     name: String,
     input: Value,
@@ -178,10 +187,219 @@ pub(crate) fn run() -> Result<(), String> {
     run_platform_inventory_suite(&root)?;
     run_track_suite(&root)?;
     run_resource_policy_suite(&root)?;
+    run_metric_contract_suite(&root)?;
 
     println!(
-        "schema check passed: compatibility, manifest, inventory, derived track, and resource policy suites"
+        "schema check passed: compatibility, manifest, inventory, derived track, resource policy, metric, uncertainty, and claim-result suites"
     );
+    Ok(())
+}
+
+// Keeping the four schemas and their exact negative matrix in one routine
+// makes coverage reviewable as one BC-08 gate rather than distributed setup.
+#[allow(clippy::too_many_lines)]
+fn run_metric_contract_suite(root: &Path) -> Result<(), String> {
+    let fixture_dir = root.join("fixtures/metric-contracts/v1");
+    let contracts = [
+        (
+            "metric-spec",
+            "schemas/metric-spec-v1.json",
+            "valid-metric-spec.json",
+        ),
+        (
+            "metric-estimate",
+            "schemas/metric-estimate-v1.json",
+            "valid-metric-estimate.json",
+        ),
+        (
+            "metric-uncertainty",
+            "schemas/metric-uncertainty-v1.json",
+            "valid-metric-uncertainty.json",
+        ),
+        (
+            "claim-result",
+            "schemas/claim-result-v1.json",
+            "valid-claim-result.json",
+        ),
+    ];
+
+    let mut schemas = HashMap::new();
+    let mut fixtures = HashMap::new();
+    for (name, schema_relative, fixture_name) in contracts {
+        let schema_path = root.join(schema_relative);
+        let schema_raw = fs::read(&schema_path)
+            .map_err(|error| format!("read {}: {error}", schema_path.display()))?;
+        let schema: Value = serde_json::from_slice(&schema_raw)
+            .map_err(|error| format!("parse {}: {error}", schema_path.display()))?;
+        jsonschema::draft202012::meta::validate(&schema)
+            .map_err(|error| format!("{name} is not valid Draft 2020-12: {error}"))?;
+        reject_schema_defaults(&schema, "")?;
+        let validator = jsonschema::draft202012::new(&schema)
+            .map_err(|error| format!("compile {name} schema: {error}"))?;
+
+        let fixture_path = fixture_dir.join(fixture_name);
+        let fixture_raw = fs::read(&fixture_path)
+            .map_err(|error| format!("read {}: {error}", fixture_path.display()))?;
+        let fixture: Value = serde_json::from_slice(&fixture_raw)
+            .map_err(|error| format!("parse {}: {error}", fixture_path.display()))?;
+        validator
+            .validate(&fixture)
+            .map_err(|error| format!("valid {name} fixture failed: {error}"))?;
+        let canonical = canonical_json(&fixture_raw)?;
+        let windows_text = String::from_utf8(fixture_raw)
+            .map_err(|_| format!("valid {name} fixture is not UTF-8"))?
+            .replace('\n', "\r\n");
+        if canonical != canonical_json(windows_text.as_bytes())? {
+            return Err(format!(
+                "{name} canonical bytes differ for LF and CRLF input"
+            ));
+        }
+        println!(
+            "{name} {fixture_name}: valid canonical_sha256={} schema_canonical_sha256={}",
+            sha256_hex(&canonical),
+            sha256_hex(&canonical_json(&schema_raw)?)
+        );
+        schemas.insert(fixture_name, schema);
+        fixtures.insert(fixture_name, fixture);
+    }
+
+    validate_metric_fixture_links(&fixtures)?;
+
+    let claim_schema = schemas
+        .get("valid-claim-result.json")
+        .ok_or_else(|| "claim-result schema fixture mapping missing".to_owned())?;
+    let claim_validator = jsonschema::draft202012::new(claim_schema)
+        .map_err(|error| format!("compile claim-result schema: {error}"))?;
+    let base_claim = fixtures
+        .get("valid-claim-result.json")
+        .ok_or_else(|| "valid claim-result fixture missing".to_owned())?;
+    for verdict in ["pass", "fail", "indeterminate", "not_run"] {
+        let mut claim = base_claim.clone();
+        claim["verdict"] = Value::String(verdict.to_owned());
+        claim_validator
+            .validate(&claim)
+            .map_err(|error| format!("claim verdict {verdict} failed schema: {error}"))?;
+    }
+
+    let rejection_cases = [
+        "missing-scalar-unit.json",
+        "missing-scalar-provenance.json",
+        "missing-claim-criterion.json",
+        "missing-claim-evidence.json",
+        "missing-claim-reasons.json",
+    ];
+    for file in rejection_cases {
+        let path = fixture_dir.join(file);
+        let raw = fs::read(&path).map_err(|error| format!("read {}: {error}", path.display()))?;
+        let rejection: ContractRejectionFixture = serde_json::from_slice(&raw)
+            .map_err(|error| format!("parse {}: {error}", path.display()))?;
+        let base = fixtures
+            .get(rejection.fixture_base.as_str())
+            .ok_or_else(|| format!("{file} names unknown fixture base"))?;
+        let schema = schemas
+            .get(rejection.fixture_base.as_str())
+            .ok_or_else(|| format!("{file} has no schema mapping"))?;
+        let validator = jsonschema::draft202012::new(schema)
+            .map_err(|error| format!("compile rejection schema for {file}: {error}"))?;
+        let mut candidate = base.clone();
+        remove_json_pointer(&mut candidate, &rejection.remove)
+            .map_err(|error| format!("apply {file}: {error}"))?;
+        let observed_errors = validator
+            .iter_errors(&candidate)
+            .map(|error| error.to_string())
+            .collect::<Vec<_>>();
+        if observed_errors.is_empty()
+            || !observed_errors.iter().any(|error| {
+                error
+                    .to_ascii_lowercase()
+                    .contains(&rejection.expected_error)
+            })
+        {
+            return Err(format!(
+                "{file} expected {} containing {:?}, observed: {}",
+                rejection.expected_code,
+                rejection.expected_error,
+                observed_errors.join("; ")
+            ));
+        }
+        println!("metric/claim fixture {file}: {}", rejection.expected_code);
+    }
+    Ok(())
+}
+
+fn validate_metric_fixture_links(fixtures: &HashMap<&str, Value>) -> Result<(), String> {
+    let spec = fixtures
+        .get("valid-metric-spec.json")
+        .ok_or_else(|| "valid metric specification missing".to_owned())?;
+    let estimate = fixtures
+        .get("valid-metric-estimate.json")
+        .ok_or_else(|| "valid metric estimate missing".to_owned())?;
+    let uncertainty = fixtures
+        .get("valid-metric-uncertainty.json")
+        .ok_or_else(|| "valid metric uncertainty missing".to_owned())?;
+    let claim = fixtures
+        .get("valid-claim-result.json")
+        .ok_or_else(|| "valid claim result missing".to_owned())?;
+
+    let spec_sha256 = sha256_hex(&canonical_json(
+        &serde_json::to_vec(spec).map_err(|error| format!("serialize metric spec: {error}"))?,
+    )?);
+    if estimate
+        .pointer("/metric_spec/canonical_sha256")
+        .and_then(Value::as_str)
+        != Some(spec_sha256.as_str())
+        || estimate.pointer("/metric_spec/metric_id") != spec.get("metric_id")
+        || estimate.pointer("/metric_spec/metric_version") != spec.get("metric_version")
+        || estimate.pointer("/result/unit") != spec.get("unit")
+    {
+        return Err(
+            "metric estimate does not bind the exact specification identity/unit".to_owned(),
+        );
+    }
+
+    let estimate_id = estimate
+        .get("estimate_id")
+        .and_then(Value::as_str)
+        .ok_or_else(|| "valid estimate identity missing".to_owned())?;
+    let uncertainty_id = uncertainty
+        .get("uncertainty_id")
+        .and_then(Value::as_str)
+        .ok_or_else(|| "valid uncertainty identity missing".to_owned())?;
+    if uncertainty.get("estimate_id").and_then(Value::as_str) != Some(estimate_id)
+        || !estimate
+            .get("uncertainty_ids")
+            .and_then(Value::as_array)
+            .is_some_and(|ids| ids.iter().any(|id| id.as_str() == Some(uncertainty_id)))
+        || uncertainty.pointer("/result/unit") != estimate.pointer("/result/unit")
+    {
+        return Err("uncertainty record does not bind the estimate identity/unit".to_owned());
+    }
+    let lower = uncertainty
+        .pointer("/result/lower_bound")
+        .and_then(Value::as_f64)
+        .ok_or_else(|| "valid uncertainty lower bound missing".to_owned())?;
+    let upper = uncertainty
+        .pointer("/result/upper_bound")
+        .and_then(Value::as_f64)
+        .ok_or_else(|| "valid uncertainty upper bound missing".to_owned())?;
+    let value = estimate
+        .pointer("/result/value")
+        .and_then(Value::as_f64)
+        .ok_or_else(|| "valid metric scalar missing".to_owned())?;
+    if lower > value || value > upper {
+        return Err("uncertainty interval does not contain the metric estimate".to_owned());
+    }
+
+    let evidence_ids = claim
+        .get("evidence")
+        .and_then(Value::as_array)
+        .ok_or_else(|| "valid claim evidence missing".to_owned())?
+        .iter()
+        .filter_map(|item| item.get("evidence_id").and_then(Value::as_str))
+        .collect::<HashSet<_>>();
+    if !evidence_ids.contains(estimate_id) || !evidence_ids.contains(uncertainty_id) {
+        return Err("claim result does not cite its metric estimate and uncertainty".to_owned());
+    }
     Ok(())
 }
 
