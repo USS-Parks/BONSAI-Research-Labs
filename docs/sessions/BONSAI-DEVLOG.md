@@ -106,3 +106,23 @@ This append-only log records executed PSPR prompts. Corrections are added as new
 - Commit SHA: pending; append the focused implementation SHA in the next prompt's closeout entry
 - Risks/blockers/parked scope changed: output bounding and hostile-command containment remain later security work; xtask is governance tooling, not a sandbox
 - Next eligible prompt: BG-07 after gate and commit
+
+### BG-06 closeout note
+
+- Focused implementation commit SHA: `369bad35ee1c7599569c3e6fb12fceab5332e7ab`
+- Ledger rule: appended by BG-07 because the BG-06 commit could not contain its own immutable hash
+
+## 2026-07-18 — BG-07 — Risk, blocker, and parked-scope ledgers
+
+- Status: passed; closeout entry pending focused commit identity
+- Authorization scope: user-authorized M0 STS
+- Dependencies and source revision: BG-02 and BG-06 at `369bad35ee1c7599569c3e6fb12fceab5332e7ab`
+- Objective and exclusions: seed governed risks, blockers, parked scope, and claim matrix; do not revive parked work
+- Reuse classification: reuse PSPR sections 9 and 10 exactly, updating statuses only where completed M0 evidence resolves a blocker
+- Files changed: risk/blocker register, parked-scope ledger, claim-to-evidence matrix seed, validator, DEVLOG, verification log, PSPR status
+- Decisions/addenda: R-02 and R-03 resolved; R-13 remains a future blocker; R-16 is active for the authorized public push; P-01 through P-09 remain parked
+- Verification summary: exact R-01–R-16 and P-01–P-09 coverage; every required owner/status/revival/authorization field present; negative missing-owner and missing-revival fixtures rejected; universal gates passed
+- Evidence paths and SHA-256 hashes: `docs/verification/BONSAI-VERIFICATION-LOG.md`; ledger files under `docs/governance/`
+- Commit SHA: pending; append the focused implementation SHA in the next prompt's closeout entry
+- Risks/blockers/parked scope changed: statuses reconciled as stated; no parked item revived
+- Next eligible prompt: BG-08

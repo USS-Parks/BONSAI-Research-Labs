@@ -85,3 +85,17 @@ This is an append-only human index. Machine records created by `cargo xtask veri
 - Counter availability and privileges: not applicable; no environment enumeration
 - Result: pass
 - Reviewer/attestation: automated universal gates, integration fixture, and manual machine-record inspection
+
+## VER-BG07-GATE — BG-07 — 2026-07-19T01:34:54Z
+
+- Source revision and dirty state: `369bad35ee1c7599569c3e6fb12fceab5332e7ab`; dirty with BG-07 changes
+- OS/architecture/physical-or-CI: Windows/x86_64; local; physical/virtual status unknown
+- Toolchain/dependency-lock hashes: unchanged from VER-BG06-GATE
+- Command: universal Cargo and uv gates; docs, ADR, license, and governance-ledger checkers
+- Start/end/duration: `2026-07-19T01:34:54.8393819Z` / `2026-07-19T01:35:02.8639980Z` / 8.0246161 s
+- Exit code: 0 for every gate command
+- Stdout/stderr artifact hashes: command output retained in the STS session transcript; ledger files are committed source artifacts
+- Fixtures/manifests/bundle IDs: negative missing-owner and missing-revival fixtures; R-01–R-16; P-01–P-09
+- Counter availability and privileges: not applicable
+- Result: pass
+- Reviewer/attestation: automated schema/coverage checks and universal gates

@@ -1,0 +1,19 @@
+# BONSAI parked-scope ledger
+
+Owner for the ledger: BONSAI maintainers  
+Review cadence: milestone checkpoints and before accepting work that touches a parked item  
+Status vocabulary: `parked`, `revived-by-addendum`, `superseded`
+
+| ID | Parked item | Owner | Rationale | Status | Revival criteria | Required authorization | Affected prompts | Review cadence |
+|---|---|---|---|---|---|---|---|---|
+| P-01 | Hardware energy probes and laboratory E3 instrumentation beyond an adapter seam | Measurement lead | Specialized hardware and synchronization are not needed for v1 core operation | parked | Approved E3 threat/calibration plan, hardware availability, and acceptance gates | PSPR addendum plus explicit equipment/collector authority | BM-12, BM-13, BV-06 | Before any laboratory-grade claim |
+| P-02 | Cluster-scale, distributed, cloud-required execution | Architecture owner | Conflicts with local/no-cloud core and expands identity, networking, and budget semantics | parked | Distributed threat/resource model and cross-node evidence design | PSPR addendum and external-service authority | BC, BR, BQ, BV | At milestone review only |
+| P-03 | Mobile, embedded, robotics, or real-world autonomous control | Safety owner | Requires platform, physical-safety, and real-world control obligations absent from v1 | parked | Separate safety case, hardware matrix, and containment/acceptance milestone | PSPR addendum plus explicit hardware/operation authority | all runtime and acceptance work | Before any device or real-world test |
+| P-04 | AMD and Intel discrete accelerator collectors in v1 | Measurement lead | Backends and physical calibration evidence are not yet scoped | parked | Backend implementation plan and representative physical hosts | PSPR addendum and collector authority | BM-11–BM-14 | Before vendor-specific claim |
+| P-05 | Hostile arbitrary-native-code sandboxing or certification | Security lead | v1 process isolation is not an adversarial sandbox | parked | Dedicated threat model, containment architecture, and escape/DoS acceptance suite | PSPR addendum and explicit hostile-code authority | D-21, BV-11, BV-12 | Before running hostile code |
+| P-06 | Neural architecture mandate or proof of general/open-ended intelligence from one simulator | Scientific lead | Would narrow algorithm neutrality and overstate evidence | parked | New scientific charter with multi-domain evidence and falsifiable claim rules | Charter/PSPR addendum and explicit claim authorization | BE, BK, BV | Before architecture or claim change |
+| P-07 | Reproduction of unpublished Oak Lab algorithms or publication on Oak Lab's behalf | Scientific and publication leads | Public evidence is insufficient and representation authority is absent | parked | New primary evidence and written authorization from relevant rights holders | Charter/PSPR addendum plus explicit publication authority | BE-04, BV-15, BV-16 | Before any attribution change |
+| P-08 | External benchmark submission, telemetry upload, SaaS dashboard, or multi-user service | Publication and security leads | Adds egress, identity, privacy, retention, and service security scope | parked | Threat/privacy model, data contract, retention policy, and target-specific gates | PSPR addendum plus explicit external-service authority | BV-03, BV-16 | Before any network integration |
+| P-09 | Human-label supervision in Track A | Scientific lead | Violates strict experiential semantics | parked | New comparator track and eligibility rules that cannot be confused with Track A | Charter/PSPR addendum and explicit track authorization | BC-05, BR-09, BE-09 | Before any labeled-input experiment |
+
+Revival is never implied by adjacent implementation. A row becomes active only through the named authorization and a dated addendum with new gates.
