@@ -8,6 +8,7 @@ use std::error::Error;
 use std::fmt;
 
 pub mod clock;
+pub mod portable;
 
 #[derive(Clone, Copy, Debug, Deserialize, Eq, Ord, PartialEq, PartialOrd, Serialize)]
 #[serde(rename_all = "snake_case")]

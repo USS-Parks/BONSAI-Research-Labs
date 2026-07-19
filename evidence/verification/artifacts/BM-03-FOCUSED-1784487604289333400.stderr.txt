@@ -1,0 +1,7 @@
+    Blocking waiting for file lock on build directory
+   Compiling bonsai-platform v0.0.0 (C:\Users\17076\Documents\Reinforcement Learning Project\crates\bonsai-platform)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 5.22s
+     Running unittests src\lib.rs (target\debug\deps\bonsai_platform-4903d18722b32fea.exe)
+     Running unittests src\bin\bonsai-accounting-fixture.rs (target\debug\deps\bonsai_accounting_fixture-225ac769aa7f0617.exe)
+     Running tests\portable_accounting.rs (target\debug\deps\portable_accounting-6469a8765ba87499.exe)
+   Doc-tests bonsai_platform

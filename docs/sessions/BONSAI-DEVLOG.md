@@ -608,3 +608,24 @@ This append-only log records executed PSPR prompts. Corrections are added as new
 - Commit SHA: pending; append in BM-03 under the self-hash convention
 - Risks/blockers/parked scope changed: R-05 remains active for physical/platform precision qualification and backend calibration; R-10 remains active for cross-process and cross-platform equivalence; no parked scope revived and no physical-host precision, suspend detection guarantee, platform backend, energy, enforcement, instrument-completion, or C0–C5 claim is made
 - Next eligible prompt after gate and publication: BM-03
+
+### BM-02 closeout note
+
+- Focused implementation commit SHA: `4c9b88f937a019597dfe1a733f718f67dbb5bf4d`
+- Hosted verification: GitHub Actions run 29699440769, attempt 1, passed Windows x86_64, Linux x86_64, macOS arm64, and macOS Intel at that exact commit
+- Ledger rule: appended by BM-03 because the BM-02 commit could not contain its own immutable hash or post-push hosted-run identity
+
+## 2026-07-19 — BM-03 — Portable process, memory, storage, and operation accounting
+
+- Status: passed; closeout entry pending focused commit identity and hosted run
+- Authorization scope: user-authorized remaining M1 STS for this session plus the existing later-gated public source publication addendum
+- Dependencies and source revision: BM-01 and BR-05 published; BM-02 published and hosted-green at `4c9b88f937a019597dfe1a733f718f67dbb5bf4d`
+- Objective and exclusions: collect live process-tree CPU/RSS/virtual-memory/I/O evidence, separately scoped agent/observer storage, and exact environment-step/update/touch/work-item/model-call/planning-backup counts; do not equate RSS, virtual/committed memory, or I/O semantics across operating systems
+- Reuse classification: extend `bonsai-platform` at the BM-01 seam; reuse standard filesystem/process spawning, checked collections, and pinned `sysinfo` 0.39.6 with only its `system` feature and no default multithreading; introduce no enforcement or platform-native authority
+- Files changed: portable accounting implementation, live parent/child fixture binary and integration test, portable-accounting contract, crate dependencies and lock, README index/status, PSPR status, BM-02 hosted closeout, DEVLOG, verification log, and retained machine evidence
+- Decisions/addenda: descendant membership derives from refreshed parent-PID edges rooted at the supervised process; accumulated CPU milliseconds convert to canonical nanoseconds; RSS, virtual-memory, and I/O semantics remain labeled; storage traversal is root-class-separated, bounded, and non-symlink-following; work counters use checked exact charges
+- Verification summary: a real fixture parent launched a real child and both live PIDs appeared in the same scoped process total with nonzero resident memory; live filesystem fixtures returned exact agent 48-byte/two-file and observer 43-byte/one-file totals; operation fixtures proved exact counts and overflow rejection; the first strict Clippy run found one unused import after the dependency fetch and the import was removed; focused and two complete machine-recorded gates passed, with the final complete gate covering formatting, strict workspace Clippy, 75 Rust tests, 3 Python tests, schema compatibility, docs, ADR, license, governance-ledger, terminology, and CI-topology checks on Windows x86_64
+- Evidence paths and SHA-256 hashes: final machine record `BM-03-FINAL-1784487627468498600` with stdout `1B72F9F80044ED457072B749355AAE37BF7E8558E02C1FA653C82424F137D6B6` and stderr `E6579DF6023A5F9ECED842622EFE45D3C9B3EDFB9E9B965B85949823743A81D4`; earlier full pass `BM-03-1784487518894957000` and focused pass `BM-03-FOCUSED-1784487604289333400` remain retained; implementation `E986976A47B61043B3A8157BA7ABEC117F6B0D6E4B85D7E51E692E55D1004DF2`; live fixture test `99555CCF64D949FB9AA1D92890AE107772C9CC4013CE502F38D35A0D33E27335`; contract `8C49DC9A40B639E7CF48923F9194A4F7749BDBE0CF5D5E34289CF2CC9B868E9F`; `Cargo.lock` `A7D1D8F57EB4553059F34EBAE1E487F0FB69DB1686FCB5F0082DD1F1366F52B8`
+- Commit SHA: pending; append in BM-04 under the self-hash convention
+- Risks/blockers/parked scope changed: R-05 remains active for calibrated platform-native collectors and enforcement; R-08 remains active for descendant escape prevention; R-09 remains active for observer reserve; R-10 remains active because snapshots label rather than erase OS differences; no parked scope revived and no hard-cap, energy, physical-host, instrument-completion, or C0–C5 claim is made
+- Next eligible prompts after gate and publication: BM-04 and BQ-01
