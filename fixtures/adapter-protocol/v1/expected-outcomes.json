@@ -1,0 +1,10 @@
+{
+  "schema": "bonsai.adapter-protocol-outcomes/v1",
+  "cases": {
+    "valid_handshake": "ready",
+    "configure_before_start": "ADAPTER_PROTOCOL_OUT_OF_ORDER",
+    "version_mismatch": "ADAPTER_PROTOCOL_VERSION_MISMATCH",
+    "capability_change": "ADAPTER_PROTOCOL_CAPABILITY_CHANGED",
+    "post_stop_message": "ADAPTER_PROTOCOL_POST_STOP"
+  }
+}

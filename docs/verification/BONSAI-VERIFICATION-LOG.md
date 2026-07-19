@@ -560,3 +560,31 @@ This is an append-only human index. Machine records created by `cargo xtask veri
 - Counter availability and privileges: bundle fixture evidence only; no live agent, physical counter, privileged collector, energy, or long-duration evidence
 - Result: platform conformance failure; not acceptance evidence
 - Reviewer/attestation: exact failing job log inspected; correction freezes repository JSON checkout bytes as LF and was reproduced through a separate `core.autocrlf=true` checkout before rerunning the complete gate
+
+## VER-BC12-HOSTED — BC-12 — 2026-07-19T15:20:23Z
+
+- Source revision and dirty state: `c8d03249920aa6ed98b353d9f046d84ddf8f3d66`; clean pushed revision equal to `origin/main`
+- OS/architecture/physical-or-CI: Windows/x86_64, Linux/x86_64, macOS/arm64, macOS/x86_64; GitHub hosted CI; ephemeral virtual machines
+- Toolchain/dependency-lock hashes: workflow-pinned Rust 1.96.0, Python 3.12, and uv 0.11.29; source locks at the recorded revision
+- Command: GitHub Actions `BONSAI baseline` push run 29692636701, attempt 1
+- Start/end/duration: `2026-07-19T15:20:23Z` / `2026-07-19T15:24:38Z` / 255 s
+- Exit code: all four jobs concluded `success`
+- Stdout/stderr artifact hashes: retained by GitHub Actions; job IDs 88207935347 (Windows), 88207935354 (macOS arm64), 88207935359 (Linux), and 88207935370 (macOS Intel)
+- Fixtures/manifests/bundle IDs: all seven BC-12 bundle corpus cases retained exact expected verdicts with LF-stable stored-byte identities on every hosted OS
+- Counter availability and privileges: bundle fixture evidence only; no live agent, physical counter, privileged collector, energy, or long-duration evidence
+- Result: pass
+- Reviewer/attestation: run head SHA, run conclusion, and all four matrix-job conclusions inspected through the GitHub API; BC-12 is closed
+
+## VER-BR01-GATE — BR-01 — 2026-07-19T16:07:51Z
+
+- Source revision and dirty state: `c8d03249920aa6ed98b353d9f046d84ddf8f3d66`; dirty with BR-01 changes
+- OS/architecture/physical-or-CI: Windows/x86_64; local; physical/virtual status unknown
+- Toolchain/dependency-lock hashes: Rust 1.96.0; Python 3.14.4; uv 0.11.29; `Cargo.lock` SHA-256 `2C9BA13AF614DB6DF5782166151E2CE0E85D97F72579998322023CB7EBA4B67C`
+- Command: machine record `BR-01-FINAL-1784477271044328200`; full universal/schema/governance gate through external verifier copy SHA-256 `9485AB2A886618734052ED79C6208BE1A43AC5B6CD3D51290CE86980BE4F4C0F`
+- Start/end/duration: `2026-07-19T16:07:51.044Z` / `2026-07-19T16:08:46.200Z` / 55.1573395 s
+- Exit code: 0
+- Stdout/stderr artifact hashes: stdout `6442ad3f111469e453463b12998fcbab7eae0e4780bd885788096328e98302d7`; stderr `fb3f2ad36f6dd7e817e5a713bdee56cae8c2c931eea5fd492469d27e151a327e`
+- Fixtures/manifests/bundle IDs: `bonsai.adapter-protocol-outcomes/v1` SHA-256 `E0CD82C0C1DD6C6927E62EE56555FA330B2C4D52A0E8E0321E95299B4AEF85FB`; adapter schema SHA-256 `0B01498A4D6DE375D03CE00A51FEA909F4D111F3EDB1D5BE5E31049385042D0D`; exact valid, explicit-flag, out-of-order, version-mismatch, capability-change, and post-stop classes
+- Counter availability and privileges: schema/state-machine fixture evidence only; no live child process, inherited-handle transport, physical-host process spot check, privileged input, observer isolation, energy, or long-duration evidence
+- Result: pass
+- Reviewer/attestation: complete declared operation path, deterministic seeds/deadlines, frozen capability negotiation, fail-closed state/sequence behavior, strict workspace gates, Python gates, schema compatibility, and all governance checks passed locally; hosted Rust-Python process evidence belongs to BR-02

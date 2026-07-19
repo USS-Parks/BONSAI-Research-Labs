@@ -7,12 +7,17 @@ use sha2::{Digest, Sha256};
 use std::error::Error;
 use std::fmt;
 
-#[allow(clippy::doc_markdown, clippy::must_use_candidate)]
+#[allow(
+    clippy::doc_markdown,
+    clippy::must_use_candidate,
+    clippy::struct_excessive_bools
+)]
 mod generated {
     include!(concat!(env!("OUT_DIR"), "/bonsai.rs"));
 }
 
 pub use generated::bonsai;
+pub mod adapter;
 pub mod inventory;
 pub mod lineage;
 pub mod resource;

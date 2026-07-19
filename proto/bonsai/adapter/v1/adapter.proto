@@ -1,0 +1,142 @@
+syntax = "proto3";
+
+package bonsai.adapter.v1;
+
+// One ordered protocol message. The transport adds only a bounded length prefix.
+message AdapterFrame {
+  uint64 sequence = 1;
+  uint32 protocol_epoch = 2;
+  uint32 protocol_minor = 3;
+  // Required on adapter-originated frames after Handshake and immutable thereafter.
+  bytes capability_fingerprint_sha256 = 4;
+  oneof message {
+    Start start = 10;
+    Handshake handshake = 11;
+    Configure configure = 12;
+    Reset reset = 13;
+    Step step = 14;
+    StepResult step_result = 15;
+    Work work = 16;
+    WorkResult work_result = 17;
+    Feedback feedback = 18;
+    Ack ack = 19;
+    Event event = 20;
+    Stop stop = 21;
+    Stopped stopped = 22;
+    ProtocolError error = 23;
+  }
+}
+
+message VersionRange {
+  uint32 minimum_epoch = 1;
+  uint32 minimum_minor = 2;
+  uint32 maximum_epoch = 3;
+  uint32 maximum_minor = 4;
+}
+
+message Start {
+  bytes run_id = 1;
+  VersionRange accepted_versions = 2;
+  uint64 deterministic_seed = 3;
+  uint64 deadline_monotonic_ns = 4;
+}
+
+message CapabilityDeclaration {
+  optional bool reset = 1;
+  optional bool work = 2;
+  optional bool feedback = 3;
+  optional bool asynchronous_events = 4;
+  repeated string accepted_input_types = 5;
+  repeated string emitted_event_types = 6;
+  optional bool retains_transitions = 7;
+  optional bool offline_updates = 8;
+  optional bool observer_data_access = 9;
+  optional bool privileged_state_access = 10;
+  optional bool filesystem_read = 11;
+  optional bool filesystem_write = 12;
+  optional bool network_access = 13;
+}
+
+message Handshake {
+  uint32 selected_epoch = 1;
+  uint32 selected_minor = 2;
+  CapabilityDeclaration capabilities = 3;
+}
+
+message Configure {
+  bytes configuration_sha256 = 1;
+  bytes accepted_capability_fingerprint_sha256 = 2;
+  uint64 deadline_monotonic_ns = 3;
+}
+
+message Reset {
+  bytes episode_id = 1;
+  uint64 deterministic_seed = 2;
+  uint64 deadline_monotonic_ns = 3;
+}
+
+message Step {
+  uint64 step_index = 1;
+  string input_type = 2;
+  bytes input = 3;
+  bytes input_sha256 = 4;
+  uint64 deadline_monotonic_ns = 5;
+}
+
+message StepResult {
+  uint64 step_index = 1;
+  bytes action = 2;
+  bytes action_sha256 = 3;
+}
+
+message Work {
+  bytes work_item_id = 1;
+  string work_class = 2;
+  bytes payload = 3;
+  bytes payload_sha256 = 4;
+  uint64 deadline_monotonic_ns = 5;
+}
+
+message WorkResult {
+  bytes work_item_id = 1;
+  string outcome = 2;
+  bytes result = 3;
+  bytes result_sha256 = 4;
+}
+
+message Feedback {
+  bytes feedback_id = 1;
+  string signal_type = 2;
+  bytes signal = 3;
+  bytes signal_sha256 = 4;
+  uint64 deadline_monotonic_ns = 5;
+}
+
+enum Operation {
+  OPERATION_UNSPECIFIED = 0;
+  OPERATION_CONFIGURE = 1;
+  OPERATION_RESET = 2;
+  OPERATION_FEEDBACK = 3;
+}
+
+message Ack {
+  Operation operation = 1;
+}
+
+message Event {
+  bytes event_envelope = 1;
+}
+
+message Stop {
+  string reason_code = 1;
+  uint64 deadline_monotonic_ns = 2;
+}
+
+message Stopped {
+  string outcome_code = 1;
+}
+
+message ProtocolError {
+  string reason_code = 1;
+  string bounded_detail = 2;
+}
