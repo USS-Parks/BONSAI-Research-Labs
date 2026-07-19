@@ -14,6 +14,7 @@ mod generated {
 
 pub use generated::bonsai;
 pub mod inventory;
+pub mod track;
 
 pub const FILE_DESCRIPTOR_SET: &[u8] =
     include_bytes!(concat!(env!("OUT_DIR"), "/bonsai-descriptor.bin"));

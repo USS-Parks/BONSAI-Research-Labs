@@ -1,6 +1,7 @@
 //! Frozen schema-compatibility conformance suite.
 
 use bonsai_contracts::inventory::{PlatformInventory, sanitize_inventory_json};
+use bonsai_contracts::track::{Track, TrackDeclaration, derive_track};
 use serde::Deserialize;
 use serde_json::Value;
 use sha2::{Digest, Sha256};
@@ -81,6 +82,14 @@ struct ManifestRejectionFixture {
     fixture_base: String,
     remove: String,
     expected_error: String,
+}
+
+#[derive(Debug, Deserialize)]
+#[serde(deny_unknown_fields)]
+struct TrackFixture {
+    name: String,
+    input: Value,
+    expected: Track,
 }
 
 pub(crate) fn run() -> Result<(), String> {
@@ -166,9 +175,49 @@ pub(crate) fn run() -> Result<(), String> {
 
     run_experiment_manifest_suite(&root)?;
     run_platform_inventory_suite(&root)?;
+    run_track_suite(&root)?;
 
+    println!("schema check passed: compatibility, manifest, inventory, and derived track suites");
+    Ok(())
+}
+
+fn run_track_suite(root: &Path) -> Result<(), String> {
+    let schema_path = root.join("schemas/track-declaration-v1.json");
+    let schema_raw = fs::read(&schema_path)
+        .map_err(|error| format!("read {}: {error}", schema_path.display()))?;
+    let schema: Value = serde_json::from_slice(&schema_raw)
+        .map_err(|error| format!("parse {}: {error}", schema_path.display()))?;
+    jsonschema::draft202012::meta::validate(&schema)
+        .map_err(|error| format!("track declaration is not valid Draft 2020-12: {error}"))?;
+    reject_schema_defaults(&schema, "")?;
+    let validator = jsonschema::draft202012::new(&schema)
+        .map_err(|error| format!("compile track declaration schema: {error}"))?;
+    let path = root.join("fixtures/track-classification/v1/cases.json");
+    let raw = fs::read(&path).map_err(|error| format!("read {}: {error}", path.display()))?;
+    let fixtures: Vec<TrackFixture> = serde_json::from_slice(&raw)
+        .map_err(|error| format!("parse {}: {error}", path.display()))?;
+    for fixture in &fixtures {
+        validator
+            .validate(&fixture.input)
+            .map_err(|error| format!("track fixture {} failed schema: {error}", fixture.name))?;
+        let input: TrackDeclaration = serde_json::from_value(fixture.input.clone())
+            .map_err(|error| format!("decode track fixture {}: {error}", fixture.name))?;
+        let verdict = derive_track(&input);
+        if verdict.derived != fixture.expected {
+            return Err(format!(
+                "track fixture {} expected {:?}, observed {:?}",
+                fixture.name, fixture.expected, verdict.derived
+            ));
+        }
+        println!(
+            "track fixture {}: {:?} reason={}",
+            fixture.name, verdict.derived, verdict.reason_code
+        );
+    }
     println!(
-        "schema check passed: compatibility, experiment manifest, and sanitized platform inventory suites"
+        "track classification: {} cases schema_canonical_sha256={}",
+        fixtures.len(),
+        sha256_hex(&canonical_json(&schema_raw)?)
     );
     Ok(())
 }

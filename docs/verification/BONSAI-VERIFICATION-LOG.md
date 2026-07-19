@@ -254,6 +254,20 @@ This is an append-only human index. Machine records created by `cargo xtask veri
 - Result: pass
 - Reviewer/attestation: run head SHA, run conclusion, and every matrix-job conclusion inspected through the GitHub API
 
+## VER-BC05-GATE — BC-05 — 2026-07-19T03:41:06Z
+
+- Source revision and dirty state: `a694e2380b907d04aea41bca321bb091f6c2ba28`; dirty with BC-05 changes
+- OS/architecture/physical-or-CI: Windows/x86_64; local; physical/virtual status unknown
+- Toolchain/dependency-lock hashes: Rust 1.96.0; Python 3.14.4; uv 0.11.29; `Cargo.lock` SHA-256 `BA7C806E67A42D80EC8D0D0D9781F937BEDA17B2B2B291C333BFDE5FFE9ABA04`
+- Command: machine record `BC-05-1784432466868264500`; full universal/schema/governance gate
+- Start/end/duration: `2026-07-19T03:41:06.8682645Z` / `2026-07-19T03:41:18.3836683Z` / 11.5157002 s
+- Exit code: 0
+- Stdout/stderr artifact hashes: stdout `f64546cc170ae1c2139942911b5e5b061f94d209e201d41179dd64e3e7b892b0`; stderr `9f28fbdc232e471eed34de59792aff947d843343f19bc7bd794a02b145c39f49`
+- Fixtures/manifests/bundle IDs: seven track cases; schema canonical SHA-256 `eefeeba41b7a875c02bb6f5104ad6f02f2d3c16582594c57c4e669c798e6f2fa`
+- Counter availability and privileges: runtime facts are fixtures only; no live isolation, privileged input, replay, or enforcement claim
+- Result: pass
+- Reviewer/attestation: exact derived outcomes/reason codes and full automated local gate; external verifier SHA-256 `27F9E6B316D53BA2C379C7CC96176CE670B99440D173D0D7B6BF28FF034C8FC3` matched in-tree
+
 ## VER-BC04-GATE — BC-04 — 2026-07-19T03:28:30Z
 
 - Source revision and dirty state: `d31e4a6e8126697357e7f0870f434ee24881e664`; dirty with BC-04 changes
@@ -267,6 +281,20 @@ This is an append-only human index. Machine records created by `cargo xtask veri
 - Counter availability and privileges: collector interfaces and states only; no live host enumeration, physical counter, privileged collector, calibration, enforcement, or energy evidence
 - Result: pass
 - Reviewer/attestation: strict raw/sanitized fixture equality, forbidden-value absence, retained reproducibility-field assertions, Rust contract decoding, Draft 2020-12 validation, and full automated local gate; external verifier SHA-256 `F81144D316A5EB77F682E13535F20C0DCF53AE723171C82C7FD53FFCC6FB7AEF` matched the in-tree binary before execution
+
+## VER-BC04-HOSTED — BC-04 — 2026-07-19T03:32:47Z
+
+- Source revision and dirty state: `a694e2380b907d04aea41bca321bb091f6c2ba28`; clean pushed revision
+- OS/architecture/physical-or-CI: Windows/x86_64, Linux/x86_64, macOS/arm64, macOS/x86_64; GitHub hosted CI; ephemeral virtual machines
+- Toolchain/dependency-lock hashes: workflow-pinned Rust 1.96.0, Python 3.12, and uv 0.11.29; source locks at the recorded revision
+- Command: GitHub Actions `BONSAI baseline` push run 29671931286, attempt 1
+- Start/end/duration: `2026-07-19T03:32:47Z` / `2026-07-19T03:35:11Z` / 144 s
+- Exit code: all four jobs concluded `success`
+- Stdout/stderr artifact hashes: retained by GitHub Actions; job IDs 88152460987 (Linux), 88152461016 (macOS Intel), 88152461020 (Windows), and 88152461039 (macOS arm64)
+- Fixtures/manifests/bundle IDs: hosted schema gate exercised the raw-sensitive and exact sanitized platform-inventory fixtures on every matrix job
+- Counter availability and privileges: no physical counter evidence; workflow classification denies physical, energy, and long-duration claims
+- Result: pass
+- Reviewer/attestation: run head SHA, run conclusion, and every matrix-job conclusion inspected through the GitHub API
 
 ## VER-BC03-GATE — BC-03 — 2026-07-19T03:05:32Z
 

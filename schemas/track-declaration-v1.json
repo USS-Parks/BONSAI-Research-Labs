@@ -1,0 +1,23 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://schemas.bonsai.dev/track-declaration/v1",
+  "title": "BONSAI track declaration and runtime facts v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "declared_track", "runtime_facts_complete", "batch_size", "transition_access", "replay_capacity_transitions", "offline_updates", "observer_data_access", "privileged_state", "human_labels", "domain_feature_targets", "update_schedule", "fixed_external_budgets"],
+  "properties": {
+    "schema_version": {"const": "1.0"},
+    "declared_track": {"enum": ["A", "B", "C", "D", "INDETERMINATE_TRACK"]},
+    "runtime_facts_complete": {"type": "boolean"},
+    "batch_size": {"type": "integer", "minimum": 1},
+    "transition_access": {"enum": ["single_pass", "replay"]},
+    "replay_capacity_transitions": {"type": "integer", "minimum": 0},
+    "offline_updates": {"type": "boolean"},
+    "observer_data_access": {"type": "boolean"},
+    "privileged_state": {"type": "boolean"},
+    "human_labels": {"type": "boolean"},
+    "domain_feature_targets": {"type": "boolean"},
+    "update_schedule": {"enum": ["event_driven", "dense_every_step"]},
+    "fixed_external_budgets": {"type": "boolean"}
+  }
+}

@@ -253,3 +253,24 @@ This append-only log records executed PSPR prompts. Corrections are added as new
 - Commit SHA: pending; append the focused implementation SHA in the next prompt's closeout entry
 - Risks/blockers/parked scope changed: R-04/R-05/R-14 remain active for later live backends and privileged collectors; BC-04 records capability/availability contracts only and does not weaken their physical gates
 - Next eligible prompt: BC-05
+
+### BC-04 closeout note
+
+- Focused implementation commit SHA: `a694e2380b907d04aea41bca321bb091f6c2ba28`
+- Hosted verification: GitHub Actions run 29671931286, attempt 1, passed Windows x86_64, Linux x86_64, macOS arm64, and macOS Intel at that exact commit
+- Ledger rule: appended by BC-05 because the BC-04 commit could not contain its own immutable hash or post-push hosted-run identity
+
+## 2026-07-18 — BC-05 — Track and replay declarations
+
+- Status: passed; closeout entry pending focused commit identity
+- Authorization scope: user instruction `Continue to STS`; approved roster in dependency order
+- Dependencies and source revision: BC-03 complete; BC-04 published and hosted-green at `a694e2380b907d04aea41bca321bb091f6c2ba28`
+- Objective and exclusions: derive mutually exclusive A/B/C/D or `INDETERMINATE_TRACK` from complete runtime capability/data-flow facts; never accept self-attested Track A
+- Reuse classification: extend `bonsai-contracts` and the existing Draft 2020-12 schema gate; no new dependency or Lamprey runtime/source
+- Files changed: track schema, seven-case corpus, Rust declaration/verdict types and classifier/tests, schema docs/gate, BC-04 closeout, PSPR/root status, logs, and machine evidence
+- Decisions/addenda: observer-data access is an indeterminate boundary violation; privileged inputs derive D; replay/offline updates derive B; dense scheduling derives C; only complete batch-one/single-pass/fixed-budget facts derive A; declaration mismatch is retained
+- Verification summary: all seven classification fixtures passed; strict Clippy initially rejected the independent boolean fact surface, then passed after one documented contract-local exception preserving contradictory-fact visibility; full universal/schema/governance gate passed
+- Evidence paths and SHA-256 hashes: machine record `BC-05-1784432466868264500`; stdout `f64546cc170ae1c2139942911b5e5b061f94d209e201d41179dd64e3e7b892b0`; stderr `9f28fbdc232e471eed34de59792aff947d843343f19bc7bd794a02b145c39f49`; schema `eefeeba41b7a875c02bb6f5104ad6f02f2d3c16582594c57c4e669c798e6f2fa`; verifier `27F9E6B316D53BA2C379C7CC96176CE670B99440D173D0D7B6BF28FF034C8FC3`
+- Commit SHA: pending; append in the next prompt under the self-hash convention
+- Risks/blockers/parked scope changed: R-07 remains controlled by later runtime isolation; this prompt defines classification only
+- Next eligible prompt: BC-06
