@@ -146,3 +146,23 @@ This append-only log records executed PSPR prompts. Corrections are added as new
 - Commit SHA: pending; append the focused implementation SHA in the next prompt's closeout entry
 - Risks/blockers/parked scope changed: none
 - Next eligible prompt: BG-09
+
+### BG-08 closeout note
+
+- Focused implementation commit SHA: `85e408def2e4e74ef472aa46d29ce4d44f8b677d`
+- Ledger rule: appended by BG-09 because the BG-08 commit could not contain its own immutable hash
+
+## 2026-07-18 — BG-09 — Three-OS hosted CI topology
+
+- Status: executing; local gate passed, live hosted matrix pending
+- Authorization scope: user-authorized M0 STS plus approved push to public `USS-Parks/BONSAI-Research-Labs` `main`
+- Dependencies and source revision: BG-05, BG-06, and BG-08 at `85e408def2e4e74ef472aa46d29ce4d44f8b677d`
+- Objective and exclusions: exercise baseline gates on Windows, macOS, and Linux and label hosted evidence; no physical, energy, or long-duration acceptance claim
+- Reuse classification: reuse GitHub-hosted standard runners and pinned official checkout/upload actions plus pinned Astral uv setup action
+- Files changed: baseline workflow, test matrix, CI topology validator, sanitized evidence writer, DEVLOG, verification log, PSPR executing status
+- Decisions/addenda: Windows x86_64, macOS arm64 plus Intel, and Linux x86_64 hosted jobs; Python 3.12, Rust 1.96.0, uv 0.11.29; checkout credentials are not persisted
+- Verification summary: local universal/governance gate and CI topology negative fixture passed; live no-op-equivalent hosted jobs are still required before `[x]`
+- Evidence paths and SHA-256 hashes: `docs/verification/TEST-MATRIX.md`; local fixture SHA-256 `28f0760b2ee440ded58d4b783c3a6429bd7c213d9c90832fef593a92fa7ad2f8`; live artifact hashes pending
+- Commit SHA: pending workflow checkpoint commit
+- Risks/blockers/parked scope changed: hosted evidence explicitly cannot resolve R-04, R-05, R-13, or R-14
+- Next eligible prompt: BG-10 only after all live matrix jobs pass

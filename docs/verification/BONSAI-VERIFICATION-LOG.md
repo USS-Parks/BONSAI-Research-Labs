@@ -113,3 +113,17 @@ This is an append-only human index. Machine records created by `cargo xtask veri
 - Counter availability and privileges: not applicable
 - Result: pass
 - Reviewer/attestation: automated registry/schema, documentation, and universal gates
+
+## VER-BG09-LOCAL — BG-09 — 2026-07-19T01:44:57Z
+
+- Source revision and dirty state: `85e408def2e4e74ef472aa46d29ce4d44f8b677d`; dirty with BG-09 workflow changes
+- OS/architecture/physical-or-CI: Windows/x86_64; local; physical/virtual status unknown
+- Toolchain/dependency-lock hashes: unchanged from VER-BG06-GATE; workflow pins Rust 1.96.0, Python 3.12, uv 0.11.29, and full action commit SHAs
+- Command: universal Cargo and uv gates; all governance checkers including `scripts/check_ci.py`; sanitized CI-evidence writer fixture
+- Start/end/duration: `2026-07-19T01:44:57.0437045Z` / `2026-07-19T01:45:02.5130270Z` / 5.4693225 s
+- Exit code: 0 for every local gate command
+- Stdout/stderr artifact hashes: CI-evidence fixture SHA-256 `28f0760b2ee440ded58d4b783c3a6429bd7c213d9c90832fef593a92fa7ad2f8`
+- Fixtures/manifests/bundle IDs: missing-Windows-runner negative fixture; hosted classification fixture
+- Counter availability and privileges: hosted runner evidence not yet available; no physical counters claimed
+- Result: pass locally; live hosted gate pending
+- Reviewer/attestation: automated topology, evidence-boundary, and universal gates

@@ -1,0 +1,100 @@
+name: BONSAI baseline
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: baseline-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  baseline:
+    name: baseline (${{ matrix.os_family }} / ${{ matrix.arch }} / hosted-ci)
+    runs-on: ${{ matrix.runner }}
+    timeout-minutes: 30
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - runner: ubuntu-24.04
+            os_family: linux
+            arch: x86_64
+          - runner: windows-2025
+            os_family: windows
+            arch: x86_64
+          - runner: macos-15
+            os_family: macos
+            arch: arm64
+          - runner: macos-15-intel
+            os_family: macos
+            arch: x86_64
+
+    steps:
+      - name: Check out source without retained credentials
+        uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10 # v6
+        with:
+          persist-credentials: false
+
+      - name: Install pinned uv and Python
+        uses: astral-sh/setup-uv@08807647e7069bb48b6ef5acd8ec9567f424441b # v8.1.0
+        with:
+          version: "0.11.29"
+          python-version: "3.12"
+          enable-cache: true
+
+      - name: Install pinned Rust toolchain
+        run: rustup toolchain install 1.96.0 --profile minimal --component clippy,rustfmt
+
+      - name: Rust formatting
+        run: cargo fmt --all --check
+
+      - name: Rust lint
+        run: cargo clippy --workspace --all-targets --all-features -- -D warnings
+
+      - name: Rust tests
+        run: cargo test --workspace --all-features
+
+      - name: Python lint
+        run: uv run --frozen ruff check .
+
+      - name: Python types
+        run: uv run --frozen pyright
+
+      - name: Python tests
+        run: uv run --frozen pytest
+
+      - name: Documentation governance
+        run: uv run --frozen python -B scripts/check_docs.py
+
+      - name: Architecture decision governance
+        run: uv run --frozen python -B scripts/check_adrs.py
+
+      - name: License and publication governance
+        run: uv run --frozen python -B scripts/check_license.py
+
+      - name: Risk and parked-scope governance
+        run: uv run --frozen python -B scripts/check_governance_ledgers.py
+
+      - name: Terminology governance
+        run: uv run --frozen python -B scripts/check_terminology.py
+
+      - name: CI topology governance
+        run: uv run --frozen python -B scripts/check_ci.py
+
+      - name: Generate hosted-CI evidence classification
+        run: uv run --frozen python -B scripts/write_ci_evidence.py --output "ci-evidence/${{ matrix.os_family }}-${{ matrix.arch }}.json" --source-revision "${{ github.sha }}" --runner-label "${{ matrix.runner }}" --runner-os "${{ runner.os }}" --runner-arch "${{ runner.arch }}" --run-id "${{ github.run_id }}" --run-attempt "${{ github.run_attempt }}" --job "${{ github.job }}"
+
+      - name: Upload hosted-CI classification evidence
+        uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f # v6
+        with:
+          name: baseline-${{ matrix.os_family }}-${{ matrix.arch }}
+          path: ci-evidence/*.json
+          if-no-files-found: error
+          retention-days: 30
