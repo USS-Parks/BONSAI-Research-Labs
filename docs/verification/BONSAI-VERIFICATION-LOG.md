@@ -1302,3 +1302,31 @@ This is an append-only human index. Machine records created by `cargo xtask veri
 - Counter availability and privileges: deterministic local files only; no network listener, browser, physical-host counter, or scientific claim
 - Result: pass
 - Reviewer/attestation: canonical-root containment, read-only evidence handling, report identity, local file browsing, zero network surface, traversal rejection, and strict workspace/Python/schema/governance gates passed locally; hosted closure remains attached to the focused commit
+
+## VER-BV03-HOSTED — BV-03 — 2026-07-19T21:18:19Z
+
+- Source revision and dirty state: `336e7df0585caf0f9c0f08fe6ed89d276e04dd0d`; clean pushed revision
+- OS/architecture/physical-or-CI: Windows/x86_64, Linux/x86_64, macOS/arm64, macOS/x86_64; GitHub hosted CI; ephemeral virtual machines
+- Toolchain/dependency-lock hashes: workflow-pinned Rust 1.96.0, Python 3.12, and uv 0.11.29; source locks at the recorded revision
+- Command: GitHub Actions `BONSAI baseline` push run 29704110299, attempt 1
+- Start/end/duration: `2026-07-19T21:18:19Z` / `2026-07-19T21:23:11Z` / 292 s
+- Exit code: all four jobs concluded `success`; job IDs 88238066173 (Windows), 88238066194 (Linux), 88238066197 (macOS arm64), and 88238066207 (macOS Intel)
+- Stdout/stderr artifact hashes: retained by GitHub Actions
+- Fixtures/manifests/bundle IDs: read-only report pair, named evidence files, traversal/drift cases, Unix symlink escape, and complete existing corpus on every hosted runner
+- Counter availability and privileges: deterministic local files only; no network listener, browser, physical-host counter, or scientific claim
+- Result: pass
+- Reviewer/attestation: exact run head SHA, run conclusion, and all four matrix-job conclusions inspected through authenticated GitHub metadata; BV-03 cross-OS gate is closed
+
+## VER-BE03-LOCAL — BE-03 — 2026-07-19
+
+- Source revision and dirty state: `336e7df0585caf0f9c0f08fe6ed89d276e04dd0d`; dirty only with BE-03 implementation, workflow, governance, and evidence
+- OS/architecture/physical-or-CI: Windows/x86_64; local; physical/virtual status unknown; four platform rows generated semantically
+- Toolchain/dependency-lock hashes: Rust 1.96.0; locked repository Python environment; `Cargo.lock` SHA-256 `322D9DBDD3C82A9630FB90116FB8EDB46A7660B100B281EB49681A520DEE2578`
+- Command: final machine record `BE-03-1784496977376076100`; full universal/schema/governance gate through an external verifier copy after governance closeout edits, plus explicit four-platform generation/report/bundle/equivalence commands
+- Start/end/duration: machine-record Unix UTC nanoseconds `1784496977376076100` / `1784497009911497600` / 32.5363120 s; explicit end-to-end precheck completed separately
+- Exit code: 0
+- Stdout/stderr artifact hashes: stdout `CFEF637E2639754650BE4C54FBB5676699E6968C31686EA87398A0BCFDC1C0DC`; stderr `3C00669DEFCCDE78C01E59089E62677D0BC9FE258A2668840A36CA703C85600F`
+- Fixtures/manifests/bundle IDs: bundle `90000000-0000-4000-8000-000000000003`; frozen 32-step summary; Windows/Linux/macOS arm64/macOS Intel platform rows; four local validator verdicts `VALID`; semantic SHA-256 `f70c2261126be9a064d5d6d856e4c286beafba393cb2cb96e3c59b79beb9f999`
+- Counter availability and privileges: exact semantic work counts and E0 only; hardware inventory explicitly unattested where collectors are absent; no physical energy, thermal, hard process-enforcement, or long-duration evidence
+- Result: pass locally; hosted BE-03/M1 acceptance pending focused commit
+- Reviewer/attestation: primitive-control result, exact external budget decision/headroom, schema/hash/track/inventory/policy/failure/metric provenance, static report, platform qualification, semantic equivalence, honest overhead and claim limitations, and strict repository-wide gates passed locally

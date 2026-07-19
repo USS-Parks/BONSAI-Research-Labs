@@ -902,3 +902,24 @@ This append-only log records executed PSPR prompts. Corrections are added as new
 - Commit SHA: pending; append in BE-03 under the self-hash convention
 - Risks/blockers/parked scope changed: the viewer is intentionally a bounded file interface rather than a web dashboard; Windows hosted tests exercise parent/absolute containment while Unix additionally exercises a real symlink escape; BE-03 remains the final M1 prompt; no instrument-completion or C0–C5 claim is made
 - Next eligible M1 prompt after gate and publication: BE-03
+
+### BV-03 closeout note
+
+- Focused implementation commit SHA: `336e7df0585caf0f9c0f08fe6ed89d276e04dd0d`
+- Hosted verification: GitHub Actions run 29704110299, attempt 1, passed Windows x86_64, Linux x86_64, macOS arm64, and macOS Intel at that exact commit
+- Ledger rule: appended by BE-03 because the BV-03 commit could not contain its own immutable hash or post-push hosted-run identity
+
+## 2026-07-19 — BE-03 — M1 auditable heartbeat experiment
+
+- Status: local gate passed; focused commit and hosted M1 acceptance pending
+- Authorization scope: user-authorized remaining M1 STS for this session plus the existing later-gated public source publication addendum
+- Dependencies and source revision: BE-02, BC-12, BK-01 through BK-03, and BV-01 through BV-02 published; BV-03 published and hosted-green at `336e7df0585caf0f9c0f08fe6ed89d276e04dd0d`
+- Objective and exclusions: run the primitive batch-one/no-replay controller through one deterministic stable diagnostic under an external semantic-work budget, emit a schema-valid bundle and static report, and prove four hosted platform bundles agree semantically while showing platform and overhead rows; exclude C2+, physical-host acceptance, and any actual C0/C1 pass
+- Reuse classification: compose the BE-02 primitive controller, BC-12 validator, BQ/BK resource vocabulary, BV-01 rule version, BV-02 report generator, and BV-03 viewer seams; add one Python bundle emitter, one report CLI, one aggregate equivalence check, and pinned official artifact download without a new runtime dependency
+- Files changed: heartbeat emitter/tests, stable expected summary, report writer CLI, hosted equivalence checker, CI bundle/equivalence jobs, heartbeat contract, README/PSPR execution status, BV-03 hosted closeout, DEVLOG, verification log, and retained local machine evidence
+- Decisions/addenda: the heartbeat freezes 32 steps and target action 2; observed result is 30 cumulative reward; exact accounting is 32 environment steps, 32 updates, 64 parameter touches, and 128 work items; the external work budget is 160 with admit and 32 headroom; platform inventory is explicit and hardware fields remain unattested where M1 lacks collectors; overhead is a deterministic semantic-fixture row with physical acceptance false; C0/C1 inputs are reportable but verdict remains `not_adjudicated`
+- Verification summary: two focused Python tests cover frozen summary identity across Windows/Linux/macOS arm64/macOS Intel rows, manifest content hashes, exact work-budget reconciliation, and honest claim status; local end-to-end generation produced four independently `VALID` bundles and reports with semantic SHA-256 `f70c2261126be9a064d5d6d856e4c286beafba393cb2cb96e3c59b79beb9f999`; the complete gate passed formatting, strict workspace Clippy, 112 Rust tests, Ruff, strict Pyright, 11 Python tests, schema compatibility, docs, ADR, license, governance-ledger, terminology, and CI-topology checks on Windows x86_64
+- Evidence paths and SHA-256 hashes: final machine record `BE-03-1784496977376076100` with stdout `CFEF637E2639754650BE4C54FBB5676699E6968C31686EA87398A0BCFDC1C0DC` and stderr `3C00669DEFCCDE78C01E59089E62677D0BC9FE258A2668840A36CA703C85600F`; emitter `85E134D5CAA7B8043368A93C02E1598C56D292B71EC818457AE9C22982E7156C`; tests `5CE3AAEDFC4C1659672F5793D542F2B2CE7C12C9EC3B601298B366D4F5A8B85C`; report CLI `D810E667E32C3888D41CC19A5161BFBF0CFA252589206FC01856772C736E9A89`; equivalence checker `547300792C5B8D29A9584F84D8FF9E9E02A7A8C478B169797A36E51FA9D23546`; expected summary `75674415EB0B1F867019E7803D54F7F727DDA741FFD0CF8834F43E436A37758C`; workflow `C6C7AE3E407239D59CDF5B153441996E030A20205C48F56E3774E45C241D334E`
+- Commit SHA: pending; append in the M1 closeout under the self-hash convention
+- Risks/blockers/parked scope changed: hosted matrix and aggregate equivalence are the remaining BE-03/M1 gate; platform rows prove semantic portability only, not physical counter fidelity or hard enforcement; BV-04 concrete C0/C1 adjudication and all C2+ work remain outside M1; no instrument-completion or C0–C5 claim is made
+- Next eligible action after focused commit publication: hosted M1 acceptance and ledger-only M1 closeout

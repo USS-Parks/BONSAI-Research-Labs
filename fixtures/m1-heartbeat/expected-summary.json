@@ -1,0 +1,30 @@
+{
+  "actions_sha256": "456fd5fe2840fa6b4d4725f0253aea69f7901825dac02ea1d863b4d1701c5655",
+  "batch_size": 1,
+  "budget_decision": "admit",
+  "budget_headroom": 32,
+  "claims": {
+    "C0": "reportable_evidence_present",
+    "C1": "reportable_budget_evidence_present",
+    "rule_version": "1.0.0",
+    "verdict": "not_adjudicated"
+  },
+  "cumulative_reward": 30,
+  "environment_steps": 32,
+  "horizon": 32,
+  "overhead": {
+    "basis": "deterministic_semantic_fixture",
+    "p95_latency_point_overhead_ppm": 0,
+    "physical_acceptance": false,
+    "throughput_point_overhead_ppm": 0
+  },
+  "parameter_touches": 64,
+  "replay_capacity": 0,
+  "rewards_sha256": "2a89404c45326e941d949082c2cc9e89172573aa71446ec847161d24120ad3b9",
+  "scenario": "diagnostic.stable-bandit",
+  "schema": "bonsai.m1-heartbeat-summary/v1",
+  "track": "A",
+  "updates": 32,
+  "work_budget": 160,
+  "work_items": 128
+}
