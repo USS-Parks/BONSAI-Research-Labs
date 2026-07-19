@@ -587,3 +587,24 @@ This append-only log records executed PSPR prompts. Corrections are added as new
 - Commit SHA: pending; append in BM-02 under the self-hash convention
 - Risks/blockers/parked scope changed: R-05 remains active for calibrated platform collectors; R-09 remains active for observer-volume reserve; R-10 remains active for later numeric cross-platform equivalence; R-16 remains controlled by the publication addendum and no-slop gate; no parked scope revived
 - Next eligible prompts after gate and publication: BM-02, BM-03, and BQ-01
+
+### BM-01 closeout note
+
+- Focused implementation commit SHA: `a6387e31f80236e210d355d312bd02f84fa17103`
+- Hosted verification: GitHub Actions run 29699140238, attempt 1, passed Windows x86_64, Linux x86_64, macOS arm64, and macOS Intel at that exact commit
+- Ledger rule: appended by BM-02 because the BM-01 commit could not contain its own immutable hash or post-push hosted-run identity
+
+## 2026-07-19 — BM-02 — Clock calibration and deadline basis
+
+- Status: passed; closeout entry pending focused commit identity and hosted run
+- Authorization scope: user-authorized remaining M1 STS for this session plus the existing later-gated public source publication addendum
+- Dependencies and source revision: BM-01 implementation committed and published at `a6387e31f80236e210d355d312bd02f84fa17103`; its hosted closeout is recorded below before this dependent commit
+- Objective and exclusions: calibrate effective monotonic resolution, call overhead, optional wall-clock drift/regression comparison, suspend-or-pause annotation, and cross-process comparison qualification; never use wall time as a duration or event-order authority
+- Reuse classification: extend `bonsai-platform` at the BM-01 collector contract seam with Rust `Instant`/`SystemTime`, immutable probe records, and Serde reports; add no dependency or platform-specific API
+- Files changed: clock probe/calibration implementation and tests, clock/deadline architecture contract, README index/status, PSPR status, BM-01 hosted closeout, DEVLOG, verification log, and retained machine evidence
+- Decisions/addenda: all probes share one process-local monotonic epoch; effective resolution is the minimum positive observed increment; call overhead is the maximum monotonic bracket; regressions fail the calibration, suspend-or-pause gaps are annotated, wall-clock absence is explicit, and cross-process comparison remains unqualified
+- Verification summary: three BM-02 tests cover exact deterministic resolution/overhead, monotonic and wall regressions, suspend gaps, and a live 256-probe system-clock calibration under deliberately broad hosted-safe limits; the complete gate passed formatting, strict workspace Clippy, 72 Rust tests, 3 Python tests, schema compatibility, docs, ADR, license, governance-ledger, terminology, and CI-topology checks on Windows x86_64
+- Evidence paths and SHA-256 hashes: machine record `BM-02-1784486698921379800` with stdout `A3698E36F2497D1B2B0C8B491B3833FE2DDB43DBDB385934D6CF17FB03258DA1` and stderr `3EB9F3C9CC7823821944B6D4FCC64B91206BF90BFA1DB3AE3FB086AC9BA2B6CA`; implementation `18DDE18A7C62219AFCEC510CBB58C525BA961CB1A2543EDB87AF548D5A24F08E`; contract `634DE6E52CF5F0F39A4834A788451E46B44E72D02FE63D81FF49EC60C9AA2CB0`; `Cargo.lock` unchanged from BM-01
+- Commit SHA: pending; append in BM-03 under the self-hash convention
+- Risks/blockers/parked scope changed: R-05 remains active for physical/platform precision qualification and backend calibration; R-10 remains active for cross-process and cross-platform equivalence; no parked scope revived and no physical-host precision, suspend detection guarantee, platform backend, energy, enforcement, instrument-completion, or C0–C5 claim is made
+- Next eligible prompt after gate and publication: BM-03
