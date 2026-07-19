@@ -218,6 +218,14 @@ dependencies = [
 ]
 
 [[package]]
+name = "bonsai-metrics"
+version = "0.0.0"
+dependencies = [
+ "serde",
+ "serde_json",
+]
+
+[[package]]
 name = "bonsai-platform"
 version = "0.0.0"
 dependencies = [

@@ -734,3 +734,24 @@ This append-only log records executed PSPR prompts. Corrections are added as new
 - Commit SHA: pending; append in the next M1 prompt under the self-hash convention
 - Risks/blockers/parked scope changed: R-06 remains active for physical enforcement overshoot; R-08/R-09 remain active for descendant/observer reserves; the basic portable loop closes M1 governance semantics but not later platform enforcement; no instrument-completion or C0–C5 claim is made and no parked scope revived
 - Next eligible M1 prompts after gate and publication: BK-01 and BE-01
+
+### BQ-04 closeout note
+
+- Focused implementation commit SHA: `e9dbb0e8907c7928c08faab9f39be802fd632af8`
+- Hosted verification: GitHub Actions run 29701331312, attempt 1, passed Windows x86_64, Linux x86_64, macOS arm64, and macOS Intel at that exact commit
+- Ledger rule: appended by BK-01 because the BQ-04 commit could not contain its own immutable hash or post-push hosted-run identity
+
+## 2026-07-19 — BK-01 — Versioned metric registry and engine
+
+- Status: passed; closeout entry pending focused commit identity and hosted run
+- Authorization scope: user-authorized remaining M1 STS for this session plus the existing later-gated public source publication addendum
+- Dependencies and source revision: BC-08, BC-11, and BR-05 published; BQ-04 published and hosted-green at `e9dbb0e8907c7928c08faab9f39be802fd632af8`
+- Objective and exclusions: register metric identity/version/formula/unit/window/direction/inputs/availability/claim-use metadata and derive stable tables; prohibit unregistered report calculations and do not yet define behavior/resource metric families
+- Reuse classification: add `bonsai-metrics` at the BC-11 derivation seam; reuse Serde/JSON, ordered standard collections, checked integer rational arithmetic, and workspace governance; add no numerical dependency
+- Files changed: new metrics crate/engine/tests and placeholder family modules, workspace manifest/lock, metric registry contract, README/PSPR status, BQ-04 hosted closeout, DEVLOG, verification log, and retained machine evidence
+- Decisions/addenda: dependencies pin both metric ID and version; registry construction rejects duplicates, malformed formula arity, missing dependencies, version mismatches, and cycles; source missingness propagates unavailable without zero; normalized rational values avoid platform floating-point drift; rows are key-sorted and reports may not calculate outside the registry
+- Verification summary: three focused tests cover 100 byte-identical golden reward-rate derivations, DAG ordering, cycle rejection, wrong-version rejection, and unavailable propagation; the complete gate passed formatting, strict workspace Clippy, 97 Rust tests, 3 Python tests, schema compatibility, docs, ADR, license, governance-ledger, terminology, and CI-topology checks on Windows x86_64
+- Evidence paths and SHA-256 hashes: machine record `BK-01-1784490756845337800` with stdout `E34E712263E18EDC809B10A410B7C24D0ED3BAC25E932BED2F33DF81619BDC07` and stderr `5A0489F49A722C6976B0B2B3E387CE6E2EAF324875C597EB27BE3DB8FA16E2CE`; implementation `29EAFA430C46B3635E3A371D0A8F5ACF9D965C7BD18C0300F4E16624CB6D42FF`; registry contract `89EED25AADDAFC4A6AD17282837666E94B1D423495BEA01848E12E90926156F9`; `Cargo.lock` `6C703B765B3AE1CFF02B2FB34385A194F7F52E2629D8034BC9028803C599B736`
+- Commit SHA: pending; append in BK-02 under the self-hash convention
+- Risks/blockers/parked scope changed: R-10 remains active for later semantic/numeric cross-platform audit; exact rationals control current golden derivations but do not establish scientific metric validity; no behavior/resource conclusions, report verdict, instrument-completion, or C0–C5 claim is made and no parked scope revived
+- Next eligible prompts after gate and publication: BK-02 and BK-03

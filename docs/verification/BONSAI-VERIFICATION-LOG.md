@@ -1078,3 +1078,31 @@ This is an append-only human index. Machine records created by `cargo xtask veri
 - Counter availability and privileges: deterministic portable supervisor fixtures only; no OS hard-cap or privileged counter claim
 - Result: pass
 - Reviewer/attestation: all five required counters, no-call preflight rejection, checked lifetime accounting, post-step termination, evidence preservation, budget-eligibility qualification, and strict workspace/Python/schema/governance gates passed locally; hosted closure remains attached to the focused commit
+
+## VER-BQ04-HOSTED — BQ-04 — 2026-07-19T19:49:14Z
+
+- Source revision and dirty state: `e9dbb0e8907c7928c08faab9f39be802fd632af8`; clean pushed revision
+- OS/architecture/physical-or-CI: Windows/x86_64, Linux/x86_64, macOS/arm64, macOS/x86_64; GitHub hosted CI; ephemeral virtual machines
+- Toolchain/dependency-lock hashes: workflow-pinned Rust 1.96.0, Python 3.12, and uv 0.11.29; source locks at the recorded revision
+- Command: GitHub Actions `BONSAI baseline` push run 29701331312, attempt 1
+- Start/end/duration: `2026-07-19T19:49:14Z` / `2026-07-19T19:54:00Z` / 286 s
+- Exit code: all four jobs concluded `success`; job IDs 88230772753 (Windows), 88230772760 (macOS Intel), 88230772774 (macOS arm64), and 88230772789 (Linux)
+- Stdout/stderr artifact hashes: retained by GitHub Actions
+- Fixtures/manifests/bundle IDs: under-budget primitive loop, unavailable/preflight no-call rejection, five intentional overages, prior evidence preservation, and complete existing corpus on every hosted runner
+- Counter availability and privileges: deterministic portable supervisor fixtures only; no OS hard-cap or privileged counter claim
+- Result: pass
+- Reviewer/attestation: exact run head SHA, run conclusion, and all four matrix-job conclusions inspected through public GitHub metadata; BQ-04 cross-OS gate is closed
+
+## VER-BK01-GATE — BK-01 — 2026-07-19
+
+- Source revision and dirty state: `e9dbb0e8907c7928c08faab9f39be802fd632af8`; dirty only with BK-01 implementation, governance, and evidence
+- OS/architecture/physical-or-CI: Windows/x86_64; local; physical/virtual status unknown
+- Toolchain/dependency-lock hashes: Rust 1.96.0; locked repository Python environment; `Cargo.lock` SHA-256 `6C703B765B3AE1CFF02B2FB34385A194F7F52E2629D8034BC9028803C599B736`
+- Command: machine record `BK-01-1784490756845337800`; full universal/schema/governance gate through an external verifier copy
+- Start/end/duration: machine-record Unix UTC nanoseconds `1784490756845337800` / `1784490789599125200` / 32.7546683 s
+- Exit code: 0
+- Stdout/stderr artifact hashes: stdout `E34E712263E18EDC809B10A410B7C24D0ED3BAC25E932BED2F33DF81619BDC07`; stderr `5A0489F49A722C6976B0B2B3E387CE6E2EAF324875C597EB27BE3DB8FA16E2CE`
+- Fixtures/manifests/bundle IDs: version-pinned reward-rate golden, 100 deterministic derivations, dependency cycle, wrong version, missing source, and complete existing repository corpus
+- Counter availability and privileges: deterministic analytical fixtures only; no platform or privileged counter claim
+- Result: pass
+- Reviewer/attestation: complete registry metadata, dependency DAG, cycle/version rejection, rational golden output, missingness propagation, and strict workspace/Python/schema/governance gates passed locally; hosted closure remains attached to the focused commit

@@ -4,6 +4,7 @@ members = [
     "crates/bonsai-contracts",
     "crates/bonsai-governor",
     "crates/bonsai-ingest",
+    "crates/bonsai-metrics",
     "crates/bonsai-platform",
     "crates/bonsai-runtime",
     "crates/bonsai-xtask",
