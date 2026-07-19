@@ -963,3 +963,24 @@ This append-only log records executed PSPR prompts. Corrections are added as new
 - Commit SHA: pending; append in BR-08 under the self-hash convention
 - Risks/blockers/parked scope changed: BR-07 adds no utility verdict and no causal inference; graph queries remain BR-08 and observer-only replay remains BR-09; no M2, instrument-completion, or C0–C5 claim is made
 - Next eligible prompts after gate and publication: BR-08 and BQ-05; dependency order selects BR-08
+
+### BR-07 closeout note
+
+- Focused implementation commit SHA: `92cced4563443361a37448e86732a51f05802180`
+- Hosted verification: GitHub Actions run 29708099893, attempt 1, passed Windows x86_64, Linux x86_64, macOS arm64, macOS Intel, and the hosted semantic-equivalence aggregate at that exact commit
+- Ledger rule: appended by BR-08 because the BR-07 commit could not contain its own immutable hash or post-push hosted-run identity
+
+## 2026-07-19 — BR-08 — Lineage graph and causal queries
+
+- Status: passed; closeout entry pending focused commit identity and hosted run
+- Authorization scope: user-authorized M2 STS for this session plus the approved later-PSPR source-publication addendum
+- Dependencies and source revision: BC-11 published; BR-07 published and hosted-green at `92cced4563443361a37448e86732a51f05802180`
+- Objective and exclusions: answer exact recorded ancestry, descendants, active consumers, utility sources, revision ownership/history, and availability-preserving cost rollups without mutating evidence; exclude causal inference from correlation, timing, shared consumers, utility magnitude, or representation similarity
+- Reuse classification: extend the BR-07 `bonsai-lineage` crate and its public immutable snapshot; reuse generated artifact/availability contracts and ordered standard-library collections; add one graph module at the existing seam and no dependency
+- Files changed: lineage graph/query implementation and tests, graph contract, README/PSPR status, BR-07 hosted closeout, DEVLOG, verification log, and retained machine evidence
+- Decisions/addenda: graph construction revalidates artifact keys, global revision uniqueness, exact owner index, immediate revision chains, parent revision existence, and acyclicity before serving queries; silent representation changes under an existing revision ID are distinct from identical duplicate revisions; unknown queries fail explicitly; measured and estimated costs remain separate while unavailable/excluded entries remain counts, never zero amounts; utility provenance is exposed without causal weight
+- Verification summary: six focused tests use a known feature→subproblem→option→model graph to prove exact transitive queries, active consumers, two-version history, revision ownership, utility source events, and measured/estimated/unavailable cost rollups; corrupt snapshots prove explicit dangling-edge, cycle, duplicate-revision, silent-representation-change, revision-chain, and owner-index failures; unknown queries fail closed and the source registry remains unchanged. The complete gate passed formatting, strict workspace Clippy, 123 Rust tests, Ruff, strict Pyright, 11 Python tests, schema compatibility, docs, ADR, license, governance-ledger, terminology, and CI-topology checks on Windows x86_64.
+- Evidence paths and SHA-256 hashes: final machine record `BR-08-1784504769504970500` with stdout `493643C0E5D20091F0531C4926A0A42BA9E4C7619F5133983E849BECAA91ED96` and stderr `241BCDEBD9474310AAD0A927E3E554FFE69980881AA4552EC0BD0588346F6E38`; graph `1A896DB0B0FB960A8E56C4E7EDF7082F2811C45D71F2F1180ABFE5FDE5AF3AE7`; module export `BC1D32D190D8190894A1BC5D37FB82B9095A11669984CB7DCFE5FDE2FF1EBFC9`; contract `9CCC8DADD33B00F53423AF7BD19D364A324F7324C89BDBBA752811F6C9791AB3`; `Cargo.lock` unchanged at `E0440D9EEEEB9B4D94652A27C8698BD9CEAA8A133A0D63C650310677FD68A921`
+- Commit SHA: pending; append in BR-09 under the self-hash convention
+- Risks/blockers/parked scope changed: the graph is a faithful projection, not a causal estimator; BR-09 still owns observer-only replay isolation and BK-05 later owns feature utility metrics; no M2, instrument-completion, or C0–C5 claim is made
+- Next eligible prompts after gate and publication: BR-09, BQ-05, BK-04, and BK-05; dependency order selects BR-09

@@ -11,6 +11,12 @@ use bonsai_contracts::bonsai::artifact::v1::{
 use bonsai_contracts::lineage::{LineageValidationError, validate_artifact_lineage_trace};
 use std::collections::{BTreeMap, BTreeSet};
 
+mod graph;
+
+pub use graph::{
+    CostRollup, CostRollupKey, CostScope, LineageGraph, LineageGraphError, UtilitySource,
+};
+
 pub type ArtifactId = [u8; 16];
 pub type ArtifactRevisionId = [u8; 16];
 pub type HistoryEntryId = [u8; 16];

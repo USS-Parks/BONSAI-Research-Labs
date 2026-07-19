@@ -1390,3 +1390,31 @@ This is an append-only human index. Machine records created by `cargo xtask veri
 ### Invalidated BR-07 launcher record
 
 Machine record `BR-07-1784503142006141500` is not acceptance evidence. The outer PowerShell invocation expanded `$LASTEXITCODE` before passing the command, leaving malformed `if ( -ne 0)` guards; intermediate Cargo failures therefore did not determine the final exit code, and the recorder incorrectly labeled the command `pass`. Its artifacts remain retained for honest history. The correctly quoted, byte-identical external-verifier record `BR-07-1784503540273256700` supersedes it as the authoritative BR-07 local gate.
+
+## VER-BR07-HOSTED — BR-07 — 2026-07-19T23:32:58Z
+
+- Source revision and dirty state: `92cced4563443361a37448e86732a51f05802180`; clean pushed focused implementation revision
+- OS/architecture/physical-or-CI: Windows/x86_64, Linux/x86_64, macOS/arm64, macOS/x86_64; GitHub hosted CI; ephemeral virtual machines
+- Toolchain/dependency-lock hashes: workflow-pinned Rust 1.96.0, Python 3.12, and uv 0.11.29; source locks at the recorded revision
+- Command: GitHub Actions `BONSAI baseline` push run 29708099893, attempt 1
+- Start/end/duration: `2026-07-19T23:32:58Z` / `2026-07-19T23:38:24Z` / 326 s
+- Exit code: run conclusion `success`; job IDs 88248266439 (Windows), 88248266412 (Linux), 88248266432 (macOS arm64), 88248266423 (macOS Intel), and 88248596660 (hosted semantic-equivalence aggregate)
+- Stdout/stderr artifact hashes: retained by GitHub Actions
+- Fixtures/manifests/bundle IDs: all BR-07 model transitions and the complete existing repository corpus on every hosted runner; unchanged M1 heartbeat aggregate
+- Counter availability and privileges: deterministic lifecycle events and hosted semantic checks only; no physical counter, privileged collector, or scientific claim
+- Result: pass; BR-07 cross-OS gate is closed
+- Reviewer/attestation: authenticated GitHub metadata establishes the exact head SHA and successful four-platform plus aggregate conclusions
+
+## VER-BR08-LOCAL — BR-08 — 2026-07-19
+
+- Source revision and dirty state: `92cced4563443361a37448e86732a51f05802180`; dirty only with BR-08 implementation, governance, and evidence
+- OS/architecture/physical-or-CI: Windows/x86_64; local; physical/virtual status unknown
+- Toolchain/dependency-lock hashes: Rust 1.96.0; locked repository Python environment; `Cargo.lock` SHA-256 `E0440D9EEEEB9B4D94652A27C8698BD9CEAA8A133A0D63C650310677FD68A921`
+- Command: final machine record `BR-08-1784504769504970500`; full universal/schema/governance gate through the byte-identical external verifier after governance closeout edits
+- Start/end/duration: machine-record Unix UTC nanoseconds `1784504769504970500` / `1784504797803678600` / 28.2994782 s
+- Exit code: 0
+- Stdout/stderr artifact hashes: stdout `493643C0E5D20091F0531C4926A0A42BA9E4C7619F5133983E849BECAA91ED96`; stderr `241BCDEBD9474310AAD0A927E3E554FFE69980881AA4552EC0BD0588346F6E38`
+- Fixtures/manifests/bundle IDs: known four-artifact graph; exact ancestry/descendants/consumers/revisions/utility/cost queries; cycle, dangling, duplicate, silent representation change, revision-chain, owner-index, and unknown-artifact failures; complete existing repository corpus
+- Counter availability and privileges: deterministic retained lifecycle data only; unavailable cost remains unavailable; no causal inference, physical counter, privilege, or scientific claim
+- Result: pass locally; hosted closure remains attached to the focused commit
+- Reviewer/attestation: exact query semantics, independent snapshot validation, non-mutation, availability-preserving rollups, explicit corrupt-graph failures, and strict workspace/Python/schema/governance gates passed locally
