@@ -195,6 +195,13 @@ dependencies = [
 ]
 
 [[package]]
+name = "bonsai-runtime"
+version = "0.0.0"
+dependencies = [
+ "prost",
+]
+
+[[package]]
 name = "bonsai-xtask"
 version = "0.0.0"
 dependencies = [

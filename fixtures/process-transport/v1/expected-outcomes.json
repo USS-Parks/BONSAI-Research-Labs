@@ -1,0 +1,10 @@
+{
+  "schema": "bonsai.process-transport-outcomes/v1",
+  "cases": {
+    "rust_python_echo": "clean_exit",
+    "partial_payload": "TRANSPORT_PAYLOAD_PARTIAL",
+    "oversized_frame": "TRANSPORT_FRAME_TOO_LARGE",
+    "stalled_sender": "TRANSPORT_READ_TIMEOUT",
+    "flood_sender": "TRANSPORT_BACKPRESSURE_EXCEEDED"
+  }
+}

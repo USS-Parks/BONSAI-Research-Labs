@@ -588,3 +588,31 @@ This is an append-only human index. Machine records created by `cargo xtask veri
 - Counter availability and privileges: schema/state-machine fixture evidence only; no live child process, inherited-handle transport, physical-host process spot check, privileged input, observer isolation, energy, or long-duration evidence
 - Result: pass
 - Reviewer/attestation: complete declared operation path, deterministic seeds/deadlines, frozen capability negotiation, fail-closed state/sequence behavior, strict workspace gates, Python gates, schema compatibility, and all governance checks passed locally; hosted Rust-Python process evidence belongs to BR-02
+
+## VER-BR01-HOSTED — BR-01 — 2026-07-19T16:12:47Z
+
+- Source revision and dirty state: `f8bc73b158a3a407cd7e252c76cfbeddfcce2654`; clean pushed revision
+- OS/architecture/physical-or-CI: Windows/x86_64, Linux/x86_64, macOS/arm64, macOS/x86_64; GitHub hosted CI; ephemeral virtual machines
+- Toolchain/dependency-lock hashes: workflow-pinned Rust 1.96.0, Python 3.12, and uv 0.11.29; source locks at the recorded revision
+- Command: GitHub Actions `BONSAI baseline` push run 29694408721, attempt 1
+- Start/end/duration: `2026-07-19T16:12:47Z` / `2026-07-19T16:16:43Z` / 236 s
+- Exit code: all four jobs concluded `success`
+- Stdout/stderr artifact hashes: retained by GitHub Actions; job IDs 88212548048 (Windows), 88212548057 (Linux), 88212548062 (macOS arm64), and 88212548072 (macOS Intel)
+- Fixtures/manifests/bundle IDs: BR-01 state-machine and explicit capability-presence conformance ran unchanged on every hosted OS
+- Counter availability and privileges: schema/state-machine fixture evidence only; no child-process transport, physical-host process spot check, privileged input, observer isolation, energy, or long-duration evidence
+- Result: pass
+- Reviewer/attestation: run head SHA, run conclusion, and all four matrix-job conclusions inspected through the GitHub API
+
+## VER-BR02-GATE — BR-02 — 2026-07-19T16:31:42Z
+
+- Source revision and dirty state: `f8bc73b158a3a407cd7e252c76cfbeddfcce2654`; dirty with BR-02 changes
+- OS/architecture/physical-or-CI: Windows/x86_64; local; physical/virtual status unknown
+- Toolchain/dependency-lock hashes: Rust 1.96.0; Python 3.14.4; uv 0.11.29; `Cargo.lock` SHA-256 `86692A6AB0CA6837B8187AA5F07B73B3B252CA6913991763CBFA1213879B15EC`
+- Command: machine record `BR-02-FINAL-1784478702679705900`; full universal/schema/governance gate through external verifier copy SHA-256 `D955F1864AB9924DBADC0AF424C20F9F54E3271A9C0C10362C1EFFD8DFA67950`
+- Start/end/duration: `2026-07-19T16:31:42.680Z` / `2026-07-19T16:32:27.340Z` / 44.6618344 s
+- Exit code: 0
+- Stdout/stderr artifact hashes: stdout `e12cad842afd2a79b29ec7c7f5ea25953e713fb1a275b2051561de47546b222a`; stderr `e32b61c6e14dcaf42ec4fa6e0ecf931a3bc59255fa812c4184df323c0b9a876d`
+- Fixtures/manifests/bundle IDs: `bonsai.process-transport-outcomes/v1` SHA-256 `ABF7571E9E955750A4530BCB72B1A9D56BF0BA2E78FA818D8A342FFB6EBEA75F`; exact clean echo/shutdown, partial, oversized, stalled, and flood outcomes
+- Counter availability and privileges: live local child-process pipe behavior with physical/virtual status unknown; no descendant resource enforcement, filesystem isolation, physical-host attestation, privileged input, energy, or long-duration evidence
+- Result: pass
+- Reviewer/attestation: strict Rust and Python gates, real cross-language inherited pipes, fixed framing/allocation/queue/log bounds, timeout/flood containment records, clean shutdown, schema compatibility, and governance checks passed locally; hosted Windows/macOS/Linux conformance remains pending the focused published commit

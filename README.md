@@ -9,7 +9,7 @@ BONSAI is an independent, algorithm-neutral measurement and external resource-go
 - Research charter: approved v0.1 on 2026-07-18.
 - PSPR: approved v0.1 on 2026-07-18.
 - Current execution authorization: remaining approved PSPR roster in dependency order, expanded by `Continue to STS` on 2026-07-18.
-- Implementation claims: M0 governed foundation, BC-01 through BC-12, and BR-01 are complete; no instrument-completion or C0–C5 claim.
+- Implementation claims: M0 governed foundation, BC-01 through BC-12, and BR-01 through BR-02 are complete; no instrument-completion or C0–C5 claim.
 - Repository visibility: public under the approved 2026-07-18 repository-target addendum.
 - License: `MIT OR Apache-2.0` at the recipient's option.
 
@@ -60,3 +60,5 @@ uv run pytest
 These are repository gates. Passing them is not evidence of physical behavior, instrument completion, or an evaluated-agent claim.
 
 The versioned storage layout is specified in the [event segment format](./docs/architecture/EVENT-SEGMENT-FORMAT.md), [portable bundle index and blob format](./docs/architecture/BUNDLE-INDEX-AND-BLOBS.md), [analytical derivation contract](./docs/architecture/ANALYTICAL-DERIVATION-CONTRACT.md), and [bundle validation and migration contract](./docs/architecture/BUNDLE-VALIDATION-AND-MIGRATIONS.md).
+
+The runtime boundary is specified in the [adapter protocol](./docs/architecture/ADAPTER-PROTOCOL.md) and [bounded process transport](./docs/architecture/PROCESS-TRANSPORT.md).
