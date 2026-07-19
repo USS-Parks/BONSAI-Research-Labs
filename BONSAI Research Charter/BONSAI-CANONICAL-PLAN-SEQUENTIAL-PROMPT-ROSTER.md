@@ -300,7 +300,7 @@ Dependencies shown per prompt override this phase summary. If two prompts are in
 
 ### Phase BC — Contracts, schema evolution, and result bundles
 
-- [ ] **BC-01 — Define schema-version policy and compatibility harness.** **Depends:** BG-08, BG-10. **Files:** `proto/README.md`, `schemas/README.md`, schema-check tooling. **Objective:** implement epoch/minor rules, field reservation, canonical JSON rules, compatibility fixtures, and migration obligations. **Excludes:** domain messages. **Gate:** additive fixture passes; field renumbering, field reuse, silent unit change, and unversioned JSON fail.
+- [x] **BC-01 — Define schema-version policy and compatibility harness.** **Depends:** BG-08, BG-10. **Files:** `proto/README.md`, `schemas/README.md`, schema-check tooling. **Objective:** implement epoch/minor rules, field reservation, canonical JSON rules, compatibility fixtures, and migration obligations. **Excludes:** domain messages. **Gate:** additive fixture passes; field renumbering, field reuse, silent unit change, and unversioned JSON fail.
 - [ ] **BC-02 — Define universal event envelope.** **Depends:** BC-01. **Files:** `proto/bonsai/event/v1/envelope.proto`, contracts crate. **Objective:** specify run ID, source ID, per-source sequence, causal parents, monotonic and optional wall timestamps, event type, schema version, payload hash, availability, and precision. **Excludes:** assuming global wall-clock order. **Gate:** Rust/Python round trip; unknown fields survive the supported relay path; invalid IDs/times fail.
 - [ ] **BC-03 — Define experiment manifest schema.** **Depends:** BC-01, BG-08. **Files:** `schemas/experiment-manifest-v1.json`. **Objective:** encode source identity, dirty state, adapter/environment config, seeds, track declaration, resource profile, metrics, scenario, expected counters, and publication eligibility. **Excludes:** mutable defaults at runtime. **Gate:** canonical serialization hash is stable across OS; omitted replay/resource/seed declarations fail.
 - [ ] **BC-04 — Define platform and dependency inventory.** **Depends:** BC-01. **Files:** inventory schema and collectors' interface types. **Objective:** record OS/build/architecture, CPU/GPU, memory, clocks, drivers, runtime/compiler, dependency locks, privilege state, collectors, thermal/power state, and sanitized machine identity. **Excludes:** secrets and unnecessary serial numbers. **Gate:** redaction fixtures remove user paths, tokens, hostnames, and device serials while retaining reproducibility fields.
@@ -446,6 +446,7 @@ CI proves portable semantics and catches regressions. It does not prove physical
 | Mandatory workstreams and acceptance conditions | `PSPR-HANDOFF.md` | Extend into prompts | All 28 workstreams map below; headings alone are insufficient. |
 | Package navigation and current status | Charter `README.md` | Extend | Update status/history only through governed prompts. |
 | PSPR governance pattern | User-provided Sovereignty Stack PSPR | Reuse pattern | Stable IDs, gates, milestones, reuse ledger, decisions, completion; no product code is reused. |
+| Repository-local proof-gate discipline | [`USS-Parks/Lamprey-Harness`](https://github.com/USS-Parks/Lamprey-Harness) `d9d53786ca71550861883a61bf8088b43e3275d8` (`scripts/verify-proof.cjs`, MIT) | Reuse pattern | Keep one named, fail-fast repository command with explicit coverage accounting; do not copy Lamprey's Electron/TypeScript runtime into BONSAI. |
 | Rust, Protobuf, SQLite, Arrow, OS resource interfaces | Public standards and official platform documentation | Reuse standard/seam | Pin exact supported behavior through spikes and fixtures; do not copy availability assumptions. |
 | Local BONSAI code | None at draft time | New | Any later reuse claim must name a concrete source path, license, version, and extraction/extension method. |
 | BRDC-1 reference agent | Public scientific ingredients plus new BONSAI integration | Implement at existing public seams/new | Never label as Oak Lab's implementation. |
@@ -629,6 +630,7 @@ Execution history:
 - On 2026-07-18 the user authorized `run M0 STS` from BG-01 in dependency order.
 - BG-01 through BG-10 subsequently passed their gates and are recorded in the DEVLOG and verification log.
 - BC-01 and every later prompt remain unauthorized until a new user instruction expands the execution scope.
+- On 2026-07-18 the user instructed `Continue to STS`, expanding execution authority from the published M0 checkpoint to the remaining approved roster in dependency order; BC-01 began first.
 
 To authorize later, the user may say:
 

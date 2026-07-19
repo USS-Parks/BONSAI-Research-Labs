@@ -1,0 +1,29 @@
+{
+  "schema": "bonsai.schema-catalog/v1",
+  "epoch": 1,
+  "minor": 1,
+  "protobuf_messages": [
+    {
+      "name": "CompatibilityFixture",
+      "fields": [
+        {"number": 1, "name": "fixture_id", "type": "bytes", "presence": "optional", "unit": null},
+        {"number": 2, "name": "elapsed_time", "type": "uint64", "presence": "optional", "unit": "ns"},
+        {"number": 3, "name": "note", "type": "string", "presence": "optional", "unit": null}
+      ],
+      "reserved_numbers": [7],
+      "reserved_names": ["legacy_value"]
+    }
+  ],
+  "json_schemas": [
+    {
+      "name": "compatibility-fixture",
+      "uri": "https://schemas.bonsai.dev/compatibility-fixture/v1",
+      "version": "1.1",
+      "properties": [
+        {"name": "fixture_id", "type": "string", "required": true, "unit": null},
+        {"name": "elapsed_time", "type": "integer", "required": false, "unit": "ns"},
+        {"name": "note", "type": "string", "required": false, "unit": null}
+      ]
+    }
+  ]
+}

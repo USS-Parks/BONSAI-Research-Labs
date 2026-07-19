@@ -1,0 +1,2 @@
+evidence/verification/artifacts/** -text -diff
+evidence/verification/records.jsonl text eol=lf

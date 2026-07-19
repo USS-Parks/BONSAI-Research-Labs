@@ -169,3 +169,31 @@ This is an append-only human index. Machine records created by `cargo xtask veri
 - Counter availability and privileges: no physical counter or capability evidence; none claimed
 - Result: pass
 - Reviewer/attestation: clean automated source-of-truth gate and all-history secret scan
+
+## VER-BC01-ENV-FAIL — BC-01 — 2026-07-19T02:15:33Z
+
+- Source revision and dirty state: `8873e13444512a5035f45527c6cacff5d14301e5`; dirty with BC-01 changes
+- OS/architecture/physical-or-CI: Windows/x86_64; local; physical/virtual status unknown
+- Toolchain/dependency-lock hashes: Rust 1.96.0; nested PowerShell could not resolve uv; `Cargo.lock` SHA-256 `EC11BBBD4C08490299A1AD648A86D7D0B9115B4EBE0B3310038469DFFC36EBEB`; `uv.lock` SHA-256 `3C745B23FDB0DF09F26CD6652FF1207BA9C5FC7577955B67C594BEA7468E37AC`
+- Command: machine record `BC-01-1784427333002204600`; universal gate through `cargo xtask verify`
+- Start/end/duration: `2026-07-19T02:15:33.002Z` / `2026-07-19T02:15:36.122Z` / 3.1200654 s
+- Exit code: 1
+- Stdout/stderr artifact hashes: stdout `3f45cd4e4574305d3a60acfa79972da4068f9c76738cb1cc0fb8fdb6512fc971`; stderr `37ca0d2f0f3b5df209dda904c173e01dec21a78ab76c9ad312a8621d5c0e495e`
+- Fixtures/manifests/bundle IDs: additive and four rejection schema fixtures passed before the environment failure
+- Counter availability and privileges: not applicable; no physical or privileged claim
+- Result: fail; environment/tool-path failure, not a schema or product failure
+- Reviewer/attestation: machine verification record retained with exact command and output
+
+## VER-BC01-GATE — BC-01 — 2026-07-19T02:19:00Z
+
+- Source revision and dirty state: `8873e13444512a5035f45527c6cacff5d14301e5`; dirty with BC-01 changes
+- OS/architecture/physical-or-CI: Windows/x86_64; local; physical/virtual status unknown
+- Toolchain/dependency-lock hashes: Rust 1.96.0; Python 3.14.4; checksum-verified official uv 0.11.29; `Cargo.lock` SHA-256 `EC11BBBD4C08490299A1AD648A86D7D0B9115B4EBE0B3310038469DFFC36EBEB`; `uv.lock` SHA-256 `3C745B23FDB0DF09F26CD6652FF1207BA9C5FC7577955B67C594BEA7468E37AC`
+- Command: machine record `BC-01-1784427540937208400`; `cargo fmt --all --check`; workspace Clippy/tests; frozen Ruff/Pyright/Pytest; `cargo xtask schema-check`; docs, ADR, license, governance-ledger, terminology, and CI-topology checks
+- Start/end/duration: `2026-07-19T02:19:00.937Z` / `2026-07-19T02:19:24.728Z` / 23.7921108 s
+- Exit code: 0
+- Stdout/stderr artifact hashes: stdout `4b08b7548416b12819e7796578ca19101d65ab4183f4947a51912373e85a4462`; stderr `d90189be1ef824c4bf3053e76efa053cf5fd78b771b0a73db70bacf28fae7020`
+- Fixtures/manifests/bundle IDs: `baseline.json`; additive digest `c60bb5796a2155ae8a4d927774b4628d272b8ccf48488dcfc552d426eb4bda6e`; field-renumbering `FIELD_RENUMBERED`; field-reuse `FIELD_REUSE`; silent-unit-change `UNIT_CHANGED`; unversioned JSON `JSON_VERSION_MISSING`
+- Counter availability and privileges: not applicable; no physical, energy, enforcement, or integration claim
+- Result: pass
+- Reviewer/attestation: machine verification record plus exact frozen compatibility outcomes

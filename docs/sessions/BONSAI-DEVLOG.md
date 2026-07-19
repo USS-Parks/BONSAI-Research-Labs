@@ -181,3 +181,18 @@ This append-only log records executed PSPR prompts. Corrections are added as new
 - Commit SHA: `1b68656057a6920f5a087e03d1ca181f914b2791` (implementation checkpoint); this closeout commit marks the prompt complete
 - Risks/blockers/parked scope changed: no parked scope revived; R-16 controlled by the final no-secret scan and non-force push
 - Next eligible prompt: none within current authorization after BG-10
+
+## 2026-07-18 — BC-01 — Schema-version policy and compatibility harness
+
+- Status: passed
+- Authorization scope: user instruction `Continue to STS`, expanding execution from the published M0 checkpoint through the remaining approved roster in dependency order
+- Dependencies and source revision: BG-08 and BG-10 complete; published M0 checkpoint `8873e13444512a5035f45527c6cacff5d14301e5`
+- Objective and exclusions: freeze epoch/minor evolution, field reservation, canonical JSON, compatibility fixtures, and migration obligations; no BONSAI domain message
+- Reuse classification: reuse official Protobuf evolution rules and the existing Cargo xtask/Serde/SHA-256 seam; reuse Lamprey Harness `scripts/verify-proof.cjs` at MIT revision `d9d53786ca71550861883a61bf8088b43e3275d8` as a fail-fast proof-command pattern only; no Lamprey runtime or source copied
+- Files changed: Protobuf and JSON policy READMEs, Rust schema checker and canonicalizer, five candidate fixtures plus baseline, machine verification records and immutable-artifact Git attributes, PSPR execution history/reuse ledger/status, DEVLOG, verification log
+- Decisions/addenda: epoch paths use `v<epoch>` and catalog versions use `epoch.minor`; minor changes are additive; deleted Protobuf fields reserve number and name; numeric semantics include units; breaking changes require new immutable migrated output while retaining original bytes
+- Verification summary: the first recorded universal attempt retained a tool-path failure after Rust/schema success; the second used checksum-verified uv 0.11.29 and passed format, Clippy, Rust tests, Ruff, Pyright, Pytest, schema compatibility, docs, ADR, license, governance-ledger, terminology, and CI-topology checks; additive fixture passed and all four prohibited changes failed with their intended codes
+- Evidence paths and SHA-256 hashes: `evidence/verification/records.jsonl`; pass stdout `4b08b7548416b12819e7796578ca19101d65ab4183f4947a51912373e85a4462`; pass stderr `d90189be1ef824c4bf3053e76efa053cf5fd78b771b0a73db70bacf28fae7020`; fixture digests are printed in the retained pass artifact
+- Commit SHA: pending this prompt's immutable implementation commit; the next closeout entry will append it under the log's self-hash rule
+- Risks/blockers/parked scope changed: no new blocker; compatibility catalog is test tooling, not a domain schema; physical-system claims remain out of scope
+- Next eligible prompts: BC-02, BC-03, and BC-04; dependency order selects BC-02

@@ -12,6 +12,8 @@ use std::path::{Path, PathBuf};
 use std::process::{Command, ExitCode};
 use std::time::{Instant, SystemTime, UNIX_EPOCH};
 
+mod schema_check;
+
 #[derive(Debug)]
 struct VerifyArgs {
     prompt: String,
@@ -73,13 +75,21 @@ fn run() -> Result<i32, String> {
             let remaining = args.collect::<Vec<_>>();
             verify(parse_verify_args(&remaining)?)
         }
+        Some("schema-check") => {
+            if args.next().is_some() {
+                return Err("schema-check does not accept arguments".to_owned());
+            }
+            schema_check::run()?;
+            Ok(0)
+        }
         _ => Err(usage()),
     }
 }
 
 fn usage() -> String {
-    "usage: cargo xtask verify --prompt <ID> [--record-dir <PATH>] \
-     [--evidence-class <CLASS>] [--runner-class <CLASS>] [--redact <TEXT>] -- <COMMAND> [ARGS...]"
+    "usage:\n  cargo xtask verify --prompt <ID> [--record-dir <PATH>] \
+     [--evidence-class <CLASS>] [--runner-class <CLASS>] [--redact <TEXT>] -- <COMMAND> [ARGS...]\n  \
+     cargo xtask schema-check"
         .to_owned()
 }
 

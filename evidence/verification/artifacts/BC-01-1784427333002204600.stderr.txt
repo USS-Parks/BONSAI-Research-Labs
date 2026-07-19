@@ -1,0 +1,78 @@
+    Finished `dev` profile [unoptimized + debuginfo] target(s) in 0.43s
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.21s
+     Running unittests src\lib.rs (target\debug\deps\bonsai_contracts-e5feac8fd81f1447.exe)
+     Running unittests src\main.rs (target\debug\deps\bonsai_xtask-25caf2b1fceea686.exe)
+     Running tests\verification_fixture.rs (target\debug\deps\verification_fixture-407a60e79d58045b.exe)
+   Doc-tests bonsai_contracts
+uv : The term 'uv' is not recognized as the name of a cmdlet, function, script file, or operable program. Check the 
+spelling of the name, or if a path was included, verify that the path is correct and try again.
+At line:1 char:282
++ ... features; if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }; uv run --f ...
++                                                                ~~
+    + CategoryInfo          : ObjectNotFound: (uv:String) [], CommandNotFoundException
+    + FullyQualifiedErrorId : CommandNotFoundException
+ 
+uv : The term 'uv' is not recognized as the name of a cmdlet, function, script file, or operable program. Check the 
+spelling of the name, or if a path was included, verify that the path is correct and try again.
+At line:1 char:361
++ ...  check .; if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }; uv run --f ...
++                                                                ~~
+    + CategoryInfo          : ObjectNotFound: (uv:String) [], CommandNotFoundException
+    + FullyQualifiedErrorId : CommandNotFoundException
+ 
+uv : The term 'uv' is not recognized as the name of a cmdlet, function, script file, or operable program. Check the 
+spelling of the name, or if a path was included, verify that the path is correct and try again.
+At line:1 char:435
++ ...  pyright; if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }; uv run --f ...
++                                                                ~~
+    + CategoryInfo          : ObjectNotFound: (uv:String) [], CommandNotFoundException
+    + FullyQualifiedErrorId : CommandNotFoundException
+ 
+uv : The term 'uv' is not recognized as the name of a cmdlet, function, script file, or operable program. Check the 
+spelling of the name, or if a path was included, verify that the path is correct and try again.
+At line:1 char:583
++ ... ma-check; if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }; uv run --f ...
++                                                                ~~
+    + CategoryInfo          : ObjectNotFound: (uv:String) [], CommandNotFoundException
+    + FullyQualifiedErrorId : CommandNotFoundException
+ 
+uv : The term 'uv' is not recognized as the name of a cmdlet, function, script file, or operable program. Check the 
+spelling of the name, or if a path was included, verify that the path is correct and try again.
+At line:1 char:681
++ ... _docs.py; if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }; uv run --f ...
++                                                                ~~
+    + CategoryInfo          : ObjectNotFound: (uv:String) [], CommandNotFoundException
+    + FullyQualifiedErrorId : CommandNotFoundException
+ 
+uv : The term 'uv' is not recognized as the name of a cmdlet, function, script file, or operable program. Check the 
+spelling of the name, or if a path was included, verify that the path is correct and try again.
+At line:1 char:779
++ ... _adrs.py; if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }; uv run --f ...
++                                                                ~~
+    + CategoryInfo          : ObjectNotFound: (uv:String) [], CommandNotFoundException
+    + FullyQualifiedErrorId : CommandNotFoundException
+ 
+uv : The term 'uv' is not recognized as the name of a cmdlet, function, script file, or operable program. Check the 
+spelling of the name, or if a path was included, verify that the path is correct and try again.
+At line:1 char:880
++ ... cense.py; if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }; uv run --f ...
++                                                                ~~
+    + CategoryInfo          : ObjectNotFound: (uv:String) [], CommandNotFoundException
+    + FullyQualifiedErrorId : CommandNotFoundException
+ 
+uv : The term 'uv' is not recognized as the name of a cmdlet, function, script file, or operable program. Check the 
+spelling of the name, or if a path was included, verify that the path is correct and try again.
+At line:1 char:992
++ ... dgers.py; if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }; uv run --f ...
++                                                                ~~
+    + CategoryInfo          : ObjectNotFound: (uv:String) [], CommandNotFoundException
+    + FullyQualifiedErrorId : CommandNotFoundException
+ 
+uv : The term 'uv' is not recognized as the name of a cmdlet, function, script file, or operable program. Check the 
+spelling of the name, or if a path was included, verify that the path is correct and try again.
+At line:1 char:1097
++ ... ology.py; if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }; uv run --f ...
++                                                                ~~
+    + CategoryInfo          : ObjectNotFound: (uv:String) [], CommandNotFoundException
+    + FullyQualifiedErrorId : CommandNotFoundException
+ 
