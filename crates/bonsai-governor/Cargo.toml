@@ -1,0 +1,16 @@
+[package]
+name = "bonsai-governor"
+description = "Deterministic external resource budget governor for BONSAI"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+repository.workspace = true
+publish.workspace = true
+
+[lints]
+workspace = true
+
+[dependencies]
+bonsai-contracts = { path = "../bonsai-contracts" }
+serde = { version = "1.0.229", features = ["derive"] }

@@ -966,3 +966,31 @@ This is an append-only human index. Machine records created by `cargo xtask veri
 - Counter availability and privileges: live unprivileged local process/filesystem counters with OS/cache qualifications; no physical-host, energy, or enforcement claim
 - Result: pass
 - Reviewer/attestation: every counter records expected/observed/error/resolution/coverage/qualification, non-ready evidence fails closed, observer cost is explicit, and strict workspace/Python/schema/governance gates passed locally; hosted closure remains attached to the focused commit
+
+## VER-BM04-HOSTED — BM-04 — 2026-07-19T19:13:59Z
+
+- Source revision and dirty state: `7cbf4547c5df0c5a7815e662537f8cbe906b21e0`; clean pushed revision
+- OS/architecture/physical-or-CI: Windows/x86_64, Linux/x86_64, macOS/arm64, macOS/x86_64; GitHub hosted CI; ephemeral virtual machines
+- Toolchain/dependency-lock hashes: workflow-pinned Rust 1.96.0, Python 3.12, and uv 0.11.29; source locks at the recorded revision
+- Command: GitHub Actions `BONSAI baseline` push run 29700201610, attempt 1
+- Start/end/duration: `2026-07-19T19:13:59Z` / `2026-07-19T19:18:49Z` / 290 s
+- Exit code: all four jobs concluded `success`; job IDs 88227876798 (macOS arm64), 88227876802 (Linux), 88227876811 (macOS Intel), and 88227876816 (Windows)
+- Stdout/stderr artifact hashes: retained by GitHub Actions
+- Fixtures/manifests/bundle IDs: exact and live calibration workloads plus fail-closed coverage fixtures on every hosted runner
+- Counter availability and privileges: live hosted unprivileged process/filesystem counters with OS/cache qualifications; no physical-host, energy, or enforcement claim
+- Result: pass
+- Reviewer/attestation: exact head SHA, workflow conclusion, and all four matrix-job conclusions inspected through the GitHub API; BM-04 cross-OS gate is closed
+
+## VER-BQ01-GATE — BQ-01 — 2026-07-19T19:18:51Z
+
+- Source revision and dirty state: `7cbf4547c5df0c5a7815e662537f8cbe906b21e0`; dirty only with BQ-01 implementation, governance, and evidence
+- OS/architecture/physical-or-CI: Windows/x86_64; local; physical/virtual status unknown
+- Toolchain/dependency-lock hashes: Rust 1.96.0; locked repository Python environment; `Cargo.lock` SHA-256 `36E07DEA7070121EFDED59BA5D48FF1DAE12D3694E5550B188CE40D9CEAC20E4`
+- Command: machine record `BQ-01-1784488731506570500`; full universal/schema/governance gate through an external verifier copy
+- Start/end/duration: machine-record Unix UTC nanoseconds `1784488731506570500` / `1784488759997382000` / 28.4915773 s
+- Exit code: 0
+- Stdout/stderr artifact hashes: stdout `242A6A260AAB1EDDFF078C008DEE7B8E576E0C5E9A6C6E3B97B8B12C0D12A5D3`; stderr `E5E4A269ED8A373B5FA7A5F346F788D2BA1BFB07E51AEBC82CBA984C4A08DB3D`
+- Fixtures/manifests/bundle IDs: boundary-equality enumeration, nested scopes, overlapping rolling windows, exact expiry, unavailable measurement, overflow, and complete existing repository corpus
+- Counter availability and privileges: deterministic arithmetic fixtures only; no OS enforcement or privileged counter claim
+- Result: pass
+- Reviewer/attestation: typed units, checked projections/commits, exact resets/windows, missingness, and strict workspace/Python/schema/governance gates passed locally; hosted closure remains attached to the focused commit

@@ -650,3 +650,24 @@ This append-only log records executed PSPR prompts. Corrections are added as new
 - Commit SHA: pending; append in BQ-01 under the self-hash convention
 - Risks/blockers/parked scope changed: R-05 remains active for platform/physical calibration; R-06 remains active for enforcement overshoot; R-09 remains active for observer reserve; R-10 remains active because platform qualifications are retained; no parked scope revived and no scientific-agent, physical-host, energy, enforcement, instrument-completion, or C0–C5 claim is made
 - Next eligible prompts after gate and publication: BQ-01 and BK-01
+
+### BM-04 closeout note
+
+- Focused implementation commit SHA: `7cbf4547c5df0c5a7815e662537f8cbe906b21e0`
+- Hosted verification: GitHub Actions run 29700201610, attempt 1, passed the calibration gate on Windows x86_64, Linux x86_64, macOS arm64, and macOS Intel at that exact commit
+- Ledger rule: appended by BQ-01 because the BM-04 commit could not contain its own immutable hash or post-push hosted-run identity
+
+## 2026-07-19 — BQ-01 — Budget arithmetic and scopes
+
+- Status: passed; closeout entry pending focused commit identity and hosted run
+- Authorization scope: user-authorized remaining M1 STS for this session plus the existing later-gated public source publication addendum
+- Dependencies and source revision: BC-06 and BM-01 published; BM-04 published and hosted-green at `7cbf4547c5df0c5a7815e662537f8cbe906b21e0`
+- Objective and exclusions: implement typed checked accounting for per-event, per-step, rolling-window, and lifetime limits by work class; do not choose governor outcomes or enforce backend limits
+- Reuse classification: add `bonsai-governor` at the BC-06/BM-01 seam; reuse canonical `BudgetScope`/`WorkClass`, checked integer arithmetic, standard hash maps/deques, and Serde; introduce no platform or learned-policy dependency
+- Files changed: new governor workspace crate/tests, budget arithmetic/scope contract, workspace manifest/lock, README index/status, PSPR status, BM-04 hosted closeout, DEVLOG, verification log, and retained machine evidence
+- Decisions/addenda: typed counter ID/unit/work-class keys prevent cross-unit charging; all matching nested scopes are projected before mutation; equality remains inside soft/hard thresholds; event/step resets preserve lifetime; each rolling limit uses its own exact duration; missing measurements emit no numeric state; commit precomputes all checked sums and mutates only when every scope is safe
+- Verification summary: exhaustive amounts 1–11 cover equality and next-unit transitions; nested event/step/lifetime state and exact rolling expiry pass; overlapping rolling windows retain distinct durations; unavailable input emits `measurement_unavailable` without projected zero; maximum-value then one-unit charge rejects overflow without partial mutation; the initial compile gate exposed the reused `WorkClass` lacking total ordering, so the private account index changed to its appropriate hash-map seam; the final complete gate passed formatting, strict workspace Clippy, 82 Rust tests, 3 Python tests, schema compatibility, docs, ADR, license, governance-ledger, terminology, and CI-topology checks on Windows x86_64
+- Evidence paths and SHA-256 hashes: machine record `BQ-01-1784488731506570500` with stdout `242A6A260AAB1EDDFF078C008DEE7B8E576E0C5E9A6C6E3B97B8B12C0D12A5D3` and stderr `E5E4A269ED8A373B5FA7A5F346F788D2BA1BFB07E51AEBC82CBA984C4A08DB3D`; implementation `6CA1D1E26116B04A5209B3E17CEB68EB86B5B0EBB8126BDFD8A14B9DCDBB554C`; contract `8D61CBC8237791496FBD41597199FF349BFF265F6007E45BF27CE0A03BD48D55`; `Cargo.lock` `36E07DEA7070121EFDED59BA5D48FF1DAE12D3694E5550B188CE40D9CEAC20E4`
+- Commit SHA: pending; append in BQ-02 under the self-hash convention
+- Risks/blockers/parked scope changed: R-06 remains active for enforcement overshoot; R-08/R-09 remain active for descendant and observer reserves; unavailable hard measurements fail closed here but actual decision mapping is BQ-02; no parked scope revived and no backend enforcement, physical-host, energy, instrument-completion, or C0–C5 claim is made
+- Next eligible prompt after gate and publication: BQ-02
