@@ -1,0 +1,13 @@
+{
+  "schema": "bonsai.event-ingest-outcomes/v1",
+  "cases": {
+    "valid": "accepted",
+    "wrong_run": "INGEST_RUN_UNAUTHORIZED",
+    "wrong_source": "INGEST_SOURCE_UNAUTHORIZED",
+    "wrong_event_type": "INGEST_EVENT_TYPE_UNAUTHORIZED",
+    "wrong_schema": "INGEST_SCHEMA_UNAUTHORIZED",
+    "wrong_payload_hash": "EVENT_PAYLOAD_HASH_MISMATCH",
+    "rate_flood": "INGEST_RATE_LIMIT",
+    "out_of_lifecycle": "INGEST_LIFECYCLE_PRECONDITION"
+  }
+}

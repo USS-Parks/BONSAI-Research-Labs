@@ -1,0 +1,23 @@
+[package]
+name = "bonsai-ingest"
+description = "Fail-closed BONSAI event validation before immutable append"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+repository.workspace = true
+publish.workspace = true
+
+[lints]
+workspace = true
+
+[dependencies]
+bonsai-bundle = { path = "../bonsai-bundle" }
+bonsai-contracts = { path = "../bonsai-contracts" }
+serde = { version = "1.0.229", features = ["derive"] }
+serde_json = "1.0.150"
+
+[dev-dependencies]
+prost = "0.14.4"
+sha2 = "0.11.0"
+tempfile = "3.27.0"

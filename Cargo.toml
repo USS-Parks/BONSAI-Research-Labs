@@ -2,6 +2,7 @@
 members = [
     "crates/bonsai-bundle",
     "crates/bonsai-contracts",
+    "crates/bonsai-ingest",
     "crates/bonsai-runtime",
     "crates/bonsai-xtask",
 ]

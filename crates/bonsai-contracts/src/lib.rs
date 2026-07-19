@@ -55,6 +55,23 @@ impl fmt::Display for EventValidationError {
     }
 }
 
+impl EventValidationError {
+    /// Stable machine-oriented validation code.
+    #[must_use]
+    pub const fn code(&self) -> &'static str {
+        match self {
+            Self::Decode(_) => "EVENT_DECODE_FAILED",
+            Self::InvalidId(_) => "EVENT_ID_INVALID",
+            Self::InvalidTime(_) => "EVENT_TIME_INVALID",
+            Self::InvalidEventType => "EVENT_TYPE_INVALID",
+            Self::InvalidSchemaVersion => "EVENT_SCHEMA_VERSION_INVALID",
+            Self::InvalidAvailability => "EVENT_AVAILABILITY_INVALID",
+            Self::InvalidPrecision => "EVENT_PRECISION_INVALID",
+            Self::PayloadHashMismatch => "EVENT_PAYLOAD_HASH_MISMATCH",
+        }
+    }
+}
+
 impl Error for EventValidationError {}
 
 /// Decode and validate the known fields of one event envelope.
