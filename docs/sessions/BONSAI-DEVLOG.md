@@ -410,7 +410,7 @@ This append-only log records executed PSPR prompts. Corrections are added as new
 
 ## 2026-07-19 — BC-12 — Bundle validator and migration conformance
 
-- Status: passed; closeout entry pending focused commit identity
+- Status: local gate passed; initial hosted attempt exposed a Windows checkout-byte portability defect; correction pending focused commit and hosted rerun
 - Authorization scope: user instruction `STS BC-11 and BC-12 in this session, fully authorized.` plus the existing later-gated public source publication addendum
 - Dependencies and source revision: BC-01 through BC-11 published; immediate predecessor BC-11 hosted-green at `7c483f3e0024da32163cc461c33d77162fc87156`
 - Objective and exclusions: produce one machine-readable whole-bundle report covering schemas, content hashes, derived track, inventory availability, resource policy, failures, metric provenance, and version migration; no scientific claim adjudication, evidence repair, unsupported-epoch interpretation, or mutation of source bundles
@@ -422,3 +422,10 @@ This append-only log records executed PSPR prompts. Corrections are added as new
 - Commit SHA: pending; report the focused commit and hosted run directly because the authorized prompt set ends here under the self-hash convention
 - Risks/blockers/parked scope changed: R-15 remains active for later offline restoration and additional epochs and is controlled here by explicit current/old/future behavior plus frozen fixtures; R-16 remains controlled by the continuing publication addendum and no-slop gate; no parked scope revived and no claim adjudication, physical-host, instrument-completion, or C0–C5 claim is made
 - Next eligible prompt: BR-01; it is outside this session's named BC-11/BC-12 authorization and was not started
+
+### BC-12 hosted portability correction
+
+- Initial implementation commit SHA: `2cc885aad3a1ce153e7afc557224a42b34f79f6e`
+- Initial hosted verification: GitHub Actions run 29692334806, attempt 1, passed Linux x86_64 and macOS arm64/Intel but failed all three BC-12 corpus tests on Windows x86_64 because Git checkout converted referenced JSON fixture bytes from LF to CRLF while manifests bind exact stored-byte SHA-256 identities
+- Correction: `.gitattributes` now freezes every repository JSON file as text with LF checkout bytes; a separate `core.autocrlf=true` checkout-index reproduction retained the three manifest-bound fixture hashes exactly and produced all seven expected CLI verdicts and exit codes
+- Correction commit SHA and hosted rerun: pending under the end-of-authorized-set self-hash convention; report directly after the rerun completes

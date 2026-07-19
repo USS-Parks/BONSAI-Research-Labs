@@ -546,3 +546,17 @@ This is an append-only human index. Machine records created by `cargo xtask veri
 - Counter availability and privileges: bundle fixture evidence only; unavailable-counter state remained explicit; no scientific claim adjudication, live agent, physical counter, privileged collector, energy, or long-duration evidence
 - Result: pass
 - Reviewer/attestation: exact BC-12 seven-case verdict corpus, deterministic non-mutating migration, forward read-only contract, one-report CLI semantics, strict workspace lint/tests, Python gates, schema compatibility, and all governance checks passed locally; hosted three-family evidence remains pending the focused published commit
+
+## VER-BC12-HOSTED-FAIL — BC-12 — 2026-07-19T15:11:32Z
+
+- Source revision and dirty state: `2cc885aad3a1ce153e7afc557224a42b34f79f6e`; clean pushed revision
+- OS/architecture/physical-or-CI: Windows/x86_64, Linux/x86_64, macOS/arm64, macOS/x86_64; GitHub hosted CI; ephemeral virtual machines
+- Toolchain/dependency-lock hashes: workflow-pinned Rust 1.96.0, Python 3.12, and uv 0.11.29; source locks at the recorded revision
+- Command: GitHub Actions `BONSAI baseline` push run 29692334806, attempt 1
+- Start/end/duration: `2026-07-19T15:11:32Z` / `2026-07-19T15:15:20Z` / 228 s
+- Exit code: Linux and both macOS jobs concluded `success`; Windows concluded `failure` during Rust tests
+- Stdout/stderr artifact hashes: retained by GitHub Actions; job IDs 88207141611 (Windows, failure), 88207141625 (macOS arm64, success), 88207141631 (macOS Intel, success), and 88207141660 (Linux, success)
+- Fixtures/manifests/bundle IDs: all three BC-12 corpus tests returned invalid only on the Windows checkout; Git had converted manifest-referenced JSON from LF to CRLF, changing exact stored-byte hashes without updating committed manifest identities
+- Counter availability and privileges: bundle fixture evidence only; no live agent, physical counter, privileged collector, energy, or long-duration evidence
+- Result: platform conformance failure; not acceptance evidence
+- Reviewer/attestation: exact failing job log inspected; correction freezes repository JSON checkout bytes as LF and was reproduced through a separate `core.autocrlf=true` checkout before rerunning the complete gate
