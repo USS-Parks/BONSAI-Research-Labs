@@ -110,10 +110,27 @@ fn inspection_adapter_sees_only_granted_inputs_and_agent_owned_storage() {
 
     let mut child = ChildTransport::spawn(&launch.command, TransportLimits::default())
         .expect("spawn inspection adapter");
-    let frame = child
-        .receive(INSPECTION_PROCESS_TIMEOUT)
-        .expect("receive inspection")
-        .expect("inspection frame");
+    let frame = match child.receive(INSPECTION_PROCESS_TIMEOUT) {
+        Ok(Some(frame)) => frame,
+        Ok(None) => {
+            let stderr = child.stderr_snapshot();
+            let outcome = child
+                .shutdown(INSPECTION_PROCESS_TIMEOUT)
+                .expect("inspect failed child shutdown");
+            panic!(
+                "inspection child exited without a frame: exit={:?}, stderr={}",
+                outcome.exit_code,
+                String::from_utf8_lossy(&stderr.retained)
+            );
+        }
+        Err(error) => {
+            let stderr = child.stderr_snapshot();
+            panic!(
+                "inspection receive failed: {error}, stderr={}",
+                String::from_utf8_lossy(&stderr.retained)
+            );
+        }
+    };
     let result: Value = serde_json::from_slice(&frame).expect("inspection JSON");
     assert_eq!(
         result["granted_inputs"]["observation.txt"],

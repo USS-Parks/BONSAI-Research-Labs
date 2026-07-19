@@ -812,3 +812,31 @@ This is an append-only human index. Machine records created by `cargo xtask veri
 - Counter availability and privileges: real local environment-cleared Python child with a finite 20-second process allowance; no native-code OS sandbox, physical-host attestation, privileged input, energy, or long-duration evidence
 - Result: pass
 - Reviewer/attestation: correction changes only the test receive/shutdown allowance from 5 to 20 seconds; strict workspace/Python/schema/governance gates pass and hosted rerun remains required
+
+## VER-BR06-CORRECTION-HOSTED-FAILURE — BR-06 — 2026-07-19T18:05:40Z
+
+- Source revision and dirty state: `5785a09fe1db3e2f63b291934531e1915c81121b`; clean pushed revision
+- OS/architecture/physical-or-CI: Windows/x86_64, Linux/x86_64, macOS/arm64, macOS/x86_64; GitHub hosted CI; ephemeral virtual machines
+- Toolchain/dependency-lock hashes: workflow-pinned Rust 1.96.0, Python 3.12, and uv 0.11.29; source locks at the recorded revision
+- Command: GitHub Actions `BONSAI baseline` push run 29698103848, attempt 1
+- Start/end/duration: `2026-07-19T18:05:40Z` / `2026-07-19T18:09:41Z` / 241 s
+- Exit code: Windows job 88222227394 and Linux job 88222227395 concluded `success`; macOS arm64 job 88222227377 and macOS Intel job 88222227387 concluded `failure`
+- Stdout/stderr artifact hashes: retained by GitHub Actions; macOS arm64 exited without a frame after 6.61 seconds under the 20-second allowance, proving this was not process-start timeout
+- Fixtures/manifests/bundle IDs: all non-inspection isolation outcomes passed on every hosted OS; the inspection process failed only while traversing its broader ambient environment-derived candidate roots on macOS
+- Counter availability and privileges: hosted child-process/interface fixture only; no physical-host or OS sandbox claim
+- Result: fail; exact incomplete first correction retained
+- Reviewer/attestation: the inspection fixture exceeded the granted-interface model by treating every ambient OS environment value as a filesystem grant; refinement restricts discovery to configured BONSAI roots and explicit arguments and adds child-stderr diagnostics
+
+## VER-BR06-CORRECTION2-GATE — BR-06 — 2026-07-19T18:10:38Z
+
+- Source revision and dirty state: `5785a09fe1db3e2f63b291934531e1915c81121b`; dirty only with the refined BR-06 portability correction and its evidence
+- OS/architecture/physical-or-CI: Windows/x86_64; local; physical/virtual status unknown
+- Toolchain/dependency-lock hashes: Rust 1.96.0; Python 3.14.4; uv 0.11.29; `Cargo.lock` SHA-256 `AFE32A618E77FEE0405535C2087B46FF05E31AA00D8BAC7C6369BE4C6CC9BF00`
+- Command: machine record `BR-06-CORRECTION2-1784484638059258600`; full universal/schema/governance gate through external verifier copy SHA-256 `46B4426A145BB2E84C2A9694A4A0BB493CC105460A3D8031E6751F880A6CADA4`
+- Start/end/duration: `2026-07-19T18:10:38.059Z` / `2026-07-19T18:11:03.246Z` / 25.1876089 s
+- Exit code: 0
+- Stdout/stderr artifact hashes: stdout `b4b15c60f795f9eacef5ec9aa31774341639dec0381b5da4d2d5e3d5a940698f`; stderr `7225ea5c2a4114ebfef5d397c042d30d8064247661154e6f490e4ba7d7e6a87c`
+- Fixtures/manifests/bundle IDs: unchanged `bonsai.agent-isolation-outcomes/v1`; real inspection child passed 10/10 focused repetitions before the full gate
+- Counter availability and privileges: real local environment-cleared Python child enumerating only configured BONSAI roots and explicit grants; no native-code OS sandbox, physical-host attestation, privileged input, energy, or long-duration evidence
+- Result: pass
+- Reviewer/attestation: deterministic non-symlink discovery, strict Ruff/Pyright, diagnostic child-exit evidence, strict workspace/schema/governance gates pass; hosted rerun remains required

@@ -6,6 +6,7 @@ import json
 import os
 import struct
 import sys
+from collections.abc import Iterable
 from pathlib import Path
 from typing import TypedDict
 
@@ -31,24 +32,29 @@ def write_frame(payload: bytes) -> None:
 
 def candidate_roots(arguments: list[str]) -> set[Path]:
     roots = {Path.cwd()}
-    for value in [*arguments, *os.environ.values()]:
-        candidate = Path(value.split("=", maxsplit=1)[-1])
-        if candidate.is_dir():
-            roots.add(candidate)
-        elif candidate.is_file() and "=" in value:
-            roots.add(candidate.parent)
+    for key in ("BONSAI_AGENT_ROOT", "BONSAI_INPUT_ROOT", "BONSAI_WORK_ROOT"):
+        roots.add(Path(os.environ[key]))
+    for index, value in enumerate(arguments):
+        if value == "--bonsai-input":
+            roots.add(Path(arguments[index + 1].split("=", maxsplit=1)[1]).parent)
+        elif value == "--bonsai-work-dir":
+            roots.add(Path(arguments[index + 1]))
     return roots
+
+
+def discover_files(roots: Iterable[Path]) -> list[str]:
+    discovered: list[str] = []
+    for root in sorted(roots):
+        for directory, child_directories, files in os.walk(root, followlinks=False):
+            child_directories.sort()
+            discovered.extend(str(Path(directory) / name) for name in sorted(files))
+    return discovered
 
 
 def main() -> int:
     arguments = sys.argv[1:]
     roots = candidate_roots(arguments)
-    discovered = sorted(
-        str(path)
-        for root in roots
-        for path in root.rglob("*")
-        if path.is_file()
-    )
+    discovered = discover_files(roots)
     granted_inputs: dict[str, str] = {}
     for index, value in enumerate(arguments):
         if value == "--bonsai-input":
