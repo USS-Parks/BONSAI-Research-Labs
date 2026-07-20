@@ -1006,3 +1006,25 @@ This append-only log records executed PSPR prompts. Corrections are added as new
 - Commit SHA: pending; append in BR-10 under the self-hash convention
 - Risks/blockers/parked scope changed: R-07 is controlled at the BONSAI path/route seams but BR-06's explicit no-native-sandbox limit remains; BQ-06 still owns agent-side retention detection; observer replay proves reproducibility and isolation, not abstraction utility or an OaK reproduction; no M2, instrument-completion, or C0–C5 claim is made
 - Next eligible prompts after gate and publication: BR-10, BQ-05, BK-04, and BK-05; dependency order selects BR-10
+
+### BR-09 closeout note
+
+- Focused implementation commit SHA: `4ddb7f702d8af62b9d233a9c3bad4fb329a19ec2`
+- Hosted verification: GitHub Actions run 29709527661, attempt 1, ran from `2026-07-20T00:27:40Z` through `2026-07-20T00:33:33Z` and passed Windows x86_64, Linux x86_64, macOS arm64, macOS Intel, and the hosted semantic-equivalence aggregate at that exact commit
+- Hosted job IDs: 88251465979 (Windows), 88251465974 (Linux), 88251465989 (macOS arm64), 88251465981 (macOS Intel), and 88251761698 (aggregate)
+- Ledger rule: appended by BR-10 because the BR-09 commit could not contain its own immutable hash or post-push hosted-run identity
+
+## 2026-07-19 — BR-10 — Runtime conformance suite
+
+- Status: passed; closeout entry pending focused commit identity and hosted run
+- Authorization scope: user-authorized M2 STS for this session plus the approved later-PSPR source-publication addendum
+- Dependencies and source revision: BR-01 through BR-09 published; BR-09 published and hosted-green at `4ddb7f702d8af62b9d233a9c3bad4fb329a19ec2`
+- Objective and exclusions: certify observer-collected third-party adapter evidence for protocol, isolation, event ordering, lifecycle, repeatability, timeout containment, and derived track; explicitly exclude scientific-quality, hostile-native-sandbox, performance, and claim-ladder certification
+- Reuse classification: compose the published BR-01 protocol state machine, BR-04 ordering classifier, BR-05 lifecycle vocabulary, BR-06 launch audit, BR-02 timeout codes, and BC-05 track derivation into one new runtime rule module; reuse Serde and ordered standard-library sets and add no dependency
+- Files changed: adapter conformance rule module and exports, cross-platform integration corpus/test, architecture contract, README/PSPR status, BR-09 hosted closeout, DEVLOG, verification log, and retained machine evidence
+- Decisions/addenda: the seven checks run exactly once in a fixed order; any fail rejects, missing/indeterminate evidence prevents certification, and only seven passes certify; late arrival remains an ordering annotation while duplicates, missing parents, conflicts, gaps, cycles, and clock regression fail; two identical valid hashes are the minimum repeatability evidence; timeout requires a recognized stable code and containment; invalid adapter IDs produce no report; `scientific_quality_certified` is always false
+- Verification summary: three focused integration tests freeze exact good, independently bad, hidden-replay, observer-access, and missing-evidence reports; prove seven-check coverage without duplication; prove byte-deterministic serialization; and reject unsafe identity. The complete gate passed formatting, strict workspace Clippy, 132 Rust tests, Ruff, strict Pyright, 11 Python tests, schema compatibility, docs, ADR, license, governance-ledger, terminology, and CI-topology checks on Windows x86_64
+- Evidence paths and SHA-256 hashes: final machine record `BR-10-1784508327261858400` with stdout `961236F37D9F993AC10A82339799F796ED3D853E737725E8502D64DD856FEE87` and stderr `DE0FFB14E668659973DB8703E55077DF7E0FDA496F4D9FC771A834DD35664775`; rules `05D3309BCC124BD619B4785DFC0555A66EA71CBC3C2562A2BA73C577E62F6B2A`; tests `F63686DA3838ECA5A73441127ED41B6AE2E2FDAC77A8271C343E4800BEB3FAF1`; corpus `9CA455556FFB8C4C1E0CDE9AB3B68BEC0A971C476CFACCD3650BDB96BEA2AACB`; contract `6E39A78C32DFF50288E18E6CD13572F3EEDAC9B67CA8F96DB4478B3F5A6D50AB`
+- Commit SHA: pending; append in BQ-05 under the self-hash convention
+- Risks/blockers/parked scope changed: adapter evidence must be observer-produced or supplied by another trusted runner; an unauthenticated self-report is not certification evidence; later integrity work may bundle/sign reports; BR-10 closes runtime contract conformance only and makes no M2, instrument-completion, or C0–C5 claim
+- Next eligible prompts after gate and publication: BQ-05, BK-04, and BK-05; dependency order selects BQ-05

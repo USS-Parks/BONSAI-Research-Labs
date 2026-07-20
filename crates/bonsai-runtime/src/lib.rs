@@ -2,10 +2,16 @@
 
 #![forbid(unsafe_code)]
 
+mod conformance;
 mod isolation;
 mod lifecycle;
 mod replay;
 
+pub use conformance::{
+    AdapterCertificationInput, AdapterCertificationReport, AdapterConformanceSuite,
+    CertificationCheck, CertificationError, CertificationVerdict, CheckResult, CheckVerdict,
+    ProtocolExchange, TimeoutProbe,
+};
 pub use isolation::{
     AgentCapabilityAudit, AgentLaunchPolicy, GrantedInput, IsolatedLaunch, IsolatedRunLayout,
     IsolationError, ObserverAccessDenial, ObserverArtifactClass,

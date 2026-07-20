@@ -1,0 +1,72 @@
+{
+  "schema": "bonsai.adapter-conformance-outcomes/v1",
+  "cases": {
+    "bad_determinism": {
+      "derived_track": "A",
+      "non_pass": ["determinism:ADAPTER_DETERMINISM_MISMATCH"],
+      "scientific_quality_certified": false,
+      "verdict": "rejected"
+    },
+    "bad_isolation": {
+      "derived_track": "A",
+      "non_pass": ["isolation:ISOLATION_OBSERVER_PATH_EXPOSURE"],
+      "scientific_quality_certified": false,
+      "verdict": "rejected"
+    },
+    "bad_lifecycle": {
+      "derived_track": "A",
+      "non_pass": ["lifecycle:ADAPTER_LIFECYCLE_SEQUENCE_INVALID"],
+      "scientific_quality_certified": false,
+      "verdict": "rejected"
+    },
+    "bad_ordering": {
+      "derived_track": "A",
+      "non_pass": ["ordering:ADAPTER_ORDERING_SEQUENCE_GAP"],
+      "scientific_quality_certified": false,
+      "verdict": "rejected"
+    },
+    "bad_protocol": {
+      "derived_track": "A",
+      "non_pass": ["protocol:ADAPTER_PROTOCOL_VERSION_MISMATCH"],
+      "scientific_quality_certified": false,
+      "verdict": "rejected"
+    },
+    "bad_timeout": {
+      "derived_track": "A",
+      "non_pass": ["timeout:ADAPTER_TIMEOUT_CONTAINMENT_FAILED"],
+      "scientific_quality_certified": false,
+      "verdict": "rejected"
+    },
+    "good": {
+      "derived_track": "A",
+      "non_pass": [],
+      "scientific_quality_certified": false,
+      "verdict": "certified"
+    },
+    "hidden_replay": {
+      "derived_track": "B",
+      "non_pass": ["classification:ADAPTER_TRACK_MISMATCH"],
+      "scientific_quality_certified": false,
+      "verdict": "rejected"
+    },
+    "missing_evidence": {
+      "derived_track": "A",
+      "non_pass": [
+        "protocol:ADAPTER_PROTOCOL_EVIDENCE_MISSING",
+        "isolation:ADAPTER_ISOLATION_EVIDENCE_MISSING",
+        "ordering:ADAPTER_ORDERING_EVIDENCE_MISSING",
+        "lifecycle:ADAPTER_LIFECYCLE_EVIDENCE_MISSING",
+        "determinism:ADAPTER_DETERMINISM_EVIDENCE_MISSING",
+        "timeout:ADAPTER_TIMEOUT_EVIDENCE_MISSING"
+      ],
+      "scientific_quality_certified": false,
+      "verdict": "indeterminate"
+    },
+    "observer_data_access": {
+      "derived_track": "INDETERMINATE_TRACK",
+      "non_pass": ["classification:OBSERVER_DATA_BOUNDARY_VIOLATION"],
+      "scientific_quality_certified": false,
+      "verdict": "indeterminate"
+    }
+  }
+}

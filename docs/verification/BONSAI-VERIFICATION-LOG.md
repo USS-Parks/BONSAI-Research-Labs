@@ -1446,3 +1446,31 @@ Machine record `BR-07-1784503142006141500` is not acceptance evidence. The outer
 - Counter availability and privileges: deterministic observer analysis only; no agent access, offline learning, physical counter, privileged collector, or scientific claim
 - Result: pass locally; hosted closure remains attached to the focused commit
 - Reviewer/attestation: stable topological replay, source-bound derivation/report hashes, content seals, structural path/byte withholding, Track A preservation for one-way analysis, indeterminate classification on attempted return, and strict workspace/Python/schema/governance gates passed locally
+
+## VER-BR09-HOSTED — BR-09 — 2026-07-20T00:27:40Z
+
+- Source revision and dirty state: `4ddb7f702d8af62b9d233a9c3bad4fb329a19ec2`; clean pushed focused implementation revision
+- OS/architecture/physical-or-CI: Windows/x86_64, Linux/x86_64, macOS/arm64, macOS/x86_64; GitHub hosted CI; ephemeral virtual machines
+- Toolchain/dependency-lock hashes: workflow-pinned Rust 1.96.0, Python 3.12, and uv 0.11.29; source locks at the recorded revision
+- Command: GitHub Actions `BONSAI baseline` push run 29709527661, attempt 1
+- Start/end/duration: `2026-07-20T00:27:40Z` / `2026-07-20T00:33:33Z` / 353 s
+- Exit code: run conclusion `success`; job IDs 88251465979 (Windows), 88251465974 (Linux), 88251465989 (macOS arm64), 88251465981 (macOS Intel), and 88251761698 (hosted semantic-equivalence aggregate)
+- Stdout/stderr artifact hashes: retained by GitHub Actions
+- Fixtures/manifests/bundle IDs: observer replay arrival permutations, exact derivations, route denials, incomplete-order corpus, complete existing repository corpus, and unchanged M1 heartbeat aggregate
+- Counter availability and privileges: deterministic observer analysis and hosted semantic checks only; no agent access, offline learning, physical counter, privileged collector, or scientific claim
+- Result: pass; BR-09 cross-OS gate is closed
+- Reviewer/attestation: authenticated GitHub metadata establishes the exact head SHA and successful four-platform plus aggregate conclusions
+
+## VER-BR10-LOCAL — BR-10 — 2026-07-19
+
+- Source revision and dirty state: `4ddb7f702d8af62b9d233a9c3bad4fb329a19ec2`; dirty only with BR-10 implementation, governance, and evidence
+- OS/architecture/physical-or-CI: Windows/x86_64; local; physical/virtual status unknown
+- Toolchain/dependency-lock hashes: Rust 1.96.0; locked repository Python environment; `Cargo.lock` unchanged at `AEFC9265FEDA2F88FCA42328D10A41A8F0C1E0B36DCA39B0C3AED700F54B5D7F`
+- Command: final machine record `BR-10-1784508327261858400`; full universal/schema/governance gate through an external verifier copy after governance closeout edits
+- Start/end/duration: machine-record Unix UTC nanoseconds `1784508327261858400` / `1784508357154121400` / 29.8935154 s
+- Exit code: 0
+- Stdout/stderr artifact hashes: stdout `961236F37D9F993AC10A82339799F796ED3D853E737725E8502D64DD856FEE87`; stderr `DE0FFB14E668659973DB8703E55077DF7E0FDA496F4D9FC771A834DD35664775`
+- Fixtures/manifests/bundle IDs: exact good adapter; independently bad protocol, isolation, ordering, lifecycle, repeatability, and timeout cases; hidden replay; observer access; missing evidence; unsafe identity; and complete existing repository corpus
+- Counter availability and privileges: deterministic adapter contract fixtures and trusted-runner boundary only; no physical counter, hostile-native sandbox, or scientific-quality claim
+- Result: pass locally; hosted Windows/macOS/Linux closure remains attached to the focused commit
+- Reviewer/attestation: exact seven-check coverage, ternary fail-closed aggregation, deterministic reports, stable failure codes, derived-track enforcement, explicit scientific exclusion, and strict workspace/Python/schema/governance gates passed locally
