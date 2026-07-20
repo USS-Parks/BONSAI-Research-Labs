@@ -984,3 +984,25 @@ This append-only log records executed PSPR prompts. Corrections are added as new
 - Commit SHA: pending; append in BR-09 under the self-hash convention
 - Risks/blockers/parked scope changed: the graph is a faithful projection, not a causal estimator; BR-09 still owns observer-only replay isolation and BK-05 later owns feature utility metrics; no M2, instrument-completion, or C0–C5 claim is made
 - Next eligible prompts after gate and publication: BR-09, BQ-05, BK-04, and BK-05; dependency order selects BR-09
+
+### BR-08 closeout note
+
+- Focused implementation commit SHA: `62b3fd7a663f69ac70e017f2847ea448179158d9`
+- Hosted verification: GitHub Actions run 29708533070, attempt 1, ran from `2026-07-19T23:49:14Z` through `2026-07-19T23:54:31Z` and passed Windows x86_64, Linux x86_64, macOS arm64, macOS Intel, and the hosted semantic-equivalence aggregate at that exact commit
+- Hosted job IDs: 88249277479 (Windows), 88249277471 (Linux), 88249277473 (macOS arm64), 88249277470 (macOS Intel), and 88249588935 (aggregate)
+- Ledger rule: appended by BR-09 because the BR-08 commit could not contain its own immutable hash or post-push hosted-run identity
+
+## 2026-07-19 — BR-09 — Observer-only replay and analysis classification
+
+- Status: passed; closeout entry pending focused commit identity and hosted run
+- Authorization scope: user-authorized M2 STS for this session plus the approved later-PSPR source-publication addendum
+- Dependencies and source revision: BR-05 through BR-08 published; BR-08 published and hosted-green at `62b3fd7a663f69ac70e017f2847ea448179158d9`
+- Objective and exclusions: replay immutable telemetry into deterministic metric tables and static reports while structurally withholding bytes/paths from the agent and cryptographically binding every output; exclude agent training replay, offline convergence work, utility adjudication, and scientific-quality claims
+- Reuse classification: extend the BR-06 isolated runtime at the existing BR-04 ordering, BC-11 derivation, BK-01 metric-registry, and BV-02 static-report seams; use existing SHA-256, Protobuf, Serde, Parquet, and ordered standard-library collections without adding an external dependency family
+- Files changed: runtime observer replay analyzer and tests, runtime dependency edges/lock, observer-replay contract, README/PSPR status, BR-08 hosted closeout, DEVLOG, verification log, and retained machine evidence
+- Decisions/addenda: replay validates a single run, rejects duplicate/missing/conflicting/gapped/cyclic order, and stable-topologically sorts concurrent events by event ID; canonical length-framed source hashes bind both derivations; outputs use digest-derived observer directories and create-new writes; public results expose hashes/seals/summaries but no bytes or paths; every agent-input or protocol-feedback route reuses the BR-06 denial and derives `INDETERMINATE_TRACK`
+- Verification summary: six focused replay tests prove identical table/report hashes and seals across arrival permutations, exact Parquet provenance validation, denial and indeterminate classification for every agent route, zero agent-tree writes, fail-closed invalid/incomplete telemetry, and no-clobber output; the complete gate passed formatting, strict workspace Clippy, 129 Rust tests, Ruff, strict Pyright, 11 Python tests, schema compatibility, docs, ADR, license, governance-ledger, terminology, and CI-topology checks on Windows x86_64
+- Evidence paths and SHA-256 hashes: final machine record `BR-09-1784507003427526100` with stdout `7144A9582490D06D1CFF46DB7716C39C56AC0C84B30252E8F648CD6D800A157E` and stderr `1F58EB163FABB0C208101DF700450D21DED16B4ECD0541ACE6FD693B66AA8E6B`; analyzer `172C52A39862B0FFF3FA7BFA1E2FA67ED1FCA9857AA3879CFC3C788BB176B1EC`; contract `EAEF20E22BA7AA21F1B6ADA3FB2D079FC837312387BBBF3FA5E0408E593CA38C`; `Cargo.lock` `AEFC9265FEDA2F88FCA42328D10A41A8F0C1E0B36DCA39B0C3AED700F54B5D7F`
+- Commit SHA: pending; append in BR-10 under the self-hash convention
+- Risks/blockers/parked scope changed: R-07 is controlled at the BONSAI path/route seams but BR-06's explicit no-native-sandbox limit remains; BQ-06 still owns agent-side retention detection; observer replay proves reproducibility and isolation, not abstraction utility or an OaK reproduction; no M2, instrument-completion, or C0–C5 claim is made
+- Next eligible prompts after gate and publication: BR-10, BQ-05, BK-04, and BK-05; dependency order selects BR-10

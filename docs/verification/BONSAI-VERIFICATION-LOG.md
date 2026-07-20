@@ -1418,3 +1418,31 @@ Machine record `BR-07-1784503142006141500` is not acceptance evidence. The outer
 - Counter availability and privileges: deterministic retained lifecycle data only; unavailable cost remains unavailable; no causal inference, physical counter, privilege, or scientific claim
 - Result: pass locally; hosted closure remains attached to the focused commit
 - Reviewer/attestation: exact query semantics, independent snapshot validation, non-mutation, availability-preserving rollups, explicit corrupt-graph failures, and strict workspace/Python/schema/governance gates passed locally
+
+## VER-BR08-HOSTED — BR-08 — 2026-07-19T23:49:14Z
+
+- Source revision and dirty state: `62b3fd7a663f69ac70e017f2847ea448179158d9`; clean pushed focused implementation revision
+- OS/architecture/physical-or-CI: Windows/x86_64, Linux/x86_64, macOS/arm64, macOS/x86_64; GitHub hosted CI; ephemeral virtual machines
+- Toolchain/dependency-lock hashes: workflow-pinned Rust 1.96.0, Python 3.12, and uv 0.11.29; source locks at the recorded revision
+- Command: GitHub Actions `BONSAI baseline` push run 29708533070, attempt 1
+- Start/end/duration: `2026-07-19T23:49:14Z` / `2026-07-19T23:54:31Z` / 317 s
+- Exit code: run conclusion `success`; job IDs 88249277479 (Windows), 88249277471 (Linux), 88249277473 (macOS arm64), 88249277470 (macOS Intel), and 88249588935 (hosted semantic-equivalence aggregate)
+- Stdout/stderr artifact hashes: retained by GitHub Actions
+- Fixtures/manifests/bundle IDs: exact lineage graph/query fixtures, corrupt-graph corpus, complete existing repository corpus, and unchanged M1 heartbeat aggregate
+- Counter availability and privileges: deterministic retained lifecycle data and hosted semantic checks only; no causal inference, physical counter, privileged collector, or scientific claim
+- Result: pass; BR-08 cross-OS gate is closed
+- Reviewer/attestation: authenticated GitHub metadata establishes the exact head SHA and successful four-platform plus aggregate conclusions
+
+## VER-BR09-LOCAL — BR-09 — 2026-07-19
+
+- Source revision and dirty state: `62b3fd7a663f69ac70e017f2847ea448179158d9`; dirty only with BR-09 implementation, governance, and evidence
+- OS/architecture/physical-or-CI: Windows/x86_64; local; physical/virtual status unknown
+- Toolchain/dependency-lock hashes: Rust 1.96.0; locked repository Python environment; `Cargo.lock` SHA-256 `AEFC9265FEDA2F88FCA42328D10A41A8F0C1E0B36DCA39B0C3AED700F54B5D7F`
+- Command: final machine record `BR-09-1784507003427526100`; full universal/schema/governance gate through an external verifier copy after governance closeout edits
+- Start/end/duration: machine-record Unix UTC nanoseconds `1784507003427526100` / `1784507037916649900` / 34.4900614 s
+- Exit code: 0
+- Stdout/stderr artifact hashes: stdout `7144A9582490D06D1CFF46DB7716C39C56AC0C84B30252E8F648CD6D800A157E`; stderr `1F58EB163FABB0C208101DF700450D21DED16B4ECD0541ACE6FD693B66AA8E6B`
+- Fixtures/manifests/bundle IDs: arrival-permuted replay, exact event/metric Parquet derivations, sealed JSON/HTML reports, every observer-to-agent route, unchanged agent tree, duplicate/missing/gapped/cyclic telemetry, no-clobber output, and complete existing repository corpus
+- Counter availability and privileges: deterministic observer analysis only; no agent access, offline learning, physical counter, privileged collector, or scientific claim
+- Result: pass locally; hosted closure remains attached to the focused commit
+- Reviewer/attestation: stable topological replay, source-bound derivation/report hashes, content seals, structural path/byte withholding, Track A preservation for one-way analysis, indeterminate classification on attempted return, and strict workspace/Python/schema/governance gates passed locally

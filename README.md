@@ -9,7 +9,7 @@ BONSAI is an independent, algorithm-neutral measurement and external resource-go
 - Research charter: approved v0.1 on 2026-07-18.
 - PSPR: approved v0.1 on 2026-07-18.
 - Current execution authorization: remaining approved PSPR roster in dependency order, expanded by `Continue to STS` on 2026-07-18.
-- Implementation claims: M0 governed foundation and M1 auditable heartbeat are complete, including BC-01 through BC-12, BR-01 through BR-06, BM-01 through BM-04, BQ-01 through BQ-04, BK-01 through BK-03, BE-01 through BE-03, and BV-01 through BV-03; M2 is in progress through BR-08; the heartbeat emits reportable C0/C1-capable evidence with verdict `not_adjudicated`; no instrument-completion or C0–C5 pass claim.
+- Implementation claims: M0 governed foundation and M1 auditable heartbeat are complete, including BC-01 through BC-12, BR-01 through BR-06, BM-01 through BM-04, BQ-01 through BQ-04, BK-01 through BK-03, BE-01 through BE-03, and BV-01 through BV-03; M2 is in progress through BR-09; the heartbeat emits reportable C0/C1-capable evidence with verdict `not_adjudicated`; no instrument-completion or C0–C5 pass claim.
 - Repository visibility: public under the approved 2026-07-18 repository-target addendum.
 - License: `MIT OR Apache-2.0` at the recipient's option.
 
@@ -66,6 +66,8 @@ The runtime boundary is specified in the [adapter protocol](./docs/architecture/
 M2 runtime lineage begins with the deterministic [artifact lifecycle registry](./docs/architecture/ARTIFACT-LIFECYCLE-REGISTRY.md). It preserves immutable versions, provenance, consumers, cost and utility histories, and terminal dispositions without deciding scientific utility.
 
 The read-only [lineage graph and query layer](./docs/architecture/LINEAGE-GRAPH-AND-QUERIES.md) exposes exact ancestry, descendants, revision semantics, consumers, utility sources, and availability-preserving cost rollups without inferring causality.
+
+The [observer-only replay analyzer](./docs/architecture/OBSERVER-ONLY-REPLAY.md) deterministically regenerates provenance-bound metric tables and reports while denying every route back to agent input and forcing indeterminate track eligibility on any attempted boundary crossing.
 
 Analysis begins with the [versioned metric registry](./docs/metrics/REGISTRY.md), [primary behavior metrics](./docs/metrics/PRIMARY-BEHAVIOR-METRICS.md), and [resource/overhead metrics](./docs/metrics/RESOURCE-AND-OVERHEAD-METRICS.md); derived report values must originate in deterministic metric tables.
 

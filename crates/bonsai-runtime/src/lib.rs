@@ -4,6 +4,7 @@
 
 mod isolation;
 mod lifecycle;
+mod replay;
 
 pub use isolation::{
     AgentCapabilityAudit, AgentLaunchPolicy, GrantedInput, IsolatedLaunch, IsolatedRunLayout,
@@ -12,6 +13,10 @@ pub use isolation::{
 pub use lifecycle::{
     LifecycleError, LifecycleRecord, LifecycleState, RecoveredTransition, RecoveryReport,
     RunSupervisor, TransitionOutcome,
+};
+pub use replay::{
+    ObserverReplayAnalyzer, ObserverReplayArtifact, ObserverReplayArtifactKind,
+    ObserverReplayOutput, ReplayDestination, ReplayError, ReplayRouteDecision,
 };
 
 use prost::Message;
