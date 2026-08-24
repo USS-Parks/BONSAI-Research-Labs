@@ -1,0 +1,53 @@
+    Checking bonsai-governor v0.0.0 (C:\Users\17076\Documents\Reinforcement Learning Project\crates\bonsai-governor)
+error: this function's return value is unnecessarily wrapped by `Result`
+   --> crates\bonsai-governor\src\storage.rs:381:5
+    |
+381 | /     fn authorize_transition(
+382 | |         &mut self,
+383 | |         sequence: u64,
+384 | |         request: &PersistenceRequest,
+...   |
+388 | |         projected_files: u64,
+389 | |     ) -> Result<PersistenceDecision, StorageError> {
+    | |__________________________________________________^
+    |
+    = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.96.0/index.html#unnecessary_wraps
+    = note: `-D clippy::unnecessary-wraps` implied by `-D clippy::pedantic`
+    = help: to override `-D clippy::pedantic` add `#[allow(clippy::unnecessary_wraps)]`
+help: remove `Result` from the return type...
+    |
+389 -     ) -> Result<PersistenceDecision, StorageError> {
+389 +     ) -> storage::PersistenceDecision {
+    |
+help: ...and then remove the surrounding `Ok()` from returning expressions
+    |
+394 ~             return reject(
+395 +                 sequence,
+396 +                 request,
+397 +                 RetentionKind::TransitionReplay,
+398 +                 bytes_before,
+399 +                 files_before,
+400 +                 "TRANSITION_REPLAY_RETENTION_DENIED",
+401 +                 capacity,
+402 ~             );
+403 |         }
+404 |         self.classified_transition_capacity =
+405 |             self.classified_transition_capacity.saturating_add(capacity);
+406 ~         self.commit(
+407 +             projected_bytes,
+408 +             projected_files,
+409 +             admit(
+410 +                 sequence,
+411 +                 request,
+412 +                 RetentionKind::TransitionReplay,
+413 +                 bytes_before,
+414 +                 files_before,
+415 +                 "TRANSITION_REPLAY_RETENTION_CLASSIFIED",
+416 +                 capacity,
+417 +             ),
+418 +         )
+    |
+
+error: could not compile `bonsai-governor` (lib) due to 1 previous error
+warning: build failed, waiting for other jobs to finish...
+error: could not compile `bonsai-governor` (lib test) due to 1 previous error

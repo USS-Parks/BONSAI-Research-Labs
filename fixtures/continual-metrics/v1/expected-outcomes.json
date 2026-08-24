@@ -1,15 +1,169 @@
 {
-  "schema": "bonsai.continual-metric-outcomes/v1",
-  "forget_learn": {
-    "forgetting": 10,
-    "plasticity_loss": 0
+  "forgetting_heavy": {
+    "age_curve": [
+      {
+        "age": 0,
+        "mean_performance": {
+          "denominator": 1,
+          "numerator": 10
+        }
+      },
+      {
+        "age": 1,
+        "mean_performance": {
+          "denominator": 1,
+          "numerator": 10
+        }
+      },
+      {
+        "age": 2,
+        "mean_performance": {
+          "denominator": 1,
+          "numerator": 1
+        }
+      },
+      {
+        "age": 3,
+        "mean_performance": {
+          "denominator": 1,
+          "numerator": 9
+        }
+      }
+    ],
+    "metrics": [
+      {
+        "denominator": 1,
+        "detail_code": null,
+        "id": "adaptation",
+        "numerator": 10
+      },
+      {
+        "denominator": 1,
+        "detail_code": null,
+        "id": "divergence",
+        "numerator": 9
+      },
+      {
+        "denominator": 1,
+        "detail_code": null,
+        "id": "forgetting",
+        "numerator": 9
+      },
+      {
+        "denominator": 1,
+        "detail_code": null,
+        "id": "interference",
+        "numerator": 9
+      },
+      {
+        "denominator": 1,
+        "detail_code": null,
+        "id": "plasticity_loss",
+        "numerator": 0
+      },
+      {
+        "denominator": 10,
+        "detail_code": null,
+        "id": "relearning",
+        "numerator": 9
+      },
+      {
+        "denominator": 10,
+        "detail_code": null,
+        "id": "retention",
+        "numerator": 1
+      },
+      {
+        "denominator": 1,
+        "detail_code": null,
+        "id": "transfer",
+        "numerator": 0
+      }
+    ],
+    "schema": "bonsai.continual-metric-table/v1"
   },
-  "retain_rigid": {
-    "forgetting": 0,
-    "plasticity_loss": 10
+  "plasticity_loss_heavy": {
+    "age_curve": [
+      {
+        "age": 0,
+        "mean_performance": {
+          "denominator": 1,
+          "numerator": 10
+        }
+      },
+      {
+        "age": 1,
+        "mean_performance": {
+          "denominator": 1,
+          "numerator": 1
+        }
+      },
+      {
+        "age": 2,
+        "mean_performance": {
+          "denominator": 1,
+          "numerator": 10
+        }
+      },
+      {
+        "age": 3,
+        "mean_performance": {
+          "denominator": 1,
+          "numerator": 10
+        }
+      }
+    ],
+    "metrics": [
+      {
+        "denominator": 1,
+        "detail_code": null,
+        "id": "adaptation",
+        "numerator": 1
+      },
+      {
+        "denominator": 1,
+        "detail_code": null,
+        "id": "divergence",
+        "numerator": 9
+      },
+      {
+        "denominator": 1,
+        "detail_code": null,
+        "id": "forgetting",
+        "numerator": 0
+      },
+      {
+        "denominator": 1,
+        "detail_code": null,
+        "id": "interference",
+        "numerator": 0
+      },
+      {
+        "denominator": 1,
+        "detail_code": null,
+        "id": "plasticity_loss",
+        "numerator": 9
+      },
+      {
+        "denominator": 10,
+        "detail_code": null,
+        "id": "relearning",
+        "numerator": 10
+      },
+      {
+        "denominator": 10,
+        "detail_code": null,
+        "id": "retention",
+        "numerator": 10
+      },
+      {
+        "denominator": 1,
+        "detail_code": null,
+        "id": "transfer",
+        "numerator": -9
+      }
+    ],
+    "schema": "bonsai.continual-metric-table/v1"
   },
-  "retain_adapt": {
-    "forgetting": 0,
-    "plasticity_loss": 0
-  }
+  "schema": "bonsai.continual-metric-outcomes/v1"
 }

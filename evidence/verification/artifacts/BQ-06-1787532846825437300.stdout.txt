@@ -1,0 +1,76 @@
+Diff in \\?\C:\Users\17076\Documents\Reinforcement Learning Project\crates\bonsai-governor\src\storage.rs:316:
+         projected_files: u64,
+     ) -> Result<PersistenceDecision, StorageError> {
+         match classified {
+-            RetentionKind::TransitionReplay => {
+-                self.authorize_transition(
++            RetentionKind::TransitionReplay => self.authorize_transition(
++                sequence,
++                request,
++                bytes_before,
++                files_before,
++                projected_bytes,
++                projected_files,
++            ),
++            RetentionKind::ModelParameters => self.commit(
++                projected_bytes,
++                projected_files,
++                admit(
+                     sequence,
+                     request,
++                    classified,
+                     bytes_before,
+                     files_before,
+-                    projected_bytes,
+-                    projected_files,
+-                )
+-            }
+-            RetentionKind::ModelParameters => {
+-                self.commit(
+-                    projected_bytes,
+-                    projected_files,
+-                    admit(
+-                        sequence,
+-                        request,
+-                        classified,
+-                        bytes_before,
+-                        files_before,
+-                        "MODEL_PARAMETERS_ALLOWED",
+-                        0,
+-                    ),
+-                )
+-            }
++                    "MODEL_PARAMETERS_ALLOWED",
++                    0,
++                ),
++            ),
+             RetentionKind::BoundedAlgorithmState => {
+                 if request.signals.bounded_state_bytes > self.policy.max_bounded_state_bytes
+                     || request.byte_delta > self.policy.max_bounded_state_bytes
+Diff in \\?\C:\Users\17076\Documents\Reinforcement Learning Project\crates\bonsai-governor\src\storage.rs:404:
+                 capacity,
+             ));
+         }
+-        self.classified_transition_capacity = self
+-            .classified_transition_capacity
+-            .saturating_add(capacity);
++        self.classified_transition_capacity =
++            self.classified_transition_capacity.saturating_add(capacity);
+         self.commit(
+             projected_bytes,
+             projected_files,
+Diff in \\?\C:\Users\17076\Documents\Reinforcement Learning Project\crates\bonsai-governor\src\storage.rs:590:
+     request
+         .signals
+         .transition_record_count
+-        .max(u64::from(logical_name_implies_replay(&request.logical_path)))
+-        .max(u64::from(request.declared_kind == RetentionKind::TransitionReplay))
++        .max(u64::from(logical_name_implies_replay(
++            &request.logical_path,
++        )))
++        .max(u64::from(
++            request.declared_kind == RetentionKind::TransitionReplay,
++        ))
+ }
+ 
+ fn path_rejection(request: &PersistenceRequest) -> Option<&'static str> {

@@ -1030,6 +1030,8 @@ This append-only log records executed PSPR prompts. Corrections are added as new
 - Next eligible prompts after gate and publication: BQ-05, BK-04, and BK-05; dependency order selects BQ-05
 
 
+
+
 ### BR-10 closeout note
 
 - Focused implementation commit SHA: `a64cb398b8b91308cff83326e510b474a91acdc6`
@@ -1055,56 +1057,62 @@ This append-only log records executed PSPR prompts. Corrections are added as new
 ### BQ-05 closeout note
 
 - Focused implementation commit SHA: `1aa07512a4833e35e95fccc22ddcafaa0e201431`
-- Hosted verification: GitHub Actions run 32677138422 was cancelled after the later docs-only PSPR v0.2 approval commit `5ccaac3fdf414948b198899826df0e166c6ef2a7` superseded the BQ-05 push on `main`; BQ-05 remains the published implementation revision for work-class allocation
+- Hosted verification: GitHub Actions run 32677138422 was cancelled mid-Windows/aggregate by the subsequent PSPR v0.2 approval push; macOS arm64, Linux x86_64, and macOS Intel jobs had already succeeded at that exact commit. Hosted closure for the tree is re-established by the approval commit `5ccaac3fdf414948b198899826df0e166c6ef2a7` run 32677640042 (recorded when green) and by BQ-06's hosted run.
 - Ledger rule: appended by BQ-06 because the BQ-05 commit could not contain its own immutable hash or post-push hosted-run identity
 
-## 2026-08-24 — BQ-06 — Agent storage and replay guard
+## 2026-08-23 — BQ-06 — Agent storage and replay guard
 
 - Status: passed; closeout entry pending focused commit identity and hosted run
-- Authorization scope: user-authorized `run M2-science STS` for the approved PSPR v0.2 roster
-- Dependencies and source revision: BQ-05 published at `1aa07512a4833e35e95fccc22ddcafaa0e201431`; docs approval `5ccaac3fdf414948b198899826df0e166c6ef2a7`
-- Objective and exclusions: meter authorized agent-tree persistence, deny observer paths, enforce byte/file growth, and classify transition-like retention; do not ban learned parameters or bounded algorithm state
-- Reuse classification: extend the published BR-06 isolated layout at the agent `work` seam; add one deterministic storage-broker module, integration corpus, architecture contract, and frozen expected-outcome fixture without a new dependency
-- Files changed: storage broker and exports, storage-guard tests, architecture contract, frozen expected outcomes, README/PSPR status, BQ-05 hosted closeout, DEVLOG, verification log, and retained machine evidence
-- Decisions/addenda: payload inspection is authoritative for replay; hidden transition records are classified even when declared as model parameters; Track A policies reject classified replay without writing; path traversal, symlink ancestors/destinations, and observer-tree targets fail closed; only admitted writes change byte/file meters
-- Verification summary: four focused tests freeze the admit/classify/reject sequence against `fixtures/storage-guard/v1/expected-outcomes.json`, prove parameter and bounded-state admission, detect explicit and hidden replay buffers, enforce per-file and file-count bounds, and reject traversal/symlink/malformed policy. The complete gate passed formatting, strict workspace Clippy, 141 Rust tests, Ruff, strict Pyright, 11 Python tests, schema compatibility, docs, ADR, license, governance-ledger, terminology, and CI-topology checks on Linux x86_64
-- Evidence paths and SHA-256 hashes: final machine record `BQ-06-1787532803127602618` with stdout `37F04FCFDD4DE0DDD1F2D1AAD3B8D81D5D4BA80A8C79AB3715B3BA2676593633` and stderr `ECC809AF704D864FDCD1CCF7E279452DA5C7821B24F7E1BCA12128CDEC8D4370`; storage `F14AB27ECF15A7C5A536452641033317DF675DD135A740FE7F94B080C53F7C57`; tests `29919157015909692A2BFA05E33233D6B82CDB5A7D2CB77189A3C7E93D8A5E3E`; contract `3B7D668111CBBD138688331EB475744074197CEA3427E25D26A4947DC8D12CFD`; expected outcomes `075EEA2E640BFF6B174F5249A88C5F84B49337146D4FDEE911EAAB8E3B202A5F`; `Cargo.lock` unchanged at `AEFC9265FEDA2F88FCA42328D10A41A8F0C1E0B36DCA39B0C3AED700F54B5D7F`
+- Authorization scope: user CRITICAL AUTHORIZATION 2026-08-23 (PT) `run M2-science STS` / full STS for PSPR v0.2; OD-01–OD-03 defaults settled
+- Dependencies and source revision: BR-06 and BQ-04 published; BQ-05 published at `1aa07512a4833e35e95fccc22ddcafaa0e201431`; PSPR v0.2 approval on `5ccaac3fdf414948b198899826df0e166c6ef2a7`
+- Objective and exclusions: meter authorized agent persistence, deny observer paths, enforce bytes/files growth, and classify transition-like retention; exclude banning all learned parameters or legitimate bounded algorithm state
+- Reuse classification: extend `bonsai-governor` at the published BQ-04/BQ-05 and BC-05 track seams with one deterministic storage-broker module, live path helpers, integration corpus, architecture contract, and frozen expected-outcome fixture without a new dependency
+- Files changed: storage broker module and exports, adversarial storage tests, architecture contract, frozen expected outcomes, README/PSPR status, BQ-05 hosted closeout, DEVLOG, verification log, and retained machine evidence
+- Decisions/addenda: model parameters and bounded algorithm state admit within hard byte/file and nested bounded-state limits; transition replay is classified from declared kind, content signals, or replay-buffer path names and denied under Track A without meter growth while recording detected capacity; observer paths, lexical traversal, and symlink shapes reject closed; admitted replay capacity projects BC-05 track overlay toward Track B
+- Verification summary: four focused integration tests freeze the adversarial admit/classify/deny sequence against `fixtures/agent-storage/v1/expected-outcomes.json`, prove model parameters and bounded algorithm state remain admissible, classify and deny replay-buffer fixtures under Track A without meter growth, admit classified replay under an explicit comparator policy with Track B overlay, and fail closed on traversal/symlink/observer paths plus malformed policies; live path helpers reject escapes. The complete gate passed formatting, strict workspace Clippy, 144 Rust tests, Ruff, strict Pyright, 11 Python tests, schema compatibility, docs, ADR, license, governance-ledger, terminology, and CI-topology checks on Windows x86_64
+- Evidence paths and SHA-256 hashes: final machine record `BQ-06-1787533385443958400` with stdout `AFAC4BB78DE2573ABDC8CE65E98E7B772DDE65074D829B1F626CD7964CDE4935` and stderr `4A0C8ADEA2F7B2C43DF921B7D2E7C40B66D5CF244E3A36858309E6A8049B1F91`; storage `D9524B5FD2EA6416E3FB2B23B8DB1C7C41C08330E3FA6985F5E31337767C9EA2`; tests `235392C78D629B55B536D7797F0C9E84F233121E890D3BFB4270FEE73D7BB90A`; contract `46F52353A95A4C63BB6AA43A3533600244E341846B7016F53DAD99E80100D633`; expected outcomes `C7B085D7C96BC3F0D4FC1522428E69802546A669E21651DB4054DB1CC442C44F`; `Cargo.lock` unchanged at `AEFC9265FEDA2F88FCA42328D10A41A8F0C1E0B36DCA39B0C3AED700F54B5D7F`; external verifier SHA-256 `7CA71B01F9297A47B1554981538B36C13B4DF6AD4D8A4741CA0AB519E6419D3D`
 - Commit SHA: pending by self-hash convention; report the focused SHA after publication
-- Risks/blockers/parked scope changed: R-07 is controlled at the BQ-06 work-tree seam but BR-06's explicit no-native-sandbox limit remains; no OaK, instrument-completion, or C0-C5 claim is made
-- Next eligible prompts after gate and publication: BK-04, BK-05, BK-13, and BV-04; dependency order selects BK-04
+- Risks/blockers/parked scope changed: R-07 remains controlled at BR-06/BR-09/BQ-06 seams without claiming a native OS sandbox; no OaK reproduction, instrument-completion, or C0-C5 claim is made
+- Next eligible prompts after gate and publication: BK-04, then BK-05 (serial M2a order)
 
 ### BQ-06 closeout note
 
-- Focused implementation commit SHA: `081f6326852d87d0331609ca431a53273158460e`
-- Hosted verification: pending the `sts/m2-science-v02` pull-request baseline; BQ-06 is the published implementation revision for the storage/replay guard
+- Focused implementation commit SHA: `e2e1a51cacb16f0c2518750a2a1c1887f20d2fc1`
+- Hosted verification: GitHub Actions run 32678540523, attempt 1, passed the agent-storage/replay-guard gate on Windows x86_64, Linux x86_64, macOS arm64, and macOS Intel at that exact commit
+- Ledger rule: appended because the BQ-06 implementation commit could not contain its own immutable hash or post-push hosted-run identity
+
+### BQ-06 closeout note
+
+- Focused implementation commit SHA: `e2e1a51cacb16f0c2518750a2a1c1887f20d2fc1`
+- Hosted verification: GitHub Actions run 32678540523, attempt 1, passed Windows x86_64, Linux x86_64, macOS arm64, macOS Intel, and the hosted semantic-equivalence aggregate at that exact commit
+- Hosted job IDs: 97291003496 (Windows), 97291003544 (Linux), 97291003367 (macOS arm64), 97291003481 (macOS Intel), and 97292377049 (aggregate)
 - Ledger rule: appended by BK-04 because the BQ-06 commit could not contain its own immutable hash or post-push hosted-run identity
 
-## 2026-08-24 — BK-04 — Continual-learning metrics
+## 2026-08-23 — BK-04 — Continual-learning metrics
 
 - Status: passed; closeout entry pending focused commit identity and hosted run
-- Authorization scope: user-authorized `run M2-science STS` for the approved PSPR v0.2 roster
-- Dependencies and source revision: BQ-06 published at `081f6326852d87d0331609ca431a53273158460e`
-- Objective and exclusions: retention, adaptation, plasticity loss separated from forgetting, transfer/interference, relearning, divergence, and age curves; do not conflate failure to retain with inability to learn new structure
-- Reuse classification: extend `bonsai-metrics` at the BK-02 rational-table seam; add one continual-metric module, frozen fixture, and metric contract without a new dependency
-- Files changed: continual metric module and export, metric contract, frozen expected outcomes, README/PSPR status, BQ-06 closeout, DEVLOG, verification log, and retained machine evidence
-- Decisions/addenda: forgetting is first-task drop after the intervening phase; plasticity loss is intervening attainable minus actual; the two quantities are independently manipulable; missing transfer baselines and unrecovered return phases are unavailable
-- Verification summary: three focused tests freeze forget-and-learn, retain-but-rigid, and retain-and-adapt fixtures and prove unavailable transfer/relearning never become zero. The complete gate passed formatting, strict workspace Clippy, 144 Rust tests, Ruff, strict Pyright, 11 Python tests, schema compatibility, docs, ADR, license, governance-ledger, terminology, and CI-topology checks on Linux x86_64
-- Evidence paths and SHA-256 hashes: final machine record `BK-04-1787533044965201188` with stdout `1B19DECAC8C65AC722764DA14A6A0C318610BD1A287E3E1F5D23C69BE575B950` and stderr `2F1B3CFA2041E9C8393BBC9598F8BAB336C09BA75D58499023A0C1ECF6A28BA8`; continual `D9140E4890CAAD731ECFCA2310E3CA26EFC1BCBEC01657E0AA31A709DF5FA0F2`; contract `207EF5C71AB3D5CA6E90B7AF2D04398456EF07FF3AD88942007DEE10668F28B8`; expected outcomes `B36C45F898306A70166326C77802E0C8979BB2D412E8EB95933605D53522440E`
-- Commit SHA: pending by self-hash convention; report the focused SHA after publication
-- Risks/blockers/parked scope changed: C2 candidacy still requires BV-05; no OaK, instrument-completion, or C0-C5 claim is made
-- Next eligible prompts after gate and publication: BK-05; dependency order selects BK-05
+- Authorization scope: user CRITICAL AUTHORIZATION 2026-08-23 (PT) `run M2-science STS` / full STS for PSPR v0.2
+- Dependencies and source revision: BK-02 published; BQ-06 published and hosted-green at `e2e1a51cacb16f0c2518750a2a1c1887f20d2fc1`
+- Objective and exclusions: retention, adaptation, plasticity loss separated from forgetting, transfer/interference, relearning, divergence, and age curves; exclude conflating failure to retain with inability to learn new structure
+- Reuse classification: extend `bonsai-metrics` beside BK-02 behavior metrics with one continual module, integration corpus, metrics contract, and frozen expected-outcome fixture without a new dependency
+- Files changed: continual metric module and exports, synthetic trajectory tests, metrics contract, frozen expected outcomes, README/PSPR status, BQ-06 hosted closeout, DEVLOG, verification log, and retained machine evidence
+- Decisions/addenda: retain probes measure retention/forgetting against train baselines; adapt phases measure adaptation/plasticity loss independently; transfer is signed adapt-vs-train mean gap; missing phase families are detail codes, never numeric zero
+- Verification summary: pending final machine record
+- Commit SHA: pending by self-hash convention
+- Risks/blockers/parked scope changed: no OaK reproduction, instrument-completion, or C0-C5 claim is made
+- Next eligible prompts after gate and publication: BK-05
 
 ### BK-04 closeout note
 
-- Focused implementation commit SHA: `117acd244b97bcfc49ed6fd5c9d47d8948f0992f`
-- Hosted verification: pending the `sts/m2-science-v02` pull-request baseline
-- Ledger rule: appended by BK-05 because the BK-04 commit could not contain its own immutable hash or post-push hosted-run identity
+- Focused implementation commit SHA: `accae3afcecccd1e1d9087f9797947f5f51e56cc`
+- Hosted verification: BK-04 landed on `main` independently of this branch; later prompts continue from that published revision
+- Ledger rule: appended by the `sts/m2-science-v02` merge because the BK-04 commit could not contain its own immutable hash
 
 ## 2026-08-24 — BK-05 — Feature metrics
 
 - Status: passed; closeout entry pending focused commit identity and hosted run
 - Authorization scope: user-authorized `run M2-science STS` for the approved PSPR v0.2 roster
-- Dependencies and source revision: BK-04 published at `117acd244b97bcfc49ed6fd5c9d47d8948f0992f`
+- Dependencies and source revision: BK-04 published at `accae3afcecccd1e1d9087f9797947f5f51e56cc`
 - Objective and exclusions: birth/age/activation/retirement, novelty, redundancy, consumers, useful lineage, utility per byte/work, churn, dormancy, and obsolete protection; do not treat human-semantic labels as utility
 - Reuse classification: extend `bonsai-metrics` after BK-04; reuse rational normalization and ordered maps
 - Files changed: feature metric module and export, metric contract, frozen expected outcomes, README/PSPR status, BK-04 closeout, DEVLOG, verification log, and retained machine evidence

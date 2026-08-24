@@ -1,7 +1,7 @@
 # Continual-learning metrics
 
-BK-04 separates retention, adaptation, forgetting, and plasticity loss. Forgetting is the drop on the first task after an intervening task. Plasticity loss is the shortfall of intervening-task performance versus that phase's attainable score. The two quantities are independently manipulable and must not be collapsed into a single "failed to retain" score.
+BK-04 derives retention, forgetting, adaptation, plasticity loss, transfer, interference, relearning, divergence, and exact-age performance curves from ordered multi-task traces.
 
-The engine also reports transfer against an optional no-prior baseline, interference (the same first-task drop), relearning steps until competency returns, phase divergence, and exact-age performance curves. Missing transfer baselines or unrecovered return phases are unavailable, never numeric zero.
+Retain probes measure retention and forgetting against prior train baselines. Adapt phases measure adaptation and plasticity loss independently, so a trajectory may forget while remaining plastic, or lose plasticity while retaining prior competence. Transfer is the signed gap between adapt and train means. Interference mirrors retain drops. Relearning is the ratio of relearn performance to the original train baseline. Divergence is the lifetime performance range. Missing phase families are explicit detail codes, never numeric zero.
 
-Synthetic fixtures at `fixtures/continual-metrics/v1/expected-outcomes.json` freeze a forget-and-learn case, a retain-but-rigid case, and a retain-and-adapt case.
+The committed corpus at `fixtures/continual-metrics/v1/expected-outcomes.json` freezes one forgetting-heavy and one plasticity-loss-heavy synthetic trajectory with distinct metric signs.

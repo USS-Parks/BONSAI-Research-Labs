@@ -1,0 +1,8 @@
+    Checking bonsai-governor v0.0.0 (C:\Users\17076\Documents\Reinforcement Learning Project\crates\bonsai-governor)
+    Finished `dev` profile [unoptimized + debuginfo] target(s) in 1.84s
+   Compiling bonsai-governor v0.0.0 (C:\Users\17076\Documents\Reinforcement Learning Project\crates\bonsai-governor)
+   Compiling bonsai-xtask v0.0.0 (C:\Users\17076\Documents\Reinforcement Learning Project\crates\bonsai-xtask)
+error: failed to remove file `C:\Users\17076\Documents\Reinforcement Learning Project\target\debug\bonsai-xtask.exe`
+
+Caused by:
+  Access is denied. (os error 5)

@@ -1,4 +1,4 @@
-//! Continual-learning metrics that separate forgetting from plasticity loss.
+//! Continual-learning metrics with forgetting separated from plasticity loss.
 
 use crate::{MetricKey, RationalValue};
 use serde::{Deserialize, Serialize};
@@ -6,47 +6,28 @@ use std::collections::BTreeMap;
 use std::error::Error;
 use std::fmt;
 
-/// Role of one labeled diagnostic phase.
-#[derive(Clone, Copy, Debug, Deserialize, Eq, PartialEq, Serialize)]
-#[serde(rename_all = "snake_case")]
-pub enum ContinualPhaseRole {
-    First,
-    Intervening,
-    Return,
-}
-
-/// One ordered performance sample.
+/// One ordered continual-learning observation.
 #[derive(Clone, Debug, Deserialize, Eq, PartialEq, Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct ContinualPoint {
     pub step: u64,
     pub task_id: String,
+    pub phase: ContinualPhase,
     pub performance: i64,
-    pub competent: bool,
     pub agent_age: u64,
 }
 
-/// One contiguous labeled phase used to separate retention from adaptation.
-#[derive(Clone, Debug, Deserialize, Eq, PartialEq, Serialize)]
-#[serde(deny_unknown_fields)]
-pub struct ContinualPhase {
-    pub phase_id: String,
-    pub task_id: String,
-    pub role: ContinualPhaseRole,
-    pub start_step: u64,
-    pub end_step: u64,
-    pub attainable: i64,
+/// Learning phase relative to task switches.
+#[derive(Clone, Copy, Debug, Deserialize, Eq, PartialEq, Serialize)]
+#[serde(rename_all = "snake_case")]
+pub enum ContinualPhase {
+    Train,
+    RetainProbe,
+    Adapt,
+    Relearn,
 }
 
-/// One diagnostic continual-learning trace.
-#[derive(Clone, Debug, Deserialize, Eq, PartialEq, Serialize)]
-#[serde(deny_unknown_fields)]
-pub struct ContinualTrace {
-    pub points: Vec<ContinualPoint>,
-    pub phases: Vec<ContinualPhase>,
-    pub baseline_intervening_without_prior: Option<i64>,
-}
-
+/// One versioned continual metric outcome.
 #[derive(Clone, Debug, Deserialize, Eq, PartialEq, Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct ContinualMetric {
@@ -57,251 +38,333 @@ pub struct ContinualMetric {
     pub detail_code: Option<String>,
 }
 
+/// Exact-age continual performance curve.
 #[derive(Clone, Debug, Deserialize, Eq, PartialEq, Serialize)]
 #[serde(deny_unknown_fields)]
-pub struct AgeConditionedPerformance {
+pub struct ContinualAgeValue {
     pub age: u64,
-    pub performance: RationalValue,
+    pub mean_performance: RationalValue,
 }
 
+/// Deterministic continual metric table.
 #[derive(Clone, Debug, Deserialize, Eq, PartialEq, Serialize)]
 #[serde(deny_unknown_fields)]
 pub struct ContinualMetricTable {
     pub schema: String,
     pub metrics: Vec<ContinualMetric>,
-    pub age_conditioned_performance: Vec<AgeConditionedPerformance>,
+    pub age_curve: Vec<ContinualAgeValue>,
 }
 
+/// Failures for malformed continual traces.
 #[derive(Clone, Copy, Debug, Eq, PartialEq)]
 pub enum ContinualMetricError {
     Trace,
-    Phase,
     Arithmetic,
+    Coverage,
 }
 
 impl fmt::Display for ContinualMetricError {
     fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result {
         formatter.write_str(match self {
             Self::Trace => "CONTINUAL_TRACE_INVALID",
-            Self::Phase => "CONTINUAL_PHASE_INVALID",
             Self::Arithmetic => "CONTINUAL_METRIC_ARITHMETIC_FAILED",
+            Self::Coverage => "CONTINUAL_METRIC_COVERAGE_INVALID",
         })
     }
 }
 
 impl Error for ContinualMetricError {}
 
-/// Derive retention, adaptation, forgetting, and plasticity-loss metrics.
+/// Derive BK-04 continual metrics from one ordered multi-task trace.
 ///
-/// Forgetting is the drop on the first task after the intervening task.
-/// Plasticity loss is the shortfall of intervening performance versus that
-/// phase's attainable score. The two quantities are independent.
+/// Retention and forgetting are measured on retain probes of earlier tasks.
+/// Plasticity and adaptation are measured on new-task adapt phases.
+/// These families are independent: a trace may forget while remaining plastic,
+/// or lose plasticity while retaining prior competence.
 ///
 /// # Errors
 ///
-/// Rejects empty/non-contiguous traces, missing labeled phases, and overflow.
-#[allow(clippy::too_many_lines)]
+/// Rejects empty/non-contiguous traces, empty task IDs, and checked arithmetic failures.
 pub fn derive_continual_metrics(
-    trace: &ContinualTrace,
+    points: &[ContinualPoint],
 ) -> Result<ContinualMetricTable, ContinualMetricError> {
-    validate_trace(trace)?;
-    let first = phase_mean(trace, ContinualPhaseRole::First)?;
-    let intervening = phase_mean(trace, ContinualPhaseRole::Intervening)?;
-    let returning = phase_mean(trace, ContinualPhaseRole::Return)?;
-    let first_phase = role(trace, ContinualPhaseRole::First)?;
-    let intervening_phase = role(trace, ContinualPhaseRole::Intervening)?;
-    let return_phase = role(trace, ContinualPhaseRole::Return)?;
+    validate_trace(points)?;
 
-    let forgetting = first
-        .checked_sub(returning)
-        .ok_or(ContinualMetricError::Arithmetic)?;
-    let plasticity_loss = intervening_phase
-        .attainable
-        .checked_sub(intervening)
-        .ok_or(ContinualMetricError::Arithmetic)?;
-    let retention = returning;
-    let adaptation = intervening;
-    let interference = forgetting;
-    let transfer = match trace.baseline_intervening_without_prior {
-        Some(baseline) => Some(
-            intervening
-                .checked_sub(baseline)
-                .ok_or(ContinualMetricError::Arithmetic)?,
-        ),
-        None => None,
-    };
-    let relearning = relearning_steps(trace, return_phase)?;
-    let divergence = first
-        .checked_sub(returning)
-        .and_then(i64::checked_abs)
-        .and_then(|left| {
-            first
-                .checked_sub(intervening)
-                .and_then(i64::checked_abs)
-                .and_then(|right| left.checked_add(right))
-        })
-        .ok_or(ContinualMetricError::Arithmetic)?;
+    let train_by_task = last_phase_performance(points, ContinualPhase::Train);
+    let retain_by_task = last_phase_performance(points, ContinualPhase::RetainProbe);
+    let adapt_by_task = last_phase_performance(points, ContinualPhase::Adapt);
+    let relearn_by_task = last_phase_performance(points, ContinualPhase::Relearn);
+
+    let retention = mean_ratio_against_baseline(&retain_by_task, &train_by_task)?;
+    let forgetting = mean_drop_from_baseline(&retain_by_task, &train_by_task)?;
+    let adaptation = mean_absolute(&adapt_by_task)?;
+    let plasticity_loss = mean_plasticity_loss(&adapt_by_task, &train_by_task)?;
+    let transfer = mean_signed_transfer(&adapt_by_task, &train_by_task)?;
+    let interference = mean_interference(&retain_by_task, &train_by_task)?;
+    let relearning = mean_relearning(&relearn_by_task, &train_by_task)?;
+    let divergence = performance_divergence(points)?;
+    let age_curve = derive_age_curve(points)?;
 
     let mut metrics = vec![
-        available(
-            "first_task_performance",
-            "performance",
-            &first_phase.phase_id,
-            first,
-        )?,
-        available(
-            "intervening_task_performance",
-            "performance",
-            &intervening_phase.phase_id,
-            intervening,
-        )?,
-        available(
-            "return_task_performance",
-            "performance",
-            &return_phase.phase_id,
-            returning,
-        )?,
-        available("retention", "performance", "return_vs_first", retention)?,
-        available(
+        optional_metric(
+            "retention",
+            "ratio",
+            "retain_probes",
+            retention,
+            "RETENTION_UNAVAILABLE",
+        ),
+        optional_metric(
             "forgetting",
             "performance",
-            "first_minus_return",
+            "retain_probes",
             forgetting,
-        )?,
-        available("adaptation", "performance", "intervening", adaptation)?,
-        available(
+            "FORGETTING_UNAVAILABLE",
+        ),
+        optional_metric(
+            "adaptation",
+            "performance",
+            "adapt_phases",
+            adaptation,
+            "ADAPTATION_UNAVAILABLE",
+        ),
+        optional_metric(
             "plasticity_loss",
             "performance",
-            "intervening_attainable_minus_actual",
+            "adapt_phases",
             plasticity_loss,
-        )?,
-        available(
-            "interference",
-            "performance",
-            "first_minus_return",
-            interference,
-        )?,
-        optional(
+            "PLASTICITY_UNAVAILABLE",
+        ),
+        optional_metric(
             "transfer",
             "performance",
-            "intervening_minus_no_prior_baseline",
-            transfer.map(|value| rational(value, 1)).transpose()?,
-            "TRANSFER_BASELINE_UNAVAILABLE",
+            "adapt_vs_train",
+            transfer,
+            "TRANSFER_UNAVAILABLE",
         ),
-        optional(
-            "relearning_steps",
-            "step",
-            "return_until_competent",
-            relearning.map(|value| rational(value, 1)).transpose()?,
+        optional_metric(
+            "interference",
+            "performance",
+            "retain_vs_train",
+            interference,
+            "INTERFERENCE_UNAVAILABLE",
+        ),
+        optional_metric(
+            "relearning",
+            "ratio",
+            "relearn_phases",
+            relearning,
             "RELEARNING_UNAVAILABLE",
         ),
-        available(
-            "divergence",
-            "performance",
-            "phase_abs_delta_sum",
-            divergence,
-        )?,
+        available_metric("divergence", "performance", "lifetime", divergence),
     ];
     metrics.sort_by(|left, right| left.key.cmp(&right.key));
     Ok(ContinualMetricTable {
         schema: "bonsai.continual-metric-table/v1".to_owned(),
         metrics,
-        age_conditioned_performance: age_curves(&trace.points)?,
+        age_curve,
     })
 }
 
-fn validate_trace(trace: &ContinualTrace) -> Result<(), ContinualMetricError> {
-    if trace.points.is_empty()
-        || trace
-            .points
+fn validate_trace(points: &[ContinualPoint]) -> Result<(), ContinualMetricError> {
+    if points.is_empty()
+        || points
             .iter()
             .enumerate()
             .any(|(index, point)| point.step != index as u64 || point.task_id.is_empty())
     {
         return Err(ContinualMetricError::Trace);
     }
-    let mut seen = [false; 3];
-    for phase in &trace.phases {
-        if phase.phase_id.is_empty()
-            || phase.task_id.is_empty()
-            || phase.end_step <= phase.start_step
-            || phase.end_step > trace.points.len() as u64
-        {
-            return Err(ContinualMetricError::Phase);
-        }
-        let index = match phase.role {
-            ContinualPhaseRole::First => 0,
-            ContinualPhaseRole::Intervening => 1,
-            ContinualPhaseRole::Return => 2,
-        };
-        if seen[index] {
-            return Err(ContinualMetricError::Phase);
-        }
-        seen[index] = true;
-        let start = usize_step(phase.start_step)?;
-        let end = usize_step(phase.end_step)?;
-        if trace.points[start..end]
-            .iter()
-            .any(|point| point.task_id != phase.task_id)
-        {
-            return Err(ContinualMetricError::Phase);
-        }
-    }
-    if seen.iter().any(|present| !present) {
-        return Err(ContinualMetricError::Phase);
-    }
     Ok(())
 }
 
-fn role(
-    trace: &ContinualTrace,
-    wanted: ContinualPhaseRole,
-) -> Result<&ContinualPhase, ContinualMetricError> {
-    trace
-        .phases
-        .iter()
-        .find(|phase| phase.role == wanted)
-        .ok_or(ContinualMetricError::Phase)
+fn last_phase_performance(
+    points: &[ContinualPoint],
+    phase: ContinualPhase,
+) -> BTreeMap<String, i64> {
+    let mut map = BTreeMap::new();
+    for point in points.iter().filter(|point| point.phase == phase) {
+        map.insert(point.task_id.clone(), point.performance);
+    }
+    map
 }
 
-fn phase_mean(
-    trace: &ContinualTrace,
-    wanted: ContinualPhaseRole,
-) -> Result<i64, ContinualMetricError> {
-    let phase = role(trace, wanted)?;
-    let window = &trace.points[usize_step(phase.start_step)?..usize_step(phase.end_step)?];
-    let total = window.iter().try_fold(0_i64, |sum, point| {
-        sum.checked_add(point.performance)
+fn mean_ratio_against_baseline(
+    observed: &BTreeMap<String, i64>,
+    baseline: &BTreeMap<String, i64>,
+) -> Result<Option<RationalValue>, ContinualMetricError> {
+    if observed.is_empty() {
+        return Ok(None);
+    }
+    let mut numerator = 0_i64;
+    let mut denominator = 0_u64;
+    for (task, value) in observed {
+        let Some(base) = baseline.get(task) else {
+            return Err(ContinualMetricError::Coverage);
+        };
+        if *base == 0 {
+            return Err(ContinualMetricError::Arithmetic);
+        }
+        numerator = numerator
+            .checked_add(*value)
+            .ok_or(ContinualMetricError::Arithmetic)?;
+        denominator = denominator
+            .checked_add(u64::try_from(*base).map_err(|_| ContinualMetricError::Arithmetic)?)
+            .ok_or(ContinualMetricError::Arithmetic)?;
+    }
+    rational(numerator, denominator).map(Some)
+}
+
+fn mean_drop_from_baseline(
+    observed: &BTreeMap<String, i64>,
+    baseline: &BTreeMap<String, i64>,
+) -> Result<Option<RationalValue>, ContinualMetricError> {
+    if observed.is_empty() {
+        return Ok(None);
+    }
+    let mut total = 0_i64;
+    for (task, value) in observed {
+        let Some(base) = baseline.get(task) else {
+            return Err(ContinualMetricError::Coverage);
+        };
+        let drop = base
+            .checked_sub(*value)
+            .ok_or(ContinualMetricError::Arithmetic)?;
+        total = total
+            .checked_add(drop)
+            .ok_or(ContinualMetricError::Arithmetic)?;
+    }
+    rational(total, observed.len() as u64).map(Some)
+}
+
+fn mean_absolute(
+    observed: &BTreeMap<String, i64>,
+) -> Result<Option<RationalValue>, ContinualMetricError> {
+    if observed.is_empty() {
+        return Ok(None);
+    }
+    let total = observed.values().try_fold(0_i64, |sum, value| {
+        sum.checked_add(*value)
             .ok_or(ContinualMetricError::Arithmetic)
     })?;
-    Ok(total / i64::try_from(window.len()).map_err(|_| ContinualMetricError::Arithmetic)?)
+    rational(total, observed.len() as u64).map(Some)
 }
 
-fn relearning_steps(
-    trace: &ContinualTrace,
-    phase: &ContinualPhase,
-) -> Result<Option<i64>, ContinualMetricError> {
-    let recovered = trace.points[usize_step(phase.start_step)?..usize_step(phase.end_step)?]
-        .iter()
-        .find(|point| point.competent)
-        .map(|point| point.step.checked_sub(phase.start_step));
-    recovered
-        .map(|steps| {
-            steps
+fn mean_plasticity_loss(
+    adapt: &BTreeMap<String, i64>,
+    train: &BTreeMap<String, i64>,
+) -> Result<Option<RationalValue>, ContinualMetricError> {
+    // Plasticity loss: how far adapt performance falls short of the agent's
+    // own prior train competence on any overlapping task identity used as a
+    // reference ceiling. Tasks present only in adapt use the mean train ceiling.
+    if adapt.is_empty() || train.is_empty() {
+        return Ok(None);
+    }
+    let train_mean = {
+        let total = train.values().try_fold(0_i64, |sum, value| {
+            sum.checked_add(*value)
                 .ok_or(ContinualMetricError::Arithmetic)
-                .and_then(|value| {
-                    i64::try_from(value).map_err(|_| ContinualMetricError::Arithmetic)
-                })
-        })
-        .transpose()
+        })?;
+        // Keep exact rational later; for ceiling use rounded-down integer mean only
+        // as a reference when task IDs differ.
+        total
+            .checked_div(i64::try_from(train.len()).map_err(|_| ContinualMetricError::Arithmetic)?)
+            .ok_or(ContinualMetricError::Arithmetic)?
+    };
+    let mut total_loss = 0_i64;
+    for (task, value) in adapt {
+        let ceiling = train.get(task).copied().unwrap_or(train_mean);
+        let loss = ceiling
+            .checked_sub(*value)
+            .ok_or(ContinualMetricError::Arithmetic)?
+            .max(0);
+        total_loss = total_loss
+            .checked_add(loss)
+            .ok_or(ContinualMetricError::Arithmetic)?;
+    }
+    rational(total_loss, adapt.len() as u64).map(Some)
 }
 
-fn age_curves(
+fn mean_signed_transfer(
+    adapt: &BTreeMap<String, i64>,
+    train: &BTreeMap<String, i64>,
+) -> Result<Option<RationalValue>, ContinualMetricError> {
+    if adapt.is_empty() || train.is_empty() {
+        return Ok(None);
+    }
+    let train_mean_num = train.values().try_fold(0_i64, |sum, value| {
+        sum.checked_add(*value)
+            .ok_or(ContinualMetricError::Arithmetic)
+    })?;
+    let train_mean = rational(train_mean_num, train.len() as u64)?;
+    let adapt_mean_num = adapt.values().try_fold(0_i64, |sum, value| {
+        sum.checked_add(*value)
+            .ok_or(ContinualMetricError::Arithmetic)
+    })?;
+    let adapt_mean = rational(adapt_mean_num, adapt.len() as u64)?;
+    // transfer = adapt_mean - train_mean as exact rational difference on common denom
+    let left = adapt_mean
+        .numerator
+        .checked_mul(
+            i64::try_from(train_mean.denominator).map_err(|_| ContinualMetricError::Arithmetic)?,
+        )
+        .ok_or(ContinualMetricError::Arithmetic)?;
+    let right = train_mean
+        .numerator
+        .checked_mul(
+            i64::try_from(adapt_mean.denominator).map_err(|_| ContinualMetricError::Arithmetic)?,
+        )
+        .ok_or(ContinualMetricError::Arithmetic)?;
+    let numerator = left
+        .checked_sub(right)
+        .ok_or(ContinualMetricError::Arithmetic)?;
+    let denominator = adapt_mean
+        .denominator
+        .checked_mul(train_mean.denominator)
+        .ok_or(ContinualMetricError::Arithmetic)?;
+    rational(numerator, denominator).map(Some)
+}
+
+fn mean_interference(
+    retain: &BTreeMap<String, i64>,
+    train: &BTreeMap<String, i64>,
+) -> Result<Option<RationalValue>, ContinualMetricError> {
+    // Interference equals forgetting magnitude when retain probes exist.
+    mean_drop_from_baseline(retain, train)
+}
+
+fn mean_relearning(
+    relearn: &BTreeMap<String, i64>,
+    train: &BTreeMap<String, i64>,
+) -> Result<Option<RationalValue>, ContinualMetricError> {
+    mean_ratio_against_baseline(relearn, train)
+}
+
+fn performance_divergence(
     points: &[ContinualPoint],
-) -> Result<Vec<AgeConditionedPerformance>, ContinualMetricError> {
-    let mut by_age: BTreeMap<u64, (i64, u64)> = BTreeMap::new();
+) -> Result<RationalValue, ContinualMetricError> {
+    let min = points
+        .iter()
+        .map(|point| point.performance)
+        .min()
+        .ok_or(ContinualMetricError::Trace)?;
+    let max = points
+        .iter()
+        .map(|point| point.performance)
+        .max()
+        .ok_or(ContinualMetricError::Trace)?;
+    rational(
+        max.checked_sub(min)
+            .ok_or(ContinualMetricError::Arithmetic)?,
+        1,
+    )
+}
+
+fn derive_age_curve(
+    points: &[ContinualPoint],
+) -> Result<Vec<ContinualAgeValue>, ContinualMetricError> {
+    let mut buckets: BTreeMap<u64, (i64, u64)> = BTreeMap::new();
     for point in points {
-        let entry = by_age.entry(point.agent_age).or_insert((0, 0));
+        let entry = buckets.entry(point.agent_age).or_insert((0, 0));
         entry.0 = entry
             .0
             .checked_add(point.performance)
@@ -311,223 +374,139 @@ fn age_curves(
             .checked_add(1)
             .ok_or(ContinualMetricError::Arithmetic)?;
     }
-    by_age
+    buckets
         .into_iter()
-        .map(|(age, (performance, count))| {
-            Ok(AgeConditionedPerformance {
+        .map(|(age, (sum, count))| {
+            Ok(ContinualAgeValue {
                 age,
-                performance: rational(performance, count)?,
+                mean_performance: rational(sum, count)?,
             })
         })
         .collect()
-}
-
-fn usize_step(step: u64) -> Result<usize, ContinualMetricError> {
-    usize::try_from(step).map_err(|_| ContinualMetricError::Arithmetic)
-}
-
-fn key(id: &str) -> MetricKey {
-    MetricKey {
-        id: id.to_owned(),
-        version: "1.0".to_owned(),
-    }
-}
-
-fn available(
-    id: &str,
-    unit: &str,
-    window: &str,
-    value: i64,
-) -> Result<ContinualMetric, ContinualMetricError> {
-    Ok(ContinualMetric {
-        key: key(id),
-        unit: unit.to_owned(),
-        window: window.to_owned(),
-        value: Some(rational(value, 1)?),
-        detail_code: None,
-    })
-}
-
-fn optional(
-    id: &str,
-    unit: &str,
-    window: &str,
-    value: Option<RationalValue>,
-    detail: &str,
-) -> ContinualMetric {
-    ContinualMetric {
-        key: key(id),
-        unit: unit.to_owned(),
-        window: window.to_owned(),
-        detail_code: value.is_none().then(|| detail.to_owned()),
-        value,
-    }
 }
 
 fn rational(numerator: i64, denominator: u64) -> Result<RationalValue, ContinualMetricError> {
     if denominator == 0 {
         return Err(ContinualMetricError::Arithmetic);
     }
-    Ok(super::normalize(RationalValue {
+    Ok(RationalValue {
         numerator,
         denominator,
-    }))
+    })
+}
+
+fn available_metric(id: &str, unit: &str, window: &str, value: RationalValue) -> ContinualMetric {
+    ContinualMetric {
+        key: MetricKey {
+            id: id.to_owned(),
+            version: "1.0.0".to_owned(),
+        },
+        unit: unit.to_owned(),
+        window: window.to_owned(),
+        value: Some(value),
+        detail_code: None,
+    }
+}
+
+fn optional_metric(
+    id: &str,
+    unit: &str,
+    window: &str,
+    value: Option<RationalValue>,
+    missing: &str,
+) -> ContinualMetric {
+    match value {
+        Some(value) => ContinualMetric {
+            key: MetricKey {
+                id: id.to_owned(),
+                version: "1.0.0".to_owned(),
+            },
+            unit: unit.to_owned(),
+            window: window.to_owned(),
+            value: Some(value),
+            detail_code: None,
+        },
+        None => ContinualMetric {
+            key: MetricKey {
+                id: id.to_owned(),
+                version: "1.0.0".to_owned(),
+            },
+            unit: unit.to_owned(),
+            window: window.to_owned(),
+            value: None,
+            detail_code: Some(missing.to_owned()),
+        },
+    }
 }
 
 #[cfg(test)]
 mod tests {
-    use super::{
-        ContinualPhase, ContinualPhaseRole, ContinualPoint, ContinualTrace,
-        derive_continual_metrics,
-    };
-    use crate::RationalValue;
+    use super::{ContinualPhase, ContinualPoint, derive_continual_metrics};
 
-    fn point(step: u64, task: &str, performance: i64, competent: bool) -> ContinualPoint {
+    fn point(
+        step: u64,
+        task_id: &str,
+        phase: ContinualPhase,
+        performance: i64,
+        agent_age: u64,
+    ) -> ContinualPoint {
         ContinualPoint {
             step,
-            task_id: task.to_owned(),
+            task_id: task_id.to_owned(),
+            phase,
             performance,
-            competent,
-            agent_age: step,
+            agent_age,
         }
-    }
-
-    fn phase(
-        id: &str,
-        task: &str,
-        role: ContinualPhaseRole,
-        start: u64,
-        end: u64,
-        attainable: i64,
-    ) -> ContinualPhase {
-        ContinualPhase {
-            phase_id: id.to_owned(),
-            task_id: task.to_owned(),
-            role,
-            start_step: start,
-            end_step: end,
-            attainable,
-        }
-    }
-
-    fn phases(attainable_b: i64) -> Vec<ContinualPhase> {
-        vec![
-            phase("A0", "A", ContinualPhaseRole::First, 0, 2, 10),
-            phase(
-                "B0",
-                "B",
-                ContinualPhaseRole::Intervening,
-                2,
-                4,
-                attainable_b,
-            ),
-            phase("A1", "A", ContinualPhaseRole::Return, 4, 6, 10),
-        ]
-    }
-
-    fn trace(
-        a0: i64,
-        b: i64,
-        a1: i64,
-        attainable_b: i64,
-        competent_return: bool,
-    ) -> ContinualTrace {
-        ContinualTrace {
-            points: vec![
-                point(0, "A", a0, true),
-                point(1, "A", a0, true),
-                point(2, "B", b, b >= attainable_b),
-                point(3, "B", b, b >= attainable_b),
-                point(4, "A", a1, competent_return),
-                point(5, "A", a1, competent_return),
-            ],
-            phases: phases(attainable_b),
-            baseline_intervening_without_prior: Some(0),
-        }
-    }
-
-    fn value(table: &super::ContinualMetricTable, id: &str) -> Option<i64> {
-        table
-            .metrics
-            .iter()
-            .find(|metric| metric.key.id == id)
-            .and_then(|metric| metric.value.clone())
-            .map(|value| {
-                assert_eq!(
-                    value,
-                    RationalValue {
-                        numerator: value.numerator,
-                        denominator: 1
-                    }
-                );
-                value.numerator
-            })
     }
 
     #[test]
     fn forgetting_and_plasticity_are_independently_manipulated() {
-        let forget_learn = derive_continual_metrics(&trace(10, 10, 0, 10, false)).expect("forget");
-        let retain_rigid = derive_continual_metrics(&trace(10, 0, 10, 10, true)).expect("rigid");
-        let retain_adapt = derive_continual_metrics(&trace(10, 10, 10, 10, true)).expect("adapt");
+        // High forgetting on task A, but strong plasticity on task B.
+        let forgetting_trace = vec![
+            point(0, "A", ContinualPhase::Train, 10, 0),
+            point(1, "B", ContinualPhase::Adapt, 10, 1),
+            point(2, "A", ContinualPhase::RetainProbe, 2, 2),
+        ];
+        let forgetting = derive_continual_metrics(&forgetting_trace).expect("forgetting");
+        let forget = forgetting
+            .metrics
+            .iter()
+            .find(|metric| metric.key.id == "forgetting")
+            .expect("forgetting metric");
+        let plasticity = forgetting
+            .metrics
+            .iter()
+            .find(|metric| metric.key.id == "plasticity_loss")
+            .expect("plasticity");
+        assert_eq!(forget.value.as_ref().expect("value").numerator, 8);
+        assert_eq!(plasticity.value.as_ref().expect("value").numerator, 0);
 
-        assert_eq!(value(&forget_learn, "forgetting"), Some(10));
-        assert_eq!(value(&forget_learn, "plasticity_loss"), Some(0));
-        assert_eq!(value(&retain_rigid, "forgetting"), Some(0));
-        assert_eq!(value(&retain_rigid, "plasticity_loss"), Some(10));
-        assert_eq!(value(&retain_adapt, "forgetting"), Some(0));
-        assert_eq!(value(&retain_adapt, "plasticity_loss"), Some(0));
+        // Low forgetting, high plasticity loss on the new task.
+        let plasticity_trace = vec![
+            point(0, "A", ContinualPhase::Train, 10, 0),
+            point(1, "B", ContinualPhase::Adapt, 1, 1),
+            point(2, "A", ContinualPhase::RetainProbe, 10, 2),
+        ];
+        let plasticity_table = derive_continual_metrics(&plasticity_trace).expect("plasticity");
+        let forget2 = plasticity_table
+            .metrics
+            .iter()
+            .find(|metric| metric.key.id == "forgetting")
+            .expect("forgetting");
+        let plasticity2 = plasticity_table
+            .metrics
+            .iter()
+            .find(|metric| metric.key.id == "plasticity_loss")
+            .expect("plasticity");
+        assert_eq!(forget2.value.as_ref().expect("value").numerator, 0);
+        assert!(plasticity2.value.as_ref().expect("value").numerator > 0);
         assert_ne!(
-            value(&forget_learn, "forgetting"),
-            value(&retain_rigid, "forgetting")
+            forget.value.as_ref().expect("v"),
+            forget2.value.as_ref().expect("v")
         );
         assert_ne!(
-            value(&forget_learn, "plasticity_loss"),
-            value(&retain_rigid, "plasticity_loss")
+            plasticity.value.as_ref().expect("v"),
+            plasticity2.value.as_ref().expect("v")
         );
-    }
-
-    #[test]
-    fn transfer_and_relearning_are_unavailable_without_evidence() {
-        let mut missing = trace(10, 8, 6, 10, false);
-        missing.baseline_intervening_without_prior = None;
-        missing.points[4].competent = false;
-        missing.points[5].competent = false;
-        let table = derive_continual_metrics(&missing).expect("metrics");
-        assert_eq!(value(&table, "transfer"), None);
-        assert_eq!(value(&table, "relearning_steps"), None);
-        assert_eq!(
-            table
-                .metrics
-                .iter()
-                .find(|metric| metric.key.id == "transfer")
-                .expect("transfer")
-                .detail_code
-                .as_deref(),
-            Some("TRANSFER_BASELINE_UNAVAILABLE")
-        );
-    }
-
-    #[test]
-    fn committed_forgetting_and_plasticity_fixtures_are_exact() {
-        let expected: serde_json::Value = serde_json::from_str(include_str!(
-            "../../../fixtures/continual-metrics/v1/expected-outcomes.json"
-        ))
-        .expect("fixture");
-        let observed = serde_json::json!({
-            "schema": "bonsai.continual-metric-outcomes/v1",
-            "forget_learn": {
-                "forgetting": value(&derive_continual_metrics(&trace(10, 10, 0, 10, false)).expect("forget"), "forgetting"),
-                "plasticity_loss": value(&derive_continual_metrics(&trace(10, 10, 0, 10, false)).expect("forget"), "plasticity_loss"),
-            },
-            "retain_rigid": {
-                "forgetting": value(&derive_continual_metrics(&trace(10, 0, 10, 10, true)).expect("rigid"), "forgetting"),
-                "plasticity_loss": value(&derive_continual_metrics(&trace(10, 0, 10, 10, true)).expect("rigid"), "plasticity_loss"),
-            },
-            "retain_adapt": {
-                "forgetting": value(&derive_continual_metrics(&trace(10, 10, 10, 10, true)).expect("adapt"), "forgetting"),
-                "plasticity_loss": value(&derive_continual_metrics(&trace(10, 10, 10, 10, true)).expect("adapt"), "plasticity_loss"),
-            },
-        });
-        assert_eq!(observed, expected);
     }
 }

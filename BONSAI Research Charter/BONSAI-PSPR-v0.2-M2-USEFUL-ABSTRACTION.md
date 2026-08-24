@@ -4,7 +4,7 @@
 
 Version: 0.2 (APPROVED)  
 Date: 2026-08-23  
-Status: **APPROVED v0.2** 2026-08-23 (PT) by Basho Parks — OD-01–OD-03 settled; **NOT AUTHORIZED FOR EXECUTION** (awaits `run M2-science STS` / `run it STS`)  
+Status: **APPROVED v0.2** 2026-08-23 (PT) by Basho Parks — OD-01–OD-03 settled; **STS AUTHORIZED** 2026-08-23 (PT) via `run M2-science STS`  
 Author: drafted for Basho Parks; approved by Basho Parks 2026-08-23 (PT)  
 Authoritative local root: `C:\Users\17076\Documents\Reinforcement Learning Project`  
 Remote: `USS-Parks/BONSAI-Research-Labs` (`main` at BQ-05 `1aa0751` or later)  

@@ -1476,6 +1476,8 @@ Machine record `BR-07-1784503142006141500` is not acceptance evidence. The outer
 - Reviewer/attestation: exact seven-check coverage, ternary fail-closed aggregation, deterministic reports, stable failure codes, derived-track enforcement, explicit scientific exclusion, and strict workspace/Python/schema/governance gates passed locally
 
 
+
+
 ## VER-BR10-HOSTED - BR-10 - 2026-07-20T00:49:46Z
 
 - Source revision and dirty state: `a64cb398b8b91308cff83326e510b474a91acdc6`; clean pushed focused implementation revision
@@ -1504,37 +1506,37 @@ Machine record `BR-07-1784503142006141500` is not acceptance evidence. The outer
 - Result: pass locally; hosted Windows/macOS/Linux closure remains attached to the focused commit
 - Reviewer/attestation: hard reservations, deferral reasons, observer-reserve protection, acting non-starvation under adversarial order, and strict workspace/Python/schema/governance gates passed locally; an earlier machine record `BQ-05-1787531504639498800` failed only from a locked local pytest temp/cache path and is superseded by this byte-verified rerun
 
-## VER-BQ06-LOCAL - BQ-06 - 2026-08-24
+## VER-BQ06-LOCAL - BQ-06 - 2026-08-23
 
 - Source revision and dirty state: `5ccaac3fdf414948b198899826df0e166c6ef2a7`; dirty only with BQ-06 implementation, governance, and evidence
-- OS/architecture/physical-or-CI: Linux/x86_64; local; physical/virtual status unknown
-- Toolchain/dependency-lock hashes: Rust 1.96.0; uv 0.11.29; Python 3.12.3; `Cargo.lock` unchanged at `AEFC9265FEDA2F88FCA42328D10A41A8F0C1E0B36DCA39B0C3AED700F54B5D7F`
-- Command: final machine record `BQ-06-1787532803127602618`; full universal/schema/governance gate after implementation and governance closeout
-- Start/end/duration: machine-record Unix UTC nanoseconds `1787532803127602618` / `1787532824091214436` / 20.963609617 s
+- OS/architecture/physical-or-CI: Windows/x86_64; local; physical/virtual status unknown
+- Toolchain/dependency-lock hashes: Rust 1.96.0; locked repository Python environment; `Cargo.lock` unchanged at `AEFC9265FEDA2F88FCA42328D10A41A8F0C1E0B36DCA39B0C3AED700F54B5D7F`
+- Command: final machine record `BQ-06-1787533385443958400`; full universal/schema/governance gate through external verifier copy SHA-256 `7CA71B01F9297A47B1554981538B36C13B4DF6AD4D8A4741CA0AB519E6419D3D` after governance closeout edits
+- Start/end/duration: machine-record Unix UTC nanoseconds `1787533385443958400` / `1787533404902056000` / 19.4585666 s
 - Exit code: 0
-- Stdout/stderr artifact hashes: stdout `37F04FCFDD4DE0DDD1F2D1AAD3B8D81D5D4BA80A8C79AB3715B3BA2676593633`; stderr `ECC809AF704D864FDCD1CCF7E279452DA5C7821B24F7E1BCA12128CDEC8D4370`
-- Fixtures/manifests/bundle IDs: frozen storage-guard outcomes; admitted model-parameter and bounded-state writes; explicit and hidden replay classification; per-file and file-count exhaustion; path/symlink/malformed-policy rejection; complete existing repository corpus
-- Counter availability and privileges: deterministic work-tree persistence only; no adversarial OS sandbox, physical counter, or C0-C5 claim
+- Stdout/stderr artifact hashes: stdout `AFAC4BB78DE2573ABDC8CE65E98E7B772DDE65074D829B1F626CD7964CDE4935`; stderr `4A0C8ADEA2F7B2C43DF921B7D2E7C40B66D5CF244E3A36858309E6A8049B1F91`
+- Fixtures/manifests/bundle IDs: frozen adversarial agent-storage outcomes; legitimate model/algorithm state; replay detection under Track A; allowed-replay Track B overlay; traversal/symlink/observer denials; malformed policies; live path helpers; and complete existing repository corpus
+- Counter availability and privileges: deterministic agent-persistence metering and retention classification only; no native OS sandbox, scientific-utility optimization, or C0-C5 claim
 - Result: pass locally; hosted Windows/macOS/Linux closure remains attached to the focused commit
-- Reviewer/attestation: replay classification, authorized persistence metering, observer/traversal/symlink denial, and strict workspace/Python/schema/governance gates passed locally
+- Reviewer/attestation: byte/file meters, transition-replay classification, observer/traversal/symlink fail-closed paths, Track A denial without meter growth, and strict workspace/Python/schema/governance gates passed locally; earlier machine records before the unlocked-xtask rerun are superseded by this byte-verified pass
 
-## VER-BK04-LOCAL - BK-04 - 2026-08-24
+## VER-BQ06-HOSTED - BQ-06 - 2026-08-24T01:02:59Z
 
-- Source revision and dirty state: `081f6326852d87d0331609ca431a53273158460e`; dirty only with BK-04 implementation, governance, and evidence
-- OS/architecture/physical-or-CI: Linux/x86_64; local; physical/virtual status unknown
-- Toolchain/dependency-lock hashes: Rust 1.96.0; uv 0.11.29; Python 3.12.3; `Cargo.lock` unchanged at `AEFC9265FEDA2F88FCA42328D10A41A8F0C1E0B36DCA39B0C3AED700F54B5D7F`
-- Command: final machine record `BK-04-1787533044965201188`; full universal/schema/governance gate after implementation and governance closeout
-- Start/end/duration: machine-record Unix UTC nanoseconds `1787533044965201188` / `1787533053932135365` / 8.966931294 s
-- Exit code: 0
-- Stdout/stderr artifact hashes: stdout `1B19DECAC8C65AC722764DA14A6A0C318610BD1A287E3E1F5D23C69BE575B950`; stderr `2F1B3CFA2041E9C8393BBC9598F8BAB336C09BA75D58499023A0C1ECF6A28BA8`
-- Fixtures/manifests/bundle IDs: forget-and-learn, retain-but-rigid, and retain-and-adapt continual fixtures; unavailable transfer/relearning cases
-- Counter availability and privileges: deterministic synthetic traces only; no physical counter or C0-C5 claim
-- Result: pass locally; hosted Windows/macOS/Linux closure remains attached to the focused commit
-- Reviewer/attestation: independently manipulated forgetting and plasticity loss, and strict workspace/Python/schema/governance gates passed locally
+- Source revision and dirty state: `e2e1a51cacb16f0c2518750a2a1c1887f20d2fc1`; clean pushed focused implementation revision
+- OS/architecture/physical-or-CI: Windows/x86_64, Linux/x86_64, macOS/arm64, macOS/x86_64; GitHub hosted CI; ephemeral virtual machines
+- Toolchain/dependency-lock hashes: workflow-pinned Rust 1.96.0, Python 3.12, and uv 0.11.29; source locks at the recorded revision
+- Command: GitHub Actions `BONSAI baseline` push run 32678540523, attempt 1
+- Start/end/duration: `2026-08-24T01:02:59Z` / retained by GitHub Actions
+- Exit code: run conclusion `success`
+- Stdout/stderr artifact hashes: retained by GitHub Actions
+- Fixtures/manifests/bundle IDs: agent-storage adversarial corpus, complete existing repository corpus, and unchanged M1 heartbeat aggregate
+- Counter availability and privileges: deterministic agent-persistence fixtures and hosted semantic checks only; no physical counter, hostile-native sandbox, or scientific-quality claim
+- Result: pass; BQ-06 cross-OS gate is closed
+- Reviewer/attestation: authenticated GitHub metadata establishes the exact head SHA and successful four-platform plus aggregate conclusions
 
 ## VER-BK05-LOCAL - BK-05 - 2026-08-24
 
-- Source revision and dirty state: `117acd244b97bcfc49ed6fd5c9d47d8948f0992f`; dirty only with BK-05 implementation, governance, and evidence
+- Source revision and dirty state: `accae3afcecccd1e1d9087f9797947f5f51e56cc`; dirty only with BK-05 implementation, governance, and evidence
 - OS/architecture/physical-or-CI: Linux/x86_64; local; physical/virtual status unknown
 - Toolchain/dependency-lock hashes: Rust 1.96.0; uv 0.11.29; Python 3.12.3; `Cargo.lock` unchanged at `AEFC9265FEDA2F88FCA42328D10A41A8F0C1E0B36DCA39B0C3AED700F54B5D7F`
 - Command: final machine record `BK-05-1787533182634182794`; full universal/schema/governance gate after implementation and governance closeout

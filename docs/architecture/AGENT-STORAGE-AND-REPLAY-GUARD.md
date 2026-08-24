@@ -1,25 +1,28 @@
 # Agent storage and replay guard v1
 
-Status: BQ-06 authority for metered agent persistence and transition-like retention classification.
+Status: BQ-06 authority for metered agent persistence and transition-retention classification.
 
-The supervisor meters authorized writes into `agent/work`. Model parameters and bounded algorithm state remain legal persistence. Transition-shaped records are classified as replay buffers. Observer-tree targets, path traversal, and symlink ancestors or destinations fail closed. The broker does not ban learned parameters or ordinary algorithm counters.
+The external governor brokers agent-owned persistence under one fixed byte and file budget. The broker admits model parameters and bounded algorithm state, classifies transition-like retention, denies observer-tree paths, and fails closed on path traversal or symlink targets. It does not ban legitimate learned parameters, optimize scientific utility, or claim an adversarial operating-system sandbox.
 
-## Policy and metering
+## Policy invariants
 
-A `StoragePolicy` names a stable identity and positive byte, file, and per-file bounds. The per-file bound cannot exceed the lifetime byte bound. Track A policies set `allow_replay=false`. Missing identity, zero bounds, or an inverted per-file bound fail before broker state exists.
+A `StoragePolicy` must identify itself, declare positive `max_bytes`, `max_files`, and `max_bounded_state_bytes`, and keep replay capacity consistent with `allow_transition_replay`. Track A policies set replay capacity to zero. Replay-capable comparator policies must declare a positive capacity. Malformed identity or bounds fail before broker state exists.
 
-Every persist request records declared class, inspected class, outcome, reason, and the exact byte/file meters before and after. Rejected writes leave both meters unchanged. Replacement of an existing regular file charges the size delta and does not consume another file slot.
+## Classification and decisions
 
-## Classification
+Each persistence request carries a logical path, byte/file deltas, declared retention kind, path shape, and content signals. The broker classifies retention before metering:
 
-Payload inspection is authoritative for replay. A JSON document whose `kind` is `replay_buffer`, or that contains a `transitions` array of `{state, action, reward, next_state}` records, is a replay buffer even when the caller declared model parameters. Declared replay is also classified as replay. Model-parameter and algorithm-state documents remain allowed when they do not contain transition records.
+- transition replay from declared kind, transition-shaped content signals, or replay-buffer path names;
+- model parameters when declared and free of transition signals;
+- bounded algorithm state when declared, sized within the policy bound, and free of retained transitions;
+- otherwise unclassified, which rejects without meter growth.
 
-When `allow_replay` is false, a classified replay buffer is rejected with `REPLAY_BUFFER_DETECTED` and is not written. Inspection of the work tree therefore cannot discover hidden transition retention that the broker admitted.
+Observer paths, lexical traversal, and symlink shapes reject with stable codes and leave counters unchanged. Byte or file projections above the policy caps reject with `STORAGE_BYTE_BUDGET_EXHAUSTED` or `STORAGE_FILE_BUDGET_EXHAUSTED`. Under a zero-replay policy, classified transition retention rejects with `TRANSITION_REPLAY_RETENTION_DENIED` while retaining the detected capacity on the decision. Only admission commits checked meter growth.
 
-## Path and observer denial
+## Track consequence
 
-Relative paths must use a bounded number of safe components. Absolute paths, `.`, `..`, empty components, and unsafe characters fail with `STORAGE_PATH_TRAVERSAL` or `STORAGE_REQUEST_INVALID`. Any symlink ancestor or destination fails with `STORAGE_SYMLINK_DENIED`. A resolved path under the observer tree fails with `STORAGE_OBSERVER_PATH_DENIED`.
+Admitted transition retention accumulates `classified_transition_capacity` and projects BC-05 runtime facts through `track_declaration_overlay`. Derived track becomes `B` when capacity is positive. Denied detection still records classification on the decision so silent replay cannot hide, but Track A meters and derived facts remain clean when retention is refused.
 
-The committed corpus at `fixtures/storage-guard/v1/expected-outcomes.json` freezes admitted parameter/state writes, replay and hidden-replay classification, per-file and file-count exhaustion, and the resulting work-tree inspection.
+Live helpers `inspect_path_shape` and `resolve_under_work_root` support supervisor integration without following symlinks. The committed corpus at `fixtures/agent-storage/v1/expected-outcomes.json` freezes the adversarial admit/classify/deny sequence.
 
-BQ-06 meters and classifies persistence at the BONSAI work-tree seam. It does not claim an adversarial OS sandbox. Native code may still use ambient filesystem APIs unless a later platform broker prevents it.
+BQ-06 is an agent-persistence and retention-classification guard. Platform hard limits, hostile-native sandboxing, and claim-ladder verdicts remain outside this prompt.

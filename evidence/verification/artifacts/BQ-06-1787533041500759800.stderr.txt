@@ -1,0 +1,25 @@
+error: unknown start of token: `
+   --> \\?\C:\Users\17076\Documents\Reinforcement Learning Project\crates\bonsai-governor\src\storage.rs:201:23
+    |
+201 | #[derive(Clone, Copy)]`nstruct MeterProjection {
+    |                       ^
+    |
+help: Unicode character '`' (Grave Accent) looks like ''' (Single Quote), but it is not
+    |
+201 - #[derive(Clone, Copy)]`nstruct MeterProjection {
+201 + #[derive(Clone, Copy)]'nstruct MeterProjection {
+    |
+
+error: expected one of `!` or `::`, found `MeterProjection`
+   --> \\?\C:\Users\17076\Documents\Reinforcement Learning Project\crates\bonsai-governor\src\storage.rs:201:32
+    |
+201 | #[derive(Clone, Copy)]`nstruct MeterProjection {
+    |                                ^^^^^^^^^^^^^^^ expected one of `!` or `::`
+    |
+help: there is a keyword `struct` with a similar name
+    |
+201 - #[derive(Clone, Copy)]`nstruct MeterProjection {
+201 + #[derive(Clone, Copy)]`struct MeterProjection {
+    |
+
+Error writing files: failed to resolve mod `storage`: cannot parse \\?\C:\Users\17076\Documents\Reinforcement Learning Project\crates\bonsai-governor\src\storage.rs
