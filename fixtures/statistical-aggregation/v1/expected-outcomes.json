@@ -1,0 +1,43 @@
+{
+  "schema": "bonsai.statistical-outcomes/v1",
+  "rows": {
+    "latency": {
+      "outcome_id": "latency",
+      "complete_pairs": 3,
+      "missing_runs": 0,
+      "failed_runs": 1,
+      "excluded_runs": 1,
+      "effect_numerator": -9,
+      "effect_denominator": 3,
+      "ci_low_numerator": -11,
+      "ci_high_numerator": -3,
+      "ci_denominator": 3,
+      "p_numerator": 1,
+      "p_denominator": 21,
+      "holm_rejected": false,
+      "sensitivity_min_numerator": -8,
+      "sensitivity_max_numerator": -4,
+      "sensitivity_denominator": 2,
+      "detail_code": null
+    },
+    "reward": {
+      "outcome_id": "reward",
+      "complete_pairs": 3,
+      "missing_runs": 0,
+      "failed_runs": 1,
+      "excluded_runs": 1,
+      "effect_numerator": 12,
+      "effect_denominator": 3,
+      "ci_low_numerator": 3,
+      "ci_high_numerator": 15,
+      "ci_denominator": 3,
+      "p_numerator": 1,
+      "p_denominator": 21,
+      "holm_rejected": false,
+      "sensitivity_min_numerator": 5,
+      "sensitivity_max_numerator": 11,
+      "sensitivity_denominator": 2,
+      "detail_code": null
+    }
+  }
+}

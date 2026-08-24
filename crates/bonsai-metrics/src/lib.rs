@@ -16,6 +16,7 @@ pub mod models;
 pub mod options;
 pub mod planning;
 pub mod resources;
+pub mod stats;
 pub mod subproblems;
 pub mod utility;
 

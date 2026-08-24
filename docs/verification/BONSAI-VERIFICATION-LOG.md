@@ -1644,3 +1644,17 @@ Machine record `BR-07-1784503142006141500` is not acceptance evidence. The outer
 - Result: pass locally; hosted Windows/macOS/Linux closure remains attached to the focused commit
 - Reviewer/attestation: unavailable input stays indeterminate; failure is never converted into a pass
 
+## VER-BK13-LOCAL - BK-13 - 2026-08-24
+
+- Source revision and dirty state: `fec9c147adb845e9b96af0a74f590cb406d3ee60`; dirty only with BK-13 implementation, governance, and evidence
+- OS/architecture/physical-or-CI: Linux/x86_64; local; physical/virtual status unknown
+- Toolchain/dependency-lock hashes: Rust 1.96.0; uv 0.11.29; Python 3.12.3; `Cargo.lock` unchanged at `AEFC9265FEDA2F88FCA42328D10A41A8F0C1E0B36DCA39B0C3AED700F54B5D7F`
+- Command: final machine record `BK-13-1787534120795276646`; full universal/schema/governance gate after implementation and governance closeout
+- Start/end/duration: machine-record Unix UTC nanoseconds `1787534120795276646` / `1787534132176025704` / 11.380747088 s
+- Exit code: 0
+- Stdout/stderr artifact hashes: stdout `E5652A1D0896BFBA0C7915767F74F8FC59FFA03102B294CF14064236C7E76FF2`; stderr `F2EB58777161EA45A873A319459CAAFB36D1330E331DE8A2E103F089A360916F`
+- Fixtures/manifests/bundle IDs: paired reward/latency corpus with declared exclusion, missing/failed runs, and independent Python reference
+- Counter availability and privileges: deterministic integer bootstrap only; no physical counter or C0-C5 claim
+- Result: pass locally; hosted Windows/macOS/Linux closure remains attached to the focused commit
+- Reviewer/attestation: golden corpus matches the independent Python reference; undeclared exclusions and metrics fail closed
+

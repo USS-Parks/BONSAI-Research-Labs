@@ -188,7 +188,7 @@ Objectives, files, excludes, and gates are carried forward from v0.1 with slice-
 
 - [x] **BK-12 — Failure-criteria detectors.** **Depends:** BK-02–BK-11. **Files:** failure rules. **Objective:** operationalize every charter section 14 failure with tolerance, window, comparator, and evidence requirement. **Excludes:** converting failure into missing evidence. **Gate:** one positive and one negative fixture per failure criterion; unavailable input yields indeterminate, not pass.
 
-- [ ] **BK-13 — Statistical aggregation and multiplicity.** **Depends:** BK-01, D-15. **Files:** statistical engine/spec. **Objective:** paired seed schedules, effect sizes, bootstrap intervals, preregistered outcomes, comparison families, Holm adjustment, missing/failed runs, and sensitivity reporting. **Excludes:** post-hoc seed removal or metric selection. **Gate:** golden statistical corpus matches an independent reference implementation and detects undeclared exclusions. **Slice note:** required by BV-05 for C2/C3 candidacy.
+- [x] **BK-13 — Statistical aggregation and multiplicity.** **Depends:** BK-01, D-15. **Files:** statistical engine/spec. **Objective:** paired seed schedules, effect sizes, bootstrap intervals, preregistered outcomes, comparison families, Holm adjustment, missing/failed runs, and sensitivity reporting. **Excludes:** post-hoc seed removal or metric selection. **Gate:** golden statistical corpus matches an independent reference implementation and detects undeclared exclusions. **Slice note:** required by BV-05 for C2/C3 candidacy.
 
 ### 4.2 M2b — BRDC-1 reference cycle
 
