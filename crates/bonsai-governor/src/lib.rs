@@ -10,6 +10,7 @@ use std::fmt;
 
 pub mod allocation;
 pub mod decision;
+pub mod storage;
 pub mod supervisor;
 pub mod violation;
 

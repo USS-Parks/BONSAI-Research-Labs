@@ -1,0 +1,109 @@
+{
+  "schema": "bonsai.agent-storage-outcomes/v1",
+  "decisions": [
+    {
+      "sequence": 0,
+      "request_id": "model-params",
+      "classified_kind": "model_parameters",
+      "outcome": "admit",
+      "reason_code": "MODEL_PARAMETERS_ALLOWED",
+      "bytes_before": 0,
+      "bytes_after": 128,
+      "files_before": 0,
+      "files_after": 1,
+      "track_fact_replay_capacity": 0
+    },
+    {
+      "sequence": 1,
+      "request_id": "algo-state",
+      "classified_kind": "bounded_algorithm_state",
+      "outcome": "admit",
+      "reason_code": "BOUNDED_ALGORITHM_STATE_ALLOWED",
+      "bytes_before": 128,
+      "bytes_after": 160,
+      "files_before": 1,
+      "files_after": 2,
+      "track_fact_replay_capacity": 0
+    },
+    {
+      "sequence": 2,
+      "request_id": "replay-buffer",
+      "classified_kind": "transition_replay",
+      "outcome": "reject",
+      "reason_code": "TRANSITION_REPLAY_RETENTION_DENIED",
+      "bytes_before": 160,
+      "bytes_after": 160,
+      "files_before": 2,
+      "files_after": 2,
+      "track_fact_replay_capacity": 16
+    },
+    {
+      "sequence": 3,
+      "request_id": "hidden-name",
+      "classified_kind": "transition_replay",
+      "outcome": "reject",
+      "reason_code": "TRANSITION_REPLAY_RETENTION_DENIED",
+      "bytes_before": 160,
+      "bytes_after": 160,
+      "files_before": 2,
+      "files_after": 2,
+      "track_fact_replay_capacity": 1
+    },
+    {
+      "sequence": 4,
+      "request_id": "byte-exhaust",
+      "classified_kind": "model_parameters",
+      "outcome": "reject",
+      "reason_code": "STORAGE_BYTE_BUDGET_EXHAUSTED",
+      "bytes_before": 160,
+      "bytes_after": 160,
+      "files_before": 2,
+      "files_after": 2,
+      "track_fact_replay_capacity": 0
+    },
+    {
+      "sequence": 5,
+      "request_id": "symlink-escape",
+      "classified_kind": "bounded_algorithm_state",
+      "outcome": "reject",
+      "reason_code": "STORAGE_SYMLINK_DENIED",
+      "bytes_before": 160,
+      "bytes_after": 160,
+      "files_before": 2,
+      "files_after": 2,
+      "track_fact_replay_capacity": 0
+    },
+    {
+      "sequence": 6,
+      "request_id": "observer-path",
+      "classified_kind": "model_parameters",
+      "outcome": "reject",
+      "reason_code": "STORAGE_OBSERVER_PATH_DENIED",
+      "bytes_before": 160,
+      "bytes_after": 160,
+      "files_before": 2,
+      "files_after": 2,
+      "track_fact_replay_capacity": 0
+    },
+    {
+      "sequence": 7,
+      "request_id": "traversal",
+      "classified_kind": "model_parameters",
+      "outcome": "reject",
+      "reason_code": "STORAGE_PATH_TRAVERSAL_DENIED",
+      "bytes_before": 160,
+      "bytes_after": 160,
+      "files_before": 2,
+      "files_after": 2,
+      "track_fact_replay_capacity": 0
+    }
+  ],
+  "usage": {
+    "bytes_consumed": 160,
+    "files_consumed": 2,
+    "max_bytes": 512,
+    "max_files": 4,
+    "classified_transition_capacity": 0
+  },
+  "derived_track": "A"
+}

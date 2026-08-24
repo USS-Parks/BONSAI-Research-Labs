@@ -1503,3 +1503,17 @@ Machine record `BR-07-1784503142006141500` is not acceptance evidence. The outer
 - Counter availability and privileges: deterministic semantic-work allocation only; no platform hard-limit enforcement, scientific-utility optimization, or C0-C5 claim
 - Result: pass locally; hosted Windows/macOS/Linux closure remains attached to the focused commit
 - Reviewer/attestation: hard reservations, deferral reasons, observer-reserve protection, acting non-starvation under adversarial order, and strict workspace/Python/schema/governance gates passed locally; an earlier machine record `BQ-05-1787531504639498800` failed only from a locked local pytest temp/cache path and is superseded by this byte-verified rerun
+
+## VER-BQ06-LOCAL - BQ-06 - 2026-08-23
+
+- Source revision and dirty state: `5ccaac3fdf414948b198899826df0e166c6ef2a7`; dirty only with BQ-06 implementation, governance, and evidence
+- OS/architecture/physical-or-CI: Windows/x86_64; local; physical/virtual status unknown
+- Toolchain/dependency-lock hashes: Rust 1.96.0; locked repository Python environment; `Cargo.lock` unchanged at `AEFC9265FEDA2F88FCA42328D10A41A8F0C1E0B36DCA39B0C3AED700F54B5D7F`
+- Command: final machine record `BQ-06-1787533228231893600`; full universal/schema/governance gate through external verifier copy SHA-256 `76A5EB4958029DA49F739CD8CC93F438BAEBE4BC5200E5ADA8B5038E2EBB3235` after governance closeout edits
+- Start/end/duration: machine-record Unix UTC nanoseconds `1787533228231893600` / `1787533248412133900` / 20.1802403 s
+- Exit code: 0
+- Stdout/stderr artifact hashes: stdout `33816453F8BB65B2A0C43758329CDBA1BE260410A71949708700439009533559`; stderr `60E48C8F35330BE1DF49238585E089FE9D4FC59773F6A3B6D122E13A27441701`
+- Fixtures/manifests/bundle IDs: frozen adversarial agent-storage outcomes; legitimate model/algorithm state; replay detection under Track A; allowed-replay Track B overlay; traversal/symlink/observer denials; malformed policies; live path helpers; and complete existing repository corpus
+- Counter availability and privileges: deterministic agent-persistence metering and retention classification only; no native OS sandbox, scientific-utility optimization, or C0-C5 claim
+- Result: pass locally; hosted Windows/macOS/Linux closure remains attached to the focused commit
+- Reviewer/attestation: byte/file meters, transition-replay classification, observer/traversal/symlink fail-closed paths, Track A denial without meter growth, and strict workspace/Python/schema/governance gates passed locally

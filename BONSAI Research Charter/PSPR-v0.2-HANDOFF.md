@@ -2,7 +2,7 @@
 
 Version: 0.2 (APPROVED)  
 Date: 2026-08-23 (PT)  
-Status: **APPROVED v0.2** 2026-08-23 (PT) by Basho Parks; OD-01–OD-03 settled; **execution not authorized** (awaits `run M2-science STS`)  
+Status: **APPROVED v0.2** 2026-08-23 (PT) by Basho Parks; OD-01–OD-03 settled; **STS AUTHORIZED** 2026-08-23 (PT) via `run M2-science STS`; execution in progress  
 Approved PSPR: [BONSAI-PSPR-v0.2-M2-USEFUL-ABSTRACTION.md](./BONSAI-PSPR-v0.2-M2-USEFUL-ABSTRACTION.md)  
 Historical PSPR: [BONSAI-CANONICAL-PLAN-SEQUENTIAL-PROMPT-ROSTER.md](./BONSAI-CANONICAL-PLAN-SEQUENTIAL-PROMPT-ROSTER.md) (v0.1)
 

@@ -1051,3 +1051,25 @@ This append-only log records executed PSPR prompts. Corrections are added as new
 - Commit SHA: pending by self-hash convention; report the focused SHA after publication
 - Risks/blockers/parked scope changed: BQ-05 controls semantic-work partitions only; platform hard limits remain with BM/BQ backends; BQ-06 still owns agent storage/replay guards; no M2, instrument-completion, or C0-C5 claim is made
 - Next eligible prompts after gate and publication: BQ-06, BK-04, and BK-05
+
+### BQ-05 closeout note
+
+- Focused implementation commit SHA: 1aa07512a4833e35e95fccc22ddcafaa0e201431
+- Hosted verification: GitHub Actions run 32677138422 was cancelled mid-Windows/aggregate by the subsequent PSPR v0.2 approval push; macOS arm64, Linux x86_64, and macOS Intel jobs had already succeeded at that exact commit. Tree-level hosted closure continues under later green runs on descendant commits.
+- Ledger rule: appended by BQ-06 because the BQ-05 commit could not contain its own immutable hash or post-push hosted-run identity
+
+## 2026-08-23 — BQ-06 — Agent storage and replay guard
+
+- Status: passed; closeout entry pending focused commit identity and hosted run
+- Authorization scope: user CRITICAL AUTHORIZATION 2026-08-23 (PT) 
+un M2-science STS / full STS for PSPR v0.2; OD-01–OD-03 defaults settled
+- Dependencies and source revision: BR-06 and BQ-04 published; BQ-05 published at 1aa07512a4833e35e95fccc22ddcafaa0e201431; PSPR v0.2 approval on 5ccaac3fdf414948b198899826df0e166c6ef2a7
+- Objective and exclusions: meter authorized agent persistence, deny observer paths, enforce bytes/files growth, and classify transition-like retention; exclude banning all learned parameters or legitimate bounded algorithm state
+- Reuse classification: extend onsai-governor at the published BQ-04/BQ-05 and BC-05 track seams with one deterministic storage-broker module, live path helpers, integration corpus, architecture contract, and frozen expected-outcome fixture without a new dependency
+- Files changed: storage broker module and exports, adversarial storage tests, architecture contract, frozen expected outcomes, README/PSPR status, BQ-05 hosted closeout, DEVLOG, verification log, and retained machine evidence
+- Decisions/addenda: model parameters and bounded algorithm state admit within hard byte/file and nested bounded-state limits; transition replay is classified from declared kind, content signals, or replay-buffer path names and denied under Track A without meter growth while recording detected capacity; observer paths, lexical traversal, and symlink shapes reject closed; admitted replay capacity projects BC-05 track overlay toward Track B
+- Verification summary: four focused integration tests freeze the adversarial admit/classify/deny sequence against ixtures/agent-storage/v1/expected-outcomes.json, prove legitimate model/algorithm state survives while replay is rejected without meter growth, prove allowed-replay policies force Track B, and prove malformed policies plus live path helpers fail closed. The complete gate passed formatting, strict workspace Clippy, workspace Rust tests, Ruff, strict Pyright, 11 Python tests, schema compatibility, docs, ADR, license, governance-ledger, terminology, and CI-topology checks on Windows x86_64.
+- Evidence paths and SHA-256 hashes: final machine record BQ-06-1787533228231893600 with stdout 33816453F8BB65B2A0C43758329CDBA1BE260410A71949708700439009533559 and stderr 60E48C8F35330BE1DF49238585E089FE9D4FC59773F6A3B6D122E13A27441701; storage D9524B5FD2EA6416E3FB2B23B8DB1C7C41C08330E3FA6985F5E31337767C9EA2; tests 235392C78D629B55B536D7797F0C9E84F233121E890D3BFB4270FEE73D7BB90A; contract 46F52353A95A4C63BB6AA43A3533600244E341846B7016F53DAD99E80100D633; expected outcomes C7B085D7C96BC3F0D4FC1522428E69802546A669E21651DB4054DB1CC442C44F; Cargo.lock unchanged at AEFC9265FEDA2F88FCA42328D10A41A8F0C1E0B36DCA39B0C3AED700F54B5D7F; external verifier SHA-256 76A5EB4958029DA49F739CD8CC93F438BAEBE4BC5200E5ADA8B5038E2EBB3235
+- Commit SHA: pending by self-hash convention; report the focused SHA after publication
+- Risks/blockers/parked scope changed: R-07 remains controlled at BR-06/BR-09/BQ-06 seams without claiming a native OS sandbox; no OaK reproduction, instrument-completion, or C0-C5 claim is made
+- Next eligible prompts after gate and publication: BK-04, then BK-05 (serial M2a order)
