@@ -1,0 +1,26 @@
+[package]
+name = "bonsai-accept"
+description = "M4 acceptance harness: threat model, hardening, supply-chain, L profile, and release-candidate evidence"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+repository.workspace = true
+publish.workspace = true
+
+[lints]
+workspace = true
+
+[dependencies]
+bonsai-bundle = { path = "../bonsai-bundle" }
+bonsai-contracts = { path = "../bonsai-contracts" }
+bonsai-governor = { path = "../bonsai-governor" }
+bonsai-ingest = { path = "../bonsai-ingest" }
+bonsai-runtime = { path = "../bonsai-runtime" }
+prost = "0.14.4"
+serde = { version = "1.0.229", features = ["derive"] }
+serde_json = "1.0.150"
+sha2 = "0.11.0"
+
+[dev-dependencies]
+tempfile = "3.27.0"

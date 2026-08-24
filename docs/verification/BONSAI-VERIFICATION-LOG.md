@@ -1914,3 +1914,53 @@ Machine record `BR-07-1784503142006141500` is not acceptance evidence. The outer
 - Command: `overhead_acceptance_uses_raw_pairs_and_d11_ceilings`
 - Result: pass within D-11 on fixture pairs; disabled evidence rejected
 
+## VER-M4-LOCAL — M4 BV-11–BV-16 — 2026-08-24
+
+- Source revision and dirty state: `3ad391bc3118cb0c956b394671f54ab1dd308fe5`; dirty with full M4 implementation, governance, and evidence
+- OS/architecture/physical-or-CI: Linux/x86_64; container; not a physical 72 h Windows, macOS, or Linux host
+- Toolchain/dependency-lock hashes: Rust 1.96.0; uv 0.11.29; Python 3.12.3
+- Command: machine record `M4-1787594307149942810` (`cargo test -p bonsai-accept --all-features`); also workspace `cargo test`, `cargo test --offline`, `cargo fmt --all --check`, Clippy `-D warnings`, `cargo xtask schema-check`, Ruff, Pyright, pytest, and governance checkers
+- Start/end/duration: `1787594307149942810` / `1787594307326390058` / 0.176446070 s (focused accept suite)
+- Exit code: 0
+- Stdout/stderr artifact hashes: M4 stdout `3f6df52d9fcf58b2bdcec673aba8368e3f64d969a4ffc361df6cf0c130fcfcb4` stderr `fcdab8dfa9c6703d8e47a337a8e0a460140a1bf8270a80ad37ca03b9451184be`
+- Fixtures/manifests/bundle IDs: threat-model TB-01–TB-10; L D-16 minima; three OS not-run attestations; empty supply-chain waivers; HMAC RFC 4231; flood/tamper/recovery; committed BC-12 valid and tampered bundles
+- Counter availability and privileges: no physical_acceptance; no long_duration_claim; energy unqualified
+- Result: pass locally for code, fixtures, and honest not-run paths; 72-hour physical-host L evidence remains not-run per OD-01; no instrument-completion claim
+- Reviewer/attestation: D-21 disclaimer prominent; tamper/flood produce bounded failure; no silent critical waiver; RC artifacts exist without tag or registry upload
+
+## VER-BV11-LOCAL — BV-11 — 2026-08-24
+
+- Command: machine record `BV-11-1787594311695127741` (`bv11_threat_model_covers_every_trust_boundary`)
+- Stdout/stderr artifact hashes: stdout `252f751d8a8676908cfeb68767837fe9b8a10c11277db3c69eff4a01124027a1` stderr `9ebe8f42c91ecf06b06010fba84455ed6f986a21c9ca4e4d6eae578eefda47cc`
+- Result: pass; D-21 disclaimer prominent; TB-01–TB-10 mapped
+
+## VER-BV12-LOCAL — BV-12 — 2026-08-24
+
+- Command: machine record `BV-12-1787594311878395238` (`bv12_fuzz_property_and_adversarial_suite_bounds_tamper_and_flood`)
+- Stdout/stderr artifact hashes: stdout `d9ca1c014ee39d582a9c483596f4beb3963c8c99347aa07b910269cfea562dac` stderr `50e626eb8246ca842df7d1bf618319fdd595bc1e2c8f01663c7f2ea6b7b34a29`
+- Result: pass; tamper/flood/symlink/recovery produce bounded failure evidence
+
+## VER-BV13-LOCAL — BV-13 — 2026-08-24
+
+- Command: machine record `BV-13-1787594312046177543` (`bv13_supply_chain_has_no_silent_critical_waiver`)
+- Stdout/stderr artifact hashes: stdout `ca309bcf62d7b5daf30bc1545c054daa3f06aae4d20a5aea4ecbcf6c88a1966c` stderr `50e626eb8246ca842df7d1bf618319fdd595bc1e2c8f01663c7f2ea6b7b34a29`
+- Result: pass; CI-scale offline rebuild available; physical clean-machine not-run
+
+## VER-BV14-LOCAL — BV-14 — 2026-08-24
+
+- Command: machine record `BV-14-1787594312213400503` (`bv14_l_harness_records_honest_not_run_and_refuses_ci_as_acceptance`)
+- Stdout/stderr artifact hashes: stdout `c8f89b07234bfc598cc067ca6ea36f57e9e1e3146e94360c8c6ffb37a59e1f09` stderr `50e626eb8246ca842df7d1bf618319fdd595bc1e2c8f01663c7f2ea6b7b34a29`
+- Result: pass for harness; Windows/macOS/Linux 72 h physical evidence not-run / indeterminate; CI probe cannot be promoted
+
+## VER-BV15-LOCAL — BV-15 — 2026-08-24
+
+- Command: machine record `BV-15-1787594312372375666` (`bv15_operator_handoff_lets_a_new_user_reproduce_m1_without_overclaim`)
+- Stdout/stderr artifact hashes: stdout `48298dee35b790ece5b34c4a8f06cf383bb59385eb5035ce3f02bf8c7dcde89a` stderr `50e626eb8246ca842df7d1bf618319fdd595bc1e2c8f01663c7f2ea6b7b34a29`
+- Result: pass; M1 heartbeat command documented; overclaim language refused
+
+## VER-BV16-LOCAL — BV-16 — 2026-08-24
+
+- Command: machine record `BV-16-1787594312532812599` (`bv16_release_candidate_verifies_independently_without_publication`)
+- Stdout/stderr artifact hashes: stdout `c49d4a16978388b1c54c5184c876086a4e8f540feee7c986f772a72a9e454246` stderr `50e626eb8246ca842df7d1bf618319fdd595bc1e2c8f01663c7f2ea6b7b34a29`
+- Result: pass; RC artifacts recorded; independent valid bundle verifies; tampered bundle stays invalid; no tag or upload
+
