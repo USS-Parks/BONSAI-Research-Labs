@@ -1079,3 +1079,25 @@ This append-only log records executed PSPR prompts. Corrections are added as new
 - Focused implementation commit SHA: `e2e1a51cacb16f0c2518750a2a1c1887f20d2fc1`
 - Hosted verification: GitHub Actions run 32678540523, attempt 1, passed the agent-storage/replay-guard gate on Windows x86_64, Linux x86_64, macOS arm64, and macOS Intel at that exact commit
 - Ledger rule: appended because the BQ-06 implementation commit could not contain its own immutable hash or post-push hosted-run identity
+
+### BQ-06 closeout note
+
+- Focused implementation commit SHA: 2e1a51cacb16f0c2518750a2a1c1887f20d2fc1
+- Hosted verification: GitHub Actions run 32678540523, attempt 1, passed Windows x86_64, Linux x86_64, macOS arm64, macOS Intel, and the hosted semantic-equivalence aggregate at that exact commit
+- Hosted job IDs: 97291003496 (Windows), 97291003544 (Linux), 97291003367 (macOS arm64), 97291003481 (macOS Intel), and 97292377049 (aggregate)
+- Ledger rule: appended by BK-04 because the BQ-06 commit could not contain its own immutable hash or post-push hosted-run identity
+
+## 2026-08-23 — BK-04 — Continual-learning metrics
+
+- Status: passed; closeout entry pending focused commit identity and hosted run
+- Authorization scope: user CRITICAL AUTHORIZATION 2026-08-23 (PT) 
+un M2-science STS / full STS for PSPR v0.2
+- Dependencies and source revision: BK-02 published; BQ-06 published and hosted-green at 2e1a51cacb16f0c2518750a2a1c1887f20d2fc1
+- Objective and exclusions: retention, adaptation, plasticity loss separated from forgetting, transfer/interference, relearning, divergence, and age curves; exclude conflating failure to retain with inability to learn new structure
+- Reuse classification: extend onsai-metrics beside BK-02 behavior metrics with one continual module, integration corpus, metrics contract, and frozen expected-outcome fixture without a new dependency
+- Files changed: continual metric module and exports, synthetic trajectory tests, metrics contract, frozen expected outcomes, README/PSPR status, BQ-06 hosted closeout, DEVLOG, verification log, and retained machine evidence
+- Decisions/addenda: retain probes measure retention/forgetting against train baselines; adapt phases measure adaptation/plasticity loss independently; transfer is signed adapt-vs-train mean gap; missing phase families are detail codes, never numeric zero
+- Verification summary: pending final machine record
+- Commit SHA: pending by self-hash convention
+- Risks/blockers/parked scope changed: no OaK reproduction, instrument-completion, or C0-C5 claim is made
+- Next eligible prompts after gate and publication: BK-05
