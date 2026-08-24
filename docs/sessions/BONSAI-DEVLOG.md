@@ -1513,7 +1513,7 @@ This append-only log records executed PSPR prompts. Corrections are added as new
 
 ## 2026-08-24 — M4 — Acceptance and release candidate (BV-11–BV-16)
 
-- Status: passed locally; hosted public Actions pending the focused commit
+- Status: passed locally and on hosted public Actions; focused commit `746e1e3` is on `main` via merge `545b03f`
 - Authorization scope: user-authorized full M4 STS for approved PSPR v0.4; OD-01–OD-04 settled
 - Dependencies and source revision: `main` @ `3ad391bc3118cb0c956b394671f54ab1dd308fe5`
 - Objective and exclusions: implement BV-11–BV-16 with fixtures and honest host capability; do not invent 72 h physical-host passes; no git tag, crates.io/pypi upload, marketing claim, OaK reproduction, or instrument-completion claim
@@ -1522,7 +1522,8 @@ This append-only log records executed PSPR prompts. Corrections are added as new
 - Decisions/addenda: inseparable six-prompt bundle justified by shared acceptance crate and M4 dependency order; OD-01 records Windows/macOS/Linux physical 72 h as not-run; OD-03 forbids tag/upload
 - Verification summary: `cargo fmt --all --check`, strict workspace Clippy, workspace Rust tests, `cargo test --offline`, `cargo xtask schema-check`, Ruff, strict Pyright, 34 Python tests, and governance checkers passed on Linux x86_64 container
 - Evidence paths and SHA-256 hashes: machine record `M4-1787594307149942810` stdout `3f6df52d9fcf58b2bdcec673aba8368e3f64d969a4ffc361df6cf0c130fcfcb4` stderr `fcdab8dfa9c6703d8e47a337a8e0a460140a1bf8270a80ad37ca03b9451184be`; per-prompt records `BV-11-1787594311695127741` through `BV-16-1787594312532812599`
-- Commit SHA: pending focused commit
+- Commit SHA: `746e1e372c60c88e64946974f8e2519fd4544d06`
+- Hosted verification: PR #3 run https://github.com/USS-Parks/BONSAI-Research-Labs/actions/runs/32759817549 ; `main` push run https://github.com/USS-Parks/BONSAI-Research-Labs/actions/runs/32760520648
 - Risks/blockers/parked scope changed: R-13 accepted as honest host gap; P-01–P-09 unchanged; instrument completion remains not-run
 - Next eligible prompts after gate and publication: none in the authorized M4 roster; publication remains separately unauthorized
 

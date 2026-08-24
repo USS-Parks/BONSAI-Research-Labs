@@ -1925,8 +1925,11 @@ Machine record `BR-07-1784503142006141500` is not acceptance evidence. The outer
 - Stdout/stderr artifact hashes: M4 stdout `3f6df52d9fcf58b2bdcec673aba8368e3f64d969a4ffc361df6cf0c130fcfcb4` stderr `fcdab8dfa9c6703d8e47a337a8e0a460140a1bf8270a80ad37ca03b9451184be`
 - Fixtures/manifests/bundle IDs: threat-model TB-01–TB-10; L D-16 minima; three OS not-run attestations; empty supply-chain waivers; HMAC RFC 4231; flood/tamper/recovery; committed BC-12 valid and tampered bundles
 - Counter availability and privileges: no physical_acceptance; no long_duration_claim; energy unqualified
-- Result: pass locally for code, fixtures, and honest not-run paths; 72-hour physical-host L evidence remains not-run per OD-01; no instrument-completion claim
+- Result: pass locally for code, fixtures, and honest not-run paths; hosted public Actions runs 32759817549 (PR #3) and 32760520648 (`main` @ `545b03f`) succeeded on Windows x86_64, Linux x86_64, macOS arm64, macOS x86_64, and M1 semantic equivalence; 72-hour physical-host L evidence remains not-run per OD-01; no instrument-completion claim
 - Reviewer/attestation: D-21 disclaimer prominent; tamper/flood produce bounded failure; no silent critical waiver; RC artifacts exist without tag or registry upload
+- Focused commit on `main`: `746e1e372c60c88e64946974f8e2519fd4544d06`
+- Merge commit on `main`: `545b03f7c9da8764eaac00ed585bc5ea77b411d1`
+- Hosted runs: https://github.com/USS-Parks/BONSAI-Research-Labs/actions/runs/32759817549 and https://github.com/USS-Parks/BONSAI-Research-Labs/actions/runs/32760520648
 
 ## VER-BV11-LOCAL — BV-11 — 2026-08-24
 
