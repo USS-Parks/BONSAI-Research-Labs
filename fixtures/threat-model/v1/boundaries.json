@@ -1,0 +1,107 @@
+{
+  "schema": "bonsai.threat-model/v1",
+  "disclaimer_id": "D-21",
+  "disclaimer": "BONSAI v1 is not a hostile-native-code sandbox. Process isolation, bounded messages, OS resource controls, least-privilege launch, and fail-closed termination protect the instrument from faulty adapters. Hostile arbitrary-native-code evaluation remains parked (P-05).",
+  "boundaries": [
+    {
+      "id": "TB-01",
+      "name": "faulty-or-malformed-agents",
+      "trust_boundary": "adapter process protocol and supervisor launch",
+      "threats": ["malformed envelopes", "protocol abuse", "unexpected child exit"],
+      "controls": ["length-delimited stdio protocol", "fail-closed decode", "least-privilege launch", "fail-closed termination"],
+      "tests": ["crates/bonsai-runtime/tests/process_transport.rs", "crates/bonsai-runtime/tests/adapter_conformance.rs", "crates/bonsai-accept/tests/m4_acceptance.rs"],
+      "residual_risk": "Native code can use ambient OS APIs outside BONSAI-controlled handles. This is not a sandbox.",
+      "prompts": ["BR-02", "BR-06", "BQ-07", "D-21", "BV-11", "BV-12"]
+    },
+    {
+      "id": "TB-02",
+      "name": "event-floods",
+      "trust_boundary": "ingest validation before immutable append",
+      "threats": ["event rate floods", "oversized envelopes", "rejection-ledger amplification"],
+      "controls": ["source authorization", "envelope and payload caps", "fixed-window rate limits", "bounded rejection ledger"],
+      "tests": ["crates/bonsai-ingest/tests/ingest_validation.rs", "crates/bonsai-accept/tests/m4_acceptance.rs"],
+      "residual_risk": "A privileged collector or host process outside ingest can still consume host resources.",
+      "prompts": ["BR-03", "BC-09", "R-08", "R-09", "BV-12"]
+    },
+    {
+      "id": "TB-03",
+      "name": "artifact-bombs",
+      "trust_boundary": "agent storage broker and blob intake",
+      "threats": ["unbounded artifact count", "storage growth", "deep lineage graphs"],
+      "controls": ["hard byte and file caps", "graph-depth bound", "create-new hashed blobs", "fail-closed overflow"],
+      "tests": ["crates/bonsai-governor/tests/agent_storage.rs", "crates/bonsai-accept/tests/m4_acceptance.rs"],
+      "residual_risk": "Caps apply to BONSAI-brokered paths. Unbrokered ambient writes are outside the claim.",
+      "prompts": ["BQ-06", "BR-07", "BV-12"]
+    },
+    {
+      "id": "TB-04",
+      "name": "path-and-symlink-attacks",
+      "trust_boundary": "filesystem grants under the run root",
+      "threats": ["path traversal", "symlink escape", "observer-tree substitution"],
+      "controls": ["no-follow metadata", "work-root resolution", "denied observer paths", "hash-checked input copies"],
+      "tests": ["crates/bonsai-runtime/tests/agent_isolation.rs", "crates/bonsai-governor/tests/agent_storage.rs", "crates/bonsai-accept/tests/m4_acceptance.rs"],
+      "residual_risk": "A process with ambient filesystem APIs can still leave the declared tree. D-21 applies.",
+      "prompts": ["BR-06", "BQ-06", "BV-12"]
+    },
+    {
+      "id": "TB-05",
+      "name": "bundle-tampering",
+      "trust_boundary": "result-bundle hashes and optional HMAC signatures",
+      "threats": ["bit flips", "file substitution", "manifest/result rewrite"],
+      "controls": ["SHA-256 file identities", "symlink-refusing validator", "optional HMAC-SHA256 envelopes", "independent off-host verify"],
+      "tests": ["crates/bonsai-bundle/tests/bundle_validation_corpus.rs", "crates/bonsai-accept/tests/m4_acceptance.rs"],
+      "residual_risk": "HMAC uses an operator-supplied local key. There is no external key service.",
+      "prompts": ["BC-12", "BV-12", "BV-16"]
+    },
+    {
+      "id": "TB-06",
+      "name": "observer-to-agent-leakage",
+      "trust_boundary": "launch policy, environment, and protocol payloads",
+      "threats": ["telemetry replay into the agent", "observer path disclosure", "capability request for observer trees"],
+      "controls": ["cleared environment", "copied inputs only", "protocol observer-path denial", "INDETERMINATE_TRACK on observer access"],
+      "tests": ["crates/bonsai-runtime/tests/agent_isolation.rs", "crates/bonsai-runtime/tests/storage_guard.rs"],
+      "residual_risk": "Isolation is an interface contract, not an adversarial OS sandbox.",
+      "prompts": ["BR-06", "BR-09", "BQ-06", "R-07", "BV-11"]
+    },
+    {
+      "id": "TB-07",
+      "name": "secrets",
+      "trust_boundary": "inventory sanitizer, verification redaction, and publication review",
+      "threats": ["tokens in logs", "hostnames/serials in inventories", "secret leakage into bundles"],
+      "controls": ["inventory field removal", "xtask --redact", "publication secret scan", "no raw environment dumps"],
+      "tests": ["crates/bonsai-xtask/src/main.rs", "crates/bonsai-xtask/src/schema_check.rs", "crates/bonsai-accept/tests/m4_acceptance.rs"],
+      "residual_risk": "Redaction is defense in depth. Operators must not pass secrets on command lines.",
+      "prompts": ["BC-04", "BG-04", "BG-06", "BV-12", "BV-16"]
+    },
+    {
+      "id": "TB-08",
+      "name": "local-dashboard",
+      "trust_boundary": "read-only local viewer and report renderer",
+      "threats": ["path escape from viewer roots", "writing observer state from a dashboard", "networked multi-user exposure"],
+      "controls": ["local-only viewer", "rejected absolute/parent/symlink paths", "no listener or SaaS dashboard in v1"],
+      "tests": ["crates/bonsai-report/src/viewer.rs", "crates/bonsai-report/tests/m3_reporting.rs"],
+      "residual_risk": "A local HTML file can still be opened by a browser with the operator's privileges. P-08 parks multi-user services.",
+      "prompts": ["BV-03", "BV-08", "P-08", "BV-11"]
+    },
+    {
+      "id": "TB-09",
+      "name": "dependency-and-build-risks",
+      "trust_boundary": "lockfiles, SBOM, vendor/offline restore",
+      "threats": ["unpinned deps", "silent critical advisories", "network-required rebuilds"],
+      "controls": ["committed Cargo.lock and uv.lock", "dependency policy", "SBOM generation", "offline rebuild scripts", "explicit waivers only"],
+      "tests": ["crates/bonsai-accept/tests/m4_acceptance.rs", "scripts/generate_sbom.py", "scripts/offline_restore.py"],
+      "residual_risk": "A clean physical machine restore is separately attested. CI offline tests are not that attestation.",
+      "prompts": ["BG-05", "D-08", "BV-13", "R-15"]
+    },
+    {
+      "id": "TB-10",
+      "name": "privileged-collectors",
+      "trust_boundary": "opt-in measurement backends",
+      "threats": ["privilege escalation via collectors", "shared energy counters", "unauthorized NVIDIA/cgroup writes"],
+      "controls": ["opt-in collectors", "capability matrices", "fail-closed unsupported hard controls", "explicit authority for privileged use"],
+      "tests": ["crates/bonsai-platform/tests/os_backends.rs", "crates/bonsai-governor/tests/m3_governor.rs"],
+      "residual_risk": "When a collector is authorized and privileged, host integrity risk increases. E3/lab probes stay parked (P-01).",
+      "prompts": ["BM-13", "BQ-07", "R-14", "BV-11", "BV-12"]
+    }
+  ]
+}

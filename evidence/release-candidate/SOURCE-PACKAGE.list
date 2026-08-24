@@ -1,0 +1,9 @@
+Cargo.toml
+Cargo.lock
+pyproject.toml
+uv.lock
+python/bonsai-reference/src
+crates
+schemas
+docs
+scripts

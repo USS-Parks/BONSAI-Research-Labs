@@ -31,8 +31,8 @@ The workflow pins action commits, uv 0.11.29, Python 3.12, and Rust 1.96.0. Ever
 | Hard/monitor-terminate budget violation | required | required | required | BQ-07 / M3 | not-run |
 | Energy E0–E3 | capability and tier explicit | capability and tier explicit | capability and tier explicit | BM-12, BM-13, BV-06 | not-run |
 | Acceptance A profile | required for C4/C5 candidacy | required | required | BE-16 / BV-06 | not-run |
-| Long L profile | 72 h / 10 M steps / 3 paired seeds | same | same | BV-14 | not-run |
-| Offline restore | clean physical host or isolated VM | same | same | BV-13 | not-run |
+| Long L profile | 72 h / 10 M steps / 3 paired seeds | same | same | BV-14 | not-run; harness exists, physical hosts unavailable |
+| Offline restore | clean physical host or isolated VM | same | same | BV-13 | not-run; CI-scale `--offline`/`--frozen` only |
 
 No hosted result may update these `not-run` rows to pass.
 

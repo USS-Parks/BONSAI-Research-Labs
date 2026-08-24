@@ -1,5 +1,6 @@
 [workspace]
 members = [
+    "crates/bonsai-accept",
     "crates/bonsai-bundle",
     "crates/bonsai-claims",
     "crates/bonsai-contracts",

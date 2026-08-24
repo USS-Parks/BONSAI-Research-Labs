@@ -1,0 +1,4 @@
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.07s
+     Running unittests src/lib.rs (target/debug/deps/bonsai_accept-dd364c9969ddef37)
+     Running tests/m4_acceptance.rs (target/debug/deps/m4_acceptance-e0364d99a3f70938)
+   Doc-tests bonsai_accept

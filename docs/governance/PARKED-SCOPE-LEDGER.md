@@ -18,4 +18,4 @@ Status vocabulary: `parked`, `revived-by-addendum`, `superseded`
 
 Revival is never implied by adjacent implementation. A row becomes active only through the named authorization and a dated addendum with new gates.
 
-PSPR v0.3 slice-local parks (not additional P-IDs): BV-11–BV-16 remain M4; A/L claim-required runs stay gated; publication/marketing stay unauthorized; E3 laboratory probes, AMD/Intel collectors, and hostile sandbox stay parked as P-01, P-04, and P-05.
+PSPR v0.4 slice-local parks (not additional P-IDs): BV-11–BV-16 are implemented; A/L claim-required 72 h physical runs stay not-run; publication/marketing stay unauthorized; E3 laboratory probes, AMD/Intel collectors, and hostile sandbox stay parked as P-01, P-04, and P-05.

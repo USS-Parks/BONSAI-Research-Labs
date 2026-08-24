@@ -1,0 +1,5 @@
+{
+  "schema": "bonsai.supply-chain-waivers/v1",
+  "policy": "No silent critical or high waiver. An empty accepted list is the required default.",
+  "accepted": []
+}

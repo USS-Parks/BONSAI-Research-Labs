@@ -1,0 +1,24 @@
+
+running 3 tests
+test tests::tampered_payload_fails_verify ... ok
+test tests::hmac_matches_known_rfc_4231_case ... ok
+test tests::redaction_removes_every_literal ... ok
+
+test result: ok. 3 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+
+running 6 tests
+test bv11_threat_model_covers_every_trust_boundary ... ok
+test bv14_l_harness_records_honest_not_run_and_refuses_ci_as_acceptance ... ok
+test bv15_operator_handoff_lets_a_new_user_reproduce_m1_without_overclaim ... ok
+test bv13_supply_chain_has_no_silent_critical_waiver ... ok
+test bv12_fuzz_property_and_adversarial_suite_bounds_tamper_and_flood ... ok
+test bv16_release_candidate_verifies_independently_without_publication ... ok
+
+test result: ok. 6 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.05s
+
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+

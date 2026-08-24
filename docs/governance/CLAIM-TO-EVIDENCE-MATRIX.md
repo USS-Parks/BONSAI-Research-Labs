@@ -1,6 +1,6 @@
 # BONSAI claim-to-evidence matrix
 
-BV-07 generates the machine matrix from versioned cells. Every claim below remains `not-run` or `indeterminate` until a confirmatory bundle hash is attached. Missing evidence cannot become pass. Instrument completion stays parked for M4.
+BV-07 generates the machine matrix from versioned cells. Every claim below remains `not-run` or `indeterminate` until a confirmatory bundle hash is attached. Missing evidence cannot become pass. Instrument completion stays `not-run` after M4 because required 72-hour physical-host L evidence is not-run (OD-01).
 
 | Claim | Requirement | Owner | Status | Metric version | Scenarios | Comparators and seeds | Evidence level | Verdict | Bundle identities | Primary prompts |
 |---|---|---|---|---|---|---|---|---|---|---|

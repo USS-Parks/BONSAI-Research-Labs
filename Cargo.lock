@@ -167,6 +167,22 @@ dependencies = [
 ]
 
 [[package]]
+name = "bonsai-accept"
+version = "0.0.0"
+dependencies = [
+ "bonsai-bundle",
+ "bonsai-contracts",
+ "bonsai-governor",
+ "bonsai-ingest",
+ "bonsai-runtime",
+ "prost",
+ "serde",
+ "serde_json",
+ "sha2",
+ "tempfile",
+]
+
+[[package]]
 name = "bonsai-bundle"
 version = "0.0.0"
 dependencies = [

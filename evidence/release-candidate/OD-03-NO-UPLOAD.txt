@@ -1,0 +1,8 @@
+BONSAI RC 0.0.0 — OD-03
+
+NO git tag
+NO crates.io
+NO pypi
+NO marketing claim
+
+These artifacts are in-repo evidence only. They are not a public release.

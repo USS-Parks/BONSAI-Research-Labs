@@ -1,0 +1,22 @@
+{
+  "schema": "bonsai.host-attestation/v1",
+  "os_family": "macos",
+  "architecture": "arm64",
+  "evidence_class": "not-run",
+  "runner_class": "physical-host",
+  "physical_acceptance": false,
+  "long_duration_claim": false,
+  "profile_id": "L",
+  "required_wall_time_ns": 259200000000000,
+  "required_steps": 10000000,
+  "required_paired_seeds": 3,
+  "status": "not-run",
+  "result": "indeterminate",
+  "reason_codes": ["PHYSICAL_HOST_UNAVAILABLE", "OD_01_HONEST_NOT_RUN"],
+  "observed_wall_time_ns": null,
+  "observed_steps": null,
+  "paired_seeds_completed": 0,
+  "thermal_record": "unavailable",
+  "attestor": "m4-sts",
+  "notes": "No committed Apple-silicon physical host was available this cycle. CI-scale probes are not L acceptance."
+}
