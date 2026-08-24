@@ -1093,3 +1093,24 @@ This append-only log records executed PSPR prompts. Corrections are added as new
 - Commit SHA: pending by self-hash convention; report the focused SHA after publication
 - Risks/blockers/parked scope changed: C2 candidacy still requires BV-05; no OaK, instrument-completion, or C0-C5 claim is made
 - Next eligible prompts after gate and publication: BK-05; dependency order selects BK-05
+
+### BK-04 closeout note
+
+- Focused implementation commit SHA: `117acd244b97bcfc49ed6fd5c9d47d8948f0992f`
+- Hosted verification: pending the `sts/m2-science-v02` pull-request baseline
+- Ledger rule: appended by BK-05 because the BK-04 commit could not contain its own immutable hash or post-push hosted-run identity
+
+## 2026-08-24 — BK-05 — Feature metrics
+
+- Status: passed; closeout entry pending focused commit identity and hosted run
+- Authorization scope: user-authorized `run M2-science STS` for the approved PSPR v0.2 roster
+- Dependencies and source revision: BK-04 published at `117acd244b97bcfc49ed6fd5c9d47d8948f0992f`
+- Objective and exclusions: birth/age/activation/retirement, novelty, redundancy, consumers, useful lineage, utility per byte/work, churn, dormancy, and obsolete protection; do not treat human-semantic labels as utility
+- Reuse classification: extend `bonsai-metrics` after BK-04; reuse rational normalization and ordered maps
+- Files changed: feature metric module and export, metric contract, frozen expected outcomes, README/PSPR status, BK-04 closeout, DEVLOG, verification log, and retained machine evidence
+- Decisions/addenda: redundancy is representation identity; useful requires positive utility and at least one consumer; missing utility stays unavailable
+- Verification summary: three focused tests identify useful/redundant/dormant/retired cases and freeze `fixtures/feature-metrics/v1/expected-outcomes.json`. The complete gate passed formatting, strict workspace Clippy, 147 Rust tests, Ruff, strict Pyright, 11 Python tests, and governance checks on Linux x86_64
+- Evidence paths and SHA-256 hashes: final machine record `BK-05-1787533182634182794` with stdout `960BBB7B47DE3DBC0F4677A652F6AA59A49AA19C992A4DD57DA2E4ADB13E2167` and stderr `DC7771155D1477D3CF5493E2001FBC2716D18AA3DBA6C73AD356E5C31D66F57D`; features `5FB5C0E8BF38C2615BC39169061A65082A72A8C7D0B7DF090FACE9C2BCF5B50C`; contract `7B33C39F1BEACD7ABE0F91ACC404C5F4A1B42F334012994A986B344C56EB1076`; expected outcomes `3B977F9533DED9599EA7A158600C9CFF16630A9C230BE46BADF909B5233C3BEE`
+- Commit SHA: pending by self-hash convention
+- Risks/blockers/parked scope changed: no OaK, instrument-completion, or C0-C5 claim is made
+- Next eligible prompts after gate and publication: BK-06

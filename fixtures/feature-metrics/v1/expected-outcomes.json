@@ -1,0 +1,10 @@
+{
+  "schema": "bonsai.feature-metric-outcomes/v1",
+  "classes": {
+    "copy-a": "redundant",
+    "copy-b": "redundant",
+    "old": "retired",
+    "sleep": "dormant",
+    "useful": "useful"
+  }
+}

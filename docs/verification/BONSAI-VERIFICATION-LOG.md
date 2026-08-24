@@ -1532,3 +1532,17 @@ Machine record `BR-07-1784503142006141500` is not acceptance evidence. The outer
 - Result: pass locally; hosted Windows/macOS/Linux closure remains attached to the focused commit
 - Reviewer/attestation: independently manipulated forgetting and plasticity loss, and strict workspace/Python/schema/governance gates passed locally
 
+## VER-BK05-LOCAL - BK-05 - 2026-08-24
+
+- Source revision and dirty state: `117acd244b97bcfc49ed6fd5c9d47d8948f0992f`; dirty only with BK-05 implementation, governance, and evidence
+- OS/architecture/physical-or-CI: Linux/x86_64; local; physical/virtual status unknown
+- Toolchain/dependency-lock hashes: Rust 1.96.0; uv 0.11.29; Python 3.12.3; `Cargo.lock` unchanged at `AEFC9265FEDA2F88FCA42328D10A41A8F0C1E0B36DCA39B0C3AED700F54B5D7F`
+- Command: final machine record `BK-05-1787533182634182794`; full universal/schema/governance gate after implementation and governance closeout
+- Start/end/duration: machine-record Unix UTC nanoseconds `1787533182634182794` / `1787533191616640483` / 8.982455400 s
+- Exit code: 0
+- Stdout/stderr artifact hashes: stdout `960BBB7B47DE3DBC0F4677A652F6AA59A49AA19C992A4DD57DA2E4ADB13E2167`; stderr `DC7771155D1477D3CF5493E2001FBC2716D18AA3DBA6C73AD356E5C31D66F57D`
+- Fixtures/manifests/bundle IDs: useful, redundant, dormant, and retired feature fixtures
+- Counter availability and privileges: deterministic lineage/activation fixtures only; no physical counter or C0-C5 claim
+- Result: pass locally; hosted Windows/macOS/Linux closure remains attached to the focused commit
+- Reviewer/attestation: exact feature classes without human-semantic utility, and strict workspace/Python/schema/governance gates passed locally
+
