@@ -12,6 +12,7 @@ pub mod continual;
 pub mod features;
 pub mod models;
 pub mod options;
+pub mod planning;
 pub mod resources;
 pub mod subproblems;
 

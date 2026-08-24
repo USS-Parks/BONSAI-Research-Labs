@@ -1588,3 +1588,17 @@ Machine record `BR-07-1784503142006141500` is not acceptance evidence. The outer
 - Result: pass locally; hosted Windows/macOS/Linux closure remains attached to the focused commit
 - Reviewer/attestation: lineage-aligned error comparison only; unaligned targets emit `MODEL_TARGET_UNALIGNED` without a numeric delta
 
+## VER-BK09-LOCAL - BK-09 - 2026-08-24
+
+- Source revision and dirty state: `3339831aa6f7eaade26b2dc07fba80407d0cdcfa`; dirty only with BK-09 implementation, governance, and evidence
+- OS/architecture/physical-or-CI: Linux/x86_64; local; physical/virtual status unknown
+- Toolchain/dependency-lock hashes: Rust 1.96.0; uv 0.11.29; Python 3.12.3; `Cargo.lock` unchanged at `AEFC9265FEDA2F88FCA42328D10A41A8F0C1E0B36DCA39B0C3AED700F54B5D7F`
+- Command: final machine record `BK-09-1787533666867261266`; full universal/schema/governance gate after implementation and governance closeout
+- Start/end/duration: machine-record Unix UTC nanoseconds `1787533666867261266` / `1787533676948441292` / 10.081177463 s
+- Exit code: 0
+- Stdout/stderr artifact hashes: stdout `008CBDCFA28809D694D7AE3FF22017DDA3E44121BBDC041DF8BCADC8EF6E2B9B`; stderr `5E0EB02759A1E1DDA153F94E6EAA82F08859AEA8C2481F9FBFBF3B33FB9EFA41`
+- Fixtures/manifests/bundle IDs: value-only, policy-shift, action-change, and mis-calibrated approximate backup fixtures
+- Counter availability and privileges: deterministic tabular paired counterfactuals only; no physical counter or C0-C5 claim
+- Result: pass locally; hosted Windows/macOS/Linux closure remains attached to the focused commit
+- Reviewer/attestation: value change is not sufficient for consequentiality; approximation error is reported against the exact omit-one test
+

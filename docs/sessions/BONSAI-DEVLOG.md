@@ -1177,3 +1177,24 @@ This append-only log records executed PSPR prompts. Corrections are added as new
 - Commit SHA: pending by self-hash convention
 - Risks/blockers/parked scope changed: no OaK, instrument-completion, or C0-C5 claim is made
 - Next eligible prompts after gate and publication: BK-09
+
+### BK-08 closeout note
+
+- Focused implementation commit SHA: `3339831aa6f7eaade26b2dc07fba80407d0cdcfa`
+- Hosted verification: pending the `sts/m2-science-v02` pull-request baseline
+- Ledger rule: appended by BK-09
+
+## 2026-08-24 — BK-09 — Planning metrics and consequential-backup test
+
+- Status: passed; closeout entry pending focused commit identity and hosted run
+- Authorization scope: user-authorized `run M2-science STS` for the approved PSPR v0.2 roster
+- Dependencies and source revision: BK-08 published at `3339831aa6f7eaade26b2dc07fba80407d0cdcfa`
+- Objective and exclusions: updates, states/options, search control, value gain per operation, realized agreement, primitive-time depth, latency/backups saved, exploitation failure, unused plans, and exact/approximate consequentiality; do not treat value change as sufficient consequence
+- Reuse classification: extend `bonsai-metrics` after BK-08
+- Files changed: planning metric module and export, metric contract, frozen expected outcomes, README/PSPR status, BK-08 closeout, DEVLOG, verification log, and retained machine evidence
+- Decisions/addenda: D-19 consequentiality requires a paired omit-one counterfactual that changes later policy beyond epsilon or changes an action; approximate influence reports absolute error against that exact test
+- Verification summary: three focused tests identify value-only, policy-shifting, action-changing, and mis-calibrated approximate backups against `fixtures/planning-metrics/v1/expected-outcomes.json`. The complete gate passed formatting, strict workspace Clippy, 157 Rust tests, Ruff, strict Pyright, 11 Python tests, and governance checks on Linux x86_64
+- Evidence paths and SHA-256 hashes: final machine record `BK-09-1787533666867261266` with stdout `008CBDCFA28809D694D7AE3FF22017DDA3E44121BBDC041DF8BCADC8EF6E2B9B` and stderr `5E0EB02759A1E1DDA153F94E6EAA82F08859AEA8C2481F9FBFBF3B33FB9EFA41`; planning `497FDBCD31F078F804A53EF0BAD513F4F50C087E2D970F812F5DD32D0A65CA87`; contract `D51174F32B37B23404B32A81249E101196C8C04EE49E3636AC985AD964FAA3F1`; expected outcomes `FF8F37CC24869AEA07A4454D46FC5528BCDE17877F9FE10A3B62D6D08C763735`
+- Commit SHA: pending by self-hash convention
+- Risks/blockers/parked scope changed: no OaK, instrument-completion, or C0-C5 claim is made
+- Next eligible prompts after gate and publication: BK-10
