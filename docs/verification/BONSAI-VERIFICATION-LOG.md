@@ -1714,3 +1714,17 @@ Machine record `BR-07-1784503142006141500` is not acceptance evidence. The outer
 - Result: pass locally; hosted Windows/macOS/Linux closure remains attached to the focused commit
 - Reviewer/attestation: credit is slower than construction; scheduler self-report cannot enforce compliance
 
+## VER-BE08-LOCAL - BE-08 - 2026-08-24
+
+- Source revision and dirty state: `68c564ba377503a444af1198920755a7608ac353`; dirty only with BE-08 implementation, governance, and evidence
+- OS/architecture/physical-or-CI: Linux/x86_64; local; physical/virtual status unknown
+- Toolchain/dependency-lock hashes: Rust 1.96.0; uv 0.11.29; Python 3.12.3; `Cargo.lock` unchanged at `AEFC9265FEDA2F88FCA42328D10A41A8F0C1E0B36DCA39B0C3AED700F54B5D7F`
+- Command: final machine record `BE-08-1787534537846867097`; full universal/schema/governance gate after implementation and governance closeout
+- Start/end/duration: machine-record Unix UTC nanoseconds `1787534537846867097` / `1787534542712379580` / 4.865510249 s
+- Exit code: 0
+- Stdout/stderr artifact hashes: stdout `942F55F7614CC3A3BFD4F86596A8C27C71ABB0102AB06AC4055CA2659D9E37C7`; stderr `4A01F4E783D39CA58106E9B054D6BD97B456657818D7CE32882ADEDDDEA56B61`
+- Fixtures/manifests/bundle IDs: useful retain, redundant deprioritize, and stale remove curation fixtures
+- Counter availability and privileges: deterministic Track A cycle only; no physical counter or C0-C5 claim
+- Result: pass locally; hosted Windows/macOS/Linux closure remains attached to the focused commit
+- Reviewer/attestation: governor admission is required; lineage remains intact; the estimator is not claimed as the OaK solution
+

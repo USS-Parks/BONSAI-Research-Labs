@@ -94,6 +94,18 @@ class CreditRecord:
 
 
 @dataclass(frozen=True, slots=True)
+class CurationRecord:
+    artifact_id: str
+    estimator: Literal["declared_utility"]
+    disposition: Literal["retain", "deprioritize", "replace", "remove"]
+    reason: str
+    applied: bool
+    lineage_intact: bool
+    birth_step: int
+    representation: tuple[int, ...]
+
+
+@dataclass(frozen=True, slots=True)
 class CycleAccounting:
     feature_work: int
     subproblem_work: int
@@ -101,6 +113,7 @@ class CycleAccounting:
     model_work: int
     planning_work: int
     credit_work: int
+    curation_work: int
     replay_items_retained: int
 
 
@@ -460,6 +473,81 @@ class CreditStage:
         return record
 
 
+class CurationStage:
+    """Propose dispositions. The external governor remains authoritative."""
+
+    def __init__(self, features: FeatureStage) -> None:
+        self._features = features
+        self._records: dict[str, CurationRecord] = {}
+        self._work = 0
+
+    @property
+    def work(self) -> int:
+        return self._work
+
+    def snapshot(self) -> tuple[CurationRecord, ...]:
+        return tuple(self._records[key] for key in sorted(self._records))
+
+    def propose(self, artifact_id: str) -> CurationRecord:
+        feature = next(
+            (record for record in self._features.snapshot() if record.feature_id == artifact_id),
+            None,
+        )
+        if feature is None:
+            raise CycleError("CURATION_ARTIFACT_UNKNOWN")
+        disposition, reason = self._classify(feature)
+        record = CurationRecord(
+            artifact_id=artifact_id,
+            estimator="declared_utility",
+            disposition=disposition,
+            reason=reason,
+            applied=False,
+            lineage_intact=True,
+            birth_step=feature.birth_step,
+            representation=feature.representation,
+        )
+        self._records[artifact_id] = record
+        self._work += 1
+        return record
+
+    def apply(self, artifact_id: str, *, governor_admitted: bool) -> CurationRecord:
+        if not governor_admitted:
+            raise CycleError("GOVERNOR_AUTHORITATIVE")
+        current = self._records.get(artifact_id)
+        if current is None:
+            raise CycleError("CURATION_PROPOSAL_UNKNOWN")
+        feature = next(
+            record
+            for record in self._features.snapshot()
+            if record.feature_id == artifact_id
+        )
+        record = replace(
+            current,
+            applied=True,
+            lineage_intact=feature.birth_step == current.birth_step
+            and feature.representation == current.representation,
+        )
+        self._records[artifact_id] = record
+        return record
+
+    def _classify(
+        self, feature: FeatureRecord
+    ) -> tuple[Literal["retain", "deprioritize", "replace", "remove"], str]:
+        if feature.utility is not None and feature.utility > 0 and feature.consumers > 0:
+            return "retain", "useful"
+        siblings = [
+            record
+            for record in self._features.snapshot()
+            if record.feature_id != feature.feature_id
+            and record.representation == feature.representation
+        ]
+        if siblings:
+            return "deprioritize", "redundant"
+        if feature.utility is None and feature.consumers == 0:
+            return "remove", "stale"
+        return "replace", "low_utility"
+
+
 class Brdc1Cycle:
     """Track A reference cycle through planning and backward credit."""
 
@@ -470,6 +558,7 @@ class Brdc1Cycle:
         self.models = ModelStage()
         self.planning = PlanningStage(planning_budget)
         self.credit = CreditStage(self.features)
+        self.curation = CurationStage(self.features)
 
     @property
     def accounting(self) -> CycleAccounting:
@@ -480,6 +569,7 @@ class Brdc1Cycle:
             model_work=self.models.work,
             planning_work=self.planning.work,
             credit_work=self.credit.work,
+            curation_work=self.curation.work,
             replay_items_retained=0,
         )
 
@@ -506,6 +596,15 @@ class Brdc1Cycle:
         self.planning.backup("action_change", "s0", 7, 0, "left", "right")
         self.credit.credit("f_new", "opt_ok", 1, 14, 5)
         return planning_credit_summary(self)
+
+    def run_curation_diagnostic(self) -> dict[str, object]:
+        self.run_planning_credit_diagnostic()
+        self.features.produce("f_dup", (0, 2), 15)
+        self.features.produce("f_stale", (9, 9), 16)
+        for feature_id in ("f_new", "f_dup", "f_stale"):
+            self.curation.propose(feature_id)
+            self.curation.apply(feature_id, governor_admitted=True)
+        return curation_summary(self)
 
 
 def diagnostic_summary(cycle: Brdc1Cycle) -> dict[str, object]:
@@ -619,4 +718,24 @@ def planning_credit_summary(cycle: Brdc1Cycle) -> dict[str, object]:
             ),
             "budget": cycle.planning.budget,
         },
+    }
+
+
+def curation_summary(cycle: Brdc1Cycle) -> dict[str, object]:
+    records = {
+        record.artifact_id: {
+            "estimator": record.estimator,
+            "disposition": record.disposition,
+            "reason": record.reason,
+            "applied": record.applied,
+            "lineage_intact": record.lineage_intact,
+            "birth_step": record.birth_step,
+        }
+        for record in cycle.curation.snapshot()
+    }
+    return {
+        "schema": "bonsai.brdc1-curation-outcomes/v1",
+        "records": records,
+        "oak_solution_claimed": False,
+        "accounting": {"curation_work": cycle.accounting.curation_work},
     }
