@@ -1756,3 +1756,17 @@ Machine record `BR-07-1784503142006141500` is not acceptance evidence. The outer
 - Result: pass locally; hosted Windows/macOS/Linux closure remains attached to the focused commit
 - Reviewer/attestation: C1 cannot pass when a declared hard counter is unavailable; missing evidence stays indeterminate
 
+## VER-BV05-LOCAL - BV-05 - 2026-08-24
+
+- Source revision and dirty state: `a48b076d06c94a41c9b58965d03bac0a12ddee8a`; dirty only with BV-05 implementation, governance, and evidence
+- OS/architecture/physical-or-CI: Linux/x86_64; local; physical/virtual status unknown
+- Toolchain/dependency-lock hashes: Rust 1.96.0; uv 0.11.29; Python 3.12.3
+- Command: final machine record `BV-05-1787534851547074983`; full universal/schema/governance gate after implementation and governance closeout
+- Start/end/duration: machine-record Unix UTC nanoseconds `1787534851547074983` / `1787534857364507818` / 5.817430862 s
+- Exit code: 0
+- Stdout/stderr artifact hashes: stdout `755A7F4200198DADD71F0EE4220A9EFDAC2157CB2E1176C4C8687A4A76B94BC3`; stderr `1F8F41B258CF997A5C15A03B01655A7793C989B41E777548421B4192F105A7EB`
+- Fixtures/manifests/bundle IDs: C2/C3 pass, C1-missing, final-score-only, phase-unavailable, proxy-only, track-leakage, and utility-unavailable fixtures
+- Counter availability and privileges: deterministic claim fixtures only; no physical counter or C4-C5 claim
+- Result: pass locally; hosted Windows/macOS/Linux closure remains attached to the focused commit
+- Reviewer/attestation: proxy-only utility, final-score-only adaptation, and track leakage cannot pass; missing prerequisites stay indeterminate
+

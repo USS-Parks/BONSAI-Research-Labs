@@ -1429,3 +1429,24 @@ This append-only log records executed PSPR prompts. Corrections are added as new
 - Commit SHA: pending by self-hash convention
 - Risks/blockers/parked scope changed: no OaK, instrument-completion, or C2-C5 claim is made
 - Next eligible prompts after gate and publication: BV-05
+
+### BV-04 closeout note
+
+- Focused implementation commit SHA: `a48b076d06c94a41c9b58965d03bac0a12ddee8a`
+- Hosted verification: pending the `sts/m2-science-v02` pull-request baseline
+- Ledger rule: appended by BV-05
+
+## 2026-08-24 — BV-05 — C2 and C3 adjudication
+
+- Status: passed; closeout entry pending focused commit identity and hosted run
+- Authorization scope: user-authorized `run M2-science STS` for the approved PSPR v0.2 roster
+- Dependencies and source revision: BV-04 published at `a48b076d06c94a41c9b58965d03bac0a12ddee8a`
+- Objective and exclusions: require continual adaptation and positive marginal abstraction utility under controlled ablation and statistical rules; exclude proxy-only utility, final-score-only adaptation, and comparator-track leakage
+- Reuse classification: extend `bonsai-claims` after BV-04
+- Files changed: C2/C3 adjudication module, contract, frozen expected outcomes, README/PSPR status, BV-04 closeout, DEVLOG, verification log, and retained machine evidence
+- Decisions/addenda: C2 needs first/return phases, ≥20 paired seeds, and a Holm-rejected positive effect; C3 needs exact or matched positive utility on Track A
+- Verification summary: two focused tests cover pass/fail/indeterminate for C1, adaptation, utility, proxy, and track-leakage prerequisites against `fixtures/c2-c3-adjudication/v1/expected-outcomes.json`. The complete gate passed formatting, strict workspace Clippy, 174 Rust tests, Ruff, strict Pyright, 29 Python tests, and governance checks on Linux x86_64
+- Evidence paths and SHA-256 hashes: final machine record `BV-05-1787534851547074983` with stdout `755A7F4200198DADD71F0EE4220A9EFDAC2157CB2E1176C4C8687A4A76B94BC3` and stderr `1F8F41B258CF997A5C15A03B01655A7793C989B41E777548421B4192F105A7EB`; c2c3 `8E7C9F6F0D361C1C0410198C70F9D96C2882BCC779786A2F650A67FC2BC37175`; contract `317C1DBB8419E0E1B6AA1E4ACDAF65FFA7964A3FAB0FEC693FE339C9C7920399`; expected outcomes `FF77B3BC014460628B2EBF8F5C127D81203FD55EC7A3FBEAD3CE38DA1247E3EF`
+- Commit SHA: pending by self-hash convention
+- Risks/blockers/parked scope changed: no OaK, instrument-completion, or C4-C5 claim is made
+- Next eligible prompts after gate and publication: none in the authorized M2-science roster

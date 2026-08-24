@@ -9,7 +9,7 @@ BONSAI is an independent, algorithm-neutral measurement and external resource-go
 - Research charter: approved v0.1 on 2026-07-18.
 - PSPR: approved v0.1 on 2026-07-18; M2 useful-abstraction slice approved v0.2 on 2026-08-23.
 - Current execution authorization: approved PSPR v0.2 M2-science roster authorized by `run M2-science STS` on 2026-08-24; prior `Continue to STS` remains historical v0.1 authority only.
-- Implementation claims: M0 governed foundation and M1 auditable heartbeat are complete, including BC-01 through BC-12, BR-01 through BR-06, BM-01 through BM-04, BQ-01 through BQ-06, BK-01 through BK-13, BE-01 through BE-09, and BV-01 through BV-04; M2 is in progress through BV-04; the heartbeat emits reportable C0/C1-capable evidence with verdict `not_adjudicated`; no instrument-completion or C0–C5 pass claim.
+- Implementation claims: M0 governed foundation and M1 auditable heartbeat are complete, including BC-01 through BC-12, BR-01 through BR-06, BM-01 through BM-04, BQ-01 through BQ-06, BK-01 through BK-13, BE-01 through BE-09, and BV-01 through BV-05; M2 useful-abstraction adjudication is implemented through C3 rules; the heartbeat emits reportable C0/C1-capable evidence with verdict `not_adjudicated`; no instrument-completion or C0–C5 pass claim.
 - Repository visibility: public under the approved 2026-07-18 repository-target addendum.
 - License: `MIT OR Apache-2.0` at the recipient's option.
 
@@ -75,4 +75,4 @@ Analysis begins with the [versioned metric registry](./docs/metrics/REGISTRY.md)
 
 Reference experiments begin with the [scenario protocol](./docs/architecture/SCENARIO-PROTOCOL.md), its observer-only diagnostic channel, the [primitive control adapter](./docs/reference/PRIMITIVE-CONTROL-ADAPTER.md), the [BRDC-1 specification](./docs/reference/BRDC-1-SPEC.md), the [BRDC-1 feature and subproblem stages](./docs/reference/BRDC-1-FEATURE-SUBPROBLEM.md), the [BRDC-1 option and model stages](./docs/reference/BRDC-1-OPTION-MODEL.md), [BRDC-1 planning and credit](./docs/reference/BRDC-1-PLANNING-CREDIT.md), [BRDC-1 curation](./docs/reference/BRDC-1-CURATION.md), and [BRDC-1 comparators](./docs/reference/BRDC-1-COMPARATORS.md).
 
-Concrete [C0 and C1 adjudication](./docs/claims/C0-C1-ADJUDICATION.md) assigns exact verdicts to compliant, soft-degraded, hard-violating, unavailable, tampered, and ambiguous-track bundles.
+Concrete [C0 and C1 adjudication](./docs/claims/C0-C1-ADJUDICATION.md) assigns exact verdicts to compliant, soft-degraded, hard-violating, unavailable, tampered, and ambiguous-track bundles. [C2 and C3 adjudication](./docs/claims/C2-C3-ADJUDICATION.md) requires continual adaptation and exact or matched abstraction utility; proxy-only utility and track leakage cannot pass.
