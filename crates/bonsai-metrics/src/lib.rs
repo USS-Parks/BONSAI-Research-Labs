@@ -11,6 +11,7 @@ pub mod behavior;
 pub mod continual;
 pub mod features;
 pub mod resources;
+pub mod subproblems;
 
 #[derive(Clone, Debug, Deserialize, Eq, Ord, PartialEq, PartialOrd, Serialize)]
 #[serde(deny_unknown_fields)]

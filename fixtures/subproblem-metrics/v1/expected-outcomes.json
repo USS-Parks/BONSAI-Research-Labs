@@ -1,0 +1,8 @@
+{
+  "schema": "bonsai.subproblem-metric-outcomes/v1",
+  "alignment": {
+    "oblivious": true,
+    "respect-fail": false,
+    "respect-pass": true
+  }
+}

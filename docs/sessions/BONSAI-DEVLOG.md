@@ -1114,3 +1114,24 @@ This append-only log records executed PSPR prompts. Corrections are added as new
 - Commit SHA: pending by self-hash convention
 - Risks/blockers/parked scope changed: no OaK, instrument-completion, or C0-C5 claim is made
 - Next eligible prompts after gate and publication: BK-06
+
+### BK-05 closeout note
+
+- Focused implementation commit SHA: `0af822b2027e77dcb1b78b6d30f9fb2711984a80`
+- Hosted verification: pending the `sts/m2-science-v02` pull-request baseline
+- Ledger rule: appended by BK-06
+
+## 2026-08-24 — BK-06 — Subproblem metrics
+
+- Status: passed; closeout entry pending focused commit identity and hosted run
+- Authorization scope: user-authorized `run M2-science STS` for the approved PSPR v0.2 roster
+- Dependencies and source revision: BK-05 published at `0af822b2027e77dcb1b78b6d30f9fb2711984a80`
+- Objective and exclusions: attained feature/intensity, original reward, stopping bonus/value, initiation/termination, learning progress, success, and cost; do not assume reward-oblivious tasks are reward-respecting
+- Reuse classification: extend `bonsai-metrics` after BK-05
+- Files changed: subproblem metric module and export, metric contract, frozen expected outcomes, README/PSPR status, BK-05 closeout, DEVLOG, verification log, and retained machine evidence
+- Decisions/addenda: reward-respecting alignment requires success iff original reward is positive; oblivious success with non-positive original reward remains oblivious
+- Verification summary: two focused tests distinguish respecting and oblivious fixtures and freeze `fixtures/subproblem-metrics/v1/expected-outcomes.json`. The complete gate passed formatting, strict workspace Clippy, 149 Rust tests, Ruff, strict Pyright, 11 Python tests, and governance checks on Linux x86_64
+- Evidence paths and SHA-256 hashes: final machine record `BK-06-1787533275647258737` with stdout `FCA9436229BA86EC228A8D850D6871063E3931C7BDB4E20F01997F530FFEE0AD` and stderr `5CD5A115B63CA2BF8B6C6D34DE1FE3D3978510B2449D4F56BB9C64C11E090A68`; subproblems `AA3CFB7082B25C0FF9AE3358139743060FECFCE973F88C06C334605A9F326F19`; contract `946124106ABDE2C361FCA1819C3C004ACDB18144DD3D1C8E55DC7792A0F87C8A`; expected outcomes `7D57D22ABCA45F116490B78B5508B42E3B0796EC11297C7C28716BE8436D6DD0`
+- Commit SHA: pending by self-hash convention
+- Risks/blockers/parked scope changed: no OaK, instrument-completion, or C0-C5 claim is made
+- Next eligible prompts after gate and publication: BK-07

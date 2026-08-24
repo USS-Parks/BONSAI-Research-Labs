@@ -1546,3 +1546,17 @@ Machine record `BR-07-1784503142006141500` is not acceptance evidence. The outer
 - Result: pass locally; hosted Windows/macOS/Linux closure remains attached to the focused commit
 - Reviewer/attestation: exact feature classes without human-semantic utility, and strict workspace/Python/schema/governance gates passed locally
 
+## VER-BK06-LOCAL - BK-06 - 2026-08-24
+
+- Source revision and dirty state: `0af822b2027e77dcb1b78b6d30f9fb2711984a80`; dirty only with BK-06 implementation, governance, and evidence
+- OS/architecture/physical-or-CI: Linux/x86_64; local; physical/virtual status unknown
+- Toolchain/dependency-lock hashes: Rust 1.96.0; uv 0.11.29; Python 3.12.3; `Cargo.lock` unchanged at `AEFC9265FEDA2F88FCA42328D10A41A8F0C1E0B36DCA39B0C3AED700F54B5D7F`
+- Command: final machine record `BK-06-1787533275647258737`; full universal/schema/governance gate after implementation and governance closeout
+- Start/end/duration: machine-record Unix UTC nanoseconds `1787533275647258737` / `1787533284904359511` / 9.257098697 s
+- Exit code: 0
+- Stdout/stderr artifact hashes: stdout `FCA9436229BA86EC228A8D850D6871063E3931C7BDB4E20F01997F530FFEE0AD`; stderr `5CD5A115B63CA2BF8B6C6D34DE1FE3D3978510B2449D4F56BB9C64C11E090A68`
+- Fixtures/manifests/bundle IDs: reward-respecting pass/fail and reward-oblivious success fixtures
+- Counter availability and privileges: deterministic subproblem fixtures only; no physical counter or C0-C5 claim
+- Result: pass locally; hosted Windows/macOS/Linux closure remains attached to the focused commit
+- Reviewer/attestation: reward-respecting and reward-oblivious cases remain distinguishable and lineage-complete
+
