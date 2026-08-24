@@ -1,0 +1,104 @@
+{
+  "schema": "bonsai.brdc1-comparator-outcomes/v1",
+  "comparators": {
+    "fixed_feature": {
+      "intended_mechanism": "feature_discovery_disabled",
+      "track": "track_b",
+      "claim_eligible": false,
+      "merge_with_track_a": false,
+      "difference_count": 1
+    },
+    "primitive_only": {
+      "intended_mechanism": "options_disabled",
+      "track": "track_a",
+      "claim_eligible": true,
+      "merge_with_track_a": false,
+      "difference_count": 1
+    },
+    "no_planning": {
+      "intended_mechanism": "planning_disabled",
+      "track": "track_a",
+      "claim_eligible": true,
+      "merge_with_track_a": false,
+      "difference_count": 1
+    },
+    "local_only_utility": {
+      "intended_mechanism": "backward_credit_disabled",
+      "track": "track_a",
+      "claim_eligible": true,
+      "merge_with_track_a": false,
+      "difference_count": 1
+    },
+    "random_age_retention": {
+      "intended_mechanism": "curation_estimator",
+      "track": "track_a",
+      "claim_eligible": true,
+      "merge_with_track_a": false,
+      "difference_count": 1
+    },
+    "frozen_representation": {
+      "intended_mechanism": "feature_revision_disabled",
+      "track": "track_a",
+      "claim_eligible": true,
+      "merge_with_track_a": false,
+      "difference_count": 1
+    },
+    "reward_oblivious_subtask": {
+      "intended_mechanism": "reward_mode",
+      "track": "track_b",
+      "claim_eligible": false,
+      "merge_with_track_a": false,
+      "difference_count": 1
+    },
+    "primitive_model_only": {
+      "intended_mechanism": "option_models_disabled",
+      "track": "track_a",
+      "claim_eligible": true,
+      "merge_with_track_a": false,
+      "difference_count": 1
+    },
+    "bounded_replay": {
+      "intended_mechanism": "replay_capacity",
+      "track": "track_b",
+      "claim_eligible": false,
+      "merge_with_track_a": false,
+      "difference_count": 1
+    },
+    "dense_update": {
+      "intended_mechanism": "batch_size",
+      "track": "track_b",
+      "claim_eligible": false,
+      "merge_with_track_a": false,
+      "difference_count": 1
+    },
+    "oracle": {
+      "intended_mechanism": "privileged_labels",
+      "track": "track_d",
+      "claim_eligible": false,
+      "merge_with_track_a": false,
+      "difference_count": 1
+    },
+    "unconstrained_growth": {
+      "intended_mechanism": "governor_disabled",
+      "track": "track_c",
+      "claim_eligible": false,
+      "merge_with_track_a": false,
+      "difference_count": 1
+    }
+  },
+  "worlds": {
+    "bandit_changepoint": {
+      "family": "nonstationary_bandit",
+      "track": "track_a"
+    },
+    "feature_attainment": {
+      "family": "feature_attainment",
+      "track": "track_a"
+    },
+    "option_horizon": {
+      "family": "option_horizon",
+      "track": "track_a"
+    }
+  },
+  "merged_tracks": false
+}

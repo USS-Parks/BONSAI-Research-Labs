@@ -1387,3 +1387,24 @@ This append-only log records executed PSPR prompts. Corrections are added as new
 - Commit SHA: pending by self-hash convention
 - Risks/blockers/parked scope changed: no OaK, instrument-completion, or C0-C5 claim is made
 - Next eligible prompts after gate and publication: BE-09
+
+### BE-08 closeout note
+
+- Focused implementation commit SHA: `dd0fc98ba5264f007e739f27152ad099e53eb19c`
+- Hosted verification: pending the `sts/m2-science-v02` pull-request baseline
+- Ledger rule: appended by BE-09
+
+## 2026-08-24 — BE-09 — Reference control and comparator adapters
+
+- Status: passed; closeout entry pending focused commit identity and hosted run
+- Authorization scope: user-authorized `run M2-science STS` for the approved PSPR v0.2 roster
+- Dependencies and source revision: BE-08 published at `dd0fc98ba5264f007e739f27152ad099e53eb19c`
+- Objective and exclusions: implement the OD-03 comparator set with one intended difference each and correct track/claim eligibility; do not merge Track B/C/D with A
+- Reuse classification: extend `bonsai-reference` after BE-08 and reuse the BE-01 scenario protocol
+- Files changed: comparator adapters, three diagnostic worlds, tests, contract, frozen expected outcomes, README/PSPR status, BE-08 closeout, DEVLOG, verification log, and retained machine evidence
+- Decisions/addenda: foreign-track comparators are not claim-eligible for Track A merge; worlds cover nonstationary bandit, feature-attainment, and option-horizon families
+- Verification summary: three focused tests freeze one-mechanism differences, refuse Track B/C/D merge, and validate three diagnostic-world families against `fixtures/brdc1-comparators/v1/expected-outcomes.json`. The complete gate passed formatting, strict workspace Clippy, 169 Rust tests, Ruff, strict Pyright, 29 Python tests, and governance checks on Linux x86_64
+- Evidence paths and SHA-256 hashes: final machine record `BE-09-1787534619975254384` with stdout `E3A0C58359A30F928A9AA66DDE02C6F5FCD209CA59489B993D8F49185FA3331D` and stderr `A3A30E90629E7A2D2F509DD67ACC1DAC1C51F9964857DBC7B5377A7B5584AC9D`; comparators `7654351D40D108549B8C868D85994D8B06DB647F6F9A408014D124F9864BD738`; contract `5ADE1574010ECAFA086B3991D3A55E12D8C0B45E60807A8D887B7EA87F2B6D39`; expected outcomes `51D2A42D00DCF8D958D59436412DDC6A3D17DFE3BF4048FACD8EB395BA9DB1E9`
+- Commit SHA: pending by self-hash convention
+- Risks/blockers/parked scope changed: no OaK, instrument-completion, or C0-C5 claim is made
+- Next eligible prompts after gate and publication: BV-04
