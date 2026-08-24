@@ -1072,3 +1072,24 @@ This append-only log records executed PSPR prompts. Corrections are added as new
 - Commit SHA: pending by self-hash convention; report the focused SHA after publication
 - Risks/blockers/parked scope changed: R-07 is controlled at the BQ-06 work-tree seam but BR-06's explicit no-native-sandbox limit remains; no OaK, instrument-completion, or C0-C5 claim is made
 - Next eligible prompts after gate and publication: BK-04, BK-05, BK-13, and BV-04; dependency order selects BK-04
+
+### BQ-06 closeout note
+
+- Focused implementation commit SHA: `081f6326852d87d0331609ca431a53273158460e`
+- Hosted verification: pending the `sts/m2-science-v02` pull-request baseline; BQ-06 is the published implementation revision for the storage/replay guard
+- Ledger rule: appended by BK-04 because the BQ-06 commit could not contain its own immutable hash or post-push hosted-run identity
+
+## 2026-08-24 — BK-04 — Continual-learning metrics
+
+- Status: passed; closeout entry pending focused commit identity and hosted run
+- Authorization scope: user-authorized `run M2-science STS` for the approved PSPR v0.2 roster
+- Dependencies and source revision: BQ-06 published at `081f6326852d87d0331609ca431a53273158460e`
+- Objective and exclusions: retention, adaptation, plasticity loss separated from forgetting, transfer/interference, relearning, divergence, and age curves; do not conflate failure to retain with inability to learn new structure
+- Reuse classification: extend `bonsai-metrics` at the BK-02 rational-table seam; add one continual-metric module, frozen fixture, and metric contract without a new dependency
+- Files changed: continual metric module and export, metric contract, frozen expected outcomes, README/PSPR status, BQ-06 closeout, DEVLOG, verification log, and retained machine evidence
+- Decisions/addenda: forgetting is first-task drop after the intervening phase; plasticity loss is intervening attainable minus actual; the two quantities are independently manipulable; missing transfer baselines and unrecovered return phases are unavailable
+- Verification summary: three focused tests freeze forget-and-learn, retain-but-rigid, and retain-and-adapt fixtures and prove unavailable transfer/relearning never become zero. The complete gate passed formatting, strict workspace Clippy, 144 Rust tests, Ruff, strict Pyright, 11 Python tests, schema compatibility, docs, ADR, license, governance-ledger, terminology, and CI-topology checks on Linux x86_64
+- Evidence paths and SHA-256 hashes: final machine record `BK-04-1787533044965201188` with stdout `1B19DECAC8C65AC722764DA14A6A0C318610BD1A287E3E1F5D23C69BE575B950` and stderr `2F1B3CFA2041E9C8393BBC9598F8BAB336C09BA75D58499023A0C1ECF6A28BA8`; continual `D9140E4890CAAD731ECFCA2310E3CA26EFC1BCBEC01657E0AA31A709DF5FA0F2`; contract `207EF5C71AB3D5CA6E90B7AF2D04398456EF07FF3AD88942007DEE10668F28B8`; expected outcomes `B36C45F898306A70166326C77802E0C8979BB2D412E8EB95933605D53522440E`
+- Commit SHA: pending by self-hash convention; report the focused SHA after publication
+- Risks/blockers/parked scope changed: C2 candidacy still requires BV-05; no OaK, instrument-completion, or C0-C5 claim is made
+- Next eligible prompts after gate and publication: BK-05; dependency order selects BK-05

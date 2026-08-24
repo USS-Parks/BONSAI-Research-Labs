@@ -1517,3 +1517,18 @@ Machine record `BR-07-1784503142006141500` is not acceptance evidence. The outer
 - Counter availability and privileges: deterministic work-tree persistence only; no adversarial OS sandbox, physical counter, or C0-C5 claim
 - Result: pass locally; hosted Windows/macOS/Linux closure remains attached to the focused commit
 - Reviewer/attestation: replay classification, authorized persistence metering, observer/traversal/symlink denial, and strict workspace/Python/schema/governance gates passed locally
+
+## VER-BK04-LOCAL - BK-04 - 2026-08-24
+
+- Source revision and dirty state: `081f6326852d87d0331609ca431a53273158460e`; dirty only with BK-04 implementation, governance, and evidence
+- OS/architecture/physical-or-CI: Linux/x86_64; local; physical/virtual status unknown
+- Toolchain/dependency-lock hashes: Rust 1.96.0; uv 0.11.29; Python 3.12.3; `Cargo.lock` unchanged at `AEFC9265FEDA2F88FCA42328D10A41A8F0C1E0B36DCA39B0C3AED700F54B5D7F`
+- Command: final machine record `BK-04-1787533044965201188`; full universal/schema/governance gate after implementation and governance closeout
+- Start/end/duration: machine-record Unix UTC nanoseconds `1787533044965201188` / `1787533053932135365` / 8.966931294 s
+- Exit code: 0
+- Stdout/stderr artifact hashes: stdout `1B19DECAC8C65AC722764DA14A6A0C318610BD1A287E3E1F5D23C69BE575B950`; stderr `2F1B3CFA2041E9C8393BBC9598F8BAB336C09BA75D58499023A0C1ECF6A28BA8`
+- Fixtures/manifests/bundle IDs: forget-and-learn, retain-but-rigid, and retain-and-adapt continual fixtures; unavailable transfer/relearning cases
+- Counter availability and privileges: deterministic synthetic traces only; no physical counter or C0-C5 claim
+- Result: pass locally; hosted Windows/macOS/Linux closure remains attached to the focused commit
+- Reviewer/attestation: independently manipulated forgetting and plasticity loss, and strict workspace/Python/schema/governance gates passed locally
+

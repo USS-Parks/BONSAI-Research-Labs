@@ -1,0 +1,15 @@
+{
+  "schema": "bonsai.continual-metric-outcomes/v1",
+  "forget_learn": {
+    "forgetting": 10,
+    "plasticity_loss": 0
+  },
+  "retain_rigid": {
+    "forgetting": 0,
+    "plasticity_loss": 10
+  },
+  "retain_adapt": {
+    "forgetting": 0,
+    "plasticity_loss": 0
+  }
+}
