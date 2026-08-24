@@ -168,7 +168,7 @@ Objectives, files, excludes, and gates are carried forward from v0.1 with slice-
 
 ### 4.1 M2a — Lineage utility
 
-- [ ] **BQ-06 — Agent storage and replay guard.** **Depends:** BR-06, BQ-04. **Files:** storage broker/policy. **Objective:** meter authorized agent persistence, deny observer paths, enforce bytes/files growth, and classify transition-like retention. **Excludes:** banning all learned parameters or legitimate state. **Gate:** replay-buffer fixtures are detected/classified; model parameters and bounded algorithm state remain allowed; path/symlink traversal fails. **Slice note:** required so BRDC-1 Track A runs cannot silently retain transition replay.
+- [x] **BQ-06 — Agent storage and replay guard.** **Depends:** BR-06, BQ-04. **Files:** storage broker/policy. **Objective:** meter authorized agent persistence, deny observer paths, enforce bytes/files growth, and classify transition-like retention. **Excludes:** banning all learned parameters or legitimate state. **Gate:** replay-buffer fixtures are detected/classified; model parameters and bounded algorithm state remain allowed; path/symlink traversal fails. **Slice note:** required so BRDC-1 Track A runs cannot silently retain transition replay.
 
 - [ ] **BK-04 — Continual-learning metrics.** **Depends:** BK-02. **Files:** continual metric modules. **Objective:** retention, adaptation, plasticity loss separated from forgetting, transfer/interference, relearning, divergence, and age curves. **Excludes:** conflating failure to retain with inability to learn new structure. **Gate:** synthetic trajectories independently manipulate forgetting and plasticity and receive distinct results. **Slice note:** C2 prerequisite for BV-05.
 

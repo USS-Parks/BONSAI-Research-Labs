@@ -1028,8 +1028,8 @@ This append-only log records executed PSPR prompts. Corrections are added as new
 - Commit SHA: pending; append in BQ-05 under the self-hash convention
 - Risks/blockers/parked scope changed: adapter evidence must be observer-produced or supplied by another trusted runner; an unauthenticated self-report is not certification evidence; later integrity work may bundle/sign reports; BR-10 closes runtime contract conformance only and makes no M2, instrument-completion, or C0–C5 claim
 - Next eligible prompts after gate and publication: BQ-05, BK-04, and BK-05; dependency order selects BQ-05
-
-
+
+
 ### BR-10 closeout note
 
 - Focused implementation commit SHA: `a64cb398b8b91308cff83326e510b474a91acdc6`
@@ -1051,3 +1051,24 @@ This append-only log records executed PSPR prompts. Corrections are added as new
 - Commit SHA: pending by self-hash convention; report the focused SHA after publication
 - Risks/blockers/parked scope changed: BQ-05 controls semantic-work partitions only; platform hard limits remain with BM/BQ backends; BQ-06 still owns agent storage/replay guards; no M2, instrument-completion, or C0-C5 claim is made
 - Next eligible prompts after gate and publication: BQ-06, BK-04, and BK-05
+
+### BQ-05 closeout note
+
+- Focused implementation commit SHA: `1aa07512a4833e35e95fccc22ddcafaa0e201431`
+- Hosted verification: GitHub Actions run 32677138422 was cancelled after the later docs-only PSPR v0.2 approval commit `5ccaac3fdf414948b198899826df0e166c6ef2a7` superseded the BQ-05 push on `main`; BQ-05 remains the published implementation revision for work-class allocation
+- Ledger rule: appended by BQ-06 because the BQ-05 commit could not contain its own immutable hash or post-push hosted-run identity
+
+## 2026-08-24 — BQ-06 — Agent storage and replay guard
+
+- Status: passed; closeout entry pending focused commit identity and hosted run
+- Authorization scope: user-authorized `run M2-science STS` for the approved PSPR v0.2 roster
+- Dependencies and source revision: BQ-05 published at `1aa07512a4833e35e95fccc22ddcafaa0e201431`; docs approval `5ccaac3fdf414948b198899826df0e166c6ef2a7`
+- Objective and exclusions: meter authorized agent-tree persistence, deny observer paths, enforce byte/file growth, and classify transition-like retention; do not ban learned parameters or bounded algorithm state
+- Reuse classification: extend the published BR-06 isolated layout at the agent `work` seam; add one deterministic storage-broker module, integration corpus, architecture contract, and frozen expected-outcome fixture without a new dependency
+- Files changed: storage broker and exports, storage-guard tests, architecture contract, frozen expected outcomes, README/PSPR status, BQ-05 hosted closeout, DEVLOG, verification log, and retained machine evidence
+- Decisions/addenda: payload inspection is authoritative for replay; hidden transition records are classified even when declared as model parameters; Track A policies reject classified replay without writing; path traversal, symlink ancestors/destinations, and observer-tree targets fail closed; only admitted writes change byte/file meters
+- Verification summary: four focused tests freeze the admit/classify/reject sequence against `fixtures/storage-guard/v1/expected-outcomes.json`, prove parameter and bounded-state admission, detect explicit and hidden replay buffers, enforce per-file and file-count bounds, and reject traversal/symlink/malformed policy. The complete gate passed formatting, strict workspace Clippy, 141 Rust tests, Ruff, strict Pyright, 11 Python tests, schema compatibility, docs, ADR, license, governance-ledger, terminology, and CI-topology checks on Linux x86_64
+- Evidence paths and SHA-256 hashes: final machine record `BQ-06-1787532803127602618` with stdout `37F04FCFDD4DE0DDD1F2D1AAD3B8D81D5D4BA80A8C79AB3715B3BA2676593633` and stderr `ECC809AF704D864FDCD1CCF7E279452DA5C7821B24F7E1BCA12128CDEC8D4370`; storage `F14AB27ECF15A7C5A536452641033317DF675DD135A740FE7F94B080C53F7C57`; tests `29919157015909692A2BFA05E33233D6B82CDB5A7D2CB77189A3C7E93D8A5E3E`; contract `3B7D668111CBBD138688331EB475744074197CEA3427E25D26A4947DC8D12CFD`; expected outcomes `075EEA2E640BFF6B174F5249A88C5F84B49337146D4FDEE911EAAB8E3B202A5F`; `Cargo.lock` unchanged at `AEFC9265FEDA2F88FCA42328D10A41A8F0C1E0B36DCA39B0C3AED700F54B5D7F`
+- Commit SHA: pending by self-hash convention; report the focused SHA after publication
+- Risks/blockers/parked scope changed: R-07 is controlled at the BQ-06 work-tree seam but BR-06's explicit no-native-sandbox limit remains; no OaK, instrument-completion, or C0-C5 claim is made
+- Next eligible prompts after gate and publication: BK-04, BK-05, BK-13, and BV-04; dependency order selects BK-04

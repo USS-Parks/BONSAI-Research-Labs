@@ -1474,8 +1474,8 @@ Machine record `BR-07-1784503142006141500` is not acceptance evidence. The outer
 - Counter availability and privileges: deterministic adapter contract fixtures and trusted-runner boundary only; no physical counter, hostile-native sandbox, or scientific-quality claim
 - Result: pass locally; hosted Windows/macOS/Linux closure remains attached to the focused commit
 - Reviewer/attestation: exact seven-check coverage, ternary fail-closed aggregation, deterministic reports, stable failure codes, derived-track enforcement, explicit scientific exclusion, and strict workspace/Python/schema/governance gates passed locally
-
-
+
+
 ## VER-BR10-HOSTED - BR-10 - 2026-07-20T00:49:46Z
 
 - Source revision and dirty state: `a64cb398b8b91308cff83326e510b474a91acdc6`; clean pushed focused implementation revision
@@ -1503,3 +1503,17 @@ Machine record `BR-07-1784503142006141500` is not acceptance evidence. The outer
 - Counter availability and privileges: deterministic semantic-work allocation only; no platform hard-limit enforcement, scientific-utility optimization, or C0-C5 claim
 - Result: pass locally; hosted Windows/macOS/Linux closure remains attached to the focused commit
 - Reviewer/attestation: hard reservations, deferral reasons, observer-reserve protection, acting non-starvation under adversarial order, and strict workspace/Python/schema/governance gates passed locally; an earlier machine record `BQ-05-1787531504639498800` failed only from a locked local pytest temp/cache path and is superseded by this byte-verified rerun
+
+## VER-BQ06-LOCAL - BQ-06 - 2026-08-24
+
+- Source revision and dirty state: `5ccaac3fdf414948b198899826df0e166c6ef2a7`; dirty only with BQ-06 implementation, governance, and evidence
+- OS/architecture/physical-or-CI: Linux/x86_64; local; physical/virtual status unknown
+- Toolchain/dependency-lock hashes: Rust 1.96.0; uv 0.11.29; Python 3.12.3; `Cargo.lock` unchanged at `AEFC9265FEDA2F88FCA42328D10A41A8F0C1E0B36DCA39B0C3AED700F54B5D7F`
+- Command: final machine record `BQ-06-1787532803127602618`; full universal/schema/governance gate after implementation and governance closeout
+- Start/end/duration: machine-record Unix UTC nanoseconds `1787532803127602618` / `1787532824091214436` / 20.963609617 s
+- Exit code: 0
+- Stdout/stderr artifact hashes: stdout `37F04FCFDD4DE0DDD1F2D1AAD3B8D81D5D4BA80A8C79AB3715B3BA2676593633`; stderr `ECC809AF704D864FDCD1CCF7E279452DA5C7821B24F7E1BCA12128CDEC8D4370`
+- Fixtures/manifests/bundle IDs: frozen storage-guard outcomes; admitted model-parameter and bounded-state writes; explicit and hidden replay classification; per-file and file-count exhaustion; path/symlink/malformed-policy rejection; complete existing repository corpus
+- Counter availability and privileges: deterministic work-tree persistence only; no adversarial OS sandbox, physical counter, or C0-C5 claim
+- Result: pass locally; hosted Windows/macOS/Linux closure remains attached to the focused commit
+- Reviewer/attestation: replay classification, authorized persistence metering, observer/traversal/symlink denial, and strict workspace/Python/schema/governance gates passed locally
