@@ -1672,3 +1672,17 @@ Machine record `BR-07-1784503142006141500` is not acceptance evidence. The outer
 - Result: pass locally; hosted Windows/macOS/Linux closure remains attached to the focused commit
 - Reviewer/attestation: public basis, design choice, and hypothesis are distinguished; unpublished Oak Lab algorithms and deep/open-ended success are excluded
 
+## VER-BE05-LOCAL - BE-05 - 2026-08-24
+
+- Source revision and dirty state: `38e14484b16a3f702ba075155b8609c06019f279`; dirty only with BE-05 implementation, governance, and evidence
+- OS/architecture/physical-or-CI: Linux/x86_64; local; physical/virtual status unknown
+- Toolchain/dependency-lock hashes: Rust 1.96.0; uv 0.11.29; Python 3.12.3; `Cargo.lock` unchanged at `AEFC9265FEDA2F88FCA42328D10A41A8F0C1E0B36DCA39B0C3AED700F54B5D7F`
+- Command: final machine record `BE-05-1787534254908451916`; full universal/schema/governance gate after implementation and governance closeout
+- Start/end/duration: machine-record Unix UTC nanoseconds `1787534254908451916` / `1787534259636000840` / 4.727546986 s
+- Exit code: 0
+- Stdout/stderr artifact hashes: stdout `32FF88509B9D7A18CEF5E154B6425D0A2213CAF27AC043D9ECD9AD7D74E97BE7`; stderr `4A01F4E783D39CA58106E9B054D6BD97B456657818D7CE32882ADEDDDEA56B61`
+- Fixtures/manifests/bundle IDs: feature birth/revision/retirement and reward-respecting subproblem fixture
+- Counter availability and privileges: deterministic Track A cycle only; no physical counter or C0-C5 claim
+- Result: pass locally; hosted Windows/macOS/Linux closure remains attached to the focused commit
+- Reviewer/attestation: creation is not utility; semantic labels never enter Track A
+
