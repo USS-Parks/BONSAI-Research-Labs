@@ -1782,8 +1782,10 @@ Machine record `BR-07-1784503142006141500` is not acceptance evidence. The outer
 - Stdout/stderr artifact hashes: Rust stdout `c6a61e3f2363c31c5a7b0723f9dc805349981b9eba26a9fcb011a59b0eefc171` stderr `d7713e2da8af9f00811c6ab23f114c6ec3926fd19146a6d43e3744b9484dd5d8`; Python stdout `9af50995f7140361e4333c5b8aead12c63ae6ce946eff6c911287a1315688974` stderr `e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855`
 - Fixtures/manifests/bundle IDs: Windows Job Object escape/reconcile/enforcement; macOS monitor/terminate overshoot; live Linux cgroup v2 snapshot; NVIDIA absence; E0 energy downgrades; three-OS comparability; enforcement preflight; decision replay; dense/event matched budgets; ten families; eleven ablations; S/C freeze; metric repro envelope; C4/C5 adversarial corpus; claim matrix seed; comparison/equivalence/overhead tables
 - Counter availability and privileges: cgroup v2 readable; cgroup child create permission-denied; Job Object binding unsupported; NVIDIA absent; energy unqualified E0/E1; no physical_acceptance
-- Result: pass locally for code, fixtures, and fail-closed paths; physical Windows/macOS Job Object/cgroup-delegated enforcement remain honest unsupported/deferred per OD-01
+- Result: pass locally for code, fixtures, and fail-closed paths; hosted public Actions run 32756387561 succeeded on Windows x86_64, Linux x86_64, macOS arm64, macOS x86_64, and M1 semantic equivalence; physical Job Object/delegated-cgroup/Apple energy qualification remain honest unsupported/deferred per OD-01
 - Reviewer/attestation: every required hard control without support refuses Track A; C4/C5 rules executable without a pass; no OaK or instrument-completion claim
+- Focused commit on `main`: `a57ee5b5d170ff7249e4a6533022ea0da10a4628`
+- Hosted run: https://github.com/USS-Parks/BONSAI-Research-Labs/actions/runs/32756387561
 
 ## VER-BM05-LOCAL — BM-05 — 2026-08-24
 
