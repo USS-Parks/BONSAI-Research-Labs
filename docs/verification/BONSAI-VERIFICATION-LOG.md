@@ -1474,8 +1474,10 @@ Machine record `BR-07-1784503142006141500` is not acceptance evidence. The outer
 - Counter availability and privileges: deterministic adapter contract fixtures and trusted-runner boundary only; no physical counter, hostile-native sandbox, or scientific-quality claim
 - Result: pass locally; hosted Windows/macOS/Linux closure remains attached to the focused commit
 - Reviewer/attestation: exact seven-check coverage, ternary fail-closed aggregation, deterministic reports, stable failure codes, derived-track enforcement, explicit scientific exclusion, and strict workspace/Python/schema/governance gates passed locally
-
-
+
+
+
+
 ## VER-BR10-HOSTED - BR-10 - 2026-07-20T00:49:46Z
 
 - Source revision and dirty state: `a64cb398b8b91308cff83326e510b474a91acdc6`; clean pushed focused implementation revision
@@ -1509,11 +1511,25 @@ Machine record `BR-07-1784503142006141500` is not acceptance evidence. The outer
 - Source revision and dirty state: `5ccaac3fdf414948b198899826df0e166c6ef2a7`; dirty only with BQ-06 implementation, governance, and evidence
 - OS/architecture/physical-or-CI: Windows/x86_64; local; physical/virtual status unknown
 - Toolchain/dependency-lock hashes: Rust 1.96.0; locked repository Python environment; `Cargo.lock` unchanged at `AEFC9265FEDA2F88FCA42328D10A41A8F0C1E0B36DCA39B0C3AED700F54B5D7F`
-- Command: final machine record `BQ-06-1787533228231893600`; full universal/schema/governance gate through external verifier copy SHA-256 `76A5EB4958029DA49F739CD8CC93F438BAEBE4BC5200E5ADA8B5038E2EBB3235` after governance closeout edits
-- Start/end/duration: machine-record Unix UTC nanoseconds `1787533228231893600` / `1787533248412133900` / 20.1802403 s
+- Command: final machine record `BQ-06-1787533385443958400`; full universal/schema/governance gate through external verifier copy SHA-256 `7CA71B01F9297A47B1554981538B36C13B4DF6AD4D8A4741CA0AB519E6419D3D` after governance closeout edits
+- Start/end/duration: machine-record Unix UTC nanoseconds `1787533385443958400` / `1787533404902056000` / 19.4585666 s
 - Exit code: 0
-- Stdout/stderr artifact hashes: stdout `33816453F8BB65B2A0C43758329CDBA1BE260410A71949708700439009533559`; stderr `60E48C8F35330BE1DF49238585E089FE9D4FC59773F6A3B6D122E13A27441701`
+- Stdout/stderr artifact hashes: stdout `AFAC4BB78DE2573ABDC8CE65E98E7B772DDE65074D829B1F626CD7964CDE4935`; stderr `4A0C8ADEA2F7B2C43DF921B7D2E7C40B66D5CF244E3A36858309E6A8049B1F91`
 - Fixtures/manifests/bundle IDs: frozen adversarial agent-storage outcomes; legitimate model/algorithm state; replay detection under Track A; allowed-replay Track B overlay; traversal/symlink/observer denials; malformed policies; live path helpers; and complete existing repository corpus
 - Counter availability and privileges: deterministic agent-persistence metering and retention classification only; no native OS sandbox, scientific-utility optimization, or C0-C5 claim
 - Result: pass locally; hosted Windows/macOS/Linux closure remains attached to the focused commit
-- Reviewer/attestation: byte/file meters, transition-replay classification, observer/traversal/symlink fail-closed paths, Track A denial without meter growth, and strict workspace/Python/schema/governance gates passed locally
+- Reviewer/attestation: byte/file meters, transition-replay classification, observer/traversal/symlink fail-closed paths, Track A denial without meter growth, and strict workspace/Python/schema/governance gates passed locally; earlier machine records before the unlocked-xtask rerun are superseded by this byte-verified pass
+
+## VER-BQ06-HOSTED - BQ-06 - 2026-08-24T01:02:59Z
+
+- Source revision and dirty state: `e2e1a51cacb16f0c2518750a2a1c1887f20d2fc1`; clean pushed focused implementation revision
+- OS/architecture/physical-or-CI: Windows/x86_64, Linux/x86_64, macOS/arm64, macOS/x86_64; GitHub hosted CI; ephemeral virtual machines
+- Toolchain/dependency-lock hashes: workflow-pinned Rust 1.96.0, Python 3.12, and uv 0.11.29; source locks at the recorded revision
+- Command: GitHub Actions `BONSAI baseline` push run 32678540523, attempt 1
+- Start/end/duration: `2026-08-24T01:02:59Z` / retained by GitHub Actions
+- Exit code: run conclusion `success`
+- Stdout/stderr artifact hashes: retained by GitHub Actions
+- Fixtures/manifests/bundle IDs: agent-storage adversarial corpus, complete existing repository corpus, and unchanged M1 heartbeat aggregate
+- Counter availability and privileges: deterministic agent-persistence fixtures and hosted semantic checks only; no physical counter, hostile-native sandbox, or scientific-quality claim
+- Result: pass; BQ-06 cross-OS gate is closed
+- Reviewer/attestation: authenticated GitHub metadata establishes the exact head SHA and successful four-platform plus aggregate conclusions
