@@ -1198,3 +1198,24 @@ This append-only log records executed PSPR prompts. Corrections are added as new
 - Commit SHA: pending by self-hash convention
 - Risks/blockers/parked scope changed: no OaK, instrument-completion, or C0-C5 claim is made
 - Next eligible prompts after gate and publication: BK-10
+
+### BK-09 closeout note
+
+- Focused implementation commit SHA: `d7e4c95297306397d093aefc03e71318ab483fdf`
+- Hosted verification: pending the `sts/m2-science-v02` pull-request baseline
+- Ledger rule: appended by BK-10
+
+## 2026-08-24 — BK-10 — Utility estimator hierarchy
+
+- Status: passed; closeout entry pending focused commit identity and hosted run
+- Authorization scope: user-authorized `run M2-science STS` for the approved PSPR v0.2 roster
+- Dependencies and source revision: BK-09 published at `d7e4c95297306397d093aefc03e71318ab483fdf`
+- Objective and exclusions: exact leave-one-out, matched ablation, consumer credit, and influence proxy with tier labels and cost accounting; proxy-only cannot establish C3
+- Reuse classification: extend `bonsai-metrics` after BK-09
+- Files changed: utility module and export, metric contract, frozen expected outcomes, README/PSPR status, BK-09 closeout, DEVLOG, verification log, and retained machine evidence
+- Decisions/addenda: proxy sign errors and confidence failures force indeterminate utility; C3 eligibility is reserved for exact or matched tiers
+- Verification summary: three focused tests calibrate exact, sign-error, confidence-failure, and proxy-only rows against `fixtures/utility-metrics/v1/expected-outcomes.json`. The complete gate passed formatting, strict workspace Clippy, 160 Rust tests, Ruff, strict Pyright, 11 Python tests, and governance checks on Linux x86_64. An earlier machine record `BK-10-1787533763435716324` failed only from module-export rustfmt order and is superseded
+- Evidence paths and SHA-256 hashes: final machine record `BK-10-1787533774387863180` with stdout `E7FF0351D316E7C9EBCF48CF2157B5A73164C315138D04FA34E754D4EE66E31E` and stderr `5614552DE05955A1D063327789BD5458A9076EBEEA4BD150F19546A65170FC08`; utility `C1ADA17E020F0D4115A258B8DA05BD2B4AA8921C7F37FA8983BF0E6408E10577`; contract `4391509F4E41D8D87E13B44B05E905B344FF93CAD4C17F5D5F463A1682C1F891`; expected outcomes `5CAEAD4A44D62F99CD9A9D4F3A87D8E81973BBD47857260DE40A4B6947285E87`
+- Commit SHA: pending by self-hash convention
+- Risks/blockers/parked scope changed: no OaK, instrument-completion, or C0-C5 claim is made
+- Next eligible prompts after gate and publication: BK-11

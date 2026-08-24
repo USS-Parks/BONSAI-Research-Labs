@@ -15,6 +15,7 @@ pub mod options;
 pub mod planning;
 pub mod resources;
 pub mod subproblems;
+pub mod utility;
 
 #[derive(Clone, Debug, Deserialize, Eq, Ord, PartialEq, PartialOrd, Serialize)]
 #[serde(deny_unknown_fields)]

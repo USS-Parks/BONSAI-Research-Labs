@@ -1,0 +1,11 @@
+Diff in /workspace/crates/bonsai-metrics/src/lib.rs:13:
+ pub mod models;
+ pub mod options;
+ pub mod planning;
+-pub mod utility;
+ pub mod resources;
+ pub mod subproblems;
++pub mod utility;
+ 
+ #[derive(Clone, Debug, Deserialize, Eq, Ord, PartialEq, PartialOrd, Serialize)]
+ #[serde(deny_unknown_fields)]

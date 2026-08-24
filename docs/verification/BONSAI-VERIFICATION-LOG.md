@@ -1602,3 +1602,17 @@ Machine record `BR-07-1784503142006141500` is not acceptance evidence. The outer
 - Result: pass locally; hosted Windows/macOS/Linux closure remains attached to the focused commit
 - Reviewer/attestation: value change is not sufficient for consequentiality; approximation error is reported against the exact omit-one test
 
+## VER-BK10-LOCAL - BK-10 - 2026-08-24
+
+- Source revision and dirty state: `d7e4c95297306397d093aefc03e71318ab483fdf`; dirty only with BK-10 implementation, governance, and evidence
+- OS/architecture/physical-or-CI: Linux/x86_64; local; physical/virtual status unknown
+- Toolchain/dependency-lock hashes: Rust 1.96.0; uv 0.11.29; Python 3.12.3; `Cargo.lock` unchanged at `AEFC9265FEDA2F88FCA42328D10A41A8F0C1E0B36DCA39B0C3AED700F54B5D7F`
+- Command: final machine record `BK-10-1787533774387863180`; full universal/schema/governance gate after implementation and governance closeout
+- Start/end/duration: machine-record Unix UTC nanoseconds `1787533774387863180` / `1787533784227756569` / 9.839891340 s
+- Exit code: 0
+- Stdout/stderr artifact hashes: stdout `E7FF0351D316E7C9EBCF48CF2157B5A73164C315138D04FA34E754D4EE66E31E`; stderr `5614552DE05955A1D063327789BD5458A9076EBEEA4BD150F19546A65170FC08`
+- Fixtures/manifests/bundle IDs: exact-positive, proxy sign-error, proxy confidence-failure, and proxy-only utility fixtures
+- Counter availability and privileges: deterministic diagnostic ablations only; no physical counter or C0-C5 claim
+- Result: pass locally; hosted Windows/macOS/Linux closure remains attached to the focused commit
+- Reviewer/attestation: proxy-only rows cannot establish C3; sign and confidence failures stay indeterminate; earlier rustfmt-order record is superseded
+
