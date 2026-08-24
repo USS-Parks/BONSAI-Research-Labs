@@ -9,6 +9,7 @@ use std::fmt;
 
 pub mod behavior;
 pub mod continual;
+pub mod cycle;
 pub mod features;
 pub mod models;
 pub mod options;

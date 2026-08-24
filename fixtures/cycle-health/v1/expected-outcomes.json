@@ -1,0 +1,10 @@
+{
+  "schema": "bonsai.cycle-health-outcomes/v1",
+  "classes": {
+    "collapse": "collapse",
+    "cycling": "cycling",
+    "healthy": "healthy",
+    "ossified": "ossified",
+    "runaway": "runaway"
+  }
+}

@@ -1616,3 +1616,17 @@ Machine record `BR-07-1784503142006141500` is not acceptance evidence. The outer
 - Result: pass locally; hosted Windows/macOS/Linux closure remains attached to the focused commit
 - Reviewer/attestation: proxy-only rows cannot establish C3; sign and confidence failures stay indeterminate; earlier rustfmt-order record is superseded
 
+## VER-BK11-LOCAL - BK-11 - 2026-08-24
+
+- Source revision and dirty state: `f1472ce2c5fc456a043554dd5f1867b2f78613fe`; dirty only with BK-11 implementation, governance, and evidence
+- OS/architecture/physical-or-CI: Linux/x86_64; local; physical/virtual status unknown
+- Toolchain/dependency-lock hashes: Rust 1.96.0; uv 0.11.29; Python 3.12.3; `Cargo.lock` unchanged at `AEFC9265FEDA2F88FCA42328D10A41A8F0C1E0B36DCA39B0C3AED700F54B5D7F`
+- Command: final machine record `BK-11-1787533864418168721`; full universal/schema/governance gate after implementation and governance closeout
+- Start/end/duration: machine-record Unix UTC nanoseconds `1787533864418168721` / `1787533874375161975` / 9.956991308 s
+- Exit code: 0
+- Stdout/stderr artifact hashes: stdout `659F6A526A6AFF21EBCEE14B2D22F25A6E5330F59C86860D53C97B6E1AC39E62`; stderr `5513C6C9EBF03E5AB869D3C66DB5CD1BEC926899A3E11675C7313D6368DD5DE5`
+- Fixtures/manifests/bundle IDs: healthy, collapse, runaway, cycling, and ossified cycle-health traces
+- Counter availability and privileges: deterministic synthetic traces only; no physical counter or C0-C5 claim
+- Result: pass locally; hosted Windows/macOS/Linux closure remains attached to the focused commit
+- Reviewer/attestation: artifact count is not scored as open-endedness; classes match the committed fixture
+

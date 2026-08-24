@@ -1219,3 +1219,24 @@ This append-only log records executed PSPR prompts. Corrections are added as new
 - Commit SHA: pending by self-hash convention
 - Risks/blockers/parked scope changed: no OaK, instrument-completion, or C0-C5 claim is made
 - Next eligible prompts after gate and publication: BK-11
+
+### BK-10 closeout note
+
+- Focused implementation commit SHA: `f1472ce2c5fc456a043554dd5f1867b2f78613fe`
+- Hosted verification: pending the `sts/m2-science-v02` pull-request baseline
+- Ledger rule: appended by BK-11
+
+## 2026-08-24 — BK-11 — Discovery-cycle health metrics
+
+- Status: passed; closeout entry pending focused commit identity and hosted run
+- Authorization scope: user-authorized `run M2-science STS` for the approved PSPR v0.2 roster
+- Dependencies and source revision: BK-10 published at `f1472ce2c5fc456a043554dd5f1867b2f78613fe`
+- Objective and exclusions: forward rates, backward-credit latency/magnitude, survival by utility, generations, bottlenecks, useful/total growth, maintenance/benefit, collapse, runaway, cycling, and ossification; do not treat artifact count as open-endedness
+- Reuse classification: extend `bonsai-metrics` after BK-10
+- Files changed: cycle-health module and export, metric contract, frozen expected outcomes, README/PSPR status, BK-10 closeout, DEVLOG, verification log, and retained machine evidence
+- Decisions/addenda: open-endedness is novelty over population size; total count is used only to detect collapse or runaway growth
+- Verification summary: three focused tests separate healthy/collapse/runaway/cycling/ossified traces and refuse artifact-count open-endedness against `fixtures/cycle-health/v1/expected-outcomes.json`. The complete gate passed formatting, strict workspace Clippy, 163 Rust tests, Ruff, strict Pyright, 11 Python tests, and governance checks on Linux x86_64
+- Evidence paths and SHA-256 hashes: final machine record `BK-11-1787533864418168721` with stdout `659F6A526A6AFF21EBCEE14B2D22F25A6E5330F59C86860D53C97B6E1AC39E62` and stderr `5513C6C9EBF03E5AB869D3C66DB5CD1BEC926899A3E11675C7313D6368DD5DE5`; cycle `5AFCAF2D511BD8992E6BDACA4B68E19314169B3992CB9EA50FA4E5A6A65A54A5`; contract `BC0FE89EF0E32B0291EB3A7D3A7A3A04E5570A27DC0EE8CEE122E5AC8459A363`; expected outcomes `A54F55AA5DC35528E25B6D448190E98E3EF9E0E678E1F8E13BF3EF2A35ACD5B6`
+- Commit SHA: pending by self-hash convention
+- Risks/blockers/parked scope changed: no OaK, instrument-completion, or C0-C5 claim is made
+- Next eligible prompts after gate and publication: BK-12
