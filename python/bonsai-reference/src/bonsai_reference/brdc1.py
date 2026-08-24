@@ -45,9 +45,36 @@ class SubproblemRecord:
 
 
 @dataclass(frozen=True, slots=True)
+class OptionRecord:
+    option_id: str
+    subproblem_id: str
+    policy: tuple[int, ...]
+    termination: tuple[int, ...]
+    executions: int
+    successes: int
+    work: int
+
+
+@dataclass(frozen=True, slots=True)
+class ModelRecord:
+    option_id: str
+    target_id: str
+    predicted_reward: int
+    predicted_duration: int
+    reward_error: int
+    duration_error: int
+    updates: int
+    replay_items_retained: int
+    within_tolerance: bool
+    detail_code: str | None
+
+
+@dataclass(frozen=True, slots=True)
 class CycleAccounting:
     feature_work: int
     subproblem_work: int
+    option_work: int
+    model_work: int
     replay_items_retained: int
 
 
@@ -177,18 +204,153 @@ class SubproblemStage:
         return record
 
 
+class OptionStage:
+    """Solve successful subproblems into options. Creation is not benefit."""
+
+    def __init__(self, subproblems: SubproblemStage) -> None:
+        self._subproblems = subproblems
+        self._options: dict[str, OptionRecord] = {}
+        self._work = 0
+
+    @property
+    def work(self) -> int:
+        return self._work
+
+    def snapshot(self) -> tuple[OptionRecord, ...]:
+        return tuple(self._options[key] for key in sorted(self._options))
+
+    def solve(self, option_id: str, subproblem_id: str) -> OptionRecord:
+        if not option_id or option_id in self._options:
+            raise CycleError("OPTION_IDENTITY_INVALID")
+        subproblem = next(
+            (record for record in self._subproblems.snapshot() if record.subproblem_id == subproblem_id),
+            None,
+        )
+        if subproblem is None:
+            raise CycleError("OPTION_SUBPROBLEM_UNKNOWN")
+        if not subproblem.success:
+            raise CycleError("OPTION_SUBPROBLEM_UNSOLVED")
+        policy = (1, 0) if subproblem.original_reward > 0 else (0, 1)
+        record = OptionRecord(
+            option_id=option_id,
+            subproblem_id=subproblem_id,
+            policy=policy,
+            termination=(0, 1),
+            executions=0,
+            successes=0,
+            work=4,
+        )
+        self._options[option_id] = record
+        self._work += record.work
+        return record
+
+    def execute(self, option_id: str, state_index: int) -> tuple[int, bool]:
+        current = self._options.get(option_id)
+        if current is None:
+            raise CycleError("OPTION_UNAVAILABLE")
+        action = current.policy[state_index % len(current.policy)]
+        terminated = current.termination[state_index % len(current.termination)] == 1
+        record = replace(
+            current,
+            executions=current.executions + 1,
+            successes=current.successes + int(terminated),
+            work=current.work + 1,
+        )
+        self._options[option_id] = record
+        self._work += 1
+        return action, terminated
+
+
+class ModelStage:
+    """Learn option consequences online, batch one, without replay."""
+
+    def __init__(self) -> None:
+        self._models: dict[str, ModelRecord] = {}
+        self._work = 0
+
+    @property
+    def work(self) -> int:
+        return self._work
+
+    def snapshot(self) -> tuple[ModelRecord, ...]:
+        return tuple(self._models[key] for key in sorted(self._models))
+
+    def start(self, option_id: str, target_id: str) -> ModelRecord:
+        if not option_id or option_id in self._models or not target_id:
+            raise CycleError("MODEL_IDENTITY_INVALID")
+        record = ModelRecord(
+            option_id=option_id,
+            target_id=target_id,
+            predicted_reward=0,
+            predicted_duration=0,
+            reward_error=0,
+            duration_error=0,
+            updates=0,
+            replay_items_retained=0,
+            within_tolerance=False,
+            detail_code="MODEL_NOT_UPDATED",
+        )
+        self._models[option_id] = record
+        return record
+
+    def update(
+        self,
+        option_id: str,
+        actual_reward: int,
+        actual_duration: int,
+        tolerance: int,
+    ) -> ModelRecord:
+        current = self._models.get(option_id)
+        if current is None:
+            raise CycleError("MODEL_UNAVAILABLE")
+        reward_error = abs(current.predicted_reward - actual_reward)
+        duration_error = abs(current.predicted_duration - actual_duration)
+        within = reward_error <= tolerance and duration_error <= tolerance
+        record = replace(
+            current,
+            predicted_reward=actual_reward,
+            predicted_duration=actual_duration,
+            reward_error=reward_error,
+            duration_error=duration_error,
+            updates=current.updates + 1,
+            replay_items_retained=0,
+            within_tolerance=within,
+            detail_code=None if within else "MODEL_TOLERANCE_FAILED",
+        )
+        self._models[option_id] = record
+        self._work += 1
+        return record
+
+    def learn_one_pass(
+        self,
+        option_id: str,
+        target_id: str,
+        transitions: tuple[tuple[int, int], ...],
+        tolerance: int,
+    ) -> ModelRecord:
+        self.start(option_id, target_id)
+        record = self._models[option_id]
+        for reward, duration in transitions:
+            record = self.update(option_id, reward, duration, tolerance)
+        return record
+
+
 class Brdc1Cycle:
-    """Track A reference cycle through the feature and subproblem stages."""
+    """Track A reference cycle through option and model stages."""
 
     def __init__(self) -> None:
         self.features = FeatureStage()
         self.subproblems = SubproblemStage(self.features)
+        self.options = OptionStage(self.subproblems)
+        self.models = ModelStage()
 
     @property
     def accounting(self) -> CycleAccounting:
         return CycleAccounting(
             feature_work=self.features.work,
             subproblem_work=self.subproblems.work,
+            option_work=self.options.work,
+            model_work=self.models.work,
             replay_items_retained=0,
         )
 
@@ -200,6 +362,14 @@ class Brdc1Cycle:
         self.subproblems.pose("sub_ok", "f_new", 1, 1, True)
         self.subproblems.pose("sub_fail", "f_new", 0, 1, True)
         return diagnostic_summary(self)
+
+    def run_option_model_diagnostic(self) -> dict[str, object]:
+        self.run_diagnostic()
+        self.options.solve("opt_ok", "sub_ok")
+        self.options.execute("opt_ok", 1)
+        passed = self.models.learn_one_pass("opt_ok", "reward_duration", ((2, 1), (2, 1)), 1)
+        failed = self.models.learn_one_pass("opt_fail", "reward_duration", ((1, 1), (9, 9)), 1)
+        return option_model_summary(self, passed, failed)
 
 
 def diagnostic_summary(cycle: Brdc1Cycle) -> dict[str, object]:
@@ -232,6 +402,49 @@ def diagnostic_summary(cycle: Brdc1Cycle) -> dict[str, object]:
         "accounting": {
             "feature_work": cycle.accounting.feature_work,
             "subproblem_work": cycle.accounting.subproblem_work,
+            "replay_items_retained": cycle.accounting.replay_items_retained,
+        },
+    }
+
+
+def option_model_summary(
+    cycle: Brdc1Cycle,
+    passed: ModelRecord,
+    failed: ModelRecord,
+) -> dict[str, object]:
+    options = {
+        record.option_id: {
+            "subproblem_id": record.subproblem_id,
+            "executions": record.executions,
+            "successes": record.successes,
+            "work": record.work,
+        }
+        for record in cycle.options.snapshot()
+    }
+    return {
+        "schema": "bonsai.brdc1-option-model-outcomes/v1",
+        "options": options,
+        "models": {
+            passed.option_id: {
+                "updates": passed.updates,
+                "reward_error": passed.reward_error,
+                "duration_error": passed.duration_error,
+                "within_tolerance": passed.within_tolerance,
+                "detail_code": passed.detail_code,
+                "replay_items_retained": passed.replay_items_retained,
+            },
+            failed.option_id: {
+                "updates": failed.updates,
+                "reward_error": failed.reward_error,
+                "duration_error": failed.duration_error,
+                "within_tolerance": failed.within_tolerance,
+                "detail_code": failed.detail_code,
+                "replay_items_retained": failed.replay_items_retained,
+            },
+        },
+        "accounting": {
+            "option_work": cycle.accounting.option_work,
+            "model_work": cycle.accounting.model_work,
             "replay_items_retained": cycle.accounting.replay_items_retained,
         },
     }
