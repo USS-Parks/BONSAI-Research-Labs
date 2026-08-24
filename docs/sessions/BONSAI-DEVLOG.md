@@ -1282,3 +1282,24 @@ This append-only log records executed PSPR prompts. Corrections are added as new
 - Commit SHA: pending by self-hash convention
 - Risks/blockers/parked scope changed: no OaK, instrument-completion, or C0-C5 claim is made
 - Next eligible prompts after gate and publication: BE-04
+
+### BK-13 closeout note
+
+- Focused implementation commit SHA: `b6c2c4c3fad26be0afcdef4f39c87e3fbe770b7d`
+- Hosted verification: pending the `sts/m2-science-v02` pull-request baseline
+- Ledger rule: appended by BE-04
+
+## 2026-08-24 — BE-04 — Specify BRDC-1 without OaK overclaim
+
+- Status: passed; closeout entry pending focused commit identity and hosted run
+- Authorization scope: user-authorized `run M2-science STS` for the approved PSPR v0.2 roster
+- Dependencies and source revision: BK-13 published at `b6c2c4c3fad26be0afcdef4f39c87e3fbe770b7d`
+- Objective and exclusions: specify public-ingredient features, reward-respecting subproblems, options, option models, planning, backward utility credit, scheduler events, and curation; exclude unpublished Oak Lab algorithms and deep/open-ended success claims
+- Reuse classification: documentation-only after D-17 and BK-05–BK-11
+- Files changed: BRDC-1 specification, README/PSPR status, BK-13 closeout, DEVLOG, verification log, and retained machine evidence
+- Decisions/addenda: every mechanism has a public basis, a BONSAI design choice, and an experimental hypothesis; BRDC-1 is not an Oak Lab implementation
+- Verification summary: the specification contains an eight-row traceability table with public basis, BONSAI design choice, and experimental hypothesis for every mechanism. The complete gate passed formatting, strict workspace Clippy, 169 Rust tests, Ruff, strict Pyright, 14 Python tests, and governance checks on Linux x86_64
+- Evidence paths and SHA-256 hashes: final machine record `BE-04-1787534190801692582` with stdout `6DBD886C77FBAE530F8654ED07BCE7FE8A44165E8B0942ADB5EAFFB9AB8CF757` and stderr `D93CB43305B4B7467B65285BB76D3AAC7B9AE507A9CEE979794E25819BD64FB6`; specification `FC237F364C157FCA13E80C65D282F1CCC5E65480E158E1D60957D6E22996A5DE`
+- Commit SHA: pending by self-hash convention
+- Risks/blockers/parked scope changed: no OaK, instrument-completion, or C0-C5 claim is made
+- Next eligible prompts after gate and publication: BE-05

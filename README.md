@@ -9,7 +9,7 @@ BONSAI is an independent, algorithm-neutral measurement and external resource-go
 - Research charter: approved v0.1 on 2026-07-18.
 - PSPR: approved v0.1 on 2026-07-18; M2 useful-abstraction slice approved v0.2 on 2026-08-23.
 - Current execution authorization: approved PSPR v0.2 M2-science roster authorized by `run M2-science STS` on 2026-08-24; prior `Continue to STS` remains historical v0.1 authority only.
-- Implementation claims: M0 governed foundation and M1 auditable heartbeat are complete, including BC-01 through BC-12, BR-01 through BR-06, BM-01 through BM-04, BQ-01 through BQ-06, BK-01 through BK-13, BE-01 through BE-03, and BV-01 through BV-03; M2 is in progress through BK-13; the heartbeat emits reportable C0/C1-capable evidence with verdict `not_adjudicated`; no instrument-completion or C0–C5 pass claim.
+- Implementation claims: M0 governed foundation and M1 auditable heartbeat are complete, including BC-01 through BC-12, BR-01 through BR-06, BM-01 through BM-04, BQ-01 through BQ-06, BK-01 through BK-13, BE-01 through BE-04, and BV-01 through BV-03; M2 is in progress through BE-04; the heartbeat emits reportable C0/C1-capable evidence with verdict `not_adjudicated`; no instrument-completion or C0–C5 pass claim.
 - Repository visibility: public under the approved 2026-07-18 repository-target addendum.
 - License: `MIT OR Apache-2.0` at the recipient's option.
 
@@ -73,4 +73,4 @@ The [adapter runtime conformance suite](./docs/architecture/ADAPTER-CONFORMANCE.
 
 Analysis begins with the [versioned metric registry](./docs/metrics/REGISTRY.md), [primary behavior metrics](./docs/metrics/PRIMARY-BEHAVIOR-METRICS.md), [resource/overhead metrics](./docs/metrics/RESOURCE-AND-OVERHEAD-METRICS.md), [continual-learning metrics](./docs/metrics/CONTINUAL-LEARNING-METRICS.md), [feature metrics](./docs/metrics/FEATURE-METRICS.md), [subproblem metrics](./docs/metrics/SUBPROBLEM-METRICS.md), [option metrics](./docs/metrics/OPTION-METRICS.md), [model and knowledge metrics](./docs/metrics/MODEL-AND-KNOWLEDGE-METRICS.md), [planning metrics](./docs/metrics/PLANNING-METRICS.md), the [utility estimator hierarchy](./docs/metrics/UTILITY-ESTIMATOR-HIERARCHY.md), [discovery-cycle health](./docs/metrics/DISCOVERY-CYCLE-HEALTH.md), [failure-criteria detectors](./docs/metrics/FAILURE-CRITERIA.md), and [statistical aggregation](./docs/metrics/STATISTICAL-AGGREGATION.md); derived report values must originate in deterministic metric tables.
 
-Reference experiments begin with the [scenario protocol](./docs/architecture/SCENARIO-PROTOCOL.md), its observer-only diagnostic channel, and the [primitive control adapter](./docs/reference/PRIMITIVE-CONTROL-ADAPTER.md).
+Reference experiments begin with the [scenario protocol](./docs/architecture/SCENARIO-PROTOCOL.md), its observer-only diagnostic channel, the [primitive control adapter](./docs/reference/PRIMITIVE-CONTROL-ADAPTER.md), and the [BRDC-1 specification](./docs/reference/BRDC-1-SPEC.md).

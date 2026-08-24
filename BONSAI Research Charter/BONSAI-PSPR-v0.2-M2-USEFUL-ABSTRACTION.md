@@ -192,7 +192,7 @@ Objectives, files, excludes, and gates are carried forward from v0.1 with slice-
 
 ### 4.2 M2b — BRDC-1 reference cycle
 
-- [ ] **BE-04 — Specify BRDC-1 without OaK overclaim.** **Depends:** D-17, BK-05–BK-11. **Files:** `docs/reference/BRDC-1-SPEC.md`. **Objective:** define public-ingredient feature candidates, reward-respecting subproblems, options, option models, planning, backward utility credit, scheduler events, and curation. **Excludes:** unpublished Oak Lab algorithms, deep/open-ended success claims. **Gate:** traceability table distinguishes public basis, BONSAI design choice, and experimental hypothesis for every mechanism.
+- [x] **BE-04 — Specify BRDC-1 without OaK overclaim.** **Depends:** D-17, BK-05–BK-11. **Files:** `docs/reference/BRDC-1-SPEC.md`. **Objective:** define public-ingredient feature candidates, reward-respecting subproblems, options, option models, planning, backward utility credit, scheduler events, and curation. **Excludes:** unpublished Oak Lab algorithms, deep/open-ended success claims. **Gate:** traceability table distinguishes public basis, BONSAI design choice, and experimental hypothesis for every mechanism.
 
 - [ ] **BE-05 — Implement BRDC-1 feature and subproblem stages.** **Depends:** BE-04, BR-07. **Files:** reference agent. **Objective:** produce/revise/retire features and pose reward-respecting feature-attainment subproblems with full lineage/work telemetry. **Excludes:** counting creation as utility. **Gate:** diagnostic feature/subproblem fixture reconstructs exact lifecycle and cost; no labels enter Track A.
 

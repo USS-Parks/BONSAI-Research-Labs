@@ -1658,3 +1658,17 @@ Machine record `BR-07-1784503142006141500` is not acceptance evidence. The outer
 - Result: pass locally; hosted Windows/macOS/Linux closure remains attached to the focused commit
 - Reviewer/attestation: golden corpus matches the independent Python reference; undeclared exclusions and metrics fail closed
 
+## VER-BE04-LOCAL - BE-04 - 2026-08-24
+
+- Source revision and dirty state: `b6c2c4c3fad26be0afcdef4f39c87e3fbe770b7d`; dirty only with BE-04 specification, governance, and evidence
+- OS/architecture/physical-or-CI: Linux/x86_64; local; physical/virtual status unknown
+- Toolchain/dependency-lock hashes: Rust 1.96.0; uv 0.11.29; Python 3.12.3; `Cargo.lock` unchanged at `AEFC9265FEDA2F88FCA42328D10A41A8F0C1E0B36DCA39B0C3AED700F54B5D7F`
+- Command: final machine record `BE-04-1787534190801692582`; full universal/schema/governance gate after specification and governance closeout
+- Start/end/duration: machine-record Unix UTC nanoseconds `1787534190801692582` / `1787534195520109646` / 4.718415090 s
+- Exit code: 0
+- Stdout/stderr artifact hashes: stdout `6DBD886C77FBAE530F8654ED07BCE7FE8A44165E8B0942ADB5EAFFB9AB8CF757`; stderr `D93CB43305B4B7467B65285BB76D3AAC7B9AE507A9CEE979794E25819BD64FB6`
+- Fixtures/manifests/bundle IDs: BRDC-1 specification with eight-mechanism traceability table
+- Counter availability and privileges: documentation only; no physical counter or C0-C5 claim
+- Result: pass locally; hosted Windows/macOS/Linux closure remains attached to the focused commit
+- Reviewer/attestation: public basis, design choice, and hypothesis are distinguished; unpublished Oak Lab algorithms and deep/open-ended success are excluded
+
