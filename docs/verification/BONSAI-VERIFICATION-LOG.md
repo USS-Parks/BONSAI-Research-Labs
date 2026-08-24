@@ -1474,3 +1474,32 @@ Machine record `BR-07-1784503142006141500` is not acceptance evidence. The outer
 - Counter availability and privileges: deterministic adapter contract fixtures and trusted-runner boundary only; no physical counter, hostile-native sandbox, or scientific-quality claim
 - Result: pass locally; hosted Windows/macOS/Linux closure remains attached to the focused commit
 - Reviewer/attestation: exact seven-check coverage, ternary fail-closed aggregation, deterministic reports, stable failure codes, derived-track enforcement, explicit scientific exclusion, and strict workspace/Python/schema/governance gates passed locally
+
+
+## VER-BR10-HOSTED - BR-10 - 2026-07-20T00:49:46Z
+
+- Source revision and dirty state: `a64cb398b8b91308cff83326e510b474a91acdc6`; clean pushed focused implementation revision
+- OS/architecture/physical-or-CI: Windows/x86_64, Linux/x86_64, macOS/arm64, macOS/x86_64; GitHub hosted CI; ephemeral virtual machines
+- Toolchain/dependency-lock hashes: workflow-pinned Rust 1.96.0, Python 3.12, and uv 0.11.29; source locks at the recorded revision
+- Command: GitHub Actions `BONSAI baseline` push run 29710033721, attempt 1
+- Start/end/duration: `2026-07-20T00:49:46Z` / `2026-07-20T00:55:17Z` / 331 s
+- Exit code: run conclusion `success`; job IDs 88252609991 (Windows), 88252609998 (Linux), 88252609997 (macOS arm64), 88252610001 (macOS Intel), and 88252877023 (hosted semantic-equivalence aggregate)
+- Stdout/stderr artifact hashes: retained by GitHub Actions
+- Fixtures/manifests/bundle IDs: adapter conformance good/bad/hidden-replay/observer-access/missing-evidence corpus, complete existing repository corpus, and unchanged M1 heartbeat aggregate
+- Counter availability and privileges: deterministic adapter-contract fixtures and hosted semantic checks only; no physical counter, hostile-native sandbox, or scientific-quality claim
+- Result: pass; BR-10 cross-OS gate is closed
+- Reviewer/attestation: authenticated GitHub metadata establishes the exact head SHA and successful four-platform plus aggregate conclusions
+
+## VER-BQ05-LOCAL - BQ-05 - 2026-08-23
+
+- Source revision and dirty state: `a64cb398b8b91308cff83326e510b474a91acdc6`; dirty only with BQ-05 implementation, governance, and evidence
+- OS/architecture/physical-or-CI: Windows/x86_64; local; physical/virtual status unknown
+- Toolchain/dependency-lock hashes: Rust 1.96.0; locked repository Python environment; `Cargo.lock` unchanged at `AEFC9265FEDA2F88FCA42328D10A41A8F0C1E0B36DCA39B0C3AED700F54B5D7F`
+- Command: final machine record `BQ-05-1787531601671484000`; full universal/schema/governance gate through external verifier copy SHA-256 `BE5DCFF6293D6310AF1D96C792CDE207FA4C86F68B9E69E4000585AB76FBDEBA` after governance closeout edits
+- Start/end/duration: machine-record Unix UTC nanoseconds `1787531601671484000` / `1787531620766998500` / 19.0959901 s
+- Exit code: 0
+- Stdout/stderr artifact hashes: stdout `EA29ED04CBA1719CB6072216848D62988F9EBCB9CBAFAC889C20C57C8D58A35E`; stderr `D707E6FAD279DF2CE458BF2EA59F368E97A5B09294052B4A3A3AA32519D5C688`
+- Fixtures/manifests/bundle IDs: frozen adversarial work-allocation outcomes; exclusive class-bound floods; rotated non-acting starvation attempts; malformed partition policies; and complete existing repository corpus
+- Counter availability and privileges: deterministic semantic-work allocation only; no platform hard-limit enforcement, scientific-utility optimization, or C0-C5 claim
+- Result: pass locally; hosted Windows/macOS/Linux closure remains attached to the focused commit
+- Reviewer/attestation: hard reservations, deferral reasons, observer-reserve protection, acting non-starvation under adversarial order, and strict workspace/Python/schema/governance gates passed locally; an earlier machine record `BQ-05-1787531504639498800` failed only from a locked local pytest temp/cache path and is superseded by this byte-verified rerun

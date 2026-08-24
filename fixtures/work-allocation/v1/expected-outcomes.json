@@ -1,0 +1,87 @@
+{
+  "schema": "bonsai.work-allocation-outcomes/v1",
+  "decisions": [
+    {
+      "sequence": 0,
+      "request_id": "learning-fill",
+      "outcome": "admit",
+      "reason_code": "WORK_CLASS_RESERVATION_AVAILABLE",
+      "consumed_before": 0,
+      "consumed_after": 15,
+      "reservation": 15
+    },
+    {
+      "sequence": 1,
+      "request_id": "learning-over",
+      "outcome": "defer",
+      "reason_code": "WORK_CLASS_RESERVATION_EXHAUSTED",
+      "consumed_before": 15,
+      "consumed_after": 15,
+      "reservation": 15
+    },
+    {
+      "sequence": 2,
+      "request_id": "forged-observer",
+      "outcome": "reject",
+      "reason_code": "ALLOCATION_AUTHORITY_MISMATCH",
+      "consumed_before": 0,
+      "consumed_after": 0,
+      "reservation": 10
+    },
+    {
+      "sequence": 3,
+      "request_id": "observer-ordinary-fill",
+      "outcome": "admit",
+      "reason_code": "WORK_CLASS_RESERVATION_AVAILABLE",
+      "consumed_before": 0,
+      "consumed_after": 6,
+      "reservation": 10
+    },
+    {
+      "sequence": 4,
+      "request_id": "observer-ordinary-over",
+      "outcome": "defer",
+      "reason_code": "OBSERVER_EVIDENCE_FLUSH_RESERVATION_PROTECTED",
+      "consumed_before": 6,
+      "consumed_after": 6,
+      "reservation": 10
+    },
+    {
+      "sequence": 5,
+      "request_id": "evidence-flush",
+      "outcome": "admit",
+      "reason_code": "WORK_CLASS_RESERVATION_AVAILABLE",
+      "consumed_before": 6,
+      "consumed_after": 10,
+      "reservation": 10
+    },
+    {
+      "sequence": 6,
+      "request_id": "acting-fill",
+      "outcome": "admit",
+      "reason_code": "WORK_CLASS_RESERVATION_AVAILABLE",
+      "consumed_before": 0,
+      "consumed_after": 30,
+      "reservation": 30
+    },
+    {
+      "sequence": 7,
+      "request_id": "acting-over",
+      "outcome": "defer",
+      "reason_code": "WORK_CLASS_RESERVATION_EXHAUSTED",
+      "consumed_before": 30,
+      "consumed_after": 30,
+      "reservation": 30
+    }
+  ],
+  "usage": [
+    {"work_class": "acting", "consumed": 30, "reservation": 30},
+    {"work_class": "learning", "consumed": 15, "reservation": 15},
+    {"work_class": "feature_generation", "consumed": 0, "reservation": 10},
+    {"work_class": "option_learning", "consumed": 0, "reservation": 10},
+    {"work_class": "model_learning", "consumed": 0, "reservation": 10},
+    {"work_class": "planning", "consumed": 0, "reservation": 10},
+    {"work_class": "curation", "consumed": 0, "reservation": 5},
+    {"work_class": "observer", "consumed": 10, "reservation": 10}
+  ]
+}

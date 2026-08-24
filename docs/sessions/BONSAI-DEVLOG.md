@@ -1028,3 +1028,26 @@ This append-only log records executed PSPR prompts. Corrections are added as new
 - Commit SHA: pending; append in BQ-05 under the self-hash convention
 - Risks/blockers/parked scope changed: adapter evidence must be observer-produced or supplied by another trusted runner; an unauthenticated self-report is not certification evidence; later integrity work may bundle/sign reports; BR-10 closes runtime contract conformance only and makes no M2, instrument-completion, or C0–C5 claim
 - Next eligible prompts after gate and publication: BQ-05, BK-04, and BK-05; dependency order selects BQ-05
+
+
+### BR-10 closeout note
+
+- Focused implementation commit SHA: `a64cb398b8b91308cff83326e510b474a91acdc6`
+- Hosted verification: GitHub Actions run 29710033721, attempt 1, ran from `2026-07-20T00:49:46Z` through `2026-07-20T00:55:17Z` and passed Windows x86_64, Linux x86_64, macOS arm64, macOS Intel, and the hosted semantic-equivalence aggregate at that exact commit
+- Hosted job IDs: 88252609991 (Windows), 88252609998 (Linux), 88252609997 (macOS arm64), 88252610001 (macOS Intel), and 88252877023 (aggregate)
+- Ledger rule: appended by BQ-05 because the BR-10 commit could not contain its own immutable hash or post-push hosted-run identity
+
+## 2026-08-23 — BQ-05 — Work-class allocation and reservation
+
+- Status: passed; closeout entry pending focused commit identity and hosted run
+- Authorization scope: user STS authorization 2026-08-23 for BQ-05 only (not the rest of M2), plus the approved later-PSPR source-publication addendum
+- Dependencies and source revision: BQ-04 published; BR-10 published and hosted-green at `a64cb398b8b91308cff83326e510b474a91acdc6`
+- Objective and exclusions: divide one fixed capacity across acting, learning, feature generation, option learning, model learning, planning, curation, and observer overhead with hard exclusive reservations that prevent starvation of acting and evidence flush; exclude optimizing scientific utility, borrowing across classes, and platform CPU/memory/I/O enforcement
+- Reuse classification: extend `bonsai-governor` at the published BQ-01 resource vocabulary and BQ-04 supervised-loop seams; add one deterministic allocator module, integration corpus, architecture contract, and frozen expected-outcome fixture without a new dependency
+- Files changed: work-class allocation module and exports, adversarial allocation tests, architecture contract, frozen expected outcomes, README/PSPR status, BR-10 hosted closeout, DEVLOG, verification log, and retained machine evidence
+- Decisions/addenda: every allocatable class appears exactly once with a positive reservation that sums to total capacity; observer partition nests a positive evidence-flush reserve; agent traffic cannot claim observer or environment classes; ordinary observer overhead is capped below the flush reserve with `OBSERVER_EVIDENCE_FLUSH_RESERVATION_PROTECTED`; exhausted class partitions defer with `WORK_CLASS_RESERVATION_EXHAUSTED` and leave counters unchanged; only admission commits a checked addition
+- Verification summary: four focused tests freeze the adversarial admit/defer/reject sequence against `fixtures/work-allocation/v1/expected-outcomes.json`, prove every non-observer agent class is hard-bounded without cross-partition consumption, rotate floods of non-acting classes before acting while keeping observer consumption at zero for agent-originated traffic, and reject malformed partition policies before allocator state exists. The complete gate passed formatting, strict workspace Clippy, 136 Rust tests, Ruff, strict Pyright, 11 Python tests, schema compatibility, docs, ADR, license, governance-ledger, terminology, and CI-topology checks on Windows x86_64
+- Evidence paths and SHA-256 hashes: final machine record `BQ-05-1787531601671484000` with stdout `EA29ED04CBA1719CB6072216848D62988F9EBCB9CBAFAC889C20C57C8D58A35E` and stderr `D707E6FAD279DF2CE458BF2EA59F368E97A5B09294052B4A3A3AA32519D5C688`; allocation `A5E643C39BD958407B6DF7CE7098C4E59F3642E0F3CCB7996756EA826F8BAE03`; tests `1FF82C143C639777FD24AA72BCF4C8807520FDECEBFAECB8D31315BBD2C93364`; contract `35DAE468E2232970D3CEB43D065B7E0D933A94BF908C6E2EE8B4BCBA8387F368`; expected outcomes `4DC49CCC5E3A6E0CDA90F227A75586D4690ADD386F522A16D56DADC8125F3A88`; `Cargo.lock` unchanged at `AEFC9265FEDA2F88FCA42328D10A41A8F0C1E0B36DCA39B0C3AED700F54B5D7F`; external verifier SHA-256 `BE5DCFF6293D6310AF1D96C792CDE207FA4C86F68B9E69E4000585AB76FBDEBA`
+- Commit SHA: pending by self-hash convention; report the focused SHA after publication
+- Risks/blockers/parked scope changed: BQ-05 controls semantic-work partitions only; platform hard limits remain with BM/BQ backends; BQ-06 still owns agent storage/replay guards; no M2, instrument-completion, or C0-C5 claim is made
+- Next eligible prompts after gate and publication: BQ-06, BK-04, and BK-05

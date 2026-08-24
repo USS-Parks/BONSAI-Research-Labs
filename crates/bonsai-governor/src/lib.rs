@@ -8,6 +8,7 @@ use std::collections::{HashMap, VecDeque};
 use std::error::Error;
 use std::fmt;
 
+pub mod allocation;
 pub mod decision;
 pub mod supervisor;
 pub mod violation;
