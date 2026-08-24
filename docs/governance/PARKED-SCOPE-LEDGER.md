@@ -17,3 +17,5 @@ Status vocabulary: `parked`, `revived-by-addendum`, `superseded`
 | P-09 | Human-label supervision in Track A | Scientific lead | Violates strict experiential semantics | parked | New comparator track and eligibility rules that cannot be confused with Track A | Charter/PSPR addendum and explicit track authorization | BC-05, BR-09, BE-09 | Before any labeled-input experiment |
 
 Revival is never implied by adjacent implementation. A row becomes active only through the named authorization and a dated addendum with new gates.
+
+PSPR v0.3 slice-local parks (not additional P-IDs): BV-11–BV-16 remain M4; A/L claim-required runs stay gated; publication/marketing stay unauthorized; E3 laboratory probes, AMD/Intel collectors, and hostile sandbox stay parked as P-01, P-04, and P-05.

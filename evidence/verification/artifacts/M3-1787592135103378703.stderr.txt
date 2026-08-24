@@ -1,0 +1,48 @@
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.09s
+     Running unittests src/lib.rs (target/debug/deps/bonsai_bundle-42ce0f9d761548da)
+     Running tests/bundle_index_fixtures.rs (target/debug/deps/bundle_index_fixtures-b6663ca53a3e44ce)
+     Running tests/bundle_validation_corpus.rs (target/debug/deps/bundle_validation_corpus-dc2cb05100b89de0)
+     Running tests/derivation_fixtures.rs (target/debug/deps/derivation_fixtures-ae45ab09163aa4bc)
+     Running tests/segment_fixtures.rs (target/debug/deps/segment_fixtures-c5721535bf4b7911)
+     Running unittests src/lib.rs (target/debug/deps/bonsai_claims-8686b57e4beba141)
+     Running tests/c4c5_matrix.rs (target/debug/deps/c4c5_matrix-58623f6aec3f27ef)
+     Running unittests src/lib.rs (target/debug/deps/bonsai_contracts-ecdfc2a840b682d2)
+     Running tests/adapter_protocol.rs (target/debug/deps/adapter_protocol-4f3739c789e67392)
+     Running unittests src/lib.rs (target/debug/deps/bonsai_governor-ac5f591add617d9e)
+     Running tests/agent_storage.rs (target/debug/deps/agent_storage-1fce8a9ddb670741)
+     Running tests/m3_governor.rs (target/debug/deps/m3_governor-ce37dd3d0e23129a)
+     Running tests/work_allocation.rs (target/debug/deps/work_allocation-b66bc1078deb34b0)
+     Running unittests src/lib.rs (target/debug/deps/bonsai_ingest-d049296f6256dd9e)
+     Running tests/ingest_validation.rs (target/debug/deps/ingest_validation-4b9b50d15b88e416)
+     Running tests/ordering_semantics.rs (target/debug/deps/ordering_semantics-d9e06bbdba74b775)
+     Running unittests src/lib.rs (target/debug/deps/bonsai_lineage-f3a434814316d78c)
+     Running unittests src/lib.rs (target/debug/deps/bonsai_metrics-276612f78b615e85)
+     Running tests/continual_metrics.rs (target/debug/deps/continual_metrics-bf730e1bec60edc4)
+     Running tests/feature_metrics.rs (target/debug/deps/feature_metrics-0a51903203998e03)
+     Running tests/repro_gate.rs (target/debug/deps/repro_gate-14457bc3b3f319cd)
+     Running unittests src/lib.rs (target/debug/deps/bonsai_platform-33046725d1e008f3)
+     Running unittests src/bin/bonsai-accounting-fixture.rs (target/debug/deps/bonsai_accounting_fixture-ce2a955b0f21e346)
+     Running tests/os_backends.rs (target/debug/deps/os_backends-d294cdb163af1130)
+     Running tests/portable_accounting.rs (target/debug/deps/portable_accounting-e2bd19a20398cde6)
+     Running unittests src/lib.rs (target/debug/deps/bonsai_report-a4b5ae0b9e1b33fc)
+     Running unittests src/bin/bonsai-report.rs (target/debug/deps/bonsai_report-a33811f6fd1f820d)
+     Running unittests src/bin/bonsai-view.rs (target/debug/deps/bonsai_view-5fa8a65400e7f370)
+     Running tests/m3_reporting.rs (target/debug/deps/m3_reporting-9d28fbd3c3eeefe4)
+     Running unittests src/lib.rs (target/debug/deps/bonsai_runtime-b715f66ddbb8e54b)
+     Running tests/adapter_conformance.rs (target/debug/deps/adapter_conformance-20dc1f0e8df90500)
+     Running tests/agent_isolation.rs (target/debug/deps/agent_isolation-a1f7d147b37af215)
+     Running tests/process_transport.rs (target/debug/deps/process_transport-7a041104bee9f36d)
+     Running tests/storage_guard.rs (target/debug/deps/storage_guard-2698017eae4fe28c)
+     Running unittests src/main.rs (target/debug/deps/bonsai_xtask-38660ae91367bd45)
+     Running tests/bundle_validator_cli.rs (target/debug/deps/bundle_validator_cli-f53b9113137625fe)
+     Running tests/verification_fixture.rs (target/debug/deps/verification_fixture-8705fae7483eb722)
+   Doc-tests bonsai_bundle
+   Doc-tests bonsai_claims
+   Doc-tests bonsai_contracts
+   Doc-tests bonsai_governor
+   Doc-tests bonsai_ingest
+   Doc-tests bonsai_lineage
+   Doc-tests bonsai_metrics
+   Doc-tests bonsai_platform
+   Doc-tests bonsai_report
+   Doc-tests bonsai_runtime

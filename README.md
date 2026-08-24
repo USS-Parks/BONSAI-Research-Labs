@@ -7,9 +7,9 @@ BONSAI is an independent, algorithm-neutral measurement and external resource-go
 ## Governance status
 
 - Research charter: approved v0.1 on 2026-07-18.
-- PSPR: approved v0.1 on 2026-07-18; M2 useful-abstraction slice approved v0.2 on 2026-08-23.
-- Current execution authorization: approved PSPR v0.2 M2-science roster authorized by `run M2-science STS` on 2026-08-24; prior `Continue to STS` remains historical v0.1 authority only.
-- Implementation claims: M0 governed foundation and M1 auditable heartbeat are complete, including BC-01 through BC-12, BR-01 through BR-06, BM-01 through BM-04, BQ-01 through BQ-06, BK-01 through BK-13, BE-01 through BE-09, and BV-01 through BV-05; M2 useful-abstraction adjudication is implemented through C3 rules; the heartbeat emits reportable C0/C1-capable evidence with verdict `not_adjudicated`; no instrument-completion or C0–C5 pass claim.
+- PSPR: approved v0.1 on 2026-07-18; M2 useful-abstraction slice approved v0.2 on 2026-08-23; M3 cross-platform governed science approved v0.3 on 2026-08-24.
+- Current execution authorization: approved PSPR v0.3 M3 roster authorized by full `run M3 STS` on 2026-08-24 (PT); prior M2-science STS does not cover this work.
+- Implementation claims: M0–M2 remain complete through BV-05; M3 implements live OS backends, energy tiers, enforcement/schedulers, scenario families, and C4/C5 rules through BV-10. Hosted or container capability is not physical-host Job Object/cgroup/Apple qualification. Energy stays E0/E1 unless a collector is qualified. C4/C5 rules are executable and do not require a pass. No instrument-completion or OaK reproduction claim.
 - Repository visibility: public under the approved 2026-07-18 repository-target addendum.
 - License: `MIT OR Apache-2.0` at the recipient's option.
 
@@ -68,6 +68,8 @@ M2 runtime lineage begins with the deterministic [artifact lifecycle registry](.
 The read-only [lineage graph and query layer](./docs/architecture/LINEAGE-GRAPH-AND-QUERIES.md) exposes exact ancestry, descendants, revision semantics, consumers, utility sources, and availability-preserving cost rollups without inferring causality.
 
 The [observer-only replay analyzer](./docs/architecture/OBSERVER-ONLY-REPLAY.md) deterministically regenerates provenance-bound metric tables and reports while denying every route back to agent input and forcing indeterminate track eligibility on any attempted boundary crossing.
+
+M3 platform backends begin with [Windows Job Object](./docs/architecture/WINDOWS-JOB-OBJECT.md), [macOS measurement](./docs/architecture/MACOS-RESOURCE-BACKEND.md), [Linux cgroup v2](./docs/architecture/LINUX-CGROUP-BACKEND.md), the [NVIDIA collector](./docs/architecture/NVIDIA-COLLECTOR.md), [energy tiers](./docs/metrics/ENERGY-TIERS.md), [energy qualification](./docs/architecture/ENERGY-QUALIFICATION.md), and [resource equivalence](./docs/metrics/RESOURCE-EQUIVALENCE.md). Governance continues with the [enforcement bridge](./docs/architecture/PLATFORM-ENFORCEMENT-BRIDGE.md), [decision replay](./docs/architecture/GOVERNANCE-DECISION-REPLAY.md), [scheduler contract](./docs/architecture/SCHEDULER-CONTRACT.md), [dense](./docs/architecture/DENSE-SCHEDULER.md) and [event-driven](./docs/architecture/EVENT-SCHEDULER.md) schedulers, and [matched-budget conformance](./docs/architecture/SCHEDULER-MATCHED-BUDGET.md). Families and freeze live in [scenario families](./docs/reference/SCENARIO-FAMILIES.md), [ablation orchestration](./docs/reference/ABLATION-ORCHESTRATION.md), and the [preregistration freeze](./docs/reference/PREREGISTRATION-FREEZE.md). [Metric reproducibility](./docs/metrics/METRIC-REPRODUCIBILITY.md), [C4/C5 adjudication](./docs/claims/C4-C5-ADJUDICATION.md), [comparison views](./docs/reporting/COMPARISON-VIEWS.md), [cross-platform equivalence](./docs/architecture/CROSS-PLATFORM-EQUIVALENCE.md), and [instrumentation overhead](./docs/architecture/INSTRUMENTATION-OVERHEAD.md) close the M3 claim path without requiring a C4/C5 pass.
 
 The [adapter runtime conformance suite](./docs/architecture/ADAPTER-CONFORMANCE.md) gives third-party adapters deterministic protocol, isolation, ordering, lifecycle, repeatability, timeout, and track verdicts while explicitly excluding scientific-quality certification.
 

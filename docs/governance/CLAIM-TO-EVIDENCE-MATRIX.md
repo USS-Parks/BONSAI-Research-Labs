@@ -1,6 +1,6 @@
 # BONSAI claim-to-evidence matrix
 
-This M0 seed prevents infrastructure completion from being confused with agent capability. BV-07 later generates the full hashed matrix. Until then every claim remains `not-run`; missing evidence cannot become pass.
+BV-07 generates the machine matrix from versioned cells. Every claim below remains `not-run` or `indeterminate` until a confirmatory bundle hash is attached. Missing evidence cannot become pass. Instrument completion stays parked for M4.
 
 | Claim | Requirement | Owner | Status | Metric version | Scenarios | Comparators and seeds | Evidence level | Verdict | Bundle identities | Primary prompts |
 |---|---|---|---|---|---|---|---|---|---|---|

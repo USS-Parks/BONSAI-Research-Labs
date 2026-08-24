@@ -1,0 +1,435 @@
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+
+running 3 tests
+test read_only_sqlite_handle_cannot_mutate_the_index ... ok
+test index_is_rebuilt_only_from_authoritative_segments_and_blobs ... ok
+test committed_fixture_matrix_has_exact_bundle_index_outcomes ... ok
+
+test result: ok. 3 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.05s
+
+
+running 3 tests
+test forward_epoch_is_hash_checked_but_never_interpreted ... ok
+test v0_migration_is_reproducible_and_non_mutating ... ok
+test committed_corpus_has_exact_machine_verdicts ... ok
+
+test result: ok. 3 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.14s
+
+
+running 3 tests
+test materialization_never_replaces_an_existing_derivative ... ok
+test every_table_round_trips_with_exact_schema_and_provenance ... ok
+test committed_fixture_matrix_has_exact_derivation_outcomes ... ok
+
+test result: ok. 3 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.02s
+
+
+running 3 tests
+test recovery_never_salvages_a_partial_frame ... ok
+test append_only_writer_rejects_oversize_before_writing_and_publishes_once ... ok
+test committed_fixture_matrix_has_exact_deterministic_outcomes ... ok
+
+test result: ok. 3 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.01s
+
+
+running 8 tests
+test c0c1::tests::c1_cannot_pass_when_declared_hard_counter_is_unavailable ... ok
+test c0c1::tests::six_bundle_classes_receive_exact_verdicts ... ok
+test c2c3::tests::every_prerequisite_has_pass_fail_and_indeterminate ... ok
+test c0c1::tests::committed_c0_c1_verdicts_match_fixture ... ok
+test c2c3::tests::committed_c2_c3_verdicts_match_fixture ... ok
+test tests::prerequisite_verdicts_block_higher_claims_with_reason_graphs ... ok
+test tests::missing_failed_and_contradictory_evidence_never_pass ... ok
+test tests::version_is_stored_and_complete_evidence_passes ... ok
+
+test result: ok. 8 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+
+running 2 tests
+test adversarial_c4_c5_fixtures_cannot_pass ... ok
+test uncovered_or_pass_without_hash_fails_evidence_check ... ok
+
+test result: ok. 2 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+
+running 18 tests
+test inventory::tests::public_inventory_type_rejects_unknown_fields ... ok
+test inventory::tests::sanitizer_removes_sensitive_fields_without_hashing_values ... ok
+test lineage::tests::every_registered_artifact_type_has_a_valid_root_lifecycle ... ok
+test lineage::tests::property_missing_provenance_is_rejected_at_birth_and_revision ... ok
+test lineage::tests::property_orphan_revisions_are_rejected_for_every_wrong_predecessor ... ok
+test lineage::tests::full_lifecycle_records_consumers_cost_utility_and_revision ... ok
+test lineage::tests::property_terminal_dispositions_require_a_new_artifact_identity ... ok
+test resource::tests::all_five_outcomes_retain_exact_reconstruction_inputs ... ok
+test lineage::tests::property_parent_cycles_are_rejected_at_every_cycle_length ... ok
+test resource::tests::estimated_basis_requires_estimator_provenance ... ok
+test tests::payload_hash_is_verified ... ok
+test tests::invalid_ids_and_times_fail_closed ... ok
+test resource::tests::outcome_specific_actions_fail_closed ... ok
+test tests::supported_relay_preserves_unknown_fields_byte_for_byte ... ok
+test track::tests::declaration_cannot_override_hidden_replay ... ok
+test tests::valid_envelope_round_trips_through_supported_relay ... ok
+test track::tests::observer_access_is_indeterminate_not_track_a ... ok
+test resource::tests::frozen_resource_policy_has_complete_scopes_classes_and_outcomes ... ok
+
+test result: ok. 18 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+
+running 6 tests
+test out_of_order_and_version_mismatch_fail_without_advancing ... ok
+test omitted_replay_or_privilege_flag_is_not_treated_as_false ... ok
+test changed_capability_fingerprint_is_rejected ... ok
+test every_post_stop_frame_is_rejected ... ok
+test valid_handshake_reaches_ready_with_frozen_capabilities ... ok
+test reset_step_work_and_feedback_follow_the_declared_state_machine ... ok
+
+test result: ok. 6 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+
+running 20 tests
+test decision::tests::contradictory_projection_is_rejected ... ok
+test storage::tests::model_parameters_are_admitted_under_byte_meter ... ok
+test decision::tests::missing_hard_counter_rejects_before_work ... ok
+test storage::tests::name_based_replay_detection_does_not_depend_on_declaration ... ok
+test decision::tests::each_admission_outcome_has_a_stable_reason_and_shape ... ok
+test storage::tests::replay_buffer_fixture_is_classified_and_denied_for_track_a ... ok
+test storage::tests::traversal_and_observer_paths_fail_closed ... ok
+test supervisor::tests::preflight_work_overage_is_denied_without_agent_call ... ok
+test supervisor::tests::missing_counter_rejects_before_agent_call ... ok
+test supervisor::tests::under_budget_primitive_run_is_c1_budget_eligible ... ok
+test tests::boundary_equality_is_inside_and_next_unit_exceeds ... ok
+test tests::nested_scopes_reset_and_rolling_window_expires_exactly ... ok
+test tests::overlapping_rolling_windows_use_their_own_duration ... ok
+test tests::unavailable_measurement_and_overflow_fail_closed ... ok
+test supervisor::tests::each_measured_overage_terminates_and_preserves_prior_evidence ... ok
+test violation::tests::fault_after_every_transition_yields_one_valid_terminal_outcome ... ok
+test violation::tests::hard_violation_cannot_remain_claim_eligible ... ok
+test violation::tests::invalid_transition_and_terminal_reentry_fail_closed ... ok
+test violation::tests::normal_and_soft_paths_have_exact_verdicts ... ok
+test decision::tests::identical_inputs_produce_byte_identical_decisions ... ok
+
+test result: ok. 20 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.01s
+
+
+running 4 tests
+test allowed_replay_policy_classifies_and_forces_track_b ... ok
+test legitimate_state_survives_while_replay_is_rejected_without_meter_growth ... ok
+test adversarial_sequence_classifies_replay_and_allows_legitimate_state ... ok
+test malformed_policies_and_live_path_helpers_fail_closed ... ok
+
+test result: ok. 4 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+
+running 3 tests
+test dense_and_event_schedulers_compare_under_matched_streams ... ok
+test unsupported_hard_controls_reject_before_track_a ... ok
+test decision_replay_matches_and_detects_policy_divergence ... ok
+
+test result: ok. 3 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+
+running 4 tests
+test malformed_partition_policies_fail_before_state_exists ... ok
+test every_agent_class_is_bounded_without_cross_partition_consumption ... ok
+test request_order_cannot_starve_acting_or_let_agent_claim_observer_authority ... ok
+test adversarial_sequence_preserves_acting_and_evidence_flush_reservations ... ok
+
+test result: ok. 4 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+
+running 4 tests
+test committed_outcome_matrix_names_the_exact_rejection_codes ... ok
+test rate_and_rejection_evidence_remain_bounded ... ok
+test only_fully_validated_events_reach_the_segment_writer ... ok
+test deterministic_fuzz_corpus_never_panics_or_appends_invalid_bytes ... ok
+
+test result: ok. 4 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.02s
+
+
+running 4 tests
+test committed_matrix_freezes_partial_order_not_wall_time ... ok
+test exact_partial_order_classes_are_derived_without_wall_time ... ok
+test cycles_conflicts_and_gaps_are_explicit_not_silently_ordered ... ok
+test randomized_collection_order_preserves_the_exact_report ... ok
+
+test result: ok. 4 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+
+running 11 tests
+test graph::tests::duplicate_revision_and_silent_representation_change_are_distinct ... ok
+test graph::tests::cycle_and_dangling_edge_are_explicit_failures ... ok
+test graph::tests::cost_rollup_keeps_measured_estimated_and_unavailable_distinct ... ok
+test graph::tests::known_graph_returns_exact_queries_without_mutating_registry ... ok
+test graph::tests::revision_chain_and_owner_index_must_match_exactly ... ok
+test tests::invalid_transition_matrix_is_atomic ... ok
+test graph::tests::unknown_artifact_queries_fail_instead_of_returning_empty ... ok
+test tests::model_covers_every_artifact_type_and_lifecycle_transition ... ok
+test tests::retained_deprioritized_and_replaced_dispositions_are_exact ... ok
+test tests::terminal_artifact_cannot_be_resurrected ... ok
+test tests::reconstruction_is_deterministic_and_revision_ownership_is_stable ... ok
+
+test result: ok. 11 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+
+running 35 tests
+test behavior::tests::trace_and_window_contracts_fail_closed ... ok
+test behavior::tests::analytical_curve_has_exact_primary_metrics_and_units ... ok
+test behavior::tests::indefensible_regret_and_unrecovered_change_are_unavailable ... ok
+test continual::tests::forgetting_and_plasticity_are_independently_manipulated ... ok
+test cycle::tests::committed_cycle_classes_match_fixture ... ok
+test cycle::tests::open_endedness_is_not_artifact_count ... ok
+test failure::tests::unavailable_input_is_never_a_pass ... ok
+test feature::tests::empty_trace_fails_closed ... ok
+test failure::tests::every_criterion_has_positive_negative_and_unavailable ... ok
+test failure::tests::committed_failure_verdicts_match_fixture ... ok
+test cycle::tests::synthetic_traces_separate_health_classes ... ok
+test models::tests::stale_biased_calibrated_and_shift_are_distinct ... ok
+test models::tests::committed_model_classes_match_fixture ... ok
+test feature::tests::useful_redundant_and_dormant_are_distinct ... ok
+test models::tests::unaligned_targets_do_not_produce_numeric_error_deltas ... ok
+test options::tests::reliable_redundant_harmful_and_unused_are_distinct ... ok
+test options::tests::committed_option_classes_match_fixture ... ok
+test planning::tests::approximate_influence_reports_error_against_exact_counterfactual ... ok
+test planning::tests::value_change_is_not_sufficient_for_consequentiality ... ok
+test resources::tests::calibrated_known_loads_reproduce_totals_and_headroom ... ok
+test planning::tests::committed_consequentiality_matches_fixture ... ok
+test resources::tests::contradictory_calibration_and_confidence_bounds_fail_closed ... ok
+test resources::tests::d11_ceiling_uses_upper_confidence_bounds ... ok
+test resources::tests::unavailable_and_incomparable_fields_are_never_aggregated ... ok
+test stats::tests::undeclared_exclusion_fails_closed ... ok
+test subproblems::tests::committed_alignment_fixture_is_exact ... ok
+test stats::tests::committed_corpus_matches_independent_python_reference ... ok
+test subproblems::tests::reward_respecting_and_oblivious_cases_are_distinguishable ... ok
+test stats::tests::undeclared_metric_fails_closed ... ok
+test tests::cycles_and_wrong_versions_fail_closed ... ok
+test tests::unavailable_inputs_propagate_without_zero ... ok
+test utility::tests::sign_and_confidence_failures_are_indeterminate ... ok
+test utility::tests::proxy_only_cannot_establish_c3 ... ok
+test utility::tests::committed_utility_tiers_match_fixture ... ok
+test tests::golden_registry_is_deterministic_and_version_pinned ... ok
+
+test result: ok. 35 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+
+running 2 tests
+test malformed_traces_fail_closed ... ok
+test synthetic_forgetting_and_plasticity_fixtures_are_distinct ... ok
+
+test result: ok. 2 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+
+running 2 tests
+test malformed_feature_traces_fail_closed ... ok
+test controlled_lineage_fixture_identifies_useful_redundant_and_dormant ... ok
+
+test result: ok. 2 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+
+running 1 test
+test deterministic_derivation_stays_inside_streaming_envelope ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+
+running 12 tests
+test calibration::tests::unavailable_and_unstable_counters_fail_dependent_claims ... ok
+test calibration::tests::exact_operation_and_event_loads_have_zero_error ... ok
+test clock::tests::deterministic_probes_report_resolution_and_overhead ... ok
+test clock::tests::regressions_and_suspend_gaps_are_explicit ... ok
+test clock::tests::live_system_clock_meets_hosted_ci_safe_bounds ... ok
+test portable::tests::operation_ledger_is_exact_and_fails_closed_on_overflow ... ok
+test portable::tests::live_storage_accounting_is_byte_exact_and_scope_separated ... ok
+test tests::all_four_backend_outcomes_are_explicit_and_validated ... ok
+test tests::collector_coverage_requires_one_explicit_outcome_per_advertised_counter ... ok
+test tests::contradictory_missingness_and_duplicate_counters_fail ... ok
+test tests::zero_is_a_measured_value_not_missingness ... ok
+test calibration::tests::live_workloads_record_error_resolution_coverage_and_observer_cost ... ok
+
+test result: ok. 12 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.14s
+
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+
+running 6 tests
+test linux_cgroup_live_read_and_fail_closed_enforcement ... ok
+test macos_capability_and_monitor_terminate_overshoot ... ok
+test windows_capability_and_job_object_reconciliation ... ok
+test comparability_matrix_has_no_unsupported_numeric_claim ... ok
+test nvidia_absence_does_not_break_cpu_only ... ok
+test energy_tiers_cannot_overclaim_or_invent_zero ... ok
+
+test result: ok. 6 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+
+running 1 test
+test live_parent_and_child_are_both_in_the_scoped_process_total ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.75s
+
+
+running 6 tests
+test tests::incomplete_or_malformed_inputs_fail_closed ... ok
+test tests::every_displayed_leaf_reconciles_with_machine_json ... ok
+test tests::report_is_offline_self_contained_and_accessible ... ok
+test viewer::tests::symlink_escape_is_rejected ... ok
+test viewer::tests::browsing_is_read_only_and_report_values_are_identical ... ok
+test viewer::tests::traversal_absolute_paths_and_report_drift_fail_closed ... ok
+
+test result: ok. 6 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+
+running 3 tests
+test comparison_table_requires_uncertainty_and_refuses_hidden_failures ... ok
+test semantic_equivalence_separates_performance ... ok
+test overhead_acceptance_uses_raw_pairs_and_d11_ceilings ... ok
+
+test result: ok. 3 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+
+running 13 tests
+test lifecycle::tests::committed_outcome_matrix_covers_every_crash_boundary ... ok
+test lifecycle::tests::lifecycle_state_machine_covers_every_declared_state_and_rejects_reentry ... ok
+test lifecycle::tests::normal_transition_is_exactly_once_and_pending_inputs_are_bounded ... ok
+test lifecycle::tests::kill_at_every_lifecycle_boundary_produces_terminal_recovery_evidence ... ok
+test replay::tests::invalid_or_incomplete_telemetry_fails_closed ... ok
+test replay::tests::every_agent_route_is_denied_and_forces_indeterminate_track ... ok
+test replay::tests::replay_derivations_validate_against_exact_sources ... ok
+test replay::tests::arrival_permutations_reproduce_identical_tables_and_reports ... ok
+test tests::bounded_frame_round_trip_is_exact ... ok
+test tests::malformed_partial_and_oversized_frames_are_distinct ... ok
+test replay::tests::replay_output_is_no_clobber_and_source_bound ... ok
+test lifecycle::tests::kill_at_every_transition_commit_boundary_never_double_consumes ... ok
+test replay::tests::replay_writes_only_under_observer_roots ... ok
+
+test result: ok. 13 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.04s
+
+
+running 3 tests
+test certification_is_byte_deterministic_and_invalid_identity_has_no_report ... ok
+test every_required_dimension_appears_once_and_scientific_quality_is_excluded ... ok
+test committed_good_and_bad_adapter_matrix_has_exact_machine_verdicts ... ok
+
+test result: ok. 3 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.01s
+
+
+running 5 tests
+test committed_matrix_freezes_the_isolation_and_denial_outcomes ... ok
+test deliberate_observer_access_is_denied_and_forces_non_track_a ... ok
+test manifest_hash_mismatch_never_creates_a_grant ... ok
+test observer_paths_are_rejected_from_args_and_protocol_before_launch ... ok
+test inspection_adapter_sees_only_granted_inputs_and_agent_owned_storage ... ok
+
+test result: ok. 5 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.10s
+
+
+running 3 tests
+test rust_python_transport_separates_protocol_and_stderr_and_shuts_down_cleanly ... ok
+test flood_sender_cannot_exceed_the_pending_queue_bound ... ok
+test malformed_partial_and_stalled_senders_are_contained_and_recorded ... ok
+
+test result: ok. 3 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.23s
+
+
+running 4 tests
+test malformed_policy_is_rejected_before_broker_state_exists ... ok
+test path_traversal_and_observer_targets_fail_closed ... ok
+test symlink_ancestors_and_destinations_are_denied ... ok
+test authorized_parameters_and_state_are_metered_and_replay_is_classified ... ok
+
+test result: ok. 4 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+
+running 4 tests
+test tests::creates_portable_record_ids ... ok
+test tests::redacts_every_literal_occurrence ... ok
+test schema_check::tests::canonical_json_sorts_object_keys_without_reordering_arrays ... ok
+test schema_check::tests::frozen_compatibility_suite_has_expected_outcomes ... ok
+
+test result: ok. 4 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.06s
+
+
+running 1 test
+test cli_emits_one_report_and_uses_verdict_exit_codes ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.07s
+
+
+running 1 test
+verification record BG-06-PASS-1787592136951950235: pass (exit 0)
+verification record BG-06-FAIL-1787592136973271144: fail (exit 1)
+test passing_and_failing_commands_produce_distinct_sanitized_records ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.04s
+
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+

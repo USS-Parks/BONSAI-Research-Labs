@@ -1771,3 +1771,144 @@ Machine record `BR-07-1784503142006141500` is not acceptance evidence. The outer
 - Result: pass locally; hosted Windows/macOS/Linux closure remains attached to the focused commit
 - Reviewer/attestation: proxy-only utility, final-score-only adaptation, and track leakage cannot pass; missing prerequisites stay indeterminate
 
+## VER-M3-LOCAL — M3 BM-05–BV-10 — 2026-08-24
+
+- Source revision and dirty state: `c2d8cdc2964b684b417ca26c9f10dcacd87afd65`; dirty with full M3 implementation, governance, and evidence
+- OS/architecture/physical-or-CI: Linux/x86_64; container; not a physical Job Object, Apple, or delegated-cgroup host
+- Toolchain/dependency-lock hashes: Rust 1.96.0; uv 0.11.29; Python 3.12.3
+- Command: machine records `M3-1787592135103378703` (`cargo test --workspace --all-features`) and `M3-PY-1787592149976239284` (`uv run --frozen pytest`); also `cargo fmt --all --check`, `cargo clippy --workspace --all-targets --all-features -- -D warnings`, `cargo xtask schema-check`, Ruff, Pyright, and governance checkers
+- Start/end/duration: `1787592135103378703` / `1787592137928787914` / 2.825406519 s (Rust); `1787592149976239284` / `1787592150670557749` / 0.694316144 s (Python)
+- Exit code: 0
+- Stdout/stderr artifact hashes: Rust stdout `c6a61e3f2363c31c5a7b0723f9dc805349981b9eba26a9fcb011a59b0eefc171` stderr `d7713e2da8af9f00811c6ab23f114c6ec3926fd19146a6d43e3744b9484dd5d8`; Python stdout `9af50995f7140361e4333c5b8aead12c63ae6ce946eff6c911287a1315688974` stderr `e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855`
+- Fixtures/manifests/bundle IDs: Windows Job Object escape/reconcile/enforcement; macOS monitor/terminate overshoot; live Linux cgroup v2 snapshot; NVIDIA absence; E0 energy downgrades; three-OS comparability; enforcement preflight; decision replay; dense/event matched budgets; ten families; eleven ablations; S/C freeze; metric repro envelope; C4/C5 adversarial corpus; claim matrix seed; comparison/equivalence/overhead tables
+- Counter availability and privileges: cgroup v2 readable; cgroup child create permission-denied; Job Object binding unsupported; NVIDIA absent; energy unqualified E0/E1; no physical_acceptance
+- Result: pass locally for code, fixtures, and fail-closed paths; physical Windows/macOS Job Object/cgroup-delegated enforcement remain honest unsupported/deferred per OD-01
+- Reviewer/attestation: every required hard control without support refuses Track A; C4/C5 rules executable without a pass; no OaK or instrument-completion claim
+
+## VER-BM05-LOCAL — BM-05 — 2026-08-24
+
+- Same source and toolchain as VER-M3-LOCAL
+- Command: `windows_capability_and_job_object_reconciliation`
+- Result: pass for capability matrix and Job Object reconciliation/escape fixtures; live Job Object accounting unsupported off Windows and without a safe binding
+- Reviewer/attestation: child-escape is a first-class failure
+
+## VER-BM06-LOCAL — BM-06 — 2026-08-24
+
+- Command: `windows_enforcement` hard-limit overshoot and unsupported declaration; ADR 0008
+- Result: pass; no sandbox claim
+
+## VER-BM07-LOCAL — BM-07 — 2026-08-24
+
+- Command: `macos_capability_and_monitor_terminate_overshoot` measurement path
+- Result: pass; thermal `no_permission`; Apple-silicon physical calibration deferred
+
+## VER-BM08-LOCAL — BM-08 — 2026-08-24
+
+- Command: macOS monitor/terminate overshoot fixture; ADR 0009
+- Result: pass; no Windows/Linux hard-cap parity claim
+
+## VER-BM09-LOCAL — BM-09 — 2026-08-24
+
+- Command: `collect_current_cgroup` live read
+- Result: pass on this container; nested-tree fixture reconciled
+
+## VER-BM10-LOCAL — BM-10 — 2026-08-24
+
+- Command: `linux_enforcement` + `try_apply_probe_limit`
+- Result: pass fail-closed `NoPermission`; cleanup true; descendant_escape false
+
+## VER-BM11-LOCAL — BM-11 — 2026-08-24
+
+- Command: `detect_nvidia`
+- Result: pass `NVIDIA_ABSENT`; CPU-only unaffected
+
+## VER-BM12-LOCAL — BM-12 — 2026-08-24
+
+- Command: `adjudicate_energy`
+- Result: pass; missing/shared/wrap stay E0; estimated zero rejected
+
+## VER-BM13-LOCAL — BM-13 — 2026-08-24
+
+- Command: `qualify_present_backends`
+- Result: pass; all recorded backends ≤ E1
+
+## VER-BM14-LOCAL — BM-14 — 2026-08-24
+
+- Command: `resource_comparability_matrix`
+- Result: pass; CPU semantic only; energy unavailable; no unsupported numeric claim
+
+## VER-BQ07-LOCAL — BQ-07 — 2026-08-24
+
+- Command: `preflight_hard_controls`
+- Result: pass; unsupported required hard controls refuse start
+
+## VER-BQ08-LOCAL — BQ-08 — 2026-08-24
+
+- Command: `replay_decisions`
+- Result: pass; policy alteration diverges
+
+## VER-BQ09-LOCAL — BQ-09 — 2026-08-24
+
+- Command: `validate_scheduler_trace`
+- Result: pass; event-driven requires eligibility and suppression accounting
+
+## VER-BQ10-LOCAL — BQ-10 — 2026-08-24
+
+- Command: `dense_schedule`
+- Result: pass; every eligible component charged
+
+## VER-BQ11-LOCAL — BQ-11 — 2026-08-24
+
+- Command: `event_schedule`
+- Result: pass; suppressed work auditable
+
+## VER-BQ12-LOCAL — BQ-12 — 2026-08-24
+
+- Command: `matched_budget_compare`
+- Result: pass; unmatched kinds/streams fail
+
+## VER-BE10-LOCAL through VER-BE14-LOCAL — BE-10–BE-14 — 2026-08-24
+
+- Command: `test_ten_families_keep_labels_off_track_a`
+- Result: pass; ten families; shocks manifest-visible; no Track A labels
+
+## VER-BE15-LOCAL — BE-15 — 2026-08-24
+
+- Command: `test_eleven_charter_ablations_are_matched`
+- Result: pass; eleven pairs; undeclared delta blocks
+
+## VER-BE16-LOCAL — BE-16 — 2026-08-24
+
+- Command: `test_freeze_separates_exploratory_from_gated_al`
+- Result: pass; A/L remain gated; pilots not confirmatory
+
+## VER-BK14-LOCAL — BK-14 — 2026-08-24
+
+- Command: `deterministic_derivation_stays_inside_streaming_envelope`
+- Result: pass; identical tables; envelope overflow fails
+
+## VER-BV06-LOCAL — BV-06 — 2026-08-24
+
+- Command: `adversarial_c4_c5_fixtures_cannot_pass`
+- Result: pass; shortcuts/mixing/energy/growth cannot pass; pass not required for M3
+
+## VER-BV07-LOCAL — BV-07 — 2026-08-24
+
+- Command: `uncovered_or_pass_without_hash_fails_evidence_check`
+- Result: pass; seed matrix stays not-run
+
+## VER-BV08-LOCAL — BV-08 — 2026-08-24
+
+- Command: `comparison_table_requires_uncertainty_and_refuses_hidden_failures`
+- Result: pass
+
+## VER-BV09-LOCAL — BV-09 — 2026-08-24
+
+- Command: `semantic_equivalence_separates_performance`
+- Result: pass; three OS families required
+
+## VER-BV10-LOCAL — BV-10 — 2026-08-24
+
+- Command: `overhead_acceptance_uses_raw_pairs_and_d11_ceilings`
+- Result: pass within D-11 on fixture pairs; disabled evidence rejected
+

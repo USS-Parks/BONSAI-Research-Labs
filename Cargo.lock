@@ -188,6 +188,7 @@ version = "0.0.0"
 dependencies = [
  "serde",
  "serde_json",
+ "sha2",
 ]
 
 [[package]]
@@ -207,6 +208,7 @@ name = "bonsai-governor"
 version = "0.0.0"
 dependencies = [
  "bonsai-contracts",
+ "bonsai-platform",
  "serde",
  "serde_json",
  "sha2",
@@ -246,6 +248,7 @@ name = "bonsai-platform"
 version = "0.0.0"
 dependencies = [
  "serde",
+ "serde_json",
  "sysinfo",
  "tempfile",
 ]

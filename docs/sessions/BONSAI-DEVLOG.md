@@ -1458,3 +1458,54 @@ This append-only log records executed PSPR prompts. Corrections are added as new
 - Commit SHA: pending by self-hash convention
 - Risks/blockers/parked scope changed: no OaK, instrument-completion, or C4-C5 claim is made
 - Next eligible prompts after gate and publication: none in the authorized M2-science roster
+
+### BV-05 closeout note
+
+- Focused implementation commit SHA: `d84864e` (merged to `main` as `da7dfc9`)
+- Hosted verification: GitHub Actions on pull request #1
+- Ledger rule: appended by M3 STS
+
+## 2026-08-24 — M3 — Cross-platform governed science (BM-05–BM-14, BQ-07–BQ-12, BK-14, BE-10–BE-16, BV-06–BV-10)
+
+- Status: passed locally; hosted baseline pending this branch
+- Authorization scope: user-authorized full `run M3 STS` for approved PSPR v0.3; OD-01–OD-05 settled
+- Dependencies and source revision: `main` @ `c2d8cdc2964b684b417ca26c9f10dcacd87afd65`
+- Objective and exclusions: implement all 29 remaining M3 prompts with fixtures and honest host capability; do not invent Job Object/cgroup/Apple/NVIDIA live passes; no OaK reproduction, instrument completion, or C4/C5 pass claim
+- Reuse classification: extend `bonsai-platform`, `bonsai-governor`, `bonsai-metrics`, `bonsai-claims`, `bonsai-report`, and `bonsai-reference` after M2
+- Files changed: OS backends, energy/NVIDIA/equivalence, enforcement bridge, decision replay, schedulers, metric repro, C4/C5 and claim matrix, comparison/equivalence/overhead reports, ten scenario families, eleven ablation pairs, S/C freeze, ADRs 0008–0009, architecture/metrics/claims docs, roster checkboxes, README governance, DEVLOG, verification log, machine records
+- Decisions/addenda: inseparable 29-prompt bundle justified by shared capability types and M3 dependency graph; OD-01 records container Linux cgroup reads and no-permission enforcement; Windows Job Object binding stays unsupported under `unsafe_code` forbid; NVIDIA absent; energy floor E0
+- Verification summary: `cargo fmt --all --check`, strict workspace Clippy, workspace Rust tests, `cargo xtask schema-check`, Ruff, strict Pyright, 32 Python tests, and governance checkers passed on Linux x86_64 container. Live `/sys/fs/cgroup` measurement succeeded; child-cgroup create was permission-denied and fail-closed
+- Evidence paths and SHA-256 hashes: machine record `M3-1787592135103378703` stdout `c6a61e3f2363c31c5a7b0723f9dc805349981b9eba26a9fcb011a59b0eefc171` stderr `d7713e2da8af9f00811c6ab23f114c6ec3926fd19146a6d43e3744b9484dd5d8`; `M3-PY-1787592149976239284` stdout `9af50995f7140361e4333c5b8aead12c63ae6ce946eff6c911287a1315688974` stderr `e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855`
+- Commit SHA: pending by self-hash convention
+- Risks/blockers/parked scope changed: R-M3-1 recorded as honest capability gaps; P-01–P-09 unchanged; BV-11–BV-16 remain parked
+- Next eligible prompts after gate and publication: M4 / BV-11 only under a later PSPR + STS
+
+### Prompt evidence index (M3)
+
+| ID | Gate evidence |
+|---|---|
+| BM-05 | `crates/bonsai-platform/src/windows.rs` + `windows_capability_and_job_object_reconciliation` |
+| BM-06 | Job Object hard-limit/unsupported fixtures; ADR 0008 |
+| BM-07 | `macos.rs` capability + reconciliation; thermal `no_permission` |
+| BM-08 | monitor/terminate overshoot fixture; ADR 0009 |
+| BM-09 | live cgroup v2 read on this host |
+| BM-10 | `try_apply_probe_limit` fail-closed `NoPermission`; no descendant escape |
+| BM-11 | `detect_nvidia` `NVIDIA_ABSENT`; CPU-only continues |
+| BM-12 | E0 downgrades; estimated zero rejected |
+| BM-13 | `qualify_present_backends` all ≤ E1 |
+| BM-14 | comparability matrix; no unsupported numeric claim |
+| BQ-07 | Windows/Linux hard preflight rejects Track A start |
+| BQ-08 | replay match + policy-hash divergence |
+| BQ-09 | scheduler declaration validation |
+| BQ-10 | dense wakes every eligible component |
+| BQ-11 | event scheduler records suppressed work |
+| BQ-12 | matched stream/seed/budget compare |
+| BE-10–BE-14 | ten families; shocks manifest-visible; no Track A labels |
+| BE-15 | eleven charter ablation pairs |
+| BE-16 | S/C freeze; A/L gated |
+| BK-14 | identical recompute inside live-row envelope |
+| BV-06 | adversarial C4/C5 fixtures cannot cheat |
+| BV-07 | uncovered or pass-without-hash fails |
+| BV-08 | uncertainty table; hidden seeds fail |
+| BV-09 | three-OS semantic equivalence; perf separate |
+| BV-10 | paired overhead vs D-11; disabled evidence rejected |

@@ -1,0 +1,22 @@
+============================= test session starts ==============================
+platform linux -- Python 3.12.3, pytest-9.1.1, pluggy-1.6.0
+rootdir: /workspace
+configfile: pyproject.toml
+testpaths: python/bonsai-reference/tests
+collected 32 items
+
+python/bonsai-reference/tests/test_brdc1_curation.py ...                 [  9%]
+python/bonsai-reference/tests/test_brdc1_features.py ...                 [ 18%]
+python/bonsai-reference/tests/test_brdc1_options.py ...                  [ 28%]
+python/bonsai-reference/tests/test_brdc1_planning.py ...                 [ 37%]
+python/bonsai-reference/tests/test_comparators.py ...                    [ 46%]
+python/bonsai-reference/tests/test_control.py ...                        [ 56%]
+python/bonsai-reference/tests/test_event_envelope_roundtrip.py .         [ 59%]
+python/bonsai-reference/tests/test_heartbeat.py ..                       [ 65%]
+python/bonsai-reference/tests/test_m3_families.py ...                    [ 75%]
+python/bonsai-reference/tests/test_scaffold.py .                         [ 78%]
+python/bonsai-reference/tests/test_scenario.py ...                       [ 87%]
+python/bonsai-reference/tests/test_stats.py ...                          [ 96%]
+python/bonsai-reference/tests/test_transport.py .                        [100%]
+
+============================== 32 passed in 0.23s ==============================

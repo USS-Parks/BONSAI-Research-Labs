@@ -8,8 +8,15 @@ use std::error::Error;
 use std::fmt;
 
 pub mod calibration;
+pub mod capability;
 pub mod clock;
+pub mod energy;
+pub mod equivalence;
+pub mod linux;
+pub mod macos;
+pub mod nvidia;
 pub mod portable;
+pub mod windows;
 
 #[derive(Clone, Copy, Debug, Deserialize, Eq, Ord, PartialEq, PartialOrd, Serialize)]
 #[serde(rename_all = "snake_case")]

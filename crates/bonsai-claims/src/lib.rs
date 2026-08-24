@@ -4,6 +4,8 @@
 
 pub mod c0c1;
 pub mod c2c3;
+pub mod c4c5;
+pub mod matrix;
 
 use serde::{Deserialize, Serialize};
 use std::collections::{BTreeMap, BTreeSet};
