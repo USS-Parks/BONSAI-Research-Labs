@@ -1,0 +1,28 @@
+{
+  "schema": "bonsai.feature-metric-outcomes/v1",
+  "table": {
+    "schema": "bonsai.feature-metric-table/v1",
+    "metrics": [
+      {"id": "feature_birth_count", "numerator": 4, "denominator": 1, "detail_code": null},
+      {"id": "feature_mean_age", "numerator": 30, "denominator": 4, "detail_code": null},
+      {"id": "feature_activation_count", "numerator": 2, "denominator": 1, "detail_code": null},
+      {"id": "feature_retirement_count", "numerator": 1, "denominator": 1, "detail_code": null},
+      {"id": "feature_novelty", "numerator": 3, "denominator": 4, "detail_code": null},
+      {"id": "feature_redundancy", "numerator": 2, "denominator": 1, "detail_code": null},
+      {"id": "feature_consumers", "numerator": 3, "denominator": 1, "detail_code": null},
+      {"id": "feature_marginal_contribution", "numerator": 7, "denominator": 1, "detail_code": null},
+      {"id": "feature_useful_lineage", "numerator": 1, "denominator": 1, "detail_code": null},
+      {"id": "feature_utility_per_byte", "numerator": 7, "denominator": 31, "detail_code": null},
+      {"id": "feature_utility_per_work", "numerator": 7, "denominator": 13, "detail_code": null},
+      {"id": "feature_churn", "numerator": 5, "denominator": 1, "detail_code": null},
+      {"id": "feature_dormancy", "numerator": 1, "denominator": 1, "detail_code": null},
+      {"id": "feature_obsolete_protection", "numerator": 1, "denominator": 1, "detail_code": null}
+    ],
+    "classifications": [
+      {"feature_id": "dormant", "class": "dormant", "age": 7, "activations": 0, "consumers": 0, "marginal_utility": 0},
+      {"feature_id": "obsolete", "class": "obsolete_protected", "age": 6, "activations": 1, "consumers": 1, "marginal_utility": 1},
+      {"feature_id": "redundant", "class": "redundant", "age": 8, "activations": 0, "consumers": 0, "marginal_utility": -2},
+      {"feature_id": "useful", "class": "useful", "age": 9, "activations": 1, "consumers": 2, "marginal_utility": 8}
+    ]
+  }
+}

@@ -9,6 +9,7 @@ use std::fmt;
 
 pub mod behavior;
 pub mod continual;
+pub mod feature;
 pub mod resources;
 
 #[derive(Clone, Debug, Deserialize, Eq, Ord, PartialEq, PartialOrd, Serialize)]

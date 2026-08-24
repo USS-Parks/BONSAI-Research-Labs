@@ -1101,3 +1101,24 @@ un M2-science STS / full STS for PSPR v0.2
 - Commit SHA: pending by self-hash convention
 - Risks/blockers/parked scope changed: no OaK reproduction, instrument-completion, or C0-C5 claim is made
 - Next eligible prompts after gate and publication: BK-05
+
+### BK-04 closeout note
+
+- Focused implementation commit SHA: `accae3afcecccd1e1d9087f9797947f5f51e56cc`
+- Hosted verification: GitHub Actions run 32679628058, attempt 1, passed continual-learning metrics on Windows x86_64, Linux x86_64, macOS arm64, and macOS Intel at that exact commit
+- Ledger rule: appended by BK-05 because the BK-04 commit could not contain its own immutable hash or post-push hosted-run identity
+
+## 2026-08-23 — BK-05 — Feature metrics
+
+- Status: passed; closeout entry pending focused commit identity and hosted run
+- Authorization scope: user STS authorization 2026-08-23 (PT) `run M2-science STS`
+- Dependencies and source revision: BK-01 and BR-08 published; BK-04 published and hosted-green at `accae3afcecccd1e1d9087f9797947f5f51e56cc`
+- Objective and exclusions: birth/age/activation/retirement, novelty, redundancy, consumers, marginal contributions, useful lineage, utility per byte/work, churn, dormancy, and obsolete protection; exclude human-semantic labeling as canonical utility
+- Reuse classification: extend `bonsai-metrics` at the BK-01/BK-04 seams with one feature metric module, integration corpus, metrics contract, and frozen expected-outcome fixture without a new dependency
+- Files changed: feature metric module and exports, feature metric tests, metrics contract, frozen expected outcomes, README/PSPR status, DEVLOG, verification log, and retained machine evidence
+- Decisions/addenda: classifications use only lineage/activation/consumer/utility evidence; duplicate representation identities with non-positive marginal utility are redundant; useful lineage requires positive marginal utility and consumers; dormancy covers never-activated features; obsolete protection covers retired features that still have consumers; missing denominators are detail codes, never numeric zero
+- Verification summary: two focused integration tests freeze useful/redundant/dormant/obsolete-protected classifications against `fixtures/feature-metrics/v1/expected-outcomes.json` and fail closed on malformed lifecycle traces. The complete gate passed formatting, strict workspace Clippy, workspace Rust tests, Ruff, strict Pyright, 11 Python tests, schema compatibility, docs, ADR, license, governance-ledger, terminology, and CI-topology checks on Windows x86_64
+- Evidence paths and SHA-256 hashes: final machine record `BK-05-1787535481077809300` with stdout `58D1C922C0A0B46DE53EB95D08FD562364F9A4F6F7FAFAD0560267D3925D53D2` and stderr `9A122C3C773F3689A4708A7BDD30005778EEAC2468E84C2456218993C1EAB793`; feature `646904E9E750D11899268A82BC63A93F8EFFBB96A20A9EA650A4BB21B71F15D9`; tests `3776A1D94EAC168DD3A62D50CF0A1811E190D3702CD18EC3FD945DAF518D32E1`; contract `C176D67B748FA81815A347E424EB6FEFA48324C7301A48B04598F2A6086019A3`; expected outcomes `517447E8BD15EFC87827FA145824353C58F6670DE8D1D97DF6B085599B68AC1F`; `Cargo.lock` unchanged at `AEFC9265FEDA2F88FCA42328D10A41A8F0C1E0B36DCA39B0C3AED700F54B5D7F`; external verifier SHA-256 `599AFF6C6A5B9D52A8490C4AFDD0A1F3EFEC5FFB6B866A921A6B88A612C4D218`
+- Commit SHA: pending by self-hash convention; report the focused SHA after publication
+- Risks/blockers/parked scope changed: no OaK reproduction, instrument-completion, or C0-C5 claim is made
+- Next eligible prompts after gate and publication: BK-06

@@ -1533,3 +1533,27 @@ Machine record `BR-07-1784503142006141500` is not acceptance evidence. The outer
 - Counter availability and privileges: deterministic agent-persistence fixtures and hosted semantic checks only; no physical counter, hostile-native sandbox, or scientific-quality claim
 - Result: pass; BQ-06 cross-OS gate is closed
 - Reviewer/attestation: authenticated GitHub metadata establishes the exact head SHA and successful four-platform plus aggregate conclusions
+
+## VER-BK04-HOSTED - BK-04 - 2026-08-24T01:23:00Z
+
+- Source revision and dirty state: `accae3afcecccd1e1d9087f9797947f5f51e56cc`; clean pushed focused implementation revision
+- OS/architecture/physical-or-CI: Windows/x86_64, Linux/x86_64, macOS/arm64, macOS/x86_64; GitHub hosted CI; ephemeral virtual machines
+- Toolchain/dependency-lock hashes: workflow-pinned Rust 1.96.0, Python 3.12, and uv 0.11.29; source locks at the recorded revision
+- Command: GitHub Actions `BONSAI baseline` push run 32679628058, attempt 1
+- Exit code: run conclusion `success`
+- Result: pass; BK-04 cross-OS gate is closed
+- Reviewer/attestation: authenticated GitHub metadata establishes the exact head SHA and successful four-platform plus aggregate conclusions
+
+## VER-BK05-LOCAL - BK-05 - 2026-08-23
+
+- Source revision and dirty state: `accae3afcecccd1e1d9087f9797947f5f51e56cc`; dirty only with BK-05 implementation, governance, and evidence
+- OS/architecture/physical-or-CI: Windows/x86_64; local; physical/virtual status unknown
+- Toolchain/dependency-lock hashes: Rust 1.96.0; locked repository Python environment; `Cargo.lock` unchanged
+- Command: final machine record `BK-05-1787535481077809300`; full universal/schema/governance gate through external verifier copy SHA-256 `599AFF6C6A5B9D52A8490C4AFDD0A1F3EFEC5FFB6B866A921A6B88A612C4D218`
+- Start/end/duration: machine-record Unix UTC nanoseconds `1787535481077809300` / `1787535530585392000` / 49.5087938 s
+- Exit code: 0
+- Stdout/stderr artifact hashes: stdout `58D1C922C0A0B46DE53EB95D08FD562364F9A4F6F7FAFAD0560267D3925D53D2`; stderr `9A122C3C773F3689A4708A7BDD30005778EEAC2468E84C2456218993C1EAB793`
+- Fixtures/manifests/bundle IDs: frozen useful/redundant/dormant/obsolete-protected feature corpus; malformed lifecycle denials; and complete existing repository corpus
+- Counter availability and privileges: deterministic feature lineage/activation metrics only; no human-semantic labeling, scientific-utility claim, or C0-C5 claim
+- Result: pass locally; hosted Windows/macOS/Linux closure remains attached to the focused commit
+- Reviewer/attestation: exact classification and metric numerators, fail-closed malformed traces, and strict workspace/Python/schema/governance gates passed locally
