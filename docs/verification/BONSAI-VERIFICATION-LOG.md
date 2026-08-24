@@ -1630,3 +1630,17 @@ Machine record `BR-07-1784503142006141500` is not acceptance evidence. The outer
 - Result: pass locally; hosted Windows/macOS/Linux closure remains attached to the focused commit
 - Reviewer/attestation: artifact count is not scored as open-endedness; classes match the committed fixture
 
+## VER-BK12-LOCAL - BK-12 - 2026-08-24
+
+- Source revision and dirty state: `c367e9ad757564b5a0fcc46a29545621c2fc6f4e`; dirty only with BK-12 implementation, governance, and evidence
+- OS/architecture/physical-or-CI: Linux/x86_64; local; physical/virtual status unknown
+- Toolchain/dependency-lock hashes: Rust 1.96.0; uv 0.11.29; Python 3.12.3; `Cargo.lock` unchanged at `AEFC9265FEDA2F88FCA42328D10A41A8F0C1E0B36DCA39B0C3AED700F54B5D7F`
+- Command: final machine record `BK-12-1787533967562219196`; full universal/schema/governance gate after implementation and governance closeout
+- Start/end/duration: machine-record Unix UTC nanoseconds `1787533967562219196` / `1787533977836065957` / 10.273844752 s
+- Exit code: 0
+- Stdout/stderr artifact hashes: stdout `841CD89F1CD392469E212128FE75638ED6941FD1AD8562EFB52300C33492989E`; stderr `242A01C0945DE2FE9B638BA7F251118F2E77839AF9141AF19E7FC568C138B118`
+- Fixtures/manifests/bundle IDs: ten charter §14 criteria with positive, negative, and unavailable cases
+- Counter availability and privileges: deterministic failure fixtures only; no physical counter or C0-C5 claim
+- Result: pass locally; hosted Windows/macOS/Linux closure remains attached to the focused commit
+- Reviewer/attestation: unavailable input stays indeterminate; failure is never converted into a pass
+

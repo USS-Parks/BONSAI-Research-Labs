@@ -1240,3 +1240,24 @@ This append-only log records executed PSPR prompts. Corrections are added as new
 - Commit SHA: pending by self-hash convention
 - Risks/blockers/parked scope changed: no OaK, instrument-completion, or C0-C5 claim is made
 - Next eligible prompts after gate and publication: BK-12
+
+### BK-11 closeout note
+
+- Focused implementation commit SHA: `c367e9ad757564b5a0fcc46a29545621c2fc6f4e`
+- Hosted verification: pending the `sts/m2-science-v02` pull-request baseline
+- Ledger rule: appended by BK-12
+
+## 2026-08-24 — BK-12 — Failure-criteria detectors
+
+- Status: passed; closeout entry pending focused commit identity and hosted run
+- Authorization scope: user-authorized `run M2-science STS` for the approved PSPR v0.2 roster
+- Dependencies and source revision: BK-11 published at `c367e9ad757564b5a0fcc46a29545621c2fc6f4e`
+- Objective and exclusions: operationalize every charter section 14 failure with tolerance, window, comparator, and evidence; do not convert failure into missing evidence
+- Reuse classification: extend `bonsai-metrics` after BK-11
+- Files changed: failure-criteria module and export, metric contract, frozen expected outcomes, README/PSPR status, BK-11 closeout, DEVLOG, verification log, and retained machine evidence
+- Decisions/addenda: unavailable evidence, comparators, or required signals yield indeterminate, never pass
+- Verification summary: three focused tests give one positive, one negative, and one unavailable case per charter §14 criterion against `fixtures/failure-criteria/v1/expected-outcomes.json`. The complete gate passed formatting, strict workspace Clippy, 166 Rust tests, Ruff, strict Pyright, 11 Python tests, and governance checks on Linux x86_64
+- Evidence paths and SHA-256 hashes: final machine record `BK-12-1787533967562219196` with stdout `841CD89F1CD392469E212128FE75638ED6941FD1AD8562EFB52300C33492989E` and stderr `242A01C0945DE2FE9B638BA7F251118F2E77839AF9141AF19E7FC568C138B118`; failure `AA4805024D70664792DA99002B5F461DE7F92443B4195740448C41A5344EE8DB`; contract `428163855B57F166BC1E6D4FC2DFDEF7E1892CA0061AB1D5E48CF34738FBE759`; expected outcomes `95A16720FCD2C8035201BC4C9C32DB2AFCF364E107A9A0F3F9856F82295B315D`
+- Commit SHA: pending by self-hash convention
+- Risks/blockers/parked scope changed: no OaK, instrument-completion, or C0-C5 claim is made
+- Next eligible prompts after gate and publication: BK-13
