@@ -1345,3 +1345,24 @@ This append-only log records executed PSPR prompts. Corrections are added as new
 - Commit SHA: pending by self-hash convention
 - Risks/blockers/parked scope changed: no OaK, instrument-completion, or C0-C5 claim is made
 - Next eligible prompts after gate and publication: BE-07
+
+### BE-06 closeout note
+
+- Focused implementation commit SHA: `3326fd85f247c97d7a3fdab45dac322522753b8b`
+- Hosted verification: pending the `sts/m2-science-v02` pull-request baseline
+- Ledger rule: appended by BE-07
+
+## 2026-08-24 — BE-07 — Implement BRDC-1 planning and backward utility credit
+
+- Status: passed; closeout entry pending focused commit identity and hosted run
+- Authorization scope: user-authorized `run M2-science STS` for the approved PSPR v0.2 roster
+- Dependencies and source revision: BE-06 published at `3326fd85f247c97d7a3fdab45dac322522753b8b`
+- Objective and exclusions: plan with primitive/option models and return slower backward credit under an external budget; the internal scheduler cannot self-enforce
+- Reuse classification: extend the BE-06 reference cycle
+- Files changed: planning/credit stages, tests, contract, frozen expected outcomes, README/PSPR status, BE-06 closeout, DEVLOG, verification log, and retained machine evidence
+- Decisions/addenda: consequentiality is action change; credit after construction; scheduler self-report is rejected
+- Verification summary: three focused tests show forward construction, slower credit, scheduler denial, and reconciled work against `fixtures/brdc1-planning/v1/expected-outcomes.json`. The complete gate passed formatting, strict workspace Clippy, 169 Rust tests, Ruff, strict Pyright, 23 Python tests, and governance checks on Linux x86_64
+- Evidence paths and SHA-256 hashes: final machine record `BE-07-1787534440813055245` with stdout `4C70D176D3B62E5281CF1188DD614FF9E12B399916AFBD55A95B046B224C0974` and stderr `D93CB43305B4B7467B65285BB76D3AAC7B9AE507A9CEE979794E25819BD64FB6`; brdc1 `A07F014D61DA3B6899D7C82D84AC3CC036C67CD07ACC503DDC68FAD911EFD946`; contract `0DCB823DB665B07B881E0D19B1D3FB9C49B4B1725919E28F5E6E8AC27BA88071`; expected outcomes `C9BF258CF3CD2913FE20B829BB7A1D12307056344B6D859CCE5A72095D6C31F7`
+- Commit SHA: pending by self-hash convention
+- Risks/blockers/parked scope changed: no OaK, instrument-completion, or C0-C5 claim is made
+- Next eligible prompts after gate and publication: BE-08

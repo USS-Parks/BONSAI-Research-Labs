@@ -70,11 +70,37 @@ class ModelRecord:
 
 
 @dataclass(frozen=True, slots=True)
+class BackupRecord:
+    backup_id: str
+    state_id: str
+    random_draw: int
+    value_delta: int
+    realized_action: str
+    counterfactual_action: str
+    consequential: bool
+    work: int
+
+
+@dataclass(frozen=True, slots=True)
+class CreditRecord:
+    artifact_id: str
+    consumer_id: str
+    construction_step: int
+    credit_step: int
+    latency: int
+    utility: int
+    tier: Literal["exact_leave_one_out"]
+    work: int
+
+
+@dataclass(frozen=True, slots=True)
 class CycleAccounting:
     feature_work: int
     subproblem_work: int
     option_work: int
     model_work: int
+    planning_work: int
+    credit_work: int
     replay_items_retained: int
 
 
@@ -148,6 +174,14 @@ class FeatureStage:
     def add_consumer(self, feature_id: str) -> FeatureRecord:
         current = self._require_active(feature_id)
         record = replace(current, consumers=current.consumers + 1)
+        self._features[feature_id] = record
+        return record
+
+    def set_utility(self, feature_id: str, utility: int) -> FeatureRecord:
+        current = self._features.get(feature_id)
+        if current is None:
+            raise CycleError("FEATURE_UNAVAILABLE")
+        record = replace(current, utility=utility)
         self._features[feature_id] = record
         return record
 
@@ -335,14 +369,107 @@ class ModelStage:
         return record
 
 
-class Brdc1Cycle:
-    """Track A reference cycle through option and model stages."""
+class PlanningStage:
+    """Plan with option models under an external backup budget."""
 
-    def __init__(self) -> None:
+    def __init__(self, budget: int) -> None:
+        if budget <= 0:
+            raise CycleError("PLANNING_BUDGET_INVALID")
+        self.budget = budget
+        self._backups: dict[str, BackupRecord] = {}
+        self._work = 0
+
+    @property
+    def work(self) -> int:
+        return self._work
+
+    def snapshot(self) -> tuple[BackupRecord, ...]:
+        return tuple(self._backups[key] for key in sorted(self._backups))
+
+    def backup(
+        self,
+        backup_id: str,
+        state_id: str,
+        random_draw: int,
+        value_delta: int,
+        realized_action: str,
+        counterfactual_action: str,
+    ) -> BackupRecord:
+        if self._work >= self.budget:
+            raise CycleError("PLANNING_BUDGET_EXHAUSTED")
+        if not backup_id or backup_id in self._backups or not state_id:
+            raise CycleError("PLANNING_IDENTITY_INVALID")
+        record = BackupRecord(
+            backup_id=backup_id,
+            state_id=state_id,
+            random_draw=random_draw,
+            value_delta=value_delta,
+            realized_action=realized_action,
+            counterfactual_action=counterfactual_action,
+            consequential=realized_action != counterfactual_action,
+            work=1,
+        )
+        self._backups[backup_id] = record
+        self._work += 1
+        return record
+
+    def enforce_compliance(self) -> None:
+        raise CycleError("SCHEDULER_NOT_AUTHORITATIVE")
+
+
+class CreditStage:
+    """Return slower backward utility credit to upstream artifacts."""
+
+    def __init__(self, features: FeatureStage) -> None:
+        self._features = features
+        self._credits: dict[str, CreditRecord] = {}
+        self._work = 0
+
+    @property
+    def work(self) -> int:
+        return self._work
+
+    def snapshot(self) -> tuple[CreditRecord, ...]:
+        return tuple(self._credits[key] for key in sorted(self._credits))
+
+    def credit(
+        self,
+        artifact_id: str,
+        consumer_id: str,
+        construction_step: int,
+        credit_step: int,
+        utility: int,
+    ) -> CreditRecord:
+        if credit_step <= construction_step:
+            raise CycleError("CREDIT_NOT_SLOWER")
+        if not artifact_id or artifact_id in self._credits:
+            raise CycleError("CREDIT_IDENTITY_INVALID")
+        self._features.set_utility(artifact_id, utility)
+        record = CreditRecord(
+            artifact_id=artifact_id,
+            consumer_id=consumer_id,
+            construction_step=construction_step,
+            credit_step=credit_step,
+            latency=credit_step - construction_step,
+            utility=utility,
+            tier="exact_leave_one_out",
+            work=1,
+        )
+        self._credits[artifact_id] = record
+        self._work += 1
+        return record
+
+
+class Brdc1Cycle:
+    """Track A reference cycle through planning and backward credit."""
+
+    def __init__(self, planning_budget: int = 4) -> None:
         self.features = FeatureStage()
         self.subproblems = SubproblemStage(self.features)
         self.options = OptionStage(self.subproblems)
         self.models = ModelStage()
+        self.planning = PlanningStage(planning_budget)
+        self.credit = CreditStage(self.features)
 
     @property
     def accounting(self) -> CycleAccounting:
@@ -351,6 +478,8 @@ class Brdc1Cycle:
             subproblem_work=self.subproblems.work,
             option_work=self.options.work,
             model_work=self.models.work,
+            planning_work=self.planning.work,
+            credit_work=self.credit.work,
             replay_items_retained=0,
         )
 
@@ -370,6 +499,13 @@ class Brdc1Cycle:
         passed = self.models.learn_one_pass("opt_ok", "reward_duration", ((2, 1), (2, 1)), 1)
         failed = self.models.learn_one_pass("opt_fail", "reward_duration", ((1, 1), (9, 9)), 1)
         return option_model_summary(self, passed, failed)
+
+    def run_planning_credit_diagnostic(self) -> dict[str, object]:
+        self.run_option_model_diagnostic()
+        self.planning.backup("value_only", "s0", 7, 8, "left", "left")
+        self.planning.backup("action_change", "s0", 7, 0, "left", "right")
+        self.credit.credit("f_new", "opt_ok", 1, 14, 5)
+        return planning_credit_summary(self)
 
 
 def diagnostic_summary(cycle: Brdc1Cycle) -> dict[str, object]:
@@ -446,5 +582,41 @@ def option_model_summary(
             "option_work": cycle.accounting.option_work,
             "model_work": cycle.accounting.model_work,
             "replay_items_retained": cycle.accounting.replay_items_retained,
+        },
+    }
+
+
+def planning_credit_summary(cycle: Brdc1Cycle) -> dict[str, object]:
+    backups = {
+        record.backup_id: {
+            "value_delta": record.value_delta,
+            "consequential": record.consequential,
+            "work": record.work,
+        }
+        for record in cycle.planning.snapshot()
+    }
+    credits = {
+        record.artifact_id: {
+            "consumer_id": record.consumer_id,
+            "construction_step": record.construction_step,
+            "credit_step": record.credit_step,
+            "latency": record.latency,
+            "utility": record.utility,
+            "tier": record.tier,
+        }
+        for record in cycle.credit.snapshot()
+    }
+    return {
+        "schema": "bonsai.brdc1-planning-credit-outcomes/v1",
+        "forward_before_credit": True,
+        "backups": backups,
+        "credits": credits,
+        "reconcile": {
+            "planning_work": cycle.accounting.planning_work,
+            "credit_work": cycle.accounting.credit_work,
+            "consequential_backups": sum(
+                1 for record in cycle.planning.snapshot() if record.consequential
+            ),
+            "budget": cycle.planning.budget,
         },
     }
