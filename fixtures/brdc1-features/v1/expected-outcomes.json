@@ -1,0 +1,46 @@
+{
+  "schema": "bonsai.brdc1-feature-subproblem-outcomes/v1",
+  "features": {
+    "f_new": {
+      "birth_step": 1,
+      "retirement_step": null,
+      "bytes": 2,
+      "work": 3,
+      "consumers": 2,
+      "utility": null,
+      "parents": [
+        "f_old"
+      ]
+    },
+    "f_old": {
+      "birth_step": 0,
+      "retirement_step": 3,
+      "bytes": 2,
+      "work": 2,
+      "consumers": 0,
+      "utility": null,
+      "parents": []
+    }
+  },
+  "subproblems": {
+    "sub_fail": {
+      "feature_id": "f_new",
+      "reward_mode": "respecting",
+      "original_reward": 0,
+      "success": false,
+      "work": 3
+    },
+    "sub_ok": {
+      "feature_id": "f_new",
+      "reward_mode": "respecting",
+      "original_reward": 1,
+      "success": true,
+      "work": 3
+    }
+  },
+  "accounting": {
+    "feature_work": 6,
+    "subproblem_work": 6,
+    "replay_items_retained": 0
+  }
+}

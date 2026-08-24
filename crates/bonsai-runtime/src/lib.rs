@@ -6,6 +6,7 @@ mod conformance;
 mod isolation;
 mod lifecycle;
 mod replay;
+mod storage;
 
 pub use conformance::{
     AdapterCertificationInput, AdapterCertificationReport, AdapterConformanceSuite,
@@ -23,6 +24,10 @@ pub use lifecycle::{
 pub use replay::{
     ObserverReplayAnalyzer, ObserverReplayArtifact, ObserverReplayArtifactKind,
     ObserverReplayOutput, ReplayDestination, ReplayError, ReplayRouteDecision,
+};
+pub use storage::{
+    AgentStorageBroker, InspectedObject, PersistDecision, PersistOutcome, PersistRequest,
+    PersistenceClass, StorageError, StoragePolicy,
 };
 
 use prost::Message;

@@ -1,0 +1,41 @@
+{
+  "schema": "bonsai.c0-c1-outcomes/v1",
+  "rows": {
+    "ambiguous_track": {
+      "c0": "indeterminate",
+      "c1": "indeterminate",
+      "class": "ambiguous_track",
+      "detail_code": "C0_EVIDENCE_UNAVAILABLE"
+    },
+    "compliant": {
+      "c0": "pass",
+      "c1": "pass",
+      "class": "compliant",
+      "detail_code": null
+    },
+    "hard_violating": {
+      "c0": "pass",
+      "c1": "fail",
+      "class": "hard_violating",
+      "detail_code": "C1_BUDGET_VIOLATION"
+    },
+    "soft_degraded": {
+      "c0": "pass",
+      "c1": "pass",
+      "class": "soft_degraded",
+      "detail_code": null
+    },
+    "tampered": {
+      "c0": "fail",
+      "c1": "fail",
+      "class": "tampered",
+      "detail_code": "C0_EVIDENCE_INVALID"
+    },
+    "unavailable": {
+      "c0": "indeterminate",
+      "c1": "indeterminate",
+      "class": "unavailable",
+      "detail_code": "C0_EVIDENCE_UNAVAILABLE"
+    }
+  }
+}

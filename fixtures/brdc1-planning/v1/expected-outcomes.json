@@ -1,0 +1,32 @@
+{
+  "schema": "bonsai.brdc1-planning-credit-outcomes/v1",
+  "forward_before_credit": true,
+  "backups": {
+    "action_change": {
+      "value_delta": 0,
+      "consequential": true,
+      "work": 1
+    },
+    "value_only": {
+      "value_delta": 8,
+      "consequential": false,
+      "work": 1
+    }
+  },
+  "credits": {
+    "f_new": {
+      "consumer_id": "opt_ok",
+      "construction_step": 1,
+      "credit_step": 14,
+      "latency": 13,
+      "utility": 5,
+      "tier": "exact_leave_one_out"
+    }
+  },
+  "reconcile": {
+    "planning_work": 2,
+    "credit_work": 1,
+    "consequential_backups": 1,
+    "budget": 4
+  }
+}

@@ -1,0 +1,25 @@
+{
+  "schema": "bonsai.planning-metric-outcomes/v1",
+  "backups": {
+    "action_change": {
+      "approximation_error": null,
+      "consequential": true,
+      "value_changed": false
+    },
+    "approx_wrong": {
+      "approximation_error": 1,
+      "consequential": false,
+      "value_changed": true
+    },
+    "policy_shift": {
+      "approximation_error": null,
+      "consequential": true,
+      "value_changed": true
+    },
+    "value_only": {
+      "approximation_error": null,
+      "consequential": false,
+      "value_changed": true
+    }
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "schema": "bonsai.utility-metric-outcomes/v1",
+  "rows": {
+    "exact_positive": {
+      "availability": "available",
+      "c3_eligible": true,
+      "detail_code": null,
+      "tier": "exact_leave_one_out"
+    },
+    "proxy_low_confidence": {
+      "availability": "indeterminate",
+      "c3_eligible": false,
+      "detail_code": "UTILITY_PROXY_CONFIDENCE_FAILURE",
+      "tier": "influence_proxy"
+    },
+    "proxy_only": {
+      "availability": "available",
+      "c3_eligible": false,
+      "detail_code": "UTILITY_PROXY_ONLY",
+      "tier": "influence_proxy"
+    },
+    "proxy_sign_error": {
+      "availability": "indeterminate",
+      "c3_eligible": false,
+      "detail_code": "UTILITY_PROXY_SIGN_ERROR",
+      "tier": "influence_proxy"
+    }
+  }
+}

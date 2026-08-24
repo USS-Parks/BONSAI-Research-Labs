@@ -1,0 +1,89 @@
+{
+  "schema": "bonsai.storage-guard-outcomes/v1",
+  "decisions": [
+    {
+      "relative_path": "model/weights.json",
+      "declared_class": "model_parameters",
+      "classified_as": "model_parameters",
+      "outcome": "admit",
+      "reason_code": "STORAGE_PERSIST_ADMITTED",
+      "bytes_before": 0,
+      "bytes_after": 45,
+      "files_before": 0,
+      "files_after": 1,
+      "persisted_bytes": 45
+    },
+    {
+      "relative_path": "state/counters.json",
+      "declared_class": "bounded_algorithm_state",
+      "classified_as": "bounded_algorithm_state",
+      "outcome": "admit",
+      "reason_code": "STORAGE_PERSIST_ADMITTED",
+      "bytes_before": 45,
+      "bytes_after": 112,
+      "files_before": 1,
+      "files_after": 2,
+      "persisted_bytes": 67
+    },
+    {
+      "relative_path": "replay/transitions.json",
+      "declared_class": "replay_buffer",
+      "classified_as": "replay_buffer",
+      "outcome": "reject",
+      "reason_code": "REPLAY_BUFFER_DETECTED",
+      "bytes_before": 112,
+      "bytes_after": 112,
+      "files_before": 2,
+      "files_after": 2,
+      "persisted_bytes": 0
+    },
+    {
+      "relative_path": "model/hidden-replay.json",
+      "declared_class": "model_parameters",
+      "classified_as": "replay_buffer",
+      "outcome": "reject",
+      "reason_code": "REPLAY_BUFFER_DETECTED",
+      "bytes_before": 112,
+      "bytes_after": 112,
+      "files_before": 2,
+      "files_after": 2,
+      "persisted_bytes": 0
+    },
+    {
+      "relative_path": "model/too-large.json",
+      "declared_class": "model_parameters",
+      "classified_as": "model_parameters",
+      "outcome": "reject",
+      "reason_code": "STORAGE_FILE_TOO_LARGE",
+      "bytes_before": 112,
+      "bytes_after": 112,
+      "files_before": 2,
+      "files_after": 2,
+      "persisted_bytes": 0
+    },
+    {
+      "relative_path": "state/extra.json",
+      "declared_class": "bounded_algorithm_state",
+      "classified_as": "bounded_algorithm_state",
+      "outcome": "reject",
+      "reason_code": "STORAGE_FILE_BUDGET_EXHAUSTED",
+      "bytes_before": 112,
+      "bytes_after": 112,
+      "files_before": 2,
+      "files_after": 2,
+      "persisted_bytes": 0
+    }
+  ],
+  "inspection": [
+    {
+      "relative_path": "model/weights.json",
+      "classified_as": "model_parameters",
+      "bytes": 45
+    },
+    {
+      "relative_path": "state/counters.json",
+      "classified_as": "bounded_algorithm_state",
+      "bytes": 67
+    }
+  ]
+}

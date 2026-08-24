@@ -1,0 +1,10 @@
+{
+  "schema": "bonsai.option-metric-outcomes/v1",
+  "classes": {
+    "good": "reliable",
+    "hurt": "harmful",
+    "idle": "unused",
+    "twin-a": "redundant",
+    "twin-b": "redundant"
+  }
+}

@@ -1534,16 +1534,6 @@ Machine record `BR-07-1784503142006141500` is not acceptance evidence. The outer
 - Result: pass; BQ-06 cross-OS gate is closed
 - Reviewer/attestation: authenticated GitHub metadata establishes the exact head SHA and successful four-platform plus aggregate conclusions
 
-## VER-BK04-HOSTED - BK-04 - 2026-08-24T01:23:00Z
-
-- Source revision and dirty state: `accae3afcecccd1e1d9087f9797947f5f51e56cc`; clean pushed focused implementation revision
-- OS/architecture/physical-or-CI: Windows/x86_64, Linux/x86_64, macOS/arm64, macOS/x86_64; GitHub hosted CI; ephemeral virtual machines
-- Toolchain/dependency-lock hashes: workflow-pinned Rust 1.96.0, Python 3.12, and uv 0.11.29; source locks at the recorded revision
-- Command: GitHub Actions `BONSAI baseline` push run 32679628058, attempt 1
-- Exit code: run conclusion `success`
-- Result: pass; BK-04 cross-OS gate is closed
-- Reviewer/attestation: authenticated GitHub metadata establishes the exact head SHA and successful four-platform plus aggregate conclusions
-
 ## VER-BK05-LOCAL - BK-05 - 2026-08-23
 
 - Source revision and dirty state: `accae3afcecccd1e1d9087f9797947f5f51e56cc`; dirty only with BK-05 implementation, governance, and evidence
@@ -1557,3 +1547,227 @@ Machine record `BR-07-1784503142006141500` is not acceptance evidence. The outer
 - Counter availability and privileges: deterministic feature lineage/activation metrics only; no human-semantic labeling, scientific-utility claim, or C0-C5 claim
 - Result: pass locally; hosted Windows/macOS/Linux closure remains attached to the focused commit
 - Reviewer/attestation: exact classification and metric numerators, fail-closed malformed traces, and strict workspace/Python/schema/governance gates passed locally
+## VER-BK06-LOCAL - BK-06 - 2026-08-24
+
+- Source revision and dirty state: `6a7d2514f6d201fde3b1eca6a85214fd2b4c4367`; dirty only with BK-06 implementation, governance, and evidence
+- OS/architecture/physical-or-CI: Linux/x86_64; local; physical/virtual status unknown
+- Toolchain/dependency-lock hashes: Rust 1.96.0; uv 0.11.29; Python 3.12.3; `Cargo.lock` unchanged at `AEFC9265FEDA2F88FCA42328D10A41A8F0C1E0B36DCA39B0C3AED700F54B5D7F`
+- Command: final machine record `BK-06-1787533275647258737`; full universal/schema/governance gate after implementation and governance closeout
+- Start/end/duration: machine-record Unix UTC nanoseconds `1787533275647258737` / `1787533284904359511` / 9.257098697 s
+- Exit code: 0
+- Stdout/stderr artifact hashes: stdout `FCA9436229BA86EC228A8D850D6871063E3931C7BDB4E20F01997F530FFEE0AD`; stderr `5CD5A115B63CA2BF8B6C6D34DE1FE3D3978510B2449D4F56BB9C64C11E090A68`
+- Fixtures/manifests/bundle IDs: reward-respecting pass/fail and reward-oblivious success fixtures
+- Counter availability and privileges: deterministic subproblem fixtures only; no physical counter or C0-C5 claim
+- Result: pass locally; hosted Windows/macOS/Linux closure remains attached to the focused commit
+- Reviewer/attestation: reward-respecting and reward-oblivious cases remain distinguishable and lineage-complete
+
+## VER-BK07-LOCAL - BK-07 - 2026-08-24
+
+- Source revision and dirty state: `40280c2f521a3fa5b5ff0ed4b517b56524fdeabb`; dirty only with BK-07 implementation, governance, and evidence
+- OS/architecture/physical-or-CI: Linux/x86_64; local; physical/virtual status unknown
+- Toolchain/dependency-lock hashes: Rust 1.96.0; uv 0.11.29; Python 3.12.3; `Cargo.lock` unchanged at `AEFC9265FEDA2F88FCA42328D10A41A8F0C1E0B36DCA39B0C3AED700F54B5D7F`
+- Command: final machine record `BK-07-1787533377598625661`; full universal/schema/governance gate after implementation and governance closeout
+- Start/end/duration: machine-record Unix UTC nanoseconds `1787533377598625661` / `1787533386935898296` / 9.337270567 s
+- Exit code: 0
+- Stdout/stderr artifact hashes: stdout `8373A0F1D6E89CF7A1104A48D1D9FDED2D02F76BBA8A4C4CABBF06EBD761BAA3`; stderr `4BD898F44C175DC2C608529D72D2E78F0C7A74EA2381318B24B6D75DCD45F68B`
+- Fixtures/manifests/bundle IDs: reliable, redundant, harmful, and unused option fixtures
+- Counter availability and privileges: deterministic option fixtures only; no physical counter or C0-C5 claim
+- Result: pass locally; hosted Windows/macOS/Linux closure remains attached to the focused commit
+- Reviewer/attestation: option creation is not scored as benefit; classes match the committed fixture
+
+## VER-BK08-LOCAL - BK-08 - 2026-08-24
+
+- Source revision and dirty state: `11c73ed540a94a80d4d9a312a02b6a752e327a38`; dirty only with BK-08 implementation, governance, and evidence
+- OS/architecture/physical-or-CI: Linux/x86_64; local; physical/virtual status unknown
+- Toolchain/dependency-lock hashes: Rust 1.96.0; uv 0.11.29; Python 3.12.3; `Cargo.lock` unchanged at `AEFC9265FEDA2F88FCA42328D10A41A8F0C1E0B36DCA39B0C3AED700F54B5D7F`
+- Command: final machine record `BK-08-1787533462418684877`; full universal/schema/governance gate after implementation and governance closeout
+- Start/end/duration: machine-record Unix UTC nanoseconds `1787533462418684877` / `1787533472211958141` / 9.793271263 s
+- Exit code: 0
+- Stdout/stderr artifact hashes: stdout `104C70D0CB6B63C44A2FCE8A16E2929BA8693BDB9934CBBD48658D1CBB6D0913`; stderr `103D0084E1CC8E0F4FF79C6F04A01ADD673713F4A3BD716BD8C8C14013955234`
+- Fixtures/manifests/bundle IDs: stale, biased, calibrated, and representation-shift model fixtures; unaligned-target comparison
+- Counter availability and privileges: deterministic model fixtures only; no physical counter or C0-C5 claim
+- Result: pass locally; hosted Windows/macOS/Linux closure remains attached to the focused commit
+- Reviewer/attestation: lineage-aligned error comparison only; unaligned targets emit `MODEL_TARGET_UNALIGNED` without a numeric delta
+
+## VER-BK09-LOCAL - BK-09 - 2026-08-24
+
+- Source revision and dirty state: `3339831aa6f7eaade26b2dc07fba80407d0cdcfa`; dirty only with BK-09 implementation, governance, and evidence
+- OS/architecture/physical-or-CI: Linux/x86_64; local; physical/virtual status unknown
+- Toolchain/dependency-lock hashes: Rust 1.96.0; uv 0.11.29; Python 3.12.3; `Cargo.lock` unchanged at `AEFC9265FEDA2F88FCA42328D10A41A8F0C1E0B36DCA39B0C3AED700F54B5D7F`
+- Command: final machine record `BK-09-1787533666867261266`; full universal/schema/governance gate after implementation and governance closeout
+- Start/end/duration: machine-record Unix UTC nanoseconds `1787533666867261266` / `1787533676948441292` / 10.081177463 s
+- Exit code: 0
+- Stdout/stderr artifact hashes: stdout `008CBDCFA28809D694D7AE3FF22017DDA3E44121BBDC041DF8BCADC8EF6E2B9B`; stderr `5E0EB02759A1E1DDA153F94E6EAA82F08859AEA8C2481F9FBFBF3B33FB9EFA41`
+- Fixtures/manifests/bundle IDs: value-only, policy-shift, action-change, and mis-calibrated approximate backup fixtures
+- Counter availability and privileges: deterministic tabular paired counterfactuals only; no physical counter or C0-C5 claim
+- Result: pass locally; hosted Windows/macOS/Linux closure remains attached to the focused commit
+- Reviewer/attestation: value change is not sufficient for consequentiality; approximation error is reported against the exact omit-one test
+
+## VER-BK10-LOCAL - BK-10 - 2026-08-24
+
+- Source revision and dirty state: `d7e4c95297306397d093aefc03e71318ab483fdf`; dirty only with BK-10 implementation, governance, and evidence
+- OS/architecture/physical-or-CI: Linux/x86_64; local; physical/virtual status unknown
+- Toolchain/dependency-lock hashes: Rust 1.96.0; uv 0.11.29; Python 3.12.3; `Cargo.lock` unchanged at `AEFC9265FEDA2F88FCA42328D10A41A8F0C1E0B36DCA39B0C3AED700F54B5D7F`
+- Command: final machine record `BK-10-1787533774387863180`; full universal/schema/governance gate after implementation and governance closeout
+- Start/end/duration: machine-record Unix UTC nanoseconds `1787533774387863180` / `1787533784227756569` / 9.839891340 s
+- Exit code: 0
+- Stdout/stderr artifact hashes: stdout `E7FF0351D316E7C9EBCF48CF2157B5A73164C315138D04FA34E754D4EE66E31E`; stderr `5614552DE05955A1D063327789BD5458A9076EBEEA4BD150F19546A65170FC08`
+- Fixtures/manifests/bundle IDs: exact-positive, proxy sign-error, proxy confidence-failure, and proxy-only utility fixtures
+- Counter availability and privileges: deterministic diagnostic ablations only; no physical counter or C0-C5 claim
+- Result: pass locally; hosted Windows/macOS/Linux closure remains attached to the focused commit
+- Reviewer/attestation: proxy-only rows cannot establish C3; sign and confidence failures stay indeterminate; earlier rustfmt-order record is superseded
+
+## VER-BK11-LOCAL - BK-11 - 2026-08-24
+
+- Source revision and dirty state: `f1472ce2c5fc456a043554dd5f1867b2f78613fe`; dirty only with BK-11 implementation, governance, and evidence
+- OS/architecture/physical-or-CI: Linux/x86_64; local; physical/virtual status unknown
+- Toolchain/dependency-lock hashes: Rust 1.96.0; uv 0.11.29; Python 3.12.3; `Cargo.lock` unchanged at `AEFC9265FEDA2F88FCA42328D10A41A8F0C1E0B36DCA39B0C3AED700F54B5D7F`
+- Command: final machine record `BK-11-1787533864418168721`; full universal/schema/governance gate after implementation and governance closeout
+- Start/end/duration: machine-record Unix UTC nanoseconds `1787533864418168721` / `1787533874375161975` / 9.956991308 s
+- Exit code: 0
+- Stdout/stderr artifact hashes: stdout `659F6A526A6AFF21EBCEE14B2D22F25A6E5330F59C86860D53C97B6E1AC39E62`; stderr `5513C6C9EBF03E5AB869D3C66DB5CD1BEC926899A3E11675C7313D6368DD5DE5`
+- Fixtures/manifests/bundle IDs: healthy, collapse, runaway, cycling, and ossified cycle-health traces
+- Counter availability and privileges: deterministic synthetic traces only; no physical counter or C0-C5 claim
+- Result: pass locally; hosted Windows/macOS/Linux closure remains attached to the focused commit
+- Reviewer/attestation: artifact count is not scored as open-endedness; classes match the committed fixture
+
+## VER-BK12-LOCAL - BK-12 - 2026-08-24
+
+- Source revision and dirty state: `c367e9ad757564b5a0fcc46a29545621c2fc6f4e`; dirty only with BK-12 implementation, governance, and evidence
+- OS/architecture/physical-or-CI: Linux/x86_64; local; physical/virtual status unknown
+- Toolchain/dependency-lock hashes: Rust 1.96.0; uv 0.11.29; Python 3.12.3; `Cargo.lock` unchanged at `AEFC9265FEDA2F88FCA42328D10A41A8F0C1E0B36DCA39B0C3AED700F54B5D7F`
+- Command: final machine record `BK-12-1787533967562219196`; full universal/schema/governance gate after implementation and governance closeout
+- Start/end/duration: machine-record Unix UTC nanoseconds `1787533967562219196` / `1787533977836065957` / 10.273844752 s
+- Exit code: 0
+- Stdout/stderr artifact hashes: stdout `841CD89F1CD392469E212128FE75638ED6941FD1AD8562EFB52300C33492989E`; stderr `242A01C0945DE2FE9B638BA7F251118F2E77839AF9141AF19E7FC568C138B118`
+- Fixtures/manifests/bundle IDs: ten charter §14 criteria with positive, negative, and unavailable cases
+- Counter availability and privileges: deterministic failure fixtures only; no physical counter or C0-C5 claim
+- Result: pass locally; hosted Windows/macOS/Linux closure remains attached to the focused commit
+- Reviewer/attestation: unavailable input stays indeterminate; failure is never converted into a pass
+
+## VER-BK13-LOCAL - BK-13 - 2026-08-24
+
+- Source revision and dirty state: `fec9c147adb845e9b96af0a74f590cb406d3ee60`; dirty only with BK-13 implementation, governance, and evidence
+- OS/architecture/physical-or-CI: Linux/x86_64; local; physical/virtual status unknown
+- Toolchain/dependency-lock hashes: Rust 1.96.0; uv 0.11.29; Python 3.12.3; `Cargo.lock` unchanged at `AEFC9265FEDA2F88FCA42328D10A41A8F0C1E0B36DCA39B0C3AED700F54B5D7F`
+- Command: final machine record `BK-13-1787534120795276646`; full universal/schema/governance gate after implementation and governance closeout
+- Start/end/duration: machine-record Unix UTC nanoseconds `1787534120795276646` / `1787534132176025704` / 11.380747088 s
+- Exit code: 0
+- Stdout/stderr artifact hashes: stdout `E5652A1D0896BFBA0C7915767F74F8FC59FFA03102B294CF14064236C7E76FF2`; stderr `F2EB58777161EA45A873A319459CAAFB36D1330E331DE8A2E103F089A360916F`
+- Fixtures/manifests/bundle IDs: paired reward/latency corpus with declared exclusion, missing/failed runs, and independent Python reference
+- Counter availability and privileges: deterministic integer bootstrap only; no physical counter or C0-C5 claim
+- Result: pass locally; hosted Windows/macOS/Linux closure remains attached to the focused commit
+- Reviewer/attestation: golden corpus matches the independent Python reference; undeclared exclusions and metrics fail closed
+
+## VER-BE04-LOCAL - BE-04 - 2026-08-24
+
+- Source revision and dirty state: `b6c2c4c3fad26be0afcdef4f39c87e3fbe770b7d`; dirty only with BE-04 specification, governance, and evidence
+- OS/architecture/physical-or-CI: Linux/x86_64; local; physical/virtual status unknown
+- Toolchain/dependency-lock hashes: Rust 1.96.0; uv 0.11.29; Python 3.12.3; `Cargo.lock` unchanged at `AEFC9265FEDA2F88FCA42328D10A41A8F0C1E0B36DCA39B0C3AED700F54B5D7F`
+- Command: final machine record `BE-04-1787534190801692582`; full universal/schema/governance gate after specification and governance closeout
+- Start/end/duration: machine-record Unix UTC nanoseconds `1787534190801692582` / `1787534195520109646` / 4.718415090 s
+- Exit code: 0
+- Stdout/stderr artifact hashes: stdout `6DBD886C77FBAE530F8654ED07BCE7FE8A44165E8B0942ADB5EAFFB9AB8CF757`; stderr `D93CB43305B4B7467B65285BB76D3AAC7B9AE507A9CEE979794E25819BD64FB6`
+- Fixtures/manifests/bundle IDs: BRDC-1 specification with eight-mechanism traceability table
+- Counter availability and privileges: documentation only; no physical counter or C0-C5 claim
+- Result: pass locally; hosted Windows/macOS/Linux closure remains attached to the focused commit
+- Reviewer/attestation: public basis, design choice, and hypothesis are distinguished; unpublished Oak Lab algorithms and deep/open-ended success are excluded
+
+## VER-BE05-LOCAL - BE-05 - 2026-08-24
+
+- Source revision and dirty state: `38e14484b16a3f702ba075155b8609c06019f279`; dirty only with BE-05 implementation, governance, and evidence
+- OS/architecture/physical-or-CI: Linux/x86_64; local; physical/virtual status unknown
+- Toolchain/dependency-lock hashes: Rust 1.96.0; uv 0.11.29; Python 3.12.3; `Cargo.lock` unchanged at `AEFC9265FEDA2F88FCA42328D10A41A8F0C1E0B36DCA39B0C3AED700F54B5D7F`
+- Command: final machine record `BE-05-1787534254908451916`; full universal/schema/governance gate after implementation and governance closeout
+- Start/end/duration: machine-record Unix UTC nanoseconds `1787534254908451916` / `1787534259636000840` / 4.727546986 s
+- Exit code: 0
+- Stdout/stderr artifact hashes: stdout `32FF88509B9D7A18CEF5E154B6425D0A2213CAF27AC043D9ECD9AD7D74E97BE7`; stderr `4A01F4E783D39CA58106E9B054D6BD97B456657818D7CE32882ADEDDDEA56B61`
+- Fixtures/manifests/bundle IDs: feature birth/revision/retirement and reward-respecting subproblem fixture
+- Counter availability and privileges: deterministic Track A cycle only; no physical counter or C0-C5 claim
+- Result: pass locally; hosted Windows/macOS/Linux closure remains attached to the focused commit
+- Reviewer/attestation: creation is not utility; semantic labels never enter Track A
+
+## VER-BE06-LOCAL - BE-06 - 2026-08-24
+
+- Source revision and dirty state: `cca48583e7f7563fd70b0247072363280faeeea9`; dirty only with BE-06 implementation, governance, and evidence
+- OS/architecture/physical-or-CI: Linux/x86_64; local; physical/virtual status unknown
+- Toolchain/dependency-lock hashes: Rust 1.96.0; uv 0.11.29; Python 3.12.3; `Cargo.lock` unchanged at `AEFC9265FEDA2F88FCA42328D10A41A8F0C1E0B36DCA39B0C3AED700F54B5D7F`
+- Command: final machine record `BE-06-1787534351063393883`; full universal/schema/governance gate after implementation and governance closeout
+- Start/end/duration: machine-record Unix UTC nanoseconds `1787534351063393883` / `1787534355832438946` / 4.769042852 s
+- Exit code: 0
+- Stdout/stderr artifact hashes: stdout `84E107490F74D6D44542F75117DCCC35DE6546AF94B0D86E3796763F5C3A1233`; stderr `4A01F4E783D39CA58106E9B054D6BD97B456657818D7CE32882ADEDDDEA56B61`
+- Fixtures/manifests/bundle IDs: one-pass option-model tolerance and honest failure fixtures
+- Counter availability and privileges: deterministic Track A cycle only; no physical counter or C0-C5 claim
+- Result: pass locally; hosted Windows/macOS/Linux closure remains attached to the focused commit
+- Reviewer/attestation: batch-one updates retain no replay; unsolved subproblems cannot become options
+
+## VER-BE07-LOCAL - BE-07 - 2026-08-24
+
+- Source revision and dirty state: `3326fd85f247c97d7a3fdab45dac322522753b8b`; dirty only with BE-07 implementation, governance, and evidence
+- OS/architecture/physical-or-CI: Linux/x86_64; local; physical/virtual status unknown
+- Toolchain/dependency-lock hashes: Rust 1.96.0; uv 0.11.29; Python 3.12.3; `Cargo.lock` unchanged at `AEFC9265FEDA2F88FCA42328D10A41A8F0C1E0B36DCA39B0C3AED700F54B5D7F`
+- Command: final machine record `BE-07-1787534440813055245`; full universal/schema/governance gate after implementation and governance closeout
+- Start/end/duration: machine-record Unix UTC nanoseconds `1787534440813055245` / `1787534445656185238` / 4.843127331 s
+- Exit code: 0
+- Stdout/stderr artifact hashes: stdout `4C70D176D3B62E5281CF1188DD614FF9E12B399916AFBD55A95B046B224C0974`; stderr `D93CB43305B4B7467B65285BB76D3AAC7B9AE507A9CEE979794E25819BD64FB6`
+- Fixtures/manifests/bundle IDs: value-only and action-changing backups with delayed exact credit
+- Counter availability and privileges: deterministic Track A cycle only; no physical counter or C0-C5 claim
+- Result: pass locally; hosted Windows/macOS/Linux closure remains attached to the focused commit
+- Reviewer/attestation: credit is slower than construction; scheduler self-report cannot enforce compliance
+
+## VER-BE08-LOCAL - BE-08 - 2026-08-24
+
+- Source revision and dirty state: `68c564ba377503a444af1198920755a7608ac353`; dirty only with BE-08 implementation, governance, and evidence
+- OS/architecture/physical-or-CI: Linux/x86_64; local; physical/virtual status unknown
+- Toolchain/dependency-lock hashes: Rust 1.96.0; uv 0.11.29; Python 3.12.3; `Cargo.lock` unchanged at `AEFC9265FEDA2F88FCA42328D10A41A8F0C1E0B36DCA39B0C3AED700F54B5D7F`
+- Command: final machine record `BE-08-1787534537846867097`; full universal/schema/governance gate after implementation and governance closeout
+- Start/end/duration: machine-record Unix UTC nanoseconds `1787534537846867097` / `1787534542712379580` / 4.865510249 s
+- Exit code: 0
+- Stdout/stderr artifact hashes: stdout `942F55F7614CC3A3BFD4F86596A8C27C71ABB0102AB06AC4055CA2659D9E37C7`; stderr `4A01F4E783D39CA58106E9B054D6BD97B456657818D7CE32882ADEDDDEA56B61`
+- Fixtures/manifests/bundle IDs: useful retain, redundant deprioritize, and stale remove curation fixtures
+- Counter availability and privileges: deterministic Track A cycle only; no physical counter or C0-C5 claim
+- Result: pass locally; hosted Windows/macOS/Linux closure remains attached to the focused commit
+- Reviewer/attestation: governor admission is required; lineage remains intact; the estimator is not claimed as the OaK solution
+
+## VER-BE09-LOCAL - BE-09 - 2026-08-24
+
+- Source revision and dirty state: `dd0fc98ba5264f007e739f27152ad099e53eb19c`; dirty only with BE-09 implementation, governance, and evidence
+- OS/architecture/physical-or-CI: Linux/x86_64; local; physical/virtual status unknown
+- Toolchain/dependency-lock hashes: Rust 1.96.0; uv 0.11.29; Python 3.12.3; `Cargo.lock` unchanged at `AEFC9265FEDA2F88FCA42328D10A41A8F0C1E0B36DCA39B0C3AED700F54B5D7F`
+- Command: final machine record `BE-09-1787534619975254384`; full universal/schema/governance gate after implementation and governance closeout
+- Start/end/duration: machine-record Unix UTC nanoseconds `1787534619975254384` / `1787534624767739379` / 4.792483325 s
+- Exit code: 0
+- Stdout/stderr artifact hashes: stdout `E3A0C58359A30F928A9AA66DDE02C6F5FCD209CA59489B993D8F49185FA3331D`; stderr `A3A30E90629E7A2D2F509DD67ACC1DAC1C51F9964857DBC7B5377A7B5584AC9D`
+- Fixtures/manifests/bundle IDs: OD-03 comparator set and three BE-01 diagnostic worlds
+- Counter availability and privileges: deterministic comparator manifests only; no physical counter or C0-C5 claim
+- Result: pass locally; hosted Windows/macOS/Linux closure remains attached to the focused commit
+- Reviewer/attestation: each comparator differs in one mechanism; Track B/C/D never merge with Track A
+
+## VER-BV04-LOCAL - BV-04 - 2026-08-24
+
+- Source revision and dirty state: `637b15c04cea58c122132ed8eb4e48f6d4e9faf8`; dirty only with BV-04 implementation, governance, and evidence
+- OS/architecture/physical-or-CI: Linux/x86_64; local; physical/virtual status unknown
+- Toolchain/dependency-lock hashes: Rust 1.96.0; uv 0.11.29; Python 3.12.3; `Cargo.lock` adds `serde_json` to `bonsai-claims` only
+- Command: final machine record `BV-04-1787534739914157390`; full universal/schema/governance gate after implementation and governance closeout
+- Start/end/duration: machine-record Unix UTC nanoseconds `1787534739914157390` / `1787534745744442850` / 5.830283311 s
+- Exit code: 0
+- Stdout/stderr artifact hashes: stdout `4C0D5116EE02029B785225164386D7540DDCB3474C0157E8248D87453BAE7FAE`; stderr `BD8E5E9FCD914BC7DE7C984FE81E860B677BEA856266F6F6907144FF3F502E13`
+- Fixtures/manifests/bundle IDs: compliant, soft-degraded, hard-violating, unavailable, tampered, and ambiguous-track C0/C1 fixtures
+- Counter availability and privileges: deterministic bundle fixtures only; no physical counter or C2-C5 claim
+- Result: pass locally; hosted Windows/macOS/Linux closure remains attached to the focused commit
+- Reviewer/attestation: C1 cannot pass when a declared hard counter is unavailable; missing evidence stays indeterminate
+
+## VER-BV05-LOCAL - BV-05 - 2026-08-24
+
+- Source revision and dirty state: `a48b076d06c94a41c9b58965d03bac0a12ddee8a`; dirty only with BV-05 implementation, governance, and evidence
+- OS/architecture/physical-or-CI: Linux/x86_64; local; physical/virtual status unknown
+- Toolchain/dependency-lock hashes: Rust 1.96.0; uv 0.11.29; Python 3.12.3
+- Command: final machine record `BV-05-1787534851547074983`; full universal/schema/governance gate after implementation and governance closeout
+- Start/end/duration: machine-record Unix UTC nanoseconds `1787534851547074983` / `1787534857364507818` / 5.817430862 s
+- Exit code: 0
+- Stdout/stderr artifact hashes: stdout `755A7F4200198DADD71F0EE4220A9EFDAC2157CB2E1176C4C8687A4A76B94BC3`; stderr `1F8F41B258CF997A5C15A03B01655A7793C989B41E777548421B4192F105A7EB`
+- Fixtures/manifests/bundle IDs: C2/C3 pass, C1-missing, final-score-only, phase-unavailable, proxy-only, track-leakage, and utility-unavailable fixtures
+- Counter availability and privileges: deterministic claim fixtures only; no physical counter or C4-C5 claim
+- Result: pass locally; hosted Windows/macOS/Linux closure remains attached to the focused commit
+- Reviewer/attestation: proxy-only utility, final-score-only adaptation, and track leakage cannot pass; missing prerequisites stay indeterminate
+

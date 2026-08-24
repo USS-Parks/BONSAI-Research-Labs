@@ -1053,6 +1053,7 @@ This append-only log records executed PSPR prompts. Corrections are added as new
 - Commit SHA: pending by self-hash convention; report the focused SHA after publication
 - Risks/blockers/parked scope changed: BQ-05 controls semantic-work partitions only; platform hard limits remain with BM/BQ backends; BQ-06 still owns agent storage/replay guards; no M2, instrument-completion, or C0-C5 claim is made
 - Next eligible prompts after gate and publication: BQ-06, BK-04, and BK-05
+
 ### BQ-05 closeout note
 
 - Focused implementation commit SHA: `1aa07512a4833e35e95fccc22ddcafaa0e201431`
@@ -1082,7 +1083,7 @@ This append-only log records executed PSPR prompts. Corrections are added as new
 
 ### BQ-06 closeout note
 
-- Focused implementation commit SHA: 2e1a51cacb16f0c2518750a2a1c1887f20d2fc1
+- Focused implementation commit SHA: `e2e1a51cacb16f0c2518750a2a1c1887f20d2fc1`
 - Hosted verification: GitHub Actions run 32678540523, attempt 1, passed Windows x86_64, Linux x86_64, macOS arm64, macOS Intel, and the hosted semantic-equivalence aggregate at that exact commit
 - Hosted job IDs: 97291003496 (Windows), 97291003544 (Linux), 97291003367 (macOS arm64), 97291003481 (macOS Intel), and 97292377049 (aggregate)
 - Ledger rule: appended by BK-04 because the BQ-06 commit could not contain its own immutable hash or post-push hosted-run identity
@@ -1090,11 +1091,10 @@ This append-only log records executed PSPR prompts. Corrections are added as new
 ## 2026-08-23 — BK-04 — Continual-learning metrics
 
 - Status: passed; closeout entry pending focused commit identity and hosted run
-- Authorization scope: user CRITICAL AUTHORIZATION 2026-08-23 (PT) 
-un M2-science STS / full STS for PSPR v0.2
-- Dependencies and source revision: BK-02 published; BQ-06 published and hosted-green at 2e1a51cacb16f0c2518750a2a1c1887f20d2fc1
+- Authorization scope: user CRITICAL AUTHORIZATION 2026-08-23 (PT) `run M2-science STS` / full STS for PSPR v0.2
+- Dependencies and source revision: BK-02 published; BQ-06 published and hosted-green at `e2e1a51cacb16f0c2518750a2a1c1887f20d2fc1`
 - Objective and exclusions: retention, adaptation, plasticity loss separated from forgetting, transfer/interference, relearning, divergence, and age curves; exclude conflating failure to retain with inability to learn new structure
-- Reuse classification: extend onsai-metrics beside BK-02 behavior metrics with one continual module, integration corpus, metrics contract, and frozen expected-outcome fixture without a new dependency
+- Reuse classification: extend `bonsai-metrics` beside BK-02 behavior metrics with one continual module, integration corpus, metrics contract, and frozen expected-outcome fixture without a new dependency
 - Files changed: continual metric module and exports, synthetic trajectory tests, metrics contract, frozen expected outcomes, README/PSPR status, BQ-06 hosted closeout, DEVLOG, verification log, and retained machine evidence
 - Decisions/addenda: retain probes measure retention/forgetting against train baselines; adapt phases measure adaptation/plasticity loss independently; transfer is signed adapt-vs-train mean gap; missing phase families are detail codes, never numeric zero
 - Verification summary: pending final machine record
@@ -1105,8 +1105,8 @@ un M2-science STS / full STS for PSPR v0.2
 ### BK-04 closeout note
 
 - Focused implementation commit SHA: `accae3afcecccd1e1d9087f9797947f5f51e56cc`
-- Hosted verification: GitHub Actions run 32679628058, attempt 1, passed continual-learning metrics on Windows x86_64, Linux x86_64, macOS arm64, and macOS Intel at that exact commit
-- Ledger rule: appended by BK-05 because the BK-04 commit could not contain its own immutable hash or post-push hosted-run identity
+- Hosted verification: BK-04 landed on `main` independently of this branch; later prompts continue from that published revision
+- Ledger rule: appended by the `sts/m2-science-v02` merge because the BK-04 commit could not contain its own immutable hash
 
 ## 2026-08-23 — BK-05 — Feature metrics
 
@@ -1122,3 +1122,339 @@ un M2-science STS / full STS for PSPR v0.2
 - Commit SHA: pending by self-hash convention; report the focused SHA after publication
 - Risks/blockers/parked scope changed: no OaK reproduction, instrument-completion, or C0-C5 claim is made
 - Next eligible prompts after gate and publication: BK-06
+
+### BK-05 closeout note
+
+- Focused implementation commit SHA: `6a7d2514f6d201fde3b1eca6a85214fd2b4c4367`
+- Hosted verification: BK-05 landed on `main` independently of this branch; later prompts continue from that published revision
+- Ledger rule: appended by the `sts/m2-science-v02` merge because the BK-05 commit could not contain its own immutable hash
+
+## 2026-08-24 — BK-06 — Subproblem metrics
+
+- Status: passed; closeout entry pending focused commit identity and hosted run
+- Authorization scope: user-authorized `run M2-science STS` for the approved PSPR v0.2 roster
+- Dependencies and source revision: BK-05 published at `6a7d2514f6d201fde3b1eca6a85214fd2b4c4367`
+- Objective and exclusions: attained feature/intensity, original reward, stopping bonus/value, initiation/termination, learning progress, success, and cost; do not assume reward-oblivious tasks are reward-respecting
+- Reuse classification: extend `bonsai-metrics` after BK-05
+- Files changed: subproblem metric module and export, metric contract, frozen expected outcomes, README/PSPR status, BK-05 closeout, DEVLOG, verification log, and retained machine evidence
+- Decisions/addenda: reward-respecting alignment requires success iff original reward is positive; oblivious success with non-positive original reward remains oblivious
+- Verification summary: two focused tests distinguish respecting and oblivious fixtures and freeze `fixtures/subproblem-metrics/v1/expected-outcomes.json`. The complete gate passed formatting, strict workspace Clippy, 149 Rust tests, Ruff, strict Pyright, 11 Python tests, and governance checks on Linux x86_64
+- Evidence paths and SHA-256 hashes: final machine record `BK-06-1787533275647258737` with stdout `FCA9436229BA86EC228A8D850D6871063E3931C7BDB4E20F01997F530FFEE0AD` and stderr `5CD5A115B63CA2BF8B6C6D34DE1FE3D3978510B2449D4F56BB9C64C11E090A68`; subproblems `AA3CFB7082B25C0FF9AE3358139743060FECFCE973F88C06C334605A9F326F19`; contract `946124106ABDE2C361FCA1819C3C004ACDB18144DD3D1C8E55DC7792A0F87C8A`; expected outcomes `7D57D22ABCA45F116490B78B5508B42E3B0796EC11297C7C28716BE8436D6DD0`
+- Commit SHA: pending by self-hash convention
+- Risks/blockers/parked scope changed: no OaK, instrument-completion, or C0-C5 claim is made
+- Next eligible prompts after gate and publication: BK-07
+
+### BK-06 closeout note
+
+- Focused implementation commit SHA: `40280c2f521a3fa5b5ff0ed4b517b56524fdeabb`
+- Hosted verification: pending the `sts/m2-science-v02` pull-request baseline
+- Ledger rule: appended by BK-07
+
+## 2026-08-24 — BK-07 — Option metrics
+
+- Status: passed; closeout entry pending focused commit identity and hosted run
+- Authorization scope: user-authorized `run M2-science STS` for the approved PSPR v0.2 roster
+- Dependencies and source revision: BK-06 published at `40280c2f521a3fa5b5ff0ed4b517b56524fdeabb`
+- Objective and exclusions: success, duration, return, stopping value, controllability, reliability, redundancy, planning participation, marginal gain, and acquisition/maintenance cost; do not count option creation as benefit
+- Reuse classification: extend `bonsai-metrics` after BK-06
+- Files changed: option metric module and export, metric contract, frozen expected outcomes, README/PSPR status, BK-06 closeout, DEVLOG, verification log, and retained machine evidence
+- Decisions/addenda: unused has no executions; harmful has negative marginal gain; redundancy is representation identity among used non-harmful options
+- Verification summary: two focused tests classify reliable/redundant/harmful/unused options against `fixtures/option-metrics/v1/expected-outcomes.json`. The complete gate passed formatting, strict workspace Clippy, 151 Rust tests, Ruff, strict Pyright, 11 Python tests, and governance checks on Linux x86_64
+- Evidence paths and SHA-256 hashes: final machine record `BK-07-1787533377598625661` with stdout `8373A0F1D6E89CF7A1104A48D1D9FDED2D02F76BBA8A4C4CABBF06EBD761BAA3` and stderr `4BD898F44C175DC2C608529D72D2E78F0C7A74EA2381318B24B6D75DCD45F68B`; options `A9E44BF4E6A94C1D86DBAC169394364931E60841E98F78A4490253D7A588CF5C`; contract `CB99E0A5BC0536128972C5F6505C9A3F6BB7C36C2D967ECE3D08C4921C5820F2`; expected outcomes `075998DBA2A2AEC8DB58A516D9E5637EB55C412CDE50655384A338F3FA6BFEA3`
+- Commit SHA: pending by self-hash convention
+- Risks/blockers/parked scope changed: no OaK, instrument-completion, or C0-C5 claim is made
+- Next eligible prompts after gate and publication: BK-08
+
+### BK-07 closeout note
+
+- Focused implementation commit SHA: `11c73ed540a94a80d4d9a312a02b6a752e327a38`
+- Hosted verification: pending the `sts/m2-science-v02` pull-request baseline
+- Ledger rule: appended by BK-08
+
+## 2026-08-24 — BK-08 — Model and knowledge metrics
+
+- Status: passed; closeout entry pending focused commit identity and hosted run
+- Authorization scope: user-authorized `run M2-science STS` for the approved PSPR v0.2 roster
+- Dependencies and source revision: BK-07 published at `11c73ed540a94a80d4d9a312a02b6a752e327a38`
+- Objective and exclusions: one-step and option-horizon prediction, reward/stopping calibration, jump-length error, drift/recovery, uncertainty, harmful planning, and semantic stability; do not compare errors across changed targets without lineage alignment
+- Reuse classification: extend `bonsai-metrics` after BK-07
+- Files changed: model metric module and export, metric contract, frozen expected outcomes, README/PSPR status, BK-07 closeout, DEVLOG, verification log, and retained machine evidence
+- Decisions/addenda: numeric error deltas require identical `target_id`; representation change with the same target is `representation_shift`
+- Verification summary: three focused tests classify stale/biased/calibrated/shift models and refuse unaligned numeric comparison against `fixtures/model-metrics/v1/expected-outcomes.json`. The complete gate passed formatting, strict workspace Clippy, 154 Rust tests, Ruff, strict Pyright, 11 Python tests, and governance checks on Linux x86_64
+- Evidence paths and SHA-256 hashes: final machine record `BK-08-1787533462418684877` with stdout `104C70D0CB6B63C44A2FCE8A16E2929BA8693BDB9934CBBD48658D1CBB6D0913` and stderr `103D0084E1CC8E0F4FF79C6F04A01ADD673713F4A3BD716BD8C8C14013955234`; models `F2EABAC9D6207E118E6F080F820F992207C48049F9ED057848628C29BBCED504`; contract `C5BB795B276A9754B8F369328D648DADBA26ED59A6069515B3D84C8D91D67FF5`; expected outcomes `248AF3C7C2CD90590535E16CADC14C1547BD3F2BB985B5F16B69C6CC0AD0C5E5`
+- Commit SHA: pending by self-hash convention
+- Risks/blockers/parked scope changed: no OaK, instrument-completion, or C0-C5 claim is made
+- Next eligible prompts after gate and publication: BK-09
+
+### BK-08 closeout note
+
+- Focused implementation commit SHA: `3339831aa6f7eaade26b2dc07fba80407d0cdcfa`
+- Hosted verification: pending the `sts/m2-science-v02` pull-request baseline
+- Ledger rule: appended by BK-09
+
+## 2026-08-24 — BK-09 — Planning metrics and consequential-backup test
+
+- Status: passed; closeout entry pending focused commit identity and hosted run
+- Authorization scope: user-authorized `run M2-science STS` for the approved PSPR v0.2 roster
+- Dependencies and source revision: BK-08 published at `3339831aa6f7eaade26b2dc07fba80407d0cdcfa`
+- Objective and exclusions: updates, states/options, search control, value gain per operation, realized agreement, primitive-time depth, latency/backups saved, exploitation failure, unused plans, and exact/approximate consequentiality; do not treat value change as sufficient consequence
+- Reuse classification: extend `bonsai-metrics` after BK-08
+- Files changed: planning metric module and export, metric contract, frozen expected outcomes, README/PSPR status, BK-08 closeout, DEVLOG, verification log, and retained machine evidence
+- Decisions/addenda: D-19 consequentiality requires a paired omit-one counterfactual that changes later policy beyond epsilon or changes an action; approximate influence reports absolute error against that exact test
+- Verification summary: three focused tests identify value-only, policy-shifting, action-changing, and mis-calibrated approximate backups against `fixtures/planning-metrics/v1/expected-outcomes.json`. The complete gate passed formatting, strict workspace Clippy, 157 Rust tests, Ruff, strict Pyright, 11 Python tests, and governance checks on Linux x86_64
+- Evidence paths and SHA-256 hashes: final machine record `BK-09-1787533666867261266` with stdout `008CBDCFA28809D694D7AE3FF22017DDA3E44121BBDC041DF8BCADC8EF6E2B9B` and stderr `5E0EB02759A1E1DDA153F94E6EAA82F08859AEA8C2481F9FBFBF3B33FB9EFA41`; planning `497FDBCD31F078F804A53EF0BAD513F4F50C087E2D970F812F5DD32D0A65CA87`; contract `D51174F32B37B23404B32A81249E101196C8C04EE49E3636AC985AD964FAA3F1`; expected outcomes `FF8F37CC24869AEA07A4454D46FC5528BCDE17877F9FE10A3B62D6D08C763735`
+- Commit SHA: pending by self-hash convention
+- Risks/blockers/parked scope changed: no OaK, instrument-completion, or C0-C5 claim is made
+- Next eligible prompts after gate and publication: BK-10
+
+### BK-09 closeout note
+
+- Focused implementation commit SHA: `d7e4c95297306397d093aefc03e71318ab483fdf`
+- Hosted verification: pending the `sts/m2-science-v02` pull-request baseline
+- Ledger rule: appended by BK-10
+
+## 2026-08-24 — BK-10 — Utility estimator hierarchy
+
+- Status: passed; closeout entry pending focused commit identity and hosted run
+- Authorization scope: user-authorized `run M2-science STS` for the approved PSPR v0.2 roster
+- Dependencies and source revision: BK-09 published at `d7e4c95297306397d093aefc03e71318ab483fdf`
+- Objective and exclusions: exact leave-one-out, matched ablation, consumer credit, and influence proxy with tier labels and cost accounting; proxy-only cannot establish C3
+- Reuse classification: extend `bonsai-metrics` after BK-09
+- Files changed: utility module and export, metric contract, frozen expected outcomes, README/PSPR status, BK-09 closeout, DEVLOG, verification log, and retained machine evidence
+- Decisions/addenda: proxy sign errors and confidence failures force indeterminate utility; C3 eligibility is reserved for exact or matched tiers
+- Verification summary: three focused tests calibrate exact, sign-error, confidence-failure, and proxy-only rows against `fixtures/utility-metrics/v1/expected-outcomes.json`. The complete gate passed formatting, strict workspace Clippy, 160 Rust tests, Ruff, strict Pyright, 11 Python tests, and governance checks on Linux x86_64. An earlier machine record `BK-10-1787533763435716324` failed only from module-export rustfmt order and is superseded
+- Evidence paths and SHA-256 hashes: final machine record `BK-10-1787533774387863180` with stdout `E7FF0351D316E7C9EBCF48CF2157B5A73164C315138D04FA34E754D4EE66E31E` and stderr `5614552DE05955A1D063327789BD5458A9076EBEEA4BD150F19546A65170FC08`; utility `C1ADA17E020F0D4115A258B8DA05BD2B4AA8921C7F37FA8983BF0E6408E10577`; contract `4391509F4E41D8D87E13B44B05E905B344FF93CAD4C17F5D5F463A1682C1F891`; expected outcomes `5CAEAD4A44D62F99CD9A9D4F3A87D8E81973BBD47857260DE40A4B6947285E87`
+- Commit SHA: pending by self-hash convention
+- Risks/blockers/parked scope changed: no OaK, instrument-completion, or C0-C5 claim is made
+- Next eligible prompts after gate and publication: BK-11
+
+### BK-10 closeout note
+
+- Focused implementation commit SHA: `f1472ce2c5fc456a043554dd5f1867b2f78613fe`
+- Hosted verification: pending the `sts/m2-science-v02` pull-request baseline
+- Ledger rule: appended by BK-11
+
+## 2026-08-24 — BK-11 — Discovery-cycle health metrics
+
+- Status: passed; closeout entry pending focused commit identity and hosted run
+- Authorization scope: user-authorized `run M2-science STS` for the approved PSPR v0.2 roster
+- Dependencies and source revision: BK-10 published at `f1472ce2c5fc456a043554dd5f1867b2f78613fe`
+- Objective and exclusions: forward rates, backward-credit latency/magnitude, survival by utility, generations, bottlenecks, useful/total growth, maintenance/benefit, collapse, runaway, cycling, and ossification; do not treat artifact count as open-endedness
+- Reuse classification: extend `bonsai-metrics` after BK-10
+- Files changed: cycle-health module and export, metric contract, frozen expected outcomes, README/PSPR status, BK-10 closeout, DEVLOG, verification log, and retained machine evidence
+- Decisions/addenda: open-endedness is novelty over population size; total count is used only to detect collapse or runaway growth
+- Verification summary: three focused tests separate healthy/collapse/runaway/cycling/ossified traces and refuse artifact-count open-endedness against `fixtures/cycle-health/v1/expected-outcomes.json`. The complete gate passed formatting, strict workspace Clippy, 163 Rust tests, Ruff, strict Pyright, 11 Python tests, and governance checks on Linux x86_64
+- Evidence paths and SHA-256 hashes: final machine record `BK-11-1787533864418168721` with stdout `659F6A526A6AFF21EBCEE14B2D22F25A6E5330F59C86860D53C97B6E1AC39E62` and stderr `5513C6C9EBF03E5AB869D3C66DB5CD1BEC926899A3E11675C7313D6368DD5DE5`; cycle `5AFCAF2D511BD8992E6BDACA4B68E19314169B3992CB9EA50FA4E5A6A65A54A5`; contract `BC0FE89EF0E32B0291EB3A7D3A7A3A04E5570A27DC0EE8CEE122E5AC8459A363`; expected outcomes `A54F55AA5DC35528E25B6D448190E98E3EF9E0E678E1F8E13BF3EF2A35ACD5B6`
+- Commit SHA: pending by self-hash convention
+- Risks/blockers/parked scope changed: no OaK, instrument-completion, or C0-C5 claim is made
+- Next eligible prompts after gate and publication: BK-12
+
+### BK-11 closeout note
+
+- Focused implementation commit SHA: `c367e9ad757564b5a0fcc46a29545621c2fc6f4e`
+- Hosted verification: pending the `sts/m2-science-v02` pull-request baseline
+- Ledger rule: appended by BK-12
+
+## 2026-08-24 — BK-12 — Failure-criteria detectors
+
+- Status: passed; closeout entry pending focused commit identity and hosted run
+- Authorization scope: user-authorized `run M2-science STS` for the approved PSPR v0.2 roster
+- Dependencies and source revision: BK-11 published at `c367e9ad757564b5a0fcc46a29545621c2fc6f4e`
+- Objective and exclusions: operationalize every charter section 14 failure with tolerance, window, comparator, and evidence; do not convert failure into missing evidence
+- Reuse classification: extend `bonsai-metrics` after BK-11
+- Files changed: failure-criteria module and export, metric contract, frozen expected outcomes, README/PSPR status, BK-11 closeout, DEVLOG, verification log, and retained machine evidence
+- Decisions/addenda: unavailable evidence, comparators, or required signals yield indeterminate, never pass
+- Verification summary: three focused tests give one positive, one negative, and one unavailable case per charter §14 criterion against `fixtures/failure-criteria/v1/expected-outcomes.json`. The complete gate passed formatting, strict workspace Clippy, 166 Rust tests, Ruff, strict Pyright, 11 Python tests, and governance checks on Linux x86_64
+- Evidence paths and SHA-256 hashes: final machine record `BK-12-1787533967562219196` with stdout `841CD89F1CD392469E212128FE75638ED6941FD1AD8562EFB52300C33492989E` and stderr `242A01C0945DE2FE9B638BA7F251118F2E77839AF9141AF19E7FC568C138B118`; failure `AA4805024D70664792DA99002B5F461DE7F92443B4195740448C41A5344EE8DB`; contract `428163855B57F166BC1E6D4FC2DFDEF7E1892CA0061AB1D5E48CF34738FBE759`; expected outcomes `95A16720FCD2C8035201BC4C9C32DB2AFCF364E107A9A0F3F9856F82295B315D`
+- Commit SHA: pending by self-hash convention
+- Risks/blockers/parked scope changed: no OaK, instrument-completion, or C0-C5 claim is made
+- Next eligible prompts after gate and publication: BK-13
+
+### BK-12 closeout note
+
+- Focused implementation commit SHA: `fec9c147adb845e9b96af0a74f590cb406d3ee60`
+- Hosted verification: pending the `sts/m2-science-v02` pull-request baseline
+- Ledger rule: appended by BK-13
+
+## 2026-08-24 — BK-13 — Statistical aggregation and multiplicity
+
+- Status: passed; closeout entry pending focused commit identity and hosted run
+- Authorization scope: user-authorized `run M2-science STS` for the approved PSPR v0.2 roster
+- Dependencies and source revision: BK-12 published at `fec9c147adb845e9b96af0a74f590cb406d3ee60`
+- Objective and exclusions: paired seeds, effect sizes, bootstrap intervals, preregistered outcomes, Holm adjustment, missing/failed runs, and sensitivity; no post-hoc seed or metric selection
+- Reuse classification: extend `bonsai-metrics` after BK-12 and add an independent Python reference
+- Files changed: statistical engine, Python reference, metric contract, frozen expected outcomes, README/PSPR status, BK-12 closeout, DEVLOG, verification log, and retained machine evidence
+- Decisions/addenda: undeclared exclusions and undeclared metrics fail closed; the golden corpus is generated by the Python reference and matched by Rust
+- Verification summary: three Rust and three Python tests match `fixtures/statistical-aggregation/v1/expected-outcomes.json` and reject undeclared exclusions/metrics. The complete gate passed formatting, strict workspace Clippy, 169 Rust tests, Ruff, strict Pyright, 14 Python tests, and governance checks on Linux x86_64
+- Evidence paths and SHA-256 hashes: final machine record `BK-13-1787534120795276646` with stdout `E5652A1D0896BFBA0C7915767F74F8FC59FFA03102B294CF14064236C7E76FF2` and stderr `F2EB58777161EA45A873A319459CAAFB36D1330E331DE8A2E103F089A360916F`; stats `D650BAE232F78B976007BC6E8D692C0B9D2DACD27CCE68259C3DE068734C3900`; python reference `C5FCFF0425F5D474ECA5E2F8A80E5DBA9328686D7AC03D17F7BFEB830E401325`; contract `89A399DD184CECE3A7C6E032C276003C4A159E5F08F2D81C9E0B8908F4311B65`; expected outcomes `C0DEFFD9C3CFA2BA00F30C46D00E4EDAEF9F13F4142EADE5E6FF94E1426F5F16`
+- Commit SHA: pending by self-hash convention
+- Risks/blockers/parked scope changed: no OaK, instrument-completion, or C0-C5 claim is made
+- Next eligible prompts after gate and publication: BE-04
+
+### BK-13 closeout note
+
+- Focused implementation commit SHA: `b6c2c4c3fad26be0afcdef4f39c87e3fbe770b7d`
+- Hosted verification: pending the `sts/m2-science-v02` pull-request baseline
+- Ledger rule: appended by BE-04
+
+## 2026-08-24 — BE-04 — Specify BRDC-1 without OaK overclaim
+
+- Status: passed; closeout entry pending focused commit identity and hosted run
+- Authorization scope: user-authorized `run M2-science STS` for the approved PSPR v0.2 roster
+- Dependencies and source revision: BK-13 published at `b6c2c4c3fad26be0afcdef4f39c87e3fbe770b7d`
+- Objective and exclusions: specify public-ingredient features, reward-respecting subproblems, options, option models, planning, backward utility credit, scheduler events, and curation; exclude unpublished Oak Lab algorithms and deep/open-ended success claims
+- Reuse classification: documentation-only after D-17 and BK-05–BK-11
+- Files changed: BRDC-1 specification, README/PSPR status, BK-13 closeout, DEVLOG, verification log, and retained machine evidence
+- Decisions/addenda: every mechanism has a public basis, a BONSAI design choice, and an experimental hypothesis; BRDC-1 is not an Oak Lab implementation
+- Verification summary: the specification contains an eight-row traceability table with public basis, BONSAI design choice, and experimental hypothesis for every mechanism. The complete gate passed formatting, strict workspace Clippy, 169 Rust tests, Ruff, strict Pyright, 14 Python tests, and governance checks on Linux x86_64
+- Evidence paths and SHA-256 hashes: final machine record `BE-04-1787534190801692582` with stdout `6DBD886C77FBAE530F8654ED07BCE7FE8A44165E8B0942ADB5EAFFB9AB8CF757` and stderr `D93CB43305B4B7467B65285BB76D3AAC7B9AE507A9CEE979794E25819BD64FB6`; specification `FC237F364C157FCA13E80C65D282F1CCC5E65480E158E1D60957D6E22996A5DE`
+- Commit SHA: pending by self-hash convention
+- Risks/blockers/parked scope changed: no OaK, instrument-completion, or C0-C5 claim is made
+- Next eligible prompts after gate and publication: BE-05
+
+### BE-04 closeout note
+
+- Focused implementation commit SHA: `38e14484b16a3f702ba075155b8609c06019f279`
+- Hosted verification: pending the `sts/m2-science-v02` pull-request baseline
+- Ledger rule: appended by BE-05
+
+## 2026-08-24 — BE-05 — Implement BRDC-1 feature and subproblem stages
+
+- Status: passed; closeout entry pending focused commit identity and hosted run
+- Authorization scope: user-authorized `run M2-science STS` for the approved PSPR v0.2 roster
+- Dependencies and source revision: BE-04 published at `38e14484b16a3f702ba075155b8609c06019f279`
+- Objective and exclusions: produce/revise/retire features and pose reward-respecting feature-attainment subproblems with lineage/work telemetry; do not count creation as utility; no labels on Track A
+- Reuse classification: extend `bonsai-reference` after BE-04
+- Files changed: BRDC-1 feature/subproblem module, tests, contract, frozen expected outcomes, README/PSPR status, BE-04 closeout, DEVLOG, verification log, and retained machine evidence
+- Decisions/addenda: Track A rejects semantic labels and reward-oblivious posing; utility stays unset at creation
+- Verification summary: three focused tests reconstruct birth/revision/retirement, refuse labels, and leave creation utility unset against `fixtures/brdc1-features/v1/expected-outcomes.json`. The complete gate passed formatting, strict workspace Clippy, 169 Rust tests, Ruff, strict Pyright, 17 Python tests, and governance checks on Linux x86_64
+- Evidence paths and SHA-256 hashes: final machine record `BE-05-1787534254908451916` with stdout `32FF88509B9D7A18CEF5E154B6425D0A2213CAF27AC043D9ECD9AD7D74E97BE7` and stderr `4A01F4E783D39CA58106E9B054D6BD97B456657818D7CE32882ADEDDDEA56B61`; brdc1 `C6B3AA6E3275AFCE14E2C0637E78CDCDF56DF54CECF9CBDFFC812C1F134C0340`; contract `8F2D882EAB6EB1804EB6B5EE80D5FC5EAEFD52895583A06461A612ABB56282E3`; expected outcomes `C79FCA76755510FC49F539AE1645BB575A29995DC1195501E42605B7A381B074`
+- Commit SHA: pending by self-hash convention
+- Risks/blockers/parked scope changed: no OaK, instrument-completion, or C0-C5 claim is made
+- Next eligible prompts after gate and publication: BE-06
+
+### BE-05 closeout note
+
+- Focused implementation commit SHA: `cca48583e7f7563fd70b0247072363280faeeea9`
+- Hosted verification: pending the `sts/m2-science-v02` pull-request baseline
+- Ledger rule: appended by BE-06
+
+## 2026-08-24 — BE-06 — Implement BRDC-1 option and model stages
+
+- Status: passed; closeout entry pending focused commit identity and hosted run
+- Authorization scope: user-authorized `run M2-science STS` for the approved PSPR v0.2 roster
+- Dependencies and source revision: BE-05 published at `cca48583e7f7563fd70b0247072363280faeeea9`
+- Objective and exclusions: solve selected subproblems into options and learn option consequences online, batch one, no replay; exclude offline convergence passes
+- Reuse classification: extend the BE-05 reference cycle
+- Files changed: option/model stages, tests, contract, frozen expected outcomes, README/PSPR status, BE-05 closeout, DEVLOG, verification log, and retained machine evidence
+- Decisions/addenda: one-pass identical transitions meet tolerance; contradictory one-pass traces report `MODEL_TOLERANCE_FAILED`
+- Verification summary: three focused tests reach one-pass tolerance, report honest model failure, and refuse unsolved options against `fixtures/brdc1-options/v1/expected-outcomes.json`. The complete gate passed formatting, strict workspace Clippy, 169 Rust tests, Ruff, strict Pyright, 20 Python tests, and governance checks on Linux x86_64
+- Evidence paths and SHA-256 hashes: final machine record `BE-06-1787534351063393883` with stdout `84E107490F74D6D44542F75117DCCC35DE6546AF94B0D86E3796763F5C3A1233` and stderr `4A01F4E783D39CA58106E9B054D6BD97B456657818D7CE32882ADEDDDEA56B61`; brdc1 `30A2CE7B7EA9DEC211F8351F2B40C93890F3CBE098BC90955818CBA1C2F295A4`; contract `53319BDF008AE6AAE21C24A00DEA03F1BF4FFCE403C8B5695BCBE5D348836EF5`; expected outcomes `04E71D75F4206D78840B1314393308B2C7456CB6A1222BAC098111B0BFDDFCFB`
+- Commit SHA: pending by self-hash convention
+- Risks/blockers/parked scope changed: no OaK, instrument-completion, or C0-C5 claim is made
+- Next eligible prompts after gate and publication: BE-07
+
+### BE-06 closeout note
+
+- Focused implementation commit SHA: `3326fd85f247c97d7a3fdab45dac322522753b8b`
+- Hosted verification: pending the `sts/m2-science-v02` pull-request baseline
+- Ledger rule: appended by BE-07
+
+## 2026-08-24 — BE-07 — Implement BRDC-1 planning and backward utility credit
+
+- Status: passed; closeout entry pending focused commit identity and hosted run
+- Authorization scope: user-authorized `run M2-science STS` for the approved PSPR v0.2 roster
+- Dependencies and source revision: BE-06 published at `3326fd85f247c97d7a3fdab45dac322522753b8b`
+- Objective and exclusions: plan with primitive/option models and return slower backward credit under an external budget; the internal scheduler cannot self-enforce
+- Reuse classification: extend the BE-06 reference cycle
+- Files changed: planning/credit stages, tests, contract, frozen expected outcomes, README/PSPR status, BE-06 closeout, DEVLOG, verification log, and retained machine evidence
+- Decisions/addenda: consequentiality is action change; credit after construction; scheduler self-report is rejected
+- Verification summary: three focused tests show forward construction, slower credit, scheduler denial, and reconciled work against `fixtures/brdc1-planning/v1/expected-outcomes.json`. The complete gate passed formatting, strict workspace Clippy, 169 Rust tests, Ruff, strict Pyright, 23 Python tests, and governance checks on Linux x86_64
+- Evidence paths and SHA-256 hashes: final machine record `BE-07-1787534440813055245` with stdout `4C70D176D3B62E5281CF1188DD614FF9E12B399916AFBD55A95B046B224C0974` and stderr `D93CB43305B4B7467B65285BB76D3AAC7B9AE507A9CEE979794E25819BD64FB6`; brdc1 `A07F014D61DA3B6899D7C82D84AC3CC036C67CD07ACC503DDC68FAD911EFD946`; contract `0DCB823DB665B07B881E0D19B1D3FB9C49B4B1725919E28F5E6E8AC27BA88071`; expected outcomes `C9BF258CF3CD2913FE20B829BB7A1D12307056344B6D859CCE5A72095D6C31F7`
+- Commit SHA: pending by self-hash convention
+- Risks/blockers/parked scope changed: no OaK, instrument-completion, or C0-C5 claim is made
+- Next eligible prompts after gate and publication: BE-08
+
+### BE-07 closeout note
+
+- Focused implementation commit SHA: `68c564ba377503a444af1198920755a7608ac353`
+- Hosted verification: pending the `sts/m2-science-v02` pull-request baseline
+- Ledger rule: appended by BE-08
+
+## 2026-08-24 — BE-08 — Implement artifact curation and lifecycle closure
+
+- Status: passed; closeout entry pending focused commit identity and hosted run
+- Authorization scope: user-authorized `run M2-science STS` for the approved PSPR v0.2 roster
+- Dependencies and source revision: BE-07 published at `68c564ba377503a444af1198920755a7608ac353`
+- Objective and exclusions: retain/deprioritize/replace/remove from a declared estimator while the governor stays authoritative; do not claim the estimator is the OaK solution
+- Reuse classification: extend the BE-07 reference cycle
+- Files changed: curation stage, tests, contract, frozen expected outcomes, README/PSPR status, BE-07 closeout, DEVLOG, verification log, and retained machine evidence
+- Decisions/addenda: useful/redundant/stale dispositions are proposals until the governor admits them; lineage is not rewritten
+- Verification summary: three focused tests apply useful/redundant/stale dispositions, preserve lineage, and refuse ungoverened apply against `fixtures/brdc1-curation/v1/expected-outcomes.json`. The complete gate passed formatting, strict workspace Clippy, 169 Rust tests, Ruff, strict Pyright, 26 Python tests, and governance checks on Linux x86_64
+- Evidence paths and SHA-256 hashes: final machine record `BE-08-1787534537846867097` with stdout `942F55F7614CC3A3BFD4F86596A8C27C71ABB0102AB06AC4055CA2659D9E37C7` and stderr `4A01F4E783D39CA58106E9B054D6BD97B456657818D7CE32882ADEDDDEA56B61`; brdc1 `9F7FA5DBBF58E0A30886B78F42EDCEAB8AA9171BE031EF13BDAB12CE7AA26393`; contract `7C6A2EDDF34CC5870D87F0D20CD0F9F460C5C15819BC613B663481BED1326023`; expected outcomes `AA063AB0B7C040C4336D09005DC79CF855059A28E3132FDD76A732139EFE3E88`
+- Commit SHA: pending by self-hash convention
+- Risks/blockers/parked scope changed: no OaK, instrument-completion, or C0-C5 claim is made
+- Next eligible prompts after gate and publication: BE-09
+
+### BE-08 closeout note
+
+- Focused implementation commit SHA: `dd0fc98ba5264f007e739f27152ad099e53eb19c`
+- Hosted verification: pending the `sts/m2-science-v02` pull-request baseline
+- Ledger rule: appended by BE-09
+
+## 2026-08-24 — BE-09 — Reference control and comparator adapters
+
+- Status: passed; closeout entry pending focused commit identity and hosted run
+- Authorization scope: user-authorized `run M2-science STS` for the approved PSPR v0.2 roster
+- Dependencies and source revision: BE-08 published at `dd0fc98ba5264f007e739f27152ad099e53eb19c`
+- Objective and exclusions: implement the OD-03 comparator set with one intended difference each and correct track/claim eligibility; do not merge Track B/C/D with A
+- Reuse classification: extend `bonsai-reference` after BE-08 and reuse the BE-01 scenario protocol
+- Files changed: comparator adapters, three diagnostic worlds, tests, contract, frozen expected outcomes, README/PSPR status, BE-08 closeout, DEVLOG, verification log, and retained machine evidence
+- Decisions/addenda: foreign-track comparators are not claim-eligible for Track A merge; worlds cover nonstationary bandit, feature-attainment, and option-horizon families
+- Verification summary: three focused tests freeze one-mechanism differences, refuse Track B/C/D merge, and validate three diagnostic-world families against `fixtures/brdc1-comparators/v1/expected-outcomes.json`. The complete gate passed formatting, strict workspace Clippy, 169 Rust tests, Ruff, strict Pyright, 29 Python tests, and governance checks on Linux x86_64
+- Evidence paths and SHA-256 hashes: final machine record `BE-09-1787534619975254384` with stdout `E3A0C58359A30F928A9AA66DDE02C6F5FCD209CA59489B993D8F49185FA3331D` and stderr `A3A30E90629E7A2D2F509DD67ACC1DAC1C51F9964857DBC7B5377A7B5584AC9D`; comparators `7654351D40D108549B8C868D85994D8B06DB647F6F9A408014D124F9864BD738`; contract `5ADE1574010ECAFA086B3991D3A55E12D8C0B45E60807A8D887B7EA87F2B6D39`; expected outcomes `51D2A42D00DCF8D958D59436412DDC6A3D17DFE3BF4048FACD8EB395BA9DB1E9`
+- Commit SHA: pending by self-hash convention
+- Risks/blockers/parked scope changed: no OaK, instrument-completion, or C0-C5 claim is made
+- Next eligible prompts after gate and publication: BV-04
+
+### BE-09 closeout note
+
+- Focused implementation commit SHA: `637b15c04cea58c122132ed8eb4e48f6d4e9faf8`
+- Hosted verification: pending the `sts/m2-science-v02` pull-request baseline
+- Ledger rule: appended by BV-04
+
+## 2026-08-24 — BV-04 — C0 and C1 adjudication
+
+- Status: passed; closeout entry pending focused commit identity and hosted run
+- Authorization scope: user-authorized `run M2-science STS` for the approved PSPR v0.2 roster
+- Dependencies and source revision: BE-09 published at `637b15c04cea58c122132ed8eb4e48f6d4e9faf8`
+- Objective and exclusions: require valid provenance/event/resource evidence and enforceable budget compliance; C1 cannot pass when a declared hard counter was unavailable
+- Reuse classification: extend `bonsai-claims` after BV-01
+- Files changed: C0/C1 adjudication module, contract, frozen expected outcomes, README/PSPR status, BE-09 closeout, DEVLOG, verification log, and retained machine evidence
+- Decisions/addenda: soft degradation remains a C1 pass; hard violations fail; tamper fails C0; unavailable hard counters cannot pass C1
+- Verification summary: three focused tests assign exact C0/C1 verdicts to six bundle classes and refuse C1 pass when a declared hard counter is unavailable against `fixtures/c0-c1-adjudication/v1/expected-outcomes.json`. The complete gate passed formatting, strict workspace Clippy, 172 Rust tests, Ruff, strict Pyright, 29 Python tests, and governance checks on Linux x86_64
+- Evidence paths and SHA-256 hashes: final machine record `BV-04-1787534739914157390` with stdout `4C0D5116EE02029B785225164386D7540DDCB3474C0157E8248D87453BAE7FAE` and stderr `BD8E5E9FCD914BC7DE7C984FE81E860B677BEA856266F6F6907144FF3F502E13`; c0c1 `41587D41881BE4BAD578C742294130C063CD77290F6A98528F50C490F523FBFF`; contract `CFA96D75D73306F6487D4379AA8F944F1183091DA6DAED7E8AEE828BE67EAF11`; expected outcomes `63AAC60F7A84B526AA4D775B01A76AC4088F154C5CDEBD25BC05E22A10E018E5`
+- Commit SHA: pending by self-hash convention
+- Risks/blockers/parked scope changed: no OaK, instrument-completion, or C2-C5 claim is made
+- Next eligible prompts after gate and publication: BV-05
+
+### BV-04 closeout note
+
+- Focused implementation commit SHA: `a48b076d06c94a41c9b58965d03bac0a12ddee8a`
+- Hosted verification: pending the `sts/m2-science-v02` pull-request baseline
+- Ledger rule: appended by BV-05
+
+## 2026-08-24 — BV-05 — C2 and C3 adjudication
+
+- Status: passed; closeout entry pending focused commit identity and hosted run
+- Authorization scope: user-authorized `run M2-science STS` for the approved PSPR v0.2 roster
+- Dependencies and source revision: BV-04 published at `a48b076d06c94a41c9b58965d03bac0a12ddee8a`
+- Objective and exclusions: require continual adaptation and positive marginal abstraction utility under controlled ablation and statistical rules; exclude proxy-only utility, final-score-only adaptation, and comparator-track leakage
+- Reuse classification: extend `bonsai-claims` after BV-04
+- Files changed: C2/C3 adjudication module, contract, frozen expected outcomes, README/PSPR status, BV-04 closeout, DEVLOG, verification log, and retained machine evidence
+- Decisions/addenda: C2 needs first/return phases, ≥20 paired seeds, and a Holm-rejected positive effect; C3 needs exact or matched positive utility on Track A
+- Verification summary: two focused tests cover pass/fail/indeterminate for C1, adaptation, utility, proxy, and track-leakage prerequisites against `fixtures/c2-c3-adjudication/v1/expected-outcomes.json`. The complete gate passed formatting, strict workspace Clippy, 174 Rust tests, Ruff, strict Pyright, 29 Python tests, and governance checks on Linux x86_64
+- Evidence paths and SHA-256 hashes: final machine record `BV-05-1787534851547074983` with stdout `755A7F4200198DADD71F0EE4220A9EFDAC2157CB2E1176C4C8687A4A76B94BC3` and stderr `1F8F41B258CF997A5C15A03B01655A7793C989B41E777548421B4192F105A7EB`; c2c3 `8E7C9F6F0D361C1C0410198C70F9D96C2882BCC779786A2F650A67FC2BC37175`; contract `317C1DBB8419E0E1B6AA1E4ACDAF65FFA7964A3FAB0FEC693FE339C9C7920399`; expected outcomes `FF77B3BC014460628B2EBF8F5C127D81203FD55EC7A3FBEAD3CE38DA1247E3EF`
+- Commit SHA: pending by self-hash convention
+- Risks/blockers/parked scope changed: no OaK, instrument-completion, or C4-C5 claim is made
+- Next eligible prompts after gate and publication: none in the authorized M2-science roster

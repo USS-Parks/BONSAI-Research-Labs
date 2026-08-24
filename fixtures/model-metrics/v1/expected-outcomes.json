@@ -1,0 +1,9 @@
+{
+  "schema": "bonsai.model-metric-outcomes/v1",
+  "classes": {
+    "bias": "biased",
+    "cal": "calibrated",
+    "shift": "representation_shift",
+    "stale": "stale"
+  }
+}

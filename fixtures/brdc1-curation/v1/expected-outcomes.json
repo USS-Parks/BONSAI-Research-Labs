@@ -1,0 +1,33 @@
+{
+  "schema": "bonsai.brdc1-curation-outcomes/v1",
+  "records": {
+    "f_dup": {
+      "estimator": "declared_utility",
+      "disposition": "deprioritize",
+      "reason": "redundant",
+      "applied": true,
+      "lineage_intact": true,
+      "birth_step": 15
+    },
+    "f_new": {
+      "estimator": "declared_utility",
+      "disposition": "retain",
+      "reason": "useful",
+      "applied": true,
+      "lineage_intact": true,
+      "birth_step": 1
+    },
+    "f_stale": {
+      "estimator": "declared_utility",
+      "disposition": "remove",
+      "reason": "stale",
+      "applied": true,
+      "lineage_intact": true,
+      "birth_step": 16
+    }
+  },
+  "oak_solution_claimed": false,
+  "accounting": {
+    "curation_work": 3
+  }
+}

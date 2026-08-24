@@ -1,0 +1,47 @@
+{
+  "schema": "bonsai.c2-c3-outcomes/v1",
+  "rows": {
+    "c1_missing": {
+      "c2": "indeterminate",
+      "c2_detail": "C2_PREREQUISITE_C1",
+      "c3": "indeterminate",
+      "c3_detail": "C3_PREREQUISITE_C2"
+    },
+    "final_score_only": {
+      "c2": "fail",
+      "c2_detail": "C2_FINAL_SCORE_ONLY",
+      "c3": "indeterminate",
+      "c3_detail": "C3_PREREQUISITE_C2"
+    },
+    "pass": {
+      "c2": "pass",
+      "c2_detail": null,
+      "c3": "pass",
+      "c3_detail": null
+    },
+    "phase_unavailable": {
+      "c2": "indeterminate",
+      "c2_detail": "C2_PHASE_UNAVAILABLE",
+      "c3": "indeterminate",
+      "c3_detail": "C3_PREREQUISITE_C2"
+    },
+    "proxy_only": {
+      "c2": "pass",
+      "c2_detail": null,
+      "c3": "fail",
+      "c3_detail": "C3_PROXY_ONLY"
+    },
+    "track_leakage": {
+      "c2": "pass",
+      "c2_detail": null,
+      "c3": "fail",
+      "c3_detail": "C3_TRACK_LEAKAGE"
+    },
+    "utility_unavailable": {
+      "c2": "pass",
+      "c2_detail": null,
+      "c3": "indeterminate",
+      "c3_detail": "C3_UTILITY_UNAVAILABLE"
+    }
+  }
+}

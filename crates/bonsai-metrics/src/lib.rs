@@ -9,8 +9,16 @@ use std::fmt;
 
 pub mod behavior;
 pub mod continual;
+pub mod cycle;
+pub mod failure;
 pub mod feature;
+pub mod models;
+pub mod options;
+pub mod planning;
 pub mod resources;
+pub mod stats;
+pub mod subproblems;
+pub mod utility;
 
 #[derive(Clone, Debug, Deserialize, Eq, Ord, PartialEq, PartialOrd, Serialize)]
 #[serde(deny_unknown_fields)]
