@@ -1534,23 +1534,22 @@ Machine record `BR-07-1784503142006141500` is not acceptance evidence. The outer
 - Result: pass; BQ-06 cross-OS gate is closed
 - Reviewer/attestation: authenticated GitHub metadata establishes the exact head SHA and successful four-platform plus aggregate conclusions
 
-## VER-BK05-LOCAL - BK-05 - 2026-08-24
+## VER-BK05-LOCAL - BK-05 - 2026-08-23
 
 - Source revision and dirty state: `accae3afcecccd1e1d9087f9797947f5f51e56cc`; dirty only with BK-05 implementation, governance, and evidence
-- OS/architecture/physical-or-CI: Linux/x86_64; local; physical/virtual status unknown
-- Toolchain/dependency-lock hashes: Rust 1.96.0; uv 0.11.29; Python 3.12.3; `Cargo.lock` unchanged at `AEFC9265FEDA2F88FCA42328D10A41A8F0C1E0B36DCA39B0C3AED700F54B5D7F`
-- Command: final machine record `BK-05-1787533182634182794`; full universal/schema/governance gate after implementation and governance closeout
-- Start/end/duration: machine-record Unix UTC nanoseconds `1787533182634182794` / `1787533191616640483` / 8.982455400 s
+- OS/architecture/physical-or-CI: Windows/x86_64; local; physical/virtual status unknown
+- Toolchain/dependency-lock hashes: Rust 1.96.0; locked repository Python environment; `Cargo.lock` unchanged
+- Command: final machine record `BK-05-1787535481077809300`; full universal/schema/governance gate through external verifier copy SHA-256 `599AFF6C6A5B9D52A8490C4AFDD0A1F3EFEC5FFB6B866A921A6B88A612C4D218`
+- Start/end/duration: machine-record Unix UTC nanoseconds `1787535481077809300` / `1787535530585392000` / 49.5087938 s
 - Exit code: 0
-- Stdout/stderr artifact hashes: stdout `960BBB7B47DE3DBC0F4677A652F6AA59A49AA19C992A4DD57DA2E4ADB13E2167`; stderr `DC7771155D1477D3CF5493E2001FBC2716D18AA3DBA6C73AD356E5C31D66F57D`
-- Fixtures/manifests/bundle IDs: useful, redundant, dormant, and retired feature fixtures
-- Counter availability and privileges: deterministic lineage/activation fixtures only; no physical counter or C0-C5 claim
+- Stdout/stderr artifact hashes: stdout `58D1C922C0A0B46DE53EB95D08FD562364F9A4F6F7FAFAD0560267D3925D53D2`; stderr `9A122C3C773F3689A4708A7BDD30005778EEAC2468E84C2456218993C1EAB793`
+- Fixtures/manifests/bundle IDs: frozen useful/redundant/dormant/obsolete-protected feature corpus; malformed lifecycle denials; and complete existing repository corpus
+- Counter availability and privileges: deterministic feature lineage/activation metrics only; no human-semantic labeling, scientific-utility claim, or C0-C5 claim
 - Result: pass locally; hosted Windows/macOS/Linux closure remains attached to the focused commit
-- Reviewer/attestation: exact feature classes without human-semantic utility, and strict workspace/Python/schema/governance gates passed locally
-
+- Reviewer/attestation: exact classification and metric numerators, fail-closed malformed traces, and strict workspace/Python/schema/governance gates passed locally
 ## VER-BK06-LOCAL - BK-06 - 2026-08-24
 
-- Source revision and dirty state: `0af822b2027e77dcb1b78b6d30f9fb2711984a80`; dirty only with BK-06 implementation, governance, and evidence
+- Source revision and dirty state: `6a7d2514f6d201fde3b1eca6a85214fd2b4c4367`; dirty only with BK-06 implementation, governance, and evidence
 - OS/architecture/physical-or-CI: Linux/x86_64; local; physical/virtual status unknown
 - Toolchain/dependency-lock hashes: Rust 1.96.0; uv 0.11.29; Python 3.12.3; `Cargo.lock` unchanged at `AEFC9265FEDA2F88FCA42328D10A41A8F0C1E0B36DCA39B0C3AED700F54B5D7F`
 - Command: final machine record `BK-06-1787533275647258737`; full universal/schema/governance gate after implementation and governance closeout

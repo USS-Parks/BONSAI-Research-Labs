@@ -1108,32 +1108,32 @@ This append-only log records executed PSPR prompts. Corrections are added as new
 - Hosted verification: BK-04 landed on `main` independently of this branch; later prompts continue from that published revision
 - Ledger rule: appended by the `sts/m2-science-v02` merge because the BK-04 commit could not contain its own immutable hash
 
-## 2026-08-24 — BK-05 — Feature metrics
+## 2026-08-23 — BK-05 — Feature metrics
 
 - Status: passed; closeout entry pending focused commit identity and hosted run
-- Authorization scope: user-authorized `run M2-science STS` for the approved PSPR v0.2 roster
-- Dependencies and source revision: BK-04 published at `accae3afcecccd1e1d9087f9797947f5f51e56cc`
-- Objective and exclusions: birth/age/activation/retirement, novelty, redundancy, consumers, useful lineage, utility per byte/work, churn, dormancy, and obsolete protection; do not treat human-semantic labels as utility
-- Reuse classification: extend `bonsai-metrics` after BK-04; reuse rational normalization and ordered maps
-- Files changed: feature metric module and export, metric contract, frozen expected outcomes, README/PSPR status, BK-04 closeout, DEVLOG, verification log, and retained machine evidence
-- Decisions/addenda: redundancy is representation identity; useful requires positive utility and at least one consumer; missing utility stays unavailable
-- Verification summary: three focused tests identify useful/redundant/dormant/retired cases and freeze `fixtures/feature-metrics/v1/expected-outcomes.json`. The complete gate passed formatting, strict workspace Clippy, 147 Rust tests, Ruff, strict Pyright, 11 Python tests, and governance checks on Linux x86_64
-- Evidence paths and SHA-256 hashes: final machine record `BK-05-1787533182634182794` with stdout `960BBB7B47DE3DBC0F4677A652F6AA59A49AA19C992A4DD57DA2E4ADB13E2167` and stderr `DC7771155D1477D3CF5493E2001FBC2716D18AA3DBA6C73AD356E5C31D66F57D`; features `5FB5C0E8BF38C2615BC39169061A65082A72A8C7D0B7DF090FACE9C2BCF5B50C`; contract `7B33C39F1BEACD7ABE0F91ACC404C5F4A1B42F334012994A986B344C56EB1076`; expected outcomes `3B977F9533DED9599EA7A158600C9CFF16630A9C230BE46BADF909B5233C3BEE`
-- Commit SHA: pending by self-hash convention
-- Risks/blockers/parked scope changed: no OaK, instrument-completion, or C0-C5 claim is made
+- Authorization scope: user STS authorization 2026-08-23 (PT) `run M2-science STS`
+- Dependencies and source revision: BK-01 and BR-08 published; BK-04 published and hosted-green at `accae3afcecccd1e1d9087f9797947f5f51e56cc`
+- Objective and exclusions: birth/age/activation/retirement, novelty, redundancy, consumers, marginal contributions, useful lineage, utility per byte/work, churn, dormancy, and obsolete protection; exclude human-semantic labeling as canonical utility
+- Reuse classification: extend `bonsai-metrics` at the BK-01/BK-04 seams with one feature metric module, integration corpus, metrics contract, and frozen expected-outcome fixture without a new dependency
+- Files changed: feature metric module and exports, feature metric tests, metrics contract, frozen expected outcomes, README/PSPR status, DEVLOG, verification log, and retained machine evidence
+- Decisions/addenda: classifications use only lineage/activation/consumer/utility evidence; duplicate representation identities with non-positive marginal utility are redundant; useful lineage requires positive marginal utility and consumers; dormancy covers never-activated features; obsolete protection covers retired features that still have consumers; missing denominators are detail codes, never numeric zero
+- Verification summary: two focused integration tests freeze useful/redundant/dormant/obsolete-protected classifications against `fixtures/feature-metrics/v1/expected-outcomes.json` and fail closed on malformed lifecycle traces. The complete gate passed formatting, strict workspace Clippy, workspace Rust tests, Ruff, strict Pyright, 11 Python tests, schema compatibility, docs, ADR, license, governance-ledger, terminology, and CI-topology checks on Windows x86_64
+- Evidence paths and SHA-256 hashes: final machine record `BK-05-1787535481077809300` with stdout `58D1C922C0A0B46DE53EB95D08FD562364F9A4F6F7FAFAD0560267D3925D53D2` and stderr `9A122C3C773F3689A4708A7BDD30005778EEAC2468E84C2456218993C1EAB793`; feature `646904E9E750D11899268A82BC63A93F8EFFBB96A20A9EA650A4BB21B71F15D9`; tests `3776A1D94EAC168DD3A62D50CF0A1811E190D3702CD18EC3FD945DAF518D32E1`; contract `C176D67B748FA81815A347E424EB6FEFA48324C7301A48B04598F2A6086019A3`; expected outcomes `517447E8BD15EFC87827FA145824353C58F6670DE8D1D97DF6B085599B68AC1F`; `Cargo.lock` unchanged at `AEFC9265FEDA2F88FCA42328D10A41A8F0C1E0B36DCA39B0C3AED700F54B5D7F`; external verifier SHA-256 `599AFF6C6A5B9D52A8490C4AFDD0A1F3EFEC5FFB6B866A921A6B88A612C4D218`
+- Commit SHA: pending by self-hash convention; report the focused SHA after publication
+- Risks/blockers/parked scope changed: no OaK reproduction, instrument-completion, or C0-C5 claim is made
 - Next eligible prompts after gate and publication: BK-06
 
 ### BK-05 closeout note
 
-- Focused implementation commit SHA: `0af822b2027e77dcb1b78b6d30f9fb2711984a80`
-- Hosted verification: pending the `sts/m2-science-v02` pull-request baseline
-- Ledger rule: appended by BK-06
+- Focused implementation commit SHA: `6a7d2514f6d201fde3b1eca6a85214fd2b4c4367`
+- Hosted verification: BK-05 landed on `main` independently of this branch; later prompts continue from that published revision
+- Ledger rule: appended by the `sts/m2-science-v02` merge because the BK-05 commit could not contain its own immutable hash
 
 ## 2026-08-24 — BK-06 — Subproblem metrics
 
 - Status: passed; closeout entry pending focused commit identity and hosted run
 - Authorization scope: user-authorized `run M2-science STS` for the approved PSPR v0.2 roster
-- Dependencies and source revision: BK-05 published at `0af822b2027e77dcb1b78b6d30f9fb2711984a80`
+- Dependencies and source revision: BK-05 published at `6a7d2514f6d201fde3b1eca6a85214fd2b4c4367`
 - Objective and exclusions: attained feature/intensity, original reward, stopping bonus/value, initiation/termination, learning progress, success, and cost; do not assume reward-oblivious tasks are reward-respecting
 - Reuse classification: extend `bonsai-metrics` after BK-05
 - Files changed: subproblem metric module and export, metric contract, frozen expected outcomes, README/PSPR status, BK-05 closeout, DEVLOG, verification log, and retained machine evidence

@@ -11,7 +11,7 @@ pub mod behavior;
 pub mod continual;
 pub mod cycle;
 pub mod failure;
-pub mod features;
+pub mod feature;
 pub mod models;
 pub mod options;
 pub mod planning;
