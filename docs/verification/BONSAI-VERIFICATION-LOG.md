@@ -1574,3 +1574,17 @@ Machine record `BR-07-1784503142006141500` is not acceptance evidence. The outer
 - Result: pass locally; hosted Windows/macOS/Linux closure remains attached to the focused commit
 - Reviewer/attestation: option creation is not scored as benefit; classes match the committed fixture
 
+## VER-BK08-LOCAL - BK-08 - 2026-08-24
+
+- Source revision and dirty state: `11c73ed540a94a80d4d9a312a02b6a752e327a38`; dirty only with BK-08 implementation, governance, and evidence
+- OS/architecture/physical-or-CI: Linux/x86_64; local; physical/virtual status unknown
+- Toolchain/dependency-lock hashes: Rust 1.96.0; uv 0.11.29; Python 3.12.3; `Cargo.lock` unchanged at `AEFC9265FEDA2F88FCA42328D10A41A8F0C1E0B36DCA39B0C3AED700F54B5D7F`
+- Command: final machine record `BK-08-1787533462418684877`; full universal/schema/governance gate after implementation and governance closeout
+- Start/end/duration: machine-record Unix UTC nanoseconds `1787533462418684877` / `1787533472211958141` / 9.793271263 s
+- Exit code: 0
+- Stdout/stderr artifact hashes: stdout `104C70D0CB6B63C44A2FCE8A16E2929BA8693BDB9934CBBD48658D1CBB6D0913`; stderr `103D0084E1CC8E0F4FF79C6F04A01ADD673713F4A3BD716BD8C8C14013955234`
+- Fixtures/manifests/bundle IDs: stale, biased, calibrated, and representation-shift model fixtures; unaligned-target comparison
+- Counter availability and privileges: deterministic model fixtures only; no physical counter or C0-C5 claim
+- Result: pass locally; hosted Windows/macOS/Linux closure remains attached to the focused commit
+- Reviewer/attestation: lineage-aligned error comparison only; unaligned targets emit `MODEL_TARGET_UNALIGNED` without a numeric delta
+

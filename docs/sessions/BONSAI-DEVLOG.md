@@ -1156,3 +1156,24 @@ This append-only log records executed PSPR prompts. Corrections are added as new
 - Commit SHA: pending by self-hash convention
 - Risks/blockers/parked scope changed: no OaK, instrument-completion, or C0-C5 claim is made
 - Next eligible prompts after gate and publication: BK-08
+
+### BK-07 closeout note
+
+- Focused implementation commit SHA: `11c73ed540a94a80d4d9a312a02b6a752e327a38`
+- Hosted verification: pending the `sts/m2-science-v02` pull-request baseline
+- Ledger rule: appended by BK-08
+
+## 2026-08-24 — BK-08 — Model and knowledge metrics
+
+- Status: passed; closeout entry pending focused commit identity and hosted run
+- Authorization scope: user-authorized `run M2-science STS` for the approved PSPR v0.2 roster
+- Dependencies and source revision: BK-07 published at `11c73ed540a94a80d4d9a312a02b6a752e327a38`
+- Objective and exclusions: one-step and option-horizon prediction, reward/stopping calibration, jump-length error, drift/recovery, uncertainty, harmful planning, and semantic stability; do not compare errors across changed targets without lineage alignment
+- Reuse classification: extend `bonsai-metrics` after BK-07
+- Files changed: model metric module and export, metric contract, frozen expected outcomes, README/PSPR status, BK-07 closeout, DEVLOG, verification log, and retained machine evidence
+- Decisions/addenda: numeric error deltas require identical `target_id`; representation change with the same target is `representation_shift`
+- Verification summary: three focused tests classify stale/biased/calibrated/shift models and refuse unaligned numeric comparison against `fixtures/model-metrics/v1/expected-outcomes.json`. The complete gate passed formatting, strict workspace Clippy, 154 Rust tests, Ruff, strict Pyright, 11 Python tests, and governance checks on Linux x86_64
+- Evidence paths and SHA-256 hashes: final machine record `BK-08-1787533462418684877` with stdout `104C70D0CB6B63C44A2FCE8A16E2929BA8693BDB9934CBBD48658D1CBB6D0913` and stderr `103D0084E1CC8E0F4FF79C6F04A01ADD673713F4A3BD716BD8C8C14013955234`; models `F2EABAC9D6207E118E6F080F820F992207C48049F9ED057848628C29BBCED504`; contract `C5BB795B276A9754B8F369328D648DADBA26ED59A6069515B3D84C8D91D67FF5`; expected outcomes `248AF3C7C2CD90590535E16CADC14C1547BD3F2BB985B5F16B69C6CC0AD0C5E5`
+- Commit SHA: pending by self-hash convention
+- Risks/blockers/parked scope changed: no OaK, instrument-completion, or C0-C5 claim is made
+- Next eligible prompts after gate and publication: BK-09
