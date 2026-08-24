@@ -1742,3 +1742,17 @@ Machine record `BR-07-1784503142006141500` is not acceptance evidence. The outer
 - Result: pass locally; hosted Windows/macOS/Linux closure remains attached to the focused commit
 - Reviewer/attestation: each comparator differs in one mechanism; Track B/C/D never merge with Track A
 
+## VER-BV04-LOCAL - BV-04 - 2026-08-24
+
+- Source revision and dirty state: `637b15c04cea58c122132ed8eb4e48f6d4e9faf8`; dirty only with BV-04 implementation, governance, and evidence
+- OS/architecture/physical-or-CI: Linux/x86_64; local; physical/virtual status unknown
+- Toolchain/dependency-lock hashes: Rust 1.96.0; uv 0.11.29; Python 3.12.3; `Cargo.lock` adds `serde_json` to `bonsai-claims` only
+- Command: final machine record `BV-04-1787534739914157390`; full universal/schema/governance gate after implementation and governance closeout
+- Start/end/duration: machine-record Unix UTC nanoseconds `1787534739914157390` / `1787534745744442850` / 5.830283311 s
+- Exit code: 0
+- Stdout/stderr artifact hashes: stdout `4C0D5116EE02029B785225164386D7540DDCB3474C0157E8248D87453BAE7FAE`; stderr `BD8E5E9FCD914BC7DE7C984FE81E860B677BEA856266F6F6907144FF3F502E13`
+- Fixtures/manifests/bundle IDs: compliant, soft-degraded, hard-violating, unavailable, tampered, and ambiguous-track C0/C1 fixtures
+- Counter availability and privileges: deterministic bundle fixtures only; no physical counter or C2-C5 claim
+- Result: pass locally; hosted Windows/macOS/Linux closure remains attached to the focused commit
+- Reviewer/attestation: C1 cannot pass when a declared hard counter is unavailable; missing evidence stays indeterminate
+

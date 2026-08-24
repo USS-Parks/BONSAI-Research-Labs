@@ -1408,3 +1408,24 @@ This append-only log records executed PSPR prompts. Corrections are added as new
 - Commit SHA: pending by self-hash convention
 - Risks/blockers/parked scope changed: no OaK, instrument-completion, or C0-C5 claim is made
 - Next eligible prompts after gate and publication: BV-04
+
+### BE-09 closeout note
+
+- Focused implementation commit SHA: `637b15c04cea58c122132ed8eb4e48f6d4e9faf8`
+- Hosted verification: pending the `sts/m2-science-v02` pull-request baseline
+- Ledger rule: appended by BV-04
+
+## 2026-08-24 — BV-04 — C0 and C1 adjudication
+
+- Status: passed; closeout entry pending focused commit identity and hosted run
+- Authorization scope: user-authorized `run M2-science STS` for the approved PSPR v0.2 roster
+- Dependencies and source revision: BE-09 published at `637b15c04cea58c122132ed8eb4e48f6d4e9faf8`
+- Objective and exclusions: require valid provenance/event/resource evidence and enforceable budget compliance; C1 cannot pass when a declared hard counter was unavailable
+- Reuse classification: extend `bonsai-claims` after BV-01
+- Files changed: C0/C1 adjudication module, contract, frozen expected outcomes, README/PSPR status, BE-09 closeout, DEVLOG, verification log, and retained machine evidence
+- Decisions/addenda: soft degradation remains a C1 pass; hard violations fail; tamper fails C0; unavailable hard counters cannot pass C1
+- Verification summary: three focused tests assign exact C0/C1 verdicts to six bundle classes and refuse C1 pass when a declared hard counter is unavailable against `fixtures/c0-c1-adjudication/v1/expected-outcomes.json`. The complete gate passed formatting, strict workspace Clippy, 172 Rust tests, Ruff, strict Pyright, 29 Python tests, and governance checks on Linux x86_64
+- Evidence paths and SHA-256 hashes: final machine record `BV-04-1787534739914157390` with stdout `4C0D5116EE02029B785225164386D7540DDCB3474C0157E8248D87453BAE7FAE` and stderr `BD8E5E9FCD914BC7DE7C984FE81E860B677BEA856266F6F6907144FF3F502E13`; c0c1 `41587D41881BE4BAD578C742294130C063CD77290F6A98528F50C490F523FBFF`; contract `CFA96D75D73306F6487D4379AA8F944F1183091DA6DAED7E8AEE828BE67EAF11`; expected outcomes `63AAC60F7A84B526AA4D775B01A76AC4088F154C5CDEBD25BC05E22A10E018E5`
+- Commit SHA: pending by self-hash convention
+- Risks/blockers/parked scope changed: no OaK, instrument-completion, or C2-C5 claim is made
+- Next eligible prompts after gate and publication: BV-05

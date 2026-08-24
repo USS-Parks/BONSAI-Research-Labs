@@ -206,7 +206,7 @@ Objectives, files, excludes, and gates are carried forward from v0.1 with slice-
 
 ### 4.3 M2c — C3 adjudication
 
-- [ ] **BV-04 — C0 and C1 adjudication.** **Depends:** BQ-04, BM-04, BV-01. **Files:** claim rules/fixtures. **Objective:** require valid provenance/event/resource evidence and enforceable budget compliance with availability qualifications. **Excludes:** C1 pass when a declared hard counter was unavailable. **Gate:** compliant, soft-degraded, hard-violating, unavailable, tampered, and ambiguous-track bundles get exact verdicts.
+- [x] **BV-04 — C0 and C1 adjudication.** **Depends:** BQ-04, BM-04, BV-01. **Files:** claim rules/fixtures. **Objective:** require valid provenance/event/resource evidence and enforceable budget compliance with availability qualifications. **Excludes:** C1 pass when a declared hard counter was unavailable. **Gate:** compliant, soft-degraded, hard-violating, unavailable, tampered, and ambiguous-track bundles get exact verdicts.
 
 - [ ] **BV-05 — C2 and C3 adjudication.** **Depends:** BV-04, BK-04–BK-10, BE-09, BK-13. **Files:** claim rules/fixtures. **Objective:** require continual adaptation and positive marginal abstraction utility under controlled ablation and statistical rules. **Excludes:** proxy-only utility, final-score-only adaptation, or comparator-track leakage. **Gate:** synthetic and reference diagnostic corpora cover pass/fail/indeterminate for every prerequisite.
 
