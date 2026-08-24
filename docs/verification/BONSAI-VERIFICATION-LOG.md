@@ -1560,3 +1560,17 @@ Machine record `BR-07-1784503142006141500` is not acceptance evidence. The outer
 - Result: pass locally; hosted Windows/macOS/Linux closure remains attached to the focused commit
 - Reviewer/attestation: reward-respecting and reward-oblivious cases remain distinguishable and lineage-complete
 
+## VER-BK07-LOCAL - BK-07 - 2026-08-24
+
+- Source revision and dirty state: `40280c2f521a3fa5b5ff0ed4b517b56524fdeabb`; dirty only with BK-07 implementation, governance, and evidence
+- OS/architecture/physical-or-CI: Linux/x86_64; local; physical/virtual status unknown
+- Toolchain/dependency-lock hashes: Rust 1.96.0; uv 0.11.29; Python 3.12.3; `Cargo.lock` unchanged at `AEFC9265FEDA2F88FCA42328D10A41A8F0C1E0B36DCA39B0C3AED700F54B5D7F`
+- Command: final machine record `BK-07-1787533377598625661`; full universal/schema/governance gate after implementation and governance closeout
+- Start/end/duration: machine-record Unix UTC nanoseconds `1787533377598625661` / `1787533386935898296` / 9.337270567 s
+- Exit code: 0
+- Stdout/stderr artifact hashes: stdout `8373A0F1D6E89CF7A1104A48D1D9FDED2D02F76BBA8A4C4CABBF06EBD761BAA3`; stderr `4BD898F44C175DC2C608529D72D2E78F0C7A74EA2381318B24B6D75DCD45F68B`
+- Fixtures/manifests/bundle IDs: reliable, redundant, harmful, and unused option fixtures
+- Counter availability and privileges: deterministic option fixtures only; no physical counter or C0-C5 claim
+- Result: pass locally; hosted Windows/macOS/Linux closure remains attached to the focused commit
+- Reviewer/attestation: option creation is not scored as benefit; classes match the committed fixture
+
