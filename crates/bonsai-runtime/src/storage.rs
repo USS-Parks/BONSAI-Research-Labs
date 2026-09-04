@@ -211,7 +211,7 @@ impl AgentStorageBroker {
     /// # Errors
     ///
     /// Returns a stable identity, traversal, symlink, observer, or I/O failure. Budget
-    /// exhaustion is a reject decision, not an error.
+    /// exhaustion and leftover-file meter mismatch are reject decisions, not errors.
     pub fn persist(&mut self, request: &PersistRequest) -> Result<PersistDecision, StorageError> {
         if request.bytes.is_empty() {
             return Err(StorageError::RequestIdentity);
@@ -263,13 +263,15 @@ impl AgentStorageBroker {
         self.reject_symlink_or_observer(&destination)?;
 
         let next_bytes = match previous {
-            Some(existing) => bytes_before - existing + requested,
-            None => bytes_before + requested,
+            Some(existing) => bytes_before
+                .saturating_sub(existing)
+                .saturating_add(requested),
+            None => bytes_before.saturating_add(requested),
         };
         let next_files = if previous.is_some() {
             files_before
         } else {
-            files_before + 1
+            files_before.saturating_add(1)
         };
         self.used_bytes = next_bytes;
         self.used_files = next_files;
@@ -309,6 +311,9 @@ impl AgentStorageBroker {
         }
         if requested > self.policy.max_file_bytes {
             return Some("STORAGE_FILE_TOO_LARGE");
+        }
+        if previous.is_some_and(|existing| existing > self.used_bytes) {
+            return Some("STORAGE_METER_INCONSISTENT");
         }
         let next_bytes = match previous {
             Some(existing) => self

@@ -22,11 +22,13 @@ def validate_text(workflow: str, matrix: str) -> list[str]:
         "hosted-ci",
         "write_ci_evidence.py",
         "persist-credentials: false",
-        "physical_acceptance",
+        "cargo clippy --workspace --all-targets --all-features",
+        "cargo test --workspace --all-features",
+        "cargo xtask schema-check",
+        "uv run --frozen pytest",
+        "check_m4.py",
+        "cargo xtask bundle-check",
     )
-    if "physical_acceptance" not in workflow:
-        # The writer fixes this field to false; the workflow must at least invoke and document it.
-        required_workflow_markers = required_workflow_markers[:-1]
     for marker in required_workflow_markers:
         if marker not in workflow:
             errors.append(f"workflow missing required marker {marker}")
@@ -37,10 +39,14 @@ def validate_text(workflow: str, matrix: str) -> list[str]:
 
 
 def self_test(workflow: str, matrix: str) -> list[str]:
-    broken = workflow.replace("runner: windows-2025", "runner: windows-removed")
-    if not any("windows-2025" in error for error in validate_text(broken, matrix)):
-        return ["missing-runner negative fixture was accepted"]
-    return []
+    errors: list[str] = []
+    broken_runner = workflow.replace("runner: windows-2025", "runner: windows-removed")
+    if not any("windows-2025" in error for error in validate_text(broken_runner, matrix)):
+        errors.append("missing-runner negative fixture was accepted")
+    broken_gate = workflow.replace("cargo test --workspace --all-features", "cargo test --lib")
+    if not any("cargo test --workspace --all-features" in error for error in validate_text(broken_gate, matrix)):
+        errors.append("dropped workspace cargo test was accepted")
+    return errors
 
 
 def main() -> int:

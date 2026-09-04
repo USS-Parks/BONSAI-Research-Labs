@@ -64,6 +64,7 @@ pub enum SchedulerError {
     Declaration,
     Budget,
     Stream,
+    Arithmetic,
 }
 
 impl fmt::Display for SchedulerError {
@@ -73,6 +74,7 @@ impl fmt::Display for SchedulerError {
             Self::Declaration => "SCHEDULER_DECLARATION_INVALID",
             Self::Budget => "SCHEDULER_BUDGET_UNMATCHED",
             Self::Stream => "SCHEDULER_STREAM_UNMATCHED",
+            Self::Arithmetic => "SCHEDULER_ARITHMETIC_OVERFLOW",
         })
     }
 }
@@ -124,10 +126,10 @@ pub fn dense_schedule(
     if stream_id.is_empty() || components.is_empty() || inputs.is_empty() {
         return Err(SchedulerError::Identity);
     }
-    let events = inputs
-        .iter()
-        .enumerate()
-        .map(|(index, charge)| SchedulerEvent {
+    let component_count = u64::try_from(components.len()).unwrap_or(u64::MAX);
+    let mut events = Vec::with_capacity(inputs.len());
+    for (index, charge) in inputs.iter().enumerate() {
+        events.push(SchedulerEvent {
             event_id: format!("dense-{index}"),
             producer: "semantic_input".to_owned(),
             eligible: components.iter().map(|name| (*name).to_owned()).collect(),
@@ -136,9 +138,11 @@ pub fn dense_schedule(
             order: u64::try_from(index).unwrap_or(u64::MAX),
             deadline_ns: None,
             update: UpdateClass::Exact,
-            work_charged: charge * u64::try_from(components.len()).unwrap_or(1),
-        })
-        .collect();
+            work_charged: charge
+                .checked_mul(component_count)
+                .ok_or(SchedulerError::Arithmetic)?,
+        });
+    }
     let trace = SchedulerTrace {
         schema: "bonsai.scheduler-trace/v1".to_owned(),
         kind: SchedulerKind::Dense,
@@ -171,10 +175,10 @@ pub fn event_schedule(
     if deferred_set.iter().any(|name| eligible.contains(name)) {
         return Err(SchedulerError::Declaration);
     }
-    let events = inputs
-        .iter()
-        .enumerate()
-        .map(|(index, charge)| SchedulerEvent {
+    let eligible_count = u64::try_from(eligible.len()).unwrap_or(u64::MAX);
+    let mut events = Vec::with_capacity(inputs.len());
+    for (index, charge) in inputs.iter().enumerate() {
+        events.push(SchedulerEvent {
             event_id: format!("event-{index}"),
             producer: "semantic_input".to_owned(),
             eligible: eligible.iter().map(|name| (*name).to_owned()).collect(),
@@ -187,9 +191,11 @@ pub fn event_schedule(
             } else {
                 UpdateClass::Delayed
             },
-            work_charged: *charge * u64::try_from(eligible.len()).unwrap_or(1),
-        })
-        .collect();
+            work_charged: charge
+                .checked_mul(eligible_count)
+                .ok_or(SchedulerError::Arithmetic)?,
+        });
+    }
     let trace = SchedulerTrace {
         schema: "bonsai.scheduler-trace/v1".to_owned(),
         kind: SchedulerKind::EventDriven,

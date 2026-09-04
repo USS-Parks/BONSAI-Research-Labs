@@ -3,9 +3,11 @@ use bonsai_governor::decision::{DecisionInput, DecisionPolicyReference, decide};
 use bonsai_governor::enforcement::{HardControl, preflight_hard_controls};
 use bonsai_governor::replay::replay_decisions;
 use bonsai_governor::scheduler::{
-    SchedulerKind, dense_schedule, event_schedule, matched_budget_compare, validate_scheduler_trace,
+    SchedulerError, SchedulerKind, dense_schedule, event_schedule, matched_budget_compare,
+    validate_scheduler_trace,
 };
 use bonsai_governor::{CounterKey, LimitProjection, ScopeProjection, TypedAmount};
+use bonsai_platform::capability::{CapabilityMatrix, HostClass, Support, control};
 use bonsai_platform::linux::detect_linux_backend;
 use bonsai_platform::windows::detect_windows_backend;
 
@@ -63,7 +65,57 @@ fn unsupported_hard_controls_reject_before_track_a() {
         }],
     )
     .expect("linux");
-    assert!(!linux_result.admitted);
+    assert_eq!(
+        linux_result.admitted,
+        linux.hard_limit_supported("cgroup.memory.max")
+    );
+}
+
+#[test]
+fn measurement_support_does_not_admit_hard_preflight() {
+    let matrix = CapabilityMatrix::assembled(
+        "fixture-backend",
+        "linux",
+        HostClass::Container,
+        vec![control(
+            "cgroup.cpu.stat",
+            Support::Supported,
+            "MEASURE_ONLY",
+        )],
+        vec![control(
+            "cgroup.memory.max",
+            Support::NoPermission,
+            "CGROUP_HARD_LIMIT_UNIMPLEMENTED",
+        )],
+        Support::Supported,
+        "fixture",
+    );
+    let measurement = preflight_hard_controls(
+        &matrix,
+        &[HardControl {
+            control_id: "cgroup.cpu.stat".to_owned(),
+            required: true,
+        }],
+    )
+    .expect("measurement");
+    assert!(!measurement.admitted);
+    assert_eq!(
+        measurement.reason_code,
+        "ENFORCEMENT_HARD_CONTROL_UNSUPPORTED"
+    );
+
+    let limit = preflight_hard_controls(
+        &matrix,
+        &[HardControl {
+            control_id: "cgroup.memory.max".to_owned(),
+            required: true,
+        }],
+    )
+    .expect("limit");
+    assert_eq!(
+        limit.admitted,
+        matrix.hard_limit_supported("cgroup.memory.max")
+    );
 }
 
 #[test]
@@ -107,4 +159,18 @@ fn dense_and_event_schedulers_compare_under_matched_streams() {
     assert!(compare.matched);
     assert!(compare.dense_work > compare.event_work);
     assert!(matched_budget_compare(&dense, &dense).is_err());
+}
+
+#[test]
+fn scheduler_charge_overflow_is_a_stable_error() {
+    assert_eq!(
+        dense_schedule("stream-a", 1, 1, &["acting", "learning"], &[u64::MAX])
+            .expect_err("dense overflow"),
+        SchedulerError::Arithmetic
+    );
+    assert_eq!(
+        event_schedule("stream-a", 1, 1, &["acting", "learning"], &[], &[u64::MAX])
+            .expect_err("event overflow"),
+        SchedulerError::Arithmetic
+    );
 }

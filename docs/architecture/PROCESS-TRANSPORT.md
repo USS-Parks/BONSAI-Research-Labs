@@ -26,4 +26,4 @@ Clean shutdown closes protocol input, waits only for the caller-supplied duratio
 
 BR-02 owns process creation, bounded framing, deadlines, backpressure, diagnostic separation, and process cleanup. BR-03 validates event meaning before append. BR-05 owns run lifecycle and recovery. BR-06 constrains arguments, environment, handles, working directories, and filesystem visibility. Platform-specific descendant process controls and hard resource enforcement remain in BM/BQ. None of those later claims is implied by this transport.
 
-The committed matrix at `fixtures/process-transport/v1/expected-outcomes.json` names the exact good, partial, oversized, stalled, and flood outcomes.
+`fixtures/process-transport/v1/expected-outcomes.json` catalogs the intended good, partial, oversized, stalled, and flood case names. Rust tests in `crates/bonsai-runtime/tests/process_transport.rs` assert those classes. Those tests do not load the JSON.

@@ -70,9 +70,7 @@ pub fn detect_linux_backend() -> CapabilityMatrix {
     } else {
         Support::Unsupported
     };
-    let enforce = if delegated {
-        Support::Supported
-    } else if v2 {
+    let enforce = if v2 {
         Support::NoPermission
     } else {
         Support::Unsupported
@@ -87,14 +85,22 @@ pub fn detect_linux_backend() -> CapabilityMatrix {
         "CGROUP_V1_OR_ABSENT"
     };
     let counters = [
-        "cgroup.cpu.stat",
-        "cgroup.memory.current",
-        "cgroup.io.stat",
-        "cgroup.pids.current",
-        "cgroup.pressure",
+        ("cgroup.cpu.stat", measure, detail),
+        ("cgroup.memory.current", measure, detail),
+        (
+            "cgroup.io.stat",
+            Support::Unsupported,
+            "CGROUP_IO_STAT_UNCOLLECTED",
+        ),
+        ("cgroup.pids.current", measure, detail),
+        (
+            "cgroup.pressure",
+            Support::Unsupported,
+            "CGROUP_PRESSURE_UNCOLLECTED",
+        ),
     ]
     .into_iter()
-    .map(|id| control(id, measure, detail))
+    .map(|(id, support, code)| control(id, support, code))
     .collect();
     let limits = [
         "cgroup.cpu.max",
@@ -103,7 +109,7 @@ pub fn detect_linux_backend() -> CapabilityMatrix {
         "cgroup.pids.max",
     ]
     .into_iter()
-    .map(|id| control(id, enforce, detail))
+    .map(|id| control(id, enforce, "CGROUP_HARD_LIMIT_UNIMPLEMENTED"))
     .collect();
     CapabilityMatrix::assembled(
         BACKEND,
@@ -113,7 +119,7 @@ pub fn detect_linux_backend() -> CapabilityMatrix {
         limits,
         measure,
         if delegated {
-            "cgroup v2 controllers are delegated; hard limits may be applied in a child tree"
+            "cgroup v2 child directories can be created; hard limit files are not written; Track A stays closed"
         } else if v2 {
             "cgroup v2 is readable; controller writes are not delegated and fail closed before Track A"
         } else {
@@ -191,7 +197,8 @@ pub fn reconcile_cgroup(
     })
 }
 
-/// Apply a cgroup limit or fail closed when the controller is not writable.
+/// Record a cgroup limit attempt. `apply` must write the controller file.
+/// Creating a child directory is not a hard-limit write.
 ///
 /// # Errors
 ///

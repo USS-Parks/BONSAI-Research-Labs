@@ -469,6 +469,11 @@ pub fn verify_operator_handoff(root: &Path) -> Result<(), AcceptError> {
             "RUN.md must show the M1 heartbeat command".into(),
         ));
     }
+    if !run.contains("PYTHONPATH=python/bonsai-reference/src") {
+        return Err(AcceptError(
+            "RUN.md must set PYTHONPATH for the uninstalled package".into(),
+        ));
+    }
     Ok(())
 }
 
@@ -513,19 +518,28 @@ pub fn verify_release_candidate(root: &Path) -> Result<Vec<(String, String)>, Ac
             "RC notes must not claim instrument completion".into(),
         ));
     }
+    let sums_text = fs::read_to_string(&sums).map_err(|error| AcceptError(error.to_string()))?;
+    check_listed_hashes(root, &sums_text)
+}
+
+fn check_listed_hashes(root: &Path, sums: &str) -> Result<Vec<(String, String)>, AcceptError> {
     let mut hashes = Vec::new();
-    for line in fs::read_to_string(&sums)
-        .map_err(|error| AcceptError(error.to_string()))?
-        .lines()
-    {
+    for line in sums.lines() {
         let mut parts = line.split_whitespace();
         let (Some(digest), Some(name)) = (parts.next(), parts.next()) else {
             continue;
         };
-        if digest.len() != 64 {
+        if digest.len() != 64 || !digest.bytes().all(|byte| byte.is_ascii_hexdigit()) {
             return Err(AcceptError(format!(
                 "invalid SHA-256 in SHA256SUMS: {name}"
             )));
+        }
+        let path = root.join(name);
+        let bytes = fs::read(&path)
+            .map_err(|error| AcceptError(format!("read SHA256SUMS path {name}: {error}")))?;
+        let actual = sha256_hex(&bytes);
+        if actual != digest {
+            return Err(AcceptError(format!("SHA256SUMS mismatch: {name}")));
         }
         hashes.push((name.to_owned(), digest.to_owned()));
     }
@@ -590,7 +604,10 @@ fn hex_encode(bytes: &[u8]) -> String {
 
 #[cfg(test)]
 mod tests {
-    use super::{hex_encode, hmac_sha256, redact, sign_bytes, verify_bytes};
+    use super::{
+        check_listed_hashes, hex_encode, hmac_sha256, redact, sha256_hex, sign_bytes, verify_bytes,
+    };
+    use std::fs;
 
     #[test]
     fn hmac_matches_known_rfc_4231_case() {
@@ -619,5 +636,37 @@ mod tests {
             redact("token=secret; secret", &["secret"]),
             "token=<redacted>; <redacted>"
         );
+    }
+
+    #[test]
+    fn listed_hash_mismatch_fails() {
+        let directory = tempfile::tempdir().expect("temporary directory");
+        let path = directory.path().join("artifact.txt");
+        fs::write(&path, b"honest").expect("write");
+        let honest = format!("{}  artifact.txt\n", sha256_hex(b"honest"));
+        check_listed_hashes(directory.path(), &honest).expect("matching digest");
+        let err = check_listed_hashes(
+            directory.path(),
+            &format!("{}  artifact.txt\n", "0".repeat(64)),
+        )
+        .expect_err("mismatch");
+        assert_eq!(err.0, "SHA256SUMS mismatch: artifact.txt");
+    }
+
+    #[test]
+    fn hashed_rc_files_are_lf_checkout_bytes() {
+        let root = crate::workspace_root();
+        let sums = fs::read_to_string(root.join("evidence/release-candidate/SHA256SUMS"))
+            .expect("SHA256SUMS");
+        for line in sums.lines() {
+            let Some(name) = line.split_whitespace().nth(1) else {
+                continue;
+            };
+            let bytes = fs::read(root.join(name)).expect(name);
+            assert!(
+                !bytes.contains(&b'\r'),
+                "{name} must be LF checkout bytes for SHA256SUMS"
+            );
+        }
     }
 }

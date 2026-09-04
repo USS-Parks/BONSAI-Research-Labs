@@ -1,4 +1,4 @@
-"""Generate the deterministic, platform-qualified M1 heartbeat bundle."""
+"""Generate the deterministic M1 heartbeat bundle."""
 
 from __future__ import annotations
 
@@ -356,7 +356,7 @@ def build_heartbeat(
         "claims": semantic_summary["claims"],
         "limitations": [
             "Hosted semantic fixture; no physical-host, energy, thermal, or hard process-enforcement acceptance.",
-            "C0/C1 evidence is reportable but claim adjudication remains BV-04; no C0-C5 pass is asserted.",
+            "C0/C1 evidence is reportable. This heartbeat does not run C0/C1 adjudication and asserts no C0-C5 pass.",
         ],
         "hashes": hashes,
     }

@@ -1,6 +1,6 @@
 //! Fail-closed platform enforcement preflight (BQ-07).
 
-use bonsai_platform::capability::{CapabilityMatrix, Support};
+use bonsai_platform::capability::CapabilityMatrix;
 use serde::{Deserialize, Serialize};
 use std::error::Error;
 use std::fmt;
@@ -58,11 +58,7 @@ pub fn preflight_hard_controls(
         if !control.required {
             continue;
         }
-        let supported = matrix.hard_limit_supported(&control.control_id)
-            || matrix
-                .control(&control.control_id)
-                .is_some_and(|item| item.support == Support::Supported);
-        if !supported {
+        if !matrix.hard_limit_supported(&control.control_id) {
             rejected.push(control.control_id.clone());
         }
     }
