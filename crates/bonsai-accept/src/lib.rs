@@ -652,4 +652,21 @@ mod tests {
         .expect_err("mismatch");
         assert_eq!(err.0, "SHA256SUMS mismatch: artifact.txt");
     }
+
+    #[test]
+    fn hashed_rc_files_are_lf_checkout_bytes() {
+        let root = crate::workspace_root();
+        let sums = fs::read_to_string(root.join("evidence/release-candidate/SHA256SUMS"))
+            .expect("SHA256SUMS");
+        for line in sums.lines() {
+            let Some(name) = line.split_whitespace().nth(1) else {
+                continue;
+            };
+            let bytes = fs::read(root.join(name)).expect(name);
+            assert!(
+                !bytes.contains(&b'\r'),
+                "{name} must be LF checkout bytes for SHA256SUMS"
+            );
+        }
+    }
 }
