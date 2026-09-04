@@ -42,4 +42,4 @@ The protocol grants neither observer files nor replay history. `Feedback` is a m
 
 This protocol is not a hostile-native-code sandbox. Process containment, filesystem launch policy, and observer isolation are implemented and tested by BR-02 and BR-06. Invalid ordering, sender, sequence, version, capability fingerprint, capability use, identity, digest, deadline, or post-stop traffic yields a stable bounded rejection and no state advance.
 
-The committed BR-01 outcome matrix is `fixtures/adapter-protocol/v1/expected-outcomes.json`. Rust conformance tests cover the valid lifecycle and exact rejection classes for configure-before-start, incompatible version, changed capability fingerprint, and post-stop traffic.
+`fixtures/adapter-protocol/v1/expected-outcomes.json` catalogs the intended BR-01 case names. Rust tests in `crates/bonsai-contracts/tests/adapter_protocol.rs` assert the live lifecycle and rejection classes. Those tests do not load the JSON.
