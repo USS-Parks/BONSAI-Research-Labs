@@ -1,4 +1,4 @@
-"""Generate the deterministic, platform-qualified M1 heartbeat bundle."""
+"""Generate the deterministic M1 heartbeat bundle."""
 
 from __future__ import annotations
 

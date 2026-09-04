@@ -18,6 +18,7 @@ def _generate_sbom():
 def test_operator_guides_exist_and_m1_command_is_documented() -> None:
     run = (ROOT / "docs" / "operator" / "RUN.md").read_text(encoding="utf-8")
     assert "bonsai_reference.heartbeat" in run
+    assert "PYTHONPATH=python/bonsai-reference/src" in run
     limitations = (ROOT / "docs" / "operator" / "LIMITATIONS.md").read_text(encoding="utf-8")
     assert "not a hostile-native-code sandbox" in limitations.lower()
     for name in ("INSTALL.md", "ANALYZE.md", "ADAPTER.md", "METRIC.md", "CLAIM.md", "PLATFORM.md"):

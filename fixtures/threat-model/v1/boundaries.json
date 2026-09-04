@@ -68,7 +68,7 @@
       "name": "secrets",
       "trust_boundary": "inventory sanitizer, verification redaction, and publication review",
       "threats": ["tokens in logs", "hostnames/serials in inventories", "secret leakage into bundles"],
-      "controls": ["inventory field removal", "xtask --redact", "publication secret scan", "no raw environment dumps"],
+      "controls": ["inventory field removal", "cargo xtask verify --redact", "fixture inventory sanitizer", "no raw environment dumps"],
       "tests": ["crates/bonsai-xtask/src/main.rs", "crates/bonsai-xtask/src/schema_check.rs", "crates/bonsai-accept/tests/m4_acceptance.rs"],
       "residual_risk": "Redaction is defense in depth. Operators must not pass secrets on command lines.",
       "prompts": ["BC-04", "BG-04", "BG-06", "BV-12", "BV-16"]

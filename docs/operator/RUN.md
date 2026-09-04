@@ -2,10 +2,10 @@
 
 Reproduce the M1 heartbeat on a clean checkout. This is the supported new-user path.
 
-Set `PYTHONPATH=python/bonsai-reference/src` when the reference package is not installed. Replace `<revision>` with a 40–64 character lowercase hex Git SHA.
+The workspace does not install `bonsai_reference`. Prefix the heartbeat command with `PYTHONPATH=python/bonsai-reference/src`. Replace `<revision>` with a 40–64 character lowercase hex Git SHA.
 
 ```text
-uv run --frozen python -m bonsai_reference.heartbeat --output target/m1-heartbeat --source-revision <revision> --os-family linux --architecture x86_64
+PYTHONPATH=python/bonsai-reference/src uv run --frozen python -m bonsai_reference.heartbeat --output target/m1-heartbeat --source-revision <revision> --os-family linux --architecture x86_64
 cargo run --offline -p bonsai-report --bin bonsai-report -- target/m1-heartbeat/report-input.json target/m1-heartbeat
 cargo xtask bundle-check --root target/m1-heartbeat manifest.json
 ```

@@ -15,7 +15,7 @@ Unlocked or floating restoration is rejected. A rebuild that needs the public ne
 
 ## SBOM and archives
 
-`scripts/generate_sbom.py` emits CycloneDX-shaped JSON from the committed lockfiles into `evidence/release-candidate/`. `scripts/package_rc.py` records source/native/Python package file lists and SHA-256 hashes. `scripts/offline_restore.py` vendors or uses the existing cache and rebuilds with network disabled.
+`scripts/generate_sbom.py` emits CycloneDX-shaped JSON from the committed lockfiles into `evidence/release-candidate/`. `scripts/package_rc.py` records source/native/Python package file lists and SHA-256 hashes. The default `scripts/offline_restore.py` command records that the lockfiles exist. `--vendor` writes `vendor/` from `Cargo.lock`. `--verify` runs `cargo test --offline` and frozen pytest.
 
 ## Advisories and waivers
 

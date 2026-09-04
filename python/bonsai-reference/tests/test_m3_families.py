@@ -43,3 +43,12 @@ def test_freeze_separates_exploratory_from_gated_al() -> None:
     assert summary["claim_runs_gated"] == ["A", "L"]
     assert summary["pilot_used_as_confirmatory"] is False
     assert artifact.pspr_amendment_required is False
+
+
+def test_freeze_requires_both_s_and_c_pilots() -> None:
+    empty = freeze_from_pilots(())
+    a_only = freeze_from_pilots((PilotRecord("A", True, 1, True),))
+    s_only = freeze_from_pilots((PilotRecord("S", True, 1, True),))
+    assert empty.confirmatory_profiles == ()
+    assert a_only.confirmatory_profiles == ()
+    assert s_only.confirmatory_profiles == ()

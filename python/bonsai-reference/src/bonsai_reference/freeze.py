@@ -33,8 +33,11 @@ class FreezeArtifact:
 
 def freeze_from_pilots(pilots: tuple[PilotRecord, ...]) -> FreezeArtifact:
     exploratory: tuple[Profile, ...] = tuple(pilot.profile for pilot in pilots if pilot.exploratory)
+    sc_pilots = tuple(pilot for pilot in pilots if pilot.profile in {"S", "C"})
     confirmatory: tuple[Profile, ...] = ()
-    if all(pilot.feasible and pilot.overhead_ppm <= 50_000 for pilot in pilots if pilot.profile in {"S", "C"}):
+    if {pilot.profile for pilot in sc_pilots} == {"S", "C"} and all(
+        pilot.feasible and pilot.overhead_ppm <= 50_000 for pilot in sc_pilots
+    ):
         confirmatory = ("S", "C")
     return FreezeArtifact(
         schema="bonsai.preregistration-freeze/v1",

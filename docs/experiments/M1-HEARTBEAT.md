@@ -9,9 +9,9 @@ The overhead row is a deterministic semantic-fixture value, not physical timing 
 Local reproduction uses a clean 40–64 character source revision:
 
 ```text
-uv run --frozen python -m bonsai_reference.heartbeat --output target/m1-heartbeat --source-revision <revision> --os-family <family> --architecture <arch>
+PYTHONPATH=python/bonsai-reference/src uv run --frozen python -m bonsai_reference.heartbeat --output target/m1-heartbeat --source-revision <revision> --os-family <family> --architecture <arch>
 cargo run --offline -p bonsai-report --bin bonsai-report -- target/m1-heartbeat/report-input.json target/m1-heartbeat
 cargo xtask bundle-check --root target/m1-heartbeat manifest.json
 ```
 
-Set `PYTHONPATH=python/bonsai-reference/src` for the module command when the package is not installed. Generated output belongs under `target/` or the CI artifact directory and is not committed; the stable expected summary is committed under `fixtures/m1-heartbeat/`.
+The workspace does not install the package. Generated output belongs under `target/` or the CI artifact directory and is not committed; the stable expected summary is committed under `fixtures/m1-heartbeat/`.

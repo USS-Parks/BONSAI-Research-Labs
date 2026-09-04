@@ -31,4 +31,4 @@ Publication remains separately unauthorized.
 - OaK / Oak Lab reproduction
 - Privileged collector qualification
 
-Native crate packages and Python sdists may be produced locally with `cargo package --list` and `uv build` for inspection. Those commands are not registry uploads.
+File-list inspection stays in `evidence/release-candidate/SOURCE-PACKAGE.list`. That list is not a crate or sdist archive.

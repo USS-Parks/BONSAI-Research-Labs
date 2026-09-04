@@ -469,6 +469,11 @@ pub fn verify_operator_handoff(root: &Path) -> Result<(), AcceptError> {
             "RUN.md must show the M1 heartbeat command".into(),
         ));
     }
+    if !run.contains("PYTHONPATH=python/bonsai-reference/src") {
+        return Err(AcceptError(
+            "RUN.md must set PYTHONPATH for the uninstalled package".into(),
+        ));
+    }
     Ok(())
 }
 
