@@ -1,11 +1,11 @@
-use bonsai_platform::capability::{Support, record_enforcement};
+use bonsai_platform::capability::{BackendError, Support, record_enforcement};
 use bonsai_platform::energy::{
     EnergyEvidence, EnergyTier, adjudicate_energy, qualify_present_backends,
 };
 use bonsai_platform::equivalence::{Comparability, resource_comparability_matrix};
 use bonsai_platform::linux::{
     CgroupSnapshot, CgroupWorkload, collect_current_cgroup, detect_linux_backend,
-    linux_enforcement, reconcile_cgroup, try_apply_probe_limit,
+    linux_enforcement, reconcile_cgroup,
 };
 use bonsai_platform::macos::{
     MacosObservation, MacosWorkload, detect_macos_backend, macos_enforcement, reconcile_macos,
@@ -121,8 +121,23 @@ fn linux_cgroup_live_read_and_fail_closed_enforcement() {
                 .control("cgroup.cpu.stat")
                 .is_some_and(|control| { control.support == Support::Supported })
         );
-        let enforce = linux_enforcement("cgroup.memory.max", 1, None, try_apply_probe_limit)
-            .expect("enforce");
+        assert_eq!(
+            matrix
+                .control("cgroup.io.stat")
+                .map(|control| control.support),
+            Some(Support::Unsupported)
+        );
+        assert_eq!(
+            matrix
+                .control("cgroup.pressure")
+                .map(|control| control.support),
+            Some(Support::Unsupported)
+        );
+        assert!(!matrix.hard_limit_supported("cgroup.memory.max"));
+        let enforce = linux_enforcement("cgroup.memory.max", 1, None, || {
+            Err(BackendError::Privilege)
+        })
+        .expect("enforce");
         assert_eq!(enforce.support, Support::NoPermission);
         assert!(!enforce.descendant_escape);
         assert!(enforce.cleaned_up);
@@ -162,6 +177,16 @@ fn nvidia_absence_does_not_break_cpu_only() {
     let matrix = nvidia_capability_matrix();
     assert_eq!(matrix.backend_id, "nvidia-nvml");
     assert!(!matrix.physical_acceptance || detection.presence == NvidiaPresence::Supported);
+    assert_eq!(
+        matrix
+            .control("gpu.utilization")
+            .map(|control| control.support),
+        Some(Support::Unsupported)
+    );
+    assert_eq!(
+        matrix.control("gpu.memory").map(|control| control.support),
+        Some(Support::Unsupported)
+    );
 }
 
 #[test]

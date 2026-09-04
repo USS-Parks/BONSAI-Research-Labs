@@ -222,6 +222,24 @@ fn create_symlink(original: &std::path::Path, link: &std::path::Path) -> bool {
 }
 
 #[test]
+fn leftover_on_disk_overwrite_rejects_without_overflow() {
+    let directory = tempfile::tempdir().expect("temporary directory");
+    let layout = IsolatedRunLayout::create(directory.path().join("run")).expect("layout");
+    std::fs::write(layout.writable_root().join("leftover.bin"), [0_u8; 50]).expect("leftover");
+    let mut broker = AgentStorageBroker::new(layout, policy()).expect("broker");
+    let decision = broker
+        .persist(&request(
+            "leftover.bin",
+            PersistenceClass::ModelParameters,
+            &model_weights(),
+        ))
+        .expect("decision");
+    assert_eq!(decision.outcome, PersistOutcome::Reject);
+    assert_eq!(decision.reason_code, "STORAGE_METER_INCONSISTENT");
+    assert_eq!(broker.used_bytes(), 0);
+}
+
+#[test]
 fn malformed_policy_is_rejected_before_broker_state_exists() {
     let directory = tempfile::tempdir().expect("temporary directory");
     let layout = IsolatedRunLayout::create(directory.path().join("run")).expect("layout");

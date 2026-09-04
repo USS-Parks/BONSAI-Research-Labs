@@ -78,8 +78,12 @@ pub fn nvidia_capability_matrix() -> CapabilityMatrix {
         HostClass::Unknown,
         vec![
             control("gpu.identity", support, &detection.detail_code),
-            control("gpu.utilization", support, &detection.detail_code),
-            control("gpu.memory", support, &detection.detail_code),
+            control(
+                "gpu.utilization",
+                Support::Unsupported,
+                "GPU_UTILIZATION_UNCOLLECTED",
+            ),
+            control("gpu.memory", Support::Unsupported, "GPU_MEMORY_UNCOLLECTED"),
             control(
                 "gpu.energy",
                 if detection.presence == NvidiaPresence::Supported {
