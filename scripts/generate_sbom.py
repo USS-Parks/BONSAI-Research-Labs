@@ -9,21 +9,41 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 OUT = ROOT / "evidence" / "release-candidate"
 PACKAGE = re.compile(
-    r"^\[\[package\]\]\nname = \"([^\"]+)\"\nversion = \"([^\"]+)\"(?:\nsource = \"([^\"]+)\")?",
+    r"^\[\[package\]\]\nname = \"([^\"]+)\"\nversion = \"([^\"]+)\""
+    r"(?:\nsource = (?:\"([^\"]+)\"|\{([^}\n]*)\}))?",
     re.MULTILINE,
 )
+
+
+def source_identity(quoted: str | None, table: str | None) -> str:
+    if quoted:
+        return quoted
+    if table:
+        registry = re.search(r'registry\s*=\s*"([^"]+)"', table)
+        if registry:
+            return registry.group(1)
+        virtual = re.search(r'virtual\s*=\s*"([^"]+)"', table)
+        if virtual:
+            return f"virtual+{virtual.group(1)}"
+        git = re.search(r'git\s*=\s*"([^"]+)"', table)
+        if git:
+            return git.group(1)
+        path = re.search(r'path\s*=\s*"([^"]+)"', table)
+        if path:
+            return f"path+{path.group(1)}"
+    return "path+workspace"
 
 
 def packages_from_lock(text: str) -> list[dict[str, str]]:
     rows: list[dict[str, str]] = []
     for match in PACKAGE.finditer(text):
-        name, version, source = match.group(1), match.group(2), match.group(3)
+        name, version, quoted, table = match.group(1), match.group(2), match.group(3), match.group(4)
         rows.append(
             {
                 "type": "library",
                 "name": name,
                 "version": version,
-                "purl": source or "path+workspace",
+                "purl": source_identity(quoted, table),
             }
         )
     return rows

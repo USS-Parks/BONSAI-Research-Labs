@@ -1,6 +1,7 @@
 """BONSAI reference-science package.
 
-M0 intentionally contains no reference-agent implementation.
+The package root exports nothing. Callers import a named submodule such as
+`bonsai_reference.heartbeat` or `bonsai_reference.control`.
 """
 
 __all__: tuple[str, ...] = ()

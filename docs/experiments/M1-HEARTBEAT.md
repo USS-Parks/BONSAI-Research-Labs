@@ -4,7 +4,7 @@ BE-03 runs the certified primitive, batch-one, no-replay controller for 32 steps
 
 Each CI matrix job emits a fresh schema-valid `bonsai.bundle/v1` directory, platform inventory, static machine/HTML report, lineage, metrics, decisions, comparisons, and the frozen semantic summary. The bundle records its Windows, Linux, macOS arm64, or macOS Intel row separately. An aggregate hosted job downloads all four bundles and requires one exact semantic hash plus the complete platform-row set.
 
-The overhead row is a deterministic semantic-fixture value, not physical timing acceptance. Energy remains E0 and thermal state unavailable. C0 and C1 inputs are reportable and rule versioned, but their verdict is `not_adjudicated` because concrete C0/C1 adjudication remains BV-04 outside M1. No C0–C5 pass, physical-host acceptance, or instrument-completion claim follows from this heartbeat.
+The overhead row is a deterministic semantic-fixture value, not physical timing acceptance. Energy remains E0 and thermal state unavailable. C0 and C1 inputs are reportable and rule versioned. Their verdict stays `not_adjudicated` because this heartbeat does not run the C0/C1 rules in `bonsai-claims`. No C0–C5 pass, physical-host acceptance, or instrument-completion claim follows from this heartbeat.
 
 Local reproduction uses a clean 40–64 character source revision:
 

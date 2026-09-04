@@ -26,73 +26,73 @@
       "type": "library",
       "name": "bonsai-reference",
       "version": "0.0.0",
-      "purl": "path+workspace"
+      "purl": "virtual+."
     },
     {
       "type": "library",
       "name": "colorama",
       "version": "0.4.6",
-      "purl": "path+workspace"
+      "purl": "https://pypi.org/simple"
     },
     {
       "type": "library",
       "name": "iniconfig",
       "version": "2.3.0",
-      "purl": "path+workspace"
+      "purl": "https://pypi.org/simple"
     },
     {
       "type": "library",
       "name": "nodeenv",
       "version": "1.10.0",
-      "purl": "path+workspace"
+      "purl": "https://pypi.org/simple"
     },
     {
       "type": "library",
       "name": "packaging",
       "version": "26.2",
-      "purl": "path+workspace"
+      "purl": "https://pypi.org/simple"
     },
     {
       "type": "library",
       "name": "pluggy",
       "version": "1.6.0",
-      "purl": "path+workspace"
+      "purl": "https://pypi.org/simple"
     },
     {
       "type": "library",
       "name": "protobuf",
       "version": "7.35.1",
-      "purl": "path+workspace"
+      "purl": "https://pypi.org/simple"
     },
     {
       "type": "library",
       "name": "pygments",
       "version": "2.20.0",
-      "purl": "path+workspace"
+      "purl": "https://pypi.org/simple"
     },
     {
       "type": "library",
       "name": "pyright",
       "version": "1.1.411",
-      "purl": "path+workspace"
+      "purl": "https://pypi.org/simple"
     },
     {
       "type": "library",
       "name": "pytest",
       "version": "9.1.1",
-      "purl": "path+workspace"
+      "purl": "https://pypi.org/simple"
     },
     {
       "type": "library",
       "name": "ruff",
       "version": "0.15.22",
-      "purl": "path+workspace"
+      "purl": "https://pypi.org/simple"
     },
     {
       "type": "library",
       "name": "typing-extensions",
       "version": "4.16.0",
-      "purl": "path+workspace"
+      "purl": "https://pypi.org/simple"
     }
   ]
 }
