@@ -1994,3 +1994,7 @@ Machine record `BR-07-1784503142006141500` is not acceptance evidence. The outer
 - Live capability probe: nonprivileged systemd user delegation exposes cpu/memory/pids, writable membership, and clean transient service exit. Not an enforcement or physical-host pass.
 - Nine review finding categories independently reconciled in [BX-01 baseline](./BX-01-BASELINE-AND-GAPS.md); existing remote fixes preserved.
 - Publication/hosted CI: pending focused commit. Full physical/scientific gates remain open.
+
+### VER-BX01-BLOB-CORRECTION
+
+Post-push verification via `git show HEAD:<artifact>` detected LF-normalized stdout blobs in initial commit 25d2c8e. Original captures and record hashes were unchanged. `git add --renormalize` under -text restored the exact bytes; independent `git show :<artifact>` SHA-256 checks passed for all four BX-01 machine outputs before the correction commit. The corrected remote revision and its CI remain the closeout target.

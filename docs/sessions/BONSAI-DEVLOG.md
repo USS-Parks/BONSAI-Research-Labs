@@ -1566,3 +1566,9 @@ This append-only log records executed PSPR prompts. Corrections are added as new
 - Next: BX-02 after main publication/hosted verification; user-local Linux Rust setup needed.
 
 - Publication preparation: adopted draft uses explicit Markdown hard breaks and LF without changing prompt substance. Narrow BX-01 .gitattributes rules preserve captured output bytes and recorded hashes after the generic *.txt rule.
+
+### BX-01 publication evidence correction
+
+- Initial source commit: `25d2c8e40a94fb2ea14208db177413c51b182681`, pushed to main. A post-push Git-blob audit found two stdout captures had been staged with LF normalization before the later byte-preservation attributes were added.
+- Original local captures still exactly matched the recorded SHA-256 values. Re-staging with `git add --renormalize` under the explicit -text rules restores those bytes. All four machine-output blobs were checked directly from the index against records.jsonl.
+- A small corrective commit is required for this same prompt to preserve published history without force-push. No new prompt or behavior change is bundled. BX-01 remains open pending the corrected source SHA and hosted CI.
