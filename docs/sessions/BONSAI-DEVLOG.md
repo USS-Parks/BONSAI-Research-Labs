@@ -1572,3 +1572,26 @@ This append-only log records executed PSPR prompts. Corrections are added as new
 - Initial source commit: `25d2c8e40a94fb2ea14208db177413c51b182681`, pushed to main. A post-push Git-blob audit found two stdout captures had been staged with LF normalization before the later byte-preservation attributes were added.
 - Original local captures still exactly matched the recorded SHA-256 values. Re-staging with `git add --renormalize` under the explicit -text rules restores those bytes. All four machine-output blobs were checked directly from the index against records.jsonl.
 - A small corrective commit is required for this same prompt to preserve published history without force-push. No new prompt or behavior change is bundled. BX-01 remains open pending the corrected source SHA and hosted CI.
+
+### BX-01 final closeout (recorded by BX-02)
+
+- Corrected commit and verified origin/main: `51637ee2dfb3b21673bfeddecb8533a8dd6e29d5`.
+- Hosted [run 33998986034](https://github.com/USS-Parks/BONSAI-Research-Labs/actions/runs/33998986034): success on Windows x86_64, Linux x86_64, macOS arm64, macOS Intel, and M1 semantic equivalence.
+- Post-commit verification: all four BX-01 artifact Git-blob hashes exactly match records.jsonl.
+- BX-01 complete; BX-02 begins with no host/physical-gate waiver.
+
+## 2026-09-05 — BX-02 — Bounded Linux adapter I/O and process-group cleanup
+
+- Status: local Linux and Windows gates PASS; source/main publication and hosted CI pending.
+- Authority/dependency: full v0.5 STS; BX-01 verified at `51637ee2dfb3b21673bfeddecb8533a8dd6e29d5` with hosted run 33998986034.
+- Objective: bound Linux writes, pending reads, cancellation, inherited pipes, and joining/reaping without an unsafe-code policy exception.
+- Reuse: extend ChildTransport and its existing frame/queue/stderr machinery; directly use rustix 1.1.4 already in Cargo.lock. No new dependency version or worker framework.
+- Files changed: runtime transport and two focused I/O/native helpers; runtime manifest/lock; live Rust/Python fault fixtures; process-transport contract; checksum evidence; existing plan/handoff and ledgers; per-host verification scripts/records and source hashes.
+- Live proof: final Linux gate verified blocked stdin at 92 ms for an 80 ms deadline; partial-frame timeout 82 ms; group cancellation 2 ms; exited-parent inherited pipes 12 ms; external read/write/shutdown cancellation 42–44 ms. Actual group/process disappearance required. Twenty clean cycles left threads 3→3 and descriptors 5→5.
+- Full verification: Linux 213 Rust tests, strict workspace Clippy, schema suite; Windows 211 Rust tests, strict Clippy, schema suite, frozen Ruff/Pyright, 37 Python tests, and governance checks passed. Records `BX-02-LINUX-1788652261833136500` and `BX-02-WINDOWS-1788652410106495300`.
+- Retained failures: test-function length lint (split helper, no assertion removed); stale Cargo.lock checksum (refreshed with existing generate_sbom/package_rc scripts). No ignored tests or gate waiver.
+- Source identity: [implementation SHA-256 manifest](../../evidence/verification/bx-02/implementation-sha256.json).
+- Boundary: Linux fault containment only; deliberate session/group escape is outside D-21. Windows/macOS native guarantees remain BX-34/BX-35. Hard cgroup control remains BX-03; no physical acceptance or scientific verdict claimed.
+- Storage: canonical lane reused; Linux target triple uses approximately 5.10 GiB and is retained for the approved remaining Linux work. Existing Windows .venv retained; no second Python environment. User-local pinned WSL Rust installed without sudo/profile changes. Historical M0 worktree remains clean/no unique commits, approximately 1.36 GiB, awaiting explicit removal authorization.
+- Commit SHA: pending focused commit; hosted identity/result will use subsequent closeout convention.
+- Next: BX-03 after main publication and hosted gate.

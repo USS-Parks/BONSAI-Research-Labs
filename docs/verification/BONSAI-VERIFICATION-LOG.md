@@ -1998,3 +1998,24 @@ Machine record `BR-07-1784503142006141500` is not acceptance evidence. The outer
 ### VER-BX01-BLOB-CORRECTION
 
 Post-push verification via `git show HEAD:<artifact>` detected LF-normalized stdout blobs in initial commit 25d2c8e. Original captures and record hashes were unchanged. `git add --renormalize` under -text restored the exact bytes; independent `git show :<artifact>` SHA-256 checks passed for all four BX-01 machine outputs before the correction commit. The corrected remote revision and its CI remain the closeout target.
+
+### VER-BX01-HOSTED — final closeout recorded by BX-02
+
+- Main/source SHA: `51637ee2dfb3b21673bfeddecb8533a8dd6e29d5`.
+- Hosted run: [33998986034](https://github.com/USS-Parks/BONSAI-Research-Labs/actions/runs/33998986034), conclusion success; all four native matrix jobs and semantic equivalence passed.
+- Committed artifact SHA-256 values independently verified against machine records.
+- Physical acceptance remains NOT-RUN.
+
+## VER-BX02 — Linux transport and native Windows regression — 2026-09-05
+
+- Baseline source: `51637ee2dfb3b21673bfeddecb8533a8dd6e29d5` plus the exact files in [implementation-sha256.json](../../evidence/verification/bx-02/implementation-sha256.json).
+- Linux command: copied xtask verifier invokes `wsl -d Ubuntu --exec sh evidence/verification/bx-02/linux-gate.sh`. Outer recorder OS is Windows; the actual gate is WSL2 Linux x86_64, explicitly confirmed by uname in stdout. This is not physical Linux acceptance.
+- Linux record: `BX-02-LINUX-1788652261833136500`, exit 0, 94.52 s; all UTC nanosecond timestamps and commands retained in records.jsonl.
+- Linux stdout SHA-256: `7a6c51714a24a45579d9212a6391e4e091251bfa0a29138f378cb9f6405e2f90`; stderr: `7759a7c1414f68b0533e728e78d9c3c41bb06975faea95dc1391ee310af0921c`.
+- Windows command: copied xtask verifier invokes `cmd.exe /c evidence\verification\bx-02\windows-gate.cmd`; local Windows x86_64, Python 3.14.4, Rust 1.96.0.
+- Windows record: `BX-02-WINDOWS-1788652410106495300`, exit 0, 49.03 s.
+- Windows stdout SHA-256: `f46b2a7f3fa8d90a52d9c60d78e0b264cda44430fe6efa97f22a2081b73eb45b`; stderr: `302e9a231e92828cd7a9338e610f4e588c7f778bc0863e0d43b2735f612f7296`.
+- Results: 213 Linux / 211 Windows Rust tests; schema suites, strict lint; 37 frozen Python tests and governance gates pass. Live Linux output retains PIDs, elapsed times, and unchanged thread/descriptor counts; no fixture process remains.
+- Retained failed records: BX-02-LINUX-1788652020659621200 (test length lint), BX-02-LINUX-1788652078892859600 (stale Cargo.lock release checksum). Both resolved without reducing gates.
+- New output paths have explicit -text attributes before first staging. Staged/published Git blobs must match these records, as established in BX-01.
+- Physical/hosted status: local gates PASS; hosted final commit pending; physical enforcement and long-duration claims remain open.

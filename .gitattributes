@@ -11,3 +11,7 @@ evidence/release-candidate/SHA256SUMS text eol=lf
 # Preserve BX-01 captured output bytes after the generic text patterns.
 evidence/verification/artifacts/BX-01-*.txt -text -diff
 evidence/verification/bx-01/*.txt -text -diff
+
+# Preserve captured BX-02 output bytes independently of checkout line endings.
+evidence/verification/artifacts/BX-02-*.txt -text -diff
+evidence/verification/bx-02/*.txt -text -diff

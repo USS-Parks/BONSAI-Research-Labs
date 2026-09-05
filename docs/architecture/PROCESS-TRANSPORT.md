@@ -27,3 +27,17 @@ Clean shutdown closes protocol input, waits only for the caller-supplied duratio
 BR-02 owns process creation, bounded framing, deadlines, backpressure, diagnostic separation, and process cleanup. BR-03 validates event meaning before append. BR-05 owns run lifecycle and recovery. BR-06 constrains arguments, environment, handles, working directories, and filesystem visibility. Platform-specific descendant process controls and hard resource enforcement remain in BM/BQ. None of those later claims is implied by this transport.
 
 `fixtures/process-transport/v1/expected-outcomes.json` catalogs the intended good, partial, oversized, stalled, and flood case names. Rust tests in `crates/bonsai-runtime/tests/process_transport.rs` assert those classes. Those tests do not load the JSON.
+
+## BX-02 Linux extension — deadlines and process-group cleanup
+
+Linux now launches each adapter in its own process group and makes all three inherited pipes nonblocking using the already-locked rustix 1.1.4 safe bindings. The project unsafe-code prohibition is unchanged. Existing framing, bounded queues, stderr retention, and protocol error identities remain the common implementation.
+
+- `send_with_timeout(frame, duration)` bounds the entire framed write, including partial writes and flush. Existing `send` uses a five-second Linux default. A timeout records `TRANSPORT_WRITE_TIMEOUT`.
+- `cancellation_handle()` returns a thread-safe signal. Pending send, receive, and shutdown observe it; the owning transport contains the group and records `TRANSPORT_CANCELLED`. `cancel()` explicitly performs cleanup and returns any cleanup failure. Signaling an idle connection requires its owner to resume an operation or drop it to perform cleanup.
+- Cancellation-aware readers poll at two milliseconds. EOF delivery also checks cancellation instead of blocking forever on a full queue.
+- Linux cleanup closes input/queue ownership, kills the owned group, polls direct-child reaping and group disappearance, and joins only completed workers. It shares a one-second cleanup allowance; an unfinished group/worker returns `TRANSPORT_CLEANUP_TIMEOUT`. Failed cleanup remains failed on repeated calls. No unbounded join is used on this path.
+- A normally exited parent does not exempt inherited-pipe descendants from cleanup. Completed clean shutdown drains stderr before stopping workers. Failed/canceled runs may retain only diagnostics captured before cancellation.
+
+These native guarantees currently apply to Linux. Windows and macOS retain the prior native containment limitations until BX-34/BX-35. This is fault containment for the launched process group, not hostile-code isolation; deliberate group/session escape requires a separately qualified authority boundary. Hard cgroup resource controls belong to BX-03.
+
+The Linux integration fixture covers blocked stdin, partial frames, a live grandchild, an exited parent with inherited pipes, stderr flood, external read/write/shutdown cancellation, and twenty normal start/stop cycles. It checks actual process disappearance and thread/file-descriptor counts. A thirty-second outer watchdog and eight-second fixture lifetimes bound the test itself. The observed operation bound is 1.3 seconds (80 ms requested deadline plus one-second cleanup and scheduler tolerance); the implementation's write/receive deadlines are not enlarged. Existing malformed/flood/echo tests continue to cover protocol compatibility.

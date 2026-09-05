@@ -139,7 +139,7 @@ Recommended first authorization: **M5a only**, yielding a usable experimental in
 
 Initial drafting state: all prompts were **[ ] NOT STARTED**. Current execution state is recorded in the headings and section 14. Dependencies are explicit; the numbered order is the default sequential roster. Each prompt inherits §2 and produces its DEVLOG/verification closeout. “Evidence” names the minimum retained artifact, not merely a document that asserts a pass.
 
-### [~] BX-01 — Adopt the approved baseline and reconcile evidence gaps
+### [x] BX-01 — Adopt the approved baseline and reconcile evidence gaps
 
 **Milestone:** M5a. **Depends:** Approved v0.5 scope and fresh STS authorization.\
 **Legacy mapping:** BG-01–BG-10; all M3/M4 exceptions.\
@@ -153,7 +153,7 @@ Initial drafting state: all prompts were **[ ] NOT STARTED**. Current execution 
 
 **Retained evidence:** Baseline and evidence-gap matrix; exact baseline verification records; worktree/storage inventory.
 
-### [ ] BX-02 — Bound adapter I/O and process-tree cancellation
+### [~] BX-02 — Bound adapter I/O and process-tree cancellation
 
 **Milestone:** M5a. **Depends:** BX-01.\
 **Legacy mapping:** BR-03–BR-06; BV-12.\
@@ -855,3 +855,7 @@ The user approved this plan and authorized execution with the exact instruction:
 Scope: all 40 prompts BX-01–BX-40 in dependency order, one fully gated prompt per focused commit, merged/published to Labs main after each prompt. Existing gate, physical-host, resource, and separately controlled action boundaries remain in force. Section 12 and the end-of-draft statement above preserve the pre-approval record; this section records the subsequent authority.
 
 BX-01 is executing at source baseline `2f35355c6d12d019eb8625cb3bd38728d90ee029`. Imported documentation changes are preserved and included in this prompt. BX-02–BX-40 remain unstarted. No gate has yet been closed under v0.5.
+
+### BX-01 closeout / BX-02 start — 2026-09-05
+
+BX-01 passed local gates and hosted run [33998986034](https://github.com/USS-Parks/BONSAI-Research-Labs/actions/runs/33998986034) on corrected main commit `51637ee2dfb3b21673bfeddecb8533a8dd6e29d5`. Initial commit `25d2c8e40a94fb2ea14208db177413c51b182681` required one documented evidence-byte correction. All four hosted OS/architecture jobs and M1 semantic equivalence passed; committed output hashes match machine records. BX-02 is now executing; BX-03–BX-40 remain unstarted.

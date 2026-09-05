@@ -1,7 +1,7 @@
 # PSPR v0.5 Project Handoff
 
 Date: 2026-09-05 (America/Los_Angeles)
-Status: **APPROVED — FULL BX-01–BX-40 STS AUTHORIZED; BX-01 EXECUTING**
+Status: **APPROVED — FULL BX-01–BX-40 STS AUTHORIZED; BX-01 VERIFIED; BX-02 EXECUTING**
 
 ## Current execution authority — 2026-09-05
 
@@ -30,3 +30,7 @@ The draft's references to its original outputs folder describe its source-sessio
 Review v0.5 and record any requested changes. The draft recommends M5a (BX-01–BX-06) as the first usable cut. Plan approval alone does not start execution. After explicit approval and scoped STS authorization, BX-01 is first and must revalidate the baseline, review findings, full applicable gates, hosts, and resource availability.
 
 Use the existing DEVLOG and verification log. Preserve one prompt per focused commit, the M5a–M5f dependency order, all gates, and the publication/host boundaries in the draft. No new worktree, experiment, implementation commit, or push is part of this import.
+
+## Current continuation — BX-02
+
+BX-01 closed at `51637ee2dfb3b21673bfeddecb8533a8dd6e29d5`, hosted run 33998986034 fully green. BX-02 is executing. User-local WSL Rust 1.96.0 is installed without sudo/profile changes; the three existing process_transport tests pass on x86_64-unknown-linux-gnu. Reuse the canonical target root with the Linux target triple and limit build jobs to four. Windows .venv remains intact; WSL subprocess fixtures use system Python.

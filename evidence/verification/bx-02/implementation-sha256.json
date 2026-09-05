@@ -1,0 +1,16 @@
+{
+  "schema": "bonsai.source-evidence/v1",
+  "prompt": "BX-02",
+  "base_source_revision": "51637ee2dfb3b21673bfeddecb8533a8dd6e29d5",
+  "files": {
+    "Cargo.lock": "2f22544cc69e2373e8c74881a628c73d97a9479672cdeaf640b9384c6d51dbd4",
+    "crates/bonsai-runtime/Cargo.toml": "d3eab49e8b8737eab033633672939128e6be762308aeaf1abce27784dd27db97",
+    "crates/bonsai-runtime/src/lib.rs": "180324d034ab868ca8d18dae3d6579bb30d444dccd36b86acdc9d57406b44bc7",
+    "crates/bonsai-runtime/src/interruptible_io.rs": "8ef75c86022c33e0febe5bc32c3a9705106943601b57cd080112cea28108dda0",
+    "crates/bonsai-runtime/src/linux_transport.rs": "d8b7cd43029d912922e78c5335c5283bfb835e85814df357f1ad46282ffd2f5f",
+    "crates/bonsai-runtime/tests/linux_bounded_transport.rs": "47b7c09c871b20119ce0987e8b052ae9002d8b7ae1d73041617a4fdfec729aba",
+    "python/bonsai-reference/tests/fixtures/bounded_transport_adapter.py": "1edfac53a4398fb5c4ff9357342d45071f15c2d6b34cac9a14d915bdb7818a25",
+    "docs/architecture/PROCESS-TRANSPORT.md": "3560c036b2a5a98ca7ceb6da19e1a1d658b8ab8bd6af84fad2ebbe4d1405176f",
+    "evidence/release-candidate/SHA256SUMS": "886742c6338696c364836d7bf97b3209fa2371450ac1f0b29b1c5fa33eed7d91"
+  }
+}

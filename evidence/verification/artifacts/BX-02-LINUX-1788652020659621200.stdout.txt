@@ -1,0 +1,2 @@
+Linux 6.6.87.2-microsoft-standard-WSL2 x86_64 GNU/Linux
+cargo 1.96.0 (30a34c682 2026-05-25)

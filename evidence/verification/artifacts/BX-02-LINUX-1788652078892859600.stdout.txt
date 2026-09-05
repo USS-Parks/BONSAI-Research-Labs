@@ -1,0 +1,28 @@
+Linux 6.6.87.2-microsoft-standard-WSL2 x86_64 GNU/Linux
+cargo 1.96.0 (30a34c682 2026-05-25)
+
+running 5 tests
+test tests::redaction_removes_every_literal ... ok
+test tests::tampered_payload_fails_verify ... ok
+test tests::listed_hash_mismatch_fails ... ok
+test tests::hmac_matches_known_rfc_4231_case ... ok
+test tests::hashed_rc_files_are_lf_checkout_bytes ... ok
+
+test result: ok. 5 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.05s
+
+
+running 6 tests
+test bv13_supply_chain_has_no_silent_critical_waiver ... ok
+test bv12_fuzz_property_and_adversarial_suite_bounds_tamper_and_flood ... ok
+test bv16_release_candidate_verifies_independently_without_publication ... FAILED
+test bv14_l_harness_records_honest_not_run_and_refuses_ci_as_acceptance ... ok
+test bv15_operator_handoff_lets_a_new_user_reproduce_m1_without_overclaim ... ok
+test bv11_threat_model_covers_every_trust_boundary ... ok
+
+failures:
+
+failures:
+    bv16_release_candidate_verifies_independently_without_publication
+
+test result: FAILED. 5 passed; 1 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.08s
+

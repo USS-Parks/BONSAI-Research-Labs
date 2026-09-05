@@ -1,0 +1,33 @@
+    Checking bonsai-governor v0.0.0 (/mnt/c/Users/<redacted>/Documents/Reinforcement Learning Project/crates/bonsai-governor)
+    Checking bonsai-bundle v0.0.0 (/mnt/c/Users/<redacted>/Documents/Reinforcement Learning Project/crates/bonsai-bundle)
+    Checking bonsai-accept v0.0.0 (/mnt/c/Users/<redacted>/Documents/Reinforcement Learning Project/crates/bonsai-accept)
+    Checking bonsai-runtime v0.0.0 (/mnt/c/Users/<redacted>/Documents/Reinforcement Learning Project/crates/bonsai-runtime)
+    Checking bonsai-ingest v0.0.0 (/mnt/c/Users/<redacted>/Documents/Reinforcement Learning Project/crates/bonsai-ingest)
+    Checking bonsai-metrics v0.0.0 (/mnt/c/Users/<redacted>/Documents/Reinforcement Learning Project/crates/bonsai-metrics)
+    Checking bonsai-platform v0.0.0 (/mnt/c/Users/<redacted>/Documents/Reinforcement Learning Project/crates/bonsai-platform)
+    Checking bonsai-xtask v0.0.0 (/mnt/c/Users/<redacted>/Documents/Reinforcement Learning Project/crates/bonsai-xtask)
+    Checking bonsai-report v0.0.0 (/mnt/c/Users/<redacted>/Documents/Reinforcement Learning Project/crates/bonsai-report)
+    Checking bonsai-lineage v0.0.0 (/mnt/c/Users/<redacted>/Documents/Reinforcement Learning Project/crates/bonsai-lineage)
+    Checking bonsai-contracts v0.0.0 (/mnt/c/Users/<redacted>/Documents/Reinforcement Learning Project/crates/bonsai-contracts)
+    Checking bonsai-claims v0.0.0 (/mnt/c/Users/<redacted>/Documents/Reinforcement Learning Project/crates/bonsai-claims)
+    Finished `dev` profile [unoptimized + debuginfo] target(s) in 16.96s
+   Compiling bonsai-contracts v0.0.0 (/mnt/c/Users/<redacted>/Documents/Reinforcement Learning Project/crates/bonsai-contracts)
+   Compiling bonsai-claims v0.0.0 (/mnt/c/Users/<redacted>/Documents/Reinforcement Learning Project/crates/bonsai-claims)
+   Compiling bonsai-report v0.0.0 (/mnt/c/Users/<redacted>/Documents/Reinforcement Learning Project/crates/bonsai-report)
+   Compiling bonsai-platform v0.0.0 (/mnt/c/Users/<redacted>/Documents/Reinforcement Learning Project/crates/bonsai-platform)
+   Compiling bonsai-bundle v0.0.0 (/mnt/c/Users/<redacted>/Documents/Reinforcement Learning Project/crates/bonsai-bundle)
+   Compiling bonsai-governor v0.0.0 (/mnt/c/Users/<redacted>/Documents/Reinforcement Learning Project/crates/bonsai-governor)
+   Compiling bonsai-lineage v0.0.0 (/mnt/c/Users/<redacted>/Documents/Reinforcement Learning Project/crates/bonsai-lineage)
+   Compiling bonsai-ingest v0.0.0 (/mnt/c/Users/<redacted>/Documents/Reinforcement Learning Project/crates/bonsai-ingest)
+   Compiling bonsai-runtime v0.0.0 (/mnt/c/Users/<redacted>/Documents/Reinforcement Learning Project/crates/bonsai-runtime)
+   Compiling bonsai-accept v0.0.0 (/mnt/c/Users/<redacted>/Documents/Reinforcement Learning Project/crates/bonsai-accept)
+   Compiling bonsai-xtask v0.0.0 (/mnt/c/Users/<redacted>/Documents/Reinforcement Learning Project/crates/bonsai-xtask)
+   Compiling bonsai-metrics v0.0.0 (/mnt/c/Users/<redacted>/Documents/Reinforcement Learning Project/crates/bonsai-metrics)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 2m 25s
+     Running unittests src/lib.rs (target/x86_64-unknown-linux-gnu/debug/deps/bonsai_accept-be02691445ea2482)
+     Running tests/m4_acceptance.rs (target/x86_64-unknown-linux-gnu/debug/deps/m4_acceptance-43554c5c111d479f)
+
+thread 'bv16_release_candidate_verifies_independently_without_publication' (76930) panicked at crates/bonsai-accept/tests/m4_acceptance.rs:224:37:
+RC files: AcceptError("SHA256SUMS mismatch: Cargo.lock")
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+error: test failed, to rerun pass `-p bonsai-accept --test m4_acceptance`

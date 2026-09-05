@@ -1,0 +1,19 @@
+    Checking bonsai-governor v0.0.0 (/mnt/c/Users/<redacted>/Documents/Reinforcement Learning Project/crates/bonsai-governor)
+    Checking bonsai-runtime v0.0.0 (/mnt/c/Users/<redacted>/Documents/Reinforcement Learning Project/crates/bonsai-runtime)
+    Checking bonsai-claims v0.0.0 (/mnt/c/Users/<redacted>/Documents/Reinforcement Learning Project/crates/bonsai-claims)
+    Checking bonsai-platform v0.0.0 (/mnt/c/Users/<redacted>/Documents/Reinforcement Learning Project/crates/bonsai-platform)
+    Checking bonsai-bundle v0.0.0 (/mnt/c/Users/<redacted>/Documents/Reinforcement Learning Project/crates/bonsai-bundle)
+    Checking bonsai-metrics v0.0.0 (/mnt/c/Users/<redacted>/Documents/Reinforcement Learning Project/crates/bonsai-metrics)
+    Checking bonsai-accept v0.0.0 (/mnt/c/Users/<redacted>/Documents/Reinforcement Learning Project/crates/bonsai-accept)
+error: this function has too many lines (110/100)
+  --> crates/bonsai-runtime/tests/linux_bounded_transport.rs:69:1
+   |
+69 | fn li...nup() {
+   | ^^^^^...^^^^^
+   |
+   = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.96.0/index.html#too_many_lines
+   = note: `-D clippy::too-many-lines` implied by `-D clippy::pedantic`
+   = help: to override `-D clippy::pedantic` add `#[allow(clippy::too_many_lines)]`
+
+error: could not compile `bonsai-runtime` (test "linux_bounded_transport") due to 1 previous error
+warning: build failed, waiting for other jobs to finish...
