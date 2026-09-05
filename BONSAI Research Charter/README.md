@@ -4,7 +4,7 @@
 
 This folder is the project-local source of truth for the BONSAI research charter and its evidence base.
 
-## Status
+## Historical package status — 2026-07-18
 
 - Charter status: Approved v0.1 on 2026-07-18
 - Implementation status: Not started
@@ -25,3 +25,16 @@ Drafting or approving this charter is not authorization to implement the measure
 ## Governing distinction
 
 OaK is the research architecture being observed. BONSAI is the independent measurement and resource-governance instrument. BONSAI must not silently redefine OaK, claim to implement unspecified Oak Lab algorithms, or treat activity as evidence of useful discovery.
+
+## Current project navigation — 2026-09-05
+
+The status above records the original package state. Later authorized implementation and its evidence limits are recorded in the [DEVLOG](../docs/sessions/BONSAI-DEVLOG.md) and [verification log](../docs/verification/BONSAI-VERIFICATION-LOG.md).
+
+- [PSPR v0.5 review draft](./BONSAI-PSPR-v0.5-EXECUTABLE-RESEARCH-AND-GOVERNED-EVOLUTION.md) — proposed M5a–M5f / BX-01–BX-40; **not approved or authorized for execution**.
+- [PSPR v0.5 project handoff](./PSPR-v0.5-HANDOFF.md) — import provenance, current baseline, historical reconciliation, and approval boundary.
+
+The draft is available for review in this project. Earlier STS instructions do not authorize BX work.
+
+### Subsequent approval — 2026-09-05
+
+PSPR v0.5 is now approved and all BX-01–BX-40 are authorized for sequential STS, with a gated commit and main merge/publication after each prompt. The review-only state above is historical. BX-01 is executing; see the v0.5 handoff and section 14 approval record.

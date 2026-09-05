@@ -1537,3 +1537,32 @@ This append-only log records executed PSPR prompts. Corrections are added as new
 | BV-14 | L manifest/policy + three not-run attestations; CI probe cannot claim L |
 | BV-15 | `docs/operator/*` + M1 heartbeat command; D-21 restated |
 | BV-16 | RC notes, SHA256SUMS, SBOMs; independent valid/tampered bundle verify |
+
+## 2026-09-05 — PSPR v0.5 review-draft import (not BX-01)
+
+- Status: imported for review; plan approval pending; BX-01–BX-40 NOT STARTED.
+- Authorization scope: user supplied the PSPR after asking how to integrate a chat PSPR into this project; the supplied draft explicitly limits work to drafting and requires fresh scoped STS.
+- Baseline: main at `2f35355c6d12d019eb8625cb3bd38728d90ee029`, clean before import and matching cached origin/main.
+- Files changed: verbatim v0.5 draft, PSPR-v0.5-HANDOFF.md, charter README navigation, canonical PSPR pending-review reference, this DEVLOG, and verification log.
+- Reconciliation: older checkout snapshots remain historical in the unchanged draft; the handoff records the prior authorized fast-forward and preserves M0–M4 history/physical exceptions. Companion review/transfer files were not supplied.
+- Verification: documentation links/STS warnings passed (127 Markdown files), governance ledgers passed, and git diff --check passed; see VER-V05-IMPORT. No implementation or scientific gate claimed.
+- Attachment and project draft SHA-256: `af7d66762d3d77569a8f47e774ff9924cd31a474c366dc45b02878170fe19f7e`. All 40 ordered BX headings remain unchecked.
+- Commit/publication: none for this import.
+- Worktrees/storage: existing canonical and historical M0 trees retained; no new worktree or deletion. Prior M0 inventory: clean, no unpublished commits relative to main, approximately 1.36 GiB generated data; removal authorization absent. Canonical generated size partially unreadable.
+- Next step: review and explicit approval; BX-01 first only after fresh scoped STS authorization.
+
+## 2026-09-05 — BX-01 — Adopt baseline and reconcile evidence gaps
+
+- Status: local gate PASS; focused commit/main publication and hosted CI pending.
+- Authorization: user approved full BX-01–BX-40 STS with commit/main integration after each fully verified prompt; exact wording in v0.5 section 14.
+- Baseline: main `2f35355c6d12d019eb8625cb3bd38728d90ee029`, verified against live origin/main; imported documentation preserved.
+- Files changed: approved v0.5 and handoff, parent/navigation references, BX-01 baseline/evidence-gap matrix, retained command scripts and sanitized outputs, existing DEVLOG/verification records. No product code changed.
+- Reuse: existing governance, xtask verifier, canonical checkout, Windows build cache, and existing WSL user delegation. No new worktree.
+- Verification: record `BX-01-1788650729577083600` PASS for full applicable Rust/Python/schema/governance gates; 37 Python tests. The original pytest ACL error and verifier executable lock are retained and resolved by fresh test temporary paths and one copied verifier executable.
+- Evidence: [baseline and gap matrix](../verification/BX-01-BASELINE-AND-GAPS.md), machine records, and evidence/verification/bx-01.
+- Claims: baseline adoption only. Native controls, physical hosts, scientific outcomes, A/L runs, and full M5 completion remain unproven.
+- Commit SHA: pending focused commit; exact identity and hosted result use subsequent closeout convention.
+- Storage: canonical lane retained; historical M0 tree clean with no unique commits and approximately 1.36 GiB generated state; no deletion authority. Windows project drive approximately 332 GiB free.
+- Next: BX-02 after main publication/hosted verification; user-local Linux Rust setup needed.
+
+- Publication preparation: adopted draft uses explicit Markdown hard breaks and LF without changing prompt substance. Narrow BX-01 .gitattributes rules preserve captured output bytes and recorded hashes after the generic *.txt rule.

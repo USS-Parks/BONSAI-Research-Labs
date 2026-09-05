@@ -1967,3 +1967,30 @@ Machine record `BR-07-1784503142006141500` is not acceptance evidence. The outer
 - Stdout/stderr artifact hashes: stdout `c49d4a16978388b1c54c5184c876086a4e8f540feee7c986f772a72a9e454246` stderr `50e626eb8246ca842df7d1bf618319fdd595bc1e2c8f01663c7f2ea6b7b34a29`
 - Result: pass; RC artifacts recorded; independent valid bundle verifies; tampered bundle stays invalid; no tag or upload
 
+
+## VER-V05-IMPORT — Review-document integration only — 2026-09-05
+
+- Source revision: `2f35355c6d12d019eb8625cb3bd38728d90ee029`; initially clean; documentation changes only.
+- Environment: local Windows; no physical-platform acceptance claim.
+- Input fidelity: original attachment copied byte-for-byte; SHA-256 `af7d66762d3d77569a8f47e774ff9924cd31a474c366dc45b02878170fe19f7e`; 40 sequential unchecked headings BX-01–BX-40.
+- Scope: unchanged supplied review draft, project handoff/navigation, and additive import records. Draft approval and BX execution remain pending.
+- Commands/results (each exit 0):
+  - `uv run --frozen python scripts/check_docs.py` — 127 Markdown files; local links resolve; STS warnings present.
+  - `uv run --frozen python scripts/check_governance_ledgers.py` — R-01..R-16 and P-01..P-09 complete; negative fixtures rejected.
+  - `git diff --check` — no whitespace errors.
+- Result: PASS for document integration only.
+- Implementation/full-suite/hosted/physical gates: NOT-RUN for this document-only import; BX-01 remains NOT STARTED.
+- Commit/push: none.
+
+## VER-BX01-BASELINE — BX-01 — 2026-09-05
+
+- Source: `2f35355c6d12d019eb8625cb3bd38728d90ee029` plus preserved/imported governance changes.
+- Environment: local Windows x86_64, Rust 1.96.0, Python 3.14.4, uv 0.12.8; WSL capability probe separately classified.
+- Command: copied unchanged xtask verifier: `target\bx01-verifier.exe verify --prompt BX-01 --runner-class local-windows --redact 17076 -- cmd.exe /c evidence\verification\bx-01\baseline.cmd`. The script retains every gate invocation.
+- Machine record: `BX-01-1788650729577083600`; 2026-09-05 UTC timestamps and 41.10 s duration in records.jsonl; exit 0 / PASS.
+- Stdout SHA-256: `b56406ff76b0c10058ed0c9e4aa315f4742c142ee144fdea7f5f99e610d435e1`.
+- Stderr SHA-256: `c17b732952e1eb0d4f30e4596bfd8a9bd49ca766b3487d58326c50cdb65ef09b`.
+- Failure retained: `BX-01-1788650691215230000`, exit 1, verifier executable locked by its own cargo test child. Original pytest ACL failure retained separately; same tests passed with fresh target temporary/cache paths. No skipped tests or weakened limits.
+- Live capability probe: nonprivileged systemd user delegation exposes cpu/memory/pids, writable membership, and clean transient service exit. Not an enforcement or physical-host pass.
+- Nine review finding categories independently reconciled in [BX-01 baseline](./BX-01-BASELINE-AND-GAPS.md); existing remote fixes preserved.
+- Publication/hosted CI: pending focused commit. Full physical/scientific gates remain open.

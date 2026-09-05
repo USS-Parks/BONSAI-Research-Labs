@@ -1,0 +1,11 @@
+Linux 6.6.87.2-microsoft-standard-WSL2 x86_64 GNU/Linux
+uid=1000(<user>) gid=1000(<user>) groups=1000(<user>),4(adm),24(cdrom),27(sudo),30(dip),46(plugdev),100(users),986(ollama),1001(docker)
+Filesystem      Size  Used Avail Use% Mounted on
+/dev/sdd       1007G   47G  910G   5% /
+C:\             953G  622G  332G  66% /mnt/c
+0::/init.scope
+cpuset cpu io memory hugetlb pids rdma
+dr-xr-xr-x 11 root root 0 Aug 24 00:15 /sys/fs/cgroup
+-rwxr-xr-x 1 <user> <user> 56004256 Aug  7 09:14 /home/<user>/.local/bin/uv
+drwx------ 5 <user> <user> 220 Aug 24 00:15 /run/user/1000
+srw-rw-rw- 1 <user> <user>   0 Aug 24 00:15 /run/user/1000/bus

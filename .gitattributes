@@ -7,3 +7,7 @@ uv.lock text eol=lf
 *.txt text eol=lf
 *.list text eol=lf
 evidence/release-candidate/SHA256SUMS text eol=lf
+
+# Preserve BX-01 captured output bytes after the generic text patterns.
+evidence/verification/artifacts/BX-01-*.txt -text -diff
+evidence/verification/bx-01/*.txt -text -diff

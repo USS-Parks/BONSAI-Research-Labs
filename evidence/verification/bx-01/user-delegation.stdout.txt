@@ -1,0 +1,4 @@
+0::/user.slice/user-1000.slice/user@1000.service/app.slice/bonsai-bx01-probe.service
+drwxr-xr-x 2 <user> <user> 0 Sep  5 16:26 /sys/fs/cgroup/user.slice/user-1000.slice/user@1000.service/app.slice/bonsai-bx01-probe.service
+cpu memory pids
+user-delegation-writable

@@ -1,0 +1,13 @@
+    Finished `dev` profile [unoptimized + debuginfo] target(s) in 0.47s
+   Compiling bonsai-platform v0.0.0 (C:\Users\<redacted>\Documents\Reinforcement Learning Project\crates\bonsai-platform)
+   Compiling bonsai-report v0.0.0 (C:\Users\<redacted>\Documents\Reinforcement Learning Project\crates\bonsai-report)
+   Compiling bonsai-claims v0.0.0 (C:\Users\<redacted>\Documents\Reinforcement Learning Project\crates\bonsai-claims)
+   Compiling bonsai-contracts v0.0.0 (C:\Users\<redacted>\Documents\Reinforcement Learning Project\crates\bonsai-contracts)
+   Compiling bonsai-xtask v0.0.0 (C:\Users\<redacted>\Documents\Reinforcement Learning Project\crates\bonsai-xtask)
+   Compiling bonsai-metrics v0.0.0 (C:\Users\<redacted>\Documents\Reinforcement Learning Project\crates\bonsai-metrics)
+   Compiling bonsai-governor v0.0.0 (C:\Users\<redacted>\Documents\Reinforcement Learning Project\crates\bonsai-governor)
+error: failed to remove file `C:\Users\<redacted>\Documents\Reinforcement Learning Project\target\debug\bonsai-xtask.exe`
+
+Caused by:
+  Access is denied. (os error 5)
+warning: build failed, waiting for other jobs to finish...

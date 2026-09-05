@@ -640,3 +640,11 @@ To authorize later, the user may say:
 - `run M0 STS` — authorize only the governed foundation milestone;
 - `run BG-01 through BG-05 STS` — authorize only those prompts and dependencies;
 - or provide a reviewed override/addendum before authorizing execution.
+
+## 14. Pending follow-on review — 2026-09-05
+
+[PSPR v0.5-draft.1](./BONSAI-PSPR-v0.5-EXECUTABLE-RESEARCH-AND-GOVERNED-EVOLUTION.md) proposes M5a–M5f / BX-01–BX-40. It is imported for review only: **NOT APPROVED; NOT AUTHORIZED FOR EXECUTION**. This reference does not supersede prior approved rosters or their recorded exceptions. See the [project handoff](./PSPR-v0.5-HANDOFF.md) for import provenance and the refreshed checkout snapshot. BX-01 remains unstarted pending explicit approval and fresh scoped STS authorization.
+
+### Follow-on approval — 2026-09-05
+
+The user subsequently approved v0.5 and authorized all BX-01–BX-40 STS, committing and merging with main after each fully verified prompt. The pending-review entry above is historical. Exact wording and scope are recorded in v0.5 section 14; BX-01 is executing.
