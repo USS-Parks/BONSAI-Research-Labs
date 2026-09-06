@@ -160,3 +160,119 @@ def _stream_identity(spec: ScenarioSpec) -> str:
 
 def _canonical(value: object) -> bytes:
     return json.dumps(value, sort_keys=True, separators=(",", ":"), ensure_ascii=True).encode("ascii")
+
+
+@dataclass(frozen=True, slots=True)
+class SessionObservation:
+    stream_id: str
+    step: int
+    observation: tuple[int, ...]
+    allowed_actions: tuple[int, ...]
+
+
+@dataclass(frozen=True, slots=True)
+class SessionTransition:
+    step: int
+    action: int
+    reward: int
+    next: SessionObservation
+    terminated: bool
+    truncated: bool
+
+
+@dataclass(frozen=True, slots=True)
+class SessionDiagnostic:
+    stream_id: str
+    step: int
+    latent_state: int
+    goal_state: int
+
+
+class ScenarioSession:
+    """Online causal ring diagnostic; archived semantic_stream remains unchanged.
+
+    Action a advances the ring by a+1. Reaching the private goal terminates;
+    exhausting the horizon truncates. Observation noise consumes a fixed seeded
+    stream and the next observation also depends on the action's state change.
+    Only the current state is retained, with no future action schedule or trace.
+    """
+
+    def __init__(self, spec: ScenarioSpec) -> None:
+        if (
+            spec.action_count > 256
+            or spec.observation_width > 256
+            or spec.big_world_size > MASK_64
+            or spec.horizon > 1_000_000_000
+            or len(spec.change_points) > 4096
+        ):
+            raise ScenarioError("SCENARIO_SESSION_LIMIT_INVALID")
+        validate_spec(spec)
+        self._spec = spec
+        self._generator = _XorShift64(0)
+        self._stream_id = ""
+        self._state = 0
+        self._goal = 0
+        self._step = 0
+        self._started = False
+        self._done = False
+        self._observation: SessionObservation | None = None
+
+    def reset(self, seed: int) -> SessionObservation:
+        """Reset one episode without receiving any future actions."""
+        if type(seed) is not int or not 0 <= seed <= MASK_64:
+            raise ScenarioError("SCENARIO_SEED_INVALID")
+        self._generator = _XorShift64(seed)
+        self._state = self._generator.next() % self._spec.big_world_size
+        offset = 1 + self._generator.next() % min(self._spec.action_count, self._spec.big_world_size - 1)
+        self._goal = (self._state + offset) % self._spec.big_world_size
+        identity = asdict(self._spec)
+        identity["seed"] = seed
+        self._stream_id = hashlib.sha256(
+            _canonical({"dynamics": "bonsai.causal-ring/v1", "spec": identity})
+        ).hexdigest()
+        self._step = 0
+        self._started = True
+        self._done = False
+        self._observation = self._observe()
+        return self._observation
+
+    def observe(self) -> SessionObservation:
+        """Return only the cached current public observation; do not advance RNG."""
+        if self._observation is None:
+            raise ScenarioError("SCENARIO_RESET_REQUIRED")
+        return self._observation
+
+    def step(self, index: int, action: int) -> SessionTransition:
+        """Apply exactly one chosen action; rejected requests do not change state."""
+        if not self._started:
+            raise ScenarioError("SCENARIO_RESET_REQUIRED")
+        if self._done:
+            raise ScenarioError("SCENARIO_EPISODE_FINISHED")
+        if type(index) is not int or index != self._step:
+            raise ScenarioError("SCENARIO_STEP_OUT_OF_ORDER")
+        if type(action) is not int or not 0 <= action < self._spec.action_count:
+            raise ScenarioError("SCENARIO_ACTION_INVALID")
+        if index in self._spec.change_points:
+            shift = 1 + self._generator.next() % (self._spec.big_world_size - 1)
+            self._goal = (self._goal + shift) % self._spec.big_world_size
+        self._state = (self._state + action + 1) % self._spec.big_world_size
+        self._step += 1
+        terminated = self._state == self._goal
+        truncated = not terminated and self._step == self._spec.horizon
+        self._done = terminated or truncated
+        self._observation = self._observe()
+        return SessionTransition(index, action, int(terminated), self._observation, terminated, truncated)
+
+    def diagnostic(self) -> SessionDiagnostic:
+        """Observer-only truth; never serialize this through the learner channel."""
+        if not self._started:
+            raise ScenarioError("SCENARIO_RESET_REQUIRED")
+        return SessionDiagnostic(self._stream_id, self._step, self._state, self._goal)
+
+    def _observe(self) -> SessionObservation:
+        values = tuple(
+            (self._state + self._generator.next() + offset) % self._spec.big_world_size
+            for offset in range(self._spec.observation_width)
+        )
+        actions = () if self._done else tuple(range(self._spec.action_count))
+        return SessionObservation(self._stream_id, self._step, values, actions)

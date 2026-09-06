@@ -2039,3 +2039,21 @@ Post-push verification via `git show HEAD:<artifact>` detected LF-normalized std
 - Final proof: settings/readbacks, actual parent/child/grandchild membership, CPU throttling, memory max/OOM counters and zero membership before explicit termination, fork EAGAIN at four tasks, unsupported/denied and altered-control rejection, zero-task cleanup and absent PIDs. Raw sanitized outputs retain exact values.
 - All 213 Linux and 211 Windows Rust tests passed; 37 Python tests; strict lint, schema and governance gates passed. Failed live cleanup record retained and resolved by terminate/reap/cleanup ordering.
 - Main publication/hosted result pending; native physical and A/L gates remain open.
+
+### BX-03 final closeout (recorded by BX-04)
+
+- Verified main/origin/main: `1cd14055d32bf448fb844fba73034442093890c0`; hosted [run 34000956057](https://github.com/USS-Parks/BONSAI-Research-Labs/actions/runs/34000956057) fully successful, including all four platforms and semantic equivalence.
+- Ten published output hashes and eleven source-manifest hashes matched Git blobs. BX-03 complete; BX-04 begins.
+- Storage refresh: canonical target + .venv at least 16.11 GiB (nine unreadable directories); included Linux target 5.80 GiB fully measured. Historical M0 target + .venv approximately 1.36 GiB, clean with zero unique commits relative to main. Both trees retained; no new worktree or deletion.
+
+## VER-BX04 — Online causal environment and protocol compatibility — 2026-09-05
+
+- Source baseline: `1cd14055d32bf448fb844fba73034442093890c0` plus [21-file source manifest](../../evidence/verification/bx-04/implementation-sha256.json).
+- `BX-04-WINDOWS-1788655146776794500`: pass, 91.87 s, exit 0; stdout SHA-256 `688e105342e9bf8c646086a79d22a1234e968182617737efad1f8c7805da0c1c`; stderr `c343df1ce8ace877efaf5726b0c049dec1e88de0e9ac84d4d641d6e591e78e66`.
+- `BX-04-FINAL-PYTHON-1788655409988391500`: pass, 13.27 s, exit 0; stdout SHA-256 `a36284491ff1659bc57a6bb6167da4826c20667d5b501cbd3783bda1f0baf34f`; stderr `e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855`.
+- `BX-04-LINUX-1788655480521892600`: pass, 263.83 s, exit 0; stdout SHA-256 `4457ddc4a5dde6870272249cf641eea6a549a93b460b1122a43b18a1afc6f5d2`; stderr `aaf6cee1f5af5a31ae082d91aa34cf002219505359fd4ecd4d368513a1c8a906`.
+- Windows full gate: 212 Rust tests and 57 Python tests, strict lint/types/schema/governance. Final Python-only rerun covers the later fatal-response identity correction; Rust source was unchanged. Linux full gate: 214 Rust tests plus the same 57 Python tests on the final source. WSL2 is explicitly virtualized Linux.
+- Live proof: action-dependent next states, true termination and truncation, post-episode rejection, malformed payload/frame handling, ordered request/response identities, no diagnostic/future fields, bounded exits. Twenty added tests; all prior tests retained.
+- Golden evidence: separate public and observer diagnostic traces plus a 26-frame real Python transcript; Rust accepts and reproduces every frame byte-for-byte. Existing legacy hashes remain stable. Generated bindings regenerated exactly from the pinned compiler.
+- Dependency setup: project-local target/linux-venv uses system Python 3.14.4 and frozen uv.lock; Windows .venv remains separate and intact. No privileged/global installation.
+- Hosted/main closeout pending; no governed-run, physical, C0-C5, or long-run acceptance claimed.

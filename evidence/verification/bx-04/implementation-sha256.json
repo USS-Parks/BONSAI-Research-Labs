@@ -1,0 +1,28 @@
+{
+  "schema": "bonsai.source-evidence/v1",
+  "prompt": "BX-04",
+  "base_source_revision": "1cd14055d32bf448fb844fba73034442093890c0",
+  "files": {
+    "proto/bonsai/adapter/v1/adapter.proto": "e7a029d13c6573dcbb513e59bcfbc4cfc71b68c78627970c7fd8b35a4bb92bf2",
+    "pyproject.toml": "7c3828272b78d818104beefe4160931480da7c61254d8041a4ffb74a407e783c",
+    "python/bonsai-reference/src/bonsai_reference/scenario.py": "f9ce6aa1f080898c8277f1ed1fdc8078b9cc05c4dffc95bc2c73c28162961651",
+    "python/bonsai-reference/src/bonsai_reference/adapter_wire.py": "19e05cd22c106111cf3f5a3156859ac927c6ac258d99f4e36eb79eb57c6dd9c9",
+    "python/bonsai-reference/src/bonsai_reference/environment_adapter.py": "5e901a9b72e5d46be522899245273501ee8cc660a9da660bf1d60a836fa8bd34",
+    "python/bonsai-reference/src/bonsai/adapter/v1/adapter_pb2.py": "c09cbab944e86a9578f78c0f5cd8a26c3593eaa172dff0e4b98de94d424fdbad",
+    "python/bonsai-reference/src/bonsai/adapter/v1/adapter_pb2.pyi": "94614b786e63c719767b123176dcdb653df2baea6f97f1af7e8b0ec8dd349511",
+    "python/bonsai-reference/tests/test_causal_scenario.py": "c6221a9ace08a0c35d7130b4d384e627697566a0081c361274f4517536fd3ae4",
+    "python/bonsai-reference/tests/test_environment_adapter.py": "d507a8a6a48efb25baba43af4e4511fe5dc390b285deea6fed592524ea374086",
+    "crates/bonsai-contracts/tests/causal_payloads.rs": "62ed2d2aa7c4f8f546ec57e5105f97b25713e8bdd3cd9bfb4ae3c58a4ed076d3",
+    "scripts/check_python_protocol.py": "39ac89df83ed73b7b14030ca708d260ed6d441c145d052192056e4125ead7a7d",
+    "fixtures/scenario/causal-v1/spec.json": "fdfc1d3cd900420fe710ac58a71a02d14b719d50d61ee16b56ec04b743311a15",
+    "fixtures/scenario/causal-v1/public-trace.json": "d807d82ef3580cd6667d70a7c54fc663aca078c39e564591f8032e28067ed39b",
+    "fixtures/scenario/causal-v1/diagnostic-trace.json": "3ec1df88dcf00c95820888ae0ad6dafe1322f90dc09ff728b3d72cf71efd652e",
+    "fixtures/scenario/causal-v1/wire-transcript.json": "44b4e0b301dcf577fa87b0b7b1836d506ef9621a39434f95c9d5c6f938566986",
+    "docs/architecture/SCENARIO-PROTOCOL.md": "b2907efa30abd6c4e74c9bf4298787833f1017c4d3f7e6b0f301bce15bf5fc6d",
+    "docs/architecture/ADAPTER-PROTOCOL.md": "9ddfc4920852e68d1e6bbe45ade37c7ece2d47d32be0a620cbf6bcb9811d4724",
+    "evidence/verification/bx-04/setup-linux.sh": "5e9ecba56e597bed213cd0a70cdfe7d5ec0d922d604104def0b2574a9df82927",
+    "evidence/verification/bx-04/linux-gate.sh": "fbb5070b0fcae9287c3f6b9b132437e7e47ece680312651accdc1f86174442a8",
+    "evidence/verification/bx-04/windows-gate.cmd": "4274b911f73463f55205b871ea878c19ca2ac9d93661608b09a098eff8999325",
+    "evidence/verification/bx-04/python-final.cmd": "afce7d979241699cc08291403629bf5a67056a4bdf539f9f4a6f01ee0429241e"
+  }
+}

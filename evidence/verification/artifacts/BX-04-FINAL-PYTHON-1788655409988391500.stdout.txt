@@ -1,0 +1,41 @@
+
+C:\Users\<redacted>\Documents\Reinforcement Learning Project>uv run --frozen ruff check . 
+All checks passed!
+
+C:\Users\<redacted>\Documents\Reinforcement Learning Project>if errorlevel 1 exit /b 1 
+
+C:\Users\<redacted>\Documents\Reinforcement Learning Project>uv run --frozen pyright 
+0 errors, 0 warnings, 0 informations
+
+C:\Users\<redacted>\Documents\Reinforcement Learning Project>if errorlevel 1 exit /b 1 
+
+C:\Users\<redacted>\Documents\Reinforcement Learning Project>uv run --frozen pytest --basetemp target/bx04-pytest-final2 -o cache_dir=target/bx04-pytest-cache-final2 
+============================= test session starts =============================
+platform win32 -- Python 3.14.4, pytest-9.1.1, pluggy-1.6.0
+cachedir: target\bx04-pytest-cache-final2
+rootdir: C:\Users\<redacted>\Documents\Reinforcement Learning Project
+configfile: pyproject.toml
+testpaths: python/bonsai-reference/tests
+collected 57 items
+
+python\bonsai-reference\tests\test_brdc1_curation.py ...                 [  5%]
+python\bonsai-reference\tests\test_brdc1_features.py ...                 [ 10%]
+python\bonsai-reference\tests\test_brdc1_options.py ...                  [ 15%]
+python\bonsai-reference\tests\test_brdc1_planning.py ...                 [ 21%]
+python\bonsai-reference\tests\test_causal_scenario.py ......             [ 31%]
+python\bonsai-reference\tests\test_comparators.py ...                    [ 36%]
+python\bonsai-reference\tests\test_control.py ...                        [ 42%]
+python\bonsai-reference\tests\test_environment_adapter.py .............. [ 66%]
+                                                                         [ 66%]
+python\bonsai-reference\tests\test_event_envelope_roundtrip.py .         [ 68%]
+python\bonsai-reference\tests\test_heartbeat.py ..                       [ 71%]
+python\bonsai-reference\tests\test_m3_families.py ....                   [ 78%]
+python\bonsai-reference\tests\test_m4_handoff.py ....                    [ 85%]
+python\bonsai-reference\tests\test_scaffold.py .                         [ 87%]
+python\bonsai-reference\tests\test_scenario.py ...                       [ 92%]
+python\bonsai-reference\tests\test_stats.py ...                          [ 98%]
+python\bonsai-reference\tests\test_transport.py .                        [100%]
+
+============================= 57 passed in 6.54s ==============================
+
+C:\Users\<redacted>\Documents\Reinforcement Learning Project>if errorlevel 1 exit /b 1 

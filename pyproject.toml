@@ -22,7 +22,7 @@ package = false
 [tool.ruff]
 target-version = "py312"
 line-length = 120
-extend-exclude = [".venv"]
+extend-exclude = [".venv", "python/bonsai-reference/src/bonsai"]
 
 [tool.ruff.lint]
 select = ["E", "F", "I", "UP", "B", "SIM", "RUF"]
@@ -31,7 +31,7 @@ select = ["E", "F", "I", "UP", "B", "SIM", "RUF"]
 pythonVersion = "3.12"
 typeCheckingMode = "strict"
 include = ["python/bonsai-reference/src", "python/bonsai-reference/tests", "scripts"]
-exclude = [".venv"]
+exclude = [".venv", "python/bonsai-reference/src/bonsai"]
 extraPaths = ["python/bonsai-reference/src"]
 
 [tool.pytest.ini_options]

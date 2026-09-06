@@ -1,7 +1,7 @@
 # PSPR v0.5 Project Handoff
 
 Date: 2026-09-05 (America/Los_Angeles)
-Status: **APPROVED — FULL BX-01–BX-40 STS AUTHORIZED; BX-01–BX-02 VERIFIED; BX-03 EXECUTING**
+Status: **APPROVED — FULL BX-01–BX-40 STS AUTHORIZED; BX-01–BX-03 VERIFIED; BX-04 EXECUTING**
 
 ## Current execution authority — 2026-09-05
 
@@ -38,3 +38,7 @@ BX-01 closed at `51637ee2dfb3b21673bfeddecb8533a8dd6e29d5`, hosted run 339989860
 ## Current continuation — BX-03
 
 BX-02 closed at `9a2457afd873bac167ffd61602b64f624f7ea089`, hosted run 33999964570 fully green. BX-03 is executing against the existing unprivileged WSL2 systemd delegation. The supervisor subgroup prerequisite was verified; no global controller changes or physical-host claim.
+
+## Current continuation — BX-04
+
+BX-03 closed at `1cd14055d32bf448fb844fba73034442093890c0`, hosted run 34000956057 fully green. BX-04 now extends the existing ScenarioSpec and Protobuf payload boundary. Preserve the archived semantic_stream hashes and protocol epoch.

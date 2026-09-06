@@ -1,0 +1,56 @@
+[
+  {
+    "stream_id": "67bd6acfcdd612535ed180993a89ec71a6647464224a036394acc0889acedd59",
+    "step": 0,
+    "latent_state": 8,
+    "goal_state": 10
+  },
+  {
+    "stream_id": "67bd6acfcdd612535ed180993a89ec71a6647464224a036394acc0889acedd59",
+    "step": 1,
+    "latent_state": 9,
+    "goal_state": 10
+  },
+  {
+    "stream_id": "67bd6acfcdd612535ed180993a89ec71a6647464224a036394acc0889acedd59",
+    "step": 2,
+    "latent_state": 11,
+    "goal_state": 10
+  },
+  {
+    "stream_id": "67bd6acfcdd612535ed180993a89ec71a6647464224a036394acc0889acedd59",
+    "step": 3,
+    "latent_state": 14,
+    "goal_state": 10
+  },
+  {
+    "stream_id": "67bd6acfcdd612535ed180993a89ec71a6647464224a036394acc0889acedd59",
+    "step": 4,
+    "latent_state": 15,
+    "goal_state": 10
+  },
+  {
+    "stream_id": "67bd6acfcdd612535ed180993a89ec71a6647464224a036394acc0889acedd59",
+    "step": 5,
+    "latent_state": 0,
+    "goal_state": 10
+  },
+  {
+    "stream_id": "67bd6acfcdd612535ed180993a89ec71a6647464224a036394acc0889acedd59",
+    "step": 6,
+    "latent_state": 3,
+    "goal_state": 10
+  },
+  {
+    "stream_id": "67bd6acfcdd612535ed180993a89ec71a6647464224a036394acc0889acedd59",
+    "step": 7,
+    "latent_state": 4,
+    "goal_state": 10
+  },
+  {
+    "stream_id": "67bd6acfcdd612535ed180993a89ec71a6647464224a036394acc0889acedd59",
+    "step": 8,
+    "latent_state": 6,
+    "goal_state": 10
+  }
+]

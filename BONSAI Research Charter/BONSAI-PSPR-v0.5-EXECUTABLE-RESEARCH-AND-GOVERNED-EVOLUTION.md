@@ -167,7 +167,7 @@ Initial drafting state: all prompts were **[ ] NOT STARTED**. Current execution 
 
 **Retained evidence:** Process IDs/tree membership, monotonic deadlines, captured failures, and post-test survivor/handle checks.
 
-### [~] BX-03 — Apply and verify Linux resource authority
+### [x] BX-03 — Apply and verify Linux resource authority
 
 **Milestone:** M5a. **Depends:** BX-02.\
 **Legacy mapping:** BM-09–BM-10; BQ-07.\
@@ -181,7 +181,7 @@ Initial drafting state: all prompts were **[ ] NOT STARTED**. Current execution 
 
 **Retained evidence:** Controller settings/readbacks, observed counters/violations, process cleanup, and capability matrix.
 
-### [ ] BX-04 — Implement a stepwise causal environment boundary
+### [~] BX-04 — Implement a stepwise causal environment boundary
 
 **Milestone:** M5a. **Depends:** BX-03.\
 **Legacy mapping:** BE-01; BC adapter contracts; D-18.\
@@ -863,3 +863,7 @@ BX-01 passed local gates and hosted run [33998986034](https://github.com/USS-Par
 ### BX-02 closeout / BX-03 start — 2026-09-05
 
 BX-02 closed at main `9a2457afd873bac167ffd61602b64f624f7ea089`, hosted [run 33999964570](https://github.com/USS-Parks/BONSAI-Research-Labs/actions/runs/33999964570) fully successful on all four platforms and M1 semantic equivalence. Eight committed output hashes and nine implementation hashes matched their manifests. BX-03 is executing; physical acceptance remains open.
+
+### BX-03 closeout / BX-04 start — 2026-09-05
+
+BX-03 closed at main `1cd14055d32bf448fb844fba73034442093890c0`, hosted [run 34000956057](https://github.com/USS-Parks/BONSAI-Research-Labs/actions/runs/34000956057) successful across all four platforms and M1 semantic equivalence. All ten committed output hashes and eleven source hashes matched. BX-04 is executing. WSL enforcement does not close physical acceptance.

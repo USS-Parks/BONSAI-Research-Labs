@@ -19,3 +19,7 @@ evidence/verification/bx-02/*.txt -text -diff
 # Preserve BX-03 captured bytes after generic text patterns.
 evidence/verification/artifacts/BX-03-*.txt -text -diff
 evidence/verification/bx-03/*.txt -text -diff
+
+# Preserve BX-04 captured output bytes after generic patterns.
+evidence/verification/artifacts/BX-04-*.txt -text -diff
+evidence/verification/bx-04/*.txt -text -diff

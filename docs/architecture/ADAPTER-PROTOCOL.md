@@ -43,3 +43,8 @@ The protocol grants neither observer files nor replay history. `Feedback` is a m
 This protocol is not a hostile-native-code sandbox. Process containment, filesystem launch policy, and observer isolation are implemented and tested by BR-02 and BR-06. Invalid ordering, sender, sequence, version, capability fingerprint, capability use, identity, digest, deadline, or post-stop traffic yields a stable bounded rejection and no state advance.
 
 `fixtures/adapter-protocol/v1/expected-outcomes.json` catalogs the intended BR-01 case names. Rust tests in `crates/bonsai-contracts/tests/adapter_protocol.rs` assert the live lifecycle and rejection classes. Those tests do not load the JSON.
+
+
+## BX-04 additive environment payloads
+
+The outer epoch 1 minor 0 state machine remains unchanged. New CausalAction, CausalObservation, and CausalTransition messages are typed payloads inside existing Step and StepResult bytes. An environment declares bonsai.environment.observe/v1 and bonsai.environment.action/v1; legacy adapters need not accept either type. Reset still returns Ack, followed by an explicit observation Step. See [scenario protocol](./SCENARIO-PROTOCOL.md) for request indices, seed/termination semantics, public-only projection, and compatibility evidence.

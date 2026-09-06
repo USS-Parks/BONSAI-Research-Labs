@@ -140,3 +140,26 @@ message ProtocolError {
   string reason_code = 1;
   string bounded_detail = 2;
 }
+
+// Additive environment payload types carried inside existing Step/StepResult.
+// The outer protocol epoch/minor and all historical messages stay unchanged.
+message CausalAction {
+  uint64 step = 1;
+  uint32 action = 2;
+}
+
+message CausalObservation {
+  string stream_id = 1;
+  uint64 step = 2;
+  repeated uint64 observation = 3;
+  repeated uint32 allowed_actions = 4;
+}
+
+message CausalTransition {
+  uint64 step = 1;
+  uint32 action = 2;
+  sint64 reward = 3;
+  CausalObservation next = 4;
+  bool terminated = 5;
+  bool truncated = 6;
+}

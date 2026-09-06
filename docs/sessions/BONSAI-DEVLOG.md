@@ -1617,3 +1617,25 @@ This append-only log records executed PSPR prompts. Corrections are added as new
 - Commit SHA: pending; exact main/hosted closeout will be recorded by the next prompt.
 - Storage: canonical checkout and existing Windows/Linux caches reused; historical M0 tree retained pending explicit deletion authority. No additional worktree, environment, or unbounded fixture was created.
 - Next: BX-04 only after BX-03 main publication and hosted verification.
+
+### BX-03 final closeout (recorded by BX-04)
+
+- Verified main/origin/main: `1cd14055d32bf448fb844fba73034442093890c0`; hosted [run 34000956057](https://github.com/USS-Parks/BONSAI-Research-Labs/actions/runs/34000956057) fully successful, including all four platforms and semantic equivalence.
+- Ten published output hashes and eleven source-manifest hashes matched Git blobs. BX-03 complete; BX-04 begins.
+- Storage refresh: canonical target + .venv at least 16.11 GiB (nine unreadable directories); included Linux target 5.80 GiB fully measured. Historical M0 target + .venv approximately 1.36 GiB, clean with zero unique commits relative to main. Both trees retained; no new worktree or deletion.
+
+## 2026-09-05 — BX-04 — Stepwise causal environment boundary
+
+- Status: local Windows/Linux gates PASS; focused main publication and hosted verification pending.
+- Dependency: BX-03 closed at 1cd14055d32bf448fb844fba73034442093890c0 with hosted run 34000956057 fully successful.
+- Reuse: ScenarioSpec, xorshift seeding, bounded transport framing, existing AdapterFrame lifecycle and Rust protocol machine. The outer protocol remains epoch 1 minor 0; three additive typed payload messages are declared through existing input-type capabilities.
+- Files changed: online ScenarioSession and public/diagnostic types; executable Python environment and typed wire helper; generated .py/.pyi bindings; generator verification; focused Python/Rust tests; golden spec/public/diagnostic/wire fixtures; architecture contracts and existing ledgers/gates.
+- Behavior: each received action changes the next ring state. Goal reach terminates; horizon exhaustion truncates. Invalid actions/order do not advance the scenario; finished episodes reject more actions. Reset seeds and observation queries are deterministic. No full action schedule is accepted by this online API.
+- Exposure proof: public wire types have no diagnostic or future-schedule fields. The adapter constructs fresh public messages; live alternate actions produce distinct observations/outcomes. Private diagnostic golden traces are separate. This does not claim hostile-code isolation.
+- Compatibility: a captured 26-frame Python exchange is accepted and re-encoded byte-for-byte by the unchanged Rust AdapterProtocolMachine. Existing semantic_stream golden hashes remain unchanged. Python generated bindings match the Cargo-locked vendored compiler byte-for-byte; only generated code is excluded from handwritten lint/type checks.
+- Verification: Windows 212 Rust tests, 57 Python tests, strict lint/schema/governance; final Python rerun verifies identity-bound fatal responses. Linux 214 Rust tests, strict Clippy/schema, and all 57 Python tests pass on the final source. Source identity is in the BX-04 implementation manifest.
+- Development corrections: import/type checks and the generated descriptor assertion were corrected without suppressions. Fatal replies now retain sequence/capability identity; malformed framing returns bounded ProtocolError. All 20 added acceptance cases pass.
+- Environment/storage: existing Windows .venv retained. WSL system Python 3.14.4 lacked Protobuf, so the same uv.lock dependencies were installed into reusable target/linux-venv (approximately 0.05 GiB, 6051 measured files). This is required for native Linux adapters; no new worktree or global Python modification. Installation copied files across the WSL/NTFS boundary and completed successfully.
+- Boundary: executable causal diagnostic only. A governed experiment, independent C0/C1 reconstruction, physical acceptance, and later scientific claims remain subsequent prompts.
+- Commit SHA: pending focused commit; exact main/hosted closeout will be recorded by the next prompt.
+- Next: BX-05 after main publication and hosted verification.

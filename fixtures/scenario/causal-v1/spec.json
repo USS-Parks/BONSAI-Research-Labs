@@ -1,0 +1,10 @@
+{
+  "scenario_id": "causal-ring-diagnostic",
+  "version": "1.0",
+  "seed": 42,
+  "horizon": 8,
+  "action_count": 3,
+  "observation_width": 4,
+  "big_world_size": 17,
+  "change_points": []
+}
