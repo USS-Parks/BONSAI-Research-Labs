@@ -1,0 +1,14 @@
+{
+  "artifact_index_sha256": "3fa8148571b09077473ba2db33055e86cd78084f92d8ac765a0dcf97ac5f3680",
+  "details": {
+    "environment_steps": 20,
+    "finished_episodes": 9,
+    "reward_sum": 9,
+    "work_items": 80
+  },
+  "events": 380,
+  "execution_ns": 25259374086,
+  "observer_bytes_before_status": 253871,
+  "report_generation_outside_action_deadline": true,
+  "status": "COMPLETE"
+}

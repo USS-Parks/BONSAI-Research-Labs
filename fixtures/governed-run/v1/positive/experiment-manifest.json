@@ -1,0 +1,129 @@
+{
+  "schema_version": "1.0",
+  "manifest_id": "1eef03b6-859d-4c99-8265-d128efea500e",
+  "run_id": "261b1c3d-6ecc-4e52-a1c1-00b5be57ff0f",
+  "source": {
+    "repository": "https://github.com/USS-Parks/BONSAI-Research-Labs",
+    "revision": "fb8ebfb0c5d903e0922726f8882ec5f58303abbc",
+    "dirty": true,
+    "dirty_patch_sha256": "ca5ce9391bb5aad822b4b81141f8f24f58cf1edc40a6d2a77699df03a9a457a3"
+  },
+  "adapter": {
+    "component_id": "bonsai-primitive-tabular",
+    "version": "1.0.0",
+    "entrypoint": [
+      "/mnt/c/Users/17076/Documents/Reinforcement Learning Project/target/linux-venv/bin/python",
+      "-I",
+      "-B",
+      "/mnt/c/Users/17076/Documents/Reinforcement Learning Project/scripts/adapter_entrypoint.py",
+      "primitive_adapter"
+    ],
+    "config": {
+      "action_count": 3
+    }
+  },
+  "environment": {
+    "component_id": "bonsai-causal-environment",
+    "version": "1.0.0",
+    "entrypoint": [
+      "/mnt/c/Users/17076/Documents/Reinforcement Learning Project/target/linux-venv/bin/python",
+      "-I",
+      "-B",
+      "/mnt/c/Users/17076/Documents/Reinforcement Learning Project/scripts/adapter_entrypoint.py",
+      "environment_adapter"
+    ],
+    "config": {
+      "scenario_id": "causal-ring-diagnostic",
+      "version": "1.0",
+      "seed": 42,
+      "horizon": 8,
+      "action_count": 3,
+      "observation_width": 4,
+      "big_world_size": 17,
+      "change_points": []
+    }
+  },
+  "seeds": [
+    {
+      "seed_id": "environment",
+      "value": "42"
+    }
+  ],
+  "track": {
+    "declared_track": "A",
+    "batch_size": 1,
+    "replay": {
+      "enabled": false,
+      "source": "none",
+      "capacity_transitions": 0
+    },
+    "offline_updates": false,
+    "observer_data_access": false,
+    "privileged_inputs": false,
+    "human_labels": false
+  },
+  "resource_profile": {
+    "profile_id": "custom",
+    "step_limit": 20,
+    "wall_time_limit_ns": 120000000000,
+    "agent_rss_limit_bytes": 1073741824,
+    "agent_storage_limit_bytes": 67108864,
+    "observer_output_limit_bytes": 536870912,
+    "per_step_cpu_time_limit_ns": 10000000,
+    "action_deadline_ns": 50000000,
+    "energy_tier": "E0",
+    "energy_budget_uj": null
+  },
+  "metrics": [
+    {
+      "metric_id": "behavior.reward",
+      "version": "1.0",
+      "required": true,
+      "parameters": {}
+    }
+  ],
+  "scenario": {
+    "scenario_id": "causal-ring-diagnostic",
+    "version": "1.0",
+    "family": "causal-ring",
+    "variant": "smoke",
+    "reward_unit_id": "scenario_reward",
+    "config": {
+      "scenario_id": "causal-ring-diagnostic",
+      "version": "1.0",
+      "seed": 42,
+      "horizon": 8,
+      "action_count": 3,
+      "observation_width": 4,
+      "big_world_size": 17,
+      "change_points": []
+    }
+  },
+  "expected_counters": [
+    {
+      "counter_id": "process_cpu_time",
+      "unit": "ns",
+      "acceptable_basis": "measured",
+      "required_for_run": true
+    },
+    {
+      "counter_id": "agent_rss",
+      "unit": "B",
+      "acceptable_basis": "measured",
+      "required_for_run": true
+    },
+    {
+      "counter_id": "environment_steps",
+      "unit": "1",
+      "acceptable_basis": "measured",
+      "required_for_run": true
+    }
+  ],
+  "publication_eligibility": {
+    "status": "ineligible",
+    "reason_codes": [
+      "DIRTY_SOURCE",
+      "VIRTUALIZED_DIAGNOSTIC"
+    ]
+  }
+}

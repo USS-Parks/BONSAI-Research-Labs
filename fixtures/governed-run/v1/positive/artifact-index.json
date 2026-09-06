@@ -1,0 +1,101 @@
+{
+  "excluded": [
+    "artifact-index.json",
+    "run-status.json",
+    "run-status.pending",
+    "run-receipt.json"
+  ],
+  "files": [
+    {
+      "bytes": 18,
+      "path": "agent-configuration.json",
+      "sha256": "9b54619f007e325b9d72e38295491bb0a673d5828a8f37a91625b2b8e9377189"
+    },
+    {
+      "bytes": 1618,
+      "path": "bundle-manifest.json",
+      "sha256": "8f05d026f06f7c5b806274f6a005e85349336855f6f06705764518eab7e65e5c"
+    },
+    {
+      "bytes": 869,
+      "path": "component-identity.json",
+      "sha256": "2c3976beb5168d2fd03062715da3f91162d900aaa5df3882c00cce50fea9f8f9"
+    },
+    {
+      "bytes": 156,
+      "path": "environment-configuration.json",
+      "sha256": "72d0a4299eb1e39f0b8868a04aac384533d1e6b435dd1a0f619f752282735641"
+    },
+    {
+      "bytes": 3338,
+      "path": "experiment-manifest.json",
+      "sha256": "37e21cc8569d72a72ef633ff1cf7c24208607e67848c390b1173e7a2c8c19d68"
+    },
+    {
+      "bytes": 2,
+      "path": "failures.json",
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "bytes": 210,
+      "path": "lifecycle/lifecycle.jsonl",
+      "sha256": "534d142de205dd202e1b2a4952bc2bbc00fb09fe8cee54d16a588f1222b320e1"
+    },
+    {
+      "bytes": 1501,
+      "path": "metric-estimate.json",
+      "sha256": "211308e72dc6e8576fe322f83ee821b87a8968b56ce7486fb86602f7c4d34662"
+    },
+    {
+      "bytes": 664,
+      "path": "metric-uncertainty.json",
+      "sha256": "9e70d290adb0bc3365d9a16849f28912be79333e913d5f8a4a8565d745009016"
+    },
+    {
+      "bytes": 2133,
+      "path": "platform-inventory.json",
+      "sha256": "d53d10b7c0e5c735e3aaa5365c70817c2c07237bffe83db47541839efc9e06d7"
+    },
+    {
+      "bytes": 19946,
+      "path": "reports/index.html",
+      "sha256": "337af3f6a3bda4c38452cd9f6e374b3346ceac78deead79cd923631e11b81c03"
+    },
+    {
+      "bytes": 7626,
+      "path": "reports/report.json",
+      "sha256": "1ec342c1819af87b30c19727ad209dca6fcdebc8d528d5f7d6536761bc6aef24"
+    },
+    {
+      "bytes": 872,
+      "path": "resolved-execution-policy.json",
+      "sha256": "4e34a7edc06823794d54cb21da17d422e01c05085ef844a9bd7e0a7e12273072"
+    },
+    {
+      "bytes": 5637,
+      "path": "resource-policy.json",
+      "sha256": "70fb71d9456f3e641bc604af192af738bd278ac454b3ff762e6f64af35008c23"
+    },
+    {
+      "bytes": 122,
+      "path": "reward-metric-definition.json",
+      "sha256": "e71fdc56de4c9ecabbb99b29f2208cf5ef4454aef2dd95647119398166ba4a46"
+    },
+    {
+      "bytes": 21609,
+      "path": "source-identity.json",
+      "sha256": "e36f4741279780da725d325b089375b3d812410cde5bf8271c28bcd1beeb9a9b"
+    },
+    {
+      "bytes": 184050,
+      "path": "telemetry/segment-00000000000000000000.bseg",
+      "sha256": "5f99e24eb067e8a2082e7b344fc586fd4201d1abfdb0661581c6b3699d53b864"
+    },
+    {
+      "bytes": 403,
+      "path": "track-declaration.json",
+      "sha256": "b13f92795137bcc59a64fee57c19e7ecaf031c2db60ed5370579c607d0a7cd4b"
+    }
+  ],
+  "format": "bonsai.run-artifact-index/v1"
+}

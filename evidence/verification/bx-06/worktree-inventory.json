@@ -1,0 +1,51 @@
+{
+  "measured_at_utc": "2026-09-06T03:16:42.755Z",
+  "scope": "BX-06 local gates, before publication",
+  "remote_main": "fb8ebfb0c5d903e0922726f8882ec5f58303abbc",
+  "available_workspace_bytes": 331809906688,
+  "measurements": [
+    {
+      "bytes": 26936725035,
+      "files": 88509,
+      "unreadable": 25
+    },
+    {
+      "bytes": 65616320,
+      "files": 6229,
+      "unreadable": 0
+    },
+    {
+      "bytes": 1397672410,
+      "files": 7492,
+      "unreadable": 0
+    },
+    {
+      "bytes": 65610615,
+      "files": 6229,
+      "unreadable": 0
+    }
+  ],
+  "worktrees": [
+    {
+      "path": "C:/Users/17076/Documents/Reinforcement Learning Project",
+      "branch": "main",
+      "head": "fb8ebfb0c5d903e0922726f8882ec5f58303abbc",
+      "purpose": "canonical BX-06 through BX-40 STS lane",
+      "dirty": true,
+      "unpublished_commits": 0,
+      "generated_bytes_lower_bound": 27002341355,
+      "unreadable_entries": 25
+    },
+    {
+      "path": "C:/tmp/bonsai-m0-sts",
+      "branch": "codex/m0-governed-foundation",
+      "head": "eaa0e52ec5a6dc78ab1a360f2a11c2201c7a5e9d",
+      "purpose": "historical M0 checkout; no active task",
+      "dirty": false,
+      "unpublished_commits_relative_to_main": 0,
+      "generated_bytes_lower_bound": 1463283025,
+      "unreadable_entries": 0,
+      "retirement_blocker": "explicit removal authorization not yet given"
+    }
+  ]
+}

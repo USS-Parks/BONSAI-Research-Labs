@@ -1,0 +1,16 @@
+{
+  "agent": {
+    "component_id": "bonsai-primitive-tabular",
+    "entrypoint_files": {
+      "/mnt/c/Users/17076/Documents/Reinforcement Learning Project/scripts/adapter_entrypoint.py": "36eff0d0d4ebe4aaaa66602be2d28f1ecdc08b08ddafa1c1d91513d7dd4fe670",
+      "/mnt/c/Users/17076/Documents/Reinforcement Learning Project/target/linux-venv/bin/python": "b8d8288faefdd300201f43fcf00f6f539a27218eeed3a3dff5ab10b9c4c99700"
+    }
+  },
+  "environment": {
+    "component_id": "bonsai-causal-environment",
+    "entrypoint_files": {
+      "/mnt/c/Users/17076/Documents/Reinforcement Learning Project/scripts/adapter_entrypoint.py": "36eff0d0d4ebe4aaaa66602be2d28f1ecdc08b08ddafa1c1d91513d7dd4fe670",
+      "/mnt/c/Users/17076/Documents/Reinforcement Learning Project/target/linux-venv/bin/python": "b8d8288faefdd300201f43fcf00f6f539a27218eeed3a3dff5ab10b9c4c99700"
+    }
+  }
+}

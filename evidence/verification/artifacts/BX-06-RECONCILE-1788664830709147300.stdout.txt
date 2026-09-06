@@ -1,0 +1,17 @@
+libprotoc 31.1
+{
+  "run_id": "ebdecba2-4fae-4f22-8d6e-89d4b7615905",
+  "profile": "S",
+  "events": 35822,
+  "actions": 2000,
+  "rewards": 2000,
+  "work_events": 8000,
+  "resource_samples": 2000,
+  "reward_sum": 957,
+  "maximum_action_latency_ns": 4607350,
+  "maximum_step_cpu_ns": 2700000,
+  "observer_bytes": 17596407,
+  "indexed_artifacts": 18,
+  "verdict": "EXECUTION_RECONCILED",
+  "C0_C1": "not_adjudicated"
+}

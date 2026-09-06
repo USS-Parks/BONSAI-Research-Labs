@@ -1,0 +1,23 @@
+{
+  "confidence_level": null,
+  "estimate_id": "261b1c3d-6ecc-4e52-a1c1-00b5be57ff0f",
+  "inputs": [
+    {
+      "evidence_id": "event-segment-0",
+      "role": "single run observations",
+      "sha256": "5f99e24eb067e8a2082e7b344fc586fd4201d1abfdb0661581c6b3699d53b864"
+    }
+  ],
+  "method": {
+    "method_id": "descriptive_single_run",
+    "method_version": "1.0",
+    "parameters_sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+  },
+  "result": {
+    "kind": "unavailable",
+    "reason_code": "single_run_no_inference"
+  },
+  "sample_count": 1,
+  "schema_version": "1.0",
+  "uncertainty_id": "1eef03b6-859d-4c99-8265-d128efea500e"
+}

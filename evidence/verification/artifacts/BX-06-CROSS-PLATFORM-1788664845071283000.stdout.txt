@@ -1,0 +1,23 @@
+
+C:\Users\17076\Documents\Reinforcement Learning Project>target\debug\bonsai-xtask.exe verify-run --root target/bx06-live-1788664706206224389/run/observer --receipt-sha256 c8856439a0ace52a3c29307f67dee0b4ae5902cdb1e3ce50b2a3ec398ab15a32 
+{"format":"bonsai.governed-run-verdict/v1","facts":{"run_id":"ebdecba2-4fae-4f22-8d6e-89d4b7615905","receipt_sha256":"c8856439a0ace52a3c29307f67dee0b4ae5902cdb1e3ce50b2a3ec398ab15a32","events":35822,"environment_steps":2000,"finished_episodes":966,"reward_sum":957,"work_items":8000,"observer_bytes":17596407,"derived_track":"A"},"claims":{"schema":"bonsai.c0-c1-table/v1","rows":[{"case_id":"ebdecba2-4fae-4f22-8d6e-89d4b7615905","class":"compliant","c0":"pass","c1":"pass","detail_code":null}]},"limitations":["C0/C1 apply only to this recorded reference run; C2-C5 are not adjudicated.","E0 supplies no energy evidence. Physical-host acceptance is not established.","Receipt trust requires the operator digest retained outside the bundle.","Reference launch and protocol evidence do not establish hostile-code or hostile-host isolation.","Publication and multi-seed research eligibility require separate gates."]}
+
+C:\Users\17076\Documents\Reinforcement Learning Project>if errorlevel 1 exit /b 1 
+
+C:\Users\17076\Documents\Reinforcement Learning Project>uv run --frozen python evidence/verification/bx-06/negative_corpus.py target/bx06-live-1788664647209476649/run/observer 
+{"case": "positive", "expected": null, "exit_code": 0, "receipt_sha256": "cfd4baf5510a38da2224598b37d6bdaeaa7cd0c70d7118eae2f7fd00b5d799e7", "repinned_fixture": false, "pass": true}
+{"case": "modified_file", "expected": "RUN_FILE_HASH_MISMATCH", "exit_code": 1, "receipt_sha256": "cfd4baf5510a38da2224598b37d6bdaeaa7cd0c70d7118eae2f7fd00b5d799e7", "repinned_fixture": false, "pass": true}
+{"case": "modified_receipt", "expected": "RUN_RECEIPT_HASH_MISMATCH", "exit_code": 1, "receipt_sha256": "cfd4baf5510a38da2224598b37d6bdaeaa7cd0c70d7118eae2f7fd00b5d799e7", "repinned_fixture": false, "pass": true}
+{"case": "missing_controller", "expected": "RUN_CONTROLLER_MISSING_OR_CHANGED", "exit_code": 1, "receipt_sha256": "524ba64c6726e8a5ff164999f95d4e47ffc808dc3879cd40370fe2fac05cbf71", "repinned_fixture": true, "pass": true}
+{"case": "history_exposure", "expected": "RUN_INFORMATION_BOUNDARY_VIOLATION", "exit_code": 1, "receipt_sha256": "146d1b0420164e6dab196c8b57d6843709a35c61e5d48ad01a8caa2ccb70713a", "repinned_fixture": true, "pass": true}
+{"case": "policy_substitution", "expected": "RUN_POLICY_LIMIT_SUBSTITUTED", "exit_code": 1, "receipt_sha256": "2633c155c35ee54ea05b8c3bccfa4ca854c3cf4399e5d8832609d31fc99ae0ab", "repinned_fixture": true, "pass": true}
+{"case": "event_gap", "expected": "RUN_EVENT_ORDER_INVALID", "exit_code": 1, "receipt_sha256": "b9728484dc5bc157fafc081b5416dc4ee13a3366610b22aed7a8bc7415f7600c", "repinned_fixture": true, "pass": true}
+{"case": "cpu_regression", "expected": "RUN_CPU_COUNTER_INVALID", "exit_code": 1, "receipt_sha256": "a61cbcab979d55e18b2fc9c45b06e3033a2848896ff9cc34c090b7c80125d42b", "repinned_fixture": true, "pass": true}
+{"case": "replay_accounting", "expected": "RUN_ACCOUNTING_INCONSISTENT", "exit_code": 1, "receipt_sha256": "95e4fa1cdfa9ed5c629c16e6a52be64b6f892a26fc983beb692d99408ab45ad2", "repinned_fixture": true, "pass": true}
+{"case": "unknown_track", "expected": "RUN_SCHEMA_INVALID", "exit_code": 1, "receipt_sha256": "6407805f543c164053f902a0a0d0412a9e5ec7141bfc444e6aad80f5a0b20ad3", "repinned_fixture": true, "pass": true}
+{"case": "unknown_reference", "expected": "RUN_REFERENCE_SOURCE_UNSUPPORTED", "exit_code": 1, "receipt_sha256": "d9e1d63c77187933d44dec097232f9efaa2f17a789e41244b99dd17c8fca2bc0", "repinned_fixture": true, "pass": true}
+{"case": "metric_substitution", "expected": "RUN_METRIC_RECONSTRUCTION_MISMATCH", "exit_code": 1, "receipt_sha256": "ba36b18d63d9435133969dbe73a891ec42f45379240c93de0c81ce630a59c59d", "repinned_fixture": true, "pass": true}
+{"case": "incomplete_status", "expected": "RUN_NOT_COMPLETE", "exit_code": 1, "receipt_sha256": "0654aeda987c5b20cce01951e2b4e6339a9f39aaf677040dba5817ea0dc67566", "repinned_fixture": true, "pass": true}
+retained corpus: C:\Users\17076\Documents\Reinforcement Learning Project\target\bx06-negative-1788664849819060400
+
+C:\Users\17076\Documents\Reinforcement Learning Project>if errorlevel 1 exit /b 1 

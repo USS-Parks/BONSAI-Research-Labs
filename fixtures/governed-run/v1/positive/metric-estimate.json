@@ -1,0 +1,56 @@
+{
+  "estimate_id": "261b1c3d-6ecc-4e52-a1c1-00b5be57ff0f",
+  "estimator": {
+    "estimator_id": "exact_integer_sum",
+    "estimator_version": "1.0",
+    "parameters_sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+  },
+  "inputs": [
+    {
+      "evidence_id": "event-segment-0",
+      "evidence_type": "event",
+      "role": "accepted reward events",
+      "sha256": "5f99e24eb067e8a2082e7b344fc586fd4201d1abfdb0661581c6b3699d53b864"
+    }
+  ],
+  "metric_spec": {
+    "canonical_sha256": "872ea12bc85d1f9a936fdfc0697d173e8c1239faef789d8f40382650342a6385",
+    "metric_id": "behavior.reward",
+    "metric_version": "1.0"
+  },
+  "missingness": {
+    "coverage_ratio": 1.0,
+    "disposition": "complete",
+    "invalid_count": 0,
+    "missing_count": 0,
+    "reason_codes": []
+  },
+  "population": {
+    "eligible_count": 20,
+    "observed_count": 20,
+    "population_id": "accepted_reward_events",
+    "selection_sha256": "5f99e24eb067e8a2082e7b344fc586fd4201d1abfdb0661581c6b3699d53b864"
+  },
+  "precision": {
+    "absolute_tolerance": 0,
+    "relative_tolerance": 0,
+    "representation": "int64",
+    "significant_bits": 64
+  },
+  "result": {
+    "availability": "measured",
+    "kind": "scalar",
+    "unit": "scenario_reward",
+    "value": 9
+  },
+  "run_id": "261b1c3d-6ecc-4e52-a1c1-00b5be57ff0f",
+  "schema_version": "1.0",
+  "uncertainty_ids": [
+    "1eef03b6-859d-4c99-8265-d128efea500e"
+  ],
+  "window": {
+    "basis": "step_count",
+    "end": 20,
+    "start": 0
+  }
+}

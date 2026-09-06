@@ -159,6 +159,24 @@ fn run_started(
             },
         )
         .map_err(|e| e.to_string())?;
+    complete_bundle_status(inputs, layout, began, &summary)
+}
+
+fn complete_bundle_status(
+    inputs: &Inputs,
+    layout: &IsolatedRunLayout,
+    began: Instant,
+    summary: &RunSummary<'_>,
+) -> Result<i32, String> {
+    let profile = &inputs.manifest["resource_profile"];
+    let maximum = number(profile, "observer_output_limit_bytes")?;
+    let RunSummary {
+        complete,
+        details,
+        events,
+        execution_ns,
+        ..
+    } = *summary;
     let artifact_index_sha256 = metadata::artifact_index(layout)?;
     let observer_bytes = quota::final_check(layout.observer_root(), maximum)?;
     if complete && began.elapsed().as_nanos() >= u128::from(number(profile, "wall_time_limit_ns")?)
@@ -172,9 +190,15 @@ fn run_started(
             "execution_ns":execution_ns,"observer_bytes_before_status":observer_bytes,"artifact_index_sha256":artifact_index_sha256,"report_generation_outside_action_deadline":true,
         }),
     )?;
+    let receipt_sha256 = metadata::receipt(inputs, layout)?;
+    quota::final_check(layout.observer_root(), maximum)?;
+    if complete && began.elapsed().as_nanos() >= u128::from(number(profile, "wall_time_limit_ns")?)
+    {
+        return Err("RUN_WALL_LIMIT_EXCEEDED".into());
+    }
     println!(
         "{}",
-        json!({"status":if complete {"COMPLETE"} else {"INCOMPLETE"},"output":layout.root(),"events":events})
+        json!({"status":if complete {"COMPLETE"} else {"INCOMPLETE"},"output":layout.root(),"events":events, "receipt_sha256":receipt_sha256})
     );
     Ok(if complete { 0 } else { 2 })
 }
@@ -453,7 +477,11 @@ fn execute(
         &agent_authority,
         &environment_authority,
         || {
-            log.append("run.resource",&json!({"phase":"controls_before_launch","agent":agent_authority.controls().map_err(|e|e.to_string())?,
+            log.append("run.resource",&json!({"phase":"controls_before_launch",
+            "policy_sha256":identity::file_hash(&layout.observer_root().join("resource-policy.json"))?,
+            "resolved_policy_sha256":identity::file_hash(&layout.observer_root().join("resolved-execution-policy.json"))?,
+            "inventory_sha256":identity::file_hash(&layout.observer_root().join("platform-inventory.json"))?,
+            "agent":agent_authority.controls().map_err(|e|e.to_string())?,
             "environment":environment_authority.controls().map_err(|e|e.to_string())?}))?;
             let (launched, agent_config) = launch_agent(inputs, layout, &agent_authority, log)?;
             agent = Some(launched);
@@ -1044,7 +1072,7 @@ fn validate_resources(
     log.append(
             "run.resource",
             &json!({"phase":"step","total_step":total,"cpu_time_ns":cpu_ns,
-            "usage":after,"agent_rss_bytes":rss_bytes,"agent_storage_bytes":bytes,"agent_storage_objects":objects.len()}),
+            "usage":after,"cpu_usage_before_usec":before.cpu_usage_usec,"agent_rss_bytes":rss_bytes,"agent_storage_bytes":bytes,"agent_storage_objects":objects.len()}),
         )?;
     if rss_bytes > number(profile, "agent_rss_limit_bytes")?
         || cpu_ns > number(profile, "per_step_cpu_time_limit_ns")?

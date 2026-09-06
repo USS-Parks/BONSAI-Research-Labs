@@ -1702,3 +1702,71 @@ Verification: 212 Windows Rust tests and 214 Linux Rust tests passed; all 59 Pyt
 Retained archive: [final-live.zip](../../evidence/verification/bx-05/final-live.zip), 5,638,039 bytes, SHA-256 `315d6c94069b1b23fd7ebd2e524ad5d00053a3dfc9c638ef100f3597ad8e4585`. ZIP integrity and all manifest-listed payload hashes were verified across 454 archived files; 177 exact implementation source files were checked against the final S source identity. The operator executable hash is retained without duplicating its large binary. [Operator guide](../operator/governed-experiment-runner.md) and the BX-05 verification scripts describe reproduction. Bundle structural/hash/resource/metric checks pass; publication adjudication remains INDETERMINATE while track facts are incomplete, and failure bundles retain their fatal failures.
 
 Worktree/storage closeout: canonical main remains the only active lane, with at least 20.28 GiB of target/.venv data (23 unreadable entries, so a lower bound), retained for active STS builds and diagnostics. Approximately 316.03 GiB was available. Historical `C:/tmp/bonsai-m0-sts` remains clean at `eaa0e52ec5a6dc78ab1a360f2a11c2201c7a5e9d`, with zero commits unique against freshly fetched main and 1.36 GiB of generated data. It has no active task and remains cleanup debt pending explicit removal authorization. No worktree or cache was created as a duplicate lane or removed.
+
+### BX-05 publication closeout / BX-06 start
+
+Published main `fb8ebfb0c5d903e0922726f8882ec5f58303abbc` matches origin/main; checkout was clean after publication. Hosted [run 34006775025](https://github.com/USS-Parks/BONSAI-Research-Labs/actions/runs/34006775025) passed all four platform jobs and M1 semantic equivalence. Post-commit verification checked 67 files, 16 captured outputs, and the exact archive SHA with zero byte mismatches. BX-05 is complete. BX-06 is now executing under the existing full STS authorization; C0/C1 and derived track acceptance remain its gate.
+
+## BX-06 — local acceptance passed; hosted publication pending
+
+Date: 2026-09-06 UTC. Authorization: full BX-01–BX-40 STS. Source baseline:
+`fb8ebfb0c5d903e0922726f8882ec5f58303abbc`. BX-06 remains executing until its
+focused main commit and required hosted CI pass. BX-07 has not started.
+
+Added `cargo xtask verify-run` and immutable verified facts at the existing bundle
+validation seam. The verifier requires the operator's separately retained receipt
+digest, snapshots all indexed files with bounded reads, reuses segment checksums
+and both adapter protocol machines, and reconstructs the complete causal
+observation/action/reward/feedback sequence. It checks recorded launch access,
+pinned reference source, inventory/lock hashes, policy/controller identity, raw
+CPU differences, RSS/storage/work budgets, cleanup, lifecycle, and reward/report
+provenance before invoking the existing pure C0/C1 rules. Unknown or ambiguous
+evidence produces no positive verdict. The caller's completeness/compliance flags
+are not verdict inputs. The runner now records raw CPU baselines and control
+hashes and syncs the artifact index and final receipt.
+
+Fresh smoke batch: `target/bx06-live-1788664647209476649`, 20 steps and 380 events;
+receipt `cfd4baf5510a38da2224598b37d6bdaeaa7cd0c70d7118eae2f7fd00b5d799e7`.
+Fresh S batch: `target/bx06-live-1788664706206224389`, run
+`ebdecba2-4fae-4f22-8d6e-89d4b7615905`, receipt
+`c8856439a0ace52a3c29307f67dee0b4ae5902cdb1e3ce50b2a3ec398ab15a32`.
+The S run completed in 66.496801962 seconds with 2,000 steps, 966 completed
+episodes, 35,822 events, reward sum 957, 8,000 measured work items, and 17,596,407
+observer bytes. Separate Linux and native Windows verifier processes returned
+C0/C1 pass and derived Track A. The independent Python auditor reconciled 2,000
+actions/rewards/resource samples and 8,000 work events; maximum action latency
+4,607,350 ns and maximum per-step CPU 2,700,000 ns remained inside S limits.
+
+The fresh Linux corpus `target/bx06-negative-1788664800431078342` and native
+Windows corpus each passed the positive run and all 12 negatives: modified file,
+replaced receipt, missing controller, forbidden history arguments, substituted
+policy, required-event gap with rebuilt sequence/hashes, CPU regression, replay
+accounting, unknown track, unknown reference source, altered metric, and
+INCOMPLETE status. Controlled repinned fixtures are explicitly distinguished
+from genuine operator attestations. No arbitrary hostile-code/hostile-host
+isolation, energy, physical-host, stronger research, or publication eligibility
+claim is made.
+
+Portable regression coverage preserves a real 20-step fixture under
+`fixtures/governed-run/v1`, including its external operator receipt. Local gates
+passed 223 Rust tests on Windows, 225 on Linux, and 59 Python tests on each, plus
+strict lint, schema, documentation, and governance checks. The initial diagnostic
+smoke at `target/bx06-live-1788663938771986270` completed successfully but its
+first verifier rejected JSON coverage `1.0` compared with integer `1`.
+The numeric comparison was corrected; its unchanged evidence subsequently passed
+native verification and is the portable fixture. Final live records use the
+corrected verifier.
+
+Archive: [final-live.zip](../../evidence/verification/bx-06/final-live.zip),
+6,343,314 bytes, SHA-256
+`b17359fda2cf4605cc09703f80aceb51ec741e6657b0766f791101220ce33181`.
+All 549 entries were re-read and hashed; 185 exact source files match the final
+S-run source identity. The archive retains both real runs and the negative
+corpus, with no operator binary duplication.
+
+Worktree inventory at 03:16:42 UTC: canonical main is the sole active lane and
+retains at least 25.15 GiB of target/.venv state (25 unreadable entries); about
+309.02 GiB was available. Historical `C:/tmp/bonsai-m0-sts` remains clean at
+`eaa0e52ec5a6dc78ab1a360f2a11c2201c7a5e9d`, with zero unique commits against
+fresh main and 1.36 GiB generated data. It has no active task; explicit removal
+authorization remains its retirement blocker. No additional worktree was created.

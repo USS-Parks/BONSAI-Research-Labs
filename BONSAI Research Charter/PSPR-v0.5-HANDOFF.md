@@ -1,7 +1,7 @@
 # PSPR v0.5 Project Handoff
 
 Date: 2026-09-05 (America/Los_Angeles)
-Status: **APPROVED — FULL BX-01–BX-40 STS AUTHORIZED; BX-01–BX-04 VERIFIED; BX-05 EXECUTING**
+Status: **APPROVED — FULL BX-01–BX-40 STS AUTHORIZED; BX-01–BX-05 VERIFIED; BX-06 EXECUTING**
 
 ## Current execution authority — 2026-09-05
 
@@ -71,3 +71,11 @@ BX-05 checkpoint 2026-09-06T01:48:49.662Z: durable INCOMPLETE finalization marke
 All local BX-05 acceptance gates passed: full S in 56.327551905 seconds; all 11 live cases; independent event/resource/failure reconciliation; five preflight negatives; 212 Windows / 214 Linux Rust tests and 59 Python tests on both. The exact source/result archive is `evidence/verification/bx-05/final-live.zip` (SHA-256 `315d6c94069b1b23fd7ebd2e524ad5d00053a3dfc9c638ef100f3597ad8e4585`). See the latest DEVLOG and verification entry for evidence and corrected failed attempts.
 
 Still required: final documentation and staged-byte checks, focused BX-05 commit/push to main, then all required hosted jobs. Do not start BX-06 before publication passes. Keep C0/C1 and physical-host claims unadjudicated. Canonical generated data is at least 20.28 GiB; the inactive clean historical worktree retains 1.36 GiB pending removal authorization. No new worktree was created.
+
+### Current continuation — BX-06
+
+BX-05 closed at `fb8ebfb0c5d903e0922726f8882ec5f58303abbc`; hosted run 34006775025 passed all four platform jobs and M1 semantic equivalence. Source/result archive and byte checks are recorded above. BX-06 is executing at the existing bundle-validator / bonsai-claims seam. Preserve the pure fixture adjudication and add an immutable facts boundary driven by real bundle bytes. No new worktree is needed.
+
+### BX-06 local acceptance checkpoint
+
+Implementation, portable tests, fresh S/smoke verification, twelve negative boundary cases, and exact-source archive passed. Next: final closeout checks, focused BX-06 main publication, and required hosted CI; then BX-07. BX-06 remains executing and M5a remains open pending publication. See the latest DEVLOG and verification entries for immutable receipts and records.

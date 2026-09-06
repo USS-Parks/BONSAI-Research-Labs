@@ -1,0 +1,55 @@
+{
+  "bundle_id": "261b1c3d-6ecc-4e52-a1c1-00b5be57ff0f",
+  "epoch": 1,
+  "files": [
+    {
+      "path": "experiment-manifest.json",
+      "required": true,
+      "role": "experiment_manifest",
+      "sha256": "37e21cc8569d72a72ef633ff1cf7c24208607e67848c390b1173e7a2c8c19d68"
+    },
+    {
+      "path": "track-declaration.json",
+      "required": true,
+      "role": "track_declaration",
+      "sha256": "b13f92795137bcc59a64fee57c19e7ecaf031c2db60ed5370579c607d0a7cd4b"
+    },
+    {
+      "path": "platform-inventory.json",
+      "required": true,
+      "role": "platform_inventory",
+      "sha256": "d53d10b7c0e5c735e3aaa5365c70817c2c07237bffe83db47541839efc9e06d7"
+    },
+    {
+      "path": "resource-policy.json",
+      "required": true,
+      "role": "resource_policy",
+      "sha256": "70fb71d9456f3e641bc604af192af738bd278ac454b3ff762e6f64af35008c23"
+    },
+    {
+      "path": "failures.json",
+      "required": true,
+      "role": "failure_log",
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "path": "metric-estimate.json",
+      "required": true,
+      "role": "metric_estimate",
+      "sha256": "211308e72dc6e8576fe322f83ee821b87a8968b56ce7486fb86602f7c4d34662"
+    },
+    {
+      "path": "telemetry/segment-00000000000000000000.bseg",
+      "required": true,
+      "role": "event_segment",
+      "sha256": "5f99e24eb067e8a2082e7b344fc586fd4201d1abfdb0661581c6b3699d53b864"
+    }
+  ],
+  "format": "bonsai.bundle/v1",
+  "migration": {
+    "registry_id": "bonsai.bundle-migrations/v1",
+    "source_epoch": 1,
+    "status": "current"
+  },
+  "minor": 0
+}

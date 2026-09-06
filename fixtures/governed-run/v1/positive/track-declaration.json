@@ -1,0 +1,15 @@
+{
+  "batch_size": 1,
+  "declared_track": "A",
+  "domain_feature_targets": false,
+  "fixed_external_budgets": true,
+  "human_labels": false,
+  "observer_data_access": false,
+  "offline_updates": false,
+  "privileged_state": false,
+  "replay_capacity_transitions": 0,
+  "runtime_facts_complete": false,
+  "schema_version": "1.0",
+  "transition_access": "single_pass",
+  "update_schedule": "event_driven"
+}

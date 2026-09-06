@@ -195,7 +195,7 @@ Initial drafting state: all prompts were **[ ] NOT STARTED**. Current execution 
 
 **Retained evidence:** Golden causal traces, differential action tests, protocol compatibility fixtures, and exposure checks.
 
-### [~] BX-05 — Compose one end-to-end governed experiment runner
+### [x] BX-05 — Compose one end-to-end governed experiment runner
 
 **Milestone:** M5a. **Depends:** BX-04.\
 **Legacy mapping:** BR runtime; BE-03; BE-15; BV-02–BV-03.\
@@ -209,7 +209,7 @@ Initial drafting state: all prompts were **[ ] NOT STARTED**. Current execution 
 
 **Retained evidence:** One complete S bundle, classified failure bundles, operator command, and full input/source identity.
 
-### [ ] BX-06 — Derive C0/C1 and track eligibility from run evidence
+### [~] BX-06 — Derive C0/C1 and track eligibility from run evidence
 
 **Milestone:** M5a. **Depends:** BX-05.\
 **Legacy mapping:** BV-01; BV-04; BC-05; BR-09.\
@@ -875,3 +875,11 @@ BX-04 closed at corrected main `9c15015a5c6252c5c461f1e13b6be154e48d1c9a`, hoste
 ### BX-05 local acceptance — publication pending
 
 The complete S run and all live failure gates passed, independently reconciled against accepted events and actual kernel/storage facts. Local Windows and WSL2 Linux repository gates passed. The final source/result archive and exact records are linked from the latest DEVLOG/verification entries. BX-05 stays executing until its focused main publication and required hosted CI pass; BX-06 remains not started. These results do not establish C0/C1, physical-host, or energy eligibility.
+
+### BX-05 closeout / BX-06 start — 2026-09-06 UTC
+
+BX-05 closed at main `fb8ebfb0c5d903e0922726f8882ec5f58303abbc`, hosted [run 34006775025](https://github.com/USS-Parks/BONSAI-Research-Labs/actions/runs/34006775025) successful on Windows, Linux, macOS Intel/arm64, and M1 semantic equivalence. All 67 committed files and 16 captured outputs passed byte/hash verification. BX-06 now derives verified facts for the existing pure C0/C1 rules; M5a remains open until its positive/negative boundary gates pass.
+
+### BX-06 local acceptance — publication pending
+
+Fresh Linux and Windows verifier processes reconstructed the real S run as C0/C1 pass and Track A; all 12 negative evidence cases and full local gates passed. The exact-source archive and verification records are linked in the latest DEVLOG and verification entries. BX-06 remains executing until its focused main publication and required hosted CI pass; BX-07 remains not started. M5a closes only after that publication gate.

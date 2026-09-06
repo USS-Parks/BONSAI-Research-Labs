@@ -1,0 +1,225 @@
+{
+  "decision_rules": [
+    {
+      "limit_state": "within_soft",
+      "outcome": "admit",
+      "reason_code": "WITHIN_SOFT_LIMITS"
+    },
+    {
+      "limit_state": "soft_exceeded",
+      "outcome": "defer",
+      "reason_code": "SOFT_LIMIT_DEFER"
+    },
+    {
+      "limit_state": "soft_exceeded",
+      "outcome": "throttle",
+      "reason_code": "SOFT_LIMIT_THROTTLE"
+    },
+    {
+      "limit_state": "hard_exceeded",
+      "outcome": "reject",
+      "reason_code": "HARD_LIMIT_REJECT"
+    },
+    {
+      "limit_state": "basis_unavailable",
+      "outcome": "terminate",
+      "reason_code": "MEASUREMENT_UNAVAILABLE"
+    }
+  ],
+  "limits": [
+    {
+      "basis_requirement": "measured",
+      "counter_id": "work_items",
+      "hard_limit": 3,
+      "limit_id": "acting.work_items",
+      "rolling_window": null,
+      "scope": "per_step",
+      "soft_limit": 3,
+      "unit": "1",
+      "work_class": "acting"
+    },
+    {
+      "basis_requirement": "measured",
+      "counter_id": "work_items",
+      "hard_limit": 1,
+      "limit_id": "learning.work_items",
+      "rolling_window": null,
+      "scope": "per_step",
+      "soft_limit": 1,
+      "unit": "1",
+      "work_class": "learning"
+    },
+    {
+      "basis_requirement": "measured",
+      "counter_id": "unsupported_work_requests",
+      "hard_limit": 1,
+      "limit_id": "feature_generation.unsupported_work_requests",
+      "rolling_window": null,
+      "scope": "lifetime",
+      "soft_limit": 1,
+      "unit": "1",
+      "work_class": "feature_generation"
+    },
+    {
+      "basis_requirement": "measured",
+      "counter_id": "unsupported_work_requests",
+      "hard_limit": 1,
+      "limit_id": "option_learning.unsupported_work_requests",
+      "rolling_window": null,
+      "scope": "lifetime",
+      "soft_limit": 1,
+      "unit": "1",
+      "work_class": "option_learning"
+    },
+    {
+      "basis_requirement": "measured",
+      "counter_id": "unsupported_work_requests",
+      "hard_limit": 1,
+      "limit_id": "model_learning.unsupported_work_requests",
+      "rolling_window": null,
+      "scope": "lifetime",
+      "soft_limit": 1,
+      "unit": "1",
+      "work_class": "model_learning"
+    },
+    {
+      "basis_requirement": "measured",
+      "counter_id": "unsupported_work_requests",
+      "hard_limit": 1,
+      "limit_id": "planning.unsupported_work_requests",
+      "rolling_window": null,
+      "scope": "lifetime",
+      "soft_limit": 1,
+      "unit": "1",
+      "work_class": "planning"
+    },
+    {
+      "basis_requirement": "measured",
+      "counter_id": "unsupported_work_requests",
+      "hard_limit": 1,
+      "limit_id": "curation.unsupported_work_requests",
+      "rolling_window": null,
+      "scope": "lifetime",
+      "soft_limit": 1,
+      "unit": "1",
+      "work_class": "curation"
+    },
+    {
+      "basis_requirement": "measured",
+      "counter_id": "exchange_wall_time",
+      "hard_limit": 1000000000,
+      "limit_id": "environment.exchange_wall_time",
+      "rolling_window": null,
+      "scope": "per_event",
+      "soft_limit": 1000000000,
+      "unit": "ns",
+      "work_class": "environment"
+    },
+    {
+      "basis_requirement": "measured",
+      "counter_id": "observer_output_bytes",
+      "hard_limit": 536870912,
+      "limit_id": "observer.observer_output_bytes",
+      "rolling_window": null,
+      "scope": "lifetime",
+      "soft_limit": 536870912,
+      "unit": "B",
+      "work_class": "observer"
+    },
+    {
+      "basis_requirement": "measured",
+      "counter_id": "cpu_time_ns",
+      "hard_limit": 10000000,
+      "limit_id": "acting.cpu",
+      "rolling_window": null,
+      "scope": "per_step",
+      "soft_limit": 10000000,
+      "unit": "ns",
+      "work_class": "acting"
+    },
+    {
+      "basis_requirement": "measured",
+      "counter_id": "work_items",
+      "hard_limit": 60,
+      "limit_id": "acting.rolling_work",
+      "rolling_window": {
+        "duration_ns": 120000000000
+      },
+      "scope": "rolling_window",
+      "soft_limit": 60,
+      "unit": "1",
+      "work_class": "acting"
+    }
+  ],
+  "policy_id": "1eef03b6-859d-4c99-8265-d128efea500e",
+  "policy_version": "1.0",
+  "resource_profile_id": "custom",
+  "schema_version": "1.0",
+  "work_class_allocations": [
+    {
+      "allocation_weight": 1,
+      "limit_ids": [
+        "acting.work_items",
+        "acting.cpu",
+        "acting.rolling_work"
+      ],
+      "work_class": "acting"
+    },
+    {
+      "allocation_weight": 1,
+      "limit_ids": [
+        "learning.work_items"
+      ],
+      "work_class": "learning"
+    },
+    {
+      "allocation_weight": 1,
+      "limit_ids": [
+        "feature_generation.unsupported_work_requests"
+      ],
+      "work_class": "feature_generation"
+    },
+    {
+      "allocation_weight": 1,
+      "limit_ids": [
+        "option_learning.unsupported_work_requests"
+      ],
+      "work_class": "option_learning"
+    },
+    {
+      "allocation_weight": 1,
+      "limit_ids": [
+        "model_learning.unsupported_work_requests"
+      ],
+      "work_class": "model_learning"
+    },
+    {
+      "allocation_weight": 1,
+      "limit_ids": [
+        "planning.unsupported_work_requests"
+      ],
+      "work_class": "planning"
+    },
+    {
+      "allocation_weight": 1,
+      "limit_ids": [
+        "curation.unsupported_work_requests"
+      ],
+      "work_class": "curation"
+    },
+    {
+      "allocation_weight": 1,
+      "limit_ids": [
+        "environment.exchange_wall_time"
+      ],
+      "work_class": "environment"
+    },
+    {
+      "allocation_weight": 1,
+      "limit_ids": [
+        "observer.observer_output_bytes"
+      ],
+      "work_class": "observer"
+    }
+  ]
+}

@@ -1,0 +1,6 @@
+{
+  "aggregation": "sum",
+  "metric_id": "behavior.reward",
+  "population": "accepted_reward_events",
+  "version": "1.0"
+}

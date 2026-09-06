@@ -266,9 +266,15 @@ pub(super) fn artifact_index(layout: &IsolatedRunLayout) -> Result<String, Strin
     index_directory(root, root, &mut files, 0)?;
     files.sort_by(|a, b| a["path"].as_str().cmp(&b["path"].as_str()));
     let value = json!({"format":"bonsai.run-artifact-index/v1","files":files,
-        "excluded":["artifact-index.json","run-status.json","run-status.pending"]});
+        "excluded":["artifact-index.json","run-status.json","run-status.pending","run-receipt.json"]});
     let path = root.join("artifact-index.json");
     write(&path, &value)?;
+    fs::File::open(&path)
+        .and_then(|file| file.sync_all())
+        .map_err(|e| e.to_string())?;
+    fs::File::open(root)
+        .and_then(|file| file.sync_all())
+        .map_err(|e| e.to_string())?;
     file_hash(&path)
 }
 
@@ -289,6 +295,7 @@ fn index_directory(
                 "artifact-index.json",
                 "run-status.json",
                 "run-status.pending",
+                "run-receipt.json",
             ]
             .iter()
             .any(|name| entry.file_name() == *name)
@@ -312,4 +319,15 @@ fn index_directory(
         }
     }
     Ok(())
+}
+
+/// The caller retains the printed digest outside the mutable result directory.
+pub(super) fn receipt(inputs: &Inputs, layout: &IsolatedRunLayout) -> Result<String, String> {
+    let root = layout.observer_root();
+    let value = json!({"format":"bonsai.run-receipt/v1","run_id":inputs.manifest["run_id"],
+        "index_sha256":file_hash(&root.join("artifact-index.json"))?,
+        "status_sha256":file_hash(&root.join("run-status.json"))?});
+    let path = root.join("run-receipt.json");
+    write(&path, &value)?;
+    file_hash(&path)
 }

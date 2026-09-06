@@ -664,7 +664,7 @@ fn validate_metric_provenance(
     Ok(CheckResult::pass())
 }
 
-fn validate_value_schema(
+pub(crate) fn validate_value_schema(
     value: &Value,
     schema: &Value,
     code: &str,
@@ -802,7 +802,7 @@ fn finalize_report(
     }
 }
 
-fn checked_root(path: &Path) -> Result<PathBuf, BundleValidationError> {
+pub(crate) fn checked_root(path: &Path) -> Result<PathBuf, BundleValidationError> {
     let metadata = fs::symlink_metadata(path)?;
     if metadata.file_type().is_symlink() || !metadata.is_dir() {
         return Err(BundleValidationError::UnsafePath);
@@ -810,7 +810,7 @@ fn checked_root(path: &Path) -> Result<PathBuf, BundleValidationError> {
     Ok(fs::canonicalize(path)?)
 }
 
-fn resolve_path(root: &Path, relative: &Path) -> Result<PathBuf, BundleValidationError> {
+pub(crate) fn resolve_path(root: &Path, relative: &Path) -> Result<PathBuf, BundleValidationError> {
     if relative.is_absolute()
         || relative
             .components()

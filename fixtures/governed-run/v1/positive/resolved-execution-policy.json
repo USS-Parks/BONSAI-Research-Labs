@@ -1,0 +1,30 @@
+{
+  "agent_linux_controls": {
+    "cpu_period_usec": 100000,
+    "cpu_quota_usec": 100000,
+    "memory_max_bytes": 1073741824,
+    "pids_max": 32
+  },
+  "agent_storage": {
+    "maximum_files": 4096,
+    "replay_allowed": false
+  },
+  "decision_coverage": "v1 requires all five outcomes; equal soft/hard limits make soft-only states unreachable",
+  "environment_linux_controls": {
+    "cpu_period_usec": 100000,
+    "cpu_quota_usec": 100000,
+    "memory_max_bytes": 134217728,
+    "pids_max": 32
+  },
+  "format": "bonsai.resolved-execution-policy/v1",
+  "observer_metadata_reserve_bytes": 131072,
+  "policy_id": "1eef03b6-859d-4c99-8265-d128efea500e",
+  "policy_scope": "fixed primitive runner; unsupported work is never dispatched",
+  "unsupported_work_classes": [
+    "feature_generation",
+    "option_learning",
+    "model_learning",
+    "planning",
+    "curation"
+  ]
+}

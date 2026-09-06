@@ -33,3 +33,21 @@ evidence/verification/artifacts/BX-05-*.txt -text -diff
 evidence/verification/bx-05/*.txt -text -diff
 evidence/verification/bx-05/*.sh text eol=lf
 evidence/verification/bx-05/*.py text eol=lf
+
+# BX-06 verifier reference-source identity is byte-exact across hosts.
+scripts/adapter_entrypoint.py text eol=lf
+python/bonsai-reference/src/bonsai_reference/__init__.py text eol=lf
+python/bonsai-reference/src/bonsai_reference/control.py text eol=lf
+python/bonsai-reference/src/bonsai_reference/primitive_adapter.py text eol=lf
+python/bonsai-reference/src/bonsai_reference/environment_adapter.py text eol=lf
+python/bonsai-reference/src/bonsai_reference/adapter_protocol.py text eol=lf
+python/bonsai-reference/src/bonsai_reference/adapter_wire.py text eol=lf
+python/bonsai-reference/src/bonsai_reference/transport.py text eol=lf
+python/bonsai-reference/src/bonsai_reference/scenario.py text eol=lf
+
+# Retained verifier fixtures preserve the operator-attested bytes.
+fixtures/governed-run/v1/positive/** -text -diff
+evidence/verification/artifacts/BX-06-*.txt -text -diff
+evidence/verification/bx-06/*.txt -text -diff
+evidence/verification/bx-06/*.sh text eol=lf
+evidence/verification/bx-06/*.py text eol=lf

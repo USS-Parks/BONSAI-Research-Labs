@@ -188,9 +188,11 @@ version = "0.0.0"
 dependencies = [
  "arrow-array",
  "arrow-schema",
+ "bonsai-claims",
  "bonsai-contracts",
  "jsonschema",
  "parquet",
+ "prost",
  "rusqlite",
  "serde",
  "serde_json",

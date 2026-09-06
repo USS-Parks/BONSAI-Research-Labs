@@ -1,0 +1,270 @@
+{
+  "schema": "bonsai.static-report/v1",
+  "title": "BONSAI governed online experiment",
+  "manifest": {
+    "adapter": {
+      "component_id": "bonsai-primitive-tabular",
+      "config": {
+        "action_count": 3
+      },
+      "entrypoint": [
+        "/mnt/c/Users/17076/Documents/Reinforcement Learning Project/target/linux-venv/bin/python",
+        "-I",
+        "-B",
+        "/mnt/c/Users/17076/Documents/Reinforcement Learning Project/scripts/adapter_entrypoint.py",
+        "primitive_adapter"
+      ],
+      "version": "1.0.0"
+    },
+    "environment": {
+      "component_id": "bonsai-causal-environment",
+      "config": {
+        "action_count": 3,
+        "big_world_size": 17,
+        "change_points": [],
+        "horizon": 8,
+        "observation_width": 4,
+        "scenario_id": "causal-ring-diagnostic",
+        "seed": 42,
+        "version": "1.0"
+      },
+      "entrypoint": [
+        "/mnt/c/Users/17076/Documents/Reinforcement Learning Project/target/linux-venv/bin/python",
+        "-I",
+        "-B",
+        "/mnt/c/Users/17076/Documents/Reinforcement Learning Project/scripts/adapter_entrypoint.py",
+        "environment_adapter"
+      ],
+      "version": "1.0.0"
+    },
+    "expected_counters": [
+      {
+        "acceptable_basis": "measured",
+        "counter_id": "process_cpu_time",
+        "required_for_run": true,
+        "unit": "ns"
+      },
+      {
+        "acceptable_basis": "measured",
+        "counter_id": "agent_rss",
+        "required_for_run": true,
+        "unit": "B"
+      },
+      {
+        "acceptable_basis": "measured",
+        "counter_id": "environment_steps",
+        "required_for_run": true,
+        "unit": "1"
+      }
+    ],
+    "manifest_id": "1eef03b6-859d-4c99-8265-d128efea500e",
+    "metrics": [
+      {
+        "metric_id": "behavior.reward",
+        "parameters": {},
+        "required": true,
+        "version": "1.0"
+      }
+    ],
+    "publication_eligibility": {
+      "reason_codes": [
+        "DIRTY_SOURCE",
+        "VIRTUALIZED_DIAGNOSTIC"
+      ],
+      "status": "ineligible"
+    },
+    "resource_profile": {
+      "action_deadline_ns": 50000000,
+      "agent_rss_limit_bytes": 1073741824,
+      "agent_storage_limit_bytes": 67108864,
+      "energy_budget_uj": null,
+      "energy_tier": "E0",
+      "observer_output_limit_bytes": 536870912,
+      "per_step_cpu_time_limit_ns": 10000000,
+      "profile_id": "custom",
+      "step_limit": 20,
+      "wall_time_limit_ns": 120000000000
+    },
+    "run_id": "261b1c3d-6ecc-4e52-a1c1-00b5be57ff0f",
+    "scenario": {
+      "config": {
+        "action_count": 3,
+        "big_world_size": 17,
+        "change_points": [],
+        "horizon": 8,
+        "observation_width": 4,
+        "scenario_id": "causal-ring-diagnostic",
+        "seed": 42,
+        "version": "1.0"
+      },
+      "family": "causal-ring",
+      "reward_unit_id": "scenario_reward",
+      "scenario_id": "causal-ring-diagnostic",
+      "variant": "smoke",
+      "version": "1.0"
+    },
+    "schema_version": "1.0",
+    "seeds": [
+      {
+        "seed_id": "environment",
+        "value": "42"
+      }
+    ],
+    "source": {
+      "dirty": true,
+      "dirty_patch_sha256": "ca5ce9391bb5aad822b4b81141f8f24f58cf1edc40a6d2a77699df03a9a457a3",
+      "repository": "https://github.com/USS-Parks/BONSAI-Research-Labs",
+      "revision": "fb8ebfb0c5d903e0922726f8882ec5f58303abbc"
+    },
+    "track": {
+      "batch_size": 1,
+      "declared_track": "A",
+      "human_labels": false,
+      "observer_data_access": false,
+      "offline_updates": false,
+      "privileged_inputs": false,
+      "replay": {
+        "capacity_transitions": 0,
+        "enabled": false,
+        "source": "none"
+      }
+    }
+  },
+  "platform": {
+    "accelerators": [],
+    "clocks": [
+      {
+        "clock_id": "rust_instant",
+        "kind": "monotonic",
+        "monotonic": true,
+        "resolution_ns": 160
+      }
+    ],
+    "collectors": [
+      {
+        "capabilities": [
+          "cpu_topology",
+          "guest_memory",
+          "monotonic_clock"
+        ],
+        "collector_id": "linux_proc_inventory",
+        "privilege_requirement": "none",
+        "status": "available",
+        "version": "1.0"
+      },
+      {
+        "capabilities": [],
+        "collector_id": "energy_accelerators_drivers",
+        "privilege_requirement": "none",
+        "status": "unavailable",
+        "version": "1.0"
+      }
+    ],
+    "compilers": [
+      {
+        "component_id": "rustc",
+        "version": "rustc 1.96.0 (ac68faa20 2026-05-25)"
+      }
+    ],
+    "cpu": {
+      "architecture": "x86_64",
+      "logical_cores": 16,
+      "model": "AMD Ryzen 7 5800H with Radeon Graphics",
+      "vendor": "AuthenticAMD"
+    },
+    "dependency_locks": [
+      {
+        "ecosystem": "cargo",
+        "lockfile_name": "Cargo.lock",
+        "sha256": "c34bd2bb02d1d8416f93d2330e62fdd287de1031ec8d2723d2a93b8635374516"
+      },
+      {
+        "ecosystem": "uv",
+        "lockfile_name": "uv.lock",
+        "sha256": "ec18cf61a7a382beca7f65105b6e427f3ff70f37cf99910e2e63902d7c900e43"
+      }
+    ],
+    "drivers": [],
+    "inventory_id": "18a993ec-ce54-4d16-927b-74e2e94b9d93",
+    "machine_identity_id": "de4fa8a1-a8f5-4d16-a215-1753649de8cd",
+    "memory": {
+      "page_size_bytes": 4096,
+      "physical_total_bytes": 31463755776
+    },
+    "os": {
+      "architecture": "x86_64",
+      "build": "Linux version 6.6.87.2-microsoft-standard-WSL2 (root@439a258ad544) (gcc (GCC) 11.2.0, GNU ld (GNU Binutils) 2.37) #1 SMP PREEMPT_DYNAMIC Thu Jun  5 18:30:46 UTC 2025",
+      "family": "linux",
+      "kernel": "6.6.87.2-microsoft-standard-WSL2",
+      "version": "6.6.87.2-microsoft-standard-WSL2"
+    },
+    "privilege": {
+      "elevation_available": false,
+      "process_level": "unknown"
+    },
+    "runtimes": [
+      {
+        "component_id": "bonsai-runtime",
+        "version": "0.0.0"
+      }
+    ],
+    "schema_version": "1.0",
+    "thermal_power": {
+      "power_source": "unknown",
+      "thermal_state": "unavailable"
+    }
+  },
+  "track": {
+    "adjudication": "pending_BX_06",
+    "declared": {
+      "batch_size": 1,
+      "declared_track": "A",
+      "human_labels": false,
+      "observer_data_access": false,
+      "offline_updates": false,
+      "privileged_inputs": false,
+      "replay": {
+        "capacity_transitions": 0,
+        "enabled": false,
+        "source": "none"
+      }
+    }
+  },
+  "resources": {
+    "event_bytes": 184050,
+    "execution_ns": 25259374086
+  },
+  "overhead": {
+    "overhead_claim": "not_measured",
+    "report_generated_after_execution": true
+  },
+  "behavior": {
+    "bundle_status_path": "../run-status.json",
+    "details": {
+      "environment_steps": 20,
+      "finished_episodes": 9,
+      "reward_sum": 9,
+      "work_items": 80
+    },
+    "events": 380,
+    "observed_rewards": 20,
+    "reward_sum": 9,
+    "status": "COMPLETE",
+    "status_scope": "execution_only"
+  },
+  "failures": [],
+  "claims": {
+    "C0": "not_adjudicated",
+    "C1": "not_adjudicated",
+    "energy": "unavailable_E0"
+  },
+  "limitations": [
+    "Linux delegated controls; physical-host acceptance is separate.",
+    "Launch-path isolation is not a hostile-code filesystem sandbox.",
+    "Inventory machine identity is run-local; memory is guest-visible; physical acceptance is not established. Accelerator, driver, energy, and elevation availability are not probed; this run grants no elevation."
+  ],
+  "hashes": {
+    "event-segment-content": "6d2d4f2d12a5093efc9dc1d950a16741da8b832ad840db41eea45609ad8c210e",
+    "experiment-manifest.json": "37e21cc8569d72a72ef633ff1cf7c24208607e67848c390b1173e7a2c8c19d68"
+  }
+}

@@ -2083,3 +2083,38 @@ S run `4042dad0-ad3e-4db8-b883-8a2515e0f4ba` completed 2,000 steps in 56.3275519
 The final archive is `evidence/verification/bx-05/final-live.zip`, SHA-256 `315d6c94069b1b23fd7ebd2e524ad5d00053a3dfc9c638ef100f3597ad8e4585`, 5,638,039 bytes / 454 files. Captured stdout/stderr bytes have explicit Git attribute protection. Failed preliminary record `BX-05-LIVE-FAILURES-1788660482727413000` remains visible; wall exit-code handling and the combined cancellation fixture were corrected before the final matrix.
 
 No C0/C1, derived track, physical-host, energy, or hosted-CI acceptance is inferred from these local runs. BX-06 remains next after publication. Worktree/generated-data accounting is retained in `evidence/verification/bx-05/worktree-inventory.json`.
+
+### BX-05 publication closeout / BX-06 start
+
+Published main `fb8ebfb0c5d903e0922726f8882ec5f58303abbc` matches origin/main; checkout was clean after publication. Hosted [run 34006775025](https://github.com/USS-Parks/BONSAI-Research-Labs/actions/runs/34006775025) passed all four platform jobs and M1 semantic equivalence. Post-commit verification checked 67 files, 16 captured outputs, and the exact archive SHA with zero byte mismatches. BX-05 is complete. BX-06 is now executing under the existing full STS authorization; C0/C1 and derived track acceptance remain its gate.
+
+## BX-06 — independent C0/C1 and track reconstruction, local gates passed
+
+Date: 2026-09-06 UTC. Source baseline `fb8ebfb0c5d903e0922726f8882ec5f58303abbc`.
+Focused main publication and hosted CI remain pending; BX-07 has not started.
+
+| Record | Evidence |
+|---|---|
+| BX-06-WINDOWS-1788664283777514300 | 223 Rust / 59 Python tests; strict compiler, lint, schema and governance gates passed |
+| BX-06-LINUX-1788664304359696300 | 225 Rust / 59 Python tests; strict Linux gates passed |
+| BX-06-LIVE-SMOKE-1788664641243094000 | Real 20-step run; fresh Linux verifier derives Track A and C0/C1 pass |
+| BX-06-LIVE-S-1788664700505199300 | Real S run: 2,000 steps, 35,822 events, 66.496801962 seconds; fresh verifier pass |
+| BX-06-NEGATIVE-LINUX-1788664799013330600 | Positive and all 12 actual fresh-process negative fixtures passed |
+| BX-06-RECONCILE-1788664830709147300 | Separate Python reconciliation of S rewards, work, latency, resource counters and hashes passed |
+| BX-06-CROSS-PLATFORM-1788664845071283000 | Native Windows verifier accepts the same S evidence and rejects all 12 negative cases |
+| BX-06-ARCHIVE-1788664865282247800 | 549 archive entries re-read/hash-checked; 185 source files match S identity |
+
+S receipt: `c8856439a0ace52a3c29307f67dee0b4ae5902cdb1e3ce50b2a3ec398ab15a32`.
+Run `ebdecba2-4fae-4f22-8d6e-89d4b7615905`: 966 completed episodes, reward 957,
+8,000 work items, 17,596,407 observer bytes. Maximum action latency 4,607,350 ns;
+maximum per-step CPU 2,700,000 ns. C0/C1 and Track A are derived from the bounded,
+receipt-pinned reference execution; C2-C5, energy, physical-host and publication
+acceptance remain separate.
+
+[Evidence archive](../../evidence/verification/bx-06/final-live.zip): 6,343,314 bytes;
+SHA-256 `b17359fda2cf4605cc09703f80aceb51ec741e6657b0766f791101220ce33181`.
+The negative corpus distinguishes original operator pins from controlled repinned
+fixtures, which exercise semantic rejection after rebuilding hashes. Historical
+initial metric numeric-comparison rejection is preserved in the DEVLOG and target
+diagnostics. [Worktree inventory](../../evidence/verification/bx-06/worktree-inventory.json)
+retains the active cache lower bound and historical M0 retirement blocker.

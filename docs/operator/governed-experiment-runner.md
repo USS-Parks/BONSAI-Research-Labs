@@ -41,3 +41,50 @@ cargo xtask bundle-check --root RUN_DIRECTORY/observer bundle-manifest.json
 ```
 
 The bundle manifest argument is relative to the supplied root. Track facts remain incomplete pending BX-06, so a complete execution can correctly remain INDETERMINATE for publication. Failure bundles retain their fatal failure.
+
+## Independent run verification (BX-06)
+
+After `run` finishes, retain its complete stdout outside the result directory.
+The `receipt_sha256` field pins `observer/run-receipt.json`, which binds both the
+final status and the artifact index. The index binds every recorded input,
+identity, event segment, metric, lifecycle record, and report. Preserve this
+operator output separately when moving a bundle.
+
+Run a new verifier process:
+
+```text
+cargo xtask verify-run --root <run>/observer --receipt-sha256 <digest-from-operator-output>
+```
+
+The verifier reads a bounded immutable snapshot, checks the existing schemas and
+segment checksums, and replays both protocol state machines. It reconstructs the
+complete observation/action/reward/feedback sequence, work admission and charging,
+raw CPU counter differences, RSS/storage limits, controller readbacks, and child
+cleanup. It derives the track from the supported reference implementation and
+recorded input flow. The declaration's `runtime_facts_complete` flag is not an
+input to the verdict.
+
+Only the pinned primitive reference adapter/environment, Track A, E0, and the S
+profile or smaller supported custom profiles are accepted by this first verifier.
+Unknown source code, tracks, counters, wire fields, or missing evidence fail
+closed. Source hashes embedded in the verifier bind the reference Python modules;
+a changed implementation needs a corresponding reviewed verifier revision.
+
+Successful output contains immutable reconstructed facts and per-run C0/C1
+decisions. An error returns nonzero and emits no positive verdict. C2-C5,
+publication eligibility, physical-host qualification, energy claims, and
+multi-seed research conclusions require their separate gates.
+
+The digest is an external trust input: calculating a new digest from a suspect
+bundle cannot authenticate that bundle. There is no signing service or
+hostile-host attestation here. Agent launch/protocol evidence proves this
+supported input boundary; it does not establish an arbitrary hostile-code
+filesystem sandbox. The current reader has a 512 MiB total bundle ceiling and
+a 64 MiB event-segment ceiling for the bounded S cut. Incremental historical
+processing remains BX-07/BX-08 work.
+
+The portable fixture in `fixtures/governed-run/v1` is a real 20-step Linux run.
+Its separate operator receipt is retained alongside the unchanged observer
+directory. The negative harness creates copies and labels cases whose checksums
+are deliberately rebuilt as controlled, repinned fixtures. Such fixture pins are
+never represented as fresh operator attestations.

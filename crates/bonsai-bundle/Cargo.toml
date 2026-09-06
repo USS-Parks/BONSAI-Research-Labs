@@ -12,6 +12,8 @@ publish.workspace = true
 workspace = true
 
 [dependencies]
+bonsai-claims = { path = "../bonsai-claims" }
+prost = "0.14.4"
 arrow-array = "59.1.0"
 arrow-schema = "59.1.0"
 bonsai-contracts = { path = "../bonsai-contracts" }

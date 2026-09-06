@@ -86,6 +86,7 @@ fn run() -> Result<i32, String> {
         }
         #[cfg(target_os = "linux")]
         Some("run") => experiment::run(&args.collect::<Vec<_>>()),
+        Some("verify-run") => verify_run(&args.collect::<Vec<_>>()),
         Some("bundle-check") => {
             let remaining = args.collect::<Vec<_>>();
             bundle_check(&remaining)
@@ -99,6 +100,7 @@ fn usage() -> String {
      [--evidence-class <CLASS>] [--runner-class <CLASS>] [--redact <TEXT>] -- <COMMAND> [ARGS...]\n  \
      cargo xtask schema-check
   cargo xtask bundle-check [--root <PATH>] <MANIFEST>
+  cargo xtask verify-run --root <OBSERVER_PATH> --receipt-sha256 <TRUSTED_DIGEST>
   cargo xtask run --manifest <PATH> --output <NEW_PATH> --authority <DELEGATED_ROOT> [--cancel-file <PATH>] (Linux)"
         .to_owned()
 }
@@ -114,6 +116,22 @@ fn bundle_check(args: &[OsString]) -> Result<i32, String> {
         }
         _ => return Err(usage()),
     }
+    let schemas = bundle_schemas()?;
+    let report = bonsai_bundle::validate_result_bundle(root, manifest, &schemas)
+        .map_err(|error| error.to_string())?;
+    serde_json::to_writer(io::stdout().lock(), &report)
+        .map_err(|error| format!("serialize bundle validation report: {error}"))?;
+    println!();
+    Ok(match report.verdict {
+        bonsai_bundle::OverallVerdict::Invalid | bonsai_bundle::OverallVerdict::Indeterminate => 2,
+        bonsai_bundle::OverallVerdict::Valid
+        | bonsai_bundle::OverallVerdict::Migratable
+        | bonsai_bundle::OverallVerdict::ForwardReadable
+        | bonsai_bundle::OverallVerdict::ValidWithLimitations => 0,
+    })
+}
+
+fn bundle_schemas() -> Result<bonsai_bundle::BundleSchemas, String> {
     let schemas = bonsai_bundle::BundleSchemas {
         bundle_manifest: embedded_json(include_bytes!(concat!(
             env!("CARGO_MANIFEST_DIR"),
@@ -140,18 +158,26 @@ fn bundle_check(args: &[OsString]) -> Result<i32, String> {
             "/../../schemas/metric-estimate-v1.json"
         )))?,
     };
-    let report = bonsai_bundle::validate_result_bundle(root, manifest, &schemas)
-        .map_err(|error| error.to_string())?;
-    serde_json::to_writer(io::stdout().lock(), &report)
-        .map_err(|error| format!("serialize bundle validation report: {error}"))?;
+    Ok(schemas)
+}
+
+fn verify_run(args: &[OsString]) -> Result<i32, String> {
+    let [root_flag, root, receipt_flag, receipt] = args else {
+        return Err(usage());
+    };
+    if root_flag != "--root" || receipt_flag != "--receipt-sha256" {
+        return Err(usage());
+    }
+    let receipt = receipt.to_str().ok_or("receipt must be UTF-8")?;
+    let verdict = bonsai_bundle::governed::verify_governed_run(
+        PathBuf::from(root),
+        receipt,
+        &bundle_schemas()?,
+    )
+    .map_err(str::to_owned)?;
+    serde_json::to_writer(io::stdout().lock(), &verdict).map_err(|error| error.to_string())?;
     println!();
-    Ok(match report.verdict {
-        bonsai_bundle::OverallVerdict::Invalid | bonsai_bundle::OverallVerdict::Indeterminate => 2,
-        bonsai_bundle::OverallVerdict::Valid
-        | bonsai_bundle::OverallVerdict::Migratable
-        | bonsai_bundle::OverallVerdict::ForwardReadable
-        | bonsai_bundle::OverallVerdict::ValidWithLimitations => 0,
-    })
+    Ok(0)
 }
 
 fn embedded_json(bytes: &[u8]) -> Result<serde_json::Value, String> {

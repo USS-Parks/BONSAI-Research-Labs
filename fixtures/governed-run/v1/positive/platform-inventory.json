@@ -1,0 +1,84 @@
+{
+  "accelerators": [],
+  "clocks": [
+    {
+      "clock_id": "rust_instant",
+      "kind": "monotonic",
+      "monotonic": true,
+      "resolution_ns": 160
+    }
+  ],
+  "collectors": [
+    {
+      "capabilities": [
+        "cpu_topology",
+        "guest_memory",
+        "monotonic_clock"
+      ],
+      "collector_id": "linux_proc_inventory",
+      "privilege_requirement": "none",
+      "status": "available",
+      "version": "1.0"
+    },
+    {
+      "capabilities": [],
+      "collector_id": "energy_accelerators_drivers",
+      "privilege_requirement": "none",
+      "status": "unavailable",
+      "version": "1.0"
+    }
+  ],
+  "compilers": [
+    {
+      "component_id": "rustc",
+      "version": "rustc 1.96.0 (ac68faa20 2026-05-25)"
+    }
+  ],
+  "cpu": {
+    "architecture": "x86_64",
+    "logical_cores": 16,
+    "model": "AMD Ryzen 7 5800H with Radeon Graphics",
+    "vendor": "AuthenticAMD"
+  },
+  "dependency_locks": [
+    {
+      "ecosystem": "cargo",
+      "lockfile_name": "Cargo.lock",
+      "sha256": "c34bd2bb02d1d8416f93d2330e62fdd287de1031ec8d2723d2a93b8635374516"
+    },
+    {
+      "ecosystem": "uv",
+      "lockfile_name": "uv.lock",
+      "sha256": "ec18cf61a7a382beca7f65105b6e427f3ff70f37cf99910e2e63902d7c900e43"
+    }
+  ],
+  "drivers": [],
+  "inventory_id": "18a993ec-ce54-4d16-927b-74e2e94b9d93",
+  "machine_identity_id": "de4fa8a1-a8f5-4d16-a215-1753649de8cd",
+  "memory": {
+    "page_size_bytes": 4096,
+    "physical_total_bytes": 31463755776
+  },
+  "os": {
+    "architecture": "x86_64",
+    "build": "Linux version 6.6.87.2-microsoft-standard-WSL2 (root@439a258ad544) (gcc (GCC) 11.2.0, GNU ld (GNU Binutils) 2.37) #1 SMP PREEMPT_DYNAMIC Thu Jun  5 18:30:46 UTC 2025",
+    "family": "linux",
+    "kernel": "6.6.87.2-microsoft-standard-WSL2",
+    "version": "6.6.87.2-microsoft-standard-WSL2"
+  },
+  "privilege": {
+    "elevation_available": false,
+    "process_level": "unknown"
+  },
+  "runtimes": [
+    {
+      "component_id": "bonsai-runtime",
+      "version": "0.0.0"
+    }
+  ],
+  "schema_version": "1.0",
+  "thermal_power": {
+    "power_source": "unknown",
+    "thermal_state": "unavailable"
+  }
+}

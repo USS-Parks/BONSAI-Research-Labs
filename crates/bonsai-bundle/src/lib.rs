@@ -11,6 +11,7 @@ use std::io::{self, BufReader, BufWriter, Read, Write};
 use std::path::{Path, PathBuf};
 
 mod derivation;
+pub mod governed;
 mod index;
 mod validation;
 
@@ -337,6 +338,25 @@ pub fn validate_segment(path: impl AsRef<Path>) -> Result<SegmentSummary, Segmen
         .ok_or(SegmentError::FooterTruncated)
 }
 
+/// Visit integrity-checked frames from one immutable byte snapshot.
+///
+/// Callbacks can run before the footer is checked. Consumers must discard
+/// accumulated facts unless this function returns a complete valid summary.
+///
+/// # Errors
+///
+/// Rejects every framing, checksum, sequence, and footer error enforced by
+/// `validate_segment`, including trailing bytes.
+pub fn visit_segment_bytes(
+    bytes: &[u8],
+    mut visit: impl FnMut(&[u8]),
+) -> Result<SegmentSummary, SegmentError> {
+    let mut reader = io::Cursor::new(bytes);
+    inspect_stream_with(&mut reader, true, &mut visit)?
+        .complete_summary
+        .ok_or(SegmentError::FooterTruncated)
+}
+
 /// Validate every finalized segment and enforce canonical contiguous sequence.
 ///
 /// # Errors
@@ -453,6 +473,14 @@ fn inspect_stream<R: Read>(
     reader: &mut R,
     require_footer: bool,
 ) -> Result<OpenInspection, SegmentError> {
+    inspect_stream_with(reader, require_footer, &mut |_| {})
+}
+
+fn inspect_stream_with<R: Read, F: FnMut(&[u8])>(
+    reader: &mut R,
+    require_footer: bool,
+    visit: &mut F,
+) -> Result<OpenInspection, SegmentError> {
     let header = read_header(reader)?;
     let mut content_hasher = Sha256::new();
     content_hasher.update(header.bytes);
@@ -518,6 +546,7 @@ fn inspect_stream<R: Read>(
         if checksum != <[u8; 32]>::from(Sha256::digest(&frame)) {
             return Err(SegmentError::FrameChecksum { index: frame_count });
         }
+        visit(&frame);
         content_hasher.update(marker);
         content_hasher.update(length_bytes);
         content_hasher.update(frame);
