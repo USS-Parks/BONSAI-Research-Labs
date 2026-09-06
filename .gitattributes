@@ -23,3 +23,7 @@ evidence/verification/bx-03/*.txt -text -diff
 # Preserve BX-04 captured output bytes after generic patterns.
 evidence/verification/artifacts/BX-04-*.txt -text -diff
 evidence/verification/bx-04/*.txt -text -diff
+
+# Generated Protobuf bindings must match protoc bytes on every checkout.
+python/bonsai-reference/src/bonsai/adapter/v1/adapter_pb2.py text eol=lf
+python/bonsai-reference/src/bonsai/adapter/v1/adapter_pb2.pyi text eol=lf

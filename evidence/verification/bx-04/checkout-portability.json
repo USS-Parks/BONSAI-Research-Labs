@@ -1,0 +1,26 @@
+{
+  "schema": "bonsai.checkout-verification/v1",
+  "prompt": "BX-04",
+  "source_revision": "d3b2087ef7c85d3a670c840c3953cfb249e8cb46",
+  "configuration": "core.autocrlf=true",
+  "method": "git checkout-index into fresh ignored target directories, before and after explicit generated-file eol=lf attributes",
+  "attribute_sha256": "2d726ae877d62b8539fb571a214fbec5ab65874d52d2e5804fe8cdb53a558579",
+  "files": [
+    {
+      "path": "python/bonsai-reference/src/bonsai/adapter/v1/adapter_pb2.py",
+      "source_sha256": "c09cbab944e86a9578f78c0f5cd8a26c3593eaa172dff0e4b98de94d424fdbad",
+      "before_sha256": "953ab675f320f9f0b9f57bb44174db7ae6ccda592917e3747f8aa171f6c5ebb7",
+      "after_sha256": "c09cbab944e86a9578f78c0f5cd8a26c3593eaa172dff0e4b98de94d424fdbad",
+      "before_matches": false,
+      "after_matches": true
+    },
+    {
+      "path": "python/bonsai-reference/src/bonsai/adapter/v1/adapter_pb2.pyi",
+      "source_sha256": "94614b786e63c719767b123176dcdb653df2baea6f97f1af7e8b0ec8dd349511",
+      "before_sha256": "bc702d26c33cd3ff28ee56be9e130982a62e1263e720bed30e1521902e1c6c75",
+      "after_sha256": "94614b786e63c719767b123176dcdb653df2baea6f97f1af7e8b0ec8dd349511",
+      "before_matches": false,
+      "after_matches": true
+    }
+  ]
+}
