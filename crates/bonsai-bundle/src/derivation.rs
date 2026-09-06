@@ -1,3 +1,4 @@
+mod stream;
 use crate::BlobId;
 use arrow_array::{Array, ArrayRef, Float64Array, RecordBatch, StringArray, UInt64Array};
 use arrow_schema::{ArrowError, DataType, Field, Schema, SchemaRef};
@@ -14,6 +15,7 @@ use std::fs::{File, OpenOptions};
 use std::io;
 use std::path::Path;
 use std::sync::Arc;
+pub use stream::{DerivationStreamLimits, materialize_derivation_stream};
 
 const DERIVATION_FORMAT: &str = "bonsai.derivation/v1";
 const METADATA_PREFIX: &str = "bonsai.";
@@ -397,13 +399,18 @@ pub fn validate_derivation(
     {
         return Err(DerivationError::SchemaMismatch);
     }
-    let batches = builder.build()?.collect::<Result<Vec<_>, _>>()?;
-    let observed_rows = batches.iter().try_fold(0_u64, |total, batch| {
-        total
+    let mut hasher = Sha256::new();
+    write_hash_bytes(&mut hasher, expected.kind.schema_contract().as_bytes())?;
+    hasher.update(stored.row_count.to_le_bytes());
+    let mut observed_rows = 0_u64;
+    for batch in builder.with_batch_size(1024).build()? {
+        let batch = batch?;
+        observed_rows = observed_rows
             .checked_add(u64::try_from(batch.num_rows()).map_err(|_| DerivationError::Stale)?)
-            .ok_or(DerivationError::Stale)
-    })?;
-    let observed_semantic = semantic_sha256(expected.kind, &batches)?;
+            .ok_or(DerivationError::Stale)?;
+        hash_batch(&mut hasher, expected.kind, &batch)?;
+    }
+    let observed_semantic = BlobId::from_bytes(hasher.finalize().into());
     if observed_rows != stored.row_count || observed_semantic != stored.semantic_sha256 {
         return Err(DerivationError::Stale);
     }
@@ -681,16 +688,25 @@ fn semantic_sha256(kind: TableKind, batches: &[RecordBatch]) -> Result<BlobId, D
     })?;
     hasher.update(row_count.to_le_bytes());
     for batch in batches {
-        if !schemas_match(batch.schema().as_ref(), kind.schema().as_ref()) {
-            return Err(DerivationError::SchemaMismatch);
-        }
-        for row in 0..batch.num_rows() {
-            for column in batch.columns() {
-                hash_value(&mut hasher, column, row)?;
-            }
-        }
+        hash_batch(&mut hasher, kind, batch)?;
     }
     Ok(BlobId::from_bytes(hasher.finalize().into()))
+}
+
+fn hash_batch(
+    hasher: &mut Sha256,
+    kind: TableKind,
+    batch: &RecordBatch,
+) -> Result<(), DerivationError> {
+    if !schemas_match(batch.schema().as_ref(), kind.schema().as_ref()) {
+        return Err(DerivationError::SchemaMismatch);
+    }
+    for row in 0..batch.num_rows() {
+        for column in batch.columns() {
+            hash_value(hasher, column, row)?;
+        }
+    }
+    Ok(())
 }
 
 fn hash_value(hasher: &mut Sha256, array: &ArrayRef, row: usize) -> Result<(), DerivationError> {

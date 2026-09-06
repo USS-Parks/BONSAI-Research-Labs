@@ -1,0 +1,18 @@
+
+C:\Users\17076\Documents\Reinforcement Learning Project>cargo build --locked --offline -p bonsai-lineage --example durable_probe 
+
+C:\Users\17076\Documents\Reinforcement Learning Project>if errorlevel 1 exit /b 1 
+
+C:\Users\17076\Documents\Reinforcement Learning Project>uv run --frozen python evidence/verification/bx-08/run.py 
+{"completed": "history-1000-0"}
+{"completed": "history-1000-1"}
+{"completed": "history-1000-2"}
+{"completed": "history-10000-0"}
+{"completed": "history-10000-1"}
+{"completed": "history-10000-2"}
+{"completed": "history-100000-0"}
+{"completed": "history-100000-1"}
+{"completed": "history-100000-2"}
+{"batch": "target\\bx08-live-1788668992536634500", "medians": [{"size": 1000, "rss_after_bytes": 19595264, "recovery_rss_after_bytes": 20779008, "growth_ns": 486508400, "recovery_ns": 498374400}, {"size": 10000, "rss_after_bytes": 20934656, "recovery_rss_after_bytes": 19906560, "growth_ns": 2260431300, "recovery_ns": 2182365900}, {"size": 100000, "rss_after_bytes": 22081536, "recovery_rss_after_bytes": 23388160, "growth_ns": 20808854700, "recovery_ns": 22132037000}], "crashes": 4}
+
+C:\Users\17076\Documents\Reinforcement Learning Project>if errorlevel 1 exit /b 1 

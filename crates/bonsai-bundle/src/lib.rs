@@ -17,12 +17,12 @@ mod validation;
 
 pub use derivation::{
     AnalyticalTable, DecisionRow, DerivationError, DerivationExpectation, DerivationSpec,
-    DerivedTableSummary, EventRow, LineageRow, MetricRow, TableKind, materialize_derivation,
-    validate_derivation,
+    DerivationStreamLimits, DerivedTableSummary, EventRow, LineageRow, MetricRow, TableKind,
+    materialize_derivation, materialize_derivation_stream, validate_derivation,
 };
 pub use index::{
     BlobId, BlobSummary, BundleIndex, BundleIndexError, IndexSummary, IndexedArtifact,
-    IndexedSegment, put_blob, put_blob_verified, rebuild_index, validate_blob,
+    IndexedSegment, put_blob, put_blob_stream, put_blob_verified, rebuild_index, validate_blob,
 };
 pub use validation::{
     AccessMode, BundleSchemas, BundleValidationError, BundleValidationReport, CheckResult,
@@ -357,6 +357,22 @@ pub fn visit_segment_bytes(
         .ok_or(SegmentError::FooterTruncated)
 }
 
+/// Visit a finalized segment with a bounded frame buffer.
+///
+/// Callbacks are provisional until the complete footer validates.
+///
+/// # Errors
+/// Returns I/O, framing, checksum, or footer errors.
+pub fn visit_segment_file(
+    path: impl AsRef<Path>,
+    mut visit: impl FnMut(&[u8]),
+) -> Result<SegmentSummary, SegmentError> {
+    let mut reader = BufReader::new(File::open(path)?);
+    inspect_stream_with(&mut reader, true, &mut visit)?
+        .complete_summary
+        .ok_or(SegmentError::FooterTruncated)
+}
+
 /// Validate every finalized segment and enforce canonical contiguous sequence.
 ///
 /// # Errors
@@ -467,6 +483,54 @@ pub fn recover_open_segment(path: impl AsRef<Path>) -> Result<RecoveryOutcome, S
     };
     sync_directory_best_effort(directory)?;
     Ok(RecoveryOutcome::Recovered(summary))
+}
+
+/// Result of explicitly salvaging an interrupted source into a new segment.
+#[derive(Debug)]
+pub struct SalvagedSegment {
+    pub summary: SegmentSummary,
+    pub truncated_tail: bool,
+}
+
+/// Copy verified complete frames into a new owned segment while retaining the
+/// original source. Only a truncated tail is salvageable; checksum corruption
+/// fails. The result is a continuation artifact, never an uninterrupted run.
+///
+/// # Errors
+/// Rejects corrupt framing, oversized source frames, destination conflicts and I/O.
+pub fn salvage_segment(
+    source: impl AsRef<Path>,
+    destination: impl AsRef<Path>,
+    maximum_frame_size: u32,
+) -> Result<SalvagedSegment, SegmentError> {
+    let header = read_header(&mut BufReader::new(File::open(source.as_ref())?))?;
+    if header.maximum_frame_size > maximum_frame_size {
+        return Err(SegmentError::InvalidMaximumFrameSize(
+            header.maximum_frame_size,
+        ));
+    }
+    let mut writer = SegmentWriter::create(destination, 0, maximum_frame_size)?;
+    let mut failure = None;
+    let mut reader = BufReader::new(File::open(source)?);
+    let result = inspect_stream_with(&mut reader, false, &mut |frame| {
+        if failure.is_none()
+            && let Err(error) = writer.append(frame)
+        {
+            failure = Some(error);
+        }
+    });
+    if let Some(error) = failure {
+        return Err(error);
+    }
+    let truncated_tail = match result {
+        Ok(_) => false,
+        Err(SegmentError::FrameTruncated { .. } | SegmentError::FooterTruncated) => true,
+        Err(error) => return Err(error),
+    };
+    Ok(SalvagedSegment {
+        summary: writer.finalize()?,
+        truncated_tail,
+    })
 }
 
 fn inspect_stream<R: Read>(

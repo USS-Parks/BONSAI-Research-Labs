@@ -223,7 +223,7 @@ Initial drafting state: all prompts were **[ ] NOT STARTED**. Current execution 
 
 **Retained evidence:** Independent verify outputs and positive/negative bundle corpus. This closes M5a only if BX-01–06 all pass.
 
-### [~] BX-07 — Make lineage validation incremental
+### [x] BX-07 — Make lineage validation incremental
 
 **Milestone:** M5b. **Depends:** BX-06.\
 **Legacy mapping:** BC-07; BR-07–BR-08; BK lineage consumers.\
@@ -237,7 +237,7 @@ Initial drafting state: all prompts were **[ ] NOT STARTED**. Current execution 
 
 **Retained evidence:** Differential/property test corpus; operation-count and scaling measurements with workload definitions.
 
-### [ ] BX-08 — Bound persistent evidence state and recover interrupted runs
+### [~] BX-08 — Bound persistent evidence state and recover interrupted runs
 
 **Milestone:** M5b. **Depends:** BX-07.\
 **Legacy mapping:** BC-08–BC-12; BR recovery; BK-14; BV-12.\
@@ -895,3 +895,22 @@ scaling trials passed. Full Windows and WSL2 Linux gates passed (226/228 Rust
 tests and 59 Python tests each). Exact source/trial archive and records are in
 the latest DEVLOG and verification entries. BX-07 stays executing until its
 focused main publication and all required hosted jobs pass. BX-08 remains unstarted.
+
+### BX-07 publication closeout / BX-08 start
+
+Published main `98cfd7845ad6068665f6aac0139c310107a794b2` matches remote main;
+the checkout was clean. Hosted [run 34010216558](https://github.com/USS-Parks/BONSAI-Research-Labs/actions/runs/34010216558)
+passed all four platform jobs and M1 semantic equivalence. All 36 committed
+files, 12 captured outputs and the exact archive SHA passed byte verification.
+BX-07 is complete. BX-08 now executes bounded persistent evidence and recovery
+under the existing full-roster STS authority. BX-09 through BX-40 remain unstarted.
+
+### BX-08 local acceptance — publication pending
+
+Bounded lineage history, exact checkpoint recovery, streamed derivations and
+explicit governed-prefix recovery passed all local gates. Windows/Linux memory
+and abrupt-exit trials, actual disk-full/SIGKILL evidence, portable checkpoint
+compatibility, 237/239 Rust tests and 59 Python tests per host passed. The latest
+DEVLOG and verification entries retain exact source/archive identities and scope.
+BX-08 remains executing until focused main publication and all hosted jobs pass;
+BX-09 remains unstarted.

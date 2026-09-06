@@ -14,6 +14,7 @@ use std::time::{Instant, SystemTime, UNIX_EPOCH};
 
 #[cfg(target_os = "linux")]
 mod experiment;
+mod recover_run;
 mod schema_check;
 
 #[derive(Debug)]
@@ -87,6 +88,7 @@ fn run() -> Result<i32, String> {
         #[cfg(target_os = "linux")]
         Some("run") => experiment::run(&args.collect::<Vec<_>>()),
         Some("verify-run") => verify_run(&args.collect::<Vec<_>>()),
+        Some("recover-run") => recover_run::run(&args.collect::<Vec<_>>()),
         Some("bundle-check") => {
             let remaining = args.collect::<Vec<_>>();
             bundle_check(&remaining)
@@ -100,6 +102,7 @@ fn usage() -> String {
      [--evidence-class <CLASS>] [--runner-class <CLASS>] [--redact <TEXT>] -- <COMMAND> [ARGS...]\n  \
      cargo xtask schema-check
   cargo xtask bundle-check [--root <PATH>] <MANIFEST>
+  cargo xtask recover-run --root <OBSERVER_PATH> --output <NEW_PATH> --maximum-output-bytes <N>
   cargo xtask verify-run --root <OBSERVER_PATH> --receipt-sha256 <TRUSTED_DIGEST>
   cargo xtask run --manifest <PATH> --output <NEW_PATH> --authority <DELEGATED_ROOT> [--cancel-file <PATH>] (Linux)"
         .to_owned()

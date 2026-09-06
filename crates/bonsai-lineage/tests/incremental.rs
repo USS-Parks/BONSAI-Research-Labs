@@ -9,6 +9,7 @@ use bonsai_contracts::lineage::{
     IncrementalLineageValidator, LineageValidationError, validate_artifact_lineage_trace,
 };
 use bonsai_lineage::ArtifactLifecycleRegistry;
+use bonsai_lineage::persistent::{PersistentLimits, PersistentLineageRegistry};
 
 fn id(value: u64) -> Vec<u8> {
     let mut bytes = vec![1; 16];
@@ -260,6 +261,19 @@ fn generated_valid_and_invalid_admissions_match_full_replay_and_state() {
     let mut accepted_total = 0;
     let mut rejected_total = 0;
     for seed in 1..=12_u64 {
+        let temporary = tempfile::tempdir().expect("temporary");
+        let durable_root = temporary.path().join("durable");
+        let mut durable = PersistentLineageRegistry::create(
+            &durable_root,
+            PersistentLimits {
+                maximum_live_artifacts: 1000,
+                maximum_consumers: 64,
+                maximum_frame_bytes: 65536,
+                database_bytes: 8 * 1024 * 1024,
+                output_bytes: 64 * 1024 * 1024,
+            },
+        )
+        .expect("create durable");
         let mut registry = ArtifactLifecycleRegistry::new();
         let mut incremental = IncrementalLineageValidator::new();
         let mut random = seed;
@@ -275,6 +289,18 @@ fn generated_valid_and_invalid_admissions_match_full_replay_and_state() {
             let mut candidate = registry.events().to_vec();
             candidate.push(event.clone());
             let expected = validate_artifact_lineage_trace(&candidate);
+            let durable_before = durable.artifact(&event.artifact_id).expect("read current");
+            assert_eq!(
+                durable.append(&event),
+                expected.map_err(|e| e.to_string()),
+                "durable seed={seed} attempt={attempt}"
+            );
+            if expected.is_err() {
+                assert_eq!(
+                    durable.artifact(&event.artifact_id).expect("read rejected"),
+                    durable_before
+                );
+            }
             let before = incremental.clone();
             let snapshot_before = registry.snapshot().clone();
             let length_before = registry.events().len();
@@ -302,9 +328,24 @@ fn generated_valid_and_invalid_admissions_match_full_replay_and_state() {
                 assert_eq!(registry.events(), reconstructed.events());
             }
         }
+        let checkpoint = durable.commit().expect("commit corpus");
+        assert_eq!(checkpoint.events, registry.events().len() as u64);
+        drop(durable);
+        let (recovered, report) =
+            PersistentLineageRegistry::open(&durable_root).expect("recover corpus");
+        assert_eq!(report.committed_events, checkpoint.events);
+        for record in registry.snapshot().artifacts.values() {
+            let current = recovered
+                .artifact(&record.artifact_id)
+                .expect("read")
+                .expect("artifact");
+            assert_eq!(current.current_revision_id, record.current_revision_id);
+            assert_eq!(current.terminal, record.terminal);
+            assert_eq!(current.consumers.len(), record.active_consumers.len());
+        }
     }
     println!(
-        "BX-07 generated corpus: seeds=12 attempts=2880 accepted={accepted_total} rejected={rejected_total}"
+        "BX-07/BX-08 generated corpus: seeds=12 attempts=2880 accepted={accepted_total} rejected={rejected_total}"
     );
     assert!(accepted_total > 1000 && rejected_total > 500);
 }

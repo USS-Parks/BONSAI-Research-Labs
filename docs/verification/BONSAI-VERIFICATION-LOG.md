@@ -2144,3 +2144,43 @@ SHA-256 `6a7b99ae8cc3bdbb2589a9fe932e8af7b0cd63841365a1fbb0fd349d971881ed`.
 All 156 entries and nine exact implementation sources verified.
 [Worktree inventory](../../evidence/verification/bx-07/worktree-inventory.json)
 records retained build data and the historical worktree retirement blocker.
+
+### BX-07 publication closeout / BX-08 start
+
+Published main `98cfd7845ad6068665f6aac0139c310107a794b2` matches remote main;
+the checkout was clean. Hosted [run 34010216558](https://github.com/USS-Parks/BONSAI-Research-Labs/actions/runs/34010216558)
+passed all four platform jobs and M1 semantic equivalence. All 36 committed
+files, 12 captured outputs and the exact archive SHA passed byte verification.
+BX-07 is complete. BX-08 now executes bounded persistent evidence and recovery
+under the existing full-roster STS authority. BX-09 through BX-40 remain unstarted.
+
+## VER-BX08 — Bounded persistent evidence and recovery
+
+Local acceptance passed; main publication and hosted CI remain pending.
+Source baseline: `98cfd7845ad6068665f6aac0139c310107a794b2`.
+
+- `BX-08-LIVE-WINDOWS-1788668984204339900`: pass, exit 0, 171.03 seconds. Commands, output hashes and byte lengths are retained in records.jsonl.
+- `BX-08-LIVE-LINUX-1788669220691957000`: pass, exit 0, 316.98 seconds. Commands, output hashes and byte lengths are retained in records.jsonl.
+- `BX-08-DISK-FULL-1788669571511505800`: pass, exit 0, 5.27 seconds. Commands, output hashes and byte lengths are retained in records.jsonl.
+- `BX-08-GOVERNED-INTERRUPTION-1788669594239050300`: pass, exit 0, 93.07 seconds. Commands, output hashes and byte lengths are retained in records.jsonl.
+- `BX-08-ARCHIVE-1788669733195392600`: pass, exit 0, 3.93 seconds. Commands, output hashes and byte lengths are retained in records.jsonl.
+- `BX-08-WINDOWS-1788669747629455400`: pass, exit 0, 122.24 seconds. Commands, output hashes and byte lengths are retained in records.jsonl.
+- `BX-08-LINUX-1788669761211929400`: pass, exit 0, 292.74 seconds. Commands, output hashes and byte lengths are retained in records.jsonl.
+
+237 Windows / 239 WSL2 Linux Rust tests and 59 Python tests on each passed.
+All 18 history/recovery trials and eight abrupt exits passed. The one-artifact
+100k history stays on disk; current RSS remains within the declared spread and
+growth limits. This is not a peak-RSS or physical-host claim.
+
+Actual private 2 MiB filesystem exhaustion recovered exactly 10,000 committed
+events and retained a truncated orphan. Actual governed SIGKILL recovery retained
+147 verified frames and unchanged source SHA-256
+`51a05ef91c9d6b11410f118d24ed2b94ff1d58b70eb88432c6a922e4cfc33488`.
+Owned descendant groups were empty; the recovery derivative stayed INCOMPLETE,
+explicitly continued, and failed completed-run verification.
+
+[Archive](../../evidence/verification/bx-08/bounded-recovery.zip): 31,213,166 bytes;
+SHA-256 `6f9bede3d1fdb038f16b20ae90163d7babc691efa9657a50f7f800765fab5149`.
+All 1,081 payload entries and 151 exact source files were verified.
+[Worktree inventory](../../evidence/verification/bx-08/worktree-inventory.json)
+records current retained storage and the historical retirement blocker.

@@ -57,3 +57,9 @@ evidence/verification/artifacts/BX-07-*.txt -text -diff
 evidence/verification/bx-07/*.txt -text -diff
 evidence/verification/bx-07/*.sh text eol=lf
 evidence/verification/bx-07/*.py text eol=lf
+
+# BX-08 immutable machine captures and portable checkpoint bytes.
+evidence/verification/artifacts/BX-08-*.txt -text -diff
+evidence/verification/bx-08/*.sh text eol=lf
+evidence/verification/bx-08/*.py text eol=lf
+fixtures/lineage-checkpoint/v1/** -text -diff

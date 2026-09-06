@@ -1,0 +1,9 @@
+{
+  "archive": "evidence\\verification\\bx-08\\bounded-recovery.zip",
+  "bytes": 31213166,
+  "sha256": "6f9bede3d1fdb038f16b20ae90163d7babc691efa9657a50f7f800765fab5149",
+  "files": 1081,
+  "source_files": 151,
+  "history_trials": 18,
+  "abrupt_exit_cases": 8
+}

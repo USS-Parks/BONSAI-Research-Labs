@@ -1826,3 +1826,98 @@ ongoing STS builds; 307.74 GiB available. Historical M0 remains clean at
 `eaa0e52ec5a6dc78ab1a360f2a11c2201c7a5e9d`, with zero unpublished commits against
 fresh main and 1.36 GiB generated data. It has no active task and remains cleanup
 debt pending explicit removal authorization. No new worktree or deletion.
+
+### BX-07 publication closeout / BX-08 start
+
+Published main `98cfd7845ad6068665f6aac0139c310107a794b2` matches remote main;
+the checkout was clean. Hosted [run 34010216558](https://github.com/USS-Parks/BONSAI-Research-Labs/actions/runs/34010216558)
+passed all four platform jobs and M1 semantic equivalence. All 36 committed
+files, 12 captured outputs and the exact archive SHA passed byte verification.
+BX-07 is complete. BX-08 now executes bounded persistent evidence and recovery
+under the existing full-roster STS authority. BX-09 through BX-40 remain unstarted.
+
+### BX-08 implementation checkpoint — 2026-09-06T04:33:03.327Z
+
+BX-08 remains executing and uncommitted. Main/origin main remain `98cfd7845ad6068665f6aac0139c310107a794b2`; BX-01 through BX-07 are complete.
+
+Implemented a bounded working-set adapter to the shared lineage contract engine; a single-writer SQLite lineage checkpoint store with bounded page cache, disk-backed historical ownership/history/ancestry, declared live/output limits, atomic batch commits, streamed replay audit on recovery, and explicit continuation state. Added streamed derived-table writing/validation with batch/file/output bounds, bounded blob capture, explicit truncated-tail salvage, and portable `cargo xtask recover-run`. Recovery preserves source bytes and cannot become uninterrupted Track A or imply restored agent state.
+
+Intermediate validation passed: the 2,880-case differential corpus (1,810 accepted / 1,070 rejected) now includes persistent admission and reopened state; six checkpoint tests include four commit boundaries, corruption, real SQLITE_FULL, writer exclusion, historical ancestry and quota/user-data preservation. Five derived-table tests and two governed-recovery CLI tests passed. Strict Clippy passed on the affected crates. A portable v1 checkpoint-fixture test is added; its fixture will be populated from the final real process-exit corpus before full gates.
+
+Diagnostic `target/bx08-initial-100k` admitted 100,000 events in 23.4034011 seconds with one live artifact, RSS 22,904,832 to 24,354,816 bytes; recovery retained exactly 100,000 events and explicitly classified continuation. These measurements predate final source changes and are diagnostic only. Actual isolated 2 MiB tmpfs exhaustion first exposed masked SQLITE_FULL (`target/bx08-diskfull-1788668180271749408`); the corrected rerun `target/bx08-diskfull-1788668245194827251` reported database or disk is full and recovered exactly 10,000 committed events plus one retained truncated orphan. Both attempts remain preserved. Final source changed afterward, so final disk-full evidence must be rerun.
+
+The final source-pinned native acceptance is running under BX-08-LIVE-WINDOWS; batch `target/bx08-live-1788668992536634500`. Remaining: finish native and Linux repeated memory/recovery/crash gates; populate/verify portable checkpoint fixture; rerun final real disk-full and actual governed-process SIGKILL recovery; archive exact sources/results; refresh release lockfile checksums; run complete Windows/Linux/governance/byte gates; commit/push main and wait for all hosted jobs. No new worktree was created.
+
+## BX-08 — local acceptance passed; hosted publication pending
+
+Date: 2026-09-06 UTC. Authorized full BX-01–BX-40 STS. Source baseline:
+`98cfd7845ad6068665f6aac0139c310107a794b2`. BX-08 remains executing until its
+focused main publication and required hosted CI pass; BX-09 has not started.
+
+Added durable lineage at the existing shared contract seam, with a bounded
+validation window, exclusive SQLite writer ownership, disk-backed history and
+ancestry, explicit live/frame/database/output limits, and segment-before-index
+commit ordering. Reopening streams the committed prefix into a disposable bounded
+audit index and compares all reconstructed state. Unindexed attempts remain
+retained; every reopened session is explicitly a continuation. Existing in-memory
+and full replay APIs remain available for bounded callers.
+
+Extended the existing bundle seams with bounded streaming blob capture, explicit
+truncated-tail salvage, streamed derived-table materialization and validation,
+and `cargo xtask recover-run`. The recovery derivative preserves source bytes,
+does not restore an agent, always remains INCOMPLETE, and cannot be promoted to
+uninterrupted Track A or completed C0/C1 acceptance. No new scientific algorithm
+or protocol epoch was introduced.
+
+The 2,880-admission differential corpus matched full replay (1,810 accepted /
+1,070 rejected), including persistent state after reopen. Seven portable
+checkpoint tests cover compatibility, four commit boundaries, corruption,
+SQLite exhaustion, writer exclusion, retired ancestry and quota preservation.
+Five derived-table tests preserve all four typed table semantics; two CLI tests
+cover actual governed trace bytes and refusal of completed-run promotion.
+
+Final live acceptance retained 18 history trials, each with a fresh recovery
+process, and eight abrupt process-exit cases across Windows and WSL2 Linux.
+At 100,000 events with one live artifact, median admission/recovery RSS was
+22,081,536 / 23,388,160 bytes on Windows and 8,519,680 / 10,878,976 bytes on Linux.
+Across 1k/10k/100k prefixes, median admission RSS spread was 2,486,272 / 1,966,080
+bytes respectively. Recovery spread was 3,481,600 / 4,194,304 bytes. All declared
+memory gates passed. These are current resident snapshots from debug builds,
+not peak RSS or constant-time ancestry claims. At 100k, median admission/recovery
+time was 20.8088547 / 22.132037 seconds on Windows and 44.423874626 /
+29.943062634 seconds on WSL2.
+
+All eight real process exits recovered the exact index-committed prefix: one
+event before the second index commit, two events after it. The final private
+2 MiB tmpfs test produced actual `No space left on device (os error 28)`, retained
+one truncated orphan, and independently recovered exactly 10,000 committed
+events. The external user-data sentinel remained unchanged. The earlier masked
+SQLITE_FULL diagnostic and correction remain documented in the checkpoint above.
+
+Actual governed run `target/bx08-interrupted-1788669649118123548` was stopped with
+SIGKILL after durable telemetry appeared. All owned agent/environment groups
+were empty afterward. Independent frame/checksum parsing and the recovery CLI
+agreed on 147 complete events from 71,888 source bytes; the exact original source
+SHA-256 remained `51a05ef91c9d6b11410f118d24ed2b94ff1d58b70eb88432c6a922e4cfc33488`.
+The normal governed verifier rejected promotion (exit 1).
+
+Full gates passed: 237 Windows / 239 Linux Rust tests, 59 Python tests on each,
+formatting, strict Clippy, Ruff, Pyright, schemas, documentation and governance.
+Cargo.lock-dependent release checksums were refreshed. The portable v1 checkpoint
+fixture was copied from the final post-index-commit process-exit case and passed
+both systems' compatibility test.
+
+[Evidence archive](../../evidence/verification/bx-08/bounded-recovery.zip):
+31,213,166 bytes, SHA-256
+`6f9bede3d1fdb038f16b20ae90163d7babc691efa9657a50f7f800765fab5149`.
+All 1,081 payload entries were re-read/hash-checked, including 151 exact source
+files, both platforms' trials, all abrupt exits, final disk exhaustion,
+the governed interruption and the compatibility fixture.
+
+Worktree inventory at 04:48:46 UTC: canonical main remains the sole active lane,
+with at least 28.61 GiB of target/.venv data (29 unreadable entries), retained for
+ongoing STS builds and diagnostics; 304.57 GiB available. Historical M0 remains
+clean at `eaa0e52ec5a6dc78ab1a360f2a11c2201c7a5e9d`, with zero unpublished commits
+relative to freshly fetched main and 1.36 GiB generated data. It has no active
+task and remains cleanup debt pending explicit removal authorization. No new
+worktree or cache deletion.

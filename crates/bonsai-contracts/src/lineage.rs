@@ -8,6 +8,7 @@ use crate::bonsai::artifact::v1::{
 };
 use crate::bonsai::event::v1::Availability;
 mod incremental;
+pub mod persisted;
 
 use incremental::ValidationMode;
 pub use incremental::{IncrementalLineageValidator, LineageValidationWork};
@@ -58,12 +59,12 @@ impl fmt::Display for LineageValidationError {
 
 impl Error for LineageValidationError {}
 
-#[derive(Clone, Debug, Eq, PartialEq)]
-struct ArtifactState {
-    current_revision_id: Vec<u8>,
-    next_sequence: u64,
-    terminal: bool,
-    consumers: HashSet<(Vec<u8>, i32, Option<Vec<u8>>)>,
+#[derive(Clone, Debug, Eq, PartialEq, serde::Serialize, serde::Deserialize)]
+pub struct ArtifactState {
+    pub current_revision_id: Vec<u8>,
+    pub next_sequence: u64,
+    pub terminal: bool,
+    pub consumers: HashSet<(Vec<u8>, i32, Option<Vec<u8>>)>,
 }
 
 #[derive(Clone, Debug, Default, Eq, PartialEq)]
@@ -231,6 +232,15 @@ impl ContractState {
                     return Err(LineageValidationError::LineageCycle);
                 }
                 self.parent_graph = graph;
+            }
+            ValidationMode::Persisted(cycle) => {
+                if cycle {
+                    return Err(LineageValidationError::LineageCycle);
+                }
+                self.parent_graph
+                    .entry(event.artifact_id.clone())
+                    .or_default()
+                    .extend(added_parents);
             }
             ValidationMode::Incremental => {
                 if added_parents.iter().any(|parent| {

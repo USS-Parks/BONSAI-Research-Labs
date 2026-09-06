@@ -1,7 +1,7 @@
 # PSPR v0.5 Project Handoff
 
 Date: 2026-09-05 (America/Los_Angeles)
-Status: **APPROVED — FULL BX-01–BX-40 STS AUTHORIZED; BX-01–BX-06 VERIFIED; BX-07 EXECUTING**
+Status: **APPROVED — FULL BX-01–BX-40 STS AUTHORIZED; BX-01–BX-07 VERIFIED; BX-08 EXECUTING**
 
 ## Current execution authority — 2026-09-05
 
@@ -91,3 +91,26 @@ scaling trials passed. Full Windows and WSL2 Linux gates passed (226/228 Rust
 tests and 59 Python tests each). Exact source/trial archive and records are in
 the latest DEVLOG and verification entries. BX-07 stays executing until its
 focused main publication and all required hosted jobs pass. BX-08 remains unstarted.
+
+### BX-07 publication closeout / BX-08 start
+
+Published main `98cfd7845ad6068665f6aac0139c310107a794b2` matches remote main;
+the checkout was clean. Hosted [run 34010216558](https://github.com/USS-Parks/BONSAI-Research-Labs/actions/runs/34010216558)
+passed all four platform jobs and M1 semantic equivalence. All 36 committed
+files, 12 captured outputs and the exact archive SHA passed byte verification.
+BX-07 is complete. BX-08 now executes bounded persistent evidence and recovery
+under the existing full-roster STS authority. BX-09 through BX-40 remain unstarted.
+
+### BX-08 implementation checkpoint
+
+BX-08 is executing and uncommitted. Persistent lineage, streamed derivations/blob capture, and explicit governed-prefix recovery pass intermediate tests. Final source-pinned Windows measurements are running; Linux, actual final disk-full/SIGKILL evidence, portable fixture, full gates, archive and publication remain. See the latest DEVLOG for exact diagnostic paths and corrected error history.
+
+### BX-08 local acceptance — publication pending
+
+Bounded lineage history, exact checkpoint recovery, streamed derivations and
+explicit governed-prefix recovery passed all local gates. Windows/Linux memory
+and abrupt-exit trials, actual disk-full/SIGKILL evidence, portable checkpoint
+compatibility, 237/239 Rust tests and 59 Python tests per host passed. The latest
+DEVLOG and verification entries retain exact source/archive identities and scope.
+BX-08 remains executing until focused main publication and all hosted jobs pass;
+BX-09 remains unstarted.

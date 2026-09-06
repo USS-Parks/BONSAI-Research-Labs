@@ -26,3 +26,6 @@ bonsai-governor = { path = "../bonsai-governor" }
 bonsai-ingest = { path = "../bonsai-ingest" }
 bonsai-report = { path = "../bonsai-report" }
 prost = "0.14.4"
+
+[dev-dependencies]
+tempfile = "3.27.0"

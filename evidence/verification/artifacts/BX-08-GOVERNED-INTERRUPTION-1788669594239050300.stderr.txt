@@ -1,0 +1,12 @@
+   Compiling bonsai-bundle v0.0.0 (/mnt/c/Users/17076/Documents/Reinforcement Learning Project/crates/bonsai-bundle)
+   Compiling bonsai-governor v0.0.0 (/mnt/c/Users/17076/Documents/Reinforcement Learning Project/crates/bonsai-governor)
+   Compiling bonsai-ingest v0.0.0 (/mnt/c/Users/17076/Documents/Reinforcement Learning Project/crates/bonsai-ingest)
+   Compiling bonsai-runtime v0.0.0 (/mnt/c/Users/17076/Documents/Reinforcement Learning Project/crates/bonsai-runtime)
+   Compiling bonsai-xtask v0.0.0 (/mnt/c/Users/17076/Documents/Reinforcement Learning Project/crates/bonsai-xtask)
+    Finished `dev` profile [unoptimized + debuginfo] target(s) in 54.36s
+Running as unit: bonsai-bx08-interrupt-1788669648873380781.service; invocation ID: f40e2df7274a4f3c8420f16776da63b6
+          Finished with result: success
+Main processes terminated with: code=exited, status=0/SUCCESS
+               Service runtime: 38.400s
+             CPU time consumed: 8.642s
+                   Memory peak: 54.3M (swap: 0B)

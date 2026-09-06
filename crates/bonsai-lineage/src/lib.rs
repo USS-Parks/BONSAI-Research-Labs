@@ -15,6 +15,7 @@ use bonsai_contracts::lineage::{
 use std::collections::{BTreeMap, BTreeSet};
 
 mod graph;
+pub mod persistent;
 
 pub use graph::{
     CostRollup, CostRollupKey, CostScope, LineageGraph, LineageGraphError, UtilitySource,

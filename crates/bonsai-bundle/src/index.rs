@@ -107,6 +107,7 @@ pub enum BundleIndexError {
     Sqlite(rusqlite::Error),
     Segment(SegmentError),
     InvalidBlobId,
+    BlobLimitExceeded,
     BlobHashMismatch { expected: BlobId, actual: BlobId },
     BlobHashCollision(BlobId),
     PathTraversal,
@@ -130,6 +131,7 @@ impl BundleIndexError {
             Self::Sqlite(_) => "BUNDLE_INDEX_SQLITE_ERROR",
             Self::Segment(error) => error.code(),
             Self::InvalidBlobId => "BLOB_ID_INVALID",
+            Self::BlobLimitExceeded => "BLOB_OUTPUT_QUOTA",
             Self::BlobHashMismatch { .. } => "BLOB_HASH_MISMATCH",
             Self::BlobHashCollision(_) => "BLOB_HASH_COLLISION",
             Self::PathTraversal => "BUNDLE_PATH_TRAVERSAL_REJECTED",
@@ -376,6 +378,70 @@ pub fn put_blob_verified(
         id: expected,
         byte_length: u64::try_from(bytes.len()).map_err(|_| BundleIndexError::IndexValueInvalid)?,
         relative_path,
+    })
+}
+
+/// Stream a content-addressed blob with a declared byte cap and 64 KiB buffer.
+///
+/// # Errors
+/// Rejects quota exhaustion, unsafe paths, collisions and storage failures.
+/// A failed staging file is retained as incomplete owned output.
+pub fn put_blob_stream(
+    bundle_directory: impl AsRef<Path>,
+    reader: &mut impl Read,
+    maximum_bytes: u64,
+) -> Result<BlobSummary, BundleIndexError> {
+    let root = checked_root_or_create(bundle_directory.as_ref())?;
+    let staging = root.join("blobs").join("staging");
+    fs::create_dir_all(&staging)?;
+    ensure_contained(&root, &staging)?;
+    let path = unique_sibling(&staging, "stream", "blob.next");
+    let mut file = OpenOptions::new()
+        .write(true)
+        .create_new(true)
+        .open(&path)?;
+    let mut buffer = vec![0_u8; 64 * 1024];
+    let mut hasher = Sha256::new();
+    let mut bytes = 0_u64;
+    loop {
+        let read = reader.read(&mut buffer)?;
+        if read == 0 {
+            break;
+        }
+        bytes = bytes
+            .checked_add(u64::try_from(read).map_err(|_| BundleIndexError::IndexValueInvalid)?)
+            .ok_or(BundleIndexError::BlobLimitExceeded)?;
+        if bytes > maximum_bytes {
+            return Err(BundleIndexError::BlobLimitExceeded);
+        }
+        file.write_all(&buffer[..read])?;
+        hasher.update(&buffer[..read]);
+    }
+    file.sync_all()?;
+    drop(file);
+    let id = BlobId::from_bytes(hasher.finalize().into());
+    let destination = root.join(blob_path_components(id));
+    let parent = destination
+        .parent()
+        .ok_or(BundleIndexError::PathTraversal)?;
+    fs::create_dir_all(parent)?;
+    ensure_contained(&root, &destination)?;
+    match publish_blob_no_clobber(&path, &destination) {
+        Ok(()) => {
+            sync_file(&destination)?;
+            remove_if_exists(&path)?;
+            sync_directory_best_effort(parent)?;
+        }
+        Err(error) if error.kind() == io::ErrorKind::AlreadyExists || destination.exists() => {
+            remove_if_exists(&path)?;
+            return existing_blob_summary(&root, &destination, id);
+        }
+        Err(error) => return Err(error.into()),
+    }
+    Ok(BlobSummary {
+        id,
+        byte_length: bytes,
+        relative_path: blob_relative_path(id),
     })
 }
 

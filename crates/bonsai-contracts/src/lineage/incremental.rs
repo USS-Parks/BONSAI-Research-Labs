@@ -23,6 +23,7 @@ pub struct LineageValidationWork {
 pub(super) enum ValidationMode {
     Replay,
     Incremental,
+    Persisted(bool),
 }
 
 /// Persistent state extracted from the contract validator.

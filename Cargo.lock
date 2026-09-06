@@ -249,9 +249,15 @@ dependencies = [
 name = "bonsai-lineage"
 version = "0.0.0"
 dependencies = [
+ "bonsai-bundle",
  "bonsai-contracts",
  "bonsai-platform",
+ "prost",
+ "rusqlite",
+ "serde",
  "serde_json",
+ "sha2",
+ "tempfile",
 ]
 
 [[package]]
@@ -315,6 +321,7 @@ dependencies = [
  "serde",
  "serde_json",
  "sha2",
+ "tempfile",
 ]
 
 [[package]]

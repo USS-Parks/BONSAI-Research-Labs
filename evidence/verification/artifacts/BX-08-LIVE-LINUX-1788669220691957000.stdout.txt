@@ -1,0 +1,10 @@
+{"completed": "history-1000-0"}
+{"completed": "history-1000-1"}
+{"completed": "history-1000-2"}
+{"completed": "history-10000-0"}
+{"completed": "history-10000-1"}
+{"completed": "history-10000-2"}
+{"completed": "history-100000-0"}
+{"completed": "history-100000-1"}
+{"completed": "history-100000-2"}
+{"batch": "target/bx08-live-1788669250567672021", "medians": [{"size": 1000, "rss_after_bytes": 6553600, "recovery_rss_after_bytes": 6684672, "growth_ns": 402866146, "recovery_ns": 433940987}, {"size": 10000, "rss_after_bytes": 6815744, "recovery_rss_after_bytes": 6946816, "growth_ns": 2908137099, "recovery_ns": 2668591217}, {"size": 100000, "rss_after_bytes": 8519680, "recovery_rss_after_bytes": 10878976, "growth_ns": 44423874626, "recovery_ns": 29943062634}], "crashes": 4}

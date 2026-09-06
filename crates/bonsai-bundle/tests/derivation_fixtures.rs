@@ -184,3 +184,89 @@ fn sample_tables() -> Vec<AnalyticalTable> {
         }]),
     ]
 }
+
+#[test]
+fn streamed_batches_preserve_all_four_table_semantics() {
+    use bonsai_bundle::{DerivationStreamLimits, materialize_derivation_stream};
+    let directory = TempDir::new().expect("temporary");
+    for (index, table) in sample_tables().iter().enumerate() {
+        let whole = repeat_table(table, 12);
+        let expected = materialize_derivation(
+            directory.path().join(format!("whole-{index}.parquet")),
+            &whole,
+            &spec(),
+        )
+        .expect("whole");
+        let path = directory.path().join(format!("stream-{index}.parquet"));
+        let actual = materialize_derivation_stream(
+            &path,
+            table.kind(),
+            12,
+            (0..4).map(|_| repeat_table(table, 3)),
+            &spec(),
+            DerivationStreamLimits {
+                maximum_batch_rows: 3,
+                maximum_batch_bytes: 8192,
+                maximum_file_rows: 12,
+                maximum_output_bytes: 65536,
+            },
+        )
+        .expect("stream");
+        assert_eq!(actual, expected);
+        let checked = validate_derivation(
+            &path,
+            &DerivationExpectation {
+                kind: table.kind(),
+                source_hashes: spec().source_hashes,
+                producer_id: spec().producer_id,
+                producer_version: spec().producer_version,
+            },
+        )
+        .expect("streamed validation");
+        assert_eq!(checked, expected);
+    }
+}
+
+#[test]
+fn streamed_output_enforces_batch_count_and_byte_quotas() {
+    use bonsai_bundle::{DerivationStreamLimits, materialize_derivation_stream};
+    let directory = TempDir::new().expect("temporary");
+    let table = sample_tables().remove(0);
+    for (name, rows, batch_rows, bytes) in [
+        ("count", 2, 2, 65536),
+        ("batch", 1, 0, 65536),
+        ("output", 1, 1, 32),
+    ] {
+        let path = directory.path().join(format!("{name}.parquet"));
+        assert!(
+            materialize_derivation_stream(
+                &path,
+                table.kind(),
+                rows,
+                [repeat_table(&table, 1)],
+                &spec(),
+                DerivationStreamLimits {
+                    maximum_batch_rows: batch_rows,
+                    maximum_batch_bytes: 8192,
+                    maximum_file_rows: 2,
+                    maximum_output_bytes: bytes
+                }
+            )
+            .is_err()
+        );
+        if name == "output" {
+            assert!(std::fs::metadata(path).expect("partial output").len() <= bytes);
+        }
+    }
+}
+
+fn repeat_table(table: &AnalyticalTable, count: usize) -> AnalyticalTable {
+    match table {
+        AnalyticalTable::Events(rows) => AnalyticalTable::Events(vec![rows[0].clone(); count]),
+        AnalyticalTable::Metrics(rows) => AnalyticalTable::Metrics(vec![rows[0].clone(); count]),
+        AnalyticalTable::Lineage(rows) => AnalyticalTable::Lineage(vec![rows[0].clone(); count]),
+        AnalyticalTable::Decisions(rows) => {
+            AnalyticalTable::Decisions(vec![rows[0].clone(); count])
+        }
+    }
+}
