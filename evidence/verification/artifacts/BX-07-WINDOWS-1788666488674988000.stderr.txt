@@ -1,0 +1,72 @@
+    Checking bonsai-contracts v0.0.0 (C:\Users\17076\Documents\Reinforcement Learning Project\crates\bonsai-contracts)
+    Checking bonsai-bundle v0.0.0 (C:\Users\17076\Documents\Reinforcement Learning Project\crates\bonsai-bundle)
+    Checking bonsai-governor v0.0.0 (C:\Users\17076\Documents\Reinforcement Learning Project\crates\bonsai-governor)
+    Checking bonsai-lineage v0.0.0 (C:\Users\17076\Documents\Reinforcement Learning Project\crates\bonsai-lineage)
+    Checking bonsai-ingest v0.0.0 (C:\Users\17076\Documents\Reinforcement Learning Project\crates\bonsai-ingest)
+    Checking bonsai-xtask v0.0.0 (C:\Users\17076\Documents\Reinforcement Learning Project\crates\bonsai-xtask)
+    Checking bonsai-runtime v0.0.0 (C:\Users\17076\Documents\Reinforcement Learning Project\crates\bonsai-runtime)
+    Checking bonsai-accept v0.0.0 (C:\Users\17076\Documents\Reinforcement Learning Project\crates\bonsai-accept)
+    Finished `dev` profile [unoptimized + debuginfo] target(s) in 23.57s
+   Compiling bonsai-contracts v0.0.0 (C:\Users\17076\Documents\Reinforcement Learning Project\crates\bonsai-contracts)
+   Compiling bonsai-bundle v0.0.0 (C:\Users\17076\Documents\Reinforcement Learning Project\crates\bonsai-bundle)
+   Compiling bonsai-governor v0.0.0 (C:\Users\17076\Documents\Reinforcement Learning Project\crates\bonsai-governor)
+   Compiling bonsai-lineage v0.0.0 (C:\Users\17076\Documents\Reinforcement Learning Project\crates\bonsai-lineage)
+   Compiling bonsai-ingest v0.0.0 (C:\Users\17076\Documents\Reinforcement Learning Project\crates\bonsai-ingest)
+   Compiling bonsai-runtime v0.0.0 (C:\Users\17076\Documents\Reinforcement Learning Project\crates\bonsai-runtime)
+   Compiling bonsai-accept v0.0.0 (C:\Users\17076\Documents\Reinforcement Learning Project\crates\bonsai-accept)
+   Compiling bonsai-xtask v0.0.0 (C:\Users\17076\Documents\Reinforcement Learning Project\crates\bonsai-xtask)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 29.97s
+     Running unittests src\lib.rs (target\debug\deps\bonsai_accept-43d9d83b5eb49da3.exe)
+     Running tests\m4_acceptance.rs (target\debug\deps\m4_acceptance-116d86c328666a11.exe)
+     Running unittests src\lib.rs (target\debug\deps\bonsai_bundle-32829ba7aa699a7d.exe)
+     Running tests\bundle_index_fixtures.rs (target\debug\deps\bundle_index_fixtures-cb7f0c5729016e65.exe)
+     Running tests\bundle_validation_corpus.rs (target\debug\deps\bundle_validation_corpus-8a8f89cae2a68a50.exe)
+     Running tests\derivation_fixtures.rs (target\debug\deps\derivation_fixtures-5bab889002adafc2.exe)
+     Running tests\governed_run.rs (target\debug\deps\governed_run-3eb55b17d1151631.exe)
+     Running tests\segment_fixtures.rs (target\debug\deps\segment_fixtures-6dba75ef7672aefe.exe)
+     Running unittests src\lib.rs (target\debug\deps\bonsai_claims-09bda68a92d3f544.exe)
+     Running tests\c4c5_matrix.rs (target\debug\deps\c4c5_matrix-3f141f958e02f132.exe)
+     Running unittests src\lib.rs (target\debug\deps\bonsai_contracts-ffb82ca6091f947c.exe)
+     Running tests\adapter_protocol.rs (target\debug\deps\adapter_protocol-29317826773f0b54.exe)
+     Running tests\causal_payloads.rs (target\debug\deps\causal_payloads-2974406cf8b78ee6.exe)
+     Running unittests src\lib.rs (target\debug\deps\bonsai_governor-ed2ebc340c8df21a.exe)
+     Running tests\agent_storage.rs (target\debug\deps\agent_storage-03600ff2bf7d23d6.exe)
+     Running tests\m3_governor.rs (target\debug\deps\m3_governor-7a0c892952598814.exe)
+     Running tests\work_allocation.rs (target\debug\deps\work_allocation-6ec3a0437f2a3acb.exe)
+     Running unittests src\lib.rs (target\debug\deps\bonsai_ingest-3e65c42f45157c06.exe)
+     Running tests\ingest_validation.rs (target\debug\deps\ingest_validation-46a4dfb7dd016a6b.exe)
+     Running tests\ordering_semantics.rs (target\debug\deps\ordering_semantics-18a42e4feed0f347.exe)
+     Running unittests src\lib.rs (target\debug\deps\bonsai_lineage-e57502b9750e3638.exe)
+     Running tests\incremental.rs (target\debug\deps\incremental-54849414cb73f56b.exe)
+     Running unittests src\lib.rs (target\debug\deps\bonsai_metrics-74ab68063e4dfd95.exe)
+     Running tests\continual_metrics.rs (target\debug\deps\continual_metrics-1c03d3edc397be66.exe)
+     Running tests\feature_metrics.rs (target\debug\deps\feature_metrics-b78e9e26a6028f13.exe)
+     Running tests\repro_gate.rs (target\debug\deps\repro_gate-42bf06f205bbe618.exe)
+     Running unittests src\lib.rs (target\debug\deps\bonsai_platform-35709e3a20c13357.exe)
+     Running unittests src\bin\bonsai-accounting-fixture.rs (target\debug\deps\bonsai_accounting_fixture-bf48f64ed89e119f.exe)
+     Running tests\os_backends.rs (target\debug\deps\os_backends-e5e46dfa2ef2fe96.exe)
+     Running tests\portable_accounting.rs (target\debug\deps\portable_accounting-644e85fdca66c963.exe)
+     Running unittests src\lib.rs (target\debug\deps\bonsai_report-4b10b42afca15924.exe)
+     Running unittests src\bin\bonsai-report.rs (target\debug\deps\bonsai_report-96daded2db87e857.exe)
+     Running unittests src\bin\bonsai-view.rs (target\debug\deps\bonsai_view-f66497644ee49f7a.exe)
+     Running tests\m3_reporting.rs (target\debug\deps\m3_reporting-e0423fa1d6b96967.exe)
+     Running unittests src\lib.rs (target\debug\deps\bonsai_runtime-0532d841ba317f6b.exe)
+     Running tests\adapter_conformance.rs (target\debug\deps\adapter_conformance-df352aae105bdd70.exe)
+     Running tests\agent_isolation.rs (target\debug\deps\agent_isolation-e65c7daa6f003ca8.exe)
+     Running tests\linux_bounded_transport.rs (target\debug\deps\linux_bounded_transport-83fea05f6cf1ba97.exe)
+     Running tests\process_transport.rs (target\debug\deps\process_transport-fa585b514aacd1b2.exe)
+     Running tests\storage_guard.rs (target\debug\deps\storage_guard-4204714414228ac4.exe)
+     Running unittests src\main.rs (target\debug\deps\bonsai_xtask-dc05e61543ec00d4.exe)
+     Running tests\bundle_validator_cli.rs (target\debug\deps\bundle_validator_cli-2f869cf4cf68b1d9.exe)
+     Running tests\verification_fixture.rs (target\debug\deps\verification_fixture-969925432e216943.exe)
+   Doc-tests bonsai_accept
+   Doc-tests bonsai_bundle
+   Doc-tests bonsai_claims
+   Doc-tests bonsai_contracts
+   Doc-tests bonsai_governor
+   Doc-tests bonsai_ingest
+   Doc-tests bonsai_lineage
+   Doc-tests bonsai_metrics
+   Doc-tests bonsai_platform
+   Doc-tests bonsai_report
+   Doc-tests bonsai_runtime

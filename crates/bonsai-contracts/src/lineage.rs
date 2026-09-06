@@ -7,6 +7,10 @@ use crate::bonsai::artifact::v1::{
     ConsumerKind, ConsumerLink, LineageRelation, ParentReference, Provenance,
 };
 use crate::bonsai::event::v1::Availability;
+mod incremental;
+
+use incremental::ValidationMode;
+pub use incremental::{IncrementalLineageValidator, LineageValidationWork};
 use std::collections::{HashMap, HashSet};
 use std::error::Error;
 use std::fmt;
@@ -54,7 +58,7 @@ impl fmt::Display for LineageValidationError {
 
 impl Error for LineageValidationError {}
 
-#[derive(Clone, Debug)]
+#[derive(Clone, Debug, Eq, PartialEq)]
 struct ArtifactState {
     current_revision_id: Vec<u8>,
     next_sequence: u64,
@@ -62,7 +66,7 @@ struct ArtifactState {
     consumers: HashSet<(Vec<u8>, i32, Option<Vec<u8>>)>,
 }
 
-#[derive(Default)]
+#[derive(Clone, Debug, Default, Eq, PartialEq)]
 struct ContractState {
     artifacts: HashMap<Vec<u8>, ArtifactState>,
     revision_owner: HashMap<Vec<u8>, Vec<u8>>,
@@ -84,13 +88,23 @@ pub fn validate_artifact_lineage_trace(
 ) -> Result<(), LineageValidationError> {
     let mut state = ContractState::default();
     for event in events {
-        state.apply(event)?;
+        state.apply(
+            event,
+            ValidationMode::Replay,
+            &mut LineageValidationWork::default(),
+        )?;
     }
     Ok(())
 }
 
 impl ContractState {
-    fn apply(&mut self, event: &ArtifactLifecycleEvent) -> Result<(), LineageValidationError> {
+    fn apply(
+        &mut self,
+        event: &ArtifactLifecycleEvent,
+        mode: ValidationMode,
+        work: &mut LineageValidationWork,
+    ) -> Result<(), LineageValidationError> {
+        work.events += 1;
         validate_uuid(&event.artifact_id)?;
         validate_uuid(&event.artifact_revision_id)?;
         let detail = event
@@ -103,6 +117,7 @@ impl ContractState {
                 return Err(LineageValidationError::Sequence);
             }
         } else {
+            work.artifact_lookups += 1;
             let artifact = self
                 .artifacts
                 .get(&event.artifact_id)
@@ -118,12 +133,12 @@ impl ContractState {
         }
 
         match detail {
-            Detail::Birth(birth) => self.apply_birth(event, birth),
-            Detail::Revision(revision) => self.apply_revision(event, revision),
-            Detail::ConsumerLink(link) => self.apply_consumer(event, link),
-            Detail::Cost(cost) => self.apply_cost(event, cost),
-            Detail::Utility(utility) => self.apply_utility(event, utility),
-            Detail::Disposition(disposition) => self.apply_disposition(event, disposition),
+            Detail::Birth(birth) => self.apply_birth(event, birth, mode, work),
+            Detail::Revision(revision) => self.apply_revision(event, revision, mode, work),
+            Detail::ConsumerLink(link) => self.apply_consumer(event, link, work),
+            Detail::Cost(cost) => self.apply_cost(event, cost, work),
+            Detail::Utility(utility) => self.apply_utility(event, utility, work),
+            Detail::Disposition(disposition) => self.apply_disposition(event, disposition, work),
         }
     }
 
@@ -131,10 +146,14 @@ impl ContractState {
         &mut self,
         event: &ArtifactLifecycleEvent,
         birth: &ArtifactBirth,
+        mode: ValidationMode,
+        work: &mut LineageValidationWork,
     ) -> Result<(), LineageValidationError> {
+        work.artifact_lookups += 1;
         if self.artifacts.contains_key(&event.artifact_id) {
             return Err(LineageValidationError::DuplicateArtifact);
         }
+        work.revision_lookups += 1;
         if self
             .revision_owner
             .contains_key(&event.artifact_revision_id)
@@ -144,15 +163,17 @@ impl ContractState {
         validate_artifact_type(birth.artifact_type)?;
         validate_sha256(&birth.representation_sha256)?;
         validate_provenance(birth.provenance.as_ref())?;
-        let parent_artifacts = self.validate_parents(&event.artifact_id, &birth.parents)?;
+        let parent_artifacts = self.validate_parents(&event.artifact_id, &birth.parents, work)?;
 
+        // A new artifact cannot already be an ancestor: all parent revisions
+        // were checked against existing owners, and self-parenting is rejected.
         self.revision_owner.insert(
             event.artifact_revision_id.clone(),
             event.artifact_id.clone(),
         );
         self.parent_graph
             .insert(event.artifact_id.clone(), parent_artifacts);
-        if graph_has_cycle(&self.parent_graph) {
+        if matches!(mode, ValidationMode::Replay) && graph_has_cycle(&self.parent_graph, work) {
             self.revision_owner.remove(&event.artifact_revision_id);
             self.parent_graph.remove(&event.artifact_id);
             return Err(LineageValidationError::LineageCycle);
@@ -173,7 +194,10 @@ impl ContractState {
         &mut self,
         event: &ArtifactLifecycleEvent,
         revision: &ArtifactRevision,
+        mode: ValidationMode,
+        work: &mut LineageValidationWork,
     ) -> Result<(), LineageValidationError> {
+        work.artifact_lookups += 1;
         let artifact = self
             .artifacts
             .get(&event.artifact_id)
@@ -187,27 +211,48 @@ impl ContractState {
         validate_uuid(&revision.previous_revision_id)?;
         validate_sha256(&revision.representation_sha256)?;
         validate_provenance(revision.provenance.as_ref())?;
+        work.revision_lookups += 1;
         if self
             .revision_owner
             .contains_key(&event.artifact_revision_id)
         {
             return Err(LineageValidationError::DuplicateRevision);
         }
-        let added_parents = self.validate_parents(&event.artifact_id, &revision.parents)?;
-        let mut graph = self.parent_graph.clone();
-        graph
-            .entry(event.artifact_id.clone())
-            .or_default()
-            .extend(added_parents);
-        if graph_has_cycle(&graph) {
-            return Err(LineageValidationError::LineageCycle);
+        let added_parents = self.validate_parents(&event.artifact_id, &revision.parents, work)?;
+        match mode {
+            ValidationMode::Replay => {
+                work.graph_clones += 1;
+                let mut graph = self.parent_graph.clone();
+                graph
+                    .entry(event.artifact_id.clone())
+                    .or_default()
+                    .extend(added_parents);
+                if graph_has_cycle(&graph, work) {
+                    return Err(LineageValidationError::LineageCycle);
+                }
+                self.parent_graph = graph;
+            }
+            ValidationMode::Incremental => {
+                if added_parents.iter().any(|parent| {
+                    !self
+                        .parent_graph
+                        .get(&event.artifact_id)
+                        .is_some_and(|existing| existing.contains(parent))
+                        && reaches(&self.parent_graph, parent, &event.artifact_id, work)
+                }) {
+                    return Err(LineageValidationError::LineageCycle);
+                }
+                self.parent_graph
+                    .entry(event.artifact_id.clone())
+                    .or_default()
+                    .extend(added_parents);
+            }
         }
-
-        self.parent_graph = graph;
         self.revision_owner.insert(
             event.artifact_revision_id.clone(),
             event.artifact_id.clone(),
         );
+        work.artifact_lookups += 1;
         let artifact = self
             .artifacts
             .get_mut(&event.artifact_id)
@@ -223,10 +268,12 @@ impl ContractState {
         &self,
         child_artifact_id: &[u8],
         parents: &[ParentReference],
+        work: &mut LineageValidationWork,
     ) -> Result<HashSet<Vec<u8>>, LineageValidationError> {
         let mut parent_artifacts = HashSet::new();
         let mut parent_revisions = HashSet::new();
         for parent in parents {
+            work.parent_references += 1;
             validate_uuid(&parent.artifact_id)?;
             validate_uuid(&parent.artifact_revision_id)?;
             let relation = LineageRelation::try_from(parent.relation)
@@ -234,8 +281,11 @@ impl ContractState {
             if relation == LineageRelation::Unspecified
                 || parent.artifact_id == child_artifact_id
                 || !parent_revisions.insert(parent.artifact_revision_id.as_slice())
-                || self.revision_owner.get(&parent.artifact_revision_id)
-                    != Some(&parent.artifact_id)
+                || {
+                    work.revision_lookups += 1;
+                    self.revision_owner.get(&parent.artifact_revision_id)
+                        != Some(&parent.artifact_id)
+                }
             {
                 return Err(LineageValidationError::ParentReference);
             }
@@ -248,6 +298,7 @@ impl ContractState {
         &mut self,
         event: &ArtifactLifecycleEvent,
         link: &ConsumerLink,
+        work: &mut LineageValidationWork,
     ) -> Result<(), LineageValidationError> {
         validate_provenance(link.provenance.as_ref())?;
         let consumer = link
@@ -268,6 +319,7 @@ impl ContractState {
                 .as_ref()
                 .ok_or(LineageValidationError::Consumer)?;
             validate_uuid(revision_id)?;
+            work.revision_lookups += 1;
             if self.revision_owner.get(revision_id) != Some(&consumer.consumer_id) {
                 return Err(LineageValidationError::Consumer);
             }
@@ -275,6 +327,7 @@ impl ContractState {
             return Err(LineageValidationError::Consumer);
         }
 
+        work.artifact_lookups += 1;
         let artifact = self
             .artifacts
             .get_mut(&event.artifact_id)
@@ -287,6 +340,7 @@ impl ContractState {
             consumer.kind,
             consumer.consumer_artifact_revision_id.clone(),
         );
+        work.consumer_lookups += 1;
         let changed = match action {
             ConsumerAction::Link => artifact.consumers.insert(key),
             ConsumerAction::Unlink => artifact.consumers.remove(&key),
@@ -303,12 +357,16 @@ impl ContractState {
         &mut self,
         event: &ArtifactLifecycleEvent,
         cost: &ArtifactCost,
+        work: &mut LineageValidationWork,
     ) -> Result<(), LineageValidationError> {
         validate_provenance(cost.provenance.as_ref())?;
         validate_uuid(&cost.cost_entry_id)?;
         if cost.counter_id.is_empty()
             || cost.unit.is_empty()
-            || !self.history_entry_ids.insert(cost.cost_entry_id.clone())
+            || {
+                work.history_lookups += 1;
+                self.history_entry_ids.contains(&cost.cost_entry_id)
+            }
             || !valid_observation(
                 cost.availability,
                 cost.amount.is_some(),
@@ -319,13 +377,15 @@ impl ContractState {
         {
             return Err(LineageValidationError::Cost);
         }
-        self.advance(event)
+        self.history_entry_ids.insert(cost.cost_entry_id.clone());
+        self.advance(event, work)
     }
 
     fn apply_utility(
         &mut self,
         event: &ArtifactLifecycleEvent,
         utility: &ArtifactUtility,
+        work: &mut LineageValidationWork,
     ) -> Result<(), LineageValidationError> {
         validate_provenance(utility.provenance.as_ref())?;
         validate_uuid(&utility.utility_entry_id)?;
@@ -333,9 +393,10 @@ impl ContractState {
             || utility.metric_version.is_empty()
             || utility.unit.is_empty()
             || utility.estimate.is_some_and(|value| !value.is_finite())
-            || !self
-                .history_entry_ids
-                .insert(utility.utility_entry_id.clone())
+            || {
+                work.history_lookups += 1;
+                self.history_entry_ids.contains(&utility.utility_entry_id)
+            }
             || !valid_observation(
                 utility.availability,
                 utility.estimate.is_some(),
@@ -346,13 +407,16 @@ impl ContractState {
         {
             return Err(LineageValidationError::Utility);
         }
-        self.advance(event)
+        self.history_entry_ids
+            .insert(utility.utility_entry_id.clone());
+        self.advance(event, work)
     }
 
     fn apply_disposition(
         &mut self,
         event: &ArtifactLifecycleEvent,
         record: &ArtifactDispositionRecord,
+        work: &mut LineageValidationWork,
     ) -> Result<(), LineageValidationError> {
         validate_provenance(record.provenance.as_ref())?;
         let disposition = ArtifactDisposition::try_from(record.disposition)
@@ -372,13 +436,17 @@ impl ContractState {
                 .as_ref()
                 .ok_or(LineageValidationError::Disposition)?;
             validate_uuid(successor)?;
-            if successor == &event.artifact_id || !self.artifacts.contains_key(successor) {
+            if successor == &event.artifact_id || {
+                work.artifact_lookups += 1;
+                !self.artifacts.contains_key(successor)
+            } {
                 return Err(LineageValidationError::Disposition);
             }
         } else if record.successor_artifact_id.is_some() {
             return Err(LineageValidationError::Disposition);
         }
 
+        work.artifact_lookups += 1;
         let artifact = self
             .artifacts
             .get_mut(&event.artifact_id)
@@ -391,7 +459,12 @@ impl ContractState {
         Ok(())
     }
 
-    fn advance(&mut self, event: &ArtifactLifecycleEvent) -> Result<(), LineageValidationError> {
+    fn advance(
+        &mut self,
+        event: &ArtifactLifecycleEvent,
+        work: &mut LineageValidationWork,
+    ) -> Result<(), LineageValidationError> {
+        work.artifact_lookups += 1;
         let artifact = self
             .artifacts
             .get_mut(&event.artifact_id)
@@ -473,23 +546,57 @@ fn valid_observation(
     }
 }
 
-fn graph_has_cycle(graph: &HashMap<Vec<u8>, HashSet<Vec<u8>>>) -> bool {
+// An added child -> parent edge creates a cycle exactly when that parent can
+// already reach the child. Traverse only that reachable ancestry, iteratively.
+fn reaches(
+    graph: &HashMap<Vec<u8>, HashSet<Vec<u8>>>,
+    start: &[u8],
+    target: &[u8],
+    work: &mut LineageValidationWork,
+) -> bool {
+    let mut pending = vec![start.to_vec()];
+    let mut visited = HashSet::new();
+    while let Some(node) = pending.pop() {
+        if !visited.insert(node.clone()) {
+            continue;
+        }
+        work.ancestry_nodes += 1;
+        if node == target {
+            return true;
+        }
+        if let Some(parents) = graph.get(&node) {
+            for parent in parents {
+                work.ancestry_edges += 1;
+                pending.push(parent.clone());
+            }
+        }
+    }
+    false
+}
+
+fn graph_has_cycle(
+    graph: &HashMap<Vec<u8>, HashSet<Vec<u8>>>,
+    work: &mut LineageValidationWork,
+) -> bool {
     fn visit(
         node: &[u8],
         graph: &HashMap<Vec<u8>, HashSet<Vec<u8>>>,
         visiting: &mut HashSet<Vec<u8>>,
         visited: &mut HashSet<Vec<u8>>,
+        work: &mut LineageValidationWork,
     ) -> bool {
         if visited.contains(node) {
             return false;
         }
+        work.ancestry_nodes += 1;
         if !visiting.insert(node.to_vec()) {
             return true;
         }
         if graph.get(node).is_some_and(|parents| {
-            parents
-                .iter()
-                .any(|parent| visit(parent, graph, visiting, visited))
+            parents.iter().any(|parent| {
+                work.ancestry_edges += 1;
+                visit(parent, graph, visiting, visited, work)
+            })
         }) {
             return true;
         }
@@ -498,9 +605,10 @@ fn graph_has_cycle(graph: &HashMap<Vec<u8>, HashSet<Vec<u8>>>) -> bool {
         false
     }
 
+    work.whole_graph_scans += 1;
     let mut visited = HashSet::new();
     for node in graph.keys() {
-        if visit(node, graph, &mut HashSet::new(), &mut visited) {
+        if visit(node, graph, &mut HashSet::new(), &mut visited, work) {
             return true;
         }
     }

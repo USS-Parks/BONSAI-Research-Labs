@@ -1,7 +1,7 @@
 # PSPR v0.5 Project Handoff
 
 Date: 2026-09-05 (America/Los_Angeles)
-Status: **APPROVED — FULL BX-01–BX-40 STS AUTHORIZED; BX-01–BX-05 VERIFIED; BX-06 EXECUTING**
+Status: **APPROVED — FULL BX-01–BX-40 STS AUTHORIZED; BX-01–BX-06 VERIFIED; BX-07 EXECUTING**
 
 ## Current execution authority — 2026-09-05
 
@@ -79,3 +79,15 @@ BX-05 closed at `fb8ebfb0c5d903e0922726f8882ec5f58303abbc`; hosted run 340067750
 ### BX-06 local acceptance checkpoint
 
 Implementation, portable tests, fresh S/smoke verification, twelve negative boundary cases, and exact-source archive passed. Next: final closeout checks, focused BX-06 main publication, and required hosted CI; then BX-07. BX-06 remains executing and M5a remains open pending publication. See the latest DEVLOG and verification entries for immutable receipts and records.
+
+### BX-06 publication closeout / M5a complete / BX-07 start
+
+Published main `911e7e35bc1c1d2dd90dd6c00ef1f08449cdf13a` matches remote main. Hosted [run 34008881505](https://github.com/USS-Parks/BONSAI-Research-Labs/actions/runs/34008881505) passed Windows, Linux, macOS Intel/arm64, and M1 semantic equivalence. The committed tree preserved all 76 files, 18 captured outputs, and the exact archive SHA with zero byte mismatches. BX-01 through BX-06 and M5a are complete. BX-07 now executes incremental lineage validation under the existing full-roster STS authorization; BX-08 through BX-40 remain unstarted.
+
+### BX-07 local acceptance — publication pending
+
+Incremental admission, rejection atomicity, 2,880 differential attempts and 72
+scaling trials passed. Full Windows and WSL2 Linux gates passed (226/228 Rust
+tests and 59 Python tests each). Exact source/trial archive and records are in
+the latest DEVLOG and verification entries. BX-07 stays executing until its
+focused main publication and all required hosted jobs pass. BX-08 remains unstarted.

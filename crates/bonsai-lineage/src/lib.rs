@@ -8,7 +8,10 @@ use bonsai_contracts::bonsai::artifact::v1::{
     ArtifactLifecycleEvent, ArtifactRevision, ArtifactType, ArtifactUtility, ConsumerAction,
     ConsumerKind, ConsumerLink, ParentReference, Provenance,
 };
-use bonsai_contracts::lineage::{LineageValidationError, validate_artifact_lineage_trace};
+use bonsai_contracts::lineage::{
+    IncrementalLineageValidator, LineageValidationError, LineageValidationWork,
+    validate_artifact_lineage_trace,
+};
 use std::collections::{BTreeMap, BTreeSet};
 
 mod graph;
@@ -60,6 +63,7 @@ pub struct RegistrySnapshot {
 /// Runtime state derived exclusively from the accepted immutable event prefix.
 #[derive(Clone, Debug, Default)]
 pub struct ArtifactLifecycleRegistry {
+    validator: IncrementalLineageValidator,
     events: Vec<ArtifactLifecycleEvent>,
     snapshot: RegistrySnapshot,
 }
@@ -79,6 +83,7 @@ impl ArtifactLifecycleRegistry {
         validate_artifact_lineage_trace(events)?;
         let mut registry = Self::new();
         for event in events {
+            registry.validator.apply(event)?;
             registry.apply_validated(event)?;
         }
         registry.events = events.to_vec();
@@ -94,12 +99,21 @@ impl ArtifactLifecycleRegistry {
     ///
     /// Returns the stable BC-07 error for the first invalid transition.
     pub fn apply(&mut self, event: ArtifactLifecycleEvent) -> Result<(), LineageValidationError> {
-        let mut candidate = self.events.clone();
-        candidate.push(event.clone());
-        validate_artifact_lineage_trace(&candidate)?;
-        self.apply_validated(&event)?;
-        self.events.push(event);
-        Ok(())
+        self.apply_measured(event).0
+    }
+
+    /// Validate one event and expose only the work of that admission.
+    /// The contract engine checks every fallible projection precondition before
+    /// either accepted state or the event prefix changes.
+    pub fn apply_measured(
+        &mut self,
+        event: ArtifactLifecycleEvent,
+    ) -> (Result<(), LineageValidationError>, LineageValidationWork) {
+        let (validated, work) = self.validator.apply_measured(&event);
+        let result = validated
+            .and_then(|()| self.apply_validated(&event))
+            .map(|()| self.events.push(event));
+        (result, work)
     }
 
     #[must_use]

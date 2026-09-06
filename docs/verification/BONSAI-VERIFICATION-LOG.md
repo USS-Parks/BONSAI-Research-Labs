@@ -2118,3 +2118,29 @@ fixtures, which exercise semantic rejection after rebuilding hashes. Historical
 initial metric numeric-comparison rejection is preserved in the DEVLOG and target
 diagnostics. [Worktree inventory](../../evidence/verification/bx-06/worktree-inventory.json)
 retains the active cache lower bound and historical M0 retirement blocker.
+
+### BX-06 publication closeout / M5a complete / BX-07 start
+
+Published main `911e7e35bc1c1d2dd90dd6c00ef1f08449cdf13a` matches remote main. Hosted [run 34008881505](https://github.com/USS-Parks/BONSAI-Research-Labs/actions/runs/34008881505) passed Windows, Linux, macOS Intel/arm64, and M1 semantic equivalence. The committed tree preserved all 76 files, 18 captured outputs, and the exact archive SHA with zero byte mismatches. BX-01 through BX-06 and M5a are complete. BX-07 now executes incremental lineage validation under the existing full-roster STS authorization; BX-08 through BX-40 remain unstarted.
+
+## VER-BX07 — Incremental lineage admission
+
+Local gates passed; focused main publication and hosted CI remain pending.
+Source baseline: `911e7e35bc1c1d2dd90dd6c00ef1f08449cdf13a`.
+
+- `BX-07-SCALING-WINDOWS-1788666161769452000`: pass, exit 0, 69.03 seconds; command, output hashes and byte lengths retained in records.jsonl.
+- `BX-07-SCALING-LINUX-1788666240395062900`: pass, exit 0, 82.53 seconds; command, output hashes and byte lengths retained in records.jsonl.
+- `BX-07-ARCHIVE-1788666396005842700`: pass, exit 0, 0.61 seconds; command, output hashes and byte lengths retained in records.jsonl.
+- `BX-07-WINDOWS-1788666488674988000`: pass, exit 0, 130.72 seconds; command, output hashes and byte lengths retained in records.jsonl.
+- `BX-07-LINUX-1788666502063605900`: pass, exit 0, 328.39 seconds; command, output hashes and byte lengths retained in records.jsonl.
+
+226 Windows / 228 WSL2 Linux Rust tests and 59 Python tests on each passed.
+Generated differential corpus: 2,880 attempts, 1,810 accepted / 1,070 rejected.
+All 72 scaling trials passed exact operation-count checks; current RSS and timing
+are retained for every trial. Full-history storage remains BX-08.
+
+[Archive](../../evidence/verification/bx-07/scaling-evidence.zip): 104,993 bytes;
+SHA-256 `6a7b99ae8cc3bdbb2589a9fe932e8af7b0cd63841365a1fbb0fd349d971881ed`.
+All 156 entries and nine exact implementation sources verified.
+[Worktree inventory](../../evidence/verification/bx-07/worktree-inventory.json)
+records retained build data and the historical worktree retirement blocker.

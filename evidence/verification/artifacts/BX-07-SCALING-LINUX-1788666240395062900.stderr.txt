@@ -1,0 +1,4 @@
+   Compiling bonsai-contracts v0.0.0 (/mnt/c/Users/17076/Documents/Reinforcement Learning Project/crates/bonsai-contracts)
+   Compiling bonsai-platform v0.0.0 (/mnt/c/Users/17076/Documents/Reinforcement Learning Project/crates/bonsai-platform)
+   Compiling bonsai-lineage v0.0.0 (/mnt/c/Users/17076/Documents/Reinforcement Learning Project/crates/bonsai-lineage)
+    Finished `dev` profile [unoptimized + debuginfo] target(s) in 23.65s

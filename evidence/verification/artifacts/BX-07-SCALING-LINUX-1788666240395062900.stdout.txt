@@ -1,0 +1,13 @@
+{"case": "history", "prefix_events": 1000, "median_probe_ns": 36328, "median_build_ns": 7810375, "median_rss_after_build_bytes": 4980736, "pass": true}
+{"case": "history", "prefix_events": 10000, "median_probe_ns": 38362, "median_build_ns": 100578484, "median_rss_after_build_bytes": 18612224, "pass": true}
+{"case": "history", "prefix_events": 100000, "median_probe_ns": 38712, "median_build_ns": 1155541871, "median_rss_after_build_bytes": 158740480, "pass": true}
+{"case": "roots", "prefix_events": 1000, "median_probe_ns": 51827, "median_build_ns": 13112979, "median_rss_after_build_bytes": 5505024, "pass": true}
+{"case": "roots", "prefix_events": 10000, "median_probe_ns": 57928, "median_build_ns": 181939236, "median_rss_after_build_bytes": 22953984, "pass": true}
+{"case": "roots", "prefix_events": 100000, "median_probe_ns": 48812, "median_build_ns": 2031201456, "median_rss_after_build_bytes": 193404928, "pass": true}
+{"case": "chain", "prefix_events": 1000, "median_probe_ns": 2896938, "median_build_ns": 18730300, "median_rss_after_build_bytes": 6029312, "pass": true}
+{"case": "chain", "prefix_events": 10000, "median_probe_ns": 21534740, "median_build_ns": 182892919, "median_rss_after_build_bytes": 27156480, "pass": true}
+{"case": "chain", "prefix_events": 100000, "median_probe_ns": 228912626, "median_build_ns": 1782263128, "median_rss_after_build_bytes": 234954752, "pass": true}
+{"case": "branch", "prefix_events": 1000, "median_probe_ns": 2358890, "median_build_ns": 16940672, "median_rss_after_build_bytes": 6160384, "pass": true}
+{"case": "branch", "prefix_events": 10000, "median_probe_ns": 29114862, "median_build_ns": 168410268, "median_rss_after_build_bytes": 30138368, "pass": true}
+{"case": "branch", "prefix_events": 100000, "median_probe_ns": 341778410, "median_build_ns": 1975376207, "median_rss_after_build_bytes": 263790592, "pass": true}
+retained scaling corpus: /mnt/c/Users/17076/Documents/Reinforcement Learning Project/target/bx07-scaling-1788666264477891315

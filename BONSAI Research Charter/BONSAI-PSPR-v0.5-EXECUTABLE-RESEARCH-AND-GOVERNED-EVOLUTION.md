@@ -209,7 +209,7 @@ Initial drafting state: all prompts were **[ ] NOT STARTED**. Current execution 
 
 **Retained evidence:** One complete S bundle, classified failure bundles, operator command, and full input/source identity.
 
-### [~] BX-06 — Derive C0/C1 and track eligibility from run evidence
+### [x] BX-06 — Derive C0/C1 and track eligibility from run evidence
 
 **Milestone:** M5a. **Depends:** BX-05.\
 **Legacy mapping:** BV-01; BV-04; BC-05; BR-09.\
@@ -223,7 +223,7 @@ Initial drafting state: all prompts were **[ ] NOT STARTED**. Current execution 
 
 **Retained evidence:** Independent verify outputs and positive/negative bundle corpus. This closes M5a only if BX-01–06 all pass.
 
-### [ ] BX-07 — Make lineage validation incremental
+### [~] BX-07 — Make lineage validation incremental
 
 **Milestone:** M5b. **Depends:** BX-06.\
 **Legacy mapping:** BC-07; BR-07–BR-08; BK lineage consumers.\
@@ -883,3 +883,15 @@ BX-05 closed at main `fb8ebfb0c5d903e0922726f8882ec5f58303abbc`, hosted [run 340
 ### BX-06 local acceptance — publication pending
 
 Fresh Linux and Windows verifier processes reconstructed the real S run as C0/C1 pass and Track A; all 12 negative evidence cases and full local gates passed. The exact-source archive and verification records are linked in the latest DEVLOG and verification entries. BX-06 remains executing until its focused main publication and required hosted CI pass; BX-07 remains not started. M5a closes only after that publication gate.
+
+### BX-06 publication closeout / M5a complete / BX-07 start
+
+Published main `911e7e35bc1c1d2dd90dd6c00ef1f08449cdf13a` matches remote main. Hosted [run 34008881505](https://github.com/USS-Parks/BONSAI-Research-Labs/actions/runs/34008881505) passed Windows, Linux, macOS Intel/arm64, and M1 semantic equivalence. The committed tree preserved all 76 files, 18 captured outputs, and the exact archive SHA with zero byte mismatches. BX-01 through BX-06 and M5a are complete. BX-07 now executes incremental lineage validation under the existing full-roster STS authorization; BX-08 through BX-40 remain unstarted.
+
+### BX-07 local acceptance — publication pending
+
+Incremental admission, rejection atomicity, 2,880 differential attempts and 72
+scaling trials passed. Full Windows and WSL2 Linux gates passed (226/228 Rust
+tests and 59 Python tests each). Exact source/trial archive and records are in
+the latest DEVLOG and verification entries. BX-07 stays executing until its
+focused main publication and all required hosted jobs pass. BX-08 remains unstarted.

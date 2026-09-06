@@ -1770,3 +1770,59 @@ retains at least 25.15 GiB of target/.venv state (25 unreadable entries); about
 `eaa0e52ec5a6dc78ab1a360f2a11c2201c7a5e9d`, with zero unique commits against
 fresh main and 1.36 GiB generated data. It has no active task; explicit removal
 authorization remains its retirement blocker. No additional worktree was created.
+
+### BX-06 publication closeout / M5a complete / BX-07 start
+
+Published main `911e7e35bc1c1d2dd90dd6c00ef1f08449cdf13a` matches remote main. Hosted [run 34008881505](https://github.com/USS-Parks/BONSAI-Research-Labs/actions/runs/34008881505) passed Windows, Linux, macOS Intel/arm64, and M1 semantic equivalence. The committed tree preserved all 76 files, 18 captured outputs, and the exact archive SHA with zero byte mismatches. BX-01 through BX-06 and M5a are complete. BX-07 now executes incremental lineage validation under the existing full-roster STS authorization; BX-08 through BX-40 remain unstarted.
+
+## BX-07 — local acceptance passed; hosted publication pending
+
+Date: 2026-09-06 UTC. Authorized full BX-01–BX-40 STS; source baseline
+`911e7e35bc1c1d2dd90dd6c00ef1f08449cdf13a`. BX-07 remains executing until its
+focused main commit and required hosted CI pass.
+
+Extracted persistent validation state from the existing contract engine and
+removed accepted-prefix cloning/revalidation from runtime admission. Replay
+retains its whole-graph cycle traversal as the independent differential oracle;
+incremental revisions visit only reachable ancestry for new edges. New births
+cannot introduce a cycle because their identity is new and all parents already
+exist. Cost/utility history identities are now committed only after measurement
+validation. Rejected events preserve semantic state, ownership and sequence.
+
+Changed the contracts lineage engine, runtime registry, three differential tests,
+a scaling example, its existing-platform collector dev dependency, lockfile and
+release checksums. Added the operator guide and reproducible evidence harnesses.
+The generated corpus contains 12 seeds / 2,880 admissions: 1,810 accepted and
+1,070 rejected, matching full replay, exact errors and reconstructed state.
+Separate tests cover invalid-measurement identity reuse and diamond-cycle
+rejection followed by a corrected event using the same revision and sequence.
+
+All 226 Windows / 228 WSL2 Linux Rust tests and all 59 Python tests on each passed.
+Formatting, strict Clippy, Ruff, Pyright, schemas, documentation and governance
+gates passed. A temporary malformed test-helper edit was corrected before these
+final gates; no lint or acceptance requirement was relaxed.
+
+Scaling covers 72 fresh-process trials: four workloads, 1k/10k/100k prefixes,
+three trials per size on each host. History admission uses two artifact probes
+and one history probe; root birth uses one artifact and one revision probe.
+Both perform zero ancestry visits, graph clones and whole-graph scans regardless
+of prefix. Chain rejection visits N nodes/N-1 edges; branching acceptance visits
+N-1 nodes/2N-5 edges. At 100k, median history admission was 22.5 microseconds on
+Windows and 38.712 microseconds on Linux; branching was 276.3601/341.77841 ms.
+These are debug-build observations, not general constant-time guarantees.
+RSS is sampled current resident memory, not peak. Full historical storage remains
+retained and grows; bounding it is BX-08.
+
+[Scaling archive](../../evidence/verification/bx-07/scaling-evidence.zip):
+104,993 bytes, SHA-256
+`6a7b99ae8cc3bdbb2589a9fe932e8af7b0cd63841365a1fbb0fd349d971881ed`.
+All 156 entries were re-read/hash-checked, including nine exact source files and
+72 trials. See [operator guide](../operator/incremental-lineage-validation.md)
+for workloads, measurements and reproduction.
+
+Worktree inventory at 03:53:06 UTC: canonical main is the only active lane,
+with at least 26.33 GiB generated data (27 unreadable entries), retained for
+ongoing STS builds; 307.74 GiB available. Historical M0 remains clean at
+`eaa0e52ec5a6dc78ab1a360f2a11c2201c7a5e9d`, with zero unpublished commits against
+fresh main and 1.36 GiB generated data. It has no active task and remains cleanup
+debt pending explicit removal authorization. No new worktree or deletion.

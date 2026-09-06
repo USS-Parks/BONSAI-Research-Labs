@@ -250,6 +250,8 @@ name = "bonsai-lineage"
 version = "0.0.0"
 dependencies = [
  "bonsai-contracts",
+ "bonsai-platform",
+ "serde_json",
 ]
 
 [[package]]

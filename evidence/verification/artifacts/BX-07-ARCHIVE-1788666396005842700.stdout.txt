@@ -1,0 +1,9 @@
+{
+  "path": "evidence\\verification\\bx-07\\scaling-evidence.zip",
+  "bytes": 104993,
+  "sha256": "6a7b99ae8cc3bdbb2589a9fe932e8af7b0cd63841365a1fbb0fd349d971881ed",
+  "archived_files": 156,
+  "source_files": 9,
+  "trials": 72,
+  "verification": "all entries re-read and hashed"
+}

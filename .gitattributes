@@ -51,3 +51,9 @@ evidence/verification/artifacts/BX-06-*.txt -text -diff
 evidence/verification/bx-06/*.txt -text -diff
 evidence/verification/bx-06/*.sh text eol=lf
 evidence/verification/bx-06/*.py text eol=lf
+
+# BX-07 captured measurement output must retain its recorded hashes.
+evidence/verification/artifacts/BX-07-*.txt -text -diff
+evidence/verification/bx-07/*.txt -text -diff
+evidence/verification/bx-07/*.sh text eol=lf
+evidence/verification/bx-07/*.py text eol=lf

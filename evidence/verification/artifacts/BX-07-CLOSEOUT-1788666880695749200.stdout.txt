@@ -1,0 +1,25 @@
+
+C:\Users\17076\Documents\Reinforcement Learning Project>uv run --frozen ruff check . 
+All checks passed!
+
+C:\Users\17076\Documents\Reinforcement Learning Project>if errorlevel 1 exit /b 1 
+
+C:\Users\17076\Documents\Reinforcement Learning Project>uv run --frozen python -B scripts/check_docs.py 
+documentation governance check passed: 132 Markdown files; local links resolve; STS warnings present
+
+C:\Users\17076\Documents\Reinforcement Learning Project>if errorlevel 1 exit /b 1 
+
+C:\Users\17076\Documents\Reinforcement Learning Project>uv run --frozen python -B scripts/check_governance_ledgers.py 
+governance ledger check passed: R-01..R-16 and P-01..P-09 complete; negative fixtures rejected
+
+C:\Users\17076\Documents\Reinforcement Learning Project>if errorlevel 1 exit /b 1 
+
+C:\Users\17076\Documents\Reinforcement Learning Project>uv run --frozen python -B scripts/check_terminology.py 
+terminology registry check passed: 17 terms, 8 identifiers, 17 numeric fields; negative fixtures rejected
+
+C:\Users\17076\Documents\Reinforcement Learning Project>if errorlevel 1 exit /b 1 
+
+C:\Users\17076\Documents\Reinforcement Learning Project>uv run --frozen python -B scripts/check_m4.py 
+M4 honesty check passed: D-21 prominent; L attestations not-run; OD-03 markers present
+
+C:\Users\17076\Documents\Reinforcement Learning Project>if errorlevel 1 exit /b 1 
