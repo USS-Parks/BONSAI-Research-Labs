@@ -13,6 +13,8 @@ pub mod clock;
 pub mod energy;
 pub mod equivalence;
 pub mod linux;
+#[cfg(target_os = "linux")]
+pub mod linux_authority;
 pub mod macos;
 pub mod nvidia;
 pub mod portable;

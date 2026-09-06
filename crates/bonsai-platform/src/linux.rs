@@ -109,7 +109,7 @@ pub fn detect_linux_backend() -> CapabilityMatrix {
         "cgroup.pids.max",
     ]
     .into_iter()
-    .map(|id| control(id, enforce, "CGROUP_HARD_LIMIT_UNIMPLEMENTED"))
+    .map(|id| control(id, enforce, "CGROUP_AUTHORITY_NOT_CONFIGURED"))
     .collect();
     CapabilityMatrix::assembled(
         BACKEND,
@@ -119,7 +119,7 @@ pub fn detect_linux_backend() -> CapabilityMatrix {
         limits,
         measure,
         if delegated {
-            "cgroup v2 child directories can be created; hard limit files are not written; Track A stays closed"
+            "cgroup v2 child directories can be created; no scoped LinuxAuthority is configured; Track A stays closed"
         } else if v2 {
             "cgroup v2 is readable; controller writes are not delegated and fail closed before Track A"
         } else {

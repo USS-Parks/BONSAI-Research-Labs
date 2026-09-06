@@ -1,7 +1,7 @@
 # PSPR v0.5 Project Handoff
 
 Date: 2026-09-05 (America/Los_Angeles)
-Status: **APPROVED — FULL BX-01–BX-40 STS AUTHORIZED; BX-01 VERIFIED; BX-02 EXECUTING**
+Status: **APPROVED — FULL BX-01–BX-40 STS AUTHORIZED; BX-01–BX-02 VERIFIED; BX-03 EXECUTING**
 
 ## Current execution authority — 2026-09-05
 
@@ -34,3 +34,7 @@ Use the existing DEVLOG and verification log. Preserve one prompt per focused co
 ## Current continuation — BX-02
 
 BX-01 closed at `51637ee2dfb3b21673bfeddecb8533a8dd6e29d5`, hosted run 33998986034 fully green. BX-02 is executing. User-local WSL Rust 1.96.0 is installed without sudo/profile changes; the three existing process_transport tests pass on x86_64-unknown-linux-gnu. Reuse the canonical target root with the Linux target triple and limit build jobs to four. Windows .venv remains intact; WSL subprocess fixtures use system Python.
+
+## Current continuation — BX-03
+
+BX-02 closed at `9a2457afd873bac167ffd61602b64f624f7ea089`, hosted run 33999964570 fully green. BX-03 is executing against the existing unprivileged WSL2 systemd delegation. The supervisor subgroup prerequisite was verified; no global controller changes or physical-host claim.

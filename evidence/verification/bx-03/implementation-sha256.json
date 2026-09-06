@@ -1,0 +1,18 @@
+{
+  "schema": "bonsai.source-evidence/v1",
+  "prompt": "BX-03",
+  "base_source_revision": "9a2457afd873bac167ffd61602b64f624f7ea089",
+  "files": {
+    "crates/bonsai-platform/src/lib.rs": "07f3fbd743333857a7e6d66faf6a0dec372b32895b82e66ae0df297e22e3112e",
+    "crates/bonsai-platform/src/linux.rs": "9221c5a6bb96eafff93074b6610fd9e9c1a76ff0a98f45e79086b5145565c9fd",
+    "crates/bonsai-platform/src/linux_authority.rs": "03116c3abbd26e4d2a8ca7ea238d0905aec3288d95acb404a54b3126ab6f3160",
+    "crates/bonsai-governor/src/enforcement.rs": "466ed207a447f6f0ac0cbdc9d207bbbad44714f408cb946bf833e073760b662b",
+    "crates/bonsai-governor/examples/linux_authority_probe.rs": "a16b3341d9230a2f5ce6968d01f92315e646ee133a91186885e14060d22e70ba",
+    "evidence/verification/bx-03/workload.py": "f42bed72dcc3bccc390532ce043b2d79b902c06cc25e59a256337863ac003ec2",
+    "evidence/verification/bx-03/live-gate.sh": "8dd2b8d610677f7dee3ddde234665f57dfda55b78fc16df912098f76abaedb5d",
+    "evidence/verification/bx-03/linux-gate.sh": "53d645308e320ab9ac54d0235625f1739bad5921d7fa88d9dc6fb5c0193659b5",
+    "evidence/verification/bx-03/focused-gate.sh": "06b2ee267010efd06ce7463b89280aad6c9e0ec8612763c36801699175bf8ae4",
+    "evidence/verification/bx-03/windows-gate.cmd": "c7f6f5a4f9861f72dd4600bd6f2007532388437d98583d2abfaa814df0a95820",
+    "docs/architecture/LINUX-RESOURCE-AUTHORITY.md": "e41e1e5520cff262f698c49f8263f58b06c4899112370aa4999778dd5d78a1a5"
+  }
+}

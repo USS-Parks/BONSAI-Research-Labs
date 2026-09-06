@@ -153,7 +153,7 @@ Initial drafting state: all prompts were **[ ] NOT STARTED**. Current execution 
 
 **Retained evidence:** Baseline and evidence-gap matrix; exact baseline verification records; worktree/storage inventory.
 
-### [~] BX-02 — Bound adapter I/O and process-tree cancellation
+### [x] BX-02 — Bound adapter I/O and process-tree cancellation
 
 **Milestone:** M5a. **Depends:** BX-01.\
 **Legacy mapping:** BR-03–BR-06; BV-12.\
@@ -167,7 +167,7 @@ Initial drafting state: all prompts were **[ ] NOT STARTED**. Current execution 
 
 **Retained evidence:** Process IDs/tree membership, monotonic deadlines, captured failures, and post-test survivor/handle checks.
 
-### [ ] BX-03 — Apply and verify Linux resource authority
+### [~] BX-03 — Apply and verify Linux resource authority
 
 **Milestone:** M5a. **Depends:** BX-02.\
 **Legacy mapping:** BM-09–BM-10; BQ-07.\
@@ -859,3 +859,7 @@ BX-01 is executing at source baseline `2f35355c6d12d019eb8625cb3bd38728d90ee029`
 ### BX-01 closeout / BX-02 start — 2026-09-05
 
 BX-01 passed local gates and hosted run [33998986034](https://github.com/USS-Parks/BONSAI-Research-Labs/actions/runs/33998986034) on corrected main commit `51637ee2dfb3b21673bfeddecb8533a8dd6e29d5`. Initial commit `25d2c8e40a94fb2ea14208db177413c51b182681` required one documented evidence-byte correction. All four hosted OS/architecture jobs and M1 semantic equivalence passed; committed output hashes match machine records. BX-02 is now executing; BX-03–BX-40 remain unstarted.
+
+### BX-02 closeout / BX-03 start — 2026-09-05
+
+BX-02 closed at main `9a2457afd873bac167ffd61602b64f624f7ea089`, hosted [run 33999964570](https://github.com/USS-Parks/BONSAI-Research-Labs/actions/runs/33999964570) fully successful on all four platforms and M1 semantic equivalence. Eight committed output hashes and nine implementation hashes matched their manifests. BX-03 is executing; physical acceptance remains open.

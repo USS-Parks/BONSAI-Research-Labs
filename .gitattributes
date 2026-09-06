@@ -15,3 +15,7 @@ evidence/verification/bx-01/*.txt -text -diff
 # Preserve captured BX-02 output bytes independently of checkout line endings.
 evidence/verification/artifacts/BX-02-*.txt -text -diff
 evidence/verification/bx-02/*.txt -text -diff
+
+# Preserve BX-03 captured bytes after generic text patterns.
+evidence/verification/artifacts/BX-03-*.txt -text -diff
+evidence/verification/bx-03/*.txt -text -diff

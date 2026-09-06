@@ -78,3 +78,18 @@ pub fn preflight_hard_controls(
         })
     }
 }
+
+/// Admit Linux hard controls only after re-reading an active scoped authority.
+///
+/// # Errors
+/// Returns an error when controller evidence is unavailable or controls are invalid.
+#[cfg(target_os = "linux")]
+pub fn preflight_linux_authority(
+    authority: &bonsai_platform::linux_authority::LinuxAuthority,
+    controls: &[HardControl],
+) -> Result<PreflightDecision, EnforcementBridgeError> {
+    let matrix = authority
+        .capabilities()
+        .map_err(|_| EnforcementBridgeError::UnsupportedHard)?;
+    preflight_hard_controls(&matrix, controls)
+}

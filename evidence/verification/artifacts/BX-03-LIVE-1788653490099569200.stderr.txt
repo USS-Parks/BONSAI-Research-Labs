@@ -1,0 +1,10 @@
+Running as unit: bonsai-bx03-live.service; invocation ID: 56ffef78ca334ccaba0605a23958d41c
+
+thread 'main' (79781) panicked at crates/bonsai-governor/examples/linux_authority_probe.rs:148:14:
+empty cgroup cleanup: Io
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+          Finished with result: exit-code
+Main processes terminated with: code=exited, status=101/n/a
+               Service runtime: 5.314s
+             CPU time consumed: 461ms
+                   Memory peak: 10.1M (swap: 0B)

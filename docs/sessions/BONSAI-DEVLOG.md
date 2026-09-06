@@ -1595,3 +1595,25 @@ This append-only log records executed PSPR prompts. Corrections are added as new
 - Storage: canonical lane reused; Linux target triple uses approximately 5.10 GiB and is retained for the approved remaining Linux work. Existing Windows .venv retained; no second Python environment. User-local pinned WSL Rust installed without sudo/profile changes. Historical M0 worktree remains clean/no unique commits, approximately 1.36 GiB, awaiting explicit removal authorization.
 - Commit SHA: pending focused commit; hosted identity/result will use subsequent closeout convention.
 - Next: BX-03 after main publication and hosted gate.
+
+### BX-02 final closeout (recorded by BX-03)
+
+- Main and origin/main: `9a2457afd873bac167ffd61602b64f624f7ea089`; clean checkout.
+- Hosted [run 33999964570](https://github.com/USS-Parks/BONSAI-Research-Labs/actions/runs/33999964570): all four native matrix jobs and M1 semantic equivalence succeeded.
+- Eight committed machine-output hashes and nine source-manifest hashes independently verified from Git blobs. BX-02 complete; BX-03 begins. No physical acceptance claimed.
+
+## 2026-09-05 — BX-03 — Apply and verify Linux resource authority
+
+- Status: local Linux/Windows and live delegated authority gates PASS; focused main commit and hosted verification pending.
+- Dependency: BX-02 closed at 9a2457afd873bac167ffd61602b64f624f7ea089 with hosted run 33999964570 successful.
+- Reuse: existing bonsai-platform capability types and bonsai-governor preflight; no dependency changes, unsafe exceptions, privileged setup, or new worktree.
+- Files changed: scoped LinuxAuthority backend, governor bridge and explicit live example, bounded Python workload, architecture contract, current plan/handoff and ledgers, verification scripts/outputs/source manifest. Discovery stays fail-closed until a scoped authority is configured.
+- Applied controls: CPU quota/period, memory.max, zero swap, whole-group OOM policy, and pids.max. Exact readbacks are required before workload start and governor admission. A gated launch attaches before exec and verifies membership; later descendants inherit the group.
+- Final live evidence: three-process tree; descendant CPU delta 198,521 us across 2,000,506 us under 10% bandwidth; throttling counters increased. Memory peak 67,108,864 bytes, 19 max events, OOM kill counter 3; zero tasks/populated false observed before explicit cleanup. Task limit four rejected a fifth fork. All recorded PIDs disappeared and owned groups were removed.
+- Negative proof: actual denied write-open in nondelegated /init.scope; global/out-of-scope names rejected; unsupported I/O preflight rejected; external controller alteration invalidated admission. Physical acceptance remains false.
+- Verification: full Linux 213 Rust tests and workspace Clippy/schema; final focused Linux lint/build/live gate after strengthening the OOM test; Windows 211 Rust tests, 37 Python tests, strict lint/schema/governance. Exact records in the verification log.
+- Retained failure: first live run reached CPU proof but cleanup waited on unreaped task accounting. Added explicit termination followed by caller reaping before empty cleanup. No acceptance condition was removed. Initial development lint finding was corrected without lint suppression.
+- Scope: WSL2 Ubuntu on the existing user delegation; not physical Linux acceptance. Fair-scheduler bandwidth is not cumulative CPU-budget enforcement. No hostile migration/scheduler escape claim. Child handles remain the caller's reaping responsibility.
+- Commit SHA: pending; exact main/hosted closeout will be recorded by the next prompt.
+- Storage: canonical checkout and existing Windows/Linux caches reused; historical M0 tree retained pending explicit deletion authority. No additional worktree, environment, or unbounded fixture was created.
+- Next: BX-04 only after BX-03 main publication and hosted verification.

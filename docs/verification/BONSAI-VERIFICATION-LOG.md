@@ -2019,3 +2019,23 @@ Post-push verification via `git show HEAD:<artifact>` detected LF-normalized std
 - Retained failed records: BX-02-LINUX-1788652020659621200 (test length lint), BX-02-LINUX-1788652078892859600 (stale Cargo.lock release checksum). Both resolved without reducing gates.
 - New output paths have explicit -text attributes before first staging. Staged/published Git blobs must match these records, as established in BX-01.
 - Physical/hosted status: local gates PASS; hosted final commit pending; physical enforcement and long-duration claims remain open.
+
+### BX-02 final closeout (recorded by BX-03)
+
+- Main and origin/main: `9a2457afd873bac167ffd61602b64f624f7ea089`; clean checkout.
+- Hosted [run 33999964570](https://github.com/USS-Parks/BONSAI-Research-Labs/actions/runs/33999964570): all four native matrix jobs and M1 semantic equivalence succeeded.
+- Eight committed machine-output hashes and nine source-manifest hashes independently verified from Git blobs. BX-02 complete; BX-03 begins. No physical acceptance claimed.
+
+## VER-BX03 — Actual delegated Linux controls — 2026-09-05
+
+- Source baseline: `9a2457afd873bac167ffd61602b64f624f7ea089` plus [implementation hashes](../../evidence/verification/bx-03/implementation-sha256.json).
+- Actual enforcement host: WSL2 Linux 6.6.87.2-microsoft-standard-WSL2 x86_64, systemd user delegation; no physical-host claim. Windows outer verifier labels the WSL runner explicitly.
+- `BX-03-LIVE-1788653490099569200`: fail, 5.49 s, exit 101; stdout SHA-256 `b3b9296bc5e48d3d8dd34bd6bffaf74d04550c50d662891287e6e7192fc47941`; stderr `167b228af8f49464833a27bfd58fdf6d3ad6d0f90581262bdca36bd3faaa41cf`.
+- `BX-03-LIVE-1788653560532106900`: pass, 3.58 s, exit 0; stdout SHA-256 `50f7a3c74224789b2eb49658a732383cb91e250da8e32c7a06b92c51cb31fe93`; stderr `1c62f54fa8bef398353af62d6c2a95324c05e632e6e714265de67dcc854a67cf`.
+- `BX-03-LINUX-1788653575256528700`: pass, 150.82 s, exit 0; stdout SHA-256 `b16cf9d38ae958628720acc0f9d946bd9d4c7db2cb11e9b650295fc1fd66c8ae`; stderr `b75bd76421923d551e16f8abc50ac3afa17231cbb670c333ffbf6a2a7e29e835`.
+- `BX-03-FINAL-LIVE-1788653759895956500`: pass, 15.51 s, exit 0; stdout SHA-256 `89ac65b0b9218adeae2516fa99f6077cd0470f10916050bef37c40878217ac06`; stderr `d250f508e76d321989460c412780ebf135101a28db9171ac2cf5cc34d5c33ddb`.
+- `BX-03-WINDOWS-1788653796987857800`: pass, 44.15 s, exit 0; stdout SHA-256 `401a6ad88cdd9fe65a91a1effd7e5c2efff0b50b69fda5ed778dbdd851035ed3`; stderr `0e3dc45a3fb1dff356c23c166e05cfa4d0d772bbfd5bc5131053adfd45a212b1`.
+- Full Linux suite passed before a test-only strengthening that requires OOM completion before cleanup. The final focused gate recompiled and linted both affected crates/all targets and reran the stronger live probe. Product source was unchanged by that strengthening. Full Windows regression used the final source.
+- Final proof: settings/readbacks, actual parent/child/grandchild membership, CPU throttling, memory max/OOM counters and zero membership before explicit termination, fork EAGAIN at four tasks, unsupported/denied and altered-control rejection, zero-task cleanup and absent PIDs. Raw sanitized outputs retain exact values.
+- All 213 Linux and 211 Windows Rust tests passed; 37 Python tests; strict lint, schema and governance gates passed. Failed live cleanup record retained and resolved by terminate/reap/cleanup ordering.
+- Main publication/hosted result pending; native physical and A/L gates remain open.
