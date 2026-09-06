@@ -1,0 +1,48 @@
+{
+  "measured_at": "2026-09-06T06:18:31.996Z",
+  "available_bytes": 327405359104,
+  "worktrees": [
+    {
+      "path": "C:/Users/17076/Documents/Reinforcement Learning Project",
+      "branch": "main",
+      "head": "4b6ef2f9871f83e24f283dafc0c7f6f0f5fa8b40",
+      "dirty": true,
+      "purpose": "Approved BX-10 through BX-40 sequential execution",
+      "unpublished_commits": 0,
+      "generated": {
+        "target": {
+          "bytes": 31878542002,
+          "files": 104912,
+          "unreadable": 35
+        },
+        "venv": {
+          "bytes": 65616320,
+          "files": 6229,
+          "unreadable": 0
+        }
+      },
+      "retirement_blocker": "Canonical checkout remains the active STS lane"
+    },
+    {
+      "path": "C:/tmp/bonsai-m0-sts",
+      "branch": "codex/m0-governed-foundation",
+      "head": "eaa0e52ec5a6dc78ab1a360f2a11c2201c7a5e9d",
+      "dirty": false,
+      "unpublished_commits": 0,
+      "purpose": "Historical M0 worktree; no current active purpose",
+      "generated": {
+        "target": {
+          "bytes": 1397672410,
+          "files": 7492,
+          "unreadable": 0
+        },
+        "venv": {
+          "bytes": 65610615,
+          "files": 6229,
+          "unreadable": 0
+        }
+      },
+      "retirement_blocker": "Removal requires explicit user authorization; retained cleanup debt"
+    }
+  ]
+}

@@ -289,15 +289,17 @@ class PrimitiveReward(_message.Message):
     def __init__(self, step: _Optional[int] = ..., reward: _Optional[int] = ...) -> None: ...
 
 class PrimitiveAccounting(_message.Message):
-    __slots__ = ("environment_steps", "updates", "parameter_touches", "work_items", "replay_items_retained")
+    __slots__ = ("environment_steps", "updates", "parameter_touches", "work_items", "replay_items_retained", "parameter_update")
     ENVIRONMENT_STEPS_FIELD_NUMBER: _ClassVar[int]
     UPDATES_FIELD_NUMBER: _ClassVar[int]
     PARAMETER_TOUCHES_FIELD_NUMBER: _ClassVar[int]
     WORK_ITEMS_FIELD_NUMBER: _ClassVar[int]
     REPLAY_ITEMS_RETAINED_FIELD_NUMBER: _ClassVar[int]
+    PARAMETER_UPDATE_FIELD_NUMBER: _ClassVar[int]
     environment_steps: int
     updates: int
     parameter_touches: int
     work_items: int
     replay_items_retained: int
-    def __init__(self, environment_steps: _Optional[int] = ..., updates: _Optional[int] = ..., parameter_touches: _Optional[int] = ..., work_items: _Optional[int] = ..., replay_items_retained: _Optional[int] = ...) -> None: ...
+    parameter_update: bytes
+    def __init__(self, environment_steps: _Optional[int] = ..., updates: _Optional[int] = ..., parameter_touches: _Optional[int] = ..., work_items: _Optional[int] = ..., replay_items_retained: _Optional[int] = ..., parameter_update: _Optional[bytes] = ...) -> None: ...

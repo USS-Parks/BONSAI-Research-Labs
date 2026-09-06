@@ -46,7 +46,14 @@ pub(super) fn reconstruct(snapshot: &Snapshot, context: &Context) -> Result<Outc
             super::resources::work(context, &work, total, acting)?;
         }
         let transition = step(&mut trace, context, &observed, total, outcome.episodes)?;
-        let accounting = feedback(&mut trace, context, total, observed.step, transition.reward)?;
+        let accounting = feedback(
+            &mut trace,
+            context,
+            total,
+            observed.step,
+            transition.reward,
+            transition.action,
+        )?;
         for acting in [true, false] {
             let work = trace.take("run.work", Some("measured_charge"))?;
             super::resources::work(context, &work, total, acting)?;
@@ -288,6 +295,7 @@ fn feedback(
     total: u64,
     index: u64,
     reward: i64,
+    action: u32,
 ) -> Result<wire::PrimitiveAccounting> {
     let timeout = number(&context.manifest["resource_profile"], "action_deadline_ns")?;
     let (request, response) = trace.exchange(true, timeout)?;
@@ -322,12 +330,11 @@ fn feedback(
         "RUN_OFFLINE_WORK_UNSUPPORTED",
     )?;
     let measured: wire::PrimitiveAccounting = decode(&result.result)?;
+    context
+        .accounting
+        .validate(&measured, total + 1, action, reward)?;
     ensure(
-        measured.environment_steps == total + 1
-            && measured.updates == total + 1
-            && measured.parameter_touches == 2 * (total + 1)
-            && measured.replay_items_retained == 0
-            && measured.work_items == (context.actions + 1) * (total + 1),
+        measured.work_items == (context.actions + 1) * (total + 1),
         "RUN_ACCOUNTING_INCONSISTENT",
     )?;
     Ok(measured)

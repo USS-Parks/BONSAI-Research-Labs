@@ -113,3 +113,57 @@ fn committed_matrix_freezes_partial_order_not_wall_time() {
     assert_eq!(matrix["collection_order_changes_report"], false);
     assert_eq!(matrix["classes"].as_array().map(Vec::len), Some(10));
 }
+
+#[test]
+fn full_single_source_trace_preserves_total_order_without_pair_searches() {
+    let observations = (0_u64..4_000)
+        .map(|sequence| ObservedEvent {
+            envelope: EventEnvelope {
+                event_id: u128::from(sequence + 1).to_le_bytes().to_vec(),
+                source_id: vec![9; 16],
+                source_sequence: sequence,
+                monotonic_time_ns: sequence,
+                causal_parent_event_ids: if sequence == 0 {
+                    vec![]
+                } else {
+                    vec![u128::from(sequence).to_le_bytes().to_vec()]
+                },
+                ..EventEnvelope::default()
+            },
+            arrival_index: sequence,
+        })
+        .collect::<Vec<_>>();
+    let report =
+        classify_partial_order(&observations, OrderingLimits::default()).expect("full trace");
+    assert_eq!(report.events.len(), 4_000);
+    assert_eq!(report.edges.len(), 3_999);
+    assert!(report.concurrent_pairs.is_empty());
+    assert!(report.cycle_event_ids.is_empty());
+    assert!(report.events.iter().all(|event| event.flags.is_empty()));
+    assert!(report.edges.iter().all(|edge| edge.kinds.len() == 2));
+}
+
+#[test]
+fn total_source_fast_path_preserves_diagnostics_and_refuses_backward_causality() {
+    let trace = vec![
+        observed(1, 10, 0, 10, 1, &[99]),
+        observed(2, 10, 1, 9, 0, &[1]),
+        observed(1, 10, 0, 10, 2, &[99]),
+    ];
+    let report = classify_partial_order(&trace, OrderingLimits::default()).expect("diagnostics");
+    assert_eq!(report.duplicate_event_ids, vec![[1; 16]]);
+    assert_eq!(report.late_event_ids, vec![[1; 16]]);
+    assert_eq!(report.clock_regression_event_ids, vec![[2; 16]]);
+    assert_eq!(report.missing_parents.len(), 1);
+    assert!(report.concurrent_pairs.is_empty());
+    let backwards = vec![
+        observed(1, 10, 0, 1, 0, &[2]),
+        observed(2, 10, 1, 2, 1, &[1]),
+    ];
+    let report = classify_partial_order(&backwards, OrderingLimits::default()).expect("backwards");
+    assert_eq!(report.cycle_event_ids, vec![[1; 16], [2; 16]]);
+    let gap = vec![observed(1, 10, 0, 1, 0, &[]), observed(2, 10, 2, 2, 1, &[])];
+    let report = classify_partial_order(&gap, OrderingLimits::default()).expect("gap");
+    assert_eq!(report.sequence_gaps.len(), 1);
+    assert_eq!(report.concurrent_pairs.len(), 1);
+}

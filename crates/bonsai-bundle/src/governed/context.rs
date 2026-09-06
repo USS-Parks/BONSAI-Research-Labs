@@ -1,10 +1,12 @@
 use super::snapshot::{Snapshot, digest};
 use super::{Result, ensure, number, text};
 use crate::{BundleSchemas, CheckStatus};
+use bonsai_contracts::accounting::OnlineAccounting;
 use serde_json::{Value, json};
 
 pub(super) struct Context {
     pub(super) manifest: Value,
+    pub(super) accounting: OnlineAccounting,
     pub(super) steps: u64,
     pub(super) actions: u64,
     pub(super) seed: u64,
@@ -39,7 +41,6 @@ impl Context {
         let actions = number(&manifest["adapter"]["config"], "action_count")?;
         ensure(
             (2..=256).contains(&actions)
-                && manifest["adapter"]["config"] == json!({"action_count":actions})
                 && manifest["scenario"]["config"] == manifest["environment"]["config"]
                 && number(&manifest["environment"]["config"], "action_count")? == actions,
             "RUN_CONFIGURATION_UNSUPPORTED",
@@ -51,8 +52,12 @@ impl Context {
             .map_err(|_| "RUN_SEED_INVALID")?;
         number(&manifest["environment"]["config"], "horizon")?;
         ensure(seed.checked_add(steps).is_some(), "RUN_SEED_OVERFLOW")?;
+        let accounting = OnlineAccounting::from_declaration_or_legacy(
+            manifest["adapter"].get("accounting_contract"),
+        )?;
         let context = Self {
             manifest,
+            accounting,
             steps,
             actions,
             seed,

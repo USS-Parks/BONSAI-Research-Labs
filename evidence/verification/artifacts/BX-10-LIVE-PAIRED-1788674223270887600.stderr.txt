@@ -1,0 +1,15 @@
+   Compiling bonsai-bundle v0.0.0 (/mnt/c/Users/17076/Documents/Reinforcement Learning Project/crates/bonsai-bundle)
+   Compiling bonsai-ingest v0.0.0 (/mnt/c/Users/17076/Documents/Reinforcement Learning Project/crates/bonsai-ingest)
+   Compiling bonsai-runtime v0.0.0 (/mnt/c/Users/17076/Documents/Reinforcement Learning Project/crates/bonsai-runtime)
+   Compiling bonsai-xtask v0.0.0 (/mnt/c/Users/17076/Documents/Reinforcement Learning Project/crates/bonsai-xtask)
+    Finished `dev` profile [unoptimized + debuginfo] target(s) in 41.85s
+   Compiling bonsai-bundle v0.0.0 (/mnt/c/Users/17076/Documents/Reinforcement Learning Project/crates/bonsai-bundle)
+   Compiling bonsai-ingest v0.0.0 (/mnt/c/Users/17076/Documents/Reinforcement Learning Project/crates/bonsai-ingest)
+   Compiling bonsai-runtime v0.0.0 (/mnt/c/Users/17076/Documents/Reinforcement Learning Project/crates/bonsai-runtime)
+    Finished `dev` profile [unoptimized + debuginfo] target(s) in 38.06s
+Running as unit: bonsai-bx10-live.service; invocation ID: e576135211494121820132cbb2bbb783
+          Finished with result: success
+Main processes terminated with: code=exited, status=0/SUCCESS
+               Service runtime: 12min 32.554s
+             CPU time consumed: 4min 49.698s
+                   Memory peak: 180M (swap: 0B)

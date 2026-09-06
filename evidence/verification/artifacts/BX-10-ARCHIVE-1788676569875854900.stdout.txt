@@ -1,0 +1,21 @@
+{
+  "archive": "evidence/verification/bx-10/paired-learners.zip",
+  "bytes": 20902457,
+  "sha256": "ec8a38d0ff4c01ce438be9ba8367daaf93a38821f41b9a73f777d59ed923db17",
+  "payloads": 815,
+  "source_files": 207,
+  "live_runs": 20,
+  "live_certifications": 20,
+  "conformance_checks_passed": 140,
+  "paired_seeds": [
+    7,
+    19,
+    42,
+    73,
+    91
+  ],
+  "steps_per_run": 200,
+  "operator_sha256": "867cc9f1ce7ad2dacd02c588282cac348ab0acf3b2f772441ebac8b7c11b58d0",
+  "numeric_updates_replayed": 4000,
+  "scientific_quality_claim": false
+}

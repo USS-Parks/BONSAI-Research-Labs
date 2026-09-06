@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import json
 from dataclasses import dataclass
 from typing import Literal
 
@@ -61,6 +62,7 @@ class PrimitiveTabularControl:
         self._updates = 0
         self._touches = 0
         self._work_items = 0
+        self._parameter_update = b""
 
     @property
     def certification(self) -> ControlCertification:
@@ -86,6 +88,10 @@ class PrimitiveTabularControl:
             replay_items_retained=0,
         )
 
+    @property
+    def parameter_update(self) -> bytes:
+        return self._parameter_update
+
     def reset_episode(self) -> None:
         """Preserve learned parameters while requiring the previous update to be consumed."""
         if self._pending is not None:
@@ -108,8 +114,16 @@ class PrimitiveTabularControl:
         if self._pending is None:
             raise ControlError("CONTROL_ACTION_REQUIRED")
         key = self._pending
+        before = [self._counts.get(key, 0), self._returns.get(key, 0)]
+        after = [before[0] + 1, before[1] + reward]
+        update = json.dumps({
+            "schema": "bonsai.parameter-update/v1", "rule": "tabular-sample-average",
+            "update": self._updates + 1, "observation": key[0], "action": key[1],
+            "reward": reward, "before": before, "after": after,
+        }, sort_keys=True, separators=(",", ":")).encode()
         self._counts[key] = self._counts.get(key, 0) + 1
         self._returns[key] = self._returns.get(key, 0) + reward
+        self._parameter_update = update
         self._pending = None
         self._steps += 1
         self._updates += 1

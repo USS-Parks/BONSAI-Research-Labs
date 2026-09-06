@@ -1,0 +1,8 @@
+    Finished `dev` profile [unoptimized + debuginfo] target(s) in 4.43s
+    Finished `dev` profile [unoptimized + debuginfo] target(s) in 4.35s
+Running as unit: bonsai-bx10-live.service; invocation ID: 7e2eea28bab0413b8e7c818217cda817
+          Finished with result: success
+Main processes terminated with: code=exited, status=0/SUCCESS
+               Service runtime: 13min 23.323s
+             CPU time consumed: 5min 26.949s
+                   Memory peak: 171.5M (swap: 0B)

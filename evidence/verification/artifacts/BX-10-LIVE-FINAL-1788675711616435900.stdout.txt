@@ -1,0 +1,23 @@
+{"agent": "tabular", "seed": 7, "trial": 0, "case": "target/bx10-live-1788675720870060478/tabular-s7-t0", "runner_exit": 0, "elapsed_ns": 30511547153}
+{"agent": "linear", "seed": 7, "trial": 0, "case": "target/bx10-live-1788675720870060478/linear-s7-t0", "runner_exit": 0, "elapsed_ns": 32828801011}
+{"agent": "tabular", "seed": 7, "trial": 1, "case": "target/bx10-live-1788675720870060478/tabular-s7-t1", "runner_exit": 0, "elapsed_ns": 32042805154}
+{"agent": "linear", "seed": 7, "trial": 1, "case": "target/bx10-live-1788675720870060478/linear-s7-t1", "runner_exit": 0, "elapsed_ns": 30752782467}
+{"agent": "tabular", "seed": 19, "trial": 0, "case": "target/bx10-live-1788675720870060478/tabular-s19-t0", "runner_exit": 0, "elapsed_ns": 32375738255}
+{"agent": "linear", "seed": 19, "trial": 0, "case": "target/bx10-live-1788675720870060478/linear-s19-t0", "runner_exit": 0, "elapsed_ns": 32270760927}
+{"agent": "tabular", "seed": 19, "trial": 1, "case": "target/bx10-live-1788675720870060478/tabular-s19-t1", "runner_exit": 0, "elapsed_ns": 32863972529}
+{"agent": "linear", "seed": 19, "trial": 1, "case": "target/bx10-live-1788675720870060478/linear-s19-t1", "runner_exit": 0, "elapsed_ns": 51858370868}
+{"agent": "tabular", "seed": 42, "trial": 0, "case": "target/bx10-live-1788675720870060478/tabular-s42-t0", "runner_exit": 0, "elapsed_ns": 31065229325}
+{"agent": "linear", "seed": 42, "trial": 0, "case": "target/bx10-live-1788675720870060478/linear-s42-t0", "runner_exit": 0, "elapsed_ns": 37981383235}
+{"agent": "tabular", "seed": 42, "trial": 1, "case": "target/bx10-live-1788675720870060478/tabular-s42-t1", "runner_exit": 0, "elapsed_ns": 39078258870}
+{"agent": "linear", "seed": 42, "trial": 1, "case": "target/bx10-live-1788675720870060478/linear-s42-t1", "runner_exit": 0, "elapsed_ns": 39999574432}
+{"agent": "tabular", "seed": 73, "trial": 0, "case": "target/bx10-live-1788675720870060478/tabular-s73-t0", "runner_exit": 0, "elapsed_ns": 37495004415}
+{"agent": "linear", "seed": 73, "trial": 0, "case": "target/bx10-live-1788675720870060478/linear-s73-t0", "runner_exit": 0, "elapsed_ns": 40350025269}
+{"agent": "tabular", "seed": 73, "trial": 1, "case": "target/bx10-live-1788675720870060478/tabular-s73-t1", "runner_exit": 0, "elapsed_ns": 40136040716}
+{"agent": "linear", "seed": 73, "trial": 1, "case": "target/bx10-live-1788675720870060478/linear-s73-t1", "runner_exit": 0, "elapsed_ns": 39990679392}
+{"agent": "tabular", "seed": 91, "trial": 0, "case": "target/bx10-live-1788675720870060478/tabular-s91-t0", "runner_exit": 0, "elapsed_ns": 40710704341}
+{"agent": "linear", "seed": 91, "trial": 0, "case": "target/bx10-live-1788675720870060478/linear-s91-t0", "runner_exit": 0, "elapsed_ns": 38596117833}
+{"agent": "tabular", "seed": 91, "trial": 1, "case": "target/bx10-live-1788675720870060478/tabular-s91-t1", "runner_exit": 0, "elapsed_ns": 31270544626}
+{"agent": "linear", "seed": 91, "trial": 1, "case": "target/bx10-live-1788675720870060478/linear-s91-t1", "runner_exit": 0, "elapsed_ns": 38477285761}
+{"deadline_ns":100000000,"exercised":true,"failure_code":"TRANSPORT_READ_TIMEOUT","observed_ns":108821741,"process_contained":true}
+{"deadline_ns":100000000,"exercised":true,"failure_code":"TRANSPORT_READ_TIMEOUT","observed_ns":108853990,"process_contained":true}
+{"batch": "target/bx10-live-1788675720870060478", "runs": 20, "operator_sha256": "867cc9f1ce7ad2dacd02c588282cac348ab0acf3b2f772441ebac8b7c11b58d0"}

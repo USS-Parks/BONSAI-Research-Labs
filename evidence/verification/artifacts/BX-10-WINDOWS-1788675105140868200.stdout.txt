@@ -1,0 +1,12 @@
+
+C:\Users\17076\Documents\Reinforcement Learning Project>cargo fmt --all --check 
+
+C:\Users\17076\Documents\Reinforcement Learning Project>if errorlevel 1 exit /b 1 
+
+C:\Users\17076\Documents\Reinforcement Learning Project>cargo clippy --locked --offline --workspace --all-targets --all-features -- -D warnings 
+
+C:\Users\17076\Documents\Reinforcement Learning Project>if errorlevel 1 exit /b 1 
+
+C:\Users\17076\Documents\Reinforcement Learning Project>cargo test --locked --offline --workspace --all-features 
+
+C:\Users\17076\Documents\Reinforcement Learning Project>if errorlevel 1 exit /b 1 

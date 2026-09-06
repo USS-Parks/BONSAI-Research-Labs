@@ -1,0 +1,20 @@
+Traceback (most recent call last):
+  File "C:\Users\17076\Documents\Reinforcement Learning Project\evidence\verification\bx-10\replay.py", line 205, in <module>
+    main()
+    ~~~~^^
+  File "C:\Users\17076\Documents\Reinforcement Learning Project\evidence\verification\bx-10\replay.py", line 195, in main
+    subprocess.run([str(executable), "certify", str(input_path), str(case / "certification.json")],
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                   cwd=ROOT, check=True, timeout=60)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Python314\Lib\subprocess.py", line 557, in run
+    stdout, stderr = process.communicate(input, timeout=timeout)
+                     ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Python314\Lib\subprocess.py", line 1240, in communicate
+    sts = self.wait(timeout=self._remaining_time(endtime))
+  File "C:\Python314\Lib\subprocess.py", line 1279, in wait
+    return self._wait(timeout=timeout)
+           ~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Python314\Lib\subprocess.py", line 1608, in _wait
+    raise TimeoutExpired(self.args, timeout)
+subprocess.TimeoutExpired: Command '['C:\\Users\\17076\\Documents\\Reinforcement Learning Project\\target\\debug\\examples\\adapter_certification.exe', 'certify', 'C:\\Users\\17076\\Documents\\Reinforcement Learning Project\\target\\bx10-live-1788674303814192812\\tabular-s7-t0\\certification-input.json', 'C:\\Users\\17076\\Documents\\Reinforcement Learning Project\\target\\bx10-live-1788674303814192812\\tabular-s7-t0\\certification.json']' timed out after 60 seconds

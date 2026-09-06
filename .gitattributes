@@ -71,3 +71,11 @@ evidence/verification/bx-09/*.py text eol=lf
 fixtures/adapter-compatibility/v1/previous_adapter_pb2.py -text -diff
 fixtures/adapter-compatibility/v1/previous-adapter.proto -text -diff
 evidence/verification/bx-09/dependency-audit.json -text
+
+# BX-10 source-pinned learners and exact verification captures.
+python/bonsai-reference/src/bonsai_reference/linear_control.py text eol=lf
+python/bonsai-reference/src/bonsai_reference/linear_adapter.py text eol=lf
+python/bonsai-reference/src/bonsai_reference/online_adapter.py text eol=lf
+evidence/verification/artifacts/BX-10-*.txt -text -diff
+evidence/verification/bx-10/*.sh text eol=lf
+evidence/verification/bx-10/*.py text eol=lf

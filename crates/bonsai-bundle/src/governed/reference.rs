@@ -1,11 +1,30 @@
 use super::snapshot::{Snapshot, digest};
-use super::{Result, ensure, text};
+use super::{Result, ensure, number, text};
+use bonsai_contracts::accounting::OnlineAccounting;
 use serde_json::Value;
 
 // Supported source is part of the verifier binary, not supplied by the bundle.
 // This narrowly attests the reference program's declared data flow; it does not
 // attest a hostile interpreter, kernel or machine operator.
 const SOURCES: &[(&str, &[u8])] = &[
+    (
+        "python/bonsai-reference/src/bonsai_reference/online_adapter.py",
+        include_bytes!(
+            "../../../../python/bonsai-reference/src/bonsai_reference/online_adapter.py"
+        ),
+    ),
+    (
+        "python/bonsai-reference/src/bonsai_reference/linear_adapter.py",
+        include_bytes!(
+            "../../../../python/bonsai-reference/src/bonsai_reference/linear_adapter.py"
+        ),
+    ),
+    (
+        "python/bonsai-reference/src/bonsai_reference/linear_control.py",
+        include_bytes!(
+            "../../../../python/bonsai-reference/src/bonsai_reference/linear_control.py"
+        ),
+    ),
     (
         "scripts/adapter_entrypoint.py",
         include_bytes!("../../../../scripts/adapter_entrypoint.py"),
@@ -58,28 +77,23 @@ pub(super) fn check(snapshot: &Snapshot, manifest: &Value, identity: &Value) -> 
     let current = SOURCES
         .iter()
         .all(|(path, bytes)| identity["source_files"][*path] == digest(bytes));
-    let previous: Value = serde_json::from_str(include_str!(
-        "../../../../fixtures/adapter-compatibility/v1/historical-source-set.json"
-    ))
-    .map_err(|_| "RUN_REFERENCE_SOURCE_CATALOG_INVALID")?;
-    let historical = SOURCES.iter().all(|(path, _)| {
-        previous["source_files"][*path].is_string()
-            && identity["source_files"][*path] == previous["source_files"][*path]
-    });
+    let historical = [
+        include_str!("../../../../fixtures/adapter-compatibility/v1/historical-source-set.json"),
+        include_str!("../../../../fixtures/second-learner/v1/bx09-source-set.json"),
+    ]
+    .into_iter()
+    .any(|raw| historical_matches(raw, identity));
     ensure(current || historical, "RUN_REFERENCE_SOURCE_UNSUPPORTED")?;
+    let (agent_id, agent_module, agent_version) = agent_contract(manifest, current)?;
     let components = snapshot.json("component-identity.json")?;
-    for (role, key, id, module) in [
-        (
-            "agent",
-            "adapter",
-            "bonsai-primitive-tabular",
-            "primitive_adapter",
-        ),
+    for (role, key, id, module, version) in [
+        ("agent", "adapter", agent_id, agent_module, agent_version),
         (
             "environment",
             "environment",
             "bonsai-causal-environment",
             "environment_adapter",
+            "1.0.0",
         ),
     ] {
         let component = &manifest[key];
@@ -88,7 +102,7 @@ pub(super) fn check(snapshot: &Snapshot, manifest: &Value, identity: &Value) -> 
             .ok_or("RUN_ENTRYPOINT_UNSUPPORTED")?;
         ensure(
             component["component_id"] == id
-                && component["version"] == "1.0.0"
+                && component["version"] == version
                 && components[role]["component_id"] == id
                 && entry.len() == 5,
             "RUN_REFERENCE_COMPONENT_UNSUPPORTED",
@@ -124,6 +138,57 @@ pub(super) fn check(snapshot: &Snapshot, manifest: &Value, identity: &Value) -> 
         )?;
     }
     Ok(())
+}
+
+fn historical_matches(raw: &str, identity: &Value) -> bool {
+    let Ok(previous) = serde_json::from_str::<Value>(raw) else {
+        return false;
+    };
+    previous["source_files"].as_object().is_some_and(|pins| {
+        pins.len() == 10
+            && pins
+                .iter()
+                .all(|(path, hash)| hash.is_string() && identity["source_files"][path] == *hash)
+    })
+}
+
+fn agent_contract(
+    manifest: &Value,
+    current: bool,
+) -> Result<(&'static str, &'static str, &'static str)> {
+    let component = &manifest["adapter"];
+    let actions = number(&component["config"], "action_count")?;
+    let accounting =
+        OnlineAccounting::from_declaration_or_legacy(component.get("accounting_contract"))?;
+    match text(component, "component_id")? {
+        "bonsai-primitive-tabular" => {
+            ensure(
+                component["config"] == serde_json::json!({"action_count": actions})
+                    && accounting.touches_per_update() == 2
+                    && (!current || component.get("accounting_contract").is_some()),
+                "RUN_CONFIGURATION_UNSUPPORTED",
+            )?;
+            Ok((
+                "bonsai-primitive-tabular",
+                "primitive_adapter",
+                if current { "1.1.0" } else { "1.0.0" },
+            ))
+        }
+        "bonsai-linear-nlms" if current => {
+            let width = number(&component["config"], "observation_width")?;
+            ensure(
+                (1..=256).contains(&width)
+                    && component["config"]
+                        == serde_json::json!({"action_count":actions,"observation_width":width})
+                    && number(&manifest["environment"]["config"], "observation_width")? == width
+                    && component.get("accounting_contract").is_some()
+                    && accounting.touches_per_update() == width + 1,
+                "RUN_CONFIGURATION_UNSUPPORTED",
+            )?;
+            Ok(("bonsai-linear-nlms", "linear_adapter", "1.0.0"))
+        }
+        _ => Err("RUN_REFERENCE_COMPONENT_UNSUPPORTED"),
+    }
 }
 
 pub(super) fn launch(audit: &Value, manifest: &Value) -> Result<()> {

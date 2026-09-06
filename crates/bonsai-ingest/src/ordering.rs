@@ -236,19 +236,32 @@ pub fn classify_partial_order(
 
     let adjacency = adjacency(&edges);
     let event_ids = canonical.keys().copied().collect::<Vec<_>>();
-    let cycle_event_ids = event_ids
-        .iter()
-        .copied()
-        .filter(|event_id| reaches_cycle(*event_id, &adjacency))
-        .collect::<BTreeSet<_>>();
+    // A contiguous, unambiguous single source already supplies a total order.
+    // Forward causal edges cannot create cycles or concurrency. Preserve all
+    // separately derived duplicate, late, clock, and missing-parent diagnostics.
+    let total_source_order = by_source.len() == 1
+        && sequence_conflicts.is_empty()
+        && sequence_gaps.is_empty()
+        && edges.keys().all(|(before, after)| {
+            canonical[before].envelope.source_sequence < canonical[after].envelope.source_sequence
+        });
+    let mut cycle_event_ids = BTreeSet::new();
     let mut concurrent_pairs = Vec::new();
-    for (index, first) in event_ids.iter().enumerate() {
-        for second in &event_ids[index + 1..] {
-            if !reaches(*first, *second, &adjacency) && !reaches(*second, *first, &adjacency) {
-                concurrent_pairs.push(EventPair {
-                    first: *first,
-                    second: *second,
-                });
+    if !total_source_order {
+        cycle_event_ids.extend(
+            event_ids
+                .iter()
+                .copied()
+                .filter(|event_id| reaches_cycle(*event_id, &adjacency)),
+        );
+        for (index, first) in event_ids.iter().enumerate() {
+            for second in &event_ids[index + 1..] {
+                if !reaches(*first, *second, &adjacency) && !reaches(*second, *first, &adjacency) {
+                    concurrent_pairs.push(EventPair {
+                        first: *first,
+                        second: *second,
+                    });
+                }
             }
         }
     }

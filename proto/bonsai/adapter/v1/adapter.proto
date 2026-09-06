@@ -180,4 +180,6 @@ message PrimitiveAccounting {
   uint64 parameter_touches = 3;
   uint64 work_items = 4;
   uint64 replay_items_retained = 5;
+  // Optional for historical peers; required by declared parameter-update accounting.
+  bytes parameter_update = 6;
 }

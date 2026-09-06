@@ -17,6 +17,7 @@ mod generated {
 }
 
 pub use generated::bonsai;
+pub mod accounting;
 pub mod adapter;
 pub mod inventory;
 pub mod lineage;

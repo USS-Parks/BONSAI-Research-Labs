@@ -8,6 +8,7 @@ mod quota;
 mod watch;
 
 use bonsai_bundle::SegmentWriter;
+use bonsai_contracts::accounting::OnlineAccounting;
 use bonsai_contracts::bonsai::adapter::v1::{self as wire, adapter_frame::Message as Kind};
 use bonsai_contracts::resource::{BudgetScope, WorkClass};
 use bonsai_governor::{BudgetAccounts, BudgetLimit, CounterKey, LimitProjection, TypedAmount};
@@ -341,6 +342,8 @@ impl Inputs {
 }
 
 fn validate_manifest_support(manifest: &Value) -> Result<(), String> {
+    OnlineAccounting::from_declaration_or_legacy(manifest["adapter"].get("accounting_contract"))
+        .map_err(str::to_owned)?;
     let profile = &manifest["resource_profile"];
     if profile["energy_tier"] != "E0"
         || profile["profile_id"] != "S" && profile["profile_id"] != "custom"
@@ -727,7 +730,7 @@ fn online_loop(
         },
     )
     .map_err(|e| e.to_string())?;
-    let mut work = WorkMeter::new(action_count, step_limit, wall)?;
+    let mut work = WorkMeter::new(action_count, step_limit, wall, &inputs.manifest["adapter"])?;
     let (mut episode, mut index, mut query) = (0_u64, 0_u64, 0_u64);
     let mut observation = None;
     let mut reward_sum = 0_i64;
@@ -778,7 +781,7 @@ fn online_loop(
         query += 1;
         let measured =
             feedback_accounting(agent, total, index, transition.reward, action_timeout, log)?;
-        work.charge(total, &measured, began.elapsed(), log)?;
+        work.charge(total, &measured, &transition, began.elapsed(), log)?;
         validate_resources(profile, authority, &storage, &before, total, log)?;
         reward_sum = reward_sum
             .checked_add(transition.reward)
@@ -807,6 +810,7 @@ fn online_loop(
 }
 
 struct WorkMeter {
+    accounting: OnlineAccounting,
     accounts: BudgetAccounts,
     key: CounterKey,
     per_step: u64,
@@ -815,7 +819,15 @@ struct WorkMeter {
 }
 
 impl WorkMeter {
-    fn new(action_count: u64, step_limit: u64, wall: Duration) -> Result<Self, String> {
+    fn new(
+        action_count: u64,
+        step_limit: u64,
+        wall: Duration,
+        adapter: &Value,
+    ) -> Result<Self, String> {
+        let accounting =
+            OnlineAccounting::from_declaration_or_legacy(adapter.get("accounting_contract"))
+                .map_err(str::to_owned)?;
         let accounts = BudgetAccounts::default();
         let key = CounterKey {
             counter_id: "work_items".into(),
@@ -849,6 +861,7 @@ impl WorkMeter {
             rolling_window_ns: Some(u64::try_from(wall.as_nanos()).map_err(|e| e.to_string())?),
         });
         Ok(Self {
+            accounting,
             accounts,
             key,
             per_step,
@@ -895,16 +908,13 @@ impl WorkMeter {
         &mut self,
         total: u64,
         measured: &wire::PrimitiveAccounting,
+        transition: &wire::CausalTransition,
         elapsed: Duration,
         log: &mut Evidence<'_>,
     ) -> Result<(), String> {
-        if measured.environment_steps != total + 1
-            || measured.updates != total + 1
-            || measured.parameter_touches != 2 * (total + 1)
-            || measured.replay_items_retained != 0
-        {
-            return Err("ACCOUNTING_INCONSISTENT".into());
-        }
+        self.accounting
+            .validate(measured, total + 1, transition.action, transition.reward)
+            .map_err(str::to_owned)?;
         let delta = measured
             .work_items
             .checked_sub(self.prior_work)

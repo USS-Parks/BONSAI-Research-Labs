@@ -1,0 +1,288 @@
+{"adapter":"bonsai-primitive-tabular","checks":7,"verdict":"certified"}
+{"adapter":"bonsai-linear-nlms","checks":7,"verdict":"certified"}
+{"adapter":"bonsai-primitive-tabular","checks":7,"verdict":"certified"}
+{"adapter":"bonsai-linear-nlms","checks":7,"verdict":"certified"}
+{"adapter":"bonsai-primitive-tabular","checks":7,"verdict":"certified"}
+{"adapter":"bonsai-linear-nlms","checks":7,"verdict":"certified"}
+{"adapter":"bonsai-primitive-tabular","checks":7,"verdict":"certified"}
+{"adapter":"bonsai-linear-nlms","checks":7,"verdict":"certified"}
+{"adapter":"bonsai-primitive-tabular","checks":7,"verdict":"certified"}
+{"adapter":"bonsai-linear-nlms","checks":7,"verdict":"certified"}
+{"adapter":"bonsai-primitive-tabular","checks":7,"verdict":"certified"}
+{"adapter":"bonsai-linear-nlms","checks":7,"verdict":"certified"}
+{"adapter":"bonsai-primitive-tabular","checks":7,"verdict":"certified"}
+{"adapter":"bonsai-linear-nlms","checks":7,"verdict":"certified"}
+{"adapter":"bonsai-primitive-tabular","checks":7,"verdict":"certified"}
+{"adapter":"bonsai-linear-nlms","checks":7,"verdict":"certified"}
+{"adapter":"bonsai-primitive-tabular","checks":7,"verdict":"certified"}
+{"adapter":"bonsai-linear-nlms","checks":7,"verdict":"certified"}
+{"adapter":"bonsai-primitive-tabular","checks":7,"verdict":"certified"}
+{"adapter":"bonsai-linear-nlms","checks":7,"verdict":"certified"}
+{
+  "analysis": "target/bx10-live-1788674303814192812/analysis-1788675316209769500",
+  "schema": "bonsai.paired-update-replay/v1",
+  "smoke": false,
+  "runs": [
+    {
+      "agent": "tabular",
+      "steps": 200,
+      "numeric_updates_changed": 200,
+      "semantic_sha256": "e3e64955f95e797bc96b72d20b6ee68156d1371a7c211f26aa79c547350bc65f",
+      "parameter_touches": 400,
+      "maximum_step_cpu_ns": 755000,
+      "maximum_rss_bytes": 26595328,
+      "resource_groups_separate": true,
+      "seed": 7,
+      "trial": 0,
+      "case": "target/bx10-live-1788674303814192812/tabular-s7-t0"
+    },
+    {
+      "agent": "linear",
+      "steps": 200,
+      "numeric_updates_changed": 198,
+      "semantic_sha256": "c6d43e00110ff5d946a362ff2a1a1063009d7d00d7f178ac8cf83ca787ec6f03",
+      "parameter_touches": 1000,
+      "maximum_step_cpu_ns": 753000,
+      "maximum_rss_bytes": 26808320,
+      "resource_groups_separate": true,
+      "seed": 7,
+      "trial": 0,
+      "case": "target/bx10-live-1788674303814192812/linear-s7-t0"
+    },
+    {
+      "agent": "tabular",
+      "steps": 200,
+      "numeric_updates_changed": 200,
+      "semantic_sha256": "e3e64955f95e797bc96b72d20b6ee68156d1371a7c211f26aa79c547350bc65f",
+      "parameter_touches": 400,
+      "maximum_step_cpu_ns": 1035000,
+      "maximum_rss_bytes": 26554368,
+      "resource_groups_separate": true,
+      "seed": 7,
+      "trial": 1,
+      "case": "target/bx10-live-1788674303814192812/tabular-s7-t1"
+    },
+    {
+      "agent": "linear",
+      "steps": 200,
+      "numeric_updates_changed": 198,
+      "semantic_sha256": "c6d43e00110ff5d946a362ff2a1a1063009d7d00d7f178ac8cf83ca787ec6f03",
+      "parameter_touches": 1000,
+      "maximum_step_cpu_ns": 926000,
+      "maximum_rss_bytes": 26738688,
+      "resource_groups_separate": true,
+      "seed": 7,
+      "trial": 1,
+      "case": "target/bx10-live-1788674303814192812/linear-s7-t1"
+    },
+    {
+      "agent": "tabular",
+      "steps": 200,
+      "numeric_updates_changed": 200,
+      "semantic_sha256": "34b164b2ac79b901289d3f48036362349122e1d6ac715c93f2dac99b08c3a6a7",
+      "parameter_touches": 400,
+      "maximum_step_cpu_ns": 794000,
+      "maximum_rss_bytes": 26525696,
+      "resource_groups_separate": true,
+      "seed": 19,
+      "trial": 0,
+      "case": "target/bx10-live-1788674303814192812/tabular-s19-t0"
+    },
+    {
+      "agent": "linear",
+      "steps": 200,
+      "numeric_updates_changed": 192,
+      "semantic_sha256": "70ada8262095ba1eeed6b9e3ba0e246ea717c6565ba7a42bf0c3b8498fb7577b",
+      "parameter_touches": 1000,
+      "maximum_step_cpu_ns": 717000,
+      "maximum_rss_bytes": 26812416,
+      "resource_groups_separate": true,
+      "seed": 19,
+      "trial": 0,
+      "case": "target/bx10-live-1788674303814192812/linear-s19-t0"
+    },
+    {
+      "agent": "tabular",
+      "steps": 200,
+      "numeric_updates_changed": 200,
+      "semantic_sha256": "34b164b2ac79b901289d3f48036362349122e1d6ac715c93f2dac99b08c3a6a7",
+      "parameter_touches": 400,
+      "maximum_step_cpu_ns": 795000,
+      "maximum_rss_bytes": 26701824,
+      "resource_groups_separate": true,
+      "seed": 19,
+      "trial": 1,
+      "case": "target/bx10-live-1788674303814192812/tabular-s19-t1"
+    },
+    {
+      "agent": "linear",
+      "steps": 200,
+      "numeric_updates_changed": 192,
+      "semantic_sha256": "70ada8262095ba1eeed6b9e3ba0e246ea717c6565ba7a42bf0c3b8498fb7577b",
+      "parameter_touches": 1000,
+      "maximum_step_cpu_ns": 732000,
+      "maximum_rss_bytes": 26800128,
+      "resource_groups_separate": true,
+      "seed": 19,
+      "trial": 1,
+      "case": "target/bx10-live-1788674303814192812/linear-s19-t1"
+    },
+    {
+      "agent": "tabular",
+      "steps": 200,
+      "numeric_updates_changed": 200,
+      "semantic_sha256": "1cebe084ba9c9cd5383c3a6684ce60ea14ccb25c8e2b938f684b52b315e3b16c",
+      "parameter_touches": 400,
+      "maximum_step_cpu_ns": 1019000,
+      "maximum_rss_bytes": 26476544,
+      "resource_groups_separate": true,
+      "seed": 42,
+      "trial": 0,
+      "case": "target/bx10-live-1788674303814192812/tabular-s42-t0"
+    },
+    {
+      "agent": "linear",
+      "steps": 200,
+      "numeric_updates_changed": 191,
+      "semantic_sha256": "bd2d0ab4aaf30636483059ca5630274f6555146b409c20a960bc6ceff656928a",
+      "parameter_touches": 1000,
+      "maximum_step_cpu_ns": 696000,
+      "maximum_rss_bytes": 26632192,
+      "resource_groups_separate": true,
+      "seed": 42,
+      "trial": 0,
+      "case": "target/bx10-live-1788674303814192812/linear-s42-t0"
+    },
+    {
+      "agent": "tabular",
+      "steps": 200,
+      "numeric_updates_changed": 200,
+      "semantic_sha256": "1cebe084ba9c9cd5383c3a6684ce60ea14ccb25c8e2b938f684b52b315e3b16c",
+      "parameter_touches": 400,
+      "maximum_step_cpu_ns": 635000,
+      "maximum_rss_bytes": 26476544,
+      "resource_groups_separate": true,
+      "seed": 42,
+      "trial": 1,
+      "case": "target/bx10-live-1788674303814192812/tabular-s42-t1"
+    },
+    {
+      "agent": "linear",
+      "steps": 200,
+      "numeric_updates_changed": 191,
+      "semantic_sha256": "bd2d0ab4aaf30636483059ca5630274f6555146b409c20a960bc6ceff656928a",
+      "parameter_touches": 1000,
+      "maximum_step_cpu_ns": 914000,
+      "maximum_rss_bytes": 26738688,
+      "resource_groups_separate": true,
+      "seed": 42,
+      "trial": 1,
+      "case": "target/bx10-live-1788674303814192812/linear-s42-t1"
+    },
+    {
+      "agent": "tabular",
+      "steps": 200,
+      "numeric_updates_changed": 200,
+      "semantic_sha256": "e473711f6d720f08080e7ff6300e3239f5e078f87a89fe08a614bf9e0ca7f61c",
+      "parameter_touches": 400,
+      "maximum_step_cpu_ns": 1147000,
+      "maximum_rss_bytes": 26329088,
+      "resource_groups_separate": true,
+      "seed": 73,
+      "trial": 0,
+      "case": "target/bx10-live-1788674303814192812/tabular-s73-t0"
+    },
+    {
+      "agent": "linear",
+      "steps": 200,
+      "numeric_updates_changed": 192,
+      "semantic_sha256": "e43acfeba31f495630607b3af6c05d8f4e74b8b779f257d85616eeec2da10962",
+      "parameter_touches": 1000,
+      "maximum_step_cpu_ns": 739000,
+      "maximum_rss_bytes": 26841088,
+      "resource_groups_separate": true,
+      "seed": 73,
+      "trial": 0,
+      "case": "target/bx10-live-1788674303814192812/linear-s73-t0"
+    },
+    {
+      "agent": "tabular",
+      "steps": 200,
+      "numeric_updates_changed": 200,
+      "semantic_sha256": "e473711f6d720f08080e7ff6300e3239f5e078f87a89fe08a614bf9e0ca7f61c",
+      "parameter_touches": 400,
+      "maximum_step_cpu_ns": 902000,
+      "maximum_rss_bytes": 26599424,
+      "resource_groups_separate": true,
+      "seed": 73,
+      "trial": 1,
+      "case": "target/bx10-live-1788674303814192812/tabular-s73-t1"
+    },
+    {
+      "agent": "linear",
+      "steps": 200,
+      "numeric_updates_changed": 192,
+      "semantic_sha256": "e43acfeba31f495630607b3af6c05d8f4e74b8b779f257d85616eeec2da10962",
+      "parameter_touches": 1000,
+      "maximum_step_cpu_ns": 883000,
+      "maximum_rss_bytes": 26697728,
+      "resource_groups_separate": true,
+      "seed": 73,
+      "trial": 1,
+      "case": "target/bx10-live-1788674303814192812/linear-s73-t1"
+    },
+    {
+      "agent": "tabular",
+      "steps": 200,
+      "numeric_updates_changed": 200,
+      "semantic_sha256": "9f55ef68ff41a6c66d91f0990a4c1921b6bd29b22feffbafa2a8e129dbbf2ee0",
+      "parameter_touches": 400,
+      "maximum_step_cpu_ns": 849000,
+      "maximum_rss_bytes": 26345472,
+      "resource_groups_separate": true,
+      "seed": 91,
+      "trial": 0,
+      "case": "target/bx10-live-1788674303814192812/tabular-s91-t0"
+    },
+    {
+      "agent": "linear",
+      "steps": 200,
+      "numeric_updates_changed": 191,
+      "semantic_sha256": "922725fd099d91d5f7b8e45317497a317b4c466882a79f95035f22ebadd8506a",
+      "parameter_touches": 1000,
+      "maximum_step_cpu_ns": 1093000,
+      "maximum_rss_bytes": 26472448,
+      "resource_groups_separate": true,
+      "seed": 91,
+      "trial": 0,
+      "case": "target/bx10-live-1788674303814192812/linear-s91-t0"
+    },
+    {
+      "agent": "tabular",
+      "steps": 200,
+      "numeric_updates_changed": 200,
+      "semantic_sha256": "9f55ef68ff41a6c66d91f0990a4c1921b6bd29b22feffbafa2a8e129dbbf2ee0",
+      "parameter_touches": 400,
+      "maximum_step_cpu_ns": 788000,
+      "maximum_rss_bytes": 26333184,
+      "resource_groups_separate": true,
+      "seed": 91,
+      "trial": 1,
+      "case": "target/bx10-live-1788674303814192812/tabular-s91-t1"
+    },
+    {
+      "agent": "linear",
+      "steps": 200,
+      "numeric_updates_changed": 191,
+      "semantic_sha256": "922725fd099d91d5f7b8e45317497a317b4c466882a79f95035f22ebadd8506a",
+      "parameter_touches": 1000,
+      "maximum_step_cpu_ns": 967000,
+      "maximum_rss_bytes": 26517504,
+      "resource_groups_separate": true,
+      "seed": 91,
+      "trial": 1,
+      "case": "target/bx10-live-1788674303814192812/linear-s91-t1"
+    }
+  ],
+  "scientific_quality_claim": false
+}

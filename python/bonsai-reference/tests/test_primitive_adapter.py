@@ -1,19 +1,25 @@
 from __future__ import annotations
 
 import hashlib
+import json
 from pathlib import Path
 
+import pytest
 from bonsai.adapter.v1 import adapter_pb2 as wire
 from bonsai_reference.adapter_wire import decode_into, encode
 from bonsai_reference.primitive_adapter import ACCOUNTING, OBSERVATION, REWARD
 from test_environment_adapter import ROOT, LiveEnvironment
 
 
-def test_live_primitive_learns_with_exact_accounting_and_retains_learning_on_reset(tmp_path: Path) -> None:
+@pytest.mark.parametrize("module", ["primitive_adapter", "linear_adapter"])
+def test_live_online_learners_have_exact_accounting_and_retain_learning_on_reset(tmp_path: Path, module: str) -> None:
     configuration = tmp_path / "agent.json"
-    configuration.write_text('{"action_count":3}', encoding="utf-8")
+    config = {"action_count": 3}
+    if module == "linear_adapter":
+        config["observation_width"] = 1
+    configuration.write_text(json.dumps(config), encoding="utf-8")
     agent = LiveEnvironment(configuration, [
-        "-I", "-B", str(ROOT / "scripts/adapter_entrypoint.py"), "primitive_adapter",
+        "-I", "-B", str(ROOT / "scripts/adapter_entrypoint.py"), module,
         "--bonsai-input", "configuration=" + str(configuration), "--bonsai-work-dir", str(tmp_path),
     ])
     try:
@@ -49,6 +55,10 @@ def test_live_primitive_learns_with_exact_accounting_and_retains_learning_on_res
             assert measured.parameter_touches == 2 * count
             assert measured.work_items == 4 * count
             assert measured.replay_items_retained == 0
+            update = json.loads(measured.parameter_update)
+            assert update["schema"] == "bonsai.parameter-update/v1"
+            assert update["update"] == count
+            assert update["before"] != update["after"]
         assert actions == [0, 1, *([2] * 10)]
         agent.stop()
     finally:
