@@ -55,6 +55,10 @@ message CapabilityDeclaration {
   optional bool filesystem_read = 11;
   optional bool filesystem_write = 12;
   optional bool network_access = 13;
+  // Available only after negotiating minor 1. Unknown requirements fail closed.
+  repeated string required_capabilities = 14;
+  // Hints confer no authority and may be ignored when unsupported.
+  repeated string optional_capabilities = 15;
 }
 
 message Handshake {

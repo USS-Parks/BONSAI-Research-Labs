@@ -33,6 +33,8 @@ fn capabilities() -> CapabilityDeclaration {
         filesystem_read: Some(false),
         filesystem_write: Some(true),
         network_access: Some(false),
+        required_capabilities: Vec::new(),
+        optional_capabilities: Vec::new(),
     }
 }
 

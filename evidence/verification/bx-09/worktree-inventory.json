@@ -1,0 +1,40 @@
+{
+  "measured_utc": "2026-09-06T05:16:03.149Z",
+  "main": "86061d89a1b3505a8a4a7f77ad679192cafb0b8a",
+  "available_bytes": 325768048640,
+  "canonical": {
+    "path": "C:/Users/17076/Documents/Reinforcement Learning Project",
+    "purpose": "sole active BX-09/full-roster STS lane",
+    "dirty": true,
+    "unpublished_commits": 0,
+    "target": {
+      "bytes": 31063787537,
+      "files": 102723,
+      "unreadable": 31
+    },
+    "venv": {
+      "bytes": 65616320,
+      "files": 6229,
+      "unreadable": 0
+    },
+    "retirement_blocker": "ongoing approved STS builds and evidence"
+  },
+  "historical": {
+    "path": "C:/tmp/bonsai-m0-sts",
+    "head": "eaa0e52ec5a6dc78ab1a360f2a11c2201c7a5e9d",
+    "purpose": "no active task",
+    "dirty": false,
+    "unpublished_commits": 0,
+    "target": {
+      "bytes": 1397672410,
+      "files": 7492,
+      "unreadable": 0
+    },
+    "venv": {
+      "bytes": 65610615,
+      "files": 6229,
+      "unreadable": 0
+    },
+    "retirement_blocker": "explicit removal authorization required; retained cleanup debt"
+  }
+}

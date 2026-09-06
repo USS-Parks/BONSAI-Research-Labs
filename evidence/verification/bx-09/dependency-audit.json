@@ -1,0 +1,74 @@
+{
+  "schema": "bonsai.adapter-dependency-audit/v1",
+  "authority": {
+    "bonsai-runtime": {
+      "direct_dependencies": [
+        "bonsai-bundle",
+        "bonsai-contracts",
+        "bonsai-ingest",
+        "bonsai-metrics",
+        "bonsai-platform",
+        "bonsai-report",
+        "prost",
+        "rustix",
+        "serde",
+        "serde_json",
+        "sha2"
+      ],
+      "sources": {
+        "crates/bonsai-runtime/src/conformance.rs": "68235b043d3e881c56ae99a825491025ae02cd69159166ef848f0089b88dabcf",
+        "crates/bonsai-runtime/src/interruptible_io.rs": "8ef75c86022c33e0febe5bc32c3a9705106943601b57cd080112cea28108dda0",
+        "crates/bonsai-runtime/src/isolation.rs": "c846dc2a393c09a41846404a6bf7d8f24c66f6efb0874eccf70040e502ac1f55",
+        "crates/bonsai-runtime/src/lib.rs": "676a8da79b15d07f553b12e27ed46e9da2fd1e71a84a7ec8cadf8c5ec2b28b14",
+        "crates/bonsai-runtime/src/lifecycle.rs": "4f77b28615f262ee8a358bc94111fba1f70beb3202bc52079204ca98762645a3",
+        "crates/bonsai-runtime/src/linux_transport.rs": "d8b7cd43029d912922e78c5335c5283bfb835e85814df357f1ad46282ffd2f5f",
+        "crates/bonsai-runtime/src/replay.rs": "172c52a39862b0fff3fa7bfa1e2fa67ed1fca9857aa3879cfc3c788bb176b1ec",
+        "crates/bonsai-runtime/src/storage.rs": "0bb9fdb768859a2ca71f2025dd8f611647c4ddc0fa7d034921242365cdad56f7"
+      }
+    },
+    "bonsai-governor": {
+      "direct_dependencies": [
+        "bonsai-contracts",
+        "bonsai-platform",
+        "serde",
+        "serde_json",
+        "sha2"
+      ],
+      "sources": {
+        "crates/bonsai-governor/src/allocation.rs": "a5e643c39bd958407b6df7ce7098c4e59f3642e0f3ccb7996756ea826f8bae03",
+        "crates/bonsai-governor/src/decision.rs": "b58719edc4220c5fd2a3c5ff5bbc21cd36deed4744992a066fba133076da1100",
+        "crates/bonsai-governor/src/enforcement.rs": "466ed207a447f6f0ac0cbdc9d207bbbad44714f408cb946bf833e073760b662b",
+        "crates/bonsai-governor/src/lib.rs": "cb8dadce19c64c479197d54424e9704e80dbf67f8abdf19c377d05cd7975e810",
+        "crates/bonsai-governor/src/replay.rs": "8c0021a63a6224a35616f4370b178bab8766345c7ecb3c0b99367d9e504d591a",
+        "crates/bonsai-governor/src/scheduler.rs": "876c3a17d21afffbe0b01c0dbf07171cec3a6a05ad42ce3f34b37c8b392f6ec2",
+        "crates/bonsai-governor/src/storage.rs": "d9524b5fd2ea6416e3fb2b23b8db1c7c41c08330e3fa6985f5e31337767c9ea2",
+        "crates/bonsai-governor/src/supervisor.rs": "7d114b9a9df81fa89a95dce1178b2c03300ecc0843f8c33ac70a08ccb8130ab5",
+        "crates/bonsai-governor/src/violation.rs": "7eec9e9792060d046524989ff17020d26dfa04c513f7e54cc40c9cc8b8848572"
+      }
+    },
+    "bonsai-platform": {
+      "direct_dependencies": [
+        "serde",
+        "serde_json",
+        "sysinfo"
+      ],
+      "sources": {
+        "crates/bonsai-platform/src/bin/bonsai-accounting-fixture.rs": "830d856421882da6b444b666c4957729031209814e738224b52c4df6bf3271d0",
+        "crates/bonsai-platform/src/calibration.rs": "ac3e41c127e0f2a09acb720fd7ade8c5d13cba75163abdcee83c81410ec308b2",
+        "crates/bonsai-platform/src/capability.rs": "96109ee6e8d21298a737c85e20a026c9d3899afe017fc6562e2d41c2c3f23b47",
+        "crates/bonsai-platform/src/clock.rs": "18dde18a7c62219afcec510cbb58c525ba961cb1a2543edb87af548d5a24f08e",
+        "crates/bonsai-platform/src/energy.rs": "de0dd1cdeacc5ba5201ae834a518f73068b6e3507d95594e687c095463df5740",
+        "crates/bonsai-platform/src/equivalence.rs": "bee77c7d9808497dbaad6319e739e2e0e69d20137d84542614070623b0c8286a",
+        "crates/bonsai-platform/src/lib.rs": "07f3fbd743333857a7e6d66faf6a0dec372b32895b82e66ae0df297e22e3112e",
+        "crates/bonsai-platform/src/linux.rs": "9221c5a6bb96eafff93074b6610fd9e9c1a76ff0a98f45e79086b5145565c9fd",
+        "crates/bonsai-platform/src/linux_authority.rs": "8d2d75698356b8304eb17b57c995b8cdd795a9b38e588e41b88759962762b789",
+        "crates/bonsai-platform/src/macos.rs": "d1298ec022e226527cf573578887cbff612a163ee913549c09e62d5906b66010",
+        "crates/bonsai-platform/src/nvidia.rs": "8974435b38a213a428c0ba1850dd66d8157e691161acc704998fb1b4c581615c",
+        "crates/bonsai-platform/src/portable.rs": "e986976a47b61043b3a8157ba7abec117f6b0d6e4b85d7e51e692e55d1004df2",
+        "crates/bonsai-platform/src/windows.rs": "7125fd1f63ca16b18da38748358beb52a7a2cf53c2141be055114d8b3e2ee562"
+      }
+    }
+  },
+  "historical_binding_sha256": "6fd2cd4f08eb9ca1825b7556e105a80e4b490442f528968f47778e424f7a495c",
+  "boundary": "generic authority source and direct dependencies; scientific bundle verifier is separately scoped"
+}

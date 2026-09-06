@@ -1,0 +1,22 @@
+{
+  "schema": "bonsai.adapter-compatibility-live/v1",
+  "host": "Linux-6.6.87.2-microsoft-standard-WSL2-x86_64-with-glibc2.43",
+  "python": "/mnt/c/Users/17076/Documents/Reinforcement Learning Project/target/linux-venv/bin/python3",
+  "output": "target/bx09-live-1788671530161085136",
+  "executable_sha256": "ef72c295ed9b3ca0a9676fc8addb1fb5f958f2072443ab42e26717c72476f336",
+  "result": {
+    "certified": 12,
+    "scientific_quality_certified": false,
+    "seeds": [
+      7,
+      42,
+      91
+    ],
+    "trials_per_seed": 2,
+    "versions": [
+      "1.0",
+      "1.1"
+    ]
+  },
+  "reports_sha256": "3a0938ee9bafc3415d8977269dda72af4be0a53bf8a26accce97a443b1281ee2"
+}

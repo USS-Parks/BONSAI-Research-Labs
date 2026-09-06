@@ -1,0 +1,30 @@
+
+C:\Users\17076\Documents\Reinforcement Learning Project>cargo build --locked --offline -p bonsai-runtime --example adapter_compatibility 
+
+C:\Users\17076\Documents\Reinforcement Learning Project>if errorlevel 1 exit /b 1 
+
+C:\Users\17076\Documents\Reinforcement Learning Project>uv run --frozen python evidence/verification/bx-09/run.py 
+{
+  "schema": "bonsai.adapter-compatibility-live/v1",
+  "host": "Windows-11-10.0.26200-SP0",
+  "python": "C:\\Users\\17076\\Documents\\Reinforcement Learning Project\\.venv\\Scripts\\python.exe",
+  "output": "target/bx09-live-1788671469838574600",
+  "executable_sha256": "c39f90bae96a44c921077ff7882c2e9b505fd4ba47f1da620c5f6244a5300853",
+  "result": {
+    "certified": 12,
+    "scientific_quality_certified": false,
+    "seeds": [
+      7,
+      42,
+      91
+    ],
+    "trials_per_seed": 2,
+    "versions": [
+      "1.0",
+      "1.1"
+    ]
+  },
+  "reports_sha256": "3a0938ee9bafc3415d8977269dda72af4be0a53bf8a26accce97a443b1281ee2"
+}
+
+C:\Users\17076\Documents\Reinforcement Learning Project>if errorlevel 1 exit /b 1 

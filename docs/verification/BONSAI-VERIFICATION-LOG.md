@@ -2184,3 +2184,19 @@ SHA-256 `6f9bede3d1fdb038f16b20ae90163d7babc691efa9657a50f7f800765fab5149`.
 All 1,081 payload entries and 151 exact source files were verified.
 [Worktree inventory](../../evidence/verification/bx-08/worktree-inventory.json)
 records current retained storage and the historical retirement blocker.
+
+## BX-08 publication verified; BX-09 executing
+
+Date: 2026-09-06 UTC. BX-08 closed at `86061d89a1b3505a8a4a7f77ad679192cafb0b8a`, published on main. [Hosted run 34012687694](https://github.com/USS-Parks/BONSAI-Research-Labs/actions/runs/34012687694) passed all four platform jobs and M1 semantic equivalence. Local and remote main matched, with a clean checkout at publication. The committed-byte check passed for 68 files, 16 captured outputs and the archived recovery evidence.
+
+BX-01 through BX-08 are verified; BX-09 now executes under the existing full-roster STS authority. Extend the existing protocol machine and AdapterConformanceSuite, preserve historical adapter/bundle compatibility, reject unknown required capabilities and breaking epochs, and audit the generic runtime dependency boundary. BX-10 through BX-40 remain unstarted. The BX-08 worktree/storage inventory remains the latest measured inventory; no new worktree or deletion.
+
+## BX-09 — local acceptance passed; main publication pending
+
+Date: 2026-09-06 UTC. BX-09 full local acceptance passed: Windows record `BX-09-WINDOWS-1788671625036769600` (240 Rust / 59 Python tests) and Linux record `BX-09-LINUX-1788671625549464000` (242 Rust / 59 Python tests), with strict lint, schema compatibility and locked generated-binding checks. Windows also passed all documentation and governance checks. Final documentation closeout and exact publication-byte verification follow before commit/main publication and hosted CI.
+
+[Extension contract](../operator/versioned-adapters.md) and `evidence/verification/bx-09/compatibility-matrix.json` record version/required/optional/epoch behavior. Both current and preserved previous bindings passed the same seven-check suite in 24 real process runs across Windows and WSL2 Linux. Reports were byte-identical across hosts. The generic authority source/direct-dependency audit passed; archived governed bundles remained verifiable.
+
+The checked compatibility archive contains 273 payloads and 180 exact source files: 537,499 bytes, SHA-256 `c6eb34c2f45de2f4e7c28079aebfc46679d785fa0daee927c59e8e75baf00320`. The full live report digest is `3a0938ee9bafc3415d8977269dda72af4be0a53bf8a26accce97a443b1281ee2`. No checkpoint restore, scientific-quality, physical-host or hostile-host claim was added.
+
+BX-09 remains executing until its focused commit is on main and all hosted jobs pass. BX-10 through BX-40 remain unstarted. Canonical checkout remains the only active lane; the latest storage/worktree inventory is `evidence/verification/bx-09/worktree-inventory.json`. No worktree or cache deletion.

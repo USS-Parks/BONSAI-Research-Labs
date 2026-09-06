@@ -55,12 +55,18 @@ const SOURCES: &[(&str, &[u8])] = &[
 ];
 
 pub(super) fn check(snapshot: &Snapshot, manifest: &Value, identity: &Value) -> Result<()> {
-    for (path, bytes) in SOURCES {
-        ensure(
-            identity["source_files"][*path] == digest(bytes),
-            "RUN_REFERENCE_SOURCE_UNSUPPORTED",
-        )?;
-    }
+    let current = SOURCES
+        .iter()
+        .all(|(path, bytes)| identity["source_files"][*path] == digest(bytes));
+    let previous: Value = serde_json::from_str(include_str!(
+        "../../../../fixtures/adapter-compatibility/v1/historical-source-set.json"
+    ))
+    .map_err(|_| "RUN_REFERENCE_SOURCE_CATALOG_INVALID")?;
+    let historical = SOURCES.iter().all(|(path, _)| {
+        previous["source_files"][*path].is_string()
+            && identity["source_files"][*path] == previous["source_files"][*path]
+    });
+    ensure(current || historical, "RUN_REFERENCE_SOURCE_UNSUPPORTED")?;
     let components = snapshot.json("component-identity.json")?;
     for (role, key, id, module) in [
         (

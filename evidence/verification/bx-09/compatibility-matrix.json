@@ -1,0 +1,44 @@
+{
+  "schema": "bonsai.adapter-compatibility-matrix/v1",
+  "versions": [
+    {
+      "version": "1.0",
+      "bindings": "preserved BX-08 generated bindings",
+      "windows_certified": 6,
+      "linux_certified": 6
+    },
+    {
+      "version": "1.1",
+      "bindings": "current locked compiler output",
+      "windows_certified": 6,
+      "linux_certified": 6
+    }
+  ],
+  "seeds": [
+    7,
+    42,
+    91
+  ],
+  "trials_per_seed": 2,
+  "checks": [
+    "protocol",
+    "isolation",
+    "ordering",
+    "lifecycle",
+    "determinism",
+    "timeout",
+    "classification"
+  ],
+  "scientific_quality_certified": false,
+  "report_sha256": "3a0938ee9bafc3415d8977269dda72af4be0a53bf8a26accce97a443b1281ee2",
+  "refusals": {
+    "unknown_required": "ADAPTER_PROTOCOL_REQUIRED_CAPABILITY_UNSUPPORTED",
+    "checkpoint_restore": "ADAPTER_PROTOCOL_REQUIRED_CAPABILITY_UNSUPPORTED",
+    "in_run_version_change": "ADAPTER_PROTOCOL_VERSION_MISMATCH",
+    "unsupported_epoch": "ADAPTER_PROTOCOL_VERSION_MISMATCH",
+    "schema_epoch_change": "EPOCH_CHANGE_REQUIRES_MIGRATION"
+  },
+  "unknown_optional_hint": "accepted without authority",
+  "unknown_optional_frame_field": "endpoint skips; raw evidence retains bytes",
+  "archive_sha256": "c6eb34c2f45de2f4e7c28079aebfc46679d785fa0daee927c59e8e75baf00320"
+}

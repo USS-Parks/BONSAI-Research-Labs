@@ -1,0 +1,5 @@
+   Compiling bonsai-contracts v0.0.0 (/mnt/c/Users/17076/Documents/Reinforcement Learning Project/crates/bonsai-contracts)
+   Compiling bonsai-bundle v0.0.0 (/mnt/c/Users/17076/Documents/Reinforcement Learning Project/crates/bonsai-bundle)
+   Compiling bonsai-ingest v0.0.0 (/mnt/c/Users/17076/Documents/Reinforcement Learning Project/crates/bonsai-ingest)
+   Compiling bonsai-runtime v0.0.0 (/mnt/c/Users/17076/Documents/Reinforcement Learning Project/crates/bonsai-runtime)
+    Finished `dev` profile [unoptimized + debuginfo] target(s) in 46.81s

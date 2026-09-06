@@ -63,3 +63,11 @@ evidence/verification/artifacts/BX-08-*.txt -text -diff
 evidence/verification/bx-08/*.sh text eol=lf
 evidence/verification/bx-08/*.py text eol=lf
 fixtures/lineage-checkpoint/v1/** -text -diff
+
+# BX-09 immutable historical bindings and native verification captures.
+evidence/verification/artifacts/BX-09-*.txt -text -diff
+evidence/verification/bx-09/*.sh text eol=lf
+evidence/verification/bx-09/*.py text eol=lf
+fixtures/adapter-compatibility/v1/previous_adapter_pb2.py -text -diff
+fixtures/adapter-compatibility/v1/previous-adapter.proto -text -diff
+evidence/verification/bx-09/dependency-audit.json -text

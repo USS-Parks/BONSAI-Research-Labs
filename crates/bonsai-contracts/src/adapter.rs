@@ -8,8 +8,10 @@ use sha2::{Digest, Sha256};
 use std::error::Error;
 use std::fmt;
 
+mod extensions;
+
 pub const PROTOCOL_EPOCH: u32 = 1;
-pub const PROTOCOL_MINOR: u32 = 0;
+pub const PROTOCOL_MINOR: u32 = 1;
 
 #[derive(Clone, Copy, Debug, Eq, PartialEq)]
 pub enum Peer {
@@ -45,6 +47,7 @@ pub enum ProtocolViolation {
     VersionMismatch,
     CapabilityDeclaration,
     CapabilityChanged,
+    RequiredCapabilityUnsupported,
     CapabilityNotDeclared(&'static str),
     InvalidField(&'static str),
     Deadline,
@@ -66,6 +69,7 @@ pub struct AdapterProtocolMachine {
     next_supervisor_sequence: u64,
     next_adapter_sequence: u64,
     accepted_versions: Option<wire::VersionRange>,
+    selected_version: Option<(u32, u32)>,
     capability_fingerprint: Option<[u8; 32]>,
     capabilities: Option<CapabilityDeclaration>,
     last_deadline_ns: u64,
@@ -78,6 +82,7 @@ impl Default for AdapterProtocolMachine {
             next_supervisor_sequence: 0,
             next_adapter_sequence: 0,
             accepted_versions: None,
+            selected_version: None,
             capability_fingerprint: None,
             capabilities: None,
             last_deadline_ns: 0,
@@ -117,6 +122,9 @@ impl AdapterProtocolMachine {
         let mut next = self.state;
         match (self.state, message) {
             (ProtocolState::Created, adapter_frame::Message::Start(start)) => {
+                if frame.protocol_epoch != PROTOCOL_EPOCH || frame.protocol_minor > PROTOCOL_MINOR {
+                    return Err(ProtocolViolation::VersionMismatch);
+                }
                 validate_uuid(&start.run_id, "start.run_id")?;
                 let versions = start
                     .accepted_versions
@@ -133,7 +141,9 @@ impl AdapterProtocolMachine {
                     .accepted_versions
                     .as_ref()
                     .ok_or(ProtocolViolation::VersionMismatch)?;
-                if !version_in_range(handshake.selected_epoch, handshake.selected_minor, range)
+                if handshake.selected_epoch != PROTOCOL_EPOCH
+                    || handshake.selected_minor > PROTOCOL_MINOR
+                    || !version_in_range(handshake.selected_epoch, handshake.selected_minor, range)
                     || frame.protocol_epoch != handshake.selected_epoch
                     || frame.protocol_minor != handshake.selected_minor
                 {
@@ -144,10 +154,12 @@ impl AdapterProtocolMachine {
                     .as_ref()
                     .ok_or(ProtocolViolation::CapabilityDeclaration)?;
                 validate_capabilities(capabilities)?;
+                extensions::validate(capabilities, handshake.selected_minor)?;
                 let fingerprint = capability_fingerprint(capabilities);
                 if frame.capability_fingerprint_sha256.as_slice() != fingerprint {
                     return Err(ProtocolViolation::CapabilityDeclaration);
                 }
+                self.selected_version = Some((handshake.selected_epoch, handshake.selected_minor));
                 self.capability_fingerprint = Some(fingerprint);
                 self.capabilities = Some(capabilities.clone());
                 next = ProtocolState::AwaitingConfigure;
@@ -299,7 +311,7 @@ impl AdapterProtocolMachine {
         frame: &AdapterFrame,
         adapter_originated: bool,
     ) -> Result<(), ProtocolViolation> {
-        if frame.protocol_epoch != PROTOCOL_EPOCH || frame.protocol_minor > PROTOCOL_MINOR {
+        if self.selected_version != Some((frame.protocol_epoch, frame.protocol_minor)) {
             return Err(ProtocolViolation::VersionMismatch);
         }
         if adapter_originated

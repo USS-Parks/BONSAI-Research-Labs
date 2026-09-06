@@ -116,6 +116,11 @@ pub(crate) fn run() -> Result<(), String> {
 
     let cases = [
         FixtureCase {
+            file: "breaking-epoch.json",
+            compatible: false,
+            expected_error: Some("EPOCH_CHANGE_REQUIRES_MIGRATION"),
+        },
+        FixtureCase {
             file: "additive.json",
             compatible: true,
             expected_error: None,

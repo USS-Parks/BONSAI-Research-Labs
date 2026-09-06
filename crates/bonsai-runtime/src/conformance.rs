@@ -249,6 +249,9 @@ fn protocol_code(error: &ProtocolViolation) -> &'static str {
         ProtocolViolation::Sequence => "ADAPTER_PROTOCOL_SEQUENCE_INVALID",
         ProtocolViolation::VersionMismatch => "ADAPTER_PROTOCOL_VERSION_MISMATCH",
         ProtocolViolation::CapabilityDeclaration => "ADAPTER_PROTOCOL_CAPABILITY_INVALID",
+        ProtocolViolation::RequiredCapabilityUnsupported => {
+            "ADAPTER_PROTOCOL_REQUIRED_CAPABILITY_UNSUPPORTED"
+        }
         ProtocolViolation::CapabilityChanged => "ADAPTER_PROTOCOL_CAPABILITY_CHANGED",
         ProtocolViolation::CapabilityNotDeclared(_) => "ADAPTER_PROTOCOL_CAPABILITY_UNDECLARED",
         ProtocolViolation::InvalidField(_) => "ADAPTER_PROTOCOL_FIELD_INVALID",

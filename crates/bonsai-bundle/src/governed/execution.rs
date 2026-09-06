@@ -115,6 +115,8 @@ fn initialize(
                     filesystem_read: Some(true),
                     filesystem_write: Some(false),
                     network_access: Some(false),
+                    required_capabilities: Vec::new(),
+                    optional_capabilities: Vec::new(),
                 },
             "RUN_AGENT_CAPABILITIES_UNSUPPORTED",
         )?;

@@ -83,7 +83,7 @@ class Start(_message.Message):
     def __init__(self, run_id: _Optional[bytes] = ..., accepted_versions: _Optional[_Union[VersionRange, _Mapping]] = ..., deterministic_seed: _Optional[int] = ..., deadline_monotonic_ns: _Optional[int] = ...) -> None: ...
 
 class CapabilityDeclaration(_message.Message):
-    __slots__ = ("reset", "work", "feedback", "asynchronous_events", "accepted_input_types", "emitted_event_types", "retains_transitions", "offline_updates", "observer_data_access", "privileged_state_access", "filesystem_read", "filesystem_write", "network_access")
+    __slots__ = ("reset", "work", "feedback", "asynchronous_events", "accepted_input_types", "emitted_event_types", "retains_transitions", "offline_updates", "observer_data_access", "privileged_state_access", "filesystem_read", "filesystem_write", "network_access", "required_capabilities", "optional_capabilities")
     RESET_FIELD_NUMBER: _ClassVar[int]
     WORK_FIELD_NUMBER: _ClassVar[int]
     FEEDBACK_FIELD_NUMBER: _ClassVar[int]
@@ -97,6 +97,8 @@ class CapabilityDeclaration(_message.Message):
     FILESYSTEM_READ_FIELD_NUMBER: _ClassVar[int]
     FILESYSTEM_WRITE_FIELD_NUMBER: _ClassVar[int]
     NETWORK_ACCESS_FIELD_NUMBER: _ClassVar[int]
+    REQUIRED_CAPABILITIES_FIELD_NUMBER: _ClassVar[int]
+    OPTIONAL_CAPABILITIES_FIELD_NUMBER: _ClassVar[int]
     reset: bool
     work: bool
     feedback: bool
@@ -110,7 +112,9 @@ class CapabilityDeclaration(_message.Message):
     filesystem_read: bool
     filesystem_write: bool
     network_access: bool
-    def __init__(self, reset: bool = ..., work: bool = ..., feedback: bool = ..., asynchronous_events: bool = ..., accepted_input_types: _Optional[_Iterable[str]] = ..., emitted_event_types: _Optional[_Iterable[str]] = ..., retains_transitions: bool = ..., offline_updates: bool = ..., observer_data_access: bool = ..., privileged_state_access: bool = ..., filesystem_read: bool = ..., filesystem_write: bool = ..., network_access: bool = ...) -> None: ...
+    required_capabilities: _containers.RepeatedScalarFieldContainer[str]
+    optional_capabilities: _containers.RepeatedScalarFieldContainer[str]
+    def __init__(self, reset: bool = ..., work: bool = ..., feedback: bool = ..., asynchronous_events: bool = ..., accepted_input_types: _Optional[_Iterable[str]] = ..., emitted_event_types: _Optional[_Iterable[str]] = ..., retains_transitions: bool = ..., offline_updates: bool = ..., observer_data_access: bool = ..., privileged_state_access: bool = ..., filesystem_read: bool = ..., filesystem_write: bool = ..., network_access: bool = ..., required_capabilities: _Optional[_Iterable[str]] = ..., optional_capabilities: _Optional[_Iterable[str]] = ...) -> None: ...
 
 class Handshake(_message.Message):
     __slots__ = ("selected_epoch", "selected_minor", "capabilities")

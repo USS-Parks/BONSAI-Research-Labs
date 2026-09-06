@@ -22,7 +22,7 @@ package = false
 [tool.ruff]
 target-version = "py312"
 line-length = 120
-extend-exclude = [".venv", "python/bonsai-reference/src/bonsai"]
+extend-exclude = [".venv", "python/bonsai-reference/src/bonsai", "fixtures/adapter-compatibility/v1/previous_adapter_pb2.py"]
 
 [tool.ruff.lint]
 select = ["E", "F", "I", "UP", "B", "SIM", "RUF"]

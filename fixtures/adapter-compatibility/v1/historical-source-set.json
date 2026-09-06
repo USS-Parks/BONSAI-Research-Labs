@@ -1,0 +1,16 @@
+{
+  "schema": "bonsai.reference-source-set/v1",
+  "commit": "86061d89a1b3505a8a4a7f77ad679192cafb0b8a",
+  "source_files": {
+    "scripts/adapter_entrypoint.py": "36eff0d0d4ebe4aaaa66602be2d28f1ecdc08b08ddafa1c1d91513d7dd4fe670",
+    "python/bonsai-reference/src/bonsai_reference/__init__.py": "7c212e37eebbbd90330d6b49a42cd9df238913effa7706d4a4970d7db4255d47",
+    "python/bonsai-reference/src/bonsai_reference/control.py": "e4ef96489429e3155a6e0edfefa1fa80c183432d4065e0ce839fcb7b8a26b0e7",
+    "python/bonsai-reference/src/bonsai_reference/primitive_adapter.py": "7e501900b409970ebc139b6602f60bd1fae6510854cd347edc742c46b0a217f8",
+    "python/bonsai-reference/src/bonsai_reference/environment_adapter.py": "f64e19eb63ad11c308b96d0d4bc15c91e34d1bf1c798d61dcb6ea1d08c668281",
+    "python/bonsai-reference/src/bonsai_reference/adapter_protocol.py": "f51f9985f5f0703fc84c6d40b6353fbe9f3ce5ac0a8b1a96d08d5dca604428c6",
+    "python/bonsai-reference/src/bonsai_reference/adapter_wire.py": "19e05cd22c106111cf3f5a3156859ac927c6ac258d99f4e36eb79eb57c6dd9c9",
+    "python/bonsai-reference/src/bonsai_reference/transport.py": "9fc659b590c9a690f5d3bdc428c83a2f579b47760e8c967795499ef549fecaff",
+    "python/bonsai-reference/src/bonsai_reference/scenario.py": "f9ce6aa1f080898c8277f1ed1fdc8078b9cc05c4dffc95bc2c73c28162961651",
+    "python/bonsai-reference/src/bonsai/adapter/v1/adapter_pb2.py": "6fd2cd4f08eb9ca1825b7556e105a80e4b490442f528968f47778e424f7a495c"
+  }
+}

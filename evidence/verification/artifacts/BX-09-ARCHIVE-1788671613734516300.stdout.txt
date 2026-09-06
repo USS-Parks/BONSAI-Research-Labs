@@ -1,0 +1,9 @@
+{
+  "archive": "evidence/verification/bx-09/compatibility.zip",
+  "bytes": 537499,
+  "sha256": "c6eb34c2f45de2f4e7c28079aebfc46679d785fa0daee927c59e8e75baf00320",
+  "payloads": 273,
+  "source_files": 180,
+  "live_certifications": 24,
+  "matching_report_sha256": "3a0938ee9bafc3415d8977269dda72af4be0a53bf8a26accce97a443b1281ee2"
+}
