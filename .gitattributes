@@ -7,7 +7,7 @@ uv.lock text eol=lf
 *.list text eol=lf
 evidence/release-candidate/SHA256SUMS text eol=lf
 
-# Last match wins over *.txt. Captured machine output keeps its recorded bytes.
+# Last match wins over *.txt.
 evidence/verification/artifacts/** -text -diff
 
 # Preserve BX-01 captured output bytes after the generic text patterns.
