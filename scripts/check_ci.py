@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import subprocess
 import sys
 from pathlib import Path
 
@@ -38,6 +39,21 @@ def validate_text(workflow: str, matrix: str) -> list[str]:
     return errors
 
 
+def validate_capture_attributes() -> list[str]:
+    sample = "evidence/verification/artifacts/BC-01-1784427540937208400.stdout.txt"
+    result = subprocess.run(
+        ["git", "check-attr", "text", "--", sample],
+        cwd=ROOT,
+        check=True,
+        capture_output=True,
+        text=True,
+        encoding="utf-8",
+    )
+    if "text: unset" not in result.stdout:
+        return [f"{sample} must remain -text so captured bytes stay intact"]
+    return []
+
+
 def self_test(workflow: str, matrix: str) -> list[str]:
     errors: list[str] = []
     broken_runner = workflow.replace("runner: windows-2025", "runner: windows-removed")
@@ -52,7 +68,7 @@ def self_test(workflow: str, matrix: str) -> list[str]:
 def main() -> int:
     workflow = WORKFLOW.read_text(encoding="utf-8")
     matrix = MATRIX.read_text(encoding="utf-8")
-    errors = validate_text(workflow, matrix) + self_test(workflow, matrix)
+    errors = validate_text(workflow, matrix) + self_test(workflow, matrix) + validate_capture_attributes()
     if errors:
         print("CI topology check failed", file=sys.stderr)
         for error in errors:

@@ -1,4 +1,3 @@
-evidence/verification/artifacts/** -text -diff
 evidence/verification/records.jsonl text eol=lf
 *.json text eol=lf
 Cargo.lock text eol=lf
@@ -7,6 +6,9 @@ uv.lock text eol=lf
 *.txt text eol=lf
 *.list text eol=lf
 evidence/release-candidate/SHA256SUMS text eol=lf
+
+# Last match wins over *.txt.
+evidence/verification/artifacts/** -text -diff
 
 # Preserve BX-01 captured output bytes after the generic text patterns.
 evidence/verification/artifacts/BX-01-*.txt -text -diff
