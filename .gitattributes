@@ -98,3 +98,18 @@ evidence/verification/artifacts/BX-12-*.txt -text -diff
 evidence/verification/bx-12/*.py text eol=lf
 evidence/verification/bx-12/*.sh text eol=lf
 evidence/verification/bx-12/*.cmd text eol=lf
+
+# BX-13 verifier source pins and hosted evidence hashes are byte-exact across hosts.
+python/bonsai-reference/src/bonsai_reference/brdc1.py text eol=lf
+python/bonsai-reference/src/bonsai_reference/option_learning.py text eol=lf
+python/bonsai-reference/src/bonsai_reference/option_adapter.py text eol=lf
+python/bonsai-reference/src/bonsai_reference/chain_adapter.py text eol=lf
+python/bonsai-reference/tests/test_option_*.py text eol=lf
+evidence/verification/bx-13/*.py text eol=lf
+evidence/verification/bx-13/*.sh text eol=lf
+evidence/verification/bx-13/*.cmd text eol=lf
+.github/workflows/ci.yml text eol=lf
+evidence/verification/bx-13-portability/*.py text eol=lf
+evidence/verification/bx-13-portability/*.json -text -diff
+evidence/verification/bx-13-portability/*.txt -text -diff
+evidence/verification/bx-13-portability/*.xml -text -diff

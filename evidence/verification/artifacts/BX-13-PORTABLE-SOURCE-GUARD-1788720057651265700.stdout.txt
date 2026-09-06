@@ -1,0 +1,25 @@
+{
+  "result": "pass",
+  "source_pins": 20,
+  "windows_crlf_rejections": [
+    "python/bonsai-reference/src/bonsai_reference/brdc1.py",
+    "python/bonsai-reference/src/bonsai_reference/option_learning.py",
+    "python/bonsai-reference/src/bonsai_reference/option_adapter.py",
+    "python/bonsai-reference/src/bonsai_reference/chain_adapter.py"
+  ],
+  "attribute_denials": 4,
+  "source_files_unchanged": 256,
+  "metadata_source_deltas": [
+    {
+      "path": ".gitattributes",
+      "original_sha256": "9562f8e03bbe93f68d08d26ad764ac8795665a2c2c771d3299f859119405e97d",
+      "current_sha256": "5df368eb8d2b7d67b7a228adbcdae37ccffa77c4601a32651f9a6d43614e53bc"
+    },
+    {
+      "path": "evidence/verification/bx-13/ci-protocol.py",
+      "original_sha256": "26fdb6710e1a619db371b618e159973b32f793976613f6a2a4943a914ab6a115",
+      "current_sha256": "d2d4f657ca0757048728de11f69d1698ca2f056829915e5c0615fcb4d117495b"
+    }
+  ],
+  "original_archive_unchanged": true
+}

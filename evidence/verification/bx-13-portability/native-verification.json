@@ -1,0 +1,101 @@
+{
+  "schema": "bonsai.bx13-portable-verifier/v1",
+  "source_batch": "target/bx13-live-1788717713189903230",
+  "native_verifier_sha256": "146d943052e2421e6ee02c45b6dec4e3b83a7750e1e95294d51d25a264cbd310",
+  "platform": "windows-x86_64",
+  "linux_governed_bundles_verified": 13,
+  "rows": [
+    {
+      "case": "target/bx13-live-1788717713189903230/s7-options-respecting-r0-goal0",
+      "receipt_sha256": "43af6f1c8e6a3fa6970488dfe1630e800036cdf6862c3f9791851ce162d267fe",
+      "exit_code": 0,
+      "stdout": "{\"format\":\"bonsai.governed-run-verdict/v1\",\"facts\":{\"run_id\":\"ff4c860f-dd8c-4a32-9f99-69580cf8a390\",\"receipt_sha256\":\"43af6f1c8e6a3fa6970488dfe1630e800036cdf6862c3f9791851ce162d267fe\",\"events\":5444,\"environment_steps\":256,\"finished_episodes\":8,\"reward_sum\":269,\"work_items\":64256,\"observer_bytes\":11511120,\"derived_track\":\"A\"},\"claims\":{\"schema\":\"bonsai.c0-c1-table/v1\",\"rows\":[{\"case_id\":\"ff4c860f-dd8c-4a32-9f99-69580cf8a390\",\"class\":\"compliant\",\"c0\":\"pass\",\"c1\":\"pass\",\"detail_code\":null}]},\"limitations\":[\"C0/C1 apply only to this recorded reference run; C2-C5 are not adjudicated.\",\"E0 supplies no energy evidence. Physical-host acceptance is not established.\",\"Receipt trust requires the operator digest retained outside the bundle.\",\"Reference launch and protocol evidence do not establish hostile-code or hostile-host isolation.\",\"Publication and multi-seed research eligibility require separate gates.\"]}\n",
+      "stderr": ""
+    },
+    {
+      "case": "target/bx13-live-1788717713189903230/s7-options-respecting-r1-goal0",
+      "receipt_sha256": "a00a7fcf4786c7e9d72ea17f80312428c504eabf20bf3f3e88d034cc35b072c6",
+      "exit_code": 0,
+      "stdout": "{\"format\":\"bonsai.governed-run-verdict/v1\",\"facts\":{\"run_id\":\"23f99ebe-8e2d-4843-a787-6aa7cb1e855c\",\"receipt_sha256\":\"a00a7fcf4786c7e9d72ea17f80312428c504eabf20bf3f3e88d034cc35b072c6\",\"events\":5444,\"environment_steps\":256,\"finished_episodes\":8,\"reward_sum\":269,\"work_items\":64256,\"observer_bytes\":11511210,\"derived_track\":\"A\"},\"claims\":{\"schema\":\"bonsai.c0-c1-table/v1\",\"rows\":[{\"case_id\":\"23f99ebe-8e2d-4843-a787-6aa7cb1e855c\",\"class\":\"compliant\",\"c0\":\"pass\",\"c1\":\"pass\",\"detail_code\":null}]},\"limitations\":[\"C0/C1 apply only to this recorded reference run; C2-C5 are not adjudicated.\",\"E0 supplies no energy evidence. Physical-host acceptance is not established.\",\"Receipt trust requires the operator digest retained outside the bundle.\",\"Reference launch and protocol evidence do not establish hostile-code or hostile-host isolation.\",\"Publication and multi-seed research eligibility require separate gates.\"]}\n",
+      "stderr": ""
+    },
+    {
+      "case": "target/bx13-live-1788717713189903230/s7-primitive-respecting-r0-goal0",
+      "receipt_sha256": "d7420f90037de110ca480519bc382ef6a802ce84578c5d785e5a825a016d94de",
+      "exit_code": 0,
+      "stdout": "{\"format\":\"bonsai.governed-run-verdict/v1\",\"facts\":{\"run_id\":\"9865ba22-05d4-436d-ad87-d31f5291b0f9\",\"receipt_sha256\":\"d7420f90037de110ca480519bc382ef6a802ce84578c5d785e5a825a016d94de\",\"events\":5444,\"environment_steps\":256,\"finished_episodes\":8,\"reward_sum\":269,\"work_items\":64256,\"observer_bytes\":10924561,\"derived_track\":\"A\"},\"claims\":{\"schema\":\"bonsai.c0-c1-table/v1\",\"rows\":[{\"case_id\":\"9865ba22-05d4-436d-ad87-d31f5291b0f9\",\"class\":\"compliant\",\"c0\":\"pass\",\"c1\":\"pass\",\"detail_code\":null}]},\"limitations\":[\"C0/C1 apply only to this recorded reference run; C2-C5 are not adjudicated.\",\"E0 supplies no energy evidence. Physical-host acceptance is not established.\",\"Receipt trust requires the operator digest retained outside the bundle.\",\"Reference launch and protocol evidence do not establish hostile-code or hostile-host isolation.\",\"Publication and multi-seed research eligibility require separate gates.\"]}\n",
+      "stderr": ""
+    },
+    {
+      "case": "target/bx13-live-1788717713189903230/s7-options-oblivious-r0-goal0",
+      "receipt_sha256": "4af3eb2f6ade74b57ae03a49e1319d698920230fc3f00b3f7b2da571a3c86493",
+      "exit_code": 0,
+      "stdout": "{\"format\":\"bonsai.governed-run-verdict/v1\",\"facts\":{\"run_id\":\"3115ce31-a7d6-45a5-b43a-3bf0e0bbb7d4\",\"receipt_sha256\":\"4af3eb2f6ade74b57ae03a49e1319d698920230fc3f00b3f7b2da571a3c86493\",\"events\":5444,\"environment_steps\":256,\"finished_episodes\":8,\"reward_sum\":19,\"work_items\":64256,\"observer_bytes\":11382144,\"derived_track\":\"A\"},\"claims\":{\"schema\":\"bonsai.c0-c1-table/v1\",\"rows\":[{\"case_id\":\"3115ce31-a7d6-45a5-b43a-3bf0e0bbb7d4\",\"class\":\"compliant\",\"c0\":\"pass\",\"c1\":\"pass\",\"detail_code\":null}]},\"limitations\":[\"C0/C1 apply only to this recorded reference run; C2-C5 are not adjudicated.\",\"E0 supplies no energy evidence. Physical-host acceptance is not established.\",\"Receipt trust requires the operator digest retained outside the bundle.\",\"Reference launch and protocol evidence do not establish hostile-code or hostile-host isolation.\",\"Publication and multi-seed research eligibility require separate gates.\"]}\n",
+      "stderr": ""
+    },
+    {
+      "case": "target/bx13-live-1788717713189903230/s19-options-respecting-r0-goal0",
+      "receipt_sha256": "9ec9c42e49b8a259a23bfb79a72ae8b4e4627b78a2f43c269f84b4b37682a136",
+      "exit_code": 0,
+      "stdout": "{\"format\":\"bonsai.governed-run-verdict/v1\",\"facts\":{\"run_id\":\"fa333a82-7af3-4b1e-b349-cd42360c595a\",\"receipt_sha256\":\"9ec9c42e49b8a259a23bfb79a72ae8b4e4627b78a2f43c269f84b4b37682a136\",\"events\":5444,\"environment_steps\":256,\"finished_episodes\":8,\"reward_sum\":269,\"work_items\":64256,\"observer_bytes\":11511052,\"derived_track\":\"A\"},\"claims\":{\"schema\":\"bonsai.c0-c1-table/v1\",\"rows\":[{\"case_id\":\"fa333a82-7af3-4b1e-b349-cd42360c595a\",\"class\":\"compliant\",\"c0\":\"pass\",\"c1\":\"pass\",\"detail_code\":null}]},\"limitations\":[\"C0/C1 apply only to this recorded reference run; C2-C5 are not adjudicated.\",\"E0 supplies no energy evidence. Physical-host acceptance is not established.\",\"Receipt trust requires the operator digest retained outside the bundle.\",\"Reference launch and protocol evidence do not establish hostile-code or hostile-host isolation.\",\"Publication and multi-seed research eligibility require separate gates.\"]}\n",
+      "stderr": ""
+    },
+    {
+      "case": "target/bx13-live-1788717713189903230/s19-options-respecting-r1-goal0",
+      "receipt_sha256": "dcbff6c6844b47e3a0f50614d54891ca6412116ef065c548c0a9297ab6cac4bd",
+      "exit_code": 0,
+      "stdout": "{\"format\":\"bonsai.governed-run-verdict/v1\",\"facts\":{\"run_id\":\"9e0f6fc4-970a-4e45-ae6d-744ea92652d3\",\"receipt_sha256\":\"dcbff6c6844b47e3a0f50614d54891ca6412116ef065c548c0a9297ab6cac4bd\",\"events\":5444,\"environment_steps\":256,\"finished_episodes\":8,\"reward_sum\":269,\"work_items\":64256,\"observer_bytes\":11511047,\"derived_track\":\"A\"},\"claims\":{\"schema\":\"bonsai.c0-c1-table/v1\",\"rows\":[{\"case_id\":\"9e0f6fc4-970a-4e45-ae6d-744ea92652d3\",\"class\":\"compliant\",\"c0\":\"pass\",\"c1\":\"pass\",\"detail_code\":null}]},\"limitations\":[\"C0/C1 apply only to this recorded reference run; C2-C5 are not adjudicated.\",\"E0 supplies no energy evidence. Physical-host acceptance is not established.\",\"Receipt trust requires the operator digest retained outside the bundle.\",\"Reference launch and protocol evidence do not establish hostile-code or hostile-host isolation.\",\"Publication and multi-seed research eligibility require separate gates.\"]}\n",
+      "stderr": ""
+    },
+    {
+      "case": "target/bx13-live-1788717713189903230/s19-primitive-respecting-r0-goal0",
+      "receipt_sha256": "a2462cc5eb6d3da35319c9ba33d737e01357a9c2682cf8818665dfbd4a3c2234",
+      "exit_code": 0,
+      "stdout": "{\"format\":\"bonsai.governed-run-verdict/v1\",\"facts\":{\"run_id\":\"8f597055-41b5-4f8e-9f51-7985c0d86f06\",\"receipt_sha256\":\"a2462cc5eb6d3da35319c9ba33d737e01357a9c2682cf8818665dfbd4a3c2234\",\"events\":5444,\"environment_steps\":256,\"finished_episodes\":8,\"reward_sum\":269,\"work_items\":64256,\"observer_bytes\":10924409,\"derived_track\":\"A\"},\"claims\":{\"schema\":\"bonsai.c0-c1-table/v1\",\"rows\":[{\"case_id\":\"8f597055-41b5-4f8e-9f51-7985c0d86f06\",\"class\":\"compliant\",\"c0\":\"pass\",\"c1\":\"pass\",\"detail_code\":null}]},\"limitations\":[\"C0/C1 apply only to this recorded reference run; C2-C5 are not adjudicated.\",\"E0 supplies no energy evidence. Physical-host acceptance is not established.\",\"Receipt trust requires the operator digest retained outside the bundle.\",\"Reference launch and protocol evidence do not establish hostile-code or hostile-host isolation.\",\"Publication and multi-seed research eligibility require separate gates.\"]}\n",
+      "stderr": ""
+    },
+    {
+      "case": "target/bx13-live-1788717713189903230/s19-options-oblivious-r0-goal0",
+      "receipt_sha256": "5c12ff9a0e528e18ca23c2aa424d4ebae9990b44a63bec7eafb8807b6cf76f04",
+      "exit_code": 0,
+      "stdout": "{\"format\":\"bonsai.governed-run-verdict/v1\",\"facts\":{\"run_id\":\"186fdddd-7967-4fe8-8d93-5fe4f929e75b\",\"receipt_sha256\":\"5c12ff9a0e528e18ca23c2aa424d4ebae9990b44a63bec7eafb8807b6cf76f04\",\"events\":5444,\"environment_steps\":256,\"finished_episodes\":8,\"reward_sum\":19,\"work_items\":64256,\"observer_bytes\":11382050,\"derived_track\":\"A\"},\"claims\":{\"schema\":\"bonsai.c0-c1-table/v1\",\"rows\":[{\"case_id\":\"186fdddd-7967-4fe8-8d93-5fe4f929e75b\",\"class\":\"compliant\",\"c0\":\"pass\",\"c1\":\"pass\",\"detail_code\":null}]},\"limitations\":[\"C0/C1 apply only to this recorded reference run; C2-C5 are not adjudicated.\",\"E0 supplies no energy evidence. Physical-host acceptance is not established.\",\"Receipt trust requires the operator digest retained outside the bundle.\",\"Reference launch and protocol evidence do not establish hostile-code or hostile-host isolation.\",\"Publication and multi-seed research eligibility require separate gates.\"]}\n",
+      "stderr": ""
+    },
+    {
+      "case": "target/bx13-live-1788717713189903230/s42-options-respecting-r0-goal0",
+      "receipt_sha256": "b9b4d2ce36312b406477f316273bffdc8b7951a8172324d0afb2093a2606293e",
+      "exit_code": 0,
+      "stdout": "{\"format\":\"bonsai.governed-run-verdict/v1\",\"facts\":{\"run_id\":\"879deed2-6516-487b-a7ae-5eff5bdc3f01\",\"receipt_sha256\":\"b9b4d2ce36312b406477f316273bffdc8b7951a8172324d0afb2093a2606293e\",\"events\":5444,\"environment_steps\":256,\"finished_episodes\":8,\"reward_sum\":284,\"work_items\":64256,\"observer_bytes\":11528291,\"derived_track\":\"A\"},\"claims\":{\"schema\":\"bonsai.c0-c1-table/v1\",\"rows\":[{\"case_id\":\"879deed2-6516-487b-a7ae-5eff5bdc3f01\",\"class\":\"compliant\",\"c0\":\"pass\",\"c1\":\"pass\",\"detail_code\":null}]},\"limitations\":[\"C0/C1 apply only to this recorded reference run; C2-C5 are not adjudicated.\",\"E0 supplies no energy evidence. Physical-host acceptance is not established.\",\"Receipt trust requires the operator digest retained outside the bundle.\",\"Reference launch and protocol evidence do not establish hostile-code or hostile-host isolation.\",\"Publication and multi-seed research eligibility require separate gates.\"]}\n",
+      "stderr": ""
+    },
+    {
+      "case": "target/bx13-live-1788717713189903230/s42-options-respecting-r1-goal0",
+      "receipt_sha256": "d88d1114e3e40dc61611a27e6c4dc25c2990c7ec3485198ca0b663d319670d82",
+      "exit_code": 0,
+      "stdout": "{\"format\":\"bonsai.governed-run-verdict/v1\",\"facts\":{\"run_id\":\"ae1d5069-2b40-4273-9900-d5e399010b10\",\"receipt_sha256\":\"d88d1114e3e40dc61611a27e6c4dc25c2990c7ec3485198ca0b663d319670d82\",\"events\":5444,\"environment_steps\":256,\"finished_episodes\":8,\"reward_sum\":284,\"work_items\":64256,\"observer_bytes\":11528309,\"derived_track\":\"A\"},\"claims\":{\"schema\":\"bonsai.c0-c1-table/v1\",\"rows\":[{\"case_id\":\"ae1d5069-2b40-4273-9900-d5e399010b10\",\"class\":\"compliant\",\"c0\":\"pass\",\"c1\":\"pass\",\"detail_code\":null}]},\"limitations\":[\"C0/C1 apply only to this recorded reference run; C2-C5 are not adjudicated.\",\"E0 supplies no energy evidence. Physical-host acceptance is not established.\",\"Receipt trust requires the operator digest retained outside the bundle.\",\"Reference launch and protocol evidence do not establish hostile-code or hostile-host isolation.\",\"Publication and multi-seed research eligibility require separate gates.\"]}\n",
+      "stderr": ""
+    },
+    {
+      "case": "target/bx13-live-1788717713189903230/s42-primitive-respecting-r0-goal0",
+      "receipt_sha256": "a0e703cc6e022c465a828c93faaf3cb22063d10468a815dde2bf153b58750b17",
+      "exit_code": 0,
+      "stdout": "{\"format\":\"bonsai.governed-run-verdict/v1\",\"facts\":{\"run_id\":\"bc6deead-a485-4f2f-b735-36c666be764b\",\"receipt_sha256\":\"a0e703cc6e022c465a828c93faaf3cb22063d10468a815dde2bf153b58750b17\",\"events\":5444,\"environment_steps\":256,\"finished_episodes\":8,\"reward_sum\":264,\"work_items\":64256,\"observer_bytes\":10929814,\"derived_track\":\"A\"},\"claims\":{\"schema\":\"bonsai.c0-c1-table/v1\",\"rows\":[{\"case_id\":\"bc6deead-a485-4f2f-b735-36c666be764b\",\"class\":\"compliant\",\"c0\":\"pass\",\"c1\":\"pass\",\"detail_code\":null}]},\"limitations\":[\"C0/C1 apply only to this recorded reference run; C2-C5 are not adjudicated.\",\"E0 supplies no energy evidence. Physical-host acceptance is not established.\",\"Receipt trust requires the operator digest retained outside the bundle.\",\"Reference launch and protocol evidence do not establish hostile-code or hostile-host isolation.\",\"Publication and multi-seed research eligibility require separate gates.\"]}\n",
+      "stderr": ""
+    },
+    {
+      "case": "target/bx13-live-1788717713189903230/s42-options-oblivious-r0-goal0",
+      "receipt_sha256": "c72996727a827bf35eba4ded28e37641b88f5e415ac5b6d7ef120aa4581b7b47",
+      "exit_code": 0,
+      "stdout": "{\"format\":\"bonsai.governed-run-verdict/v1\",\"facts\":{\"run_id\":\"44a974d5-a139-4cdf-b261-407fb51f73a9\",\"receipt_sha256\":\"c72996727a827bf35eba4ded28e37641b88f5e415ac5b6d7ef120aa4581b7b47\",\"events\":5444,\"environment_steps\":256,\"finished_episodes\":8,\"reward_sum\":-11,\"work_items\":64256,\"observer_bytes\":11377536,\"derived_track\":\"A\"},\"claims\":{\"schema\":\"bonsai.c0-c1-table/v1\",\"rows\":[{\"case_id\":\"44a974d5-a139-4cdf-b261-407fb51f73a9\",\"class\":\"compliant\",\"c0\":\"pass\",\"c1\":\"pass\",\"detail_code\":null}]},\"limitations\":[\"C0/C1 apply only to this recorded reference run; C2-C5 are not adjudicated.\",\"E0 supplies no energy evidence. Physical-host acceptance is not established.\",\"Receipt trust requires the operator digest retained outside the bundle.\",\"Reference launch and protocol evidence do not establish hostile-code or hostile-host isolation.\",\"Publication and multi-seed research eligibility require separate gates.\"]}\n",
+      "stderr": ""
+    },
+    {
+      "case": "target/bx13-live-1788717713189903230/s7-options-respecting-r0-goal1",
+      "receipt_sha256": "7735521d1962866997e0243255c6f3808dd011f6d191734676b0a5dd83d787c5",
+      "exit_code": 0,
+      "stdout": "{\"format\":\"bonsai.governed-run-verdict/v1\",\"facts\":{\"run_id\":\"5d4226b7-102f-4111-bed3-2362dde06199\",\"receipt_sha256\":\"7735521d1962866997e0243255c6f3808dd011f6d191734676b0a5dd83d787c5\",\"events\":6182,\"environment_steps\":256,\"finished_episodes\":130,\"reward_sum\":394,\"work_items\":64256,\"observer_bytes\":12198655,\"derived_track\":\"A\"},\"claims\":{\"schema\":\"bonsai.c0-c1-table/v1\",\"rows\":[{\"case_id\":\"5d4226b7-102f-4111-bed3-2362dde06199\",\"class\":\"compliant\",\"c0\":\"pass\",\"c1\":\"pass\",\"detail_code\":null}]},\"limitations\":[\"C0/C1 apply only to this recorded reference run; C2-C5 are not adjudicated.\",\"E0 supplies no energy evidence. Physical-host acceptance is not established.\",\"Receipt trust requires the operator digest retained outside the bundle.\",\"Reference launch and protocol evidence do not establish hostile-code or hostile-host isolation.\",\"Publication and multi-seed research eligibility require separate gates.\"]}\n",
+      "stderr": ""
+    }
+  ],
+  "scope": "Offline receipt verification across hosts; no new learner, OS-controller or physical acceptance claim."
+}

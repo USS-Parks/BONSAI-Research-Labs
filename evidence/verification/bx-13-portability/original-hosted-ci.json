@@ -1,0 +1,87 @@
+{
+  "schema": "bonsai.bx13-original-hosted-ci/v1",
+  "head_sha": "82ed6a5b3eaa6f5eb36349df53edfd26dd44692e",
+  "status": "completed",
+  "conclusion": "success",
+  "url": "https://github.com/USS-Parks/BONSAI-Research-Labs/actions/runs/34051838111",
+  "acceptance_scope": "Original BX-13 commit only; corrected-commit CI remains required.",
+  "jobs": [
+    {
+      "name": "baseline (linux / x86_64 / hosted-ci)",
+      "id": 101536733786,
+      "url": "https://github.com/USS-Parks/BONSAI-Research-Labs/actions/runs/34051838111/job/101536733786",
+      "status": "completed",
+      "conclusion": "success",
+      "started_at": "2026-09-06T18:28:43Z",
+      "completed_at": "2026-09-06T18:33:01Z",
+      "protocol_step": {
+        "completedAt": "2026-09-06T18:31:51Z",
+        "conclusion": "success",
+        "name": "Run BX-13 hosted two-child protocol",
+        "number": 12,
+        "startedAt": "2026-09-06T18:31:47Z",
+        "status": "completed"
+      }
+    },
+    {
+      "name": "baseline (macos / x86_64 / hosted-ci)",
+      "id": 101536733929,
+      "url": "https://github.com/USS-Parks/BONSAI-Research-Labs/actions/runs/34051838111/job/101536733929",
+      "status": "completed",
+      "conclusion": "success",
+      "started_at": "2026-09-06T18:28:44Z",
+      "completed_at": "2026-09-06T18:41:37Z",
+      "protocol_step": {
+        "completedAt": "2026-09-06T18:37:59Z",
+        "conclusion": "success",
+        "name": "Run BX-13 hosted two-child protocol",
+        "number": 12,
+        "startedAt": "2026-09-06T18:37:52Z",
+        "status": "completed"
+      }
+    },
+    {
+      "name": "baseline (macos / arm64 / hosted-ci)",
+      "id": 101536733933,
+      "url": "https://github.com/USS-Parks/BONSAI-Research-Labs/actions/runs/34051838111/job/101536733933",
+      "status": "completed",
+      "conclusion": "success",
+      "started_at": "2026-09-06T18:28:48Z",
+      "completed_at": "2026-09-06T18:33:51Z",
+      "protocol_step": {
+        "completedAt": "2026-09-06T18:32:12Z",
+        "conclusion": "success",
+        "name": "Run BX-13 hosted two-child protocol",
+        "number": 12,
+        "startedAt": "2026-09-06T18:32:07Z",
+        "status": "completed"
+      }
+    },
+    {
+      "name": "baseline (windows / x86_64 / hosted-ci)",
+      "id": 101536733955,
+      "url": "https://github.com/USS-Parks/BONSAI-Research-Labs/actions/runs/34051838111/job/101536733955",
+      "status": "completed",
+      "conclusion": "success",
+      "started_at": "2026-09-06T18:28:43Z",
+      "completed_at": "2026-09-06T18:36:08Z",
+      "protocol_step": {
+        "completedAt": "2026-09-06T18:34:19Z",
+        "conclusion": "success",
+        "name": "Run BX-13 hosted two-child protocol",
+        "number": 12,
+        "startedAt": "2026-09-06T18:34:11Z",
+        "status": "completed"
+      }
+    },
+    {
+      "name": "M1 hosted semantic equivalence",
+      "id": 101538569884,
+      "url": "https://github.com/USS-Parks/BONSAI-Research-Labs/actions/runs/34051838111/job/101538569884",
+      "status": "completed",
+      "conclusion": "success",
+      "started_at": "2026-09-06T18:41:39Z",
+      "completed_at": "2026-09-06T18:41:55Z"
+    }
+  ]
+}

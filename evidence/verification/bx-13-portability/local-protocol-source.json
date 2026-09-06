@@ -1,0 +1,415 @@
+{
+  "revision": "82ed6a5b3eaa6f5eb36349df53edfd26dd44692e",
+  "tree": "273abc3578aa052824bed4140666fad417e6effa",
+  "github_sha": null,
+  "tracked_patch_bytes": 33131,
+  "tracked_patch_sha256": "b11b34720839e7a509b700bdf48e443603a31f2cd8c1ecde112680d110ddf542",
+  "workflow_sha256": "825dc3f8c7d2d7b98401f52bbefa6f118f88a4ecb37eb919f91cd438928d3d45",
+  "test_sha256": "1a24063eba3501a31c2646cf253f7e9525331bfc267c168e6b7e0294bfd6e4fd",
+  "wrapper_sha256": "d2d4f657ca0757048728de11f69d1698ca2f056829915e5c0615fcb4d117495b",
+  "verifier_source_count": 20,
+  "verifier_sources": {
+    "python/bonsai-reference/src/bonsai_reference/brdc1.py": {
+      "attributes": {
+        "text": "set",
+        "eol": "lf"
+      },
+      "git_blob": {
+        "bytes": 24192,
+        "sha256": "9f7fa5dbbf58e0a30886b78f42edceab8aa9171be031ef13bdab12ce7aa26393"
+      },
+      "filtered_blob": {
+        "bytes": 24192,
+        "sha256": "9f7fa5dbbf58e0a30886b78f42edceab8aa9171be031ef13bdab12ce7aa26393"
+      },
+      "checkout": {
+        "bytes": 24192,
+        "sha256": "9f7fa5dbbf58e0a30886b78f42edceab8aa9171be031ef13bdab12ce7aa26393"
+      },
+      "filtered_matches_git_blob": true,
+      "checkout_matches_git_blob": true
+    },
+    "python/bonsai-reference/src/bonsai_reference/feature_discovery.py": {
+      "attributes": {
+        "text": "set",
+        "eol": "lf"
+      },
+      "git_blob": {
+        "bytes": 11294,
+        "sha256": "29e788dc9238c0c88d41b675511e54c85dc26f5a657673feae159299d3a17faf"
+      },
+      "filtered_blob": {
+        "bytes": 11294,
+        "sha256": "29e788dc9238c0c88d41b675511e54c85dc26f5a657673feae159299d3a17faf"
+      },
+      "checkout": {
+        "bytes": 11294,
+        "sha256": "29e788dc9238c0c88d41b675511e54c85dc26f5a657673feae159299d3a17faf"
+      },
+      "filtered_matches_git_blob": true,
+      "checkout_matches_git_blob": true
+    },
+    "python/bonsai-reference/src/bonsai_reference/option_learning.py": {
+      "attributes": {
+        "text": "set",
+        "eol": "lf"
+      },
+      "git_blob": {
+        "bytes": 45689,
+        "sha256": "2b8698fd9279423894a7c9d83bbc52ca380b0f6d2493d97724bd559169aede08"
+      },
+      "filtered_blob": {
+        "bytes": 45689,
+        "sha256": "2b8698fd9279423894a7c9d83bbc52ca380b0f6d2493d97724bd559169aede08"
+      },
+      "checkout": {
+        "bytes": 45689,
+        "sha256": "2b8698fd9279423894a7c9d83bbc52ca380b0f6d2493d97724bd559169aede08"
+      },
+      "filtered_matches_git_blob": true,
+      "checkout_matches_git_blob": true
+    },
+    "python/bonsai-reference/src/bonsai_reference/option_adapter.py": {
+      "attributes": {
+        "text": "set",
+        "eol": "lf"
+      },
+      "git_blob": {
+        "bytes": 11645,
+        "sha256": "2830eb9e5e5c19649ed1fbb7d2e1685be5e34a176c4ed6de5a9780a5eb6bdfac"
+      },
+      "filtered_blob": {
+        "bytes": 11645,
+        "sha256": "2830eb9e5e5c19649ed1fbb7d2e1685be5e34a176c4ed6de5a9780a5eb6bdfac"
+      },
+      "checkout": {
+        "bytes": 11645,
+        "sha256": "2830eb9e5e5c19649ed1fbb7d2e1685be5e34a176c4ed6de5a9780a5eb6bdfac"
+      },
+      "filtered_matches_git_blob": true,
+      "checkout_matches_git_blob": true
+    },
+    "python/bonsai-reference/src/bonsai_reference/chain_adapter.py": {
+      "attributes": {
+        "text": "set",
+        "eol": "lf"
+      },
+      "git_blob": {
+        "bytes": 4765,
+        "sha256": "6a2935b31c5f1cc1ba9265d3639e9111a6709037b2c4b705ba42fb9efb0dc8f1"
+      },
+      "filtered_blob": {
+        "bytes": 4765,
+        "sha256": "6a2935b31c5f1cc1ba9265d3639e9111a6709037b2c4b705ba42fb9efb0dc8f1"
+      },
+      "checkout": {
+        "bytes": 4765,
+        "sha256": "6a2935b31c5f1cc1ba9265d3639e9111a6709037b2c4b705ba42fb9efb0dc8f1"
+      },
+      "filtered_matches_git_blob": true,
+      "checkout_matches_git_blob": true
+    },
+    "python/bonsai-reference/src/bonsai_reference/gymnasium_session.py": {
+      "attributes": {
+        "text": "set",
+        "eol": "lf"
+      },
+      "git_blob": {
+        "bytes": 5572,
+        "sha256": "df838c6a1ce2e6e4d24309d0c5dca4d90a3f63ee88c36950597836723fc28a92"
+      },
+      "filtered_blob": {
+        "bytes": 5572,
+        "sha256": "df838c6a1ce2e6e4d24309d0c5dca4d90a3f63ee88c36950597836723fc28a92"
+      },
+      "checkout": {
+        "bytes": 5572,
+        "sha256": "df838c6a1ce2e6e4d24309d0c5dca4d90a3f63ee88c36950597836723fc28a92"
+      },
+      "filtered_matches_git_blob": true,
+      "checkout_matches_git_blob": true
+    },
+    "python/bonsai-reference/src/bonsai_reference/gymnasium_adapter.py": {
+      "attributes": {
+        "text": "set",
+        "eol": "lf"
+      },
+      "git_blob": {
+        "bytes": 1955,
+        "sha256": "1f6b1880728b94fbdf2786d84f9485ee36d98d8f8decabf3494d02114279e4f0"
+      },
+      "filtered_blob": {
+        "bytes": 1955,
+        "sha256": "1f6b1880728b94fbdf2786d84f9485ee36d98d8f8decabf3494d02114279e4f0"
+      },
+      "checkout": {
+        "bytes": 1955,
+        "sha256": "1f6b1880728b94fbdf2786d84f9485ee36d98d8f8decabf3494d02114279e4f0"
+      },
+      "filtered_matches_git_blob": true,
+      "checkout_matches_git_blob": true
+    },
+    "python/bonsai-reference/src/bonsai_reference/online_adapter.py": {
+      "attributes": {
+        "text": "set",
+        "eol": "lf"
+      },
+      "git_blob": {
+        "bytes": 6243,
+        "sha256": "beeaf04c675d99e20db9a7ed7e1a6c9f18b796a0875a7be5a6e284cc28dc245e"
+      },
+      "filtered_blob": {
+        "bytes": 6243,
+        "sha256": "beeaf04c675d99e20db9a7ed7e1a6c9f18b796a0875a7be5a6e284cc28dc245e"
+      },
+      "checkout": {
+        "bytes": 6243,
+        "sha256": "beeaf04c675d99e20db9a7ed7e1a6c9f18b796a0875a7be5a6e284cc28dc245e"
+      },
+      "filtered_matches_git_blob": true,
+      "checkout_matches_git_blob": true
+    },
+    "python/bonsai-reference/src/bonsai_reference/linear_adapter.py": {
+      "attributes": {
+        "text": "set",
+        "eol": "lf"
+      },
+      "git_blob": {
+        "bytes": 1040,
+        "sha256": "c2eacab8006a221c5809d6f5576d63e29351d84d6174c9c2457bfcdbd9c20345"
+      },
+      "filtered_blob": {
+        "bytes": 1040,
+        "sha256": "c2eacab8006a221c5809d6f5576d63e29351d84d6174c9c2457bfcdbd9c20345"
+      },
+      "checkout": {
+        "bytes": 1040,
+        "sha256": "c2eacab8006a221c5809d6f5576d63e29351d84d6174c9c2457bfcdbd9c20345"
+      },
+      "filtered_matches_git_blob": true,
+      "checkout_matches_git_blob": true
+    },
+    "python/bonsai-reference/src/bonsai_reference/linear_control.py": {
+      "attributes": {
+        "text": "set",
+        "eol": "lf"
+      },
+      "git_blob": {
+        "bytes": 3534,
+        "sha256": "44e2643c23be870eee0c55fcbb1e34e548c4944c0999b3c820bacfba856fc17d"
+      },
+      "filtered_blob": {
+        "bytes": 3534,
+        "sha256": "44e2643c23be870eee0c55fcbb1e34e548c4944c0999b3c820bacfba856fc17d"
+      },
+      "checkout": {
+        "bytes": 3534,
+        "sha256": "44e2643c23be870eee0c55fcbb1e34e548c4944c0999b3c820bacfba856fc17d"
+      },
+      "filtered_matches_git_blob": true,
+      "checkout_matches_git_blob": true
+    },
+    "scripts/adapter_entrypoint.py": {
+      "attributes": {
+        "text": "set",
+        "eol": "lf"
+      },
+      "git_blob": {
+        "bytes": 571,
+        "sha256": "154461b3f7b9c43475e99926bef6b9525b5b3be6e42ffb0e84336c97271f872b"
+      },
+      "filtered_blob": {
+        "bytes": 571,
+        "sha256": "154461b3f7b9c43475e99926bef6b9525b5b3be6e42ffb0e84336c97271f872b"
+      },
+      "checkout": {
+        "bytes": 571,
+        "sha256": "154461b3f7b9c43475e99926bef6b9525b5b3be6e42ffb0e84336c97271f872b"
+      },
+      "filtered_matches_git_blob": true,
+      "checkout_matches_git_blob": true
+    },
+    "python/bonsai-reference/src/bonsai_reference/__init__.py": {
+      "attributes": {
+        "text": "set",
+        "eol": "lf"
+      },
+      "git_blob": {
+        "bytes": 208,
+        "sha256": "7c212e37eebbbd90330d6b49a42cd9df238913effa7706d4a4970d7db4255d47"
+      },
+      "filtered_blob": {
+        "bytes": 208,
+        "sha256": "7c212e37eebbbd90330d6b49a42cd9df238913effa7706d4a4970d7db4255d47"
+      },
+      "checkout": {
+        "bytes": 208,
+        "sha256": "7c212e37eebbbd90330d6b49a42cd9df238913effa7706d4a4970d7db4255d47"
+      },
+      "filtered_matches_git_blob": true,
+      "checkout_matches_git_blob": true
+    },
+    "python/bonsai-reference/src/bonsai_reference/control.py": {
+      "attributes": {
+        "text": "set",
+        "eol": "lf"
+      },
+      "git_blob": {
+        "bytes": 5773,
+        "sha256": "c9af8f57025a6c5c657f8fb463f397e0b24ac63ba14f87b70eeaef76dfcc5012"
+      },
+      "filtered_blob": {
+        "bytes": 5773,
+        "sha256": "c9af8f57025a6c5c657f8fb463f397e0b24ac63ba14f87b70eeaef76dfcc5012"
+      },
+      "checkout": {
+        "bytes": 5773,
+        "sha256": "c9af8f57025a6c5c657f8fb463f397e0b24ac63ba14f87b70eeaef76dfcc5012"
+      },
+      "filtered_matches_git_blob": true,
+      "checkout_matches_git_blob": true
+    },
+    "python/bonsai-reference/src/bonsai_reference/primitive_adapter.py": {
+      "attributes": {
+        "text": "set",
+        "eol": "lf"
+      },
+      "git_blob": {
+        "bytes": 1210,
+        "sha256": "9d37a0d647f46afa5fa082e74bb77617cdc9616783612896c7466c22bd99e558"
+      },
+      "filtered_blob": {
+        "bytes": 1210,
+        "sha256": "9d37a0d647f46afa5fa082e74bb77617cdc9616783612896c7466c22bd99e558"
+      },
+      "checkout": {
+        "bytes": 1210,
+        "sha256": "9d37a0d647f46afa5fa082e74bb77617cdc9616783612896c7466c22bd99e558"
+      },
+      "filtered_matches_git_blob": true,
+      "checkout_matches_git_blob": true
+    },
+    "python/bonsai-reference/src/bonsai_reference/environment_adapter.py": {
+      "attributes": {
+        "text": "set",
+        "eol": "lf"
+      },
+      "git_blob": {
+        "bytes": 5603,
+        "sha256": "661b8f739f8a9fe35cf89c78572fcb224c02b8ef2e5a7e82cc8d2cec580f8088"
+      },
+      "filtered_blob": {
+        "bytes": 5603,
+        "sha256": "661b8f739f8a9fe35cf89c78572fcb224c02b8ef2e5a7e82cc8d2cec580f8088"
+      },
+      "checkout": {
+        "bytes": 5603,
+        "sha256": "661b8f739f8a9fe35cf89c78572fcb224c02b8ef2e5a7e82cc8d2cec580f8088"
+      },
+      "filtered_matches_git_blob": true,
+      "checkout_matches_git_blob": true
+    },
+    "python/bonsai-reference/src/bonsai_reference/adapter_protocol.py": {
+      "attributes": {
+        "text": "set",
+        "eol": "lf"
+      },
+      "git_blob": {
+        "bytes": 6002,
+        "sha256": "f51f9985f5f0703fc84c6d40b6353fbe9f3ce5ac0a8b1a96d08d5dca604428c6"
+      },
+      "filtered_blob": {
+        "bytes": 6002,
+        "sha256": "f51f9985f5f0703fc84c6d40b6353fbe9f3ce5ac0a8b1a96d08d5dca604428c6"
+      },
+      "checkout": {
+        "bytes": 6002,
+        "sha256": "f51f9985f5f0703fc84c6d40b6353fbe9f3ce5ac0a8b1a96d08d5dca604428c6"
+      },
+      "filtered_matches_git_blob": true,
+      "checkout_matches_git_blob": true
+    },
+    "python/bonsai-reference/src/bonsai_reference/adapter_wire.py": {
+      "attributes": {
+        "text": "set",
+        "eol": "lf"
+      },
+      "git_blob": {
+        "bytes": 1078,
+        "sha256": "19e05cd22c106111cf3f5a3156859ac927c6ac258d99f4e36eb79eb57c6dd9c9"
+      },
+      "filtered_blob": {
+        "bytes": 1078,
+        "sha256": "19e05cd22c106111cf3f5a3156859ac927c6ac258d99f4e36eb79eb57c6dd9c9"
+      },
+      "checkout": {
+        "bytes": 1078,
+        "sha256": "19e05cd22c106111cf3f5a3156859ac927c6ac258d99f4e36eb79eb57c6dd9c9"
+      },
+      "filtered_matches_git_blob": true,
+      "checkout_matches_git_blob": true
+    },
+    "python/bonsai-reference/src/bonsai_reference/transport.py": {
+      "attributes": {
+        "text": "set",
+        "eol": "lf"
+      },
+      "git_blob": {
+        "bytes": 1886,
+        "sha256": "9fc659b590c9a690f5d3bdc428c83a2f579b47760e8c967795499ef549fecaff"
+      },
+      "filtered_blob": {
+        "bytes": 1886,
+        "sha256": "9fc659b590c9a690f5d3bdc428c83a2f579b47760e8c967795499ef549fecaff"
+      },
+      "checkout": {
+        "bytes": 1886,
+        "sha256": "9fc659b590c9a690f5d3bdc428c83a2f579b47760e8c967795499ef549fecaff"
+      },
+      "filtered_matches_git_blob": true,
+      "checkout_matches_git_blob": true
+    },
+    "python/bonsai-reference/src/bonsai_reference/scenario.py": {
+      "attributes": {
+        "text": "set",
+        "eol": "lf"
+      },
+      "git_blob": {
+        "bytes": 9929,
+        "sha256": "f9ce6aa1f080898c8277f1ed1fdc8078b9cc05c4dffc95bc2c73c28162961651"
+      },
+      "filtered_blob": {
+        "bytes": 9929,
+        "sha256": "f9ce6aa1f080898c8277f1ed1fdc8078b9cc05c4dffc95bc2c73c28162961651"
+      },
+      "checkout": {
+        "bytes": 9929,
+        "sha256": "f9ce6aa1f080898c8277f1ed1fdc8078b9cc05c4dffc95bc2c73c28162961651"
+      },
+      "filtered_matches_git_blob": true,
+      "checkout_matches_git_blob": true
+    },
+    "python/bonsai-reference/src/bonsai/adapter/v1/adapter_pb2.py": {
+      "attributes": {
+        "text": "set",
+        "eol": "lf"
+      },
+      "git_blob": {
+        "bytes": 9759,
+        "sha256": "e1680123d004007acfb43a3b138be1dd05e186f879bfed16c65933fb4e1e32e9"
+      },
+      "filtered_blob": {
+        "bytes": 9759,
+        "sha256": "e1680123d004007acfb43a3b138be1dd05e186f879bfed16c65933fb4e1e32e9"
+      },
+      "checkout": {
+        "bytes": 9759,
+        "sha256": "e1680123d004007acfb43a3b138be1dd05e186f879bfed16c65933fb4e1e32e9"
+      },
+      "filtered_matches_git_blob": true,
+      "checkout_matches_git_blob": true
+    }
+  },
+  "source_guard": "pass",
+  "source_guard_violations": []
+}

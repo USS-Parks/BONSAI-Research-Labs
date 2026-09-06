@@ -1,0 +1,11 @@
+============================= test session starts =============================
+platform win32 -- Python 3.14.4, pytest-9.1.1, pluggy-1.6.0
+cachedir: target\bx13-ci-1788720065082839700\pytest-cache
+rootdir: C:\Users\17076\Documents\Reinforcement Learning Project
+configfile: pyproject.toml
+collected 11 items
+
+python\bonsai-reference\tests\test_option_adapter.py ...........         [100%]
+
+- generated xml file: C:\Users\17076\Documents\Reinforcement Learning Project\target\bx13-ci-1788720065082839700\pytest.xml -
+============================= 11 passed in 3.82s ==============================
