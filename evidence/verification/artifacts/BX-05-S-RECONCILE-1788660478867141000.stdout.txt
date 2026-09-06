@@ -1,0 +1,16 @@
+{
+  "run_id": "9ea9a327-33f8-41f7-93e6-041d40be00d4",
+  "profile": "S",
+  "events": 35822,
+  "actions": 2000,
+  "rewards": 2000,
+  "work_events": 8000,
+  "resource_samples": 2000,
+  "reward_sum": 957,
+  "maximum_action_latency_ns": 2840835,
+  "maximum_step_cpu_ns": 1798000,
+  "observer_bytes": 17528358,
+  "indexed_artifacts": 18,
+  "verdict": "EXECUTION_RECONCILED",
+  "C0_C1": "not_adjudicated"
+}

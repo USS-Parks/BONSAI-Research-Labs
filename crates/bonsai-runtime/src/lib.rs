@@ -116,6 +116,7 @@ pub enum TransportError {
     WriteTimeout,
     Cancelled,
     CleanupTimeout,
+    ResourceAuthority,
     BackpressureExceeded,
     ProtocolStreamClosed,
     ProcessSpawn(io::ErrorKind),
@@ -137,6 +138,7 @@ impl TransportError {
             Self::ReadTimeout => "TRANSPORT_READ_TIMEOUT",
             Self::WriteTimeout => "TRANSPORT_WRITE_TIMEOUT",
             Self::Cancelled => "TRANSPORT_CANCELLED",
+            Self::ResourceAuthority => "TRANSPORT_RESOURCE_AUTHORITY_FAILED",
             Self::CleanupTimeout => "TRANSPORT_CLEANUP_TIMEOUT",
             Self::BackpressureExceeded => "TRANSPORT_BACKPRESSURE_EXCEEDED",
             Self::ProtocolStreamClosed => "TRANSPORT_STREAM_CLOSED",
@@ -290,9 +292,13 @@ impl ChildTransport {
             use std::os::unix::process::CommandExt;
             command.process_group(0);
         }
-        let mut child = command
+        let child = command
             .spawn()
             .map_err(|error| TransportError::ProcessSpawn(error.kind()))?;
+        Self::from_child(child, limits)
+    }
+
+    fn from_child(mut child: Child, limits: TransportLimits) -> Result<Self, TransportError> {
         let stdin = child
             .stdin
             .take()
@@ -350,6 +356,66 @@ impl ChildTransport {
             #[cfg(target_os = "linux")]
             cleanup_result: None,
         })
+    }
+
+    /// Spawn inside verified Linux resource authority before releasing the executable.
+    /// Environment, working directory, and argument boundaries remain those of the
+    /// supplied launch policy; no shell interpretation is applied to its arguments.
+    ///
+    /// # Errors
+    /// Fails closed on authority, launch, gate release, or transport setup errors.
+    #[cfg(target_os = "linux")]
+    pub fn spawn_governed(
+        specification: &ProcessCommand,
+        limits: TransportLimits,
+        authority: &bonsai_platform::linux_authority::LinuxAuthority,
+    ) -> Result<Self, TransportError> {
+        use std::os::unix::process::CommandExt;
+        let limits = limits.validate()?;
+        authority
+            .controls()
+            .map_err(|_| TransportError::ResourceAuthority)?;
+        let mut command = Command::new("/bin/sh");
+        command
+            .args([
+                "-c",
+                "IFS= read -r gate && [ \"$gate\" = BONSAI_START ] || exit 78; exec \"$@\"",
+                "bonsai-cgroup-launch",
+            ])
+            .arg(&specification.program)
+            .args(&specification.arguments);
+        if specification.clear_environment {
+            command.env_clear();
+        }
+        command.envs(specification.environment.iter().cloned());
+        if let Some(directory) = &specification.current_directory {
+            command.current_dir(directory);
+        }
+        command
+            .process_group(0)
+            .stdin(Stdio::piped())
+            .stdout(Stdio::piped())
+            .stderr(Stdio::piped());
+        let mut child = command
+            .spawn()
+            .map_err(|error| TransportError::ProcessSpawn(error.kind()))?;
+        let attached = authority
+            .attach_gated_child(&child)
+            .map_err(|_| TransportError::ResourceAuthority)
+            .and_then(|()| {
+                child
+                    .stdin
+                    .as_mut()
+                    .ok_or(TransportError::ProtocolStreamClosed)?
+                    .write_all(b"BONSAI_START\n")
+                    .map_err(|error| TransportError::Io(error.kind()))
+            });
+        if let Err(error) = attached {
+            linux_transport::kill_group(&child)?;
+            wait_for_exit(&mut child, TRANSPORT_CLEANUP_ALLOWANCE)?;
+            return Err(error);
+        }
+        Self::from_child(child, limits)
     }
 
     /// Send one already encoded protocol message.
@@ -537,13 +603,7 @@ impl ChildTransport {
     /// Returns a bounded I/O, timeout, or thread failure after containing the process.
     pub fn shutdown(mut self, timeout: Duration) -> Result<ProcessOutcome, TransportError> {
         self.stdin.take();
-        let status = match wait_for_exit_or_cancel(&mut self.child, timeout, Some(&self.stopped)) {
-            Ok(status) => status,
-            Err(error) => {
-                self.contain(&error);
-                return Err(error);
-            }
-        };
+        let status = self.shutdown_status(timeout)?;
         #[cfg(target_os = "linux")]
         self.cleanup_linux(false)?;
         #[cfg(not(target_os = "linux"))]
@@ -558,6 +618,27 @@ impl ChildTransport {
             stderr,
             failures: std::mem::take(&mut self.failures),
         })
+    }
+
+    fn shutdown_status(&mut self, timeout: Duration) -> Result<ExitStatus, TransportError> {
+        #[cfg(target_os = "linux")]
+        if let Some(result) = self.cleanup_result.clone() {
+            // Prior containment already reaped the child and joined workers. Retain
+            // its original failure instead of replacing it with the cancellation flag.
+            result?;
+            return self
+                .child
+                .try_wait()
+                .map_err(|error| TransportError::Io(error.kind()))?
+                .ok_or(TransportError::CleanupTimeout);
+        }
+        match wait_for_exit_or_cancel(&mut self.child, timeout, Some(&self.stopped)) {
+            Ok(status) => Ok(status),
+            Err(error) => {
+                self.contain(&error);
+                Err(error)
+            }
+        }
     }
 
     fn take_reader_error(&self) -> Option<TransportError> {

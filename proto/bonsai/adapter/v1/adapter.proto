@@ -163,3 +163,17 @@ message CausalTransition {
   bool terminated = 5;
   bool truncated = 6;
 }
+
+// Primitive learner feedback and measured work counters, carried by existing frames.
+message PrimitiveReward {
+  uint64 step = 1;
+  sint64 reward = 2;
+}
+
+message PrimitiveAccounting {
+  uint64 environment_steps = 1;
+  uint64 updates = 2;
+  uint64 parameter_touches = 3;
+  uint64 work_items = 4;
+  uint64 replay_items_retained = 5;
+}

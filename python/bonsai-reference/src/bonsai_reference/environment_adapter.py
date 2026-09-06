@@ -5,15 +5,14 @@ from __future__ import annotations
 import argparse
 import hashlib
 import json
-import sys
 from pathlib import Path
 from typing import cast
 
 from bonsai.adapter.v1 import adapter_pb2 as wire
 
-from bonsai_reference.adapter_wire import decode_into, encode, message_kind
+from bonsai_reference.adapter_protocol import OrderedAdapter, serve
+from bonsai_reference.adapter_wire import decode_into, encode
 from bonsai_reference.scenario import ScenarioError, ScenarioSession, ScenarioSpec, SessionObservation
-from bonsai_reference.transport import TransportError, read_frame, write_frame
 
 MAXIMUM = 65_536
 OBSERVE = "bonsai.environment.observe/v1"
@@ -37,81 +36,16 @@ def public_observation(value: SessionObservation) -> wire.CausalObservation:
     )
 
 
-class EnvironmentAdapter:
+class EnvironmentAdapter(OrderedAdapter):
     def __init__(self, spec: ScenarioSpec, configuration_sha256: bytes) -> None:
+        super().__init__(capabilities(), configuration_sha256)
         self.session = ScenarioSession(spec)
-        self._configuration = configuration_sha256
-        self._fingerprint = hashlib.sha256(encode(capabilities())).digest()
-        self._sequence = 0
-        self._deadline = 0
-        self._state = "created"
         self._query = 0
         self._observed = False
 
-    def accept(self, frame: wire.AdapterFrame) -> wire.AdapterFrame:
-        """One ordered request produces one bounded response or stable failure."""
-        if frame.sequence != self._sequence:
-            raise ScenarioError("ADAPTER_SEQUENCE_INVALID")
-        if frame.protocol_epoch != 1 or frame.protocol_minor != 0:
-            raise ScenarioError("ADAPTER_VERSION_INVALID")
-        kind = message_kind(frame)
-        if kind == "stop" and self._state != "stopped":
-            self._check_deadline(frame.stop.deadline_monotonic_ns)
-            if not frame.stop.reason_code:
-                raise ScenarioError("ADAPTER_STOP_INVALID")
-            self._state = "stopped"
-            response = wire.AdapterFrame(stopped=wire.Stopped(outcome_code="STOPPED"))
-        elif self._state == "created" and kind == "start":
-            start = frame.start
-            versions = start.accepted_versions
-            minimum = (versions.minimum_epoch, versions.minimum_minor)
-            maximum = (versions.maximum_epoch, versions.maximum_minor)
-            if len(start.run_id) != 16 or not any(start.run_id):
-                raise ScenarioError("ADAPTER_RUN_ID_INVALID")
-            if minimum[0] == 0 or not minimum <= (1, 0) <= maximum:
-                raise ScenarioError("ADAPTER_VERSION_INVALID")
-            self._check_deadline(start.deadline_monotonic_ns)
-            self._state = "configure"
-            response = wire.AdapterFrame(handshake=wire.Handshake(
-                selected_epoch=1, selected_minor=0, capabilities=capabilities(),
-            ))
-        elif self._state == "configure" and kind == "configure":
-            config = frame.configure
-            if config.configuration_sha256 != self._configuration:
-                raise ScenarioError("ADAPTER_CONFIGURATION_MISMATCH")
-            if config.accepted_capability_fingerprint_sha256 != self._fingerprint:
-                raise ScenarioError("ADAPTER_CAPABILITY_MISMATCH")
-            self._check_deadline(config.deadline_monotonic_ns)
-            self._state = "ready"
-            response = wire.AdapterFrame(ack=wire.Ack(operation=wire.OPERATION_CONFIGURE))
-        elif self._state in {"ready", "active"} and kind == "reset":
-            if len(frame.reset.episode_id) != 16 or not any(frame.reset.episode_id):
-                raise ScenarioError("ADAPTER_EPISODE_ID_INVALID")
-            self._check_deadline(frame.reset.deadline_monotonic_ns)
-            self.session.reset(frame.reset.deterministic_seed)
-            self._state, self._query, self._observed = "active", 0, False
-            response = wire.AdapterFrame(ack=wire.Ack(operation=wire.OPERATION_RESET))
-        elif self._state == "active" and kind == "step":
-            response = self._step(frame.step)
-        else:
-            raise ScenarioError("ADAPTER_MESSAGE_OUT_OF_ORDER")
-        self._deadline = max(
-            frame.start.deadline_monotonic_ns, frame.configure.deadline_monotonic_ns,
-            frame.reset.deadline_monotonic_ns, frame.step.deadline_monotonic_ns, frame.stop.deadline_monotonic_ns,
-        )
-        response.sequence = self._sequence
-        response.protocol_epoch = 1
-        response.protocol_minor = 0
-        response.capability_fingerprint_sha256 = self._fingerprint
-        self._sequence += 1
-        return response
-
-    def failure(self, code: str) -> wire.AdapterFrame:
-        """Fatal responses retain the same sequence and capability identity."""
-        return wire.AdapterFrame(
-            sequence=self._sequence, protocol_epoch=1, capability_fingerprint_sha256=self._fingerprint,
-            error=wire.ProtocolError(reason_code=code),
-        )
+    def _reset(self, seed: int) -> None:
+        self.session.reset(seed)
+        self._query, self._observed = 0, False
 
     def _step(self, request: wire.Step) -> wire.AdapterFrame:
         if request.step_index != self._query:
@@ -137,10 +71,6 @@ class EnvironmentAdapter:
         return wire.AdapterFrame(step_result=wire.StepResult(
             step_index=request.step_index, action=result, action_sha256=hashlib.sha256(result).digest(),
         ))
-
-    def _check_deadline(self, deadline: int) -> None:
-        if deadline <= self._deadline:
-            raise ScenarioError("ADAPTER_DEADLINE_INVALID")
 
 
 def load_spec(path: Path) -> tuple[ScenarioSpec, bytes]:
@@ -187,22 +117,7 @@ def main() -> int:
     parser.add_argument("--spec", type=Path, required=True)
     arguments = parser.parse_args()
     spec, identity = load_spec(arguments.spec)
-    adapter = EnvironmentAdapter(spec, identity)
-    while True:
-        try:
-            payload = read_frame(sys.stdin.buffer, MAXIMUM)
-            if payload is None:
-                return 0
-            frame = wire.AdapterFrame()
-            decode_into(frame, payload)
-            response = adapter.accept(frame)
-        except (ScenarioError, TransportError) as error:
-            response = adapter.failure(error.code)
-            write_frame(sys.stdout.buffer, encode(response), MAXIMUM)
-            return 2
-        write_frame(sys.stdout.buffer, encode(response), MAXIMUM)
-        if message_kind(response) == "stopped":
-            return 0
+    return serve(EnvironmentAdapter(spec, identity))
 
 
 if __name__ == "__main__":

@@ -216,10 +216,7 @@ impl LinuxAuthority {
             .spawn()
             .map_err(|error| io_error(&error))?;
         let result = (|| {
-            write(&self.path, "cgroup.procs", &child.id().to_string())?;
-            if !self.sample()?.member_pids.contains(&child.id()) {
-                return Err(BackendError::Identity);
-            }
+            self.attach_gated_child(&child)?;
             child
                 .stdin
                 .as_mut()
@@ -239,6 +236,20 @@ impl LinuxAuthority {
             return Err(error);
         }
         Ok(child)
+    }
+
+    /// Attach an owned child that is still waiting at its launch gate.
+    /// The caller must not release the executable before this succeeds.
+    ///
+    /// # Errors
+    /// Fails if controls changed, attachment fails, or membership is not observed.
+    pub fn attach_gated_child(&self, child: &Child) -> Result<(), BackendError> {
+        self.controls()?;
+        write(&self.path, "cgroup.procs", &child.id().to_string())?;
+        if !self.sample()?.member_pids.contains(&child.id()) {
+            return Err(BackendError::Identity);
+        }
+        Ok(())
     }
 
     /// Read hierarchical counters from this owned leaf and its process members.

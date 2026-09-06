@@ -23,11 +23,13 @@ SPEC = ROOT / "fixtures/scenario/causal-v1/spec.json"
 
 
 class LiveEnvironment:
-    def __init__(self) -> None:
+    def __init__(self, configuration: Path = SPEC, arguments: list[str] | None = None) -> None:
+        self.configuration = configuration
         environment = dict(os.environ)
         environment["PYTHONPATH"] = str(ROOT / "python/bonsai-reference/src")
         self.child = subprocess.Popen(
-            [sys.executable, "-m", "bonsai_reference.environment_adapter", "--spec", str(SPEC)],
+            [sys.executable, *(arguments if arguments is not None else
+                               ["-m", "bonsai_reference.environment_adapter", "--spec", str(SPEC)])],
             stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.PIPE, env=environment,
         )
         self.watchdog = threading.Timer(8, self.child.kill)
@@ -80,7 +82,7 @@ class LiveEnvironment:
         self.fingerprint = hashlib.sha256(encode(response.handshake.capabilities)).digest()
         assert response.capability_fingerprint_sha256 == self.fingerprint
         response = self.exchange(wire.AdapterFrame(configure=wire.Configure(
-            configuration_sha256=hashlib.sha256(SPEC.read_bytes()).digest(),
+            configuration_sha256=hashlib.sha256(self.configuration.read_bytes()).digest(),
             accepted_capability_fingerprint_sha256=self.fingerprint, deadline_monotonic_ns=self.deadline(),
         )))
         assert response.ack.operation == wire.OPERATION_CONFIGURE

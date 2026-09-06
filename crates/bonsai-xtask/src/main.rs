@@ -12,6 +12,8 @@ use std::path::{Path, PathBuf};
 use std::process::{Command, ExitCode};
 use std::time::{Instant, SystemTime, UNIX_EPOCH};
 
+#[cfg(target_os = "linux")]
+mod experiment;
 mod schema_check;
 
 #[derive(Debug)]
@@ -82,6 +84,8 @@ fn run() -> Result<i32, String> {
             schema_check::run()?;
             Ok(0)
         }
+        #[cfg(target_os = "linux")]
+        Some("run") => experiment::run(&args.collect::<Vec<_>>()),
         Some("bundle-check") => {
             let remaining = args.collect::<Vec<_>>();
             bundle_check(&remaining)
@@ -94,7 +98,8 @@ fn usage() -> String {
     "usage:\n  cargo xtask verify --prompt <ID> [--record-dir <PATH>] \
      [--evidence-class <CLASS>] [--runner-class <CLASS>] [--redact <TEXT>] -- <COMMAND> [ARGS...]\n  \
      cargo xtask schema-check
-  cargo xtask bundle-check [--root <PATH>] <MANIFEST>"
+  cargo xtask bundle-check [--root <PATH>] <MANIFEST>
+  cargo xtask run --manifest <PATH> --output <NEW_PATH> --authority <DELEGATED_ROOT> [--cancel-file <PATH>] (Linux)"
         .to_owned()
 }
 

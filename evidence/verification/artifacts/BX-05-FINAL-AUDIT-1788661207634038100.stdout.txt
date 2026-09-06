@@ -1,0 +1,83 @@
+
+C:\Users\17076\Documents\Reinforcement Learning Project>wsl -d Ubuntu --exec sh evidence/verification/bx-05/reconcile.sh target/bx05-failures-1788660837367174365/s_profile 
+libprotoc 31.1
+{
+  "run_id": "4042dad0-ad3e-4db8-b883-8a2515e0f4ba",
+  "profile": "S",
+  "events": 35822,
+  "actions": 2000,
+  "rewards": 2000,
+  "work_events": 8000,
+  "resource_samples": 2000,
+  "reward_sum": 957,
+  "maximum_action_latency_ns": 2681421,
+  "maximum_step_cpu_ns": 1734000,
+  "observer_bytes": 17530327,
+  "indexed_artifacts": 18,
+  "verdict": "EXECUTION_RECONCILED",
+  "C0_C1": "not_adjudicated"
+}
+
+C:\Users\17076\Documents\Reinforcement Learning Project>if errorlevel 1 exit /b 1 
+
+C:\Users\17076\Documents\Reinforcement Learning Project>uv run --frozen python evidence/verification/bx-05/reconcile_failures.py target/bx05-failures-1788660837367174365 
+[
+  {
+    "case": "exit",
+    "verdict": "FAILURE_FACTS_RECONCILED",
+    "agent_exit_code": 23
+  },
+  {
+    "case": "memory",
+    "verdict": "FAILURE_FACTS_RECONCILED",
+    "oom_kills": 2,
+    "memory_max_events": 36
+  },
+  {
+    "case": "storage",
+    "verdict": "FAILURE_FACTS_RECONCILED",
+    "agent_storage_bytes": 65537
+  },
+  {
+    "case": "delay",
+    "verdict": "FAILURE_FACTS_RECONCILED",
+    "latency_ns": 54955096
+  },
+  {
+    "case": "cancel",
+    "verdict": "FAILURE_FACTS_RECONCILED",
+    "actual_action_before_cancel": true
+  },
+  {
+    "case": "cancel_pending",
+    "verdict": "FAILURE_FACTS_RECONCILED",
+    "initialization_entered_before_cancel": true
+  },
+  {
+    "case": "wall",
+    "verdict": "FAILURE_FACTS_RECONCILED",
+    "expired_before_launch": true
+  },
+  {
+    "case": "observer",
+    "verdict": "FAILURE_FACTS_RECONCILED",
+    "observer_bytes": 137059
+  },
+  {
+    "case": "finalization",
+    "verdict": "FAILURE_FACTS_RECONCILED",
+    "report_write_failure_retained": true
+  }
+]
+
+C:\Users\17076\Documents\Reinforcement Learning Project>if errorlevel 1 exit /b 1 
+
+C:\Users\17076\Documents\Reinforcement Learning Project>wsl -d Ubuntu --exec /usr/bin/python3 evidence/verification/bx-05/preflight_cases.py target/bx05-failures-1788660837367174365/s_profile-manifest.json 
+{"case": "revision", "expected": "SOURCE_REVISION_MISMATCH", "exit_code": 1, "output_created": false, "pass": true}
+{"case": "patch", "expected": "SOURCE_PATCH_MISMATCH", "exit_code": 1, "output_created": false, "pass": true}
+{"case": "profile", "expected": "RUN_PROFILE_UNSUPPORTED", "exit_code": 1, "output_created": false, "pass": true}
+{"case": "counter", "expected": "REQUIRED_COUNTER_UNSUPPORTED", "exit_code": 1, "output_created": false, "pass": true}
+{"case": "relative_executable", "expected": "ABSOLUTE_COMPONENT_EXECUTABLE_REQUIRED", "exit_code": 1, "output_created": false, "pass": true}
+retained preflight directory: /mnt/c/Users/17076/Documents/Reinforcement Learning Project/target/bx05-preflight-1788661221157229614
+
+C:\Users\17076\Documents\Reinforcement Learning Project>if errorlevel 1 exit /b 1 

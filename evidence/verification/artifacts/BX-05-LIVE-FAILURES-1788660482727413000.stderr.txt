@@ -1,0 +1,7 @@
+    Finished `dev` profile [unoptimized + debuginfo] target(s) in 4.62s
+Running as unit: bonsai-bx05-failures.service; invocation ID: d56fa4c115514c6ba717723812fecc25
+          Finished with result: exit-code
+Main processes terminated with: code=exited, status=1/FAILURE
+               Service runtime: 3min 57.735s
+             CPU time consumed: 1min 39.884s
+                   Memory peak: 99M (swap: 0B)

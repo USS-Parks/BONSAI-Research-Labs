@@ -1,0 +1,8 @@
+{
+  "path": "evidence\\verification\\bx-05\\final-live.zip",
+  "sha256": "315d6c94069b1b23fd7ebd2e524ad5d00053a3dfc9c638ef100f3597ad8e4585",
+  "bytes": 5638039,
+  "archived_files": 454,
+  "source_files": 177,
+  "verification": "all archive entries re-read and hashed"
+}

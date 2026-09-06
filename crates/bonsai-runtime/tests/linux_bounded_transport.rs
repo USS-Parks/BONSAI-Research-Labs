@@ -121,13 +121,19 @@ fn live_pipe_deadlines_descendants_cancellation_and_repeated_cleanup() {
         Err(TransportError::WriteTimeout)
     );
     assert_eq!(blocked.failures()[0].code, "TRANSPORT_WRITE_TIMEOUT");
-    drop(blocked);
+    let outcome = blocked
+        .shutdown(Duration::from_secs(1))
+        .expect("already contained child finalizes");
+    assert_eq!(outcome.failures[0].code, "TRANSPORT_WRITE_TIMEOUT");
     bound(started, "blocked stdin", &pids);
 
     let (mut partial, pids) = fixture("partial_hang");
     let started = Instant::now();
     assert_eq!(partial.receive(OPERATION), Err(TransportError::ReadTimeout));
-    drop(partial);
+    let outcome = partial
+        .shutdown(Duration::from_secs(1))
+        .expect("read timeout containment finalizes");
+    assert_eq!(outcome.failures[0].code, "TRANSPORT_READ_TIMEOUT");
     bound(started, "partial frame", &pids);
 
     let (mut tree, pids) = fixture("grandchild");

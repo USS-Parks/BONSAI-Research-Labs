@@ -181,7 +181,7 @@ Initial drafting state: all prompts were **[ ] NOT STARTED**. Current execution 
 
 **Retained evidence:** Controller settings/readbacks, observed counters/violations, process cleanup, and capability matrix.
 
-### [~] BX-04 — Implement a stepwise causal environment boundary
+### [x] BX-04 — Implement a stepwise causal environment boundary
 
 **Milestone:** M5a. **Depends:** BX-03.\
 **Legacy mapping:** BE-01; BC adapter contracts; D-18.\
@@ -195,7 +195,7 @@ Initial drafting state: all prompts were **[ ] NOT STARTED**. Current execution 
 
 **Retained evidence:** Golden causal traces, differential action tests, protocol compatibility fixtures, and exposure checks.
 
-### [ ] BX-05 — Compose one end-to-end governed experiment runner
+### [~] BX-05 — Compose one end-to-end governed experiment runner
 
 **Milestone:** M5a. **Depends:** BX-04.\
 **Legacy mapping:** BR runtime; BE-03; BE-15; BV-02–BV-03.\
@@ -867,3 +867,11 @@ BX-02 closed at main `9a2457afd873bac167ffd61602b64f624f7ea089`, hosted [run 339
 ### BX-03 closeout / BX-04 start — 2026-09-05
 
 BX-03 closed at main `1cd14055d32bf448fb844fba73034442093890c0`, hosted [run 34000956057](https://github.com/USS-Parks/BONSAI-Research-Labs/actions/runs/34000956057) successful across all four platforms and M1 semantic equivalence. All ten committed output hashes and eleven source hashes matched. BX-04 is executing. WSL enforcement does not close physical acceptance.
+
+### BX-04 closeout / BX-05 start — 2026-09-05
+
+BX-04 closed at corrected main `9c15015a5c6252c5c461f1e13b6be154e48d1c9a`, hosted [run 34002423080](https://github.com/USS-Parks/BONSAI-Research-Labs/actions/runs/34002423080) fully successful on all four platforms and M1 semantic equivalence. Initial source commit d3b2087 required an explicit-LF checkout correction for generated bindings; its superseded hosted run was cancelled. Six committed output hashes and 21 source hashes match. BX-05 is executing.
+
+### BX-05 local acceptance — publication pending
+
+The complete S run and all live failure gates passed, independently reconciled against accepted events and actual kernel/storage facts. Local Windows and WSL2 Linux repository gates passed. The final source/result archive and exact records are linked from the latest DEVLOG/verification entries. BX-05 stays executing until its focused main publication and required hosted CI pass; BX-06 remains not started. These results do not establish C0/C1, physical-host, or energy eligibility.

@@ -1,0 +1,8 @@
+   Compiling bonsai-xtask v0.0.0 (/mnt/c/Users/17076/Documents/Reinforcement Learning Project/crates/bonsai-xtask)
+    Finished `dev` profile [unoptimized + debuginfo] target(s) in 22.84s
+Running as unit: bonsai-bx05-failures.service; invocation ID: 310ad34a5a85452f884874a5aab5c588
+          Finished with result: success
+Main processes terminated with: code=exited, status=0/SUCCESS
+               Service runtime: 5min 14.310s
+             CPU time consumed: 2min 13.447s
+                   Memory peak: 99.2M (swap: 0B)

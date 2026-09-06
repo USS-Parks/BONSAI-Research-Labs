@@ -86,6 +86,11 @@ class PrimitiveTabularControl:
             replay_items_retained=0,
         )
 
+    def reset_episode(self) -> None:
+        """Preserve learned parameters while requiring the previous update to be consumed."""
+        if self._pending is not None:
+            raise ControlError("CONTROL_UPDATE_REQUIRED")
+
     def act(self, observation: tuple[int, ...]) -> int:
         """Choose one primitive action without retaining a transition."""
         if not observation:
