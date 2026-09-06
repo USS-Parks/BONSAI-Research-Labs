@@ -1,0 +1,44 @@
+{
+  "captured_at": "2026-09-06T15:59:54.796Z",
+  "canonical": {
+    "branch": "main",
+    "head": "e18dabdbcfa8135a8a078a629fa7aee375d149a5",
+    "dirty": true,
+    "purpose": "BX-12 user-requested restart standby",
+    "unpublished_commits": 0
+  },
+  "historical": {
+    "path": "C:/tmp/bonsai-m0-sts",
+    "head": "eaa0e52ec5a6dc78ab1a360f2a11c2201c7a5e9d",
+    "dirty": false,
+    "unpublished_commits": 0,
+    "purpose": "No active lane; retained historical worktree",
+    "retirement_blocker": "Removal not authorized"
+  },
+  "generated": [
+    {
+      "path": "C:/Users/17076/Documents/Reinforcement Learning Project/target",
+      "bytes": 32209834710,
+      "files": 107500,
+      "unreadable": 44
+    },
+    {
+      "path": "C:/Users/17076/Documents/Reinforcement Learning Project/.venv",
+      "bytes": 65616320,
+      "files": 6229,
+      "unreadable": 0
+    },
+    {
+      "path": "C:/tmp/bonsai-m0-sts/target",
+      "bytes": 1397672410,
+      "files": 7492,
+      "unreadable": 0
+    },
+    {
+      "path": "C:/tmp/bonsai-m0-sts/.venv",
+      "bytes": 65610615,
+      "files": 6229,
+      "unreadable": 0
+    }
+  ]
+}

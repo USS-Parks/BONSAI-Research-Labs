@@ -1,0 +1,10 @@
+============================= test session starts =============================
+platform win32 -- Python 3.14.4, pytest-9.1.1, pluggy-1.6.0
+cachedir: target\bx12-cache-3
+rootdir: C:\Users\17076\Documents\Reinforcement Learning Project
+configfile: pyproject.toml
+collected 14 items
+
+python\bonsai-reference\tests\test_feature_discovery.py ..............   [100%]
+
+============================= 14 passed in 1.18s ==============================

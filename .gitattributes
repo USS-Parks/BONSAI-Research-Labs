@@ -88,3 +88,13 @@ python/bonsai-reference/src/bonsai_reference/gymnasium_adapter.py text eol=lf
 evidence/verification/artifacts/BX-11-*.txt -text -diff
 evidence/verification/bx-11/*.py text eol=lf
 evidence/verification/bx-11/*.sh text eol=lf
+
+# BX-12 exact source-bound diagnostics and verification captures.
+python/bonsai-reference/src/bonsai_reference/feature_*.py text eol=lf
+python/bonsai-reference/tests/test_feature_discovery.py text eol=lf
+crates/bonsai-governor/examples/feature_admission.rs text eol=lf
+crates/bonsai-contracts/examples/feature_lineage.rs text eol=lf
+evidence/verification/artifacts/BX-12-*.txt -text -diff
+evidence/verification/bx-12/*.py text eol=lf
+evidence/verification/bx-12/*.sh text eol=lf
+evidence/verification/bx-12/*.cmd text eol=lf

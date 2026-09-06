@@ -2240,3 +2240,90 @@ The initial diagnostic failed the real wall gate after finalization delay; read-
 Archive `evidence/verification/bx-11/external-environment.zip`: 1,594,249 bytes, SHA-256 `07cddae7aae3545f6f82631b1b15c62eb7fd770098f0f48bc490346a819b55c6`, 346 payloads, 209 exact source files, nine direct traces and four run bundles. This establishes diagnostic integration and C0/C1 behavior only; it makes no learning-quality, physical-host, energy or hostile-host claim.
 
 The inventory records at least 32,167,446,215 bytes of generated data in the active checkout (some open files unreadable) and 1,463,283,025 bytes in the clean historical M0 worktree, with zero unpublished commits. The historical tree has no active purpose and remains cleanup debt pending explicit removal authorization. No worktree or cache was deleted or created. BX-11 and M5b remain pending focused main publication and all hosted jobs; BX-12–BX-40 remain unstarted. Publication is authorized by the user's explicit 2026-09-06 approval and its recorded addendum.
+
+## BX-11 publication verified; BX-12 executing
+
+BX-11 closed at `e18dabdbcfa8135a8a078a629fa7aee375d149a5` on public main. Hosted run [34019743668](https://github.com/USS-Parks/BONSAI-Research-Labs/actions/runs/34019743668) passed Windows x64, Linux x64, macOS ARM64, macOS x64 and M1 semantic equivalence. The optional Gymnasium integration passed on every platform. All 60 committed files, 22 captures and the 1,594,249-byte archive passed exact publication-byte checks; publication review found no credential patterns in the 60 files and 347 archive entries. Local main and origin/main matched and the checkout was clean. M5b is complete.
+
+BX-01–BX-11 are verified. BX-12 now executes under the continuing full-roster STS and public source/evidence authorization: extend the existing FeatureStage with bounded online candidate construction, deterministic proposals, explicit disabled controls, lineage/resource evidence and pre-mutation work/allocation denials. BX-13–BX-40 remain unstarted. No new worktree or deletion.
+
+## BX-12 restart checkpoint — standby at user request
+
+The user requested: "Get to a logical stopping point and standby so I can restart the app with the new astra-advisor plug-in." Execution is paused at this checkpoint. Resume only when the user returns; do not start another prompt or background continuation during standby. Full-roster STS and the 2026-09-06 public source/evidence publication authorization remain valid.
+
+BX-01–BX-11 are complete and verified. Local main and origin/main were verified at `e18dabdbcfa8135a8a078a629fa7aee375d149a5`; BX-11 hosted run `34019743668` passed all five jobs. BX-12 remains IN PROGRESS (`[~]`), uncommitted, with no staged changes or unpublished commits. BX-13–BX-40 remain unstarted. All launched commands and the read-only BX-12 review agent have finished.
+
+### Preserved BX-12 implementation
+
+New untracked source:
+- `python/bonsai-reference/src/bonsai_reference/feature_discovery.py`
+- `python/bonsai-reference/src/bonsai_reference/feature_admission.py`
+- `python/bonsai-reference/tests/test_feature_discovery.py`
+- `crates/bonsai-governor/examples/feature_admission.rs`
+- `crates/bonsai-contracts/examples/feature_lineage.rs`
+- `docs/research/online-feature-discovery.md`
+- `evidence/verification/bx-12/generate.py` and `live.py`
+
+The online FeatureStage subclass constructs bounded equality features from observed experience, records birth/revision lineage and measured representation bytes, and commits prospective state only after actual external work and allocation admissions. The Rust helper reuses WorkAllocator and StorageBroker. The second Rust helper validates existing artifact wire lineage. Disabled controls, deterministic replay, and denial at a populated revision boundary are covered. Original tiny FeatureStage fixtures remain intact.
+
+Review fixes preserve read-only configuration and detached snapshots, reject inherited mutation bypasses, include the root object in retained allocation measurement, reap governor subprocesses while preserving transport errors, and reuse existing storage reservations for zero or shrinking growth. The fixed work tariff is a reservation policy, not measured CPU work; retained Python object size is not OS RSS.
+
+All four canonical documents and `evidence/verification/records.jsonl` are modified; BX-12 source, evidence captures and the storage inventory remain untracked. Preserve this tree and its evidence; continue the existing implementation.
+
+### Checks completed before standby
+
+- Focused Windows regression record `BX-12-RESTART-CHECK-1788710319551226700`: **21 passed**, 1.42 seconds, including actual governor work/memory/storage denial with unchanged populated learner state.
+- `uv run --frozen ruff check .`: passed. `uv run --frozen pyright`: zero errors (run before the final test parameterization expansion).
+- Both Rust examples built; `cargo clippy --locked --offline -p bonsai-governor -p bonsai-contracts --examples -- -D warnings`: passed.
+- Diagnostic record `BX-12-LIVE-DIAGNOSTIC-1788710123737389900`, batch `target/bx12-live-1788710125347254100`: nine runs, seeds 7/19/42, repeated enabled and disabled controls, 128 steps each. Trajectories matched controls; enabled state/lineage repeated exactly; existing Rust lineage validation passed.
+- The diagnostic preceded the latest source-binding and actual governor PID/return-code recording changes in `live.py`. Those changes are saved but have not been exercised. The earlier batch is diagnostic evidence, not final publication proof.
+
+No full BX-12 platform gate, final archive, commit, publication, or hosted CI has completed. No BX-12 completion claim is made.
+
+### Exact next work after restart
+
+1. Read this checkpoint and the BX-12 roster gate, inspect the preserved diff, and continue BX-12. Add CI builds for the Rust feature-admission helper before Python tests so helper-dependent coverage cannot silently skip; include lineage helper/build coverage as needed.
+2. Complete Windows/Linux gates using existing environments. For Linux, set `BONSAI_FEATURE_GOVERNOR` to `target/x86_64-unknown-linux-gnu/debug/examples/feature_admission` and `BONSAI_FEATURE_EXAMPLES` to that examples directory. Reuse `target/linux-venv`; do not duplicate environments.
+3. After source changes finish, rerun the final nine-run source-bound matrix. Preserve the prior diagnostic. Do not mutate source, documents or verification records during the source-bound run. Confirm before/after source hashes and actual governor PID/exit/reaping evidence.
+4. Create and verify the final archive of exact source, proposal traces, lineage/resource records, controls and denial evidence. Apply necessary LF attributes and verify capture/archive bytes.
+5. Close the prompt ledgers, commit and publish to main under existing authorization, verify the remote SHA and all five hosted jobs, then proceed to BX-13. Do not repeat an equivalent publication approval request.
+
+Windows command execution previously required explicit `C:\Windows\System32\cmd.exe` with login disabled; bundled pwsh failed. The temporary automatic approval-review capacity rejection was resolved through a normal-path retry after refreshed usage evidence. No reset credit was redeemed and no current blocker remains from that rejection.
+
+### Retained worktrees and storage
+
+Inventory: `evidence/verification/bx-12/restart-storage-inventory.json`. The active canonical checkout owns BX-12, is dirty as described above, and has zero unpublished commits. Its target contains at least 32,209,834,710 bytes (44 unreadable files), plus a 65,616,320-byte venv: at least 32,275,451,030 bytes total.
+
+Historical `C:/tmp/bonsai-m0-sts`, branch `codex/m0-governed-foundation`, is clean at `eaa0e52ec5a6dc78ab1a360f2a11c2201c7a5e9d`, with zero unpublished commits and 1,463,283,025 bytes of generated data. It has no active purpose and remains cleanup debt pending explicit removal authorization. No worktree, cache or artifact was deleted; no new worktree was created.
+
+## 2026-09-06 — BX-12 resumed with Astra Advisor
+
+The user returned after the app restart and instructed continued work on the same trajectory using astra-advisor:orchestration. This supersedes the standby checkpoint without changing the approved BX-01–BX-40 scope or publication authority. BX-12 resumes from its preserved uncommitted tree; BX-13–BX-40 remain unstarted. Runtime turn metadata confirms parent gpt-6-astra / ultra. The parent owns acceptance; a bounded gpt-5.6-sol / high native delegation owns only CI integration. Full platform verification, source-bound diagnostic evidence, independent reconstruction, archive integrity and a fresh read-only ship review remain required before publication.
+
+## BX-12 execution baseline reconciled — 2026-09-06
+
+Live remote main advanced by one reviewed capture-attribute/governance commit, 798d8bf0a06d8a7aa2b4e07d32db3b6898cedd5e (PR #5). After the initial Windows and Linux gates passed, local main fast-forwarded to that commit. All 37 preserved BX-12 source, document, harness and captured-output files passed exact SHA-256 preservation checks; the BX-12 attribute appendix was retained and reapplied. No implementation was discarded, no stash/worktree created, and no history rewritten. Final evidence and acceptance use this combined baseline.
+
+## 2026-09-06 — BX-12 local verification and evidence ready for review
+
+BX-12 remains in progress pending fresh acceptance review, focused main publication and hosted CI. The preserved implementation extends FeatureStage with bounded online equality-feature proposals, immutable birth/revision identities, observed exposure summaries and explicit work/storage admissions. No representation, semantic label or utility target is supplied to the online API. Original legality fixtures remain unchanged.
+
+Files: the feature_discovery and feature_admission Python modules; test_feature_discovery.py; Rust feature_admission and feature_lineage examples; .github/workflows/ci.yml; .gitattributes; docs/research/online-feature-discovery.md; the BX-12 verification harness, archive and captures; and these four canonical execution documents. CI builds the actual helpers before Python tests, generates pinned protobuf bindings, runs the live diagnostic and uploads each platform's evidence.
+
+Parent verification: `BX-12-WINDOWS-RECONCILED-1788713832980061400` passed 245 Rust tests and 85 Python tests with nine optional Gymnasium skips; `BX-12-LINUX-RECONCILED-1788713838523383900` passed 247 Rust tests and all 94 Python tests, including optional Gymnasium coverage. Formatting, workspace Clippy, schemas, Python lint/types, protocol generation and applicable governance checks passed. The 21 focused BX-12 cases include work, memory and storage denial at empty and populated revision boundaries, unchanged authoritative state, disabled controls, deterministic proposals, bounded growth, public-mutation rejection and actual child cleanup. `BX-12-EVIDENCE-LINT-1788713984124473800` passed after the final harness changes.
+
+Final live records `BX-12-LIVE-WINDOWS-1788714006795931800` and `BX-12-LIVE-LINUX-1788714033939785500` passed. Batches `target/bx12-live-1788714007535274100` and `target/bx12-live-1788714036759617101` each contain nine runs of 128 steps: seeds 7, 19 and 42, two enabled repeats and one disabled control. All 18 actual governor processes exited zero and were reaped. Independent reconstruction verified all 2,304 steps, exact feature state/proposals, wire lineage/provenance and work/storage records. Changed reward, missing step, false work, altered representation, supplied utility, corrupted state, missing lineage and inconsistent track metadata were rejected on both hosts. All nine trajectory/state/lineage hashes matched across Windows and Linux; each host retained its own measured allocation and process facts.
+
+Archive `evidence/verification/bx-12/online-features.zip`: 1,130,567 bytes; SHA-256 `4d3012e4e11a77e0b2115fdd1fa6ccc3f214ea56171196a316e3a32314c8bbee`; 367 payloads, including 245 exact source files, 18 diagnostic runs and generated audit bindings. `BX-12-ARCHIVE-1788714125663811000` passed complete payload length/hash verification. The archive source manifests agree across both hosts and were checked against current source bytes. Source revision is `798d8bf0a06d8a7aa2b4e07d32db3b6898cedd5e` with the retained BX-12 source snapshot; the focused commit SHA will be recorded after publication using the established subsequent-entry convention.
+
+The initial Linux launch with an invalid saved username failed before running tests and remains recorded as `BX-12-LINUX-1788713569872597500`; retry with Ubuntu's configured default user passed. The earlier diagnostic and restart captures remain historical evidence. Windows is local/unattested; Linux is explicitly WSL2 (`6.6.87.2-microsoft-standard-WSL2`), not physical acceptance. This prompt demonstrates experience-driven candidate construction and governed mutation, not downstream utility, C2–C5 success, OS RSS limits or physical-host qualification.
+
+Current storage inventory records at least 32,494,441,786 bytes in the canonical target/venv (48 unreadable files). The clean historical M0 worktree retains 1,463,283,025 bytes of generated data and zero unpublished commits; its contents are ancestors of verified remote main. It has no active purpose and remains cleanup debt pending explicit removal authorization. No worktree or cache was created or deleted.
+
+## 2026-09-06 — BX-12 independent acceptance review
+
+A fresh read-only review by `/root/bx12_acceptance` returned **ship**, with no findings. Observed runtime: gpt-5.6-sol / xhigh, from native turn metadata; parent gpt-6-astra / ultra retained acceptance authority. The reviewer inspected the real change set and independently checked both platform results, all 18 governor exits, 2,304 reconstructed steps, eight negative evidence cases per host, nine matching cross-host semantic cases, all 245 current source hashes, all 367 archive payloads, and all 30 capture references then staged. Read-only conduct was procedural, not a separate enforced sandbox.
+
+The reviewer correctly left hosted CI pending and identified the two subsequent publication-scan records/four captures for parent closeout. The corrected final scan `BX-12-PUBLICATION-SCAN-1788714373380706700` found no credential-pattern matches in 56 staged files and 368 archive entries. Public source/evidence publication remains authorized by the existing 2026-09-06 addendum; no release, package upload or physical-acceptance claim is implied.
+
+API-EQUIVALENT COST RECEIPT: unavailable for this BX-12 resumed segment. Native parent, CI delegate and reviewer tooling did not expose complete per-call input, cached-input and output token usage or pricing eligibility. The historical pricing reference is the 2026-09-04 snapshot (Sol pricing promotional); no prices were applied and no cost, savings or subscription-charge claim is made.

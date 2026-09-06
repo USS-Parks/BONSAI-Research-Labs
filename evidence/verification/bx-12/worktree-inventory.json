@@ -1,0 +1,48 @@
+{
+  "captured_at": "2026-09-06T16:58:42.384Z",
+  "generated": [
+    {
+      "path": "C:/Users/17076/Documents/Reinforcement Learning Project/target",
+      "bytes": 32428825466,
+      "files": 108648,
+      "unreadable": 48
+    },
+    {
+      "path": "C:/Users/17076/Documents/Reinforcement Learning Project/.venv",
+      "bytes": 65616320,
+      "files": 6229,
+      "unreadable": 0
+    },
+    {
+      "path": "C:/tmp/bonsai-m0-sts/target",
+      "bytes": 1397672410,
+      "files": 7492,
+      "unreadable": 0
+    },
+    {
+      "path": "C:/tmp/bonsai-m0-sts/.venv",
+      "bytes": 65610615,
+      "files": 6229,
+      "unreadable": 0
+    }
+  ],
+  "worktrees": [
+    {
+      "path": "C:/Users/17076/Documents/Reinforcement Learning Project",
+      "branch": "main",
+      "head": "798d8bf0a06d8a7aa2b4e07d32db3b6898cedd5e",
+      "purpose": "active BX-12 continuation",
+      "dirty": true,
+      "unpublished_commits": 0
+    },
+    {
+      "path": "C:/tmp/bonsai-m0-sts",
+      "branch": "codex/m0-governed-foundation",
+      "head": "eaa0e52ec5a6dc78ab1a360f2a11c2201c7a5e9d",
+      "purpose": "historical M0, no active task",
+      "dirty": false,
+      "unpublished_commits": 0,
+      "retirement_blocker": "explicit removal authorization absent"
+    }
+  ]
+}

@@ -73,8 +73,27 @@ jobs:
       - name: Python types
         run: uv run --frozen pyright
 
+      - name: Build BX-12 live diagnostic helpers
+        run: |
+          cargo build -p bonsai-governor --example feature_admission
+          cargo build -p bonsai-contracts --example feature_lineage
+
       - name: Python tests
         run: uv run --frozen pytest
+
+      - name: Generate BX-12 live diagnostic bindings
+        run: uv run --frozen python -B evidence/verification/bx-12/generate.py
+
+      - name: Run BX-12 live diagnostic
+        run: uv run --frozen python -B evidence/verification/bx-12/live.py
+
+      - name: Upload BX-12 live diagnostic evidence
+        uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f # v6
+        with:
+          name: bx-12-live-${{ matrix.os_family }}-${{ matrix.arch }}
+          path: target/bx12-live-*
+          if-no-files-found: error
+          retention-days: 30
 
       - name: Optional Gymnasium integration
         run: uv run --frozen --extra gymnasium pytest python/bonsai-reference/tests/test_gymnasium_adapter.py

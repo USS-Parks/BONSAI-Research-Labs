@@ -1,0 +1,9 @@
+{
+  "archive": "evidence/verification/bx-12/online-features.zip",
+  "bytes": 1130567,
+  "sha256": "4d3012e4e11a77e0b2115fdd1fa6ccc3f214ea56171196a316e3a32314c8bbee",
+  "payloads": 367,
+  "source_files": 245,
+  "verified_runs": 18,
+  "independently_reconstructed_steps": 2304
+}
