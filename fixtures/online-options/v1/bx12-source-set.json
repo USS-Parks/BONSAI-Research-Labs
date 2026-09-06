@@ -1,0 +1,21 @@
+{
+  "schema": "bonsai.historical-source-set/v1",
+  "revision": "f64a38748149ff2df7e68892327f4ae0af0397af",
+  "source_files": {
+    "python/bonsai-reference/src/bonsai_reference/gymnasium_session.py": "df838c6a1ce2e6e4d24309d0c5dca4d90a3f63ee88c36950597836723fc28a92",
+    "python/bonsai-reference/src/bonsai_reference/gymnasium_adapter.py": "1f6b1880728b94fbdf2786d84f9485ee36d98d8f8decabf3494d02114279e4f0",
+    "python/bonsai-reference/src/bonsai_reference/online_adapter.py": "beeaf04c675d99e20db9a7ed7e1a6c9f18b796a0875a7be5a6e284cc28dc245e",
+    "python/bonsai-reference/src/bonsai_reference/linear_adapter.py": "c2eacab8006a221c5809d6f5576d63e29351d84d6174c9c2457bfcdbd9c20345",
+    "python/bonsai-reference/src/bonsai_reference/linear_control.py": "44e2643c23be870eee0c55fcbb1e34e548c4944c0999b3c820bacfba856fc17d",
+    "scripts/adapter_entrypoint.py": "1c2ed88422d83b1364a0c7c2f586cc0bb51129abf219cbf06557ad83625582ec",
+    "python/bonsai-reference/src/bonsai_reference/__init__.py": "7c212e37eebbbd90330d6b49a42cd9df238913effa7706d4a4970d7db4255d47",
+    "python/bonsai-reference/src/bonsai_reference/control.py": "c9af8f57025a6c5c657f8fb463f397e0b24ac63ba14f87b70eeaef76dfcc5012",
+    "python/bonsai-reference/src/bonsai_reference/primitive_adapter.py": "9d37a0d647f46afa5fa082e74bb77617cdc9616783612896c7466c22bd99e558",
+    "python/bonsai-reference/src/bonsai_reference/environment_adapter.py": "661b8f739f8a9fe35cf89c78572fcb224c02b8ef2e5a7e82cc8d2cec580f8088",
+    "python/bonsai-reference/src/bonsai_reference/adapter_protocol.py": "f51f9985f5f0703fc84c6d40b6353fbe9f3ce5ac0a8b1a96d08d5dca604428c6",
+    "python/bonsai-reference/src/bonsai_reference/adapter_wire.py": "19e05cd22c106111cf3f5a3156859ac927c6ac258d99f4e36eb79eb57c6dd9c9",
+    "python/bonsai-reference/src/bonsai_reference/transport.py": "9fc659b590c9a690f5d3bdc428c83a2f579b47760e8c967795499ef549fecaff",
+    "python/bonsai-reference/src/bonsai_reference/scenario.py": "f9ce6aa1f080898c8277f1ed1fdc8078b9cc05c4dffc95bc2c73c28162961651",
+    "python/bonsai-reference/src/bonsai/adapter/v1/adapter_pb2.py": "e1680123d004007acfb43a3b138be1dd05e186f879bfed16c65933fb4e1e32e9"
+  }
+}

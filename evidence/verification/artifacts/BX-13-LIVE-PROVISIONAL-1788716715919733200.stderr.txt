@@ -1,0 +1,8 @@
+Running as unit: bonsai-bx13-live.service
+bonsai-xtask: RUN_REQUIRES_ONE_BASE_SEED
+
+          Finished with result: exit-code
+Main processes terminated with: code=exited, status=1/FAILURE
+               Service runtime: 28.770s
+             CPU time consumed: 4.663s
+                   Memory peak: 178.2M (swap: 0B)

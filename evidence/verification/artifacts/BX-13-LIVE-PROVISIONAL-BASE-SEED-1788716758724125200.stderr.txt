@@ -1,0 +1,8 @@
+Running as unit: bonsai-bx13-live.service; invocation ID: b8422fc465b740b1805a955f5a3e9f17
+bonsai-xtask: SOURCE_PATCH_MISMATCH
+
+          Finished with result: exit-code
+Main processes terminated with: code=exited, status=1/FAILURE
+               Service runtime: 34.190s
+             CPU time consumed: 6.009s
+                   Memory peak: 179.2M (swap: 0B)

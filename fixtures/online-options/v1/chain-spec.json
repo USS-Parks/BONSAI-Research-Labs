@@ -1,0 +1,11 @@
+{
+  "scenario_id": "feature-attainment-chain",
+  "version": "1.0",
+  "seed": 7,
+  "horizon": 24,
+  "action_count": 2,
+  "observation_width": 1,
+  "size": 5,
+  "reward_state": 4,
+  "goal_terminates": false
+}

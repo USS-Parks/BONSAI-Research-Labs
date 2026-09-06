@@ -1,0 +1,7 @@
+{
+  "mode": "index",
+  "files": 72,
+  "captured_outputs": 34,
+  "archive_sha256": "030b972470cf36f7ea252180acce8226da28df6ef8f9b8af6bfb8cc73e1e631c",
+  "byte_mismatches": 0
+}

@@ -32,31 +32,38 @@ pub(super) fn reconstruct(snapshot: &Snapshot, context: &Context) -> Result<Outc
         steps: context.steps,
         episodes: 0,
         reward: 0,
-        work: context.steps * (context.actions + 1),
+        work: context.steps * context.per_step_work(),
     };
     let mut observation = None;
     let mut prior_cpu = 0;
+    let mut prior_touches = 0_u64;
     for total in 0..context.steps {
         if observation.is_none() {
             observation = Some(reset(&mut trace, context, outcome.episodes)?);
         }
         let observed = observation.take().ok_or("RUN_OBSERVATION_MISSING")?;
-        for acting in [true, false] {
+        for (class, amount) in context.tariffs() {
             let work = trace.take("run.work", Some("admission"))?;
-            super::resources::work(context, &work, total, acting)?;
+            super::resources::work(context, &work, total, class, amount)?;
         }
+        grant(&mut trace, context, total)?;
         let transition = step(&mut trace, context, &observed, total, outcome.episodes)?;
-        let accounting = feedback(
-            &mut trace,
-            context,
-            total,
-            observed.step,
-            transition.reward,
-            transition.action,
+        let accounting = feedback(&mut trace, context, total, &transition)?;
+        let touches = accounting
+            .parameter_touches
+            .checked_sub(prior_touches)
+            .ok_or("RUN_ACCOUNTING_REGRESSION")?;
+        ensure(
+            context
+                .accounting
+                .maximum_parameter_touches_per_update()
+                .is_none_or(|cap| touches <= cap),
+            "RUN_PARAMETER_TOUCH_BOUND_EXCEEDED",
         )?;
-        for acting in [true, false] {
+        prior_touches = accounting.parameter_touches;
+        for (class, amount) in context.tariffs() {
             let work = trace.take("run.work", Some("measured_charge"))?;
-            super::resources::work(context, &work, total, acting)?;
+            super::resources::work(context, &work, total, class, amount)?;
             ensure(
                 unhex(super::text(&work, "accounting_hex")?)? == accounting.encode_to_vec(),
                 "RUN_ACCOUNTING_LINK_MISMATCH",
@@ -102,6 +109,20 @@ fn initialize(
     )?;
     let capabilities = handshake.capabilities.ok_or("RUN_CAPABILITIES_MISSING")?;
     if agent {
+        let input_types = if context.accounting.is_transition_feedback() {
+            vec![
+                "bonsai.agent.observation/v1",
+                "bonsai.agent.causal-transition/v1",
+                "bonsai.agent.accounting/v1",
+                "bonsai.agent.admission/v2",
+            ]
+        } else {
+            vec![
+                "bonsai.agent.observation/v1",
+                "bonsai.agent.reward/v1",
+                "bonsai.agent.accounting/v1",
+            ]
+        };
         ensure(
             capabilities
                 == wire::CapabilityDeclaration {
@@ -109,11 +130,7 @@ fn initialize(
                     work: Some(true),
                     feedback: Some(true),
                     asynchronous_events: Some(false),
-                    accepted_input_types: vec![
-                        "bonsai.agent.observation/v1".into(),
-                        "bonsai.agent.reward/v1".into(),
-                        "bonsai.agent.accounting/v1".into(),
-                    ],
+                    accepted_input_types: input_types.into_iter().map(str::to_owned).collect(),
                     emitted_event_types: vec![],
                     retains_transitions: Some(false),
                     offline_updates: Some(false),
@@ -171,6 +188,16 @@ fn reset(trace: &mut Trace, context: &Context, episode: u64) -> Result<wire::Cau
     let observation: wire::CausalObservation = decode(&bytes)?;
     ensure(observation.step == 0, "RUN_EPISODE_STEP_INVALID")?;
     valid_observation(context, &observation, false)?;
+    if context.manifest["environment"]["component_id"] == "bonsai-feature-chain" {
+        let mut spec = context.manifest["environment"]["config"].clone();
+        spec["seed"] = json!(context.seed + episode);
+        let identity = serde_json::to_vec(&spec).map_err(|_| "RUN_CHAIN_IDENTITY_INVALID")?;
+        ensure(
+            observation.observation == vec![(context.seed + episode) % 4]
+                && observation.stream_id == super::snapshot::digest(&identity),
+            "RUN_CHAIN_RESET_MISMATCH",
+        )?;
+    }
     Ok(observation)
 }
 
@@ -229,6 +256,27 @@ fn step(
         "RUN_TRANSITION_INVALID",
     )?;
     valid_observation(context, next, transition.terminated || transition.truncated)?;
+    if context.manifest["environment"]["component_id"] == "bonsai-feature-chain" {
+        let state = observed
+            .observation
+            .first()
+            .copied()
+            .ok_or("RUN_CHAIN_STATE_MISSING")?;
+        let after = (state + if action.action == 0 { 1 } else { 4 }) % 5;
+        let attained = after == 4;
+        let terminal =
+            attained && context.manifest["environment"]["config"]["goal_terminates"] == true;
+        let truncated = !terminal
+            && index + 1 == number(&context.manifest["environment"]["config"], "horizon")?;
+        ensure(
+            state < 5
+                && next.observation == vec![after]
+                && transition.reward == if attained { 4 } else { -1 }
+                && transition.terminated == terminal
+                && transition.truncated == truncated,
+            "RUN_CHAIN_DYNAMICS_MISMATCH",
+        )?;
+    }
     let event = trace.take("run.reward", None)?;
     ensure(
         event["total_step"] == total
@@ -290,27 +338,58 @@ fn valid_observation(
     )
 }
 
+fn grant(trace: &mut Trace, context: &Context, total: u64) -> Result<()> {
+    let Some(expected) = context.accounting.admission_payload(total) else {
+        return Ok(());
+    };
+    let timeout = number(&context.manifest["resource_profile"], "action_deadline_ns")?;
+    let (request, response) = trace.exchange(true, timeout)?;
+    let (Kind::Work(work), Kind::WorkResult(result)) = (request, response) else {
+        return Err("RUN_ADMISSION_PROTOCOL_INVALID");
+    };
+    let payload = serde_json::to_vec(&expected).map_err(|_| "RUN_ADMISSION_INVALID")?;
+    ensure(
+        work.work_item_id == identity(total)
+            && work.work_class == "bonsai.agent.admission/v2"
+            && work.payload == payload
+            && work.payload_sha256 == Sha256::digest(&payload).as_slice()
+            && result.work_item_id == identity(total)
+            && result.outcome == "ADMITTED"
+            && result.result.is_empty()
+            && result.result_sha256 == Sha256::digest([]).as_slice(),
+        "RUN_ADMISSION_LINK_MISMATCH",
+    )
+}
+
 fn feedback(
     trace: &mut Trace,
     context: &Context,
     total: u64,
-    index: u64,
-    reward: i64,
-    action: u32,
+    transition: &wire::CausalTransition,
 ) -> Result<wire::PrimitiveAccounting> {
     let timeout = number(&context.manifest["resource_profile"], "action_deadline_ns")?;
     let (request, response) = trace.exchange(true, timeout)?;
     let (Kind::Feedback(feedback), Kind::Ack(ack)) = (request, response) else {
         return Err("RUN_FEEDBACK_PROTOCOL_INVALID");
     };
-    let signal = wire::PrimitiveReward {
-        step: index,
-        reward,
-    }
-    .encode_to_vec();
+    let (signal_type, signal) = if context.accounting.is_transition_feedback() {
+        (
+            "bonsai.agent.causal-transition/v1",
+            transition.encode_to_vec(),
+        )
+    } else {
+        (
+            "bonsai.agent.reward/v1",
+            wire::PrimitiveReward {
+                step: transition.step,
+                reward: transition.reward,
+            }
+            .encode_to_vec(),
+        )
+    };
     ensure(
         feedback.feedback_id == identity(total)
-            && feedback.signal_type == "bonsai.agent.reward/v1"
+            && feedback.signal_type == signal_type
             && feedback.signal == signal
             && feedback.signal_sha256 == Sha256::digest(&signal).as_slice()
             && ack.operation == wire::Operation::Feedback as i32,
@@ -333,9 +412,9 @@ fn feedback(
     let measured: wire::PrimitiveAccounting = decode(&result.result)?;
     context
         .accounting
-        .validate(&measured, total + 1, action, reward)?;
+        .validate(&measured, total + 1, transition.action, transition.reward)?;
     ensure(
-        measured.work_items == (context.actions + 1) * (total + 1),
+        measured.work_items == context.per_step_work() * (total + 1),
         "RUN_ACCOUNTING_INCONSISTENT",
     )?;
     Ok(measured)

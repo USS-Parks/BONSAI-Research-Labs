@@ -1,0 +1,10 @@
+{
+  "archive": "evidence/verification/bx-13/online-options.zip",
+  "bytes": 16829864,
+  "sha256": "030b972470cf36f7ea252180acce8226da28df6ef8f9b8af6bfb8cc73e1e631c",
+  "payloads": 630,
+  "source_files": 258,
+  "verified_runs": 13,
+  "independently_reconstructed_steps": 3328,
+  "historical_runs": 4
+}

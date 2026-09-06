@@ -1,0 +1,6 @@
+Running as unit: bonsai-bx13-live.service; invocation ID: 78e83e5cbcb14d48bfc16d98142ac757
+          Finished with result: success
+Main processes terminated with: code=exited, status=0/SUCCESS
+               Service runtime: 8min 39.273s
+             CPU time consumed: 4min 34.172s
+                   Memory peak: 177.3M (swap: 0B)

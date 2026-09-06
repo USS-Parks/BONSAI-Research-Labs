@@ -1,0 +1,395 @@
+{
+  "schema": "bx13-final-worktree-inventory/v1",
+  "generatedAt": "2026-09-06T18:13:42.187Z",
+  "scope": "read-only closeout inventory; no cleanup or mutations",
+  "freeDisk": {
+    "drive": "C:",
+    "bytes": 288591392768,
+    "source": "wmic logicaldisk"
+  },
+  "worktrees": [
+    {
+      "name": "canonical",
+      "root": "C:\\Users\\17076\\Documents\\Reinforcement Learning Project",
+      "purpose": "canonical active BX13",
+      "branch": "main",
+      "head": "f64a38748149ff2df7e68892327f4ae0af0397af",
+      "statusShort": [
+        "M  .github/workflows/ci.yml",
+        "MM \"BONSAI Research Charter/BONSAI-PSPR-v0.5-EXECUTABLE-RESEARCH-AND-GOVERNED-EVOLUTION.md\"",
+        "MM \"BONSAI Research Charter/PSPR-v0.5-HANDOFF.md\"",
+        "M  crates/bonsai-bundle/src/governed/context.rs",
+        "M  crates/bonsai-bundle/src/governed/execution.rs",
+        "M  crates/bonsai-bundle/src/governed/reference.rs",
+        "M  crates/bonsai-bundle/src/governed/resources.rs",
+        "M  crates/bonsai-contracts/src/accounting.rs",
+        "M  crates/bonsai-contracts/tests/online_accounting.rs",
+        "M  crates/bonsai-xtask/src/experiment.rs",
+        "M  crates/bonsai-xtask/src/experiment/metadata.rs",
+        "A  docs/research/online-options-execution.md",
+        "A  docs/research/online-options.md",
+        "MM docs/sessions/BONSAI-DEVLOG.md",
+        "MM docs/verification/BONSAI-VERIFICATION-LOG.md",
+        "A  evidence/verification/artifacts/BX-13-CI-PROTOCOL-LOCAL-1788717606337505000.stderr.txt",
+        "A  evidence/verification/artifacts/BX-13-CI-PROTOCOL-LOCAL-1788717606337505000.stdout.txt",
+        "A  evidence/verification/artifacts/BX-13-EVIDENCE-PRE-FREEZE-1788717692982310700.stderr.txt",
+        "A  evidence/verification/artifacts/BX-13-EVIDENCE-PRE-FREEZE-1788717692982310700.stdout.txt",
+        "A  evidence/verification/artifacts/BX-13-HISTORICAL-1788717594114662600.stderr.txt",
+        "A  evidence/verification/artifacts/BX-13-HISTORICAL-1788717594114662600.stdout.txt",
+        "A  evidence/verification/artifacts/BX-13-LINUX-1788717030704742500.stderr.txt",
+        "A  evidence/verification/artifacts/BX-13-LINUX-1788717030704742500.stdout.txt",
+        "A  evidence/verification/artifacts/BX-13-LINUX-BUILD-1788716591269564500.stderr.txt",
+        "A  evidence/verification/artifacts/BX-13-LINUX-BUILD-1788716591269564500.stdout.txt",
+        "A  evidence/verification/artifacts/BX-13-LINUX-BUILD-CORRECTED-1788716657443120000.stderr.txt",
+        "A  evidence/verification/artifacts/BX-13-LINUX-BUILD-CORRECTED-1788716657443120000.stdout.txt",
+        "A  evidence/verification/artifacts/BX-13-LINUX-LOOP-EXTRACTION-1788717200259687800.stderr.txt",
+        "A  evidence/verification/artifacts/BX-13-LINUX-LOOP-EXTRACTION-1788717200259687800.stdout.txt",
+        "A  evidence/verification/artifacts/BX-13-LIVE-PROVISIONAL-1788716715919733200.stderr.txt",
+        "A  evidence/verification/artifacts/BX-13-LIVE-PROVISIONAL-1788716715919733200.stdout.txt",
+        "A  evidence/verification/artifacts/BX-13-LIVE-PROVISIONAL-BASE-SEED-1788716758724125200.stderr.txt",
+        "A  evidence/verification/artifacts/BX-13-LIVE-PROVISIONAL-BASE-SEED-1788716758724125200.stdout.txt",
+        "A  evidence/verification/artifacts/BX-13-LIVE-PROVISIONAL-STABLE-PATCH-1788716840074923000.stderr.txt",
+        "A  evidence/verification/artifacts/BX-13-LIVE-PROVISIONAL-STABLE-PATCH-1788716840074923000.stdout.txt",
+        "A  evidence/verification/artifacts/BX-13-PROTOCOL-INITIAL-1788716147678568500.stderr.txt",
+        "A  evidence/verification/artifacts/BX-13-PROTOCOL-INITIAL-1788716147678568500.stdout.txt",
+        "A  evidence/verification/artifacts/BX-13-PROTOCOL-LOCAL-TEMP-1788716173112829700.stderr.txt",
+        "A  evidence/verification/artifacts/BX-13-PROTOCOL-LOCAL-TEMP-1788716173112829700.stdout.txt",
+        "A  evidence/verification/artifacts/BX-13-WINDOWS-1788717025064418400.stderr.txt",
+        "A  evidence/verification/artifacts/BX-13-WINDOWS-1788717025064418400.stdout.txt",
+        "A  evidence/verification/artifacts/BX-13-WINDOWS-PYTHON-FINAL-1788717335940284000.stderr.txt",
+        "A  evidence/verification/artifacts/BX-13-WINDOWS-PYTHON-FINAL-1788717335940284000.stdout.txt",
+        "A  evidence/verification/bx-13/archive.py",
+        "A  evidence/verification/bx-13/build-linux.sh",
+        "A  evidence/verification/bx-13/check_publication.py",
+        "A  evidence/verification/bx-13/ci-protocol.py",
+        "A  evidence/verification/bx-13/generate.py",
+        "A  evidence/verification/bx-13/historical.py",
+        "A  evidence/verification/bx-13/linux-gate.sh",
+        "A  evidence/verification/bx-13/live.py",
+        "A  evidence/verification/bx-13/live.sh",
+        "A  evidence/verification/bx-13/option_reconstruction.py",
+        "A  evidence/verification/bx-13/replay.py",
+        "A  evidence/verification/bx-13/windows-gate.cmd",
+        "MM evidence/verification/records.jsonl",
+        "A  fixtures/online-options/v1/bx12-source-set.json",
+        "A  fixtures/online-options/v1/chain-spec.json",
+        "A  python/bonsai-reference/src/bonsai_reference/chain_adapter.py",
+        "A  python/bonsai-reference/src/bonsai_reference/option_adapter.py",
+        "A  python/bonsai-reference/src/bonsai_reference/option_learning.py",
+        "A  python/bonsai-reference/tests/test_option_adapter.py",
+        "A  python/bonsai-reference/tests/test_option_learning.py",
+        "M  schemas/experiment-manifest-v1.json",
+        "M  scripts/adapter_entrypoint.py",
+        "?? evidence/verification/artifacts/BX-13-ARCHIVE-1788718311716389700.stderr.txt",
+        "?? evidence/verification/artifacts/BX-13-ARCHIVE-1788718311716389700.stdout.txt",
+        "?? evidence/verification/artifacts/BX-13-LIVE-FINAL-1788717712791955600.stderr.txt",
+        "?? evidence/verification/artifacts/BX-13-LIVE-FINAL-1788717712791955600.stdout.txt",
+        "?? evidence/verification/artifacts/BX-13-REPLAY-FINAL-1788718292448615600.stderr.txt",
+        "?? evidence/verification/artifacts/BX-13-REPLAY-FINAL-1788718292448615600.stdout.txt",
+        "?? evidence/verification/bx-13/online-options.zip"
+      ],
+      "unpublishedCommitsRelativeToOriginMain": 0,
+      "generated": [
+        {
+          "path": "C:\\Users\\17076\\Documents\\Reinforcement Learning Project\\target",
+          "exists": true,
+          "bytes": 32828596815,
+          "files": 110145,
+          "dirs": 10515,
+          "unreadable": 58,
+          "lowerBound": true,
+          "errors": [
+            {
+              "path": "C:\\Users\\17076\\Documents\\Reinforcement Learning Project\\target\\bq05-gate-temp\\pytest-of-17076",
+              "error": "EPERM"
+            },
+            {
+              "path": "C:\\Users\\17076\\Documents\\Reinforcement Learning Project\\target\\bx01-pytest-1788651",
+              "error": "EPERM"
+            },
+            {
+              "path": "C:\\Users\\17076\\Documents\\Reinforcement Learning Project\\target\\bx01-pytest-cache",
+              "error": "EPERM"
+            },
+            {
+              "path": "C:\\Users\\17076\\Documents\\Reinforcement Learning Project\\target\\bx02-pytest-cache",
+              "error": "EPERM"
+            },
+            {
+              "path": "C:\\Users\\17076\\Documents\\Reinforcement Learning Project\\target\\bx02-pytest-final",
+              "error": "EPERM"
+            },
+            {
+              "path": "C:\\Users\\17076\\Documents\\Reinforcement Learning Project\\target\\bx03-pytest-cache",
+              "error": "EPERM"
+            },
+            {
+              "path": "C:\\Users\\17076\\Documents\\Reinforcement Learning Project\\target\\bx03-pytest-final",
+              "error": "EPERM"
+            },
+            {
+              "path": "C:\\Users\\17076\\Documents\\Reinforcement Learning Project\\target\\bx04-pytest-cache",
+              "error": "EPERM"
+            },
+            {
+              "path": "C:\\Users\\17076\\Documents\\Reinforcement Learning Project\\target\\bx04-pytest-cache-final2",
+              "error": "EPERM"
+            },
+            {
+              "path": "C:\\Users\\17076\\Documents\\Reinforcement Learning Project\\target\\bx04-pytest-cache2",
+              "error": "EPERM"
+            },
+            {
+              "path": "C:\\Users\\17076\\Documents\\Reinforcement Learning Project\\target\\bx04-pytest-final",
+              "error": "EPERM"
+            },
+            {
+              "path": "C:\\Users\\17076\\Documents\\Reinforcement Learning Project\\target\\bx04-pytest-final2",
+              "error": "EPERM"
+            },
+            {
+              "path": "C:\\Users\\17076\\Documents\\Reinforcement Learning Project\\target\\bx04-pytest-live-cache",
+              "error": "EPERM"
+            },
+            {
+              "path": "C:\\Users\\17076\\Documents\\Reinforcement Learning Project\\target\\bx05-adapter-test",
+              "error": "EPERM"
+            },
+            {
+              "path": "C:\\Users\\17076\\Documents\\Reinforcement Learning Project\\target\\bx05-adapter-test-cache",
+              "error": "EPERM"
+            },
+            {
+              "path": "C:\\Users\\17076\\Documents\\Reinforcement Learning Project\\target\\bx05-pytest-1788661204833-cache",
+              "error": "EPERM"
+            },
+            {
+              "path": "C:\\Users\\17076\\Documents\\Reinforcement Learning Project\\target\\bx05-pytest-1788661204833-final",
+              "error": "EPERM"
+            },
+            {
+              "path": "C:\\Users\\17076\\Documents\\Reinforcement Learning Project\\target\\bx05-python-checkpoint2",
+              "error": "EPERM"
+            },
+            {
+              "path": "C:\\Users\\17076\\Documents\\Reinforcement Learning Project\\target\\bx05-python-checkpoint2-cache",
+              "error": "EPERM"
+            },
+            {
+              "path": "C:\\Users\\17076\\Documents\\Reinforcement Learning Project\\target\\bx05-python-first",
+              "error": "EPERM"
+            },
+            {
+              "path": "C:\\Users\\17076\\Documents\\Reinforcement Learning Project\\target\\bx05-python-first-cache",
+              "error": "EPERM"
+            },
+            {
+              "path": "C:\\Users\\17076\\Documents\\Reinforcement Learning Project\\target\\bx06-pytest-1788664253121-cache",
+              "error": "EPERM"
+            },
+            {
+              "path": "C:\\Users\\17076\\Documents\\Reinforcement Learning Project\\target\\bx06-pytest-1788664253121-final",
+              "error": "EPERM"
+            },
+            {
+              "path": "C:\\Users\\17076\\Documents\\Reinforcement Learning Project\\target\\bx07-pytest-1788666391158-cache",
+              "error": "EPERM"
+            },
+            {
+              "path": "C:\\Users\\17076\\Documents\\Reinforcement Learning Project\\target\\bx07-pytest-1788666391158-final",
+              "error": "EPERM"
+            },
+            {
+              "path": "C:\\Users\\17076\\Documents\\Reinforcement Learning Project\\target\\bx08-pytest-1788669414872-cache",
+              "error": "EPERM"
+            },
+            {
+              "path": "C:\\Users\\17076\\Documents\\Reinforcement Learning Project\\target\\bx08-pytest-1788669414872-final",
+              "error": "EPERM"
+            },
+            {
+              "path": "C:\\Users\\17076\\Documents\\Reinforcement Learning Project\\target\\bx09-pytest-1788671600000-cache",
+              "error": "EPERM"
+            },
+            {
+              "path": "C:\\Users\\17076\\Documents\\Reinforcement Learning Project\\target\\bx09-pytest-1788671600000-final",
+              "error": "EPERM"
+            },
+            {
+              "path": "C:\\Users\\17076\\Documents\\Reinforcement Learning Project\\target\\bx10-first-python",
+              "error": "EPERM"
+            },
+            {
+              "path": "C:\\Users\\17076\\Documents\\Reinforcement Learning Project\\target\\bx10-first-python-cache",
+              "error": "EPERM"
+            },
+            {
+              "path": "C:\\Users\\17076\\Documents\\Reinforcement Learning Project\\target\\bx10-linear-python",
+              "error": "EPERM"
+            },
+            {
+              "path": "C:\\Users\\17076\\Documents\\Reinforcement Learning Project\\target\\bx10-linear-python-cache",
+              "error": "EPERM"
+            },
+            {
+              "path": "C:\\Users\\17076\\Documents\\Reinforcement Learning Project\\target\\bx10-pytest-1788674207001-cache",
+              "error": "EPERM"
+            },
+            {
+              "path": "C:\\Users\\17076\\Documents\\Reinforcement Learning Project\\target\\bx10-pytest-1788674207001-final",
+              "error": "EPERM"
+            },
+            {
+              "path": "C:\\Users\\17076\\Documents\\Reinforcement Learning Project\\target\\bx11-pytest-1788679700-cache",
+              "error": "EPERM"
+            },
+            {
+              "path": "C:\\Users\\17076\\Documents\\Reinforcement Learning Project\\target\\bx11-pytest-1788679700-final",
+              "error": "EPERM"
+            },
+            {
+              "path": "C:\\Users\\17076\\Documents\\Reinforcement Learning Project\\target\\bx12-cache-1",
+              "error": "EPERM"
+            },
+            {
+              "path": "C:\\Users\\17076\\Documents\\Reinforcement Learning Project\\target\\bx12-cache-2",
+              "error": "EPERM"
+            },
+            {
+              "path": "C:\\Users\\17076\\Documents\\Reinforcement Learning Project\\target\\bx12-cache-3",
+              "error": "EPERM"
+            },
+            {
+              "path": "C:\\Users\\17076\\Documents\\Reinforcement Learning Project\\target\\bx12-cache-restart-1",
+              "error": "EPERM"
+            },
+            {
+              "path": "C:\\Users\\17076\\Documents\\Reinforcement Learning Project\\target\\bx12-cache-restart-2",
+              "error": "EPERM"
+            },
+            {
+              "path": "C:\\Users\\17076\\Documents\\Reinforcement Learning Project\\target\\bx12-resumed-pytest-1788679700-cache",
+              "error": "EPERM"
+            },
+            {
+              "path": "C:\\Users\\17076\\Documents\\Reinforcement Learning Project\\target\\bx12-resumed-pytest-1788679700-final",
+              "error": "EPERM"
+            },
+            {
+              "path": "C:\\Users\\17076\\Documents\\Reinforcement Learning Project\\target\\bx12-resumed-pytest-1788713800-cache",
+              "error": "EPERM"
+            },
+            {
+              "path": "C:\\Users\\17076\\Documents\\Reinforcement Learning Project\\target\\bx12-resumed-pytest-1788713800-final",
+              "error": "EPERM"
+            },
+            {
+              "path": "C:\\Users\\17076\\Documents\\Reinforcement Learning Project\\target\\bx13-ci-1788717606505460600\\pytest-cache",
+              "error": "EPERM"
+            },
+            {
+              "path": "C:\\Users\\17076\\Documents\\Reinforcement Learning Project\\target\\bx13-ci-1788717606505460600\\pytest-tmp",
+              "error": "EPERM"
+            },
+            {
+              "path": "C:\\Users\\17076\\Documents\\Reinforcement Learning Project\\target\\bx13-full-windows-6280-13409",
+              "error": "EPERM"
+            },
+            {
+              "path": "C:\\Users\\17076\\Documents\\Reinforcement Learning Project\\target\\bx13-full-windows-6280-13409-cache",
+              "error": "EPERM"
+            },
+            {
+              "path": "C:\\Users\\17076\\Documents\\Reinforcement Learning Project\\target\\bx13-parent-focus-1788717080001",
+              "error": "EPERM"
+            },
+            {
+              "path": "C:\\Users\\17076\\Documents\\Reinforcement Learning Project\\target\\bx13-parent-focus-1788717080001-cache",
+              "error": "EPERM"
+            },
+            {
+              "path": "C:\\Users\\17076\\Documents\\Reinforcement Learning Project\\target\\bx13-protocol-1788716226001",
+              "error": "EPERM"
+            },
+            {
+              "path": "C:\\Users\\17076\\Documents\\Reinforcement Learning Project\\target\\bx13-protocol-1788716226001-cache",
+              "error": "EPERM"
+            },
+            {
+              "path": "C:\\Users\\17076\\Documents\\Reinforcement Learning Project\\target\\bx13-python-final-1788717351001",
+              "error": "EPERM"
+            },
+            {
+              "path": "C:\\Users\\17076\\Documents\\Reinforcement Learning Project\\target\\bx13-python-final-1788717351001-cache",
+              "error": "EPERM"
+            },
+            {
+              "path": "C:\\Users\\17076\\Documents\\Reinforcement Learning Project\\target\\pytest-basetemp\\run",
+              "error": "EPERM"
+            },
+            {
+              "path": "C:\\Users\\17076\\Documents\\Reinforcement Learning Project\\target\\pytest-temp",
+              "error": "EPERM"
+            }
+          ]
+        },
+        {
+          "path": "C:\\Users\\17076\\Documents\\Reinforcement Learning Project\\.venv",
+          "exists": true,
+          "bytes": 65616320,
+          "files": 6229,
+          "dirs": 973,
+          "unreadable": 0,
+          "lowerBound": false,
+          "errors": []
+        }
+      ]
+    },
+    {
+      "name": "historical",
+      "root": "C:\\tmp\\bonsai-m0-sts",
+      "purpose": "historical no-active-purpose; cleanup debt pending explicit deletion authority",
+      "branch": "codex/m0-governed-foundation",
+      "head": "eaa0e52ec5a6dc78ab1a360f2a11c2201c7a5e9d",
+      "statusShort": [],
+      "unpublishedCommitsRelativeToOriginMain": 0,
+      "generated": [
+        {
+          "path": "C:\\tmp\\bonsai-m0-sts\\target",
+          "exists": true,
+          "bytes": 1397672410,
+          "files": 7492,
+          "dirs": 640,
+          "unreadable": 0,
+          "lowerBound": false,
+          "errors": []
+        },
+        {
+          "path": "C:\\tmp\\bonsai-m0-sts\\.venv",
+          "exists": true,
+          "bytes": 65610615,
+          "files": 6229,
+          "dirs": 973,
+          "unreadable": 0,
+          "lowerBound": false,
+          "errors": []
+        }
+      ]
+    }
+  ],
+  "execution": {
+    "requested": {
+      "model": "gpt-5.6-luna",
+      "reasoningEffort": "medium"
+    },
+    "observedNative": {
+      "model": null,
+      "reasoningEffort": null,
+      "availability": "not exposed by available runtime"
+    },
+    "apiEquivalentCostReceipt": {
+      "status": "telemetry unavailable",
+      "details": "No token, pricing, or API-equivalent cost telemetry was exposed; no estimate invented."
+    }
+  }
+}

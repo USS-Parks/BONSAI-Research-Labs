@@ -1,0 +1,3 @@
+{"batch": "target/bx13-live-1788716840445067556", "provisional": true}
+{"seed": 7, "horizon": 32, "steps": 256, "options_enabled": true, "reward_mode": "respecting", "trial": 0, "goal_terminates": false, "case": "target/bx13-live-1788716840445067556/s7-options-respecting-r0-goal0", "runner_exit": 0, "elapsed_ns": 32973226960}
+{"batch": "target/bx13-live-1788716840445067556", "runs": 1}

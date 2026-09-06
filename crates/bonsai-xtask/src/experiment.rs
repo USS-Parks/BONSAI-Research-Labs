@@ -342,9 +342,20 @@ impl Inputs {
 }
 
 fn validate_manifest_support(manifest: &Value) -> Result<(), String> {
-    OnlineAccounting::from_declaration_or_legacy(manifest["adapter"].get("accounting_contract"))
-        .map_err(str::to_owned)?;
+    let accounting = OnlineAccounting::from_declaration_or_legacy(
+        manifest["adapter"].get("accounting_contract"),
+    )
+    .map_err(str::to_owned)?;
     let profile = &manifest["resource_profile"];
+    if accounting
+        .retained_state_limit_bytes()
+        .is_some_and(|cap| cap > profile["agent_rss_limit_bytes"].as_u64().unwrap_or(0))
+        || accounting
+            .serialized_state_limit_bytes()
+            .is_some_and(|cap| cap > profile["agent_storage_limit_bytes"].as_u64().unwrap_or(0))
+    {
+        return Err("ACCOUNTING_STATE_LIMIT_EXCEEDS_PROFILE".into());
+    }
     if profile["energy_tier"] != "E0"
         || profile["profile_id"] != "S" && profile["profile_id"] != "custom"
     {
@@ -717,19 +728,8 @@ fn online_loop(
     let step_limit = number(profile, "step_limit")?;
     let wall = Duration::from_nanos(number(profile, "wall_time_limit_ns")?);
     let action_timeout = Duration::from_nanos(number(profile, "action_deadline_ns")?);
-    let storage_limit = number(profile, "agent_storage_limit_bytes")?;
     let action_count = number(&inputs.manifest["adapter"]["config"], "action_count")?;
-    let storage = AgentStorageBroker::new(
-        layout.clone(),
-        StoragePolicy {
-            policy_id: "run-agent-storage-v1".into(),
-            max_bytes: storage_limit,
-            max_files: 4096,
-            max_file_bytes: storage_limit,
-            allow_replay: false,
-        },
-    )
-    .map_err(|e| e.to_string())?;
+    let storage = storage_broker(layout, profile)?;
     let mut work = WorkMeter::new(action_count, step_limit, wall, &inputs.manifest["adapter"])?;
     let (mut episode, mut index, mut query) = (0_u64, 0_u64, 0_u64);
     let mut observation = None;
@@ -765,6 +765,7 @@ fn online_loop(
         }
         work.admit(total, began.elapsed(), log)?;
         let before = authority.sample().map_err(|e| e.to_string())?;
+        grant_work(agent, total, &work.accounting, action_timeout, log)?;
         let transition = action_transition(
             agent,
             environment,
@@ -779,8 +780,14 @@ fn online_loop(
             log,
         )?;
         query += 1;
-        let measured =
-            feedback_accounting(agent, total, index, transition.reward, action_timeout, log)?;
+        let measured = feedback_accounting(
+            agent,
+            total,
+            &transition,
+            &work.accounting,
+            action_timeout,
+            log,
+        )?;
         work.charge(total, &measured, &transition, began.elapsed(), log)?;
         validate_resources(profile, authority, &storage, &before, total, log)?;
         reward_sum = reward_sum
@@ -809,13 +816,41 @@ fn online_loop(
     )
 }
 
+fn storage_broker(
+    layout: &IsolatedRunLayout,
+    profile: &Value,
+) -> Result<AgentStorageBroker, String> {
+    let maximum = number(profile, "agent_storage_limit_bytes")?;
+    AgentStorageBroker::new(
+        layout.clone(),
+        StoragePolicy {
+            policy_id: "run-agent-storage-v1".into(),
+            max_bytes: maximum,
+            max_files: 4096,
+            max_file_bytes: maximum,
+            allow_replay: false,
+        },
+    )
+    .map_err(|e| e.to_string())
+}
+
 struct WorkMeter {
     accounting: OnlineAccounting,
     accounts: BudgetAccounts,
     key: CounterKey,
     per_step: u64,
+    tariffs: Vec<(WorkClass, u64)>,
     limits: Vec<BudgetLimit>,
     prior_work: u64,
+    prior_touches: u64,
+}
+
+fn work_class_name(class: WorkClass) -> Result<String, String> {
+    serde_json::to_value(class)
+        .map_err(|e| e.to_string())?
+        .as_str()
+        .map(str::to_owned)
+        .ok_or_else(|| "WORK_CLASS_INVALID".into())
 }
 
 impl WorkMeter {
@@ -828,29 +863,33 @@ impl WorkMeter {
         let accounting =
             OnlineAccounting::from_declaration_or_legacy(adapter.get("accounting_contract"))
                 .map_err(str::to_owned)?;
-        let accounts = BudgetAccounts::default();
         let key = CounterKey {
             counter_id: "work_items".into(),
             unit: "1".into(),
         };
-        let per_step = action_count.checked_add(1).ok_or("WORK_OVERFLOW")?;
-        let mut limits = [
-            (WorkClass::Acting, action_count, "acting.work_items"),
-            (WorkClass::Learning, 1, "learning.work_items"),
-        ]
-        .map(|(work_class, maximum, id)| BudgetLimit {
-            limit_id: id.into(),
-            work_class,
-            scope: BudgetScope::PerStep,
-            key: key.clone(),
-            soft_limit: maximum,
-            hard_limit: maximum,
-            rolling_window_ns: None,
-        })
-        .to_vec();
-        let maximum = action_count
-            .checked_mul(step_limit)
+        let tariffs = accounting.work_per_step(action_count);
+        let per_step = tariffs
+            .iter()
+            .try_fold(0_u64, |sum, (_, amount)| sum.checked_add(*amount))
             .ok_or("WORK_OVERFLOW")?;
+        let mut limits = Vec::new();
+        for &(work_class, maximum) in &tariffs {
+            limits.push(BudgetLimit {
+                limit_id: format!("{}.work_items", work_class_name(work_class)?),
+                work_class,
+                scope: BudgetScope::PerStep,
+                key: key.clone(),
+                soft_limit: maximum,
+                hard_limit: maximum,
+                rolling_window_ns: None,
+            });
+        }
+        let acting = tariffs
+            .iter()
+            .find(|(class, _)| *class == WorkClass::Acting)
+            .ok_or("ACTING_TARIFF_MISSING")?
+            .1;
+        let maximum = acting.checked_mul(step_limit).ok_or("WORK_OVERFLOW")?;
         limits.push(BudgetLimit {
             limit_id: "acting.rolling_work".into(),
             work_class: WorkClass::Acting,
@@ -862,11 +901,13 @@ impl WorkMeter {
         });
         Ok(Self {
             accounting,
-            accounts,
+            accounts: BudgetAccounts::default(),
             key,
             per_step,
+            tariffs,
             limits,
             prior_work: 0,
+            prior_touches: 0,
         })
     }
 
@@ -877,23 +918,21 @@ impl WorkMeter {
         log: &mut Evidence<'_>,
     ) -> Result<(), String> {
         self.accounts.begin_step();
-        let admission_time = u64::try_from(elapsed.as_nanos()).map_err(|e| e.to_string())?;
-        for limit in &self.limits[..2] {
+        let now = u64::try_from(elapsed.as_nanos()).map_err(|e| e.to_string())?;
+        for limit in &self.limits[..self.tariffs.len()] {
             let planned = TypedAmount {
                 key: self.key.clone(),
                 amount: limit.hard_limit,
             };
             let projection = self
                 .accounts
-                .project(
-                    limit.work_class,
-                    &planned,
-                    admission_time,
-                    &self.limits,
-                    true,
-                )
+                .project(limit.work_class, &planned, now, &self.limits, true)
                 .map_err(|e| e.to_string())?;
-            log.append("run.work",&json!({"phase":"admission","total_step":total,"work_class":limit.work_class,"projection":projection}))?;
+            log.append(
+                "run.work",
+                &json!({"phase":"admission","total_step":total,
+                "work_class":limit.work_class,"projection":projection}),
+            )?;
             if projection
                 .iter()
                 .any(|p| p.state != LimitProjection::WithinSoft)
@@ -919,11 +958,20 @@ impl WorkMeter {
             .work_items
             .checked_sub(self.prior_work)
             .ok_or("ACCOUNTING_REGRESSION")?;
-        if delta != self.per_step {
+        let touches = measured
+            .parameter_touches
+            .checked_sub(self.prior_touches)
+            .ok_or("ACCOUNTING_REGRESSION")?;
+        if delta != self.per_step
+            || self
+                .accounting
+                .maximum_parameter_touches_per_update()
+                .is_some_and(|maximum| touches > maximum)
+        {
             return Err("WORK_ACCOUNTING_INCONSISTENT".into());
         }
         let now = u64::try_from(elapsed.as_nanos()).map_err(|e| e.to_string())?;
-        for (work_class, amount) in [(WorkClass::Acting, delta - 1), (WorkClass::Learning, 1)] {
+        for &(work_class, amount) in &self.tariffs {
             let charge = TypedAmount {
                 key: self.key.clone(),
                 amount,
@@ -948,6 +996,7 @@ impl WorkMeter {
                 .map_err(|e| e.to_string())?;
         }
         self.prior_work = measured.work_items;
+        self.prior_touches = measured.parameter_touches;
         Ok(())
     }
 }
@@ -1008,25 +1057,68 @@ fn action_transition(
     Ok(transition)
 }
 
+fn grant_work(
+    agent: &mut AdapterPeer,
+    total: u64,
+    accounting: &OnlineAccounting,
+    timeout: Duration,
+    log: &mut Evidence<'_>,
+) -> Result<(), String> {
+    let Some(grant) = accounting.admission_payload(total) else {
+        return Ok(());
+    };
+    let payload = serde_json::to_vec(&grant).map_err(|e| e.to_string())?;
+    let mut id = [1_u8; 16];
+    id[..8].copy_from_slice(&total.to_le_bytes());
+    let response = agent.exchange(
+        Kind::Work(wire::Work {
+            work_item_id: id.to_vec(),
+            work_class: "bonsai.agent.admission/v2".into(),
+            payload_sha256: Sha256::digest(&payload).to_vec(),
+            payload,
+            deadline_monotonic_ns: 0,
+        }),
+        timeout,
+        log,
+    )?;
+    let Kind::WorkResult(result) = response else {
+        return Err("WORK_GRANT_ACK_REQUIRED".into());
+    };
+    if result.work_item_id != id || result.outcome != "ADMITTED" || !result.result.is_empty() {
+        return Err("WORK_GRANT_ACK_INVALID".into());
+    }
+    Ok(())
+}
+
 fn feedback_accounting(
     agent: &mut AdapterPeer,
     total: u64,
-    index: u64,
-    reward_value: i64,
+    transition: &wire::CausalTransition,
+    accounting: &OnlineAccounting,
     action_timeout: Duration,
     log: &mut Evidence<'_>,
 ) -> Result<wire::PrimitiveAccounting, String> {
-    let reward = wire::PrimitiveReward {
-        step: index,
-        reward: reward_value,
-    }
-    .encode_to_vec();
+    let (signal_type, reward) = if accounting.is_transition_feedback() {
+        (
+            "bonsai.agent.causal-transition/v1",
+            transition.encode_to_vec(),
+        )
+    } else {
+        (
+            "bonsai.agent.reward/v1",
+            wire::PrimitiveReward {
+                step: transition.step,
+                reward: transition.reward,
+            }
+            .encode_to_vec(),
+        )
+    };
     let mut id = [1_u8; 16];
     id[..8].copy_from_slice(&total.to_le_bytes());
     agent.exchange(
         Kind::Feedback(wire::Feedback {
             feedback_id: id.to_vec(),
-            signal_type: "bonsai.agent.reward/v1".into(),
+            signal_type: signal_type.into(),
             signal_sha256: Sha256::digest(&reward).to_vec(),
             signal: reward,
             deadline_monotonic_ns: 0,

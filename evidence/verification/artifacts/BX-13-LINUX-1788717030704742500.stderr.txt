@@ -1,0 +1,32 @@
+   Compiling bonsai-contracts v0.0.0 (/mnt/c/Users/17076/Documents/Reinforcement Learning Project/crates/bonsai-contracts)
+   Compiling bonsai-governor v0.0.0 (/mnt/c/Users/17076/Documents/Reinforcement Learning Project/crates/bonsai-governor)
+    Finished `dev` profile [unoptimized + debuginfo] target(s) in 21.29s
+   Compiling bonsai-contracts v0.0.0 (/mnt/c/Users/17076/Documents/Reinforcement Learning Project/crates/bonsai-contracts)
+    Finished `dev` profile [unoptimized + debuginfo] target(s) in 29.25s
+    Checking bonsai-contracts v0.0.0 (/mnt/c/Users/17076/Documents/Reinforcement Learning Project/crates/bonsai-contracts)
+    Checking bonsai-bundle v0.0.0 (/mnt/c/Users/17076/Documents/Reinforcement Learning Project/crates/bonsai-bundle)
+    Checking bonsai-governor v0.0.0 (/mnt/c/Users/17076/Documents/Reinforcement Learning Project/crates/bonsai-governor)
+    Checking bonsai-ingest v0.0.0 (/mnt/c/Users/17076/Documents/Reinforcement Learning Project/crates/bonsai-ingest)
+    Checking bonsai-lineage v0.0.0 (/mnt/c/Users/17076/Documents/Reinforcement Learning Project/crates/bonsai-lineage)
+    Checking bonsai-runtime v0.0.0 (/mnt/c/Users/17076/Documents/Reinforcement Learning Project/crates/bonsai-runtime)
+    Checking bonsai-accept v0.0.0 (/mnt/c/Users/17076/Documents/Reinforcement Learning Project/crates/bonsai-accept)
+    Checking bonsai-xtask v0.0.0 (/mnt/c/Users/17076/Documents/Reinforcement Learning Project/crates/bonsai-xtask)
+error: this function has too many lines (106/100)
+   --> crates/bonsai-xtask/src/experiment.rs:713:1
+    |
+713 | / fn online_loop(
+714 | |     inputs: &Inputs,
+715 | |     layout: &IsolatedRunLayout,
+716 | |     agent: &mut AdapterPeer,
+...   |
+720 | |     began: Instant,
+721 | | ) -> Result<Value, String> {
+    | |__________________________^
+    |
+    = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.96.0/index.html#too_many_lines
+    = note: `-D clippy::too-many-lines` implied by `-D clippy::pedantic`
+    = help: to override `-D clippy::pedantic` add `#[allow(clippy::too_many_lines)]`
+
+error: could not compile `bonsai-xtask` (bin "bonsai-xtask" test) due to 1 previous error
+warning: build failed, waiting for other jobs to finish...
+error: could not compile `bonsai-xtask` (bin "bonsai-xtask") due to 1 previous error

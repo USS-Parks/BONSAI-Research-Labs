@@ -242,26 +242,123 @@
           "$ref": "#/$defs/config"
         },
         "accounting_contract": {
-          "type": "object",
-          "additionalProperties": false,
-          "required": [
-            "schema",
-            "parameter_touches_per_update",
-            "parameter_update_schema"
-          ],
-          "properties": {
-            "schema": {
-              "const": "bonsai.online-accounting/v1"
+          "oneOf": [
+            {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "schema",
+                "parameter_touches_per_update",
+                "parameter_update_schema"
+              ],
+              "properties": {
+                "schema": {
+                  "const": "bonsai.online-accounting/v1"
+                },
+                "parameter_touches_per_update": {
+                  "type": "integer",
+                  "minimum": 1,
+                  "maximum": 257
+                },
+                "parameter_update_schema": {
+                  "const": "bonsai.parameter-update/v1"
+                }
+              }
             },
-            "parameter_touches_per_update": {
-              "type": "integer",
-              "minimum": 1,
-              "maximum": 257
-            },
-            "parameter_update_schema": {
-              "const": "bonsai.parameter-update/v1"
+            {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "schema",
+                "feedback_signal_type",
+                "parameter_update_schema",
+                "work_per_step",
+                "maximum_parameter_touches_per_update",
+                "retained_state_limit_bytes",
+                "serialized_state_limit_bytes"
+              ],
+              "properties": {
+                "schema": {
+                  "const": "bonsai.online-accounting/v2"
+                },
+                "feedback_signal_type": {
+                  "const": "bonsai.agent.causal-transition/v1"
+                },
+                "parameter_update_schema": {
+                  "const": "bonsai.online-update/v2"
+                },
+                "work_per_step": {
+                  "type": "array",
+                  "minItems": 2,
+                  "maxItems": 7,
+                  "items": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "required": ["work_class", "amount"],
+                    "properties": {
+                      "work_class": {
+                        "enum": [
+                          "acting",
+                          "learning",
+                          "feature_generation",
+                          "option_learning",
+                          "model_learning",
+                          "planning",
+                          "curation"
+                        ]
+                      },
+                      "amount": {
+                        "type": "integer",
+                        "minimum": 1,
+                        "maximum": 1000000
+                      }
+                    }
+                  }
+                },
+                "maximum_parameter_touches_per_update": {
+                  "type": "integer",
+                  "minimum": 1,
+                  "maximum": 8192
+                },
+                "retained_state_limit_bytes": {
+                  "type": "integer",
+                  "minimum": 1,
+                  "maximum": 16777216
+                },
+                "serialized_state_limit_bytes": {
+                  "type": "integer",
+                  "minimum": 1,
+                  "maximum": 1048576
+                }
+              },
+              "allOf": [
+                {
+                  "properties": {
+                    "work_per_step": {
+                      "contains": {
+                        "properties": {
+                          "work_class": {"const": "acting"}
+                        },
+                        "required": ["work_class"]
+                      }
+                    }
+                  }
+                },
+                {
+                  "properties": {
+                    "work_per_step": {
+                      "contains": {
+                        "properties": {
+                          "work_class": {"const": "learning"}
+                        },
+                        "required": ["work_class"]
+                      }
+                    }
+                  }
+                }
+              ]
             }
-          }
+          ]
         }
       }
     },

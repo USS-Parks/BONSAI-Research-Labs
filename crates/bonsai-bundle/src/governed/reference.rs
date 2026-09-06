@@ -8,6 +8,32 @@ use serde_json::Value;
 // attest a hostile interpreter, kernel or machine operator.
 const SOURCES: &[(&str, &[u8])] = &[
     (
+        "python/bonsai-reference/src/bonsai_reference/brdc1.py",
+        include_bytes!("../../../../python/bonsai-reference/src/bonsai_reference/brdc1.py"),
+    ),
+    (
+        "python/bonsai-reference/src/bonsai_reference/feature_discovery.py",
+        include_bytes!(
+            "../../../../python/bonsai-reference/src/bonsai_reference/feature_discovery.py"
+        ),
+    ),
+    (
+        "python/bonsai-reference/src/bonsai_reference/option_learning.py",
+        include_bytes!(
+            "../../../../python/bonsai-reference/src/bonsai_reference/option_learning.py"
+        ),
+    ),
+    (
+        "python/bonsai-reference/src/bonsai_reference/option_adapter.py",
+        include_bytes!(
+            "../../../../python/bonsai-reference/src/bonsai_reference/option_adapter.py"
+        ),
+    ),
+    (
+        "python/bonsai-reference/src/bonsai_reference/chain_adapter.py",
+        include_bytes!("../../../../python/bonsai-reference/src/bonsai_reference/chain_adapter.py"),
+    ),
+    (
         "python/bonsai-reference/src/bonsai_reference/gymnasium_session.py",
         include_bytes!(
             "../../../../python/bonsai-reference/src/bonsai_reference/gymnasium_session.py"
@@ -100,12 +126,19 @@ pub(super) fn check(snapshot: &Snapshot, manifest: &Value, identity: &Value) -> 
         identity,
         13,
     );
+    let bx12 = historical_matches(
+        include_str!("../../../../fixtures/online-options/v1/bx12-source-set.json"),
+        identity,
+        15,
+    );
     ensure(
-        current || historical || bx10,
+        current || historical || bx10 || bx12,
         "RUN_REFERENCE_SOURCE_UNSUPPORTED",
     )?;
-    let (agent_id, agent_module, agent_version) = agent_contract(manifest, current || bx10)?;
-    let (environment_id, environment_module) = environment_contract(manifest, current)?;
+    let (agent_id, agent_module, agent_version) =
+        agent_contract(manifest, current || bx10 || bx12, current)?;
+    let (environment_id, environment_module) =
+        environment_contract(manifest, current || bx12, current)?;
     let components = snapshot.json("component-identity.json")?;
     for (role, key, id, module, version) in [
         ("agent", "adapter", agent_id, agent_module, agent_version),
@@ -173,7 +206,11 @@ fn historical_matches(raw: &str, identity: &Value, expected: usize) -> bool {
     })
 }
 
-fn environment_contract(manifest: &Value, current: bool) -> Result<(&'static str, &'static str)> {
+fn environment_contract(
+    manifest: &Value,
+    current: bool,
+    online: bool,
+) -> Result<(&'static str, &'static str)> {
     let component = &manifest["environment"];
     match text(component, "component_id")? {
         "bonsai-causal-environment" => Ok(("bonsai-causal-environment", "environment_adapter")),
@@ -194,6 +231,25 @@ fn environment_contract(manifest: &Value, current: bool) -> Result<(&'static str
             )?;
             Ok(("bonsai-gymnasium-frozen-lake", "gymnasium_adapter"))
         }
+        "bonsai-feature-chain" if online => {
+            let config = &component["config"];
+            let seed = number(config, "seed")?;
+            let horizon = number(config, "horizon")?;
+            let terminal = config["goal_terminates"]
+                .as_bool()
+                .ok_or("RUN_CONFIGURATION_UNSUPPORTED")?;
+            ensure(
+                (1..=2000).contains(&horizon)
+                    && *config
+                        == serde_json::json!({
+                            "scenario_id":"feature-attainment-chain", "version":"1.0", "seed":seed,
+                            "horizon":horizon, "action_count":2, "observation_width":1, "size":5,
+                            "reward_state":4, "goal_terminates":terminal,
+                        }),
+                "RUN_CONFIGURATION_UNSUPPORTED",
+            )?;
+            Ok(("bonsai-feature-chain", "chain_adapter"))
+        }
         _ => Err("RUN_REFERENCE_COMPONENT_UNSUPPORTED"),
     }
 }
@@ -201,6 +257,7 @@ fn environment_contract(manifest: &Value, current: bool) -> Result<(&'static str
 fn agent_contract(
     manifest: &Value,
     current: bool,
+    online: bool,
 ) -> Result<(&'static str, &'static str, &'static str)> {
     let component = &manifest["adapter"];
     let actions = number(&component["config"], "action_count")?;
@@ -232,6 +289,44 @@ fn agent_contract(
                 "RUN_CONFIGURATION_UNSUPPORTED",
             )?;
             Ok(("bonsai-linear-nlms", "linear_adapter", "1.0.0"))
+        }
+        "bonsai-online-options" if online => {
+            use bonsai_contracts::resource::WorkClass;
+            let config = &component["config"];
+            let width = number(config, "observation_width")?;
+            let seed = number(config, "seed")?;
+            let retained = number(config, "retained_state_limit_bytes")?;
+            let serialized = number(config, "serialized_state_limit_bytes")?;
+            let enabled = config["options_enabled"]
+                .as_bool()
+                .ok_or("RUN_CONFIGURATION_UNSUPPORTED")?;
+            let mode = text(config, "reward_mode")?;
+            ensure(
+                (2..=8).contains(&actions)
+                    && (1..=8).contains(&width)
+                    && matches!(mode, "respecting" | "oblivious")
+                    && number(&manifest["environment"]["config"], "observation_width")? == width
+                    && *config
+                        == serde_json::json!({"action_count":actions,"observation_width":width,"seed":seed,
+                    "options_enabled":enabled,"reward_mode":mode,"retained_state_limit_bytes":retained,
+                    "serialized_state_limit_bytes":serialized})
+                    && accounting.is_transition_feedback()
+                    && accounting.maximum_parameter_touches_per_update() == Some(1024)
+                    && accounting.retained_state_limit_bytes() == Some(retained)
+                    && accounting.serialized_state_limit_bytes() == Some(serialized)
+                    && accounting.work_per_step(actions)
+                        == vec![
+                            (WorkClass::Acting, actions + 4),
+                            (WorkClass::Learning, 1),
+                            (WorkClass::FeatureGeneration, 168 + 4 * width),
+                            (
+                                WorkClass::OptionLearning,
+                                16 + 4 * (8 + 2 * actions + 2 * width),
+                            ),
+                        ],
+                "RUN_CONFIGURATION_UNSUPPORTED",
+            )?;
+            Ok(("bonsai-online-options", "option_adapter", "1.0.0"))
         }
         _ => Err("RUN_REFERENCE_COMPONENT_UNSUPPORTED"),
     }

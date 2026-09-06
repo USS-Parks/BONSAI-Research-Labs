@@ -1,0 +1,8 @@
+Checked 14 packages in 97ms
+   Compiling bonsai-contracts v0.0.0 (/mnt/c/Users/17076/Documents/Reinforcement Learning Project/crates/bonsai-contracts)
+   Compiling bonsai-bundle v0.0.0 (/mnt/c/Users/17076/Documents/Reinforcement Learning Project/crates/bonsai-bundle)
+   Compiling bonsai-governor v0.0.0 (/mnt/c/Users/17076/Documents/Reinforcement Learning Project/crates/bonsai-governor)
+   Compiling bonsai-ingest v0.0.0 (/mnt/c/Users/17076/Documents/Reinforcement Learning Project/crates/bonsai-ingest)
+   Compiling bonsai-runtime v0.0.0 (/mnt/c/Users/17076/Documents/Reinforcement Learning Project/crates/bonsai-runtime)
+   Compiling bonsai-xtask v0.0.0 (/mnt/c/Users/17076/Documents/Reinforcement Learning Project/crates/bonsai-xtask)
+    Finished `dev` profile [unoptimized + debuginfo] target(s) in 47.95s

@@ -9,12 +9,28 @@ use std::path::Path;
 
 pub(super) fn prepare(inputs: &Inputs, layout: &IsolatedRunLayout) -> Result<(), String> {
     let [agent, environment] = super::execution_limits(inputs)?;
+    let tariffs = work_tariffs(inputs)?;
+    let unsupported = [
+        "feature_generation",
+        "option_learning",
+        "model_learning",
+        "planning",
+        "curation",
+    ]
+    .into_iter()
+    .filter(|class| !tariffs.contains_key(*class))
+    .collect::<Vec<_>>();
+    let scope = if tariffs.len() > 2 {
+        "declared online work tariffs; supervisor is algorithm-neutral"
+    } else {
+        "fixed primitive runner; unsupported work is never dispatched"
+    };
     let resolved = json!({"format":"bonsai.resolved-execution-policy/v1",
         "policy_id":inputs.manifest["manifest_id"],"agent_linux_controls":agent,"environment_linux_controls":environment,
         "agent_storage":{"maximum_files":4096,"replay_allowed":false},
         "observer_metadata_reserve_bytes":super::quota::METADATA_RESERVE,
-        "unsupported_work_classes":["feature_generation","option_learning","model_learning","planning","curation"],
-        "policy_scope":"fixed primitive runner; unsupported work is never dispatched",
+        "unsupported_work_classes":unsupported,
+        "policy_scope":scope,
         "decision_coverage":"v1 requires all five outcomes; equal soft/hard limits make soft-only states unreachable"});
     write(
         layout
@@ -95,11 +111,27 @@ pub(super) fn assemble(
     validate("platform-inventory-v1.json", &inventory)
 }
 
+fn work_tariffs(inputs: &Inputs) -> Result<std::collections::BTreeMap<String, u64>, String> {
+    let accounting = bonsai_contracts::accounting::OnlineAccounting::from_declaration_or_legacy(
+        inputs.manifest["adapter"].get("accounting_contract"),
+    )
+    .map_err(str::to_owned)?;
+    accounting
+        .work_per_step(number(
+            &inputs.manifest["adapter"]["config"],
+            "action_count",
+        )?)
+        .into_iter()
+        .map(|(class, amount)| Ok((super::work_class_name(class)?, amount)))
+        .collect()
+}
+
 fn resource_policy(inputs: &Inputs) -> Result<Value, String> {
+    let tariffs = work_tariffs(inputs)?;
     let profile = &inputs.manifest["resource_profile"];
     let mut limits = Vec::new();
     let mut allocations = Vec::new();
-    for (class, counter, scope, unit, maximum) in [
+    for (class, mut counter, mut scope, unit, mut maximum) in [
         (
             "acting",
             "work_items",
@@ -146,6 +178,11 @@ fn resource_policy(inputs: &Inputs) -> Result<Value, String> {
             number(profile, "observer_output_limit_bytes")?,
         ),
     ] {
+        if let Some(amount) = tariffs.get(class) {
+            counter = "work_items";
+            scope = "per_step";
+            maximum = *amount;
+        }
         let id = format!("{class}.{counter}");
         limits.push(json!({"limit_id":id,"work_class":class,"scope":scope,"counter_id":counter,"unit":unit,
             "soft_limit":maximum,"hard_limit":maximum,"basis_requirement":"measured","rolling_window":null}));
@@ -158,7 +195,9 @@ fn resource_policy(inputs: &Inputs) -> Result<Value, String> {
         .as_array_mut()
         .ok_or("POLICY_ALLOCATION_INVALID")?
         .push(json!("acting.cpu"));
-    let maximum = number(&inputs.manifest["adapter"]["config"], "action_count")?
+    let maximum = tariffs
+        .get("acting")
+        .ok_or("ACTING_TARIFF_MISSING")?
         .checked_mul(number(profile, "step_limit")?)
         .ok_or("WORK_OVERFLOW")?;
     limits.push(json!({"limit_id":"acting.rolling_work","work_class":"acting","scope":"rolling_window",

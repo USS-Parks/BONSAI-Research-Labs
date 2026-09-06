@@ -73,6 +73,23 @@ jobs:
       - name: Python types
         run: uv run --frozen pyright
 
+      - name: Run BX-13 hosted two-child protocol
+        id: bx13_protocol
+        run: uv run --frozen python -B evidence/verification/bx-13/ci-protocol.py
+        env:
+          BONSAI_CI_OS_FAMILY: ${{ matrix.os_family }}
+          BONSAI_CI_ARCH: ${{ matrix.arch }}
+          BONSAI_CI_RUNNER: ${{ matrix.runner }}
+
+      - name: Upload BX-13 hosted two-child protocol evidence
+        if: ${{ always() && steps.bx13_protocol.outcome != 'skipped' }}
+        uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f # v6
+        with:
+          name: bx-13-protocol-${{ matrix.os_family }}-${{ matrix.arch }}
+          path: target/bx13-ci-*
+          if-no-files-found: error
+          retention-days: 30
+
       - name: Build BX-12 live diagnostic helpers
         run: |
           cargo build -p bonsai-governor --example feature_admission

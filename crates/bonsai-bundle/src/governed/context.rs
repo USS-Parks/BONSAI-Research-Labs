@@ -55,6 +55,18 @@ impl Context {
         let accounting = OnlineAccounting::from_declaration_or_legacy(
             manifest["adapter"].get("accounting_contract"),
         )?;
+        ensure(
+            accounting.retained_state_limit_bytes().is_none_or(|cap| {
+                cap <= manifest["resource_profile"]["agent_rss_limit_bytes"]
+                    .as_u64()
+                    .unwrap_or(0)
+            }) && accounting.serialized_state_limit_bytes().is_none_or(|cap| {
+                cap <= manifest["resource_profile"]["agent_storage_limit_bytes"]
+                    .as_u64()
+                    .unwrap_or(0)
+            }),
+            "RUN_ACCOUNTING_STATE_LIMIT_EXCEEDS_PROFILE",
+        )?;
         let context = Self {
             manifest,
             accounting,
@@ -67,6 +79,14 @@ impl Context {
         context.check_status(snapshot)?;
         context.check_counters()?;
         Ok(context)
+    }
+
+    pub(super) fn tariffs(&self) -> Vec<(bonsai_contracts::resource::WorkClass, u64)> {
+        self.accounting.work_per_step(self.actions)
+    }
+
+    pub(super) fn per_step_work(&self) -> u64 {
+        self.tariffs().iter().map(|(_, amount)| amount).sum()
     }
 
     fn check_roles(snapshot: &Snapshot) -> Result<()> {

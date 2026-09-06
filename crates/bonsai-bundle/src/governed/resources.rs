@@ -145,12 +145,15 @@ pub(super) fn healthy_usage(usage: &Value) -> Result<()> {
     )
 }
 
-pub(super) fn work(context: &Context, event: &Value, total: u64, acting: bool) -> Result<()> {
-    let (class, amount) = if acting {
-        ("acting", context.actions)
-    } else {
-        ("learning", 1)
-    };
+pub(super) fn work(
+    context: &Context,
+    event: &Value,
+    total: u64,
+    work_class: bonsai_contracts::resource::WorkClass,
+    amount: u64,
+) -> Result<()> {
+    let class_value = serde_json::to_value(work_class).map_err(|_| "RUN_WORK_CLASS_INVALID")?;
+    let class = class_value.as_str().ok_or("RUN_WORK_CLASS_INVALID")?;
     ensure(
         event["work_class"] == class && number(event, "total_step")? == total,
         "RUN_WORK_ORDER_INVALID",
@@ -158,10 +161,12 @@ pub(super) fn work(context: &Context, event: &Value, total: u64, acting: bool) -
     let mut projection = vec![json!({"consumed_before":0,"hard_limit":amount,
         "limit_id":format!("{class}.work_items"),"projected":amount,"requested":amount,
         "scope":"per_step","soft_limit":amount,"state":"within_soft"})];
-    if acting {
-        projection.push(json!({"consumed_before":total * context.actions,"hard_limit":context.steps * context.actions,
-            "limit_id":"acting.rolling_work","projected":(total+1)*context.actions,"requested":context.actions,
-            "scope":"rolling_window","soft_limit":context.steps*context.actions,"state":"within_soft"}));
+    if class == "acting" {
+        projection.push(
+            json!({"consumed_before":total * amount,"hard_limit":context.steps * amount,
+            "limit_id":"acting.rolling_work","projected":(total+1)*amount,"requested":amount,
+            "scope":"rolling_window","soft_limit":context.steps*amount,"state":"within_soft"}),
+        );
     }
     ensure(
         event["projection"] == Value::Array(projection),
@@ -169,35 +174,25 @@ pub(super) fn work(context: &Context, event: &Value, total: u64, acting: bool) -
     )
 }
 
-type LimitSpec = (
-    &'static str,
-    &'static str,
-    &'static str,
-    &'static str,
-    &'static str,
-    u64,
-);
-fn specifications(context: &Context) -> Result<[LimitSpec; 11]> {
+type LimitSpec = (String, String, String, String, String, u64);
+fn specifications(context: &Context) -> Result<Vec<LimitSpec>> {
     let profile = &context.manifest["resource_profile"];
-    Ok([
+    let tariffs = context
+        .tariffs()
+        .into_iter()
+        .map(|(class, amount)| {
+            let value = serde_json::to_value(class).map_err(|_| "RUN_WORK_CLASS_INVALID")?;
+            Ok((
+                value.as_str().ok_or("RUN_WORK_CLASS_INVALID")?.to_owned(),
+                amount,
+            ))
+        })
+        .collect::<Result<std::collections::BTreeMap<_, _>>>()?;
+    let mut limits = Vec::new();
+    for (class, mut scope, mut counter, unit, mut maximum) in [
+        ("acting", "per_step", "work_items", "1", context.actions),
+        ("learning", "per_step", "work_items", "1", 1),
         (
-            "acting.work_items",
-            "acting",
-            "per_step",
-            "work_items",
-            "1",
-            context.actions,
-        ),
-        (
-            "learning.work_items",
-            "learning",
-            "per_step",
-            "work_items",
-            "1",
-            1,
-        ),
-        (
-            "feature_generation.unsupported_work_requests",
             "feature_generation",
             "lifetime",
             "unsupported_work_requests",
@@ -205,7 +200,6 @@ fn specifications(context: &Context) -> Result<[LimitSpec; 11]> {
             1,
         ),
         (
-            "option_learning.unsupported_work_requests",
             "option_learning",
             "lifetime",
             "unsupported_work_requests",
@@ -213,31 +207,15 @@ fn specifications(context: &Context) -> Result<[LimitSpec; 11]> {
             1,
         ),
         (
-            "model_learning.unsupported_work_requests",
             "model_learning",
             "lifetime",
             "unsupported_work_requests",
             "1",
             1,
         ),
+        ("planning", "lifetime", "unsupported_work_requests", "1", 1),
+        ("curation", "lifetime", "unsupported_work_requests", "1", 1),
         (
-            "planning.unsupported_work_requests",
-            "planning",
-            "lifetime",
-            "unsupported_work_requests",
-            "1",
-            1,
-        ),
-        (
-            "curation.unsupported_work_requests",
-            "curation",
-            "lifetime",
-            "unsupported_work_requests",
-            "1",
-            1,
-        ),
-        (
-            "environment.exchange_wall_time",
             "environment",
             "per_event",
             "exchange_wall_time",
@@ -245,28 +223,42 @@ fn specifications(context: &Context) -> Result<[LimitSpec; 11]> {
             1_000_000_000,
         ),
         (
-            "observer.observer_output_bytes",
             "observer",
             "lifetime",
             "observer_output_bytes",
             "B",
             number(profile, "observer_output_limit_bytes")?,
         ),
-        (
-            "acting.cpu",
-            "acting",
-            "per_step",
-            "cpu_time_ns",
-            "ns",
-            number(profile, "per_step_cpu_time_limit_ns")?,
-        ),
-        (
-            "acting.rolling_work",
-            "acting",
-            "rolling_window",
-            "work_items",
-            "1",
-            context.actions * context.steps,
-        ),
-    ])
+    ] {
+        if let Some(amount) = tariffs.get(class) {
+            scope = "per_step";
+            counter = "work_items";
+            maximum = *amount;
+        }
+        limits.push((
+            format!("{class}.{counter}"),
+            class.into(),
+            scope.into(),
+            counter.into(),
+            unit.into(),
+            maximum,
+        ));
+    }
+    limits.push((
+        "acting.cpu".into(),
+        "acting".into(),
+        "per_step".into(),
+        "cpu_time_ns".into(),
+        "ns".into(),
+        number(profile, "per_step_cpu_time_limit_ns")?,
+    ));
+    limits.push((
+        "acting.rolling_work".into(),
+        "acting".into(),
+        "rolling_window".into(),
+        "work_items".into(),
+        "1".into(),
+        tariffs.get("acting").ok_or("RUN_ACTING_TARIFF_MISSING")? * context.steps,
+    ));
+    Ok(limits)
 }
