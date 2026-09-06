@@ -1,0 +1,5 @@
+{"agent": "tabular", "seed": 42, "horizon": 2, "case": "target/bx11-live-1788679369093107551/tabular-s42-h2", "runner_exit": 0, "elapsed_ns": 55580941349}
+{"agent": "linear", "seed": 42, "horizon": 2, "case": "target/bx11-live-1788679369093107551/linear-s42-h2", "runner_exit": 0, "elapsed_ns": 44269754720}
+{"agent": "tabular", "seed": 42, "horizon": 8, "case": "target/bx11-live-1788679369093107551/tabular-s42-h8", "runner_exit": 0, "elapsed_ns": 39239830807}
+{"agent": "linear", "seed": 42, "horizon": 8, "case": "target/bx11-live-1788679369093107551/linear-s42-h8", "runner_exit": 0, "elapsed_ns": 80266651849}
+{"batch": "target/bx11-live-1788679369093107551", "runs": 4, "operator_sha256": "da26663ff48ca431cbdbcb5232ea6be5103b3aa98ff2ac82a2398969ab963fd3"}

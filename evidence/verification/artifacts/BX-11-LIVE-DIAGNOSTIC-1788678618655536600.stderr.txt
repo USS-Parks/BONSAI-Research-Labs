@@ -1,0 +1,14 @@
+Checked 14 packages in 55ms
+   Compiling bonsai-bundle v0.0.0 (/mnt/c/Users/17076/Documents/Reinforcement Learning Project/crates/bonsai-bundle)
+   Compiling bonsai-ingest v0.0.0 (/mnt/c/Users/17076/Documents/Reinforcement Learning Project/crates/bonsai-ingest)
+   Compiling bonsai-runtime v0.0.0 (/mnt/c/Users/17076/Documents/Reinforcement Learning Project/crates/bonsai-runtime)
+   Compiling bonsai-xtask v0.0.0 (/mnt/c/Users/17076/Documents/Reinforcement Learning Project/crates/bonsai-xtask)
+    Finished `dev` profile [unoptimized + debuginfo] target(s) in 42.98s
+Running as unit: bonsai-bx11-live.service
+bonsai-xtask: RUN_WALL_LIMIT_EXCEEDED
+
+          Finished with result: exit-code
+Main processes terminated with: code=exited, status=1/FAILURE
+               Service runtime: 3min 23.663s
+             CPU time consumed: 48.559s
+                   Memory peak: 180.6M (swap: 0B)

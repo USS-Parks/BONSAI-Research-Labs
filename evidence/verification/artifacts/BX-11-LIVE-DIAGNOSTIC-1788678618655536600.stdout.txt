@@ -1,0 +1,2 @@
+{"agent": "tabular", "seed": 42, "horizon": 2, "case": "target/bx11-live-1788678662425861037/tabular-s42-h2", "runner_exit": 0, "elapsed_ns": 47686104429}
+{"agent": "linear", "seed": 42, "horizon": 2, "case": "target/bx11-live-1788678662425861037/linear-s42-h2", "runner_exit": 1, "elapsed_ns": 128853145754}

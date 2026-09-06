@@ -1,0 +1,50 @@
+{
+  "captured_at": "2026-09-06T07:33:18.887Z",
+  "worktrees": [
+    {
+      "path": "C:/Users/17076/Documents/Reinforcement Learning Project",
+      "branch": "main",
+      "head": "da64e225fa24eaf9b6165ca12d5282c42414b605",
+      "purpose": "Active sequential BX-11 execution",
+      "dirty": true,
+      "unpublished_commits": 0,
+      "generated": [
+        {
+          "path": "C:/Users/17076/Documents/Reinforcement Learning Project/target",
+          "bytes": 32101829895,
+          "files": 106935,
+          "unreadable": 41
+        },
+        {
+          "path": "C:/Users/17076/Documents/Reinforcement Learning Project/.venv",
+          "bytes": 65616320,
+          "files": 6229,
+          "unreadable": 0
+        }
+      ]
+    },
+    {
+      "path": "C:/tmp/bonsai-m0-sts",
+      "branch": "codex/m0-governed-foundation",
+      "head": "eaa0e52ec5a6dc78ab1a360f2a11c2201c7a5e9d",
+      "purpose": "Historical retained worktree; no active lane",
+      "dirty": false,
+      "unpublished_commits": 0,
+      "retirement_blocker": "Explicit removal authorization absent",
+      "generated": [
+        {
+          "path": "C:/tmp/bonsai-m0-sts/target",
+          "bytes": 1397672410,
+          "files": 7492,
+          "unreadable": 0
+        },
+        {
+          "path": "C:/tmp/bonsai-m0-sts/.venv",
+          "bytes": 65610615,
+          "files": 6229,
+          "unreadable": 0
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,83 @@
+    Checking bonsai-bundle v0.0.0 (/mnt/c/Users/17076/Documents/Reinforcement Learning Project/crates/bonsai-bundle)
+    Checking bonsai-ingest v0.0.0 (/mnt/c/Users/17076/Documents/Reinforcement Learning Project/crates/bonsai-ingest)
+    Checking bonsai-lineage v0.0.0 (/mnt/c/Users/17076/Documents/Reinforcement Learning Project/crates/bonsai-lineage)
+    Checking bonsai-runtime v0.0.0 (/mnt/c/Users/17076/Documents/Reinforcement Learning Project/crates/bonsai-runtime)
+    Checking bonsai-accept v0.0.0 (/mnt/c/Users/17076/Documents/Reinforcement Learning Project/crates/bonsai-accept)
+    Checking bonsai-xtask v0.0.0 (/mnt/c/Users/17076/Documents/Reinforcement Learning Project/crates/bonsai-xtask)
+    Finished `dev` profile [unoptimized + debuginfo] target(s) in 46.49s
+   Compiling bonsai-bundle v0.0.0 (/mnt/c/Users/17076/Documents/Reinforcement Learning Project/crates/bonsai-bundle)
+   Compiling bonsai-ingest v0.0.0 (/mnt/c/Users/17076/Documents/Reinforcement Learning Project/crates/bonsai-ingest)
+   Compiling bonsai-lineage v0.0.0 (/mnt/c/Users/17076/Documents/Reinforcement Learning Project/crates/bonsai-lineage)
+   Compiling bonsai-runtime v0.0.0 (/mnt/c/Users/17076/Documents/Reinforcement Learning Project/crates/bonsai-runtime)
+   Compiling bonsai-accept v0.0.0 (/mnt/c/Users/17076/Documents/Reinforcement Learning Project/crates/bonsai-accept)
+   Compiling bonsai-xtask v0.0.0 (/mnt/c/Users/17076/Documents/Reinforcement Learning Project/crates/bonsai-xtask)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 4m 43s
+     Running unittests src/lib.rs (target/x86_64-unknown-linux-gnu/debug/deps/bonsai_accept-03f13539857ab2c5)
+     Running tests/m4_acceptance.rs (target/x86_64-unknown-linux-gnu/debug/deps/m4_acceptance-b95004a8f9dbad57)
+     Running unittests src/lib.rs (target/x86_64-unknown-linux-gnu/debug/deps/bonsai_bundle-3d81a6168b48d20b)
+     Running tests/bundle_index_fixtures.rs (target/x86_64-unknown-linux-gnu/debug/deps/bundle_index_fixtures-84f5a53076c1e07e)
+     Running tests/bundle_validation_corpus.rs (target/x86_64-unknown-linux-gnu/debug/deps/bundle_validation_corpus-4f8cf25292786e65)
+     Running tests/derivation_fixtures.rs (target/x86_64-unknown-linux-gnu/debug/deps/derivation_fixtures-2e8055d7eb638272)
+     Running tests/governed_run.rs (target/x86_64-unknown-linux-gnu/debug/deps/governed_run-2286b108183dfaa9)
+     Running tests/segment_fixtures.rs (target/x86_64-unknown-linux-gnu/debug/deps/segment_fixtures-3cb73b5c3964ac93)
+     Running unittests src/lib.rs (target/x86_64-unknown-linux-gnu/debug/deps/bonsai_claims-bc0cb0606dd7f325)
+     Running tests/c4c5_matrix.rs (target/x86_64-unknown-linux-gnu/debug/deps/c4c5_matrix-15c90bc35bca660c)
+     Running unittests src/lib.rs (target/x86_64-unknown-linux-gnu/debug/deps/bonsai_contracts-4373d1b1213fe7f3)
+     Running tests/adapter_extensions.rs (target/x86_64-unknown-linux-gnu/debug/deps/adapter_extensions-91b8bfcca80fc7d9)
+     Running tests/adapter_protocol.rs (target/x86_64-unknown-linux-gnu/debug/deps/adapter_protocol-732e5c7eb9a96bfa)
+     Running tests/causal_payloads.rs (target/x86_64-unknown-linux-gnu/debug/deps/causal_payloads-0dde63c12b1893b1)
+     Running tests/online_accounting.rs (target/x86_64-unknown-linux-gnu/debug/deps/online_accounting-94dbda2351df0dad)
+     Running unittests src/lib.rs (target/x86_64-unknown-linux-gnu/debug/deps/bonsai_governor-f99b20f3478db7d9)
+     Running tests/agent_storage.rs (target/x86_64-unknown-linux-gnu/debug/deps/agent_storage-b8ae11773912f18a)
+     Running tests/m3_governor.rs (target/x86_64-unknown-linux-gnu/debug/deps/m3_governor-1aa89dddbe0baef5)
+     Running tests/work_allocation.rs (target/x86_64-unknown-linux-gnu/debug/deps/work_allocation-13d2a62bf3d47497)
+     Running unittests src/lib.rs (target/x86_64-unknown-linux-gnu/debug/deps/bonsai_ingest-c1abac250fee56cd)
+     Running tests/ingest_validation.rs (target/x86_64-unknown-linux-gnu/debug/deps/ingest_validation-052c86ecb905ced1)
+     Running tests/ordering_semantics.rs (target/x86_64-unknown-linux-gnu/debug/deps/ordering_semantics-4ccaa5ddc9b5b072)
+     Running unittests src/lib.rs (target/x86_64-unknown-linux-gnu/debug/deps/bonsai_lineage-9fbab4d01506e7a0)
+     Running tests/incremental.rs (target/x86_64-unknown-linux-gnu/debug/deps/incremental-a0f217c17bc5e2e9)
+     Running tests/persistent.rs (target/x86_64-unknown-linux-gnu/debug/deps/persistent-a609e844d0dfe29e)
+     Running unittests src/lib.rs (target/x86_64-unknown-linux-gnu/debug/deps/bonsai_metrics-85e43ff2aadb7e52)
+     Running tests/continual_metrics.rs (target/x86_64-unknown-linux-gnu/debug/deps/continual_metrics-c27826d1d1fde62a)
+     Running tests/feature_metrics.rs (target/x86_64-unknown-linux-gnu/debug/deps/feature_metrics-3a3ddc29df689043)
+     Running tests/repro_gate.rs (target/x86_64-unknown-linux-gnu/debug/deps/repro_gate-a1b014038926355a)
+     Running unittests src/lib.rs (target/x86_64-unknown-linux-gnu/debug/deps/bonsai_platform-95590b2df589347f)
+     Running unittests src/bin/bonsai-accounting-fixture.rs (target/x86_64-unknown-linux-gnu/debug/deps/bonsai_accounting_fixture-f44bcf8cd335889b)
+     Running tests/os_backends.rs (target/x86_64-unknown-linux-gnu/debug/deps/os_backends-065b63f4499e1dca)
+     Running tests/portable_accounting.rs (target/x86_64-unknown-linux-gnu/debug/deps/portable_accounting-87fbf403299945f6)
+     Running unittests src/lib.rs (target/x86_64-unknown-linux-gnu/debug/deps/bonsai_report-700ae70246c69375)
+     Running unittests src/bin/bonsai-report.rs (target/x86_64-unknown-linux-gnu/debug/deps/bonsai_report-427250d2d12f2892)
+     Running unittests src/bin/bonsai-view.rs (target/x86_64-unknown-linux-gnu/debug/deps/bonsai_view-7bd247f50999155f)
+     Running tests/m3_reporting.rs (target/x86_64-unknown-linux-gnu/debug/deps/m3_reporting-0ca90f1cb2ef2b78)
+     Running unittests src/lib.rs (target/x86_64-unknown-linux-gnu/debug/deps/bonsai_runtime-a055625132a0aa99)
+     Running tests/adapter_conformance.rs (target/x86_64-unknown-linux-gnu/debug/deps/adapter_conformance-ae217f79109f4127)
+     Running tests/agent_isolation.rs (target/x86_64-unknown-linux-gnu/debug/deps/agent_isolation-fc7cf8db4def6e05)
+     Running tests/linux_bounded_transport.rs (target/x86_64-unknown-linux-gnu/debug/deps/linux_bounded_transport-2adf90f36697af75)
+BX-02 blocked stdin: pids=[153335] elapsed_ms=89
+BX-02 partial frame: pids=[153338] elapsed_ms=82
+BX-02 grandchild cancellation: pids=[153341, 153344] elapsed_ms=2
+BX-02 exited parent inherited pipes: pids=[153345, 153348] elapsed_ms=6
+BX-02 stderr flood: pids=[153349] elapsed_ms=2
+BX-02 external cancellation: pids=[153352] elapsed_ms=43
+BX-02 external cancellation: pids=[153356] elapsed_ms=44
+BX-02 shutdown cancellation: pids=[153360] elapsed_ms=42
+BX-02 repeated cleanup: threads=3->3, fds=5->5
+     Running tests/process_transport.rs (target/x86_64-unknown-linux-gnu/debug/deps/process_transport-0473f74f61af8336)
+     Running tests/storage_guard.rs (target/x86_64-unknown-linux-gnu/debug/deps/storage_guard-e738edd1bf709790)
+     Running unittests src/main.rs (target/x86_64-unknown-linux-gnu/debug/deps/bonsai_xtask-d23811b32699d6af)
+     Running tests/bundle_validator_cli.rs (target/x86_64-unknown-linux-gnu/debug/deps/bundle_validator_cli-f97572fc3461f0fe)
+     Running tests/recover_run.rs (target/x86_64-unknown-linux-gnu/debug/deps/recover_run-41f64cc2b11b4509)
+     Running tests/verification_fixture.rs (target/x86_64-unknown-linux-gnu/debug/deps/verification_fixture-1912f57c36275231)
+   Doc-tests bonsai_accept
+   Doc-tests bonsai_bundle
+   Doc-tests bonsai_claims
+   Doc-tests bonsai_contracts
+   Doc-tests bonsai_governor
+   Doc-tests bonsai_ingest
+   Doc-tests bonsai_lineage
+   Doc-tests bonsai_metrics
+   Doc-tests bonsai_platform
+   Doc-tests bonsai_report
+   Doc-tests bonsai_runtime
+    Finished `dev` profile [unoptimized + debuginfo] target(s) in 5.54s
+     Running `target/x86_64-unknown-linux-gnu/debug/bonsai-xtask schema-check`

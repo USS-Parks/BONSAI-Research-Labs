@@ -1,0 +1,1 @@
+{"core_imports": "pass", "gymnasium_installed": false}

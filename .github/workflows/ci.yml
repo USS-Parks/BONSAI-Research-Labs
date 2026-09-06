@@ -76,6 +76,9 @@ jobs:
       - name: Python tests
         run: uv run --frozen pytest
 
+      - name: Optional Gymnasium integration
+        run: uv run --frozen --extra gymnasium pytest python/bonsai-reference/tests/test_gymnasium_adapter.py
+
       - name: Documentation governance
         run: uv run --frozen python -B scripts/check_docs.py
 

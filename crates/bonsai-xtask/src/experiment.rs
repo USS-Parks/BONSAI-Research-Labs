@@ -1000,10 +1000,7 @@ fn action_transition(
     )?;
     let transition =
         wire::CausalTransition::decode(transition_bytes.as_slice()).map_err(|e| e.to_string())?;
-    if transition.step != index
-        || transition.action != action.action
-        || transition.terminated && transition.truncated
-    {
+    if transition.step != index || transition.action != action.action {
         return Err("TRANSITION_INVALID".into());
     }
     log.append("run.reward",&json!({"total_step":total,"episode":episode,"step":index,"reward":transition.reward,

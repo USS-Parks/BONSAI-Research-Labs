@@ -1,0 +1,10 @@
+{
+  "archive": "evidence/verification/bx-11/external-environment.zip",
+  "bytes": 1594249,
+  "sha256": "07cddae7aae3545f6f82631b1b15c62eb7fd770098f0f48bc490346a819b55c6",
+  "payloads": 346,
+  "source_files": 209,
+  "direct_traces": 9,
+  "verified_runs": 4,
+  "independently_replayed_steps": 400
+}

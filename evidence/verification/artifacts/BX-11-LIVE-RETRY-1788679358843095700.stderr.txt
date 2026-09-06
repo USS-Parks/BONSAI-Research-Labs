@@ -1,0 +1,8 @@
+Checked 14 packages in 94ms
+    Finished `dev` profile [unoptimized + debuginfo] target(s) in 9.09s
+Running as unit: bonsai-bx11-live.service; invocation ID: b3cc704ff6c4485196e695976543dc3b
+          Finished with result: success
+Main processes terminated with: code=exited, status=0/SUCCESS
+               Service runtime: 4min 25.058s
+             CPU time consumed: 1min 28.444s
+                   Memory peak: 175.5M (swap: 0B)

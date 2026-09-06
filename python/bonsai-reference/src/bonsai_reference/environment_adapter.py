@@ -6,13 +6,19 @@ import argparse
 import hashlib
 import json
 from pathlib import Path
-from typing import cast
+from typing import Protocol, cast
 
 from bonsai.adapter.v1 import adapter_pb2 as wire
 
 from bonsai_reference.adapter_protocol import OrderedAdapter, serve
 from bonsai_reference.adapter_wire import decode_into, encode
-from bonsai_reference.scenario import ScenarioError, ScenarioSession, ScenarioSpec, SessionObservation
+from bonsai_reference.scenario import (
+    ScenarioError,
+    ScenarioSession,
+    ScenarioSpec,
+    SessionObservation,
+    SessionTransition,
+)
 
 MAXIMUM = 65_536
 OBSERVE = "bonsai.environment.observe/v1"
@@ -36,10 +42,16 @@ def public_observation(value: SessionObservation) -> wire.CausalObservation:
     )
 
 
-class EnvironmentAdapter(OrderedAdapter):
-    def __init__(self, spec: ScenarioSpec, configuration_sha256: bytes) -> None:
+class EnvironmentSession(Protocol):
+    def reset(self, seed: int) -> SessionObservation: ...
+    def observe(self) -> SessionObservation: ...
+    def step(self, index: int, action: int) -> SessionTransition: ...
+
+
+class SessionAdapter(OrderedAdapter):
+    def __init__(self, session: EnvironmentSession, configuration_sha256: bytes) -> None:
         super().__init__(capabilities(), configuration_sha256)
-        self.session = ScenarioSession(spec)
+        self.session = session
         self._query = 0
         self._observed = False
 
@@ -71,6 +83,11 @@ class EnvironmentAdapter(OrderedAdapter):
         return wire.AdapterFrame(step_result=wire.StepResult(
             step_index=request.step_index, action=result, action_sha256=hashlib.sha256(result).digest(),
         ))
+
+
+class EnvironmentAdapter(SessionAdapter):
+    def __init__(self, spec: ScenarioSpec, configuration_sha256: bytes) -> None:
+        super().__init__(ScenarioSession(spec), configuration_sha256)
 
 
 def load_spec(path: Path) -> tuple[ScenarioSpec, bytes]:

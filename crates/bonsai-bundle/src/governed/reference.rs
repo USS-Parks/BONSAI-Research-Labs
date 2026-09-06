@@ -8,6 +8,18 @@ use serde_json::Value;
 // attest a hostile interpreter, kernel or machine operator.
 const SOURCES: &[(&str, &[u8])] = &[
     (
+        "python/bonsai-reference/src/bonsai_reference/gymnasium_session.py",
+        include_bytes!(
+            "../../../../python/bonsai-reference/src/bonsai_reference/gymnasium_session.py"
+        ),
+    ),
+    (
+        "python/bonsai-reference/src/bonsai_reference/gymnasium_adapter.py",
+        include_bytes!(
+            "../../../../python/bonsai-reference/src/bonsai_reference/gymnasium_adapter.py"
+        ),
+    ),
+    (
         "python/bonsai-reference/src/bonsai_reference/online_adapter.py",
         include_bytes!(
             "../../../../python/bonsai-reference/src/bonsai_reference/online_adapter.py"
@@ -82,17 +94,26 @@ pub(super) fn check(snapshot: &Snapshot, manifest: &Value, identity: &Value) -> 
         include_str!("../../../../fixtures/second-learner/v1/bx09-source-set.json"),
     ]
     .into_iter()
-    .any(|raw| historical_matches(raw, identity));
-    ensure(current || historical, "RUN_REFERENCE_SOURCE_UNSUPPORTED")?;
-    let (agent_id, agent_module, agent_version) = agent_contract(manifest, current)?;
+    .any(|raw| historical_matches(raw, identity, 10));
+    let bx10 = historical_matches(
+        include_str!("../../../../fixtures/external-environment/v1/bx10-source-set.json"),
+        identity,
+        13,
+    );
+    ensure(
+        current || historical || bx10,
+        "RUN_REFERENCE_SOURCE_UNSUPPORTED",
+    )?;
+    let (agent_id, agent_module, agent_version) = agent_contract(manifest, current || bx10)?;
+    let (environment_id, environment_module) = environment_contract(manifest, current)?;
     let components = snapshot.json("component-identity.json")?;
     for (role, key, id, module, version) in [
         ("agent", "adapter", agent_id, agent_module, agent_version),
         (
             "environment",
             "environment",
-            "bonsai-causal-environment",
-            "environment_adapter",
+            environment_id,
+            environment_module,
             "1.0.0",
         ),
     ] {
@@ -140,16 +161,41 @@ pub(super) fn check(snapshot: &Snapshot, manifest: &Value, identity: &Value) -> 
     Ok(())
 }
 
-fn historical_matches(raw: &str, identity: &Value) -> bool {
+fn historical_matches(raw: &str, identity: &Value, expected: usize) -> bool {
     let Ok(previous) = serde_json::from_str::<Value>(raw) else {
         return false;
     };
     previous["source_files"].as_object().is_some_and(|pins| {
-        pins.len() == 10
+        pins.len() == expected
             && pins
                 .iter()
                 .all(|(path, hash)| hash.is_string() && identity["source_files"][path] == *hash)
     })
+}
+
+fn environment_contract(manifest: &Value, current: bool) -> Result<(&'static str, &'static str)> {
+    let component = &manifest["environment"];
+    match text(component, "component_id")? {
+        "bonsai-causal-environment" => Ok(("bonsai-causal-environment", "environment_adapter")),
+        "bonsai-gymnasium-frozen-lake" if current => {
+            let config = &component["config"];
+            let seed = number(config, "seed")?;
+            let horizon = number(config, "horizon")?;
+            ensure(
+                (1..=1000).contains(&horizon)
+                    && *config
+                        == serde_json::json!({
+                            "scenario_id":"gymnasium-frozen-lake", "version":"1.0", "seed":seed,
+                            "horizon":horizon, "action_count":4, "observation_width":1,
+                            "environment_id":"FrozenLake-v1", "gymnasium_version":"1.3.0",
+                            "map_name":"4x4", "is_slippery":false
+                        }),
+                "RUN_CONFIGURATION_UNSUPPORTED",
+            )?;
+            Ok(("bonsai-gymnasium-frozen-lake", "gymnasium_adapter"))
+        }
+        _ => Err("RUN_REFERENCE_COMPONENT_UNSUPPORTED"),
+    }
 }
 
 fn agent_contract(

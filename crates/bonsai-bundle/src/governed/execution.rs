@@ -222,7 +222,8 @@ fn step(
     ensure(
         transition.step == index
             && transition.action == action.action
-            && !(transition.terminated && transition.truncated)
+            && (context.manifest["environment"]["component_id"] == "bonsai-gymnasium-frozen-lake"
+                || !(transition.terminated && transition.truncated))
             && next.step == index + 1
             && next.stream_id == observed.stream_id,
         "RUN_TRANSITION_INVALID",

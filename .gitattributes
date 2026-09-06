@@ -79,3 +79,10 @@ python/bonsai-reference/src/bonsai_reference/online_adapter.py text eol=lf
 evidence/verification/artifacts/BX-10-*.txt -text -diff
 evidence/verification/bx-10/*.sh text eol=lf
 evidence/verification/bx-10/*.py text eol=lf
+
+# BX-11 optional adapter source pins and exact verification captures.
+python/bonsai-reference/src/bonsai_reference/gymnasium_session.py text eol=lf
+python/bonsai-reference/src/bonsai_reference/gymnasium_adapter.py text eol=lf
+evidence/verification/artifacts/BX-11-*.txt -text -diff
+evidence/verification/bx-11/*.py text eol=lf
+evidence/verification/bx-11/*.sh text eol=lf
